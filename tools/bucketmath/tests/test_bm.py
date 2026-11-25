@@ -198,3 +198,8 @@ def test_tex_macros_become_tags():
     assert "[bm:BucketMath.Vec.sum_nil]" in out
     _, warnings = bm.lint_text(out, [{"name": "BucketMath.Vec.sum_nil", "status": "proved"}])
     assert len(warnings) == 1 and "30" in warnings[0]
+
+
+def test_spelled_quantities_warn():
+    _, warnings = bm.lint_text("It keeps 24 percent of the pool. It falls to four parts in ten thousand.\n", [])
+    assert len(warnings) == 2

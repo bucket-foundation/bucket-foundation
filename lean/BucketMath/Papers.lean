@@ -131,8 +131,13 @@ instance (x a n b m : Nat) : Decidable (ratioRoundsTo x a n b m) := inferInstanc
 theorem frontier_settled_ratios : ratioRoundsTo 4012 38 161 4 68 ∧ ratioRoundsTo 21489 35 272 1 167 := by decide
 
 theorem frontier_settled_rates :
-    23 * 161 ≤ 100 * 38 ∧ 100 * 38 < 24 * 161 + 161 ∧ 5 * 68 < 100 * 4 ∧ 100 * 4 < 6 * 68 ∧
-      12 * 272 < 100 * 35 ∧ 100 * 35 < 13 * 272 + 272 := by decide
+    235 * 161 ≤ 1000 * 38 ∧ 1000 * 38 < 245 * 161 ∧ 585 * 68 ≤ 10000 * 4 ∧ 10000 * 4 < 595 * 68 ∧
+      125 * 272 ≤ 1000 * 35 ∧ 1000 * 35 < 135 * 272 ∧ 5 * 167 ≤ 1000 * 1 ∧ 1000 * 1 < 15 * 167 := by decide
+
+theorem hhe_opinion_roundings :
+    24 * 8186 ≤ 100 * 2000 ∧ 100 * 2000 < 25 * 8186 ∧
+      98 * 8186 ≤ 100 * (6186 + 1848) ∧ 100 * (6186 + 1848) < 99 * 8186 ∧
+      924 * 2000 = 1848 * 1000 ∧ 35 * 8186 ≤ 100000 * 3 ∧ 100000 * 3 < 45 * 8186 := by decide
 
 theorem frontier_remaining_shares : 6 * 2 < 13 ∧ 18 * 4 = 24 * 3 := by decide
 

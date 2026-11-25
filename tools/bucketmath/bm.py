@@ -19,9 +19,9 @@ SOURCE_ROOTS = {
 GENERATED = {"ctorElim", "ctorElimType", "ofNat", "ofNat_ctorIdx", "toCtorIdx", "elim"}
 TAG = re.compile(r"\[(bm|bm-open):([A-Za-z0-9_.']+)\]")
 EMPIRICAL = re.compile(r"\[empirical:[^\]]+\]")
-NUMBER = re.compile(r"(?<![\w.])-?\d+(?:[.,]\d+)?(?:e-?\d+)?\s*(?:%|x\b|×)?")
+NUMBER = re.compile(r"\b(?:one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:parts?|percent|in|out of|halves|thirds|quarters|fifths|tenths)\b|\b(?:one half|a half|a third|a quarter|three quarters|two thirds)\b|(?<![\w.])-?\d+(?:[.,]\d+)?(?:e-?\d+)?\s*(?:%|x\b|×)?")
 INLINE_CODE = re.compile(r"`[^`]*`")
-QUANT_WORDS = re.compile(r"%|×|\b(?:ratio|variance|correlat\w*|modularity|recall|precision|accuracy|p-value|faster|slower|higher|lower|times|share|rate)\b", re.I)
+QUANT_WORDS = re.compile(r"%|×|\bpercent\b|\bparts? in\b|\b(?:ratio|variance|correlat\w*|modularity|recall|precision|accuracy|p-value|faster|slower|higher|lower|times|share|rate)\b", re.I)
 
 class ManifestError(RuntimeError):
     pass

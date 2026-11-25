@@ -3497,7 +3497,7 @@
   "status": "proved",
   "module": "BucketMath.Papers",
   "source": "lean/BucketMath/Papers.lean",
-  "line": 137,
+  "line": 142,
   "type": "6 * 2 < 13 ∧ 18 * 4 = 24 * 3"
  },
  {
@@ -3507,7 +3507,7 @@
   "module": "BucketMath.Papers",
   "source": "lean/BucketMath/Papers.lean",
   "line": 133,
-  "type": "23 * 161 ≤ 100 * 38 ∧\n  100 * 38 < 24 * 161 + 161 ∧ 5 * 68 < 100 * 4 ∧ 100 * 4 < 6 * 68 ∧ 12 * 272 < 100 * 35 ∧ 100 * 35 < 13 * 272 + 272"
+  "type": "235 * 161 ≤ 1000 * 38 ∧\n  1000 * 38 < 245 * 161 ∧\n    585 * 68 ≤ 10000 * 4 ∧\n      10000 * 4 < 595 * 68 ∧ 125 * 272 ≤ 1000 * 35 ∧ 1000 * 35 < 135 * 272 ∧ 5 * 167 ≤ 1000 * 1 ∧ 1000 * 1 < 15 * 167"
  },
  {
   "name": "BucketMath.Papers.frontier_settled_ratios",
@@ -3591,6 +3591,15 @@
   "type": "2000 * 900 + 1500 * 500 = 2550000 ∧\n  2550 * 15485 ≤ 39510000 ∧\n    39510000 ≤ 2550 * 15495 ∧\n      1000 * 600 = 600000 ∧ 808 * 1000 ≤ 600 * 1347 ∧ 600 * 1347 < 809 * 1000 ∧ 3951 + 808 = 4759"
  },
  {
+  "name": "BucketMath.Papers.hhe_opinion_roundings",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 137,
+  "type": "24 * 8186 ≤ 100 * 2000 ∧\n  100 * 2000 < 25 * 8186 ∧\n    98 * 8186 ≤ 100 * (6186 + 1848) ∧\n      100 * (6186 + 1848) < 99 * 8186 ∧ 924 * 2000 = 1848 * 1000 ∧ 35 * 8186 ≤ 100000 * 3 ∧ 100000 * 3 < 45 * 8186"
+ },
+ {
   "name": "BucketMath.Papers.hhe_sequence_space",
   "kind": "theorem",
   "status": "proved",
@@ -3632,7 +3641,7 @@
   "status": "def",
   "module": "BucketMath.Papers",
   "source": "lean/BucketMath/Papers.lean",
-  "line": 139,
+  "line": 144,
   "type": "Rat → Rat → Rat → Rat"
  },
  {
@@ -3641,7 +3650,7 @@
   "status": "proved",
   "module": "BucketMath.Papers",
   "source": "lean/BucketMath/Papers.lean",
-  "line": 141,
+  "line": 146,
   "type": "∀ {J A H : Rat}, 0 < A → H ≤ A → J = A → BucketMath.Papers.multiplier J H A = 1"
  },
  {
