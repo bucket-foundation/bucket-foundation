@@ -554,7 +554,7 @@
   "status": "def",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 170,
+  "line": 211,
   "type": "List (List Nat)"
  },
  {
@@ -563,7 +563,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 174,
+  "line": 215,
   "type": "BucketMath.Etymology.setSim BucketMath.Etymology.inherited BucketMath.Etymology.otherFamily <\n  min (BucketMath.Etymology.setSim BucketMath.Etymology.inherited BucketMath.Etymology.borrowed)\n    (BucketMath.Etymology.setSim BucketMath.Etymology.borrowed BucketMath.Etymology.otherFamily)"
  },
  {
@@ -572,7 +572,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 178,
+  "line": 219,
   "type": "¬∀ (A B C : List (List Nat)),\n    min (BucketMath.Etymology.setSim A B) (BucketMath.Etymology.setSim B C) ≤ BucketMath.Etymology.setSim A C"
  },
  {
@@ -590,7 +590,7 @@
   "status": "def",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 120,
+  "line": 161,
   "type": "{β : Type} → (β → Nat) → List β → Nat"
  },
  {
@@ -599,7 +599,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 132,
+  "line": 173,
   "type": "∀ {β : Type} (f : β → Nat) (l : List β), l ≠ [] → ∃ x, x ∈ l ∧ BucketMath.Etymology.fmax f l = f x"
  },
  {
@@ -617,7 +617,7 @@
   "status": "def",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 168,
+  "line": 209,
   "type": "List (List Nat)"
  },
  {
@@ -680,7 +680,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 122,
+  "line": 163,
   "type": "∀ {β : Type} (f : β → Nat) (l : List β) (x : β), x ∈ l → f x ≤ BucketMath.Etymology.fmax f l"
  },
  {
@@ -689,7 +689,7 @@
   "status": "def",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 172,
+  "line": 213,
   "type": "List (List Nat)"
  },
  {
@@ -709,6 +709,60 @@
   "source": "lean/BucketMath/Etymology/Forest.lean",
   "line": 52,
   "type": "∀ (a p : List Nat),\n  BucketMath.Etymology.parentAddr a = some p → BucketMath.Etymology.depth p < BucketMath.Etymology.depth a"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 120,
+  "type": "List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_eq_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 131,
+  "type": "∀ (a b : List Nat), BucketMath.Etymology.pathDist a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_not_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 157,
+  "type": "max (BucketMath.Etymology.pathDist [0, 0] [0]) (BucketMath.Etymology.pathDist [0] [0, 1]) <\n  BucketMath.Etymology.pathDist [0, 0] [0, 1]"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 126,
+  "type": "∀ (a : List Nat), BucketMath.Etymology.pathDist a a = 0"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 122,
+  "type": "∀ (a b : List Nat), BucketMath.Etymology.pathDist a b = BucketMath.Etymology.pathDist b a"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 143,
+  "type": "∀ (a b c : List Nat),\n  BucketMath.Etymology.pathDist a c ≤ BucketMath.Etymology.pathDist a b + BucketMath.Etymology.pathDist b c"
  },
  {
   "name": "BucketMath.Etymology.rootDist",
@@ -752,7 +806,7 @@
   "status": "def",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 143,
+  "line": 184,
   "type": "List (List Nat) → List (List Nat) → Nat"
  },
  {
@@ -761,7 +815,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 145,
+  "line": 186,
   "type": "∀ (B : List (List Nat)), BucketMath.Etymology.setSim [] B = 0"
  },
  {
@@ -770,7 +824,7 @@
   "status": "proved",
   "module": "BucketMath.Etymology.Forest",
   "source": "lean/BucketMath/Etymology/Forest.lean",
-  "line": 147,
+  "line": 188,
   "type": "∀ (A C : List (List Nat)) (b : List Nat),\n  min (BucketMath.Etymology.setSim A [b]) (BucketMath.Etymology.setSim [b] C) ≤ BucketMath.Etymology.setSim A C"
  },
  {

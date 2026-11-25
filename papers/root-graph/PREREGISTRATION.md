@@ -52,3 +52,14 @@ Primary family: T1a, T1b, T2 pooled over languages by Fisher's method, T3. Holm 
 ## Deviations
 
 Any change after this commit is logged in the paper with its date and reason.
+
+## Amendment 1
+
+Dated 2026-11-25, after the first run and a critic review that found low linkage: 85% of Spanish translation nodes had no inheritance parent. These changes follow sight of the first results; the paper reports both runs.
+
+- Descent edges: `inh`, plus `der` when the source language lies on the target language's ancestral line. The ancestral line is the transitive closure of Wiktionary's language data (`ancestors` fields, etymology-language parents, family proto-language defaults) plus inheritance language pairs seen at least 20 times in etymon trees. An `inh` edge to a language off that line is dropped and counted.
+- Borrowing: bor, lbor, slbor, ubor, obor and calque. `der` from a language off the ancestral line is its own class, `der_ext`, reported separately and in a sensitivity share that counts it as borrowed.
+- Node identity: HTML entities unescaped, wiki brackets and inline modifiers stripped, comma-joined language codes split, `root` templates parsed as derivation to the root, ligatures œ and æ written oe and ae, NFC, and non-lemma forms mapped to their lemma when every sense of the page is a form-of one lemma.
+- Etymon trees: the ancestry tree in `etymon` template output is parsed into edges.
+- Linkage recall: share of 90 hand-listed cognate pairs, 30 each in Romance, Germanic and Slavic (`data/cognates.tsv`), whose forest chains meet, reported for the first and second build.
+- T1 distance: path distance d_u + d_v - 2s, proved a metric and shown non-ultrametric in Lean. Hypotheses, sampling, alpha and corrections are unchanged.

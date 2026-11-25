@@ -117,6 +117,47 @@ theorem rootDist_self (H : Nat) (a : List Nat) (h : depth a = H) : rootDist H a 
   simp [depth] at h
   omega
 
+def pathDist (a b : List Nat) : Nat := depth a + depth b - 2 * lcaDepth a b
+
+theorem pathDist_symm (a b : List Nat) : pathDist a b = pathDist b a := by
+  simp only [pathDist, lcaDepth, lcp_symm a b]
+  omega
+
+theorem pathDist_self (a : List Nat) : pathDist a a = 0 := by
+  have := lcp_self a
+  simp only [pathDist, lcaDepth, depth, this]
+  omega
+
+theorem pathDist_eq_zero (a b : List Nat) (h : pathDist a b = 0) : a = b := by
+  have hab := lcp_le_depth a b
+  have hba := lcp_le_depth b a
+  rw [lcp_symm b a] at hba
+  have hl : lcp a b = a.length ∧ lcp a b = b.length := by
+    simp only [pathDist, lcaDepth, depth] at h hab hba
+    omega
+  have hc := lcp_common_prefix a b
+  rw [hl.1, List.take_length] at hc
+  rw [← hl.1, hl.2, List.take_length] at hc
+  exact hc
+
+theorem pathDist_triangle (a b c : List Nat) : pathDist a c ≤ pathDist a b + pathDist b c := by
+  have hu := lcp_ultra a b c
+  have h1 := lcp_le_depth b a
+  have h2 := lcp_le_depth b c
+  have h3 := lcp_le_depth a c
+  have h4 := lcp_le_depth c a
+  have h5 := lcp_le_depth a b
+  have h6 := lcp_le_depth c b
+  rw [lcp_symm b a] at h1
+  rw [lcp_symm c a] at h4
+  rw [lcp_symm c b] at h6
+  simp only [pathDist, lcaDepth, depth] at *
+  omega
+
+theorem pathDist_not_ultra :
+    max (pathDist [0, 0] [0]) (pathDist [0] [0, 1]) < pathDist [0, 0] [0, 1] := by
+  decide
+
 def fmax {β : Type} (f : β → Nat) (l : List β) : Nat := l.foldr (fun x acc => max (f x) acc) 0
 
 theorem le_fmax {β : Type} (f : β → Nat) : ∀ (l : List β) (x : β), x ∈ l → f x ≤ fmax f l

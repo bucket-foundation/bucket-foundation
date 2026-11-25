@@ -123,11 +123,29 @@ def bh(ps):
     return adj.tolist()
 
 
+INHERITED = ("inh", "der_anc")
+BORROWED = ("bor", "cal")
+
+
 def node_classes(db):
+    anc = defaultdict(set)
+    for lang, a in db.execute("select lang, anc from lang_closure"):
+        anc[lang].add(a)
     cls = {}
-    for node, c in db.execute("select node, cls from lexeme where cls is not null"):
-        cls.setdefault(node, c)
+    q = "select l.node, n.lang, l.cls, l.cls_lang from lexeme l join node n on n.id = l.node where l.cls is not null"
+    for node, lang, c, cl in db.execute(q):
+        if node in cls:
+            continue
+        if c == "der":
+            c = "der_anc" if cl in anc[lang] else "der_ext"
+        cls[node] = c
     return cls
+
+
+def counts(c):
+    inh = sum(c[k] for k in INHERITED)
+    bor = sum(c[k] for k in BORROWED)
+    return bor, inh, c["der_ext"]
 
 
 def main() -> None:
@@ -218,10 +236,12 @@ def main() -> None:
     pvals = []
     for lang, nodes in freq_nodes.items():
         c = Counter(cls.get(n, "none") for n in nodes)
-        k_f, n_f = c["bor"], c["bor"] + c["inh"]
+        bf, inf, xf = counts(c)
+        k_f, n_f = bf, bf + inf
         if n_f < MIN_CLASSIFIED:
             continue
-        k_w, n_w = whole[lang]["bor"], whole[lang]["bor"] + whole[lang]["inh"]
+        bw, inw, _ = counts(whole[lang])
+        k_w, n_w = bw, bw + inw
         if n_w == 0:
             continue
         p_pool = (k_f + k_w) / (n_f + n_w)
@@ -230,7 +250,9 @@ def main() -> None:
         p = float(stats.norm.cdf(z))
         pvals.append(max(p, 1e-300))
         t2[lang] = {"frequent": dict(c), "n_classified": n_f, "borrowed_share": k_f / n_f, "ci95": wilson(k_f, n_f),
-                    "lexicon_borrowed_share": k_w / n_w, "lexicon_n": n_w, "z": float(z), "p": p}
+                    "lexicon_borrowed_share": k_w / n_w, "lexicon_n": n_w, "z": float(z), "p": p,
+                    "share_with_der_ext": (bf + xf) / (bf + inf + xf),
+                    "class_share": {k: v / len(nodes) for k, v in c.items()}}
     for (lang, row), q in zip(t2.items(), bh(pvals)):
         row["q_bh"] = q
     fisher = stats.combine_pvalues(pvals, method="fisher") if pvals else None
@@ -238,13 +260,14 @@ def main() -> None:
                   "fisher_p": float(fisher[1]) if fisher else None,
                   "bh_rejections": sum(r["q_bh"] < 0.05 for r in t2.values()),
                   "median_borrowed_share": float(np.median([r["borrowed_share"] for r in t2.values()])) if t2 else None,
+                  "median_share_with_der_ext": float(np.median([r["share_with_der_ext"] for r in t2.values()])) if t2 else None,
                   "frequent_lower_count": sum(r["borrowed_share"] < r["lexicon_borrowed_share"] for r in t2.values())}
     family = defaultdict(list)
     root_lang = {}
     for lang, row in t2.items():
         tops = Counter()
         for n in freq_nodes[lang]:
-            if cls.get(n) == "inh":
+            if cls.get(n) in INHERITED:
                 x = n
                 while parent[x] != -1:
                     x = int(parent[x])
@@ -290,11 +313,11 @@ def main() -> None:
             tot += 1
             hit += ok
             c = cls.get(n)
-            if c == "inh":
+            if c in INHERITED:
                 inh += 1
-            elif c == "bor":
+            elif c in BORROWED:
                 bor += 1
-                r = db.execute("select n.lang from edge e join node n on n.id = e.dst where e.src = ? and e.rel = 'bor' order by e.page, e.ord limit 1", (n,)).fetchone()
+                r = db.execute("select n.lang from edge e join node n on n.id = e.dst where e.src = ? and e.rel in ('bor', 'cal') order by e.page, e.ord limit 1", (n,)).fetchone()
                 don += bool(r and r[0] in DONORS)
         g.append(hit / tot if tot else np.nan)
         b.append(bor / (bor + inh) if bor + inh else np.nan)
