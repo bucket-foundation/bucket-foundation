@@ -28,3 +28,15 @@ import Testing
     state.requestRetention = 0.85
     #expect(ExpectedLearning.Track(state, languages: 2) == .init(newPerDay: 6, retention: 0.85, languages: 2))
 }
+
+@Test func languageTracksCountASharedLanguageOnceAtTheSessionBudget() throws {
+    let a = try createSystem("en", ["fr", "es"], [], now: 0)
+    let b = try createSystem("en", ["fr", "it"], [], now: 0)
+    var state = EngineState()
+    state.newPerDay = 2
+    state.requestRetention = 0.9
+    let tracks = ExpectedLearning.Track.languages([(a, state), (b, state)])
+    #expect(tracks.count == 3)
+    #expect(tracks.allSatisfy { $0 == .init(newPerDay: Double(Lang.newPerLangPerDay), retention: 0.9, languages: 1) })
+    #expect(ExpectedLearning(streak: 10, languages: tracks, decks: []).words == 3 * ExpectedLearning.items(newPerDay: Double(Lang.newPerLangPerDay), retention: 0.9, days: 10))
+}

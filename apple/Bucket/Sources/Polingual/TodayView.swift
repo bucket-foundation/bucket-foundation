@@ -158,7 +158,7 @@ struct TodayView: View {
     }
 
     func expectedLearning(_ streak: Double) -> ExpectedLearning {
-        ExpectedLearning(streak: StreakGoal(streak: streak).day, languages: langs.systems.map { .init(langs.state($0.id), languages: $0.targets.count) }, decks: deckStates.map { .init($0) })
+        ExpectedLearning(streak: StreakGoal(streak: streak).day, languages: .languages(langs.systems.map { ($0, langs.state($0.id)) }), decks: deckStates.map { .init($0) })
     }
 
     func resting(_ item: Item, _ now: Double) -> Bool {

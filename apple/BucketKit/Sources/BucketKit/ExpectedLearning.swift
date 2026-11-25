@@ -32,3 +32,14 @@ public struct ExpectedLearning: Equatable, Sendable {
 
     public var isEmpty: Bool { words == 0 && concepts == 0 }
 }
+
+extension ExpectedLearning.Track {
+    public static func languages(_ sets: [(system: LangSystem, state: EngineState)]) -> [Self] {
+        var seen = Set<String>()
+        return sets.flatMap { set in
+            set.system.targets.filter { seen.insert($0).inserted }.map { _ in
+                Self(newPerDay: Double(Lang.newPerLangPerDay), retention: set.state.requestRetention, languages: 1)
+            }
+        }
+    }
+}
