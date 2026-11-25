@@ -39,7 +39,7 @@
     "types": 3078,
     "typesMapped": 2865
    },
-   "file": "de.456e081c4ba4.json",
+   "file": "de.7184d7971a9a.json",
    "items": 447,
    "tatoebaIdsMatched": 4008,
    "tatoebaItems": 4008,
@@ -54,7 +54,7 @@
     "types": 2804,
     "typesMapped": 2712
    },
-   "file": "es.5fca856f7cf9.json",
+   "file": "es.6868a53514ef.json",
    "items": 359,
    "tatoebaIdsMatched": 3287,
    "tatoebaItems": 3287,
@@ -69,7 +69,7 @@
     "types": 2824,
     "typesMapped": 2740
    },
-   "file": "fr.eddbe836b678.json",
+   "file": "fr.be8b2a259bd2.json",
    "items": 552,
    "tatoebaIdsMatched": 3757,
    "tatoebaItems": 3759,
@@ -84,7 +84,7 @@
     "types": 3269,
     "typesMapped": 3110
    },
-   "file": "it.ad8224dc27d6.json",
+   "file": "it.c73619f9ff1e.json",
    "items": 379,
    "tatoebaIdsMatched": 4756,
    "tatoebaItems": 4757,
@@ -99,11 +99,31 @@
     "types": 2643,
     "typesMapped": 2572
    },
-   "file": "pt.bff5586568b6.json",
+   "file": "pt.a11becfd7126.json",
    "items": 328,
    "tatoebaIdsMatched": 3345,
    "tatoebaItems": 3346,
    "units": 62
+  }
+ },
+ "lemmaEvaluation": {
+  "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
+  "goldenError": {
+   "de": 0.04,
+   "es": 0.0,
+   "fr": 0.02,
+   "it": 0.0,
+   "pt": 0.08
+  },
+  "goldenTunedRules": true,
+  "heldOut": {
+   "by": "critic round 2",
+   "errors": 2,
+   "examples": [
+    "es nos mapped to no",
+    "pt mostra"
+   ],
+   "tokens": 100
   }
  }
 }

@@ -42,6 +42,13 @@ ELISION_TAILS = ("e", "a", "o", "")
 RANK_MARGIN = 200
 STOP_SHARE = 0.05
 INF = float("inf")
+GOLDEN_MAX_ERROR = {"es": 0.0, "fr": 0.02, "it": 0.0, "pt": 0.08, "de": 0.04}
+LEMMA_EVALUATION = {
+    "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
+    "goldenTunedRules": True,
+    "goldenError": GOLDEN_MAX_ERROR,
+    "heldOut": {"tokens": 100, "errors": 2, "examples": ["es nos mapped to no", "pt mostra"], "by": "critic round 2"},
+}
 CLOSED_CLASS = {
     "es": {"a": "a", "al": "a"},
     "fr": {"a": "avoir"},
@@ -327,7 +334,7 @@ def sentence_set_units(lang, items):
     stop = {l for l, c in df.items() if c > max(SET_MAX, STOP_SHARE * len(items))}
     by_lemma = defaultdict(list)
     for it in items:
-        for l in set(it["lemmas"]) - stop:
+        for l in sorted(set(it["lemmas"]) - stop):
             by_lemma[l].append(it)
     units, used = [], set()
     for lemma in sorted(by_lemma, key=lambda l: (-len(by_lemma[l]), l)):
@@ -342,7 +349,7 @@ def sentence_set_units(lang, items):
         total = sum(map(ntok, chosen))
         if len(chosen) < SET_MIN or total < MIN_TOKENS:
             continue
-        shared = Counter(l for it in chosen for l in set(it["lemmas"]) - stop)
+        shared = Counter(l for it in chosen for l in sorted(set(it["lemmas"]) - stop))
         targets = [lemma] + [l for l, c in shared.most_common() if c >= 2 and l != lemma][:2]
         used.update(it["id"] for it in chosen)
         credits = tatoeba_credits(chosen) if all(it["source"]["name"] == "tatoeba" for it in chosen) else []
@@ -469,6 +476,7 @@ def main(argv=None):
     en_authors = tatoeba_en_authors(a.tatoeba, set(pool))
     manifest_path = a.out / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
+    manifest["lemmaEvaluation"] = LEMMA_EVALUATION
     inputs = manifest.setdefault("inputs", {})
     inputs["layers"] = sha(a.layers)
     inputs["videos"] = {p.name: sha(p) for p in video_paths}

@@ -8,7 +8,12 @@ import unittest
 from collections import Counter
 from pathlib import Path
 
-import jsonschema
+import os
+
+try:
+    import jsonschema
+except ImportError:
+    jsonschema = None
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -176,6 +181,7 @@ def write_bz2(path, rows):
             f.write("\t".join(r) + "\n")
 
 
+@unittest.skipIf(jsonschema is None, "jsonschema missing: pip install -r polingual/scripts/requirements.txt")
 class EndToEnd(unittest.TestCase):
     def test_fixture_build(self):
         with tempfile.TemporaryDirectory() as d:
@@ -234,6 +240,7 @@ class EndToEnd(unittest.TestCase):
             ib.parse(["--packs", "/nonexistent", "--index", "/nonexistent", "--tatoeba", "/x", "--scratch", "/tmp/x"])
 
 
+@unittest.skipIf(jsonschema is None, "jsonschema missing: pip install -r polingual/scripts/requirements.txt")
 class Shipped(unittest.TestCase):
     def test_shipped_bundles_match_schema(self):
         manifest = json.loads((SHIPPED / "manifest.json").read_text())
@@ -243,6 +250,21 @@ class Shipped(unittest.TestCase):
                 jsonschema.validate(bundle, SCHEMA)
                 ids = [i for u in bundle["units"] for i in u["itemIds"]]
                 self.assertEqual(len(ids), len(set(ids)))
+
+
+LEX_ENV = ("PHOTONS_INDEX", "POLINGUAL_PACKS_DIR", "INPUT_SCRATCH_DIR")
+
+
+@unittest.skipUnless(all(os.environ.get(k) for k in LEX_ENV), f"golden check needs {', '.join(LEX_ENV)}")
+class GoldenRegression(unittest.TestCase):
+    def test_error_does_not_exceed_recorded(self):
+        gold = json.loads(ib.GOLDEN.read_text())
+        a = ib.parse(["--golden"])
+        a.scratch.mkdir(parents=True, exist_ok=True)
+        for lang, limit in ib.GOLDEN_MAX_ERROR.items():
+            with self.subTest(lang=lang):
+                rate, wrong = ib.golden_error_rate(ib.open_lexicon(lang, a.packs, a.scratch, a.index), gold[lang])
+                self.assertLessEqual(rate, limit, wrong)
 
 
 if __name__ == "__main__":
