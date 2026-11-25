@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polingual.com/schemas/input-bundle.json",
+  "title": "Polingual input bundle",
+  "type": "object",
+  "required": ["format", "version", "lang", "attribution", "coverage", "items", "units"],
+  "properties": {
+    "format": { "const": "polingual-input" },
+    "version": { "const": 1 },
+    "lang": { "type": "string", "minLength": 2 },
+    "attribution": { "type": "array", "items": { "type": "string" } },
+    "coverage": { "$ref": "#/$defs/coverage" },
+    "items": { "type": "array", "items": { "$ref": "#/$defs/item" } },
+    "units": { "type": "array", "items": { "$ref": "#/$defs/unit" } }
+  },
+  "$defs": {
+    "coverage": {
+      "type": "object",
+      "required": ["tokens", "tokensMapped", "tokenShare", "types", "typesMapped", "typeShare"],
+      "properties": {
+        "tokens": { "type": "integer", "minimum": 0 },
+        "tokensMapped": { "type": "integer", "minimum": 0 },
+        "tokenShare": { "type": "number", "minimum": 0, "maximum": 1 },
+        "types": { "type": "integer", "minimum": 0 },
+        "typesMapped": { "type": "integer", "minimum": 0 },
+        "typeShare": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "token": {
+      "type": "object",
+      "required": ["surface", "lemma"],
+      "properties": {
+        "surface": { "type": "string", "minLength": 1 },
+        "lemma": { "type": "string", "minLength": 1 },
+        "unmapped": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "lang", "kind", "text", "tokens", "lemmas", "source", "license"],
+      "properties": {
+        "id": { "type": "string" },
+        "lang": { "type": "string" },
+        "kind": { "enum": ["sentence", "passage", "audio", "video_segment"] },
+        "text": { "type": "string" },
+        "tokens": { "type": "array", "items": { "$ref": "#/$defs/token" } },
+        "lemmas": { "type": "array", "items": { "type": "string" } },
+        "translation": { "type": "string" },
+        "audioUrl": { "type": "string" },
+        "media": {
+          "type": "object",
+          "required": ["videoId", "start", "end"],
+          "properties": {
+            "videoId": { "type": "string" },
+            "start": { "type": "number" },
+            "end": { "type": "number" }
+          }
+        },
+        "cefr": { "enum": ["A1", "A2", "B1", "B2", "C1", "C2"] },
+        "source": {
+          "type": "object",
+          "required": ["name", "url"],
+          "properties": {
+            "name": { "enum": ["tatoeba", "youtube", "graded"] },
+            "url": { "type": "string" },
+            "sentenceIds": { "type": "object", "additionalProperties": { "type": "string" } },
+            "title": { "type": "string" },
+            "channel": { "type": ["string", "null"] }
+          }
+        },
+        "license": { "type": "string", "minLength": 1 }
+      }
+    },
+    "unit": {
+      "type": "object",
+      "required": ["id", "kind", "itemIds", "targetLemmas", "tokenCount"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["episode", "sentence_set", "passage"] },
+        "itemIds": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "targetLemmas": { "type": "array", "items": { "type": "string" } },
+        "tokenCount": { "type": "integer", "minimum": 40 }
+      }
+    }
+  }
+}

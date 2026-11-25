@@ -22,6 +22,8 @@ const nextConfig = {
       { source: "/academy-app/corpus/:path*", headers: [{ key: "cache-control", value: "public, max-age=86400, s-maxage=31536000" }] },
       { source: "/academy-app/polingual/:path*", headers: [{ key: "cache-control", value: "public, max-age=86400, s-maxage=31536000" }] },
       { source: "/academy-app/audio/:path*", headers: [{ key: "cache-control", value: "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=2592000" }] },
+      { source: "/input/:file([a-z]{2,3}\\.[0-9a-f]{12}\\.json)", headers: [{ key: "cache-control", value: "public, max-age=31536000, immutable" }] },
+      { source: "/input/manifest.json", headers: [{ key: "cache-control", value: "public, max-age=3600, s-maxage=86400" }] },
     ];
   },
   async redirects() {
