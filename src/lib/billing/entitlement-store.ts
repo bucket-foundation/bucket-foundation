@@ -88,3 +88,14 @@ export async function markOfferUsed(userId: string, offer: "winback"): Promise<v
   const { error } = await client().from("polingual_offer_used").upsert({ user_id: userId, offer }, { onConflict: "user_id,offer", ignoreDuplicates: true });
   if (error) throw new Error(`polingual_offer_used write failed: ${error.message}`);
 }
+
+export async function reserveOffer(userId: string, offer: "winback"): Promise<boolean> {
+  const { data, error } = await client().from("polingual_offer_used").upsert({ user_id: userId, offer }, { onConflict: "user_id,offer", ignoreDuplicates: true }).select("offer");
+  if (error) throw new Error(`polingual_offer_used reserve failed: ${error.message}`);
+  return Array.isArray(data) && data.length > 0;
+}
+
+export async function releaseOffer(userId: string, offer: "winback"): Promise<void> {
+  const { error } = await client().from("polingual_offer_used").delete().eq("user_id", userId).eq("offer", offer);
+  if (error) throw new Error(`polingual_offer_used release failed: ${error.message}`);
+}

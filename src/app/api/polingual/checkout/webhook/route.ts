@@ -3,7 +3,7 @@ import { handleWebhook, trialEndingEmail, type TrialEnding } from "@/lib/billing
 import { claimPaidOnce, sendBillingFunnel } from "@/lib/billing/funnel-send";
 import { giftFulfilDeps, sendGiftEmail } from "@/lib/billing/gift-store";
 import { giftMailConfig, handleGiftEvent } from "@/lib/billing/polingual-gift";
-import { entitlementStoreConfigured, markOfferUsed, patchEntitlement, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
+import { entitlementStoreConfigured, markOfferUsed, patchEntitlement, releaseOffer, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -62,6 +62,7 @@ export async function POST(req: Request): Promise<Response> {
         claimPaid: claimPaidOnce,
         cancelSubscription,
         markOffer: markOfferUsed,
+        releaseOffer,
       },
       payload,
       req.headers.get("stripe-signature"),

@@ -249,6 +249,8 @@ export interface CheckoutDeps {
   trialHistory: (userId: string) => Promise<TrialHistory>;
   trialSubscription?: (userId: string) => Promise<string | null>;
   offerUsed?: (userId: string, offer: "winback") => Promise<boolean>;
+  reserveOffer?: (userId: string, offer: "winback") => Promise<boolean>;
+  releaseOffer?: (userId: string, offer: "winback") => Promise<void>;
   createSession: (cfg: CheckoutConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
@@ -268,9 +270,21 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
   if (current && ACTIVE_STATUSES.has(current) && !upgrade) return { status: 409, body: { error: "already_subscribed", portal: true } };
   const history = await deps.trialHistory(uid);
   if (plan === "winback" && (!history.used || (await deps.offerUsed?.(uid, "winback")))) return { status: 409, body: { error: "not_eligible" } };
+  const reserved = plan === "winback" && deps.reserveOffer ? await deps.reserveOffer(uid, "winback") : null;
+  if (reserved === false) return { status: 409, body: { error: "not_eligible" } };
+  const release = () => (reserved ? deps.releaseOffer?.(uid, "winback") : undefined);
   const replaces = upgrade ? ((await deps.trialSubscription?.(uid)) ?? undefined) : undefined;
-  const s = await deps.createSession(cfg, checkoutForm(cfg, replaces ? { ...parsed.req, replaces } : parsed.req, uid, history));
-  if (!s.url) return { status: 502, body: { error: "checkout_failed" } };
+  let s: { url: string | null; id: string | null };
+  try {
+    s = await deps.createSession(cfg, checkoutForm(cfg, replaces ? { ...parsed.req, replaces } : parsed.req, uid, history));
+  } catch (e) {
+    await release();
+    throw e;
+  }
+  if (!s.url) {
+    await release();
+    return { status: 502, body: { error: "checkout_failed" } };
+  }
   return { status: 200, body: { url: s.url, id: s.id } };
 }
 
@@ -327,6 +341,7 @@ export interface WebhookDeps {
   claimPaid?: (userId: string) => Promise<boolean>;
   cancelSubscription?: (subscription: string) => Promise<boolean>;
   markOffer?: (userId: string, offer: "winback") => Promise<void>;
+  releaseOffer?: (userId: string, offer: "winback") => Promise<void>;
 }
 
 async function emitPaid(deps: WebhookDeps, event: unknown, ent: Pick<Entitlement, "user_id">): Promise<void> {
@@ -360,6 +375,13 @@ async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent, event: u
   return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
+export function expiredWinback(event: unknown): string | null {
+  const e = (event && typeof event === "object" ? event : {}) as Obj;
+  if (e.type !== "checkout.session.expired") return null;
+  const meta = ((((e.data as Obj | undefined)?.object ?? {}) as Obj).metadata ?? {}) as Obj;
+  return meta.product === "polingual" && meta.plan === "winback" ? str(meta.user_id) : null;
+}
+
 export async function handleWebhook(deps: WebhookDeps, payload: string, signature: string | null): Promise<HandlerResult> {
   const secret = deps.secret();
   if (!secret) return { status: 503, body: { error: "webhook_unavailable" } };
@@ -374,6 +396,11 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   if (ending) {
     if (deps.trialEnding && !(await deps.trialEnding(ending))) return { status: 500, body: { error: "reminder_failed" } };
     return { status: 200, body: { received: true, reminded: !!deps.trialEnding } };
+  }
+  const lapsed = expiredWinback(event);
+  if (lapsed) {
+    if (deps.releaseOffer) await deps.releaseOffer(lapsed, "winback");
+    return { status: 200, body: { received: true, released: !!deps.releaseOffer } };
   }
   const d0 = dayZeroCancel(event);
   if (d0 && deps.funnel) await deps.funnel(d0, "trial_cancel_d0").catch(() => undefined);

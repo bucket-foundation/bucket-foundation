@@ -21,6 +21,7 @@ import {
   trialEndingEmail,
   trialEndingFrom,
   type CheckoutConfig,
+  type CheckoutDeps,
   type Entitlement,
   type EntitlementState,
   type WebhookDeps,
@@ -451,4 +452,50 @@ test("a lifetime cancel retry and the paid claim emit paid once", async () => {
   assert.deepEqual(canceled, ["sub_t", "sub_t"]);
   assert.equal(h.row()?.status, "active");
   assert.deepEqual(sent, ["paid"]);
+});
+
+test("win-back is reserved at session creation so a second concurrent session is refused", async () => {
+  const cfg = checkoutConfig({ ...ENV, STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
+  const held = new Set<string>();
+  let created = 0;
+  let fail: "none" | "nourl" | "throw" = "none";
+  const deps: CheckoutDeps = {
+    config: () => cfg,
+    userId: async () => "u1",
+    currentStatus: async () => "canceled",
+    trialHistory: async () => ({ used: true, customer: "cus_1" }),
+    offerUsed: async () => false,
+    reserveOffer: async (u) => (held.has(u) ? false : (held.add(u), true)),
+    releaseOffer: async (u) => void held.delete(u),
+    createSession: async () => {
+      await new Promise((r) => setTimeout(r, 5));
+      if (fail === "throw") throw new Error("stripe down");
+      created++;
+      return fail === "nourl" ? { url: null, id: null } : { url: "https://s", id: "cs" };
+    },
+  };
+  const [a, b] = await Promise.all([handleCheckout(deps, { plan: "winback" }), handleCheckout(deps, { plan: "winback" })]);
+  assert.deepEqual([a.status, b.status].sort(), [200, 409]);
+  assert.equal(created, 1);
+  held.clear();
+  fail = "nourl";
+  assert.equal((await handleCheckout(deps, { plan: "winback" })).status, 502);
+  assert.equal(held.size, 0);
+  fail = "throw";
+  await assert.rejects(handleCheckout(deps, { plan: "winback" }));
+  assert.equal(held.size, 0);
+  fail = "none";
+  assert.equal((await handleCheckout(deps, { plan: "yearly" })).status, 200);
+  assert.equal(held.size, 0);
+});
+
+test("an expired win-back session releases the offer", async () => {
+  const released: string[] = [];
+  const h = harness(null);
+  const deps = { ...h.deps, releaseOffer: async (u: string) => void released.push(u) };
+  const p = evt("evt_x", 10, "checkout.session.expired", { id: "cs_w", metadata: { product: "polingual", user_id: "u1", plan: "winback" } });
+  assert.equal((await handleWebhook(deps, p, sign(p, "whsec", 1000))).body.released, true);
+  const other = evt("evt_y", 11, "checkout.session.expired", { id: "cs_y", metadata: { product: "polingual", user_id: "u1", plan: "yearly" } });
+  await handleWebhook(deps, other, sign(other, "whsec", 1000));
+  assert.deepEqual(released, ["u1"]);
 });
