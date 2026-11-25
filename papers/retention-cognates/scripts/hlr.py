@@ -4,6 +4,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import scipy.sparse as sp
+from scipy.stats import spearmanr
 from scipy.optimize import minimize
 from sklearn.metrics import roc_auc_score
 
@@ -19,7 +21,11 @@ HL_WEIGHT = 0.01
 L2 = 1e-4
 Z95 = 1.959963984540054
 
-BASE = ["bias", "right", "wrong", "log_len"]
+SAMPLE = 2_000_000
+SEED = 20261125
+TOTAL = 12_854_226
+BASE = ["bias", "right", "wrong", "log_len", "log_ntrans"]
+NO_HISTORY = ["bias", "log_len", "log_ntrans"]
 COGNATE = ["orth_sim", "phon_sim", "phon_missing", "etym_cognate", "trans_missing"]
 DTYPES = {
     "p_recall": "float32",
@@ -35,9 +41,20 @@ DTYPES = {
 
 
 def load():
+    rng = np.random.default_rng(SEED)
+    parts = []
     with gzip.open(TRACES, "rt") as fh:
-        df = pd.read_csv(fh, usecols=list(DTYPES), dtype=DTYPES)
-    feats = pd.read_csv(FEATURES, usecols=["lexeme_id", "ui_language", "lemma_len", "orth_sim", "phon_sim", "etym_cognate"])
+        for chunk in pd.read_csv(fh, usecols=list(DTYPES), dtype={k: v for k, v in DTYPES.items() if v != "category"}, chunksize=1_000_000):
+            pair = chunk.ui_language + "->" + chunk.learning_language
+            keep = np.zeros(len(chunk), dtype=bool)
+            for _, idx in chunk.groupby(pair).indices.items():
+                keep[idx] = rng.random(len(idx)) < SAMPLE / TOTAL
+            parts.append(chunk[keep])
+    df = pd.concat(parts, ignore_index=True)
+    del parts
+    for c in ("user_id", "learning_language", "ui_language", "lexeme_id"):
+        df[c] = df[c].astype("category")
+    feats = pd.read_csv(FEATURES, usecols=["lexeme_id", "ui_language", "lemma_len", "n_translations", "orth_sim", "phon_sim", "etym_cognate"])
     key = df.lexeme_id.astype(str) + "|" + df.ui_language.astype(str)
     feats.index = feats.lexeme_id + "|" + feats.ui_language
     feats = feats.drop(columns=["lexeme_id", "ui_language"])
@@ -53,6 +70,7 @@ def load():
         "right": np.sqrt(1 + df.history_correct.to_numpy()).astype("float32"),
         "wrong": np.sqrt(1 + df.history_seen.to_numpy() - df.history_correct.to_numpy()).astype("float32"),
         "log_len": np.log2(1 + joined.lemma_len.fillna(1).to_numpy()).astype("float32"),
+        "log_ntrans": np.log2(1 + joined.n_translations.fillna(0).to_numpy()).astype("float32"),
         "trans_missing": joined.etym_cognate.isna().to_numpy().astype("float32"),
         "phon_missing": joined.phon_sim.isna().to_numpy().astype("float32"),
         "orth_sim": joined.orth_sim.fillna(0).to_numpy().astype("float32"),
@@ -82,7 +100,7 @@ def row_terms(theta, X, t, p, h_obs):
 def objective(theta, X, t, p, h_obs):
     loss, g = row_terms(theta, X, t, p, h_obs)
     n = len(p)
-    grad = X.T @ g / n
+    grad = np.asarray(X.T @ g).ravel() / n
     grad[1:] += 2 * L2 * theta[1:]
     return loss.mean() + L2 * (theta[1:] ** 2).sum(), grad
 
@@ -94,7 +112,9 @@ def half_life_obs(t, p):
 
 def fit(X, t, p):
     h_obs = half_life_obs(t, p)
-    res = minimize(objective, np.zeros(X.shape[1]), args=(X, t, p, h_obs), jac=True, method="L-BFGS-B", options={"maxiter": 1000})
+    theta0 = np.zeros(X.shape[1])
+    theta0[0] = float(np.median(np.log2(h_obs)))
+    res = minimize(objective, theta0, args=(X, t, p, h_obs), jac=True, method="L-BFGS-B", options={"maxiter": 1000})
     return res.x, h_obs
 
 
@@ -120,7 +140,23 @@ def cluster_se(theta, X, t, p, h_obs, users):
 
 def predict(theta, X, t):
     h = np.exp2(np.clip(X @ theta, LO, HI))
-    return np.clip(np.exp2(-t / h), 1e-4, 1 - 1e-4)
+    return np.clip(np.exp2(-t / h), 1e-4, 1 - 1e-4), h
+
+
+def design(frame, cols, lexemes=None):
+    dense = frame[cols].to_numpy(np.float64)
+    if lexemes is None:
+        return dense
+    idx = pd.Index(lexemes).get_indexer(frame.lexeme.to_numpy())
+    rows = np.flatnonzero(idx >= 0)
+    onehot = sp.csr_matrix((np.ones(len(rows)), (rows, idx[rows])), shape=(len(frame), len(lexemes)))
+    return sp.hstack([sp.csr_matrix(dense), onehot], format="csr")
+
+
+def diff_stats(p_te, a, b, users_te):
+    d = np.abs(p_te - a) - np.abs(p_te - b)
+    est, se = float(d.mean()), mean_cluster_se(d, users_te)
+    return {"est": est, "se": se, "lo": est - Z95 * se, "hi": est + Z95 * se}
 
 
 def mean_cluster_se(d, users):
@@ -145,30 +181,34 @@ def run(df, label):
         "lexemes": int(df.lexeme.nunique()),
     }
     preds = {}
-    for name, cols in (("base", BASE), ("cognate", BASE + COGNATE)):
-        X_tr = tr[cols].to_numpy(np.float64)
+    h_obs_te = half_life_obs(t_te, p_te)
+    y = np.round(p_te)
+    lexemes = np.unique(tr.lexeme.to_numpy())
+    specs = (("base", BASE, None), ("cognate", BASE + COGNATE, None), ("no_history", NO_HISTORY, None), ("lexeme", BASE, lexemes))
+    for name, cols, lex in specs:
+        X_tr = design(tr, cols, lex)
         theta, h_obs = fit(X_tr, t_tr, p_tr)
-        se = cluster_se(theta, X_tr, t_tr, p_tr, h_obs, users_tr)
+        se = cluster_se(theta, X_tr, t_tr, p_tr, h_obs, users_tr) if lex is None else None
         del X_tr, h_obs
-        X_te = te[cols].to_numpy(np.float64)
-        phat = predict(theta, X_te, t_te)
+        phat, h = predict(theta, design(te, cols, lex), t_te)
         preds[name] = phat
-        y = np.round(p_te)
         out[name] = {
             "mae": float(np.abs(p_te - phat).mean()),
             "auc": float(roc_auc_score(y, phat)) if 0 < y.mean() < 1 else None,
-            "coef": {c: {"est": float(theta[i]), "se": float(se[i]), "lo": float(theta[i] - Z95 * se[i]), "hi": float(theta[i] + Z95 * se[i])} for i, c in enumerate(cols)},
+            "cor_h": float(spearmanr(h, h_obs_te).statistic),
         }
-    d = np.abs(p_te - preds["cognate"]) - np.abs(p_te - preds["base"])
-    est, se = float(d.mean()), mean_cluster_se(d, users_te)
-    out["mae_diff"] = {"est": est, "se": se, "lo": est - Z95 * se, "hi": est + Z95 * se}
-    print(json.dumps({"label": label, "n_train": out["n_train"], "mae_diff": out["mae_diff"]}), flush=True)
+        if se is not None:
+            out[name]["coef"] = {c: {"est": float(theta[i]), "se": float(se[i]), "lo": float(theta[i] - Z95 * se[i]), "hi": float(theta[i] + Z95 * se[i])} for i, c in enumerate(cols)}
+    out["mae_diff"] = diff_stats(p_te, preds["cognate"], preds["base"], users_te)
+    out["control_lexeme"] = diff_stats(p_te, preds["lexeme"], preds["base"], users_te)
+    out["control_history"] = diff_stats(p_te, preds["no_history"], preds["base"], users_te)
+    print(json.dumps({"label": label, "n_train": out["n_train"], "mae_diff": out["mae_diff"], "lexeme": out["control_lexeme"], "history": out["control_history"]}), flush=True)
     return out
 
 
 def main():
     df = load()
-    results = {"se_method": "cluster-robust sandwich by learner", "pooled": run(df, "pooled"), "pairs": {}}
+    results = {"se_method": "cluster-robust sandwich by learner", "sample": SAMPLE, "seed": SEED, "events_in_sample": int(len(df)), "pooled": run(df, "pooled"), "pairs": {}}
     for pair in sorted(df.pair.unique()):
         results["pairs"][pair] = run(df[df.pair == pair], pair)
     OUT.write_text(json.dumps(results, indent=2) + "\n")

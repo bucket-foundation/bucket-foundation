@@ -44,3 +44,12 @@ Family Q, per pair, one family for each of the four quantities above across the 
 ## Secondary
 
 Polingual FSRS logs are used only if they contain at least 1,000 learners with per-review history. Checked by `make polingual`.
+
+## Deviations
+
+Recorded after the analysis ran. Each one changes how a quantity is estimated. None changes a hypothesis or a preregistered bound.
+
+- Standard errors. The 200 learner-clustered bootstrap refits exceeded the memory of the analysis machine. Learner-clustered sandwich standard errors replace them; both target the same sampling variance.
+- Sample. Every model is fit on a 2,000,000-event subsample, drawn with seed 20261125 at the same rate in every language pair, under a 10 GB memory cap. The time-ordered 90/10 split runs inside it.
+- Controls, added after critic review: log translation count enters both models, and two positive controls, lexeme indicators and removal of the history features, show how far MAE moves on the same split.
+- Second MAE bound, added after critic review: TOST at plus or minus 5e-5, under half the lexeme-control effect, beside the preregistered 0.001.

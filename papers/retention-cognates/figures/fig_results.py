@@ -39,15 +39,18 @@ def mae_figure():
     pairs = sorted(RESULTS["pairs"])
     labels = ["pooled"] + pairs
     blocks = [RESULTS["pooled"]] + [RESULTS["pairs"][p] for p in pairs]
-    est = [b["mae_diff"]["est"] * 1000 for b in blocks]
-    lo = [(b["mae_diff"]["est"] - b["mae_diff"]["lo"]) * 1000 for b in blocks]
-    hi = [(b["mae_diff"]["hi"] - b["mae_diff"]["est"]) * 1000 for b in blocks]
     fig, ax = plt.subplots(figsize=(6.4, 3.0), dpi=200)
-    ax.errorbar(range(len(labels)), est, yerr=[lo, hi], fmt="o", ms=4, color="#14417a", capsize=2)
+    series = (("mae_diff", "cognate features", "#14417a", -0.12), ("control_lexeme", "lexeme indicators", "#b5651d", 0.12))
+    for key, name, color, shift in series:
+        est = [b[key]["est"] * 1000 for b in blocks]
+        lo = [(b[key]["est"] - b[key]["lo"]) * 1000 for b in blocks]
+        hi = [(b[key]["hi"] - b[key]["est"]) * 1000 for b in blocks]
+        ax.errorbar([i + shift for i in range(len(labels))], est, yerr=[lo, hi], fmt="o", ms=4, color=color, capsize=2, label=name)
+    ax.legend(fontsize=7, frameon=False)
     ax.axhline(0, color="#5f5f5f", linewidth=0.8, linestyle="--")
     ax.set_xticks(range(len(labels)))
     ax.set_xticklabels(labels, rotation=35, ha="right", fontsize=8)
-    ax.set_ylabel(r"$\Delta$ MAE $\times 10^{3}$, cognate minus base")
+    ax.set_ylabel(r"$\Delta$ MAE $\times 10^{3}$ against base")
     fig.tight_layout()
     fig.savefig(ROOT / "figures" / "fig_mae.png")
     plt.close(fig)
@@ -64,14 +67,15 @@ def tables():
         d = b["mae_diff"]
         rows.append(
             f"{label.replace('->', r'$\to$')} & {b['n_train'] + b['n_test']:,} & {b['users']:,} & {b['lexemes']:,} & "
-            f"{tex_number(b['base']['mae'])} & {tex_number(b['cognate']['mae'])} & "
-            f"{tex_number(b['base']['auc'])} & {tex_number(b['cognate']['auc'])} & "
-            f"{tex_number(d['est'] * 1000, 2)} [{tex_number(d['lo'] * 1000, 2)}, {tex_number(d['hi'] * 1000, 2)}] \\\\"
+            f"{tex_number(b['base']['mae'], 4)} & {tex_number(b['cognate']['mae'], 4)} & "
+            f"{tex_number(b['base']['auc'])} & {tex_number(b['cognate']['auc'])} & {tex_number(b['lexeme']['mae'], 4)} & "
+            f"{tex_number(d['est'] * 1000, 3)} [{tex_number(d['lo'] * 1000, 3)}, {tex_number(d['hi'] * 1000, 3)}] & "
+            f"{tex_number(b['control_lexeme']['est'] * 1000, 3)} [{tex_number(b['control_lexeme']['lo'] * 1000, 3)}, {tex_number(b['control_lexeme']['hi'] * 1000, 3)}] \\\\"
         )
     (ROOT / "results" / "table_fit.tex").write_text("\n".join(rows) + "\n")
     rows = []
     p = RESULTS["pooled"]
-    for feat in ("right", "wrong", "log_len", "orth_sim", "phon_sim", "phon_missing", "etym_cognate", "trans_missing"):
+    for feat in ("right", "wrong", "log_len", "log_ntrans", "orth_sim", "phon_sim", "phon_missing", "etym_cognate", "trans_missing"):
         c = p["cognate"]["coef"][feat]
         b = p["base"]["coef"].get(feat)
         base = f"{tex_number(b['est'])} [{tex_number(b['lo'])}, {tex_number(b['hi'])}]" if b else "--"

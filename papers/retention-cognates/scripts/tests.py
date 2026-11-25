@@ -12,6 +12,7 @@ ALPHA = 0.05
 POWER_Z = norm.ppf(1 - ALPHA / 2) + norm.ppf(0.8)
 BOUNDS = {"mae_diff": 0.001, "orth_sim": 0.1, "phon_sim": 0.1, "etym_cognate": 0.1}
 QUANTITIES = ("mae_diff", "orth_sim", "phon_sim", "etym_cognate")
+POST_HOC_MAE_BOUND = 5e-5
 
 
 def holm(pvals):
@@ -75,6 +76,15 @@ def main():
         for q, t in block.items():
             t["verdict"] = verdict(t)
             t["half_life_ratio"] = None if q == "mae_diff" else float(2 ** t["est"])
+            if q == "mae_diff":
+                t["tost_p_post_hoc"] = float(max(norm.sf((t["est"] + POST_HOC_MAE_BOUND) / t["se"]), norm.cdf((t["est"] - POST_HOC_MAE_BOUND) / t["se"])))
+    out["post_hoc_mae_bound"] = POST_HOC_MAE_BOUND
+    out["controls"] = {}
+    for label, block in [("pooled", RESULTS["pooled"])] + sorted(RESULTS["pairs"].items()):
+        out["controls"][label] = {}
+        for c in ("control_lexeme", "control_history"):
+            e = block[c]
+            out["controls"][label][c] = {"est": e["est"], "se": e["se"], "ci": [e["lo"], e["hi"]], "z": e["est"] / e["se"], "p": float(2 * norm.sf(abs(e["est"] / e["se"])))}
     OUT.write_text(json.dumps(out, indent=2) + "\n")
     for label, block in [("pooled", out["pooled"])] + list(out["pairs"].items()):
         print(label, {q: (f"{t['est']:.4g}", f"z={t['z']:.2f}", f"pH={t['p_holm']:.3g}", f"tost={t['tost_p']:.3g}", f"mde={t['mde']:.3g}", t["verdict"]) for q, t in block.items()})
