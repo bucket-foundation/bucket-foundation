@@ -292,6 +292,7 @@ def main() -> int:
             "llm": f"claude -p ({args.model}), shipped only where phoneme error rate on {LLM_SAMPLE} held-out Wiktionary words is at most 15%",
         },
         "per_limit": PER_LIMIT,
+        "validation_note": "Held-out words carry Wiktionary IPA, so they skew toward common, well-documented words that are easier than the gap words; treat each PER as a lower bound.",
         "after": coverage(rows),
     })
     if args.dry_run:

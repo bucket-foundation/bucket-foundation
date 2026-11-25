@@ -730,5 +730,6 @@
     "epitran": "epitran G2P (MIT), shipped only where phoneme error rate against Wiktionary IPA is at most 15%",
     "llm": "claude -p (sonnet), shipped only where phoneme error rate on 300 held-out Wiktionary words is at most 15%",
     "wiktionary": "Wiktionary via Kaikki, CC-BY-SA"
-  }
+  },
+  "validation_note": "Held-out words carry Wiktionary IPA, so they skew toward common, well-documented words that are easier than the gap words; treat each PER as a lower bound."
 }
