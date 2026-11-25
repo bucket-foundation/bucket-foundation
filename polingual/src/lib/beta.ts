@@ -2,6 +2,7 @@ import { APP_STORE_URL } from "./facts";
 import { parseSignup } from "./signup";
 import { betaLink } from "./beta-link";
 import { TESTFLIGHT_APP_URL } from "./testflight-links";
+import { ANDROID_STEPS, parsePlatform } from "./beta-platform";
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
@@ -67,6 +68,19 @@ export function testflightEmail(to: string, from: string, link: string) {
   };
 }
 
+export function androidEmail(to: string, from: string) {
+  const button = (href: string, label: string) => `<a href="${href}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">${label}</a>`;
+  const text = ANDROID_STEPS.map((s, i) => `${i + 1}. ${s.title}: ${s.href}\n${s.body}`).join("\n\n");
+  const html = ANDROID_STEPS.map((s, i) => `<p><b>${i + 1}. ${s.title}.</b> ${s.body}</p><p>${button(s.href, s.cta)}</p>`).join("");
+  return {
+    from,
+    to: [to],
+    subject: "Your Polingual Android beta",
+    text: `You're in. Two steps on your Android phone, both with the same Google account:\n\n${text}\n\nFull access is free while you test. Reply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You're in. Two steps on your Android phone, both with the same Google account.</p>${html}<p>Full access is free while you test. Reply with anything that feels off.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+  };
+}
+
 export function wantsTestflight(body: unknown): boolean {
   return Boolean(body && typeof body === "object" && (body as { kind?: unknown }).kind === "testflight");
 }
@@ -104,7 +118,8 @@ export async function joinBeta(
   if (parsed.suspect) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const key = env.RESEND_API_KEY?.trim();
-  const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
+  const android = wantsTestflight(body) && parsePlatform(body) === "android";
+  const audience = (android && env.RESEND_ANDROID_AUDIENCE_ID?.trim()) || env.RESEND_BETA_AUDIENCE_ID?.trim();
   if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
   if (!req.human && needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
@@ -122,7 +137,7 @@ export async function joinBeta(
   } else if (!testflight) {
     return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   }
-  const letter = testflight ? testflightEmail(parsed.signup.email, from, betaLink(parsed.signup.email, env, req.now)) : welcomeEmail(parsed.signup.email, from);
+  const letter = android ? androidEmail(parsed.signup.email, from) : testflight ? testflightEmail(parsed.signup.email, from, betaLink(parsed.signup.email, env, req.now)) : welcomeEmail(parsed.signup.email, from);
   const mail = await send(`${API}/emails`, { method: "POST", headers, body: JSON.stringify(letter) });
   if (!mail.ok) {
     console.error("[beta] email failed", mail.status);
