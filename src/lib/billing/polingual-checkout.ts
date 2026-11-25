@@ -250,7 +250,8 @@ export interface CheckoutDeps {
   trialSubscription?: (userId: string) => Promise<string | null>;
   offerUsed?: (userId: string, offer: "winback") => Promise<boolean>;
   reserveOffer?: (userId: string, offer: "winback") => Promise<boolean>;
-  releaseOffer?: (userId: string, offer: "winback") => Promise<void>;
+  attachOffer?: (userId: string, offer: "winback", sessionId: string) => Promise<void>;
+  releaseOffer?: (userId: string, offer: "winback", sessionId: string | null) => Promise<void>;
   createSession: (cfg: CheckoutConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
@@ -272,7 +273,9 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
   if (plan === "winback" && (!history.used || (await deps.offerUsed?.(uid, "winback")))) return { status: 409, body: { error: "not_eligible" } };
   const reserved = plan === "winback" && deps.reserveOffer ? await deps.reserveOffer(uid, "winback") : null;
   if (reserved === false) return { status: 409, body: { error: "not_eligible" } };
-  const release = () => (reserved ? deps.releaseOffer?.(uid, "winback") : undefined);
+  const release = async () => {
+    if (reserved) await deps.releaseOffer?.(uid, "winback", null).catch(() => undefined);
+  };
   const replaces = upgrade ? ((await deps.trialSubscription?.(uid)) ?? undefined) : undefined;
   let s: { url: string | null; id: string | null };
   try {
@@ -285,6 +288,7 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
     await release();
     return { status: 502, body: { error: "checkout_failed" } };
   }
+  if (reserved && s.id) await deps.attachOffer?.(uid, "winback", s.id);
   return { status: 200, body: { url: s.url, id: s.id } };
 }
 
@@ -341,7 +345,7 @@ export interface WebhookDeps {
   claimPaid?: (userId: string) => Promise<boolean>;
   cancelSubscription?: (subscription: string) => Promise<boolean>;
   markOffer?: (userId: string, offer: "winback") => Promise<void>;
-  releaseOffer?: (userId: string, offer: "winback") => Promise<void>;
+  releaseOffer?: (userId: string, offer: "winback", sessionId: string | null) => Promise<void>;
 }
 
 async function emitPaid(deps: WebhookDeps, event: unknown, ent: Pick<Entitlement, "user_id">): Promise<void> {
@@ -375,11 +379,14 @@ async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent, event: u
   return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
-export function expiredWinback(event: unknown): string | null {
+export function expiredWinback(event: unknown): { userId: string; sessionId: string } | null {
   const e = (event && typeof event === "object" ? event : {}) as Obj;
   if (e.type !== "checkout.session.expired") return null;
-  const meta = ((((e.data as Obj | undefined)?.object ?? {}) as Obj).metadata ?? {}) as Obj;
-  return meta.product === "polingual" && meta.plan === "winback" ? str(meta.user_id) : null;
+  const object = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  const meta = (object.metadata ?? {}) as Obj;
+  const userId = str(meta.user_id);
+  const sessionId = str(object.id);
+  return meta.product === "polingual" && meta.plan === "winback" && userId && sessionId ? { userId, sessionId } : null;
 }
 
 export async function handleWebhook(deps: WebhookDeps, payload: string, signature: string | null): Promise<HandlerResult> {
@@ -399,7 +406,7 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   }
   const lapsed = expiredWinback(event);
   if (lapsed) {
-    if (deps.releaseOffer) await deps.releaseOffer(lapsed, "winback");
+    if (deps.releaseOffer) await deps.releaseOffer(lapsed.userId, "winback", lapsed.sessionId);
     return { status: 200, body: { received: true, released: !!deps.releaseOffer } };
   }
   const d0 = dayZeroCancel(event);

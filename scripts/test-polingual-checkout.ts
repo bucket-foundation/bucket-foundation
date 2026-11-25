@@ -489,13 +489,58 @@ test("win-back is reserved at session creation so a second concurrent session is
   assert.equal(held.size, 0);
 });
 
-test("an expired win-back session releases the offer", async () => {
-  const released: string[] = [];
+test("an expired win-back session releases only the offer it holds", async () => {
+  const held = new Map<string, string | null>([["u1", "cs_new"]]);
   const h = harness(null);
-  const deps = { ...h.deps, releaseOffer: async (u: string) => void released.push(u) };
-  const p = evt("evt_x", 10, "checkout.session.expired", { id: "cs_w", metadata: { product: "polingual", user_id: "u1", plan: "winback" } });
-  assert.equal((await handleWebhook(deps, p, sign(p, "whsec", 1000))).body.released, true);
-  const other = evt("evt_y", 11, "checkout.session.expired", { id: "cs_y", metadata: { product: "polingual", user_id: "u1", plan: "yearly" } });
-  await handleWebhook(deps, other, sign(other, "whsec", 1000));
-  assert.deepEqual(released, ["u1"]);
+  const deps = {
+    ...h.deps,
+    releaseOffer: async (u: string, _o: "winback", sid: string | null) => {
+      if (held.has(u) && held.get(u) === sid) held.delete(u);
+    },
+  };
+  const send = (p: string) => handleWebhook(deps, p, sign(p, "whsec", 1000));
+  const meta = { product: "polingual", user_id: "u1", plan: "winback" };
+  await send(evt("evt_old", 10, "checkout.session.expired", { id: "cs_old", metadata: meta }));
+  assert.equal(held.get("u1"), "cs_new");
+  assert.equal((await send(evt("evt_new", 11, "checkout.session.expired", { id: "cs_new", metadata: meta }))).body.released, true);
+  assert.equal(held.has("u1"), false);
+  const other = evt("evt_y", 12, "checkout.session.expired", { id: "cs_y", metadata: { ...meta, plan: "yearly" } });
+  assert.equal((await send(other)).body.released, undefined);
+});
+
+test("a throwing release does not hide the session creation error", async () => {
+  const cfg = checkoutConfig({ ...ENV, STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
+  const deps: CheckoutDeps = {
+    config: () => cfg,
+    userId: async () => "u1",
+    currentStatus: async () => "canceled",
+    trialHistory: async () => ({ used: true, customer: "cus_1" }),
+    offerUsed: async () => false,
+    reserveOffer: async () => true,
+    releaseOffer: async () => {
+      throw new Error("db down");
+    },
+    createSession: async () => {
+      throw new Error("stripe down");
+    },
+  };
+  await assert.rejects(handleCheckout(deps, { plan: "winback" }), /stripe down/);
+  assert.equal((await handleCheckout({ ...deps, createSession: async () => ({ url: null, id: null }) }, { plan: "winback" })).status, 502);
+});
+
+test("the checkout session id is attached to the win-back reservation", async () => {
+  const cfg = checkoutConfig({ ...ENV, STRIPE_COUPON_POLINGUAL_WINBACK: "co_25" }) as CheckoutConfig;
+  const attached: string[] = [];
+  const deps: CheckoutDeps = {
+    config: () => cfg,
+    userId: async () => "u1",
+    currentStatus: async () => "canceled",
+    trialHistory: async () => ({ used: true, customer: "cus_1" }),
+    offerUsed: async () => false,
+    reserveOffer: async () => true,
+    attachOffer: async (_u, _o, sid) => void attached.push(sid),
+    createSession: async () => ({ url: "https://s", id: "cs_1" }),
+  };
+  await handleCheckout(deps, { plan: "winback" });
+  assert.deepEqual(attached, ["cs_1"]);
 });

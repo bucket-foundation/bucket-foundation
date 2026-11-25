@@ -95,7 +95,13 @@ export async function reserveOffer(userId: string, offer: "winback"): Promise<bo
   return Array.isArray(data) && data.length > 0;
 }
 
-export async function releaseOffer(userId: string, offer: "winback"): Promise<void> {
-  const { error } = await client().from("polingual_offer_used").delete().eq("user_id", userId).eq("offer", offer);
+export async function attachOffer(userId: string, offer: "winback", sessionId: string): Promise<void> {
+  const { error } = await client().from("polingual_offer_used").update({ session_id: sessionId }).eq("user_id", userId).eq("offer", offer).is("session_id", null);
+  if (error) throw new Error(`polingual_offer_used attach failed: ${error.message}`);
+}
+
+export async function releaseOffer(userId: string, offer: "winback", sessionId: string | null): Promise<void> {
+  const base = client().from("polingual_offer_used").delete().eq("user_id", userId).eq("offer", offer);
+  const { error } = await (sessionId === null ? base.is("session_id", null) : base.eq("session_id", sessionId));
   if (error) throw new Error(`polingual_offer_used release failed: ${error.message}`);
 }

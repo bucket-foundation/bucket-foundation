@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { checkoutConfig, handleCheckout } from "@/lib/billing/polingual-checkout";
-import { entitlementStoreConfigured, offerUsed, releaseOffer, reserveOffer, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
+import { attachOffer, entitlementStoreConfigured, offerUsed, releaseOffer, reserveOffer, readEntitlementState, readStripeCustomer } from "@/lib/billing/entitlement-store";
 import { trialSources } from "@/lib/billing/trial-sources";
 import { trialUsed } from "@/lib/billing/trial-used";
 
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest): Promise<Response> {
         },
         offerUsed,
         reserveOffer,
+        attachOffer,
         releaseOffer,
         trialHistory: async (uid) => {
           return { used: await trialUsed(trialSources(uid)), customer: await readStripeCustomer(uid, "polingual") };
