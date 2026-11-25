@@ -49,18 +49,18 @@
       "wiktionary": 5711
     },
     "fa": {
-      "coverage": 1.0,
+      "coverage": 0.8363,
       "epitran": 0,
-      "llm": 1146,
-      "none": 0,
+      "llm": 0,
+      "none": 1146,
       "rows": 7000,
       "wiktionary": 5854
     },
     "fi": {
-      "coverage": 0.9986,
-      "epitran": 0,
-      "llm": 3021,
-      "none": 10,
+      "coverage": 1.0,
+      "epitran": 2728,
+      "llm": 303,
+      "none": 0,
       "rows": 7000,
       "wiktionary": 3969
     },
@@ -73,18 +73,18 @@
       "wiktionary": 6191
     },
     "he": {
-      "coverage": 0.9996,
+      "coverage": 0.2646,
       "epitran": 0,
-      "llm": 5145,
-      "none": 3,
+      "llm": 0,
+      "none": 5148,
       "rows": 7000,
       "wiktionary": 1852
     },
     "hi": {
-      "coverage": 0.9999,
+      "coverage": 0.9196,
       "epitran": 0,
-      "llm": 562,
-      "none": 1,
+      "llm": 0,
+      "none": 563,
       "rows": 7000,
       "wiktionary": 6437
     },
@@ -105,26 +105,26 @@
       "wiktionary": 5146
     },
     "ja": {
-      "coverage": 1.0,
+      "coverage": 0.7729,
       "epitran": 0,
-      "llm": 1590,
-      "none": 0,
+      "llm": 0,
+      "none": 1590,
       "rows": 7000,
       "wiktionary": 5410
     },
     "ko": {
-      "coverage": 0.9974,
+      "coverage": 0.8886,
       "epitran": 0,
-      "llm": 762,
-      "none": 18,
+      "llm": 0,
+      "none": 780,
       "rows": 7000,
       "wiktionary": 6220
     },
     "la": {
-      "coverage": 0.9991,
+      "coverage": 0.7381,
       "epitran": 0,
-      "llm": 2088,
-      "none": 7,
+      "llm": 0,
+      "none": 2095,
       "rows": 8000,
       "wiktionary": 5905
     },
@@ -161,10 +161,10 @@
       "wiktionary": 6802
     },
     "sa": {
-      "coverage": 0.9992,
+      "coverage": 0.8842,
       "epitran": 0,
-      "llm": 920,
-      "none": 6,
+      "llm": 0,
+      "none": 926,
       "rows": 8000,
       "wiktionary": 7074
     },
@@ -177,10 +177,10 @@
       "wiktionary": 1591
     },
     "ta": {
-      "coverage": 1.0,
+      "coverage": 0.9867,
       "epitran": 0,
-      "llm": 93,
-      "none": 0,
+      "llm": 0,
+      "none": 93,
       "rows": 7000,
       "wiktionary": 6907
     },
@@ -193,26 +193,26 @@
       "wiktionary": 6965
     },
     "tr": {
-      "coverage": 0.999,
-      "epitran": 0,
-      "llm": 3242,
-      "none": 7,
+      "coverage": 0.9994,
+      "epitran": 2457,
+      "llm": 788,
+      "none": 4,
       "rows": 7000,
       "wiktionary": 3751
     },
     "vi": {
-      "coverage": 0.9986,
+      "coverage": 0.9419,
       "epitran": 0,
-      "llm": 397,
-      "none": 10,
+      "llm": 0,
+      "none": 407,
       "rows": 7000,
       "wiktionary": 6593
     },
     "zh": {
-      "coverage": 0.9979,
+      "coverage": 0.9973,
       "epitran": 0,
-      "llm": 4,
-      "none": 15,
+      "llm": 0,
+      "none": 19,
       "rows": 7000,
       "wiktionary": 6981
     }
@@ -439,7 +439,7 @@
   "epitran_validation": {
     "ar": {
       "epitran": "ara-Arab",
-      "per": 0.382,
+      "per": 0.3561,
       "ship": false,
       "words": 4309
     },
@@ -451,7 +451,7 @@
     },
     "de": {
       "epitran": "deu-Latn",
-      "per": 0.2802,
+      "per": 0.2373,
       "ship": false,
       "words": 3928
     },
@@ -463,25 +463,25 @@
     },
     "fa": {
       "epitran": "fas-Arab",
-      "per": 0.4895,
+      "per": 0.4794,
       "ship": false,
       "words": 5203
     },
     "fi": {
       "epitran": "fin-Latn",
-      "per": 0.1852,
-      "ship": false,
+      "per": 0.0823,
+      "ship": true,
       "words": 3393
     },
     "fr": {
       "epitran": "fra-Latn",
-      "per": 0.239,
+      "per": 0.2389,
       "ship": false,
       "words": 4509
     },
     "hi": {
       "epitran": "hin-Deva",
-      "per": 0.4833,
+      "per": 0.3659,
       "ship": false,
       "words": 6036
     },
@@ -493,19 +493,19 @@
     },
     "it": {
       "epitran": "ita-Latn",
-      "per": 0.2137,
+      "per": 0.1614,
       "ship": false,
       "words": 3058
     },
     "ko": {
       "epitran": "kor-Hang",
-      "per": 0.4412,
+      "per": 0.4293,
       "ship": false,
       "words": 6191
     },
     "nl": {
       "epitran": "nld-Latn",
-      "per": 0.2727,
+      "per": 0.2459,
       "ship": false,
       "words": 3927
     },
@@ -523,48 +523,212 @@
     },
     "ru": {
       "epitran": "rus-Cyrl",
-      "per": 0.3481,
+      "per": 0.3443,
       "ship": false,
       "words": 6457
     },
     "sv": {
       "epitran": "swe-Latn",
-      "per": 0.3011,
+      "per": 0.2655,
       "ship": false,
       "words": 1556
     },
     "ta": {
       "epitran": "tam-Taml",
-      "per": 0.6091,
+      "per": 0.5583,
       "ship": false,
       "words": 6649
     },
     "th": {
       "epitran": "tha-Thai",
-      "per": 0.4796,
+      "per": 0.1571,
       "ship": false,
       "words": 6962
     },
     "tr": {
       "epitran": "tur-Latn",
-      "per": 0.1658,
-      "ship": false,
+      "per": 0.1489,
+      "ship": true,
       "words": 2512
     },
     "vi": {
       "epitran": "vie-Latn",
-      "per": 0.6421,
+      "per": 0.3907,
       "ship": false,
       "words": 1926
     }
   },
+  "llm_validation": {
+    "ar": {
+      "model": "sonnet",
+      "per": 0.0632,
+      "ship": true,
+      "words": 300
+    },
+    "cs": {
+      "model": "sonnet",
+      "per": 0.0242,
+      "ship": true,
+      "words": 300
+    },
+    "de": {
+      "model": "sonnet",
+      "per": 0.0874,
+      "ship": true,
+      "words": 300
+    },
+    "el": {
+      "model": "sonnet",
+      "per": 0.0252,
+      "ship": true,
+      "words": 300
+    },
+    "en": {
+      "model": "sonnet",
+      "per": 0.1123,
+      "ship": true,
+      "words": 300
+    },
+    "es": {
+      "model": "sonnet",
+      "per": 0.0708,
+      "ship": true,
+      "words": 300
+    },
+    "fa": {
+      "model": "sonnet",
+      "per": 0.3883,
+      "ship": false,
+      "words": 300
+    },
+    "fi": {
+      "model": "sonnet",
+      "per": 0.0883,
+      "ship": true,
+      "words": 300
+    },
+    "fr": {
+      "model": "sonnet",
+      "per": 0.0137,
+      "ship": true,
+      "words": 300
+    },
+    "he": {
+      "model": "sonnet",
+      "per": 0.2211,
+      "ship": false,
+      "words": 300
+    },
+    "hi": {
+      "model": "sonnet",
+      "per": 0.2076,
+      "ship": false,
+      "words": 300
+    },
+    "id": {
+      "model": "sonnet",
+      "per": 0.0571,
+      "ship": true,
+      "words": 300
+    },
+    "it": {
+      "model": "sonnet",
+      "per": 0.0217,
+      "ship": true,
+      "words": 300
+    },
+    "ja": {
+      "model": "sonnet",
+      "per": 0.5466,
+      "ship": false,
+      "words": 300
+    },
+    "ko": {
+      "model": "sonnet",
+      "per": 0.3125,
+      "ship": false,
+      "words": 300
+    },
+    "la": {
+      "model": "sonnet",
+      "per": 0.2564,
+      "ship": false,
+      "words": 300
+    },
+    "nl": {
+      "model": "sonnet",
+      "per": 0.0868,
+      "ship": true,
+      "words": 300
+    },
+    "pl": {
+      "model": "sonnet",
+      "per": 0.0719,
+      "ship": true,
+      "words": 300
+    },
+    "pt": {
+      "model": "sonnet",
+      "per": 0.0622,
+      "ship": true,
+      "words": 300
+    },
+    "ru": {
+      "model": "sonnet",
+      "per": 0.0866,
+      "ship": true,
+      "words": 300
+    },
+    "sa": {
+      "model": "sonnet",
+      "per": 0.3581,
+      "ship": false,
+      "words": 300
+    },
+    "sv": {
+      "model": "sonnet",
+      "per": 0.1126,
+      "ship": true,
+      "words": 300
+    },
+    "ta": {
+      "model": "sonnet",
+      "per": 0.4465,
+      "ship": false,
+      "words": 300
+    },
+    "th": {
+      "model": "sonnet",
+      "per": 0.056,
+      "ship": true,
+      "words": 300
+    },
+    "tr": {
+      "model": "sonnet",
+      "per": 0.1336,
+      "ship": true,
+      "words": 300
+    },
+    "vi": {
+      "model": "sonnet",
+      "per": 0.303,
+      "ship": false,
+      "words": 300
+    },
+    "zh": {
+      "model": "sonnet",
+      "per": 0.2834,
+      "ship": false,
+      "words": 300
+    }
+  },
   "per_limit": 0.15,
-  "shipped_sha256": "149a826a1cd82fe8fc21f1ed4b2526b111b36fa247de8550edfec8093d38ee72",
+  "shipped_sha256": "1cdae1d5917ed4e59e854cd1af3fb8fc8f96729ef38983f8ba5e08179694d3d3",
   "source_column": 9,
   "source_field": "ipa_source",
   "sources": {
     "epitran": "epitran G2P (MIT), shipped only where phoneme error rate against Wiktionary IPA is at most 15%",
-    "llm": "claude -p (sonnet), unreviewed machine transcription",
+    "llm": "claude -p (sonnet), shipped only where phoneme error rate on 300 held-out Wiktionary words is at most 15%",
     "wiktionary": "Wiktionary via Kaikki, CC-BY-SA"
   }
 }

@@ -10,3 +10,4 @@ export { SilentSwitch } from "./SilentSwitch";
 export { NeedsSound, useSilent } from "./NeedsSound";
 export { SpeechGuard } from "./SpeechGuard";
 export { Eyebrow, Title, Lede, Stack } from "./Type";
+export { IpaMark, isGeneratedIpa } from "./IpaMark";

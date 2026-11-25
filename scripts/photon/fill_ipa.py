@@ -41,16 +41,19 @@ LANG_NAMES = {
     "sv": "Swedish", "ta": "Tamil", "th": "Thai", "tr": "Turkish", "vi": "Vietnamese", "zh": "Mandarin Chinese",
 }
 
-STRIP = re.compile(r"[ˈˌ.‿͜͡ˑ\-\s()\[\]/|‖]")
+STRIP = re.compile("[ˈˌ.‿\u035c\u0361ːˑ˥˦˧˨˩¹²³⁴⁵⁶\u0300\u0301\u0302\u0304\u030b\u030c\u030f\\-\\s()\\[\\]/|‖]")
+RHOTIC_CONTRAST = {"es", "pt", "ca"}
+LLM_SAMPLE = 300
 
 
-def normalize(ipa: str) -> str:
+def normalize(ipa: str, lang: str = "") -> str:
     first = re.split(r"[,;~]", ipa)[0]
-    return STRIP.sub("", unicodedata.normalize("NFD", first)).replace("ɡ", "g").replace("ʼ", "")
+    s = STRIP.sub("", unicodedata.normalize("NFD", first)).replace("ɡ", "g").replace("ʼ", "")
+    return s if lang in RHOTIC_CONTRAST else s.replace("ɾ", "r")
 
 
-def segments(ipa: str, ft) -> list[str]:
-    s = normalize(ipa)
+def segments(ipa: str, ft, lang: str = "") -> list[str]:
+    s = normalize(ipa, lang)
     segs = ft.ipa_segs(s) if ft else list(s)
     return segs or list(s)
 
@@ -110,8 +113,8 @@ def validate(rows: list, langs: list[str], ft) -> dict[str, dict]:
             hyp = epitran_ipa(epi, r[2].lower())
             if not hyp:
                 continue
-            ref = segments(r[IPA_COL], ft)
-            errs += edit_distance(ref, segments(hyp, ft))
+            ref = segments(r[IPA_COL], ft, lang)
+            errs += edit_distance(ref, segments(hyp, ft, lang))
             total += len(ref)
             words += 1
         per = round(errs / total, 4) if total else None
@@ -180,6 +183,38 @@ def valid_llm_ipa(v) -> str | None:
     return v if v.startswith(("/", "[")) else f"/{v}/"
 
 
+def held_out(rows: list, lang: str) -> list:
+    pool = [r for r in rows if r[1] == lang and r[SOURCE_COL] == "wiktionary" and " " not in r[2]]
+    pool.sort(key=lambda r: hashlib.sha256(r[0].encode()).hexdigest())
+    return pool[:LLM_SAMPLE]
+
+
+def validate_llm(rows: list, langs: list[str], model: str, ft) -> dict[str, dict]:
+    jobs = []
+    for lang in langs:
+        sample = held_out(rows, lang)
+        for i in range(0, len(sample), LLM_BATCH):
+            jobs.append((lang, sample[i : i + LLM_BATCH]))
+    errs, total, words = Counter(), Counter(), Counter()
+    with cf.ThreadPoolExecutor(LLM_WORKERS) as pool:
+        futures = {pool.submit(llm_batch, lang, [r[2] for r in chunk], model): (lang, chunk) for lang, chunk in jobs}
+        for fut in cf.as_completed(futures):
+            lang, chunk = futures[fut]
+            data = fut.result()
+            for r in chunk:
+                hyp = valid_llm_ipa(data.get(r[2]))
+                ref = segments(r[IPA_COL], ft, lang)
+                errs[lang] += edit_distance(ref, segments(hyp, ft, lang)) if hyp else len(ref)
+                total[lang] += len(ref)
+                words[lang] += 1
+    report = {}
+    for lang in langs:
+        per = round(errs[lang] / total[lang], 4) if total[lang] else None
+        report[lang] = {"model": model, "words": words[lang], "per": per, "ship": per is not None and per <= PER_LIMIT}
+        print(f"llm {lang} words={words[lang]} PER={per}", file=sys.stderr)
+    return report
+
+
 def fill_llm(rows: list, langs: list[str], model: str, limit: int | None) -> None:
     gaps: dict[str, list] = defaultdict(list)
     for r in rows:
@@ -243,7 +278,9 @@ def main() -> int:
     if args.stage in ("epitran", "all"):
         fill_epitran(rows, {k: v for k, v in manifest["epitran_validation"].items() if k in langs})
     if args.stage in ("llm", "all"):
-        fill_llm(rows, langs, args.model, args.llm_limit)
+        manifest.setdefault("llm_validation", {}).update(validate_llm(rows, langs, args.model, ft))
+        ship = [l for l in langs if manifest["llm_validation"][l]["ship"]]
+        fill_llm(rows, ship, args.model, args.llm_limit)
 
     manifest.update({
         "column": IPA_COL,
@@ -252,7 +289,7 @@ def main() -> int:
         "sources": {
             "wiktionary": "Wiktionary via Kaikki, CC-BY-SA",
             "epitran": "epitran G2P (MIT), shipped only where phoneme error rate against Wiktionary IPA is at most 15%",
-            "llm": f"claude -p ({args.model}), unreviewed machine transcription",
+            "llm": f"claude -p ({args.model}), shipped only where phoneme error rate on {LLM_SAMPLE} held-out Wiktionary words is at most 15%",
         },
         "per_limit": PER_LIMIT,
         "after": coverage(rows),

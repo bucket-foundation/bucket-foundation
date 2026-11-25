@@ -3,7 +3,7 @@
 import { useEffect, type ReactNode } from "react";
 import { bcp47, cancelSpeech, say } from "@/lib/speak";
 import { langDir, langName, type Exercise, type Reading } from "@/lib/academy/lang-systems";
-import { Button, FlagTile, Sticker, TileButton } from "@/ui";
+import { Button, FlagTile, IpaMark, Sticker, TileButton } from "@/ui";
 import styles from "../../app.module.css";
 
 const HIDDEN = new Set(["listen", "type-heard", "spell-heard"]);
@@ -68,7 +68,7 @@ export default function WordCard({ ex, readings, onNext }: { ex: Exercise; readi
         {ipa ? (
           <div>
             <dt>Say it</dt>
-            <dd data-testid="intro-reading">{ipa}</dd>
+            <dd data-testid="intro-reading">{ipa} {readings ? <IpaMark source={ex.answerReading?.ipa_source} /> : null}</dd>
           </div>
         ) : null}
         <div>

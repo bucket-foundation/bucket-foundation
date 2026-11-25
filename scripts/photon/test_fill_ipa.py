@@ -27,3 +27,24 @@ def test_valid_llm_ipa_wraps_and_rejects():
 def test_parse_json_finds_object_in_noise():
     assert parse_json('ok {"a": "/a/"} done') == {"a": "/a/"}
     assert parse_json("no json") == {}
+
+
+def test_manifest_matches_shipped_file():
+    import gzip
+    import hashlib
+    import json
+
+    from fill_ipa import MANIFEST, SHIPPED, coverage, load
+
+    manifest = json.load(open(MANIFEST))
+    assert hashlib.sha256(open(SHIPPED, "rb").read()).hexdigest() == manifest["shipped_sha256"]
+    rows = load(SHIPPED)
+    assert all(len(r) == 10 for r in json.loads(gzip.open(SHIPPED).read()))
+    assert coverage(rows) == manifest["after"]
+    for r in rows:
+        assert (r[5] is None) == (r[9] is None)
+    for lang, v in manifest["after"].items():
+        if v["epitran"]:
+            assert manifest["epitran_validation"][lang]["ship"]
+        if v["llm"]:
+            assert manifest["llm_validation"][lang]["ship"]

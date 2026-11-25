@@ -1,4 +1,4 @@
-import { Badge, ButtonLink, tokens, type ColorToken, type TypeToken } from "@/ui";
+import { Badge, ButtonLink, IpaMark, tokens, type ColorToken, type TypeToken } from "@/ui";
 import { Art } from "@/ui/art";
 import CopySwatch from "./CopySwatch";
 import { Dl, Section, Sub } from "./parts";
@@ -124,6 +124,9 @@ export function LogoSection() {
             </li>
           ))}
         </ul>
+      </Sub>
+      <Sub title="Generated IPA">
+        <p className={styles.body}>/ˈpero/ <IpaMark source="llm" /> sits beside any IPA that came from epitran or a language model.</p>
       </Sub>
     </Section>
   );

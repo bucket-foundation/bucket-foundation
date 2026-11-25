@@ -112,6 +112,7 @@ export interface Reading {
   roman?: string;
   kana?: string;
   ipa?: string;
+  ipa_source?: "wiktionary" | "epitran" | "llm";
 }
 
 export type ItemKind = "word" | "phrase" | "gender" | "conj";

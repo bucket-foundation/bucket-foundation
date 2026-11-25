@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 import Link from "next/link";
-import { Button } from "@/ui";
+import { Button, IpaMark } from "@/ui";
 
 type Photon = {
   id: string; kind: string; lang: string; surface: string;
   meaning_en: string; tier: string; branch: string[];
-  pos?: string | null; ipa?: string | null;
+  pos?: string | null; ipa?: string | null; ipa_source?: string | null;
 };
 
 type SearchResp = {
@@ -128,6 +128,9 @@ function PhotonCard({ p }: { p: Photon }) {
             >
               {p.ipa}
             </span>
+          )}
+          {p.ipa && (
+            <IpaMark source={p.ipa_source} />
           )}
         </div>
         {p.pos && (
