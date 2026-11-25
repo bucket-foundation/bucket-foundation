@@ -2,6 +2,7 @@ import { mergeState, normalizeState, type EngineState } from "./engine";
 import type { Rating } from "./fsrs";
 import { backupBranch, emptyMemory, foldByLang, langBranch, makeRow, memoryState, mergeMemory, migrateLang, normalizeMemory, planningSystem, withRows, type LangMemory, type LangRow } from "./lang-memory";
 import { applyPlacement, cardId, progressBranch, type LangCorpus, type LangSystem } from "./lang-systems";
+import { batchEvents, MAX_PENDING_ROWS, nextGate, reviewMetrics, shareable, shouldProbe, type BatchEvent, type ExposureInput, type ExposureRow, type GateReply, type LogRow, type SessionInput, type SessionRow, type UploadGate } from "./learn-log";
 import { LS_BASE, pullServer, webProgressStore, type ServerBranches } from "./progress-store";
 
 export interface MemoryIO {
@@ -15,6 +16,11 @@ export interface MemoryIO {
   deviceId(): string;
   tz(): string;
   now(): number;
+  readGate?(): UploadGate;
+  writeGate?(gate: UploadGate): void;
+  readPending?(): LogRow[];
+  writePending?(rows: LogRow[]): void;
+  postBatch?(events: BatchEvent[]): Promise<GateReply>;
   appendReview?(branch: string, review: Pick<LangRow, "review_id" | "card_id" | "rating" | "level" | "reviewed_at" | "tz" | "atoms_version">): unknown;
 }
 
@@ -61,6 +67,12 @@ async function loadLang(io: MemoryIO, lang: string, systems: LangSystem[], serve
   return m;
 }
 
+const UNKNOWN_GATE: UploadGate = { state: "unknown", at: 0 };
+
+function gateOf(io: MemoryIO): UploadGate {
+  return io.readGate?.() ?? UNKNOWN_GATE;
+}
+
 async function persist(io: MemoryIO, mine: LangMemory, push: boolean): Promise<boolean> {
   const branch = langBranch(mine.lang);
   io.writeRaw(branch, mine);
@@ -69,7 +81,7 @@ async function persist(io: MemoryIO, mine: LangMemory, push: boolean): Promise<b
   if (!latest) return false;
   const m = latest[branch] ? mergeMemory(mine, normalizeMemory(mine.lang, latest[branch].data)) : mine;
   io.writeRaw(branch, m);
-  const ok = await io.push(branch, m);
+  const ok = await io.push(branch, { ...m, log: shareable(m.log, gateOf(io)) });
   if (ok) {
     const sent = new Set(m.log.map((r) => r.review_id));
     io.writeOutbox(io.readOutbox().filter((r) => !sent.has(r.review_id)));
@@ -97,13 +109,70 @@ function refold(s: SharedSession): SharedSession {
 }
 
 export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId: string, rating: Rating): { session: SharedSession; saved: Promise<boolean> } {
-  const row = makeRow(s.system.id, cardId(lang, itemId), rating, io.uuid(), io.deviceId(), io.now(), io.tz());
+  const id = cardId(lang, itemId);
+  const row = makeRow(s.system.id, id, rating, io.uuid(), io.deviceId(), io.now(), io.tz());
+  if (s.langStatus[lang] === "ready") {
+    const before = memoryState(s.memories[lang] ?? emptyMemory(lang)).cards[id];
+    const after = memoryState(withRows(s.memories[lang] ?? emptyMemory(lang), [row])).cards[id];
+    const metrics = reviewMetrics(before, after, row.reviewed_at);
+    if (metrics) Object.assign(row, metrics);
+  }
   io.writeOutbox([...io.readOutbox(), row]);
   io.appendReview?.(langBranch(lang), { review_id: row.review_id, card_id: row.card_id, rating: row.rating, level: row.level, reviewed_at: row.reviewed_at, tz: row.tz, atoms_version: row.atoms_version });
   if (s.langStatus[lang] !== "ready") return { session: s, saved: Promise.resolve(false) };
   const m = withRows(s.memories[lang] ?? emptyMemory(lang), [row]);
   const session = refold({ ...s, memories: { ...s.memories, [lang]: m } });
   return { session, saved: persist(io, m, true) };
+}
+
+function appendLocal(io: MemoryIO, s: SharedSession, lang: string, row: LogRow): { session: SharedSession; saved: Promise<boolean> } {
+  io.writePending?.([...(io.readPending?.() ?? []), row].slice(-MAX_PENDING_ROWS));
+  if (s.langStatus[lang] !== "ready") return { session: s, saved: Promise.resolve(false) };
+  const m = withRows(s.memories[lang] ?? emptyMemory(lang), [row]);
+  return { session: { ...s, memories: { ...s.memories, [lang]: m } }, saved: persist(io, m, gateOf(io).state === "open") };
+}
+
+export function logExposure(io: MemoryIO, s: SharedSession, lang: string, input: ExposureInput): { session: SharedSession; saved: Promise<boolean> } {
+  const row: ExposureRow = { kind: "exposure", review_id: io.uuid(), reviewed_at: io.now(), device_id: io.deviceId(), tz: io.tz(), system_id: s.system.id, lang, ...input };
+  return appendLocal(io, s, lang, row);
+}
+
+export function logSession(io: MemoryIO, s: SharedSession, lang: string, input: SessionInput): { session: SharedSession; saved: Promise<boolean> } {
+  const row: SessionRow = { kind: "session", review_id: io.uuid(), reviewed_at: input.ended, device_id: io.deviceId(), tz: io.tz(), system_id: s.system.id, lang, ...input };
+  return appendLocal(io, s, lang, row);
+}
+
+export type FlushOutcome = "sent" | "replay_only" | "held" | "empty";
+
+export async function flushSession(io: MemoryIO): Promise<FlushOutcome> {
+  if (!io.postBatch) return "held";
+  const pending = io.readPending?.() ?? [];
+  let gate = gateOf(io);
+  if (gate.state === "closed") {
+    if (!shouldProbe(gate, io.now())) {
+      io.writePending?.([]);
+      return "replay_only";
+    }
+    gate = nextGate(await io.postBatch([]), gate, io.now());
+    io.writeGate?.(gate);
+    if (gate.state === "closed") {
+      io.writePending?.([]);
+      return "replay_only";
+    }
+  }
+  const events = batchEvents(pending);
+  if (!events.length) return "empty";
+  const reply = await io.postBatch(events);
+  const next = nextGate(reply, gate, io.now());
+  io.writeGate?.(next);
+  if (next.state === "closed") {
+    io.writePending?.([]);
+    return "replay_only";
+  }
+  if (reply !== "recorded") return "held";
+  const sent = new Set(events.map((e) => e.id));
+  io.writePending?.((io.readPending?.() ?? []).filter((r) => !sent.has(r.review_id)));
+  return "sent";
 }
 
 export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, lang: string, tier: number, only?: string[], level?: string): { session: SharedSession; system: LangSystem; saved: Promise<boolean> } {
@@ -122,6 +191,29 @@ export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, 
 }
 
 const OUTBOX = `${LS_BASE}/outbox/lang-reviews`;
+const PENDING = `${LS_BASE}/outbox/learn-batch`;
+const GATE = `${LS_BASE}/learn-upload-gate`;
+
+function readJson<T>(key: string, fallback: T): T {
+  try {
+    const v = JSON.parse(lsGet(key) ?? "null");
+    return v ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+async function postBatchHttp(events: BatchEvent[]): Promise<GateReply> {
+  try {
+    const res = await fetch("/api/academy/event", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ events }), keepalive: true });
+    if (!res.ok) return "retry";
+    const body = (await res.json()) as { outcome?: string };
+    const o = body.outcome;
+    return o === "under_age" || o === "no_consent" || o === "no_profile" ? o : o === "recorded" ? "recorded" : "retry";
+  } catch {
+    return "retry";
+  }
+}
 const DEVICE = `${LS_BASE}/device-id`;
 
 function lsGet(key: string): string | null {
@@ -193,6 +285,21 @@ export const browserMemoryIO: MemoryIO = {
     return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   },
   now: () => Date.now(),
+  readGate() {
+    const g = readJson<UploadGate | null>(GATE, null);
+    return g && (g.state === "open" || g.state === "closed") && typeof g.at === "number" ? g : UNKNOWN_GATE;
+  },
+  writeGate(gate) {
+    lsSet(GATE, JSON.stringify(gate));
+  },
+  readPending() {
+    const rows = readJson<unknown>(PENDING, []);
+    return Array.isArray(rows) ? (rows as LogRow[]) : [];
+  },
+  writePending(rows) {
+    lsSet(PENDING, JSON.stringify(rows));
+  },
+  postBatch: postBatchHttp,
   appendReview(branch, review) {
     return webProgressStore.appendReview?.(branch, review);
   },

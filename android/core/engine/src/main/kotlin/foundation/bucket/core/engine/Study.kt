@@ -81,6 +81,7 @@ class StudySession(
         private set
     var correct = 0
         private set
+    val log = mutableListOf<LogRow>()
     val total: Int
 
     init {
@@ -153,6 +154,7 @@ class StudySession(
         val id = ex.word.id
         val prev = state.cards[id] ?: CardState()
         val graded = Scheduler.grade(prev, ok, now)
+        log += LogRow.Review("$now-${log.size}", now, "android", "UTC", root, id, if (ok) 3 else 1, if (prev.last > 0) (now - prev.last) / 86_400_000.0 else 0.0, prev.intervalDays, graded.intervalDays, null)
         val newCount = if (ex.isNew && id !in state.cards) mapOf(ex.word.lang to (state.newToday[ex.word.lang] ?: 0) + 1) else emptyMap()
         state = state.copy(
             cards = state.cards + (id to graded),

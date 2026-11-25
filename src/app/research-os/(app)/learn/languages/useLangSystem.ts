@@ -10,7 +10,8 @@ import { flagTables, runGated, saveSetFlags, withFlagTables, type FlagTables } f
 import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
-import { browserMemoryIO, gradeShared, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
+import type { SessionInput } from "@/lib/academy/learn-log";
+import { browserMemoryIO, flushSession, gradeShared, logSession, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
 
@@ -26,6 +27,7 @@ export interface LangSystemHandle {
   edit: (targets: string[]) => void;
   langStatus: Record<string, LangLoadStatus>;
   shared?: boolean;
+  endSession?: (input: SessionInput) => void;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
@@ -183,6 +185,16 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     });
   }, []);
 
+  const endSession = useCallback((input: SessionInput) => {
+    const s = ref.current;
+    const lang = s?.system.targets.find((l) => s.langStatus[l] === "ready");
+    if (!s || !lang) return;
+    const r = logSession(browserMemoryIO, s, lang, input);
+    ref.current = r.session;
+    setSession(r.session);
+    void flushSession(browserMemoryIO);
+  }, []);
+
   const recordFlags = useCallback((tables: FlagTables) => {
     setFlags(tables);
     const branch = setBranch.current;
@@ -223,6 +235,7 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     saveState,
     edit,
     langStatus: session?.langStatus ?? {},
+    endSession,
   };
 }
 

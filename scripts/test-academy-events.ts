@@ -129,8 +129,8 @@ test("the route answers a minor with recorded false and writes nothing", async (
   assert.equal(store.hits, 0, "a minor leaves no counter row either");
 });
 
-test("the daily caps are placement 20, study sessions 60 and assessments 30", () => {
-  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30 });
+test("the daily caps are placement 20, study sessions 60, assessments 30, exposures 300 and session mixes 60", () => {
+  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60 });
 });
 
 test("past the daily cap the route answers 429 with Retry-After and writes nothing more", async () => {
@@ -182,4 +182,61 @@ test("the client stops on a 4xx without retrying", async () => {
   }, async () => {});
   assert.equal(await sender.send(randomUUID(), "placement_done", { branch: "02-physics", questions: 5, known: 2 }), false);
   assert.equal(calls, 1);
+});
+
+const EXPOSURE: LearnEventProps["exposure"] = { item: "tatoeba:123", unit: "set:es:1", lemmas_seen: ["casa", "perro"], taps: ["perro"], seconds: 42, coverage_pred: 0.95, completed: true };
+const MIX: LearnEventProps["session_mix"] = { session: "s-1", share_target: 0.7, share_real: 0.66, arm: "share70", units: 4, cards: 12, seconds: 600 };
+const ADULT = async () => ({ id: USER, email: null });
+
+test("exposure props cap lemmas at 200 and seconds at 3600", () => {
+  assert.equal(parseProps("exposure", EXPOSURE).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, lemmas_seen: Array.from({ length: 200 }, (_, i) => `w${i}`) }).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, lemmas_seen: Array.from({ length: 201 }, (_, i) => `w${i}`) }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, seconds: 3600 }).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, seconds: 3601 }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, coverage_pred: 1.2 }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, taps: ["two words"] }).ok, false);
+  assert.equal(parseProps("session_mix", MIX).ok, true);
+  assert.equal(parseProps("session_mix", { ...MIX, share_real: -0.1 }).ok, false);
+});
+
+test("one batch per session records every row in one request", async () => {
+  const store = memoryStore(profile("18plus"));
+  const events = [
+    { id: randomUUID(), name: "exposure", props: EXPOSURE },
+    { id: randomUUID(), name: "exposure", props: { ...EXPOSURE, item: "tatoeba:124" } },
+    { id: randomUUID(), name: "session_mix", props: MIX },
+  ];
+  const res = await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store });
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).outcome, "recorded");
+  assert.deepEqual(store.rows.map((r) => r.name), ["exposure", "exposure", "session_mix"]);
+});
+
+test("a batch from a minor or a learner without a profile writes nothing", async () => {
+  for (const p of [profile("13to17", "parent"), profile("under13", "school"), null]) {
+    const store = memoryStore(p);
+    const res = await handleLearnEvent(post({ events: [{ id: randomUUID(), name: "exposure", props: EXPOSURE }] }), { verifyUser: ADULT, store: () => store });
+    assert.notEqual((await res.json()).outcome, "recorded");
+    assert.equal(store.writes + store.hits, 0);
+  }
+});
+
+test("a batch refuses review-only names, duplicate ids and bad props", async () => {
+  const store = memoryStore(profile("18plus"));
+  const id = randomUUID();
+  for (const events of [
+    [{ id, name: "assess_done", props: ASSESS }],
+    [{ id, name: "exposure", props: EXPOSURE }, { id, name: "exposure", props: EXPOSURE }],
+    [{ id, name: "exposure", props: { ...EXPOSURE, seconds: 4000 } }],
+  ]) assert.equal((await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store })).status, 400);
+  assert.equal(store.writes, 0);
+});
+
+test("past 300 exposures a day the batch marks the rest rate limited", async () => {
+  const store = memoryStore(profile("18plus"));
+  const events = Array.from({ length: 302 }, () => ({ id: randomUUID(), name: "exposure", props: EXPOSURE }));
+  const body = await (await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store })).json();
+  assert.equal(store.rows.length, 300);
+  assert.equal(body.results.filter((r: { outcome: string }) => r.outcome === "rate_limited").length, 2);
 });

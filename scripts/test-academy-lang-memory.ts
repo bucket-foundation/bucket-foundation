@@ -4,6 +4,7 @@ import { normalizeState, type EngineState } from "../src/lib/academy/engine";
 import { backupBranch, emptyMemory, foldByLang, langBranch, memoryState, mergeMemory, normalizeMemory, rollback, sharedMemoryOn, type LangMemory, type LangRow } from "../src/lib/academy/lang-memory";
 import { gradeShared, openShared, placeShared, type MemoryIO, type SharedSession } from "../src/lib/academy/lang-memory-store";
 import { buildLangCorpus, buildQueue, cardId, createSystem, gradeCard, newToday, NEW_PER_LANG_PER_DAY, planSession, progressBranch, type LangCard, type LangSystem } from "../src/lib/academy/lang-systems";
+import { isReview } from "../src/lib/academy/learn-log";
 import type { ServerBranches } from "../src/lib/academy/progress-store";
 
 let failures = 0;
@@ -76,7 +77,7 @@ function studied(lang: string, items: string[], start: number): EngineState {
 }
 
 async function main() {
-  ok(!sharedMemoryOn(undefined) && !sharedMemoryOn("0") && sharedMemoryOn("1"), "POLINGUAL_SHARED_MEMORY is off unless set to 1");
+  ok(sharedMemoryOn(undefined) && !sharedMemoryOn("0") && !sharedMemoryOn("false") && sharedMemoryOn("1"), "POLINGUAL_SHARED_MEMORY is on unless set to 0 or false");
 
   const romance = createSystem("en", ["fr", "es", "it"], [], T0);
   const trio = createSystem("en", ["it", "pl"], [romance], T0 + 1);
@@ -129,7 +130,7 @@ async function main() {
     const fresh1 = corpus.items.find((i) => i.kind === "word" && i.forms.pl && !s0.view.cards[cardId("pl", i.id)])!.id;
     const g = gradeShared(one, s0, "pl", fresh1, 3);
     await g.saved;
-    const memRows = normalizeMemory("pl", one.server.get(langBranch("pl"))).log.filter((r) => r.card_id === cardId("pl", fresh1));
+    const memRows = normalizeMemory("pl", one.server.get(langBranch("pl"))).log.filter(isReview).filter((r) => r.card_id === cardId("pl", fresh1));
     const logRows = one.appended.filter((r) => r.card_id === cardId("pl", fresh1));
     ok(memRows.length === 1 && logRows.length === 1 && memRows[0].review_id === logRows[0].review_id, "one grade gives one log row and one memory row with the same review_id");
     const twice = mergeMemory(normalizeMemory("pl", one.server.get(langBranch("pl"))), { ...emptyMemory("pl"), log: [{ ...memRows[0], device_id: "log" }] });
@@ -146,7 +147,7 @@ async function main() {
   const mem = normalizeMemory("it", io.server.get(langBranch("it")));
   const dupe = mergeMemory(mem, { ...mem, log: mem.log.map((r) => ({ ...r, device_id: "dev-b" })) });
   const id0 = cardId("it", fresh[0]);
-  ok(dupe.log.length === mem.log.length && memoryState(dupe).cards[id0].reps === mem.log.filter((r) => r.card_id === id0).length, "N1: reps equal the rows left after review_id dedupe");
+  ok(dupe.log.length === mem.log.length && memoryState(dupe).cards[id0].reps === mem.log.filter(isReview).filter((r) => r.card_id === id0).length, "N1: reps equal the rows left after review_id dedupe");
 
   const baseCard = mem.baseline.cards[cardId("it", words[1])];
   const g1 = gradeShared(io, s, "it", words[1], 3);
@@ -164,7 +165,7 @@ async function main() {
   const live = normalizeMemory("it", io.server.get(langBranch("it")));
   const orphan: LangMemory = { ...live, log: [...live.log, { ...live.log[0], review_id: "gone-1", system_id: "deleted" }] };
   const rb = rollback(systems, { it: orphan }, backups);
-  const trioRows = live.log.filter((r) => r.system_id === trio.id);
+  const trioRows = live.log.filter(isReview).filter((r) => r.system_id === trio.id);
   ok(trioRows.every((r) => rb.branches[progressBranch(trio)].cards[r.card_id]) && !Object.keys(rb.branches[progressBranch(romance)].cards).some((id) => trioRows.some((r) => r.card_id === id) && !a.cards[id]), "N3: rollback restores .bak-v1 and re-splits rows by the system that wrote them");
   ok(rb.dropped === 1, "N3: rows from a deleted system are counted as dropped");
 
@@ -193,7 +194,7 @@ async function main() {
   const sb = await openShared(ioB, trio, systems);
   await gradeShared(ioA, sa, "it", words[6], 3).saved;
   await gradeShared(ioB, sb, "it", words[7], 3).saved;
-  const both = normalizeMemory("it", ioA.server.get(langBranch("it"))).log.map((r) => r.card_id);
+  const both = normalizeMemory("it", ioA.server.get(langBranch("it"))).log.filter(isReview).map((r) => r.card_id);
   ok(both.includes(cardId("it", words[6])) && both.includes(cardId("it", words[7])), "a stale device merges the server copy before it pushes, so no rows are lost");
 
   const newer = gradeCard(normalizeState(io.server.get(progressBranch(romance))), "it", words[2], 4, T0 + 5 * DAY, "UTC");

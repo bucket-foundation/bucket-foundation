@@ -59,6 +59,28 @@ export async function recordLearnEvent(store: LearnEventStore, userId: string, e
   return { recorded: outcome === "recorded", outcome };
 }
 
+export interface BatchOutcome {
+  outcome: "recorded" | GateReason;
+  results: { id: string; outcome: WriteOutcome | "rate_limited" }[];
+}
+
+export async function recordLearnBatch(store: LearnEventStore, userId: string, events: readonly LearnEvent[]): Promise<BatchOutcome> {
+  const gate = learnEventGate(await store.readProfile(userId));
+  if (!gate.record) return { outcome: gate.reason, results: [] };
+  const results: BatchOutcome["results"] = [];
+  for (const event of events) {
+    const props = parseProps(event.name, event.props);
+    if (!props.ok) throw new Error(`recordLearnBatch: ${props.error}`);
+    if (isClientName(event.name) && (await store.hit(userId, event.name)) > EVENT_DAILY_CAPS[event.name]) {
+      results.push({ id: event.id, outcome: "rate_limited" });
+      continue;
+    }
+    const outcome = await store.write({ user_id: userId, event_id: event.id, name: event.name, props: props.value, arm: validArm(event.arm) ? event.arm : null });
+    results.push({ id: event.id, outcome });
+  }
+  return { outcome: "recorded", results };
+}
+
 let _bucket: SupabaseClient | null = null;
 function bucketService(): SupabaseClient {
   if (_bucket) return _bucket;

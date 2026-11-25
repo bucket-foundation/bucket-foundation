@@ -62,6 +62,15 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     }
   }, [h.status, system, corpus, state, queue, heritage, freq]);
 
+  const started = useRef(Date.now());
+  const ended = useRef(false);
+  const sessionId = useRef("");
+  useEffect(() => {
+    if (!queue || i < queue.length || graded === 0 || ended.current || !h.endSession) return;
+    ended.current = true;
+    h.endSession({ id: sessionId.current || (sessionId.current = crypto.randomUUID()), started: started.current, ended: Date.now(), share_target: 0, share_real: 0, arm: "control", units: 0, cards: Math.min(graded, 1000) });
+  }, [queue, i, graded, h]);
+
   const entry = queue?.[i];
   const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
   const ex: Exercise | null = useMemo(() => {
@@ -127,6 +136,9 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     if (!system || !corpus || !freq) return;
     tally.current = new SoundTally();
     setQueue(mixSession(system, corpus, state, Date.now(), freq, { heritage }));
+    started.current = Date.now();
+    ended.current = false;
+    sessionId.current = "";
     setI(0);
     setGraded(0);
     setCorrect(0);

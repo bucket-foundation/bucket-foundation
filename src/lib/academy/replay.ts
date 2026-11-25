@@ -19,12 +19,14 @@ export const LANG_ATOMS_VERSION = "lang";
 
 export const corpusAtomsVersion = (branch: string) => `corpus:${branch}`;
 
-export function compareReviewRows(a: ReviewRow, b: ReviewRow): number {
+type Ordered = Pick<ReviewRow, "review_id" | "reviewed_at" | "device_id">;
+
+export function compareReviewRows(a: Ordered, b: Ordered): number {
   return a.reviewed_at - b.reviewed_at || cmp(a.device_id, b.device_id) || cmp(a.review_id, b.review_id);
 }
 
-export function orderLog(log: readonly ReviewRow[]): ReviewRow[] {
-  const byId = new Map<string, ReviewRow>();
+export function orderLog<T extends Ordered>(log: readonly T[]): T[] {
+  const byId = new Map<string, T>();
   log.forEach((r) => {
     const prev = byId.get(r.review_id);
     if (!prev || compareReviewRows(r, prev) < 0) byId.set(r.review_id, r);
