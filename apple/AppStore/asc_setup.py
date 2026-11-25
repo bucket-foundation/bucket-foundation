@@ -36,7 +36,7 @@ POLINGUAL = {
     "support": "https://polingual.com/support",
     "marketing": "https://polingual.com",
     "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced",
-    "promo": "Start a 3-day free trial. Learn Spanish, French and Italian side by side, or build your own set from 29 languages. Your progress syncs with Bucket.",
+    "promo": "Start a 7-day free trial on the yearly plan. Learn Spanish, French and Italian side by side, or build your own set from 29 languages. Your progress syncs with Bucket.",
     "listing": "docs/internal/polingual/APP-STORE-LISTING.md",
     "shots": "apple/Polingual/AppStore/screenshots",
     "notes": "Onboarding runs three screens, then the subscription screen. Use a sandbox Apple Account to start the free trial. Sign-in is optional and uses a one-time email code. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
@@ -291,9 +291,9 @@ def setup_subscriptions(api, cfg):
                             print(f"  FAIL  price: {[(e.get('code'), e.get('detail')) for e in d.get('errors', [])]}")
             if api.apply:
                 print(f"  done  prices set in {len(points) - failed} of {len(points)} territories")
-        if not api.all(f"/v1/subscriptions/{sid}/introductoryOffers?limit=200"):
-            d = api.write("3-day free trial, all territories", "POST", "/v1/subscriptionIntroductoryOffers", {
-                "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "THREE_DAYS", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
+        if spec["productId"].endswith("yearly") and not api.all(f"/v1/subscriptions/{sid}/introductoryOffers?limit=200"):
+            d = api.write("7-day free trial, all territories", "POST", "/v1/subscriptionIntroductoryOffers", {
+                "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "ONE_WEEK", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
                          "relationships": {"subscription": rel("subscriptions", sid)}}})
             if api.apply and d is None:
                 terr = terr or all_territories(api)
@@ -301,7 +301,7 @@ def setup_subscriptions(api, cfg):
                 ok = 0
                 for t in terr:
                     st, _ = api.call("POST", "/v1/subscriptionIntroductoryOffers", {
-                        "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "THREE_DAYS", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
+                        "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "ONE_WEEK", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
                                  "relationships": {"subscription": rel("subscriptions", sid), "territory": rel("territories", t)}}})
                     ok += st < 300
                 print(f"  done  trial in {ok} of {len(terr)} territories")

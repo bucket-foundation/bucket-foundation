@@ -56,7 +56,7 @@ Give both app signing values to the agent. Google sign-in OAuth clients and `ass
 
 Monetize with Play, Products. Use the iOS ids so the server entitlement map covers both stores.
 
-1. Subscriptions: `com.polingual.monthly`, `com.polingual.yearly`, `com.polingual.family.yearly`. Give each one auto-renewing base plan at the App Store price. On monthly and yearly, add an offer with a 3-day free trial for new customers.
+1. Subscriptions: `com.polingual.monthly`, `com.polingual.yearly`, `com.polingual.family.yearly`. Give each one auto-renewing base plan at the App Store price. On yearly, add an offer with a 7-day free trial for new customers. Monthly has no trial.
 2. One-time products: `com.polingual.lifetime` at the App Store price.
 3. Activate each product.
 
