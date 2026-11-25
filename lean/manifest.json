@@ -4239,6 +4239,798 @@
   "type": "∀ (l out : List BucketMath.Ranking.Result),\n  BucketMath.Ranking.UniqueIds l → out.Perm l → BucketMath.Ranking.Ordered out → out = BucketMath.Ranking.rank l"
  },
  {
+  "name": "BucketMath.Similarity.Axes",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 15,
+  "type": "Type → Type → Type"
+ },
+ {
+  "name": "BucketMath.Similarity.Bounded",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 18,
+  "type": "{α : Type} → (α → α → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Edit",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 78,
+  "type": "{α : Type} → List α → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Looser",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 26,
+  "type": "BucketMath.Similarity.Thresholds → BucketMath.Similarity.Thresholds → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 12,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric.separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 13,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Metric d → ∀ (a b : α), d a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric.toPseudometric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 12,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Metric d → BucketMath.Similarity.Pseudometric d"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 7,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 8,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a : α), d a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 9,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a b : α), d a b = d b a"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 10,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a b c : α), d a c ≤ d a b + d b c"
+ },
+ {
+  "name": "BucketMath.Similarity.Thresholds",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 9,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Similarity.Triangle",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 21,
+  "type": "{α : Type} → (α → α → Int) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Ultrametric",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 15,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Within",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 83,
+  "type": "{α : Type} → Nat → List α → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.cognate",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 21,
+  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Thresholds → L → W → Bool"
+ },
+ {
+  "name": "BucketMath.Similarity.cognate_axes_contribute",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 77,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds) {held : List L} {l : L}\n  {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held →\n    (w, k) ∈ text →\n      BucketMath.Similarity.cognate ax θ l w = true →\n        k ≤ BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate ax θ) held text"
+ },
+ {
+  "name": "BucketMath.Similarity.cognate_contributes",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 59,
+  "type": "∀ {L W : Type} (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held → (w, k) ∈ text → c l w = true → k ≤ BucketMath.Learning.Cognate.CoveredMass c held text"
+ },
+ {
+  "name": "BucketMath.Similarity.cognate_looser",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 30,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (l : L) (w : W), BucketMath.Similarity.cognate ax θ l w = true → BucketMath.Similarity.cognate ax θ' l w = true"
+ },
+ {
+  "name": "BucketMath.Similarity.combined",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 7,
+  "type": "{α : Type} → Nat → Nat → (α → α → Nat) → (α → α → Nat) → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_bounded",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 30,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} (w₁ w₂ : Nat) {B₁ B₂ : Nat},\n  BucketMath.Similarity.Bounded d₁ B₁ →\n    BucketMath.Similarity.Bounded d₂ B₂ →\n      BucketMath.Similarity.Bounded (BucketMath.Similarity.combined w₁ w₂ d₁ d₂) (w₁ * B₁ + w₂ * B₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 19,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} {w₁ : Nat} (w₂ : Nat),\n  0 < w₁ →\n    BucketMath.Similarity.Metric d₁ →\n      BucketMath.Similarity.Pseudometric d₂ → BucketMath.Similarity.Metric (BucketMath.Similarity.combined w₁ w₂ d₁ d₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 9,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} (w₁ w₂ : Nat),\n  BucketMath.Similarity.Pseudometric d₁ →\n    BucketMath.Similarity.Pseudometric d₂ →\n      BucketMath.Similarity.Pseudometric (BucketMath.Similarity.combined w₁ w₂ d₁ d₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_ultra_components",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 46,
+  "type": "(BucketMath.Similarity.Ultrametric fun a b => BucketMath.Similarity.discrete a.fst b.fst) ∧\n  BucketMath.Similarity.Ultrametric fun a b => BucketMath.Similarity.discrete a.snd b.snd"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_ultra_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 39,
+  "type": "¬BucketMath.Similarity.Ultrametric\n    (BucketMath.Similarity.combined 1 1 (fun a b => BucketMath.Similarity.discrete a.fst b.fst) fun a b =>\n      BucketMath.Similarity.discrete a.snd b.snd)"
+ },
+ {
+  "name": "BucketMath.Similarity.cosineDistance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 15,
+  "type": "Int → List Int → List Int → Int"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_counterexample",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 30,
+  "type": "BucketMath.Similarity.cosineDistance 5 [5, 0] [0, 5] = 25 ∧\n  BucketMath.Similarity.cosineDistance 5 [5, 0] [3, 4] = 10 ∧ BucketMath.Similarity.cosineDistance 5 [3, 4] [0, 5] = 5"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 21,
+  "type": "∀ (radius : Int) (a : List Int),\n  BucketMath.Similarity.dot a a = radius * radius → BucketMath.Similarity.cosineDistance radius a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 17,
+  "type": "∀ (radius : Int) (a b : List Int),\n  BucketMath.Similarity.cosineDistance radius a b = BucketMath.Similarity.cosineDistance radius b a"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_triangle_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 25,
+  "type": "¬BucketMath.Similarity.Triangle (BucketMath.Similarity.cosineDistance 5)"
+ },
+ {
+  "name": "BucketMath.Similarity.coveredMass_implies",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 40,
+  "type": "∀ {L W : Type} {c c' : L → W → Bool},\n  (∀ (l : L) (w : W), c l w = true → c' l w = true) →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass c held text ≤ BucketMath.Learning.Cognate.CoveredMass c' held text"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 33,
+  "type": "{α : Type} → [DecidableEq α] → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 35,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Metric BucketMath.Similarity.discrete"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 51,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Ultrametric BucketMath.Similarity.discrete"
+ },
+ {
+  "name": "BucketMath.Similarity.dot",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 5,
+  "type": "List Int → List Int → Int"
+ },
+ {
+  "name": "BucketMath.Similarity.dot_comm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 9,
+  "type": "∀ (a b : List Int), BucketMath.Similarity.dot a b = BucketMath.Similarity.dot b a"
+ },
+ {
+  "name": "BucketMath.Similarity.edit_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 87,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Edit a b → BucketMath.Similarity.Edit b a"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 7,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming.congr_simp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 0,
+  "type": "∀ {α : Type} {inst : DecidableEq α} [inst_1 : DecidableEq α] (a a_1 : List α),\n  a = a_1 →\n    ∀ (a_2 a_3 : List α), a_2 = a_3 → BucketMath.Similarity.hamming a a_2 = BucketMath.Similarity.hamming a_1 a_3"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_le_lengths",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 38,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), BucketMath.Similarity.hamming xs ys ≤ xs.length + ys.length"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 75,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Metric BucketMath.Similarity.hamming"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_nil_right",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 12,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs : List α), BucketMath.Similarity.hamming xs [] = xs.length"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 15,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs : List α), BucketMath.Similarity.hamming xs xs = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 64,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), BucketMath.Similarity.hamming xs ys = 0 → xs = ys"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 19,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α),\n  BucketMath.Similarity.hamming xs ys = BucketMath.Similarity.hamming ys xs"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 47,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys zs : List α),\n  BucketMath.Similarity.hamming xs zs ≤ BucketMath.Similarity.hamming xs ys + BucketMath.Similarity.hamming ys zs"
+ },
+ {
+  "name": "BucketMath.Similarity.length_le_hamming",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 29,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), ys.length ≤ xs.length + BucketMath.Similarity.hamming xs ys"
+ },
+ {
+  "name": "BucketMath.Similarity.looser_coverage",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 82,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.cognate ax θ) held text ≤\n        BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.cognate ax θ') held text"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 35,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_padding_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 89,
+  "type": "BucketMath.Similarity.manhattan [] [0] = 0 ∧ [] ≠ [0]"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 77,
+  "type": "BucketMath.Similarity.Pseudometric BucketMath.Similarity.manhattan"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 41,
+  "type": "∀ (a : List Int), BucketMath.Similarity.manhattan a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 80,
+  "type": "∀ (a b : List Int), a.length = b.length → BucketMath.Similarity.manhattan a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 45,
+  "type": "∀ (a b : List Int), BucketMath.Similarity.manhattan a b = BucketMath.Similarity.manhattan b a"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 53,
+  "type": "∀ (a b c : List Int),\n  BucketMath.Similarity.manhattan a c ≤ BucketMath.Similarity.manhattan a b + BucketMath.Similarity.manhattan b c"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 50,
+  "type": "{α : Type} → [DecidableEq α] → Nat → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 69,
+  "type": "BucketMath.Similarity.morphemeDistance 2 [1, 2, 3] [1, 2, 4] = 0 ∧ [1, 2, 3] ≠ [1, 2, 4]"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 64,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (depth : Nat) (a : List α),\n  depth ≤ a.length → BucketMath.Similarity.morphemeDistance depth a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 53,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (depth : Nat),\n  BucketMath.Similarity.Ultrametric (BucketMath.Similarity.morphemeDistance depth)"
+ },
+ {
+  "name": "BucketMath.Similarity.ngram_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 73,
+  "type": "BucketMath.Similarity.Metric BucketMath.Similarity.hamming"
+ },
+ {
+  "name": "BucketMath.Similarity.overlap",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 75,
+  "type": "List Bool → List Bool → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.overlap_le_union",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 85,
+  "type": "∀ (a b : List Bool), BucketMath.Similarity.overlap a b ≤ BucketMath.Similarity.union a b"
+ },
+ {
+  "name": "BucketMath.Similarity.pullback_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 29,
+  "type": "∀ {α β : Type} {d : β → β → Nat},\n  BucketMath.Similarity.Pseudometric d → ∀ (t : α → β), BucketMath.Similarity.Pseudometric fun a b => d (t a) (t b)"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 10,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix.congr_simp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 0,
+  "type": "∀ {α : Type} {inst : DecidableEq α} [inst_1 : DecidableEq α] (a a_1 : List α),\n  a = a_1 →\n    ∀ (a_2 a_3 : List α),\n      a_2 = a_3 → BucketMath.Similarity.sharedPrefix a a_2 = BucketMath.Similarity.sharedPrefix a_1 a_3"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 34,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Learning.Sequencing.Ultra BucketMath.Similarity.sharedPrefix"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_le_length",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 42,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b : List α), BucketMath.Similarity.sharedPrefix a b ≤ a.length"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 60,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a : List α), BucketMath.Similarity.sharedPrefix a a = a.length"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 14,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b : List α),\n  BucketMath.Similarity.sharedPrefix a b = BucketMath.Similarity.sharedPrefix b a"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 24,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b c : List α),\n  min (BucketMath.Similarity.sharedPrefix a b) (BucketMath.Similarity.sharedPrefix b c) ≤\n    BucketMath.Similarity.sharedPrefix a c"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedSuffix",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 37,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedSuffix_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 39,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Learning.Sequencing.Ultra BucketMath.Similarity.sharedSuffix"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 92,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid.manhattanSq",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 94,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid_triangle_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 98,
+  "type": "¬∀ (a b c : List Int),\n    BucketMath.Similarity.squaredEuclid a c ≤\n      BucketMath.Similarity.squaredEuclid a b + BucketMath.Similarity.squaredEuclid b c"
+ },
+ {
+  "name": "BucketMath.Similarity.subwordOff",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 91,
+  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Axes L W"
+ },
+ {
+  "name": "BucketMath.Similarity.subword_adds_coverage",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 93,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds),\n  0 < θ.subword →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate (BucketMath.Similarity.subwordOff ax) θ)\n          held text ≤\n        BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate ax θ) held text"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 123,
+  "type": "{α β : Type} → (α → β) → (β → β → Nat) → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 128,
+  "type": "BucketMath.Similarity.transliterated (List.map fun c => if c = 'ё' then 'е' else c) BucketMath.Similarity.hamming ['ё']\n      ['е'] =\n    0 ∧\n  ['ё'] ≠ ['е']"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 125,
+  "type": "∀ {α β : Type} (t : α → β) {d : β → β → Nat},\n  BucketMath.Similarity.Pseudometric d → BucketMath.Similarity.Pseudometric (BucketMath.Similarity.transliterated t d)"
+ },
+ {
+  "name": "BucketMath.Similarity.ultra_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 24,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Ultrametric d → ∀ (a b c : α), d a c ≤ d a b + d b c"
+ },
+ {
+  "name": "BucketMath.Similarity.union",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 79,
+  "type": "List Bool → List Bool → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.within_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 92,
+  "type": "∀ {α : Type} {m n : Nat} {a b : List α}, BucketMath.Similarity.Within m a b → m ≤ n → BucketMath.Similarity.Within n a b"
+ },
+ {
+  "name": "BucketMath.Similarity.within_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 108,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Edit a b → BucketMath.Similarity.Within 1 a b"
+ },
+ {
+  "name": "BucketMath.Similarity.within_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 121,
+  "type": "∀ {α : Type} (a : List α), BucketMath.Similarity.Within 0 a a"
+ },
+ {
+  "name": "BucketMath.Similarity.within_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 110,
+  "type": "∀ {α : Type} {n : Nat} {a b : List α}, BucketMath.Similarity.Within n a b → BucketMath.Similarity.Within n b a"
+ },
+ {
+  "name": "BucketMath.Similarity.within_trans",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 100,
+  "type": "∀ {α : Type} {m n : Nat} {a b c : List α},\n  BucketMath.Similarity.Within m a b → BucketMath.Similarity.Within n b c → BucketMath.Similarity.Within (m + n) a c"
+ },
+ {
+  "name": "BucketMath.Similarity.within_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 117,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Within 0 a b → a = b"
+ },
+ {
   "name": "BucketMath.Split.Parts",
   "kind": "inductive",
   "status": "def",

@@ -10,6 +10,12 @@ import BucketMath.Learning.Diamond
 import BucketMath.Learning.Capacity
 import BucketMath.Learning.Sequencing
 import BucketMath.Learning.Coverage
+import BucketMath.Similarity.Axioms
+import BucketMath.Similarity.Script
+import BucketMath.Similarity.Vector
+import BucketMath.Similarity.Subword
+import BucketMath.Similarity.Combined
+import BucketMath.Similarity.Cognate
 import BucketMath.Open
 import BucketMath.Helix
 import BucketMath.Marketing
