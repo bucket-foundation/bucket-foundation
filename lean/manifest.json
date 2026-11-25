@@ -1467,6 +1467,15 @@
   "type": "List Nat → Nat"
  },
  {
+  "name": "BucketMath.Learning.Sequencing.every_order_optimal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 96,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {g l : List α},\n      g.Perm l →\n        BucketMath.Learning.Sequencing.totalCost sim base held g ≤\n          BucketMath.Learning.Sequencing.totalCost sim base held l"
+ },
+ {
   "name": "BucketMath.Learning.Sequencing.greedy_fails_under_budget",
   "kind": "theorem",
   "status": "proved",
@@ -1474,15 +1483,6 @@
   "source": "lean/BucketMath/Learning/Sequencing.lean",
   "line": 116,
   "type": "BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetCluster 3 <\n  BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetGreedy 3"
- },
- {
-  "name": "BucketMath.Learning.Sequencing.greedy_optimal",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Learning.Sequencing",
-  "source": "lean/BucketMath/Learning/Sequencing.lean",
-  "line": 96,
-  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {g l : List α},\n      BucketMath.Learning.Sequencing.isGreedy sim held g = true →\n        g.Perm l →\n          BucketMath.Learning.Sequencing.totalCost sim base held g ≤\n            BucketMath.Learning.Sequencing.totalCost sim base held l"
  },
  {
   "name": "BucketMath.Learning.Sequencing.isGreedy",

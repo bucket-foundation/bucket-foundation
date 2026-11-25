@@ -15,7 +15,7 @@ Bead `bkt-pj2ps`. Results hold for any set of learning domains: languages, field
 | The bound is reached by a pool of least-upkeep domains | [bm:BucketMath.Learning.Capacity.capacity_tight] |
 | A held set that fits the budget keeps fitting as stabilities grow, and the bound rises | [bm:BucketMath.Learning.Capacity.capacity_rises], [bm:BucketMath.Learning.Capacity.capacity_bound_mono] |
 | Shared prefix depth in a taxonomy tree is an ultrametric similarity | [bm:BucketMath.Learning.Sequencing.lcp_isUltra] |
-| Acquiring a whole set costs the same in every order, so the nearest-next greedy order is optimal | [bm:BucketMath.Learning.Sequencing.totalCost_perm], [bm:BucketMath.Learning.Sequencing.greedy_optimal] |
+| Acquiring a whole set costs the same in every order, so every order is optimal. The model assumes each acquired domain stays held and a new domain's cost is its base minus its largest similarity to the held set | [bm:BucketMath.Learning.Sequencing.totalCost_perm], [bm:BucketMath.Learning.Sequencing.every_order_optimal] |
 | Under a budget that stops after k domains, greedy nearest-next can lose: a counterexample at k = 3 | [bm:BucketMath.Learning.Sequencing.greedy_fails_under_budget] |
 
 Upkeep values, retention curves, base costs and taxonomy trees are inputs; cite them with `[empirical: ...]`.

@@ -93,8 +93,8 @@ def isGreedy (sim : α → α → Nat) : List α → List α → Bool
   | _, [] => true
   | held, d :: ds => ds.all (fun e => decide (shared sim e held ≤ shared sim d held)) && isGreedy sim (d :: held) ds
 
-theorem greedy_optimal {sim : α → α → Nat} (hu : Ultra sim) (base : α → Nat) (held : List α)
-    {g l : List α} (_hg : isGreedy sim held g = true) (hp : g.Perm l) :
+theorem every_order_optimal {sim : α → α → Nat} (hu : Ultra sim) (base : α → Nat) (held : List α)
+    {g l : List α} (hp : g.Perm l) :
     totalCost sim base held g ≤ totalCost sim base held l :=
   Int.le_of_eq (totalCost_perm hu base held hp)
 
