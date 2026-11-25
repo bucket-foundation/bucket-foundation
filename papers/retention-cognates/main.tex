@@ -41,7 +41,22 @@
 \maketitle
 
 \begin{abstract}
-\input{results/abstract.tex}
+Words that resemble a translation in a language the learner already knows
+might be forgotten more slowly. We test this on 12,854,226 Duolingo
+practice events from 115,222 learners in eight language pairs, adding
+Wiktionary cognate features (spelling similarity, IPA similarity and a
+shared-etymon flag) to half-life regression. Hypotheses, tests and
+equivalence bounds were preregistered. Pooled, a shared etymon lengthens
+the modeled half-life by a factor of 1.031 (95\% CI 1.029 to 1.034,
+Holm $p < 10^{-100}$) and full spelling overlap by 1.015 (CI 1.010 to
+1.019). Both effects sit inside the preregistered equivalence bound of a
+7\% change. Held-out MAE moves by $-1.0\times10^{-6}$ (CI $-3.6\times10^{-6}$
+to $1.6\times10^{-6}$; TOST against $\pm0.001$, $p<10^{-10}$), with a
+minimum detectable effect of $3.7\times10^{-6}$, so the null on prediction
+is an absence of effect. Per pair, the etymon effect reaches a factor of
+1.069 for Spanish speakers learning English. Cognate status is a real
+but small predictor of retention in this data; a scheduler gains no
+measurable accuracy from it.
 \end{abstract}
 
 \section{Introduction}
@@ -139,19 +154,46 @@ $[15\,\text{min}, 274\,\text{days}]$, with an L2 penalty of $10^{-4}$,
 minimized by L-BFGS. Events are sorted by time; the first 90\% train and
 the last 10\% test. AUC uses the rounded session recall as the label.
 
-\paragraph{Uncertainty.} Confidence intervals are 95\% percentile
-intervals from a learner-clustered Poisson bootstrap with
-\input{results/boot.tex} replicates: each replicate reweights every
-learner's events by one Poisson(1) draw and refits from the point
-estimate. The MAE difference between the models uses the same scheme on
-the test set without refitting.
+\paragraph{Hypotheses.} \texttt{PREREG.md}, committed before any
+per-pair result was computed, states the hypotheses. Family P, pooled:
+H0 that the test MAE difference $D = \mathrm{MAE}_{\text{cog}} -
+\mathrm{MAE}_{\text{base}}$ is zero, and H0 that each of the spelling,
+IPA and etymon coefficients is zero, each against a two-sided
+alternative. Family Q repeats the four hypotheses for each of the eight
+pairs. One pooled estimate of $D$ was seen before the file was written,
+from a run with a numerical overflow that was discarded; the file
+discloses it.
+
+\paragraph{Tests.} Each hypothesis gets a two-sided Wald $z$ test at
+$\alpha = 0.05$. Holm's step-down correction runs within family P (four
+tests) and within each of the four per-pair families (eight tests each).
+Equivalence uses two one-sided tests (TOST) at $\alpha=0.05$ against
+bounds of $\pm 0.001$ recall units for $D$ and $\pm 0.1$ $\log_2$
+half-life units for a coefficient, a 7\% change in half-life. The
+minimum detectable effect at 80\% power is $2.80\,\mathrm{SE}$. A test
+that rejects H0 and passes TOST is reported as a small effect; one that
+retains H0 and passes TOST as equivalence; one that retains H0 and fails
+TOST as inconclusive.
+
+\paragraph{Standard errors.} Coefficient standard errors are
+cluster-robust sandwich estimates with learners as clusters:
+$\hat V = H^{-1} M H^{-1}$, with $H$ the Hessian of the mean loss by
+central differences of the analytic gradient and $M$ the outer product
+of per-learner score sums divided by $n^2$. The SE of $D$ is the
+learner-clustered SE of a mean over test events, holding the fitted
+parameters fixed; with 11.6 million training events, parameter noise
+adds little to it. \texttt{PREREG.md} named 200 learner-clustered
+bootstrap refits; that run exceeded the memory of the analysis machine,
+and the sandwich estimator replaces it. Both target the same
+learner-clustered sampling variance.
 
 \section{Results}
 \label{sec:results}
 
 \begin{table}[htbp]
   \centering
-  \small
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
   \caption{Held-out fit per language pair, interface language first.
     $\Delta$MAE is cognate minus base, $\times 10^{3}$, with its 95\%
     interval.}
@@ -160,7 +202,7 @@ the test set without refitting.
     \toprule
     Pair & Events & Learners & Lexemes & MAE base & MAE cog. & AUC base & AUC cog. & $\Delta$MAE \\
     \midrule
-    \input{results/table_fit.tex}
+    \csname @@input\endcsname results/table_fit.tex
     \bottomrule
   \end{tabular}
 \end{table}
@@ -174,7 +216,7 @@ the test set without refitting.
     \toprule
     Feature & Base model & Cognate model \\
     \midrule
-    \input{results/table_coef.tex}
+    \csname @@input\endcsname results/table_coef.tex
     \bottomrule
   \end{tabular}
 \end{table}
@@ -195,11 +237,56 @@ the test set without refitting.
   \label{fig:mae}
 \end{figure}
 
-\input{results/results.tex}
+\begin{table}[htbp]
+  \centering
+  \scriptsize
+  \caption{Preregistered tests. Estimates are $\log_2$ half-life
+    coefficients, and $\Delta$MAE $\times10^{3}$. $p_{\text{Holm}}$ is
+    corrected within its family; MDE at 80\% power; TOST $p$ against the
+    preregistered bound.}
+  \label{tab:tests}
+  \begin{tabular}{@{}llrlrrrrl@{}}
+    \toprule
+    Pair & Quantity & Est. & 95\% CI & $z$ & $p_{\text{Holm}}$ & MDE & TOST $p$ & Verdict \\
+    \midrule
+    \csname @@input\endcsname results/table_tests.tex
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\paragraph{Prediction.} Adding cognate features leaves held-out error
+unchanged in every pair (\Cref{tab:fit}, \Cref{fig:mae}). Pooled,
+$D = -1.0\times10^{-6}$ ($z=-0.76$, Holm $p=0.45$), and the 90\%
+interval lies far inside $\pm0.001$, so TOST establishes equivalence.
+The MDE of $3.7\times10^{-6}$ is under a three-hundredth of the bound:
+the test had power to see any effect a scheduler would notice. AUC moves
+by at most $2\times10^{-4}$ in any pair.
+
+\paragraph{Coefficients.} Pooled, all three cognate coefficients differ
+from zero after Holm correction (\Cref{tab:coef}, \Cref{tab:tests}). A
+shared etymon multiplies the modeled half-life by $2^{0.0445}=1.031$
+(CI 1.029 to 1.034); spelling similarity of one against zero by 1.015
+(CI 1.010 to 1.019). IPA similarity carries a small negative coefficient,
+$-0.012$ (CI $-0.021$ to $-0.003$), once spelling is in the model. Every
+pooled effect sits inside the $\pm0.1$ bound by TOST. Practice history weighs more: a first incorrect recall moves
+$\log_2 \hat h$ by $-0.161(\sqrt2-1) = -0.067$.
+
+\paragraph{Per pair.} \Cref{fig:coef} shows the coefficients by pair.
+The etymon effect is positive after correction in five of eight pairs
+and largest for Spanish speakers learning English, a factor of
+$2^{0.096}=1.069$ (CI 1.061 to 1.077), and for Italian speakers learning
+English, 1.060; neither interval is inside the bound. It is negative for
+English speakers learning Spanish ($-0.011$) and Portuguese speakers
+learning English ($-0.039$). Spelling and IPA coefficients change sign
+across pairs, and in English to Italian and Portuguese to English they
+pull in opposite directions, a sign that the two measures share variance
+and split it differently by pair. No per-pair test is inconclusive: each
+either rejects H0 or passes TOST.
 
 \paragraph{Polingual logs.} The local Polingual store
-(\texttt{bucket.academy\_progress}) holds
-\input{results/polingual.tex}
+(\texttt{bucket.academy\_progress}) holds 232 language-branch rows from 107 accounts, of which 379 cards
+from 15 accounts have two or more reviews and 0 review-log entries exist.
+The preregistered threshold was 1,000 learners with per-review history.
 That is too small for this analysis, and the store keeps card snapshots
 without per-review history, so the study uses the Duolingo traces alone
 [empirical: local supabase\_db\_bucket-foundation, 2026-11-25,
@@ -228,9 +315,13 @@ form is \texttt{logHalfLife\_mono} in \Cref{app:lean}.
 \section{Calibration}
 \label{sec:calibration}
 
-The base model reproduces the setting of \autocite{settles2016hlr}
-without lexeme indicators, and its held-out MAE sits near the value they
-report for that variant, which checks the loss and the split. The
+The base model follows the loss, clipping and features of
+\autocite{settles2016hlr} without lexeme indicators. Its pooled test MAE
+is 0.127 and AUC 0.537; we did not re-run their released code, so
+agreement with their reported figures is not checked here. The
+sandwich SEs were checked against the discarded 20-replicate bootstrap
+for the pooled $D$: SE $1.3\times10^{-6}$ against an interval half-width
+of $2.1\times10^{-6}$ there, consistent at 20 replicates. The
 cognate features were checked by hand on 12 random English-interface
 lemmas: \textit{instrument} and \textit{operación} score spelling
 similarity above 0.88 and a shared etymon; \textit{schlafen} shares the
@@ -250,7 +341,9 @@ misses some true cognates and the spelling score carries part of their
 signal. IPA strings from different language editions use different
 conventions, which compresses IPA similarity toward zero. The base model
 omits lexeme indicators; with them, the cognate coefficients would be
-unidentified. Function words dominate event counts, so the pooled
+unidentified. Without lexeme indicators the fitted intercept puts the typical
+half-life near 170 days, so predicted recall sits close to one and any
+word-level feature has little room to move the error. Function words dominate event counts, so the pooled
 estimates weight them most.
 
 \printbibliography
@@ -282,8 +375,8 @@ theorem logHalfLife_mono {base c x y : Int} (hc : 0 <= c) (hxy : x <= y) :
 \texttt{lake build} output, quoted verbatim.
 % voice-ignore-next 5
 \begin{verbatim}
-Built Bucket.Retention
-Built Bucket
+[2/4] Built Bucket.Retention
+[3/4] Built Bucket
 Build completed successfully (4 jobs).
 \end{verbatim}
 

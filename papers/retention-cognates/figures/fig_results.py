@@ -79,7 +79,31 @@ def tables():
     (ROOT / "results" / "table_coef.tex").write_text("\n".join(rows) + "\n")
 
 
+def sci(x):
+    if x < 1e-4:
+        m, e = f"{x:.1e}".split("e")
+        return f"${m}\\times10^{{{int(e)}}}$"
+    return f"{x:.4f}"
+
+
+def test_table():
+    tests = json.loads((ROOT / "results" / "tests.json").read_text())
+    names = {"mae_diff": r"$\Delta$MAE", "orth_sim": "spelling", "phon_sim": "IPA", "etym_cognate": "etymon"}
+    rows = []
+    for label, block in [("pooled", tests["pooled"])] + sorted(tests["pairs"].items()):
+        for q, t in block.items():
+            scale = 1000 if q == "mae_diff" else 1
+            rows.append(
+                f"{label.replace('->', r'$\to$')} & {names[q]} & {tex_number(t['est'] * scale)} & "
+                f"[{tex_number(t['ci'][0] * scale)}, {tex_number(t['ci'][1] * scale)}] & {t['z']:.2f} & "
+                f"{sci(t['p_holm'])} & {tex_number(t['mde'] * scale)} & {sci(t['tost_p'])} & {t['verdict']} \\\\"
+            )
+        rows.append("\\midrule")
+    (ROOT / "results" / "table_tests.tex").write_text("\n".join(rows[:-1]) + "\n")
+
+
 if __name__ == "__main__":
     coefficient_figure()
     mae_figure()
     tables()
+    test_table()

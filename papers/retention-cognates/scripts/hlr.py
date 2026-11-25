@@ -1,8 +1,5 @@
 import gzip
 import json
-import os
-import sys
-from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
@@ -17,123 +14,163 @@ OUT = ROOT / "results" / "hlr_results.json"
 
 MIN_H = 15.0 / (24 * 60)
 MAX_H = 274.0
+LO, HI = np.log2(MIN_H), np.log2(MAX_H)
 HL_WEIGHT = 0.01
 L2 = 1e-4
-BOOT = int(sys.argv[1]) if len(sys.argv) > 1 else 200
-WORKERS = int(os.environ.get("HLR_WORKERS", "12"))
-_SHARED = {}
-
-
-def _boot_fit(i):
-    s = _SHARED
-    rng = np.random.default_rng(SEED + 1 + i)
-    w = rng.poisson(1.0, s["n_users"]).astype(float)[s["inv"]]
-    return fit(s["X"], s["t"], s["p"], w, s["theta"])
-SEED = 20261125
+Z95 = 1.959963984540054
 
 BASE = ["bias", "right", "wrong", "log_len"]
 COGNATE = ["orth_sim", "phon_sim", "phon_missing", "etym_cognate", "trans_missing"]
+DTYPES = {
+    "p_recall": "float32",
+    "timestamp": "int64",
+    "delta": "float32",
+    "user_id": "category",
+    "learning_language": "category",
+    "ui_language": "category",
+    "lexeme_id": "category",
+    "history_seen": "int32",
+    "history_correct": "int32",
+}
 
 
 def load():
-    cols = ["p_recall", "timestamp", "delta", "user_id", "learning_language", "ui_language", "lexeme_id", "history_seen", "history_correct"]
     with gzip.open(TRACES, "rt") as fh:
-        df = pd.read_csv(fh, usecols=cols)
-    feats = pd.read_csv(FEATURES)
-    df = df.merge(feats, on=["lexeme_id", "ui_language", "learning_language"], how="left")
-    df["pair"] = df.ui_language + "->" + df.learning_language
-    df["t_days"] = df.delta / 86400.0
-    df["bias"] = 1.0
-    df["right"] = np.sqrt(1 + df.history_correct)
-    df["wrong"] = np.sqrt(1 + df.history_seen - df.history_correct)
-    df["log_len"] = np.log2(1 + df.lemma_len.fillna(1))
-    df["trans_missing"] = df.etym_cognate.isna().astype(float)
-    df["phon_missing"] = df.phon_sim.isna().astype(float)
-    for c in ("orth_sim", "phon_sim", "etym_cognate"):
-        df[c] = df[c].fillna(0.0)
-    df = df.sort_values("timestamp", kind="stable").reset_index(drop=True)
-    cut = int(len(df) * 0.9)
-    df["split"] = np.where(np.arange(len(df)) < cut, "train", "test")
-    return df
+        df = pd.read_csv(fh, usecols=list(DTYPES), dtype=DTYPES)
+    feats = pd.read_csv(FEATURES, usecols=["lexeme_id", "ui_language", "lemma_len", "orth_sim", "phon_sim", "etym_cognate"])
+    key = df.lexeme_id.astype(str) + "|" + df.ui_language.astype(str)
+    feats.index = feats.lexeme_id + "|" + feats.ui_language
+    feats = feats.drop(columns=["lexeme_id", "ui_language"])
+    joined = feats.reindex(key.to_numpy())
+    out = pd.DataFrame({
+        "p": df.p_recall.to_numpy(),
+        "t": (df.delta / 86400.0).astype("float32").to_numpy(),
+        "user": df.user_id.cat.codes.to_numpy(),
+        "pair": (df.ui_language.astype(str) + "->" + df.learning_language.astype(str)).astype("category").to_numpy(),
+        "lexeme": df.lexeme_id.cat.codes.to_numpy(),
+        "timestamp": df.timestamp.to_numpy(),
+        "bias": np.float32(1.0),
+        "right": np.sqrt(1 + df.history_correct.to_numpy()).astype("float32"),
+        "wrong": np.sqrt(1 + df.history_seen.to_numpy() - df.history_correct.to_numpy()).astype("float32"),
+        "log_len": np.log2(1 + joined.lemma_len.fillna(1).to_numpy()).astype("float32"),
+        "trans_missing": joined.etym_cognate.isna().to_numpy().astype("float32"),
+        "phon_missing": joined.phon_sim.isna().to_numpy().astype("float32"),
+        "orth_sim": joined.orth_sim.fillna(0).to_numpy().astype("float32"),
+        "phon_sim": joined.phon_sim.fillna(0).to_numpy().astype("float32"),
+        "etym_cognate": joined.etym_cognate.fillna(0).to_numpy().astype("float32"),
+    })
+    del df, joined, key
+    out = out.sort_values("timestamp", kind="stable").reset_index(drop=True)
+    cut = int(len(out) * 0.9)
+    out["train"] = np.arange(len(out)) < cut
+    return out
 
 
-def predict(theta, X, t):
-    h = np.clip(np.exp2(np.clip(X @ theta, np.log2(MIN_H), np.log2(MAX_H))), MIN_H, MAX_H)
-    return np.clip(np.exp2(-t / h), 1e-4, 1 - 1e-4), h
-
-
-def objective(theta, X, t, p, h_obs, w):
+def row_terms(theta, X, t, p, h_obs):
     raw = X @ theta
-    z = np.clip(raw, np.log2(MIN_H), np.log2(MAX_H))
-    inside = (raw == z).astype(float)
+    z = np.clip(raw, LO, HI)
     h = np.exp2(z)
     phat = np.exp2(-t / h)
     ln2 = np.log(2)
     dp = phat - p
     dh = h - h_obs
-    wsum = w.sum()
-    loss = (w * (dp ** 2 + HL_WEIGHT * dh ** 2)).sum() / wsum + L2 * (theta[1:] ** 2).sum()
-    dphat_dz = phat * ln2 * ln2 * t / h
-    dh_dz = h * ln2
-    g = w * inside * (2 * dp * dphat_dz + HL_WEIGHT * 2 * dh * dh_dz)
-    grad = X.T @ g / wsum
+    loss = dp ** 2 + HL_WEIGHT * dh ** 2
+    g = (raw == z) * (2 * dp * phat * ln2 * ln2 * t / h + HL_WEIGHT * 2 * dh * h * ln2)
+    return loss, g
+
+
+def objective(theta, X, t, p, h_obs):
+    loss, g = row_terms(theta, X, t, p, h_obs)
+    n = len(p)
+    grad = X.T @ g / n
     grad[1:] += 2 * L2 * theta[1:]
-    return loss, grad
+    return loss.mean() + L2 * (theta[1:] ** 2).sum(), grad
 
 
-def fit(X, t, p, w, theta0=None):
+def half_life_obs(t, p):
     pc = np.clip(p, 1e-4, 1 - 1e-4)
-    h_obs = np.clip(-t / np.log2(pc), MIN_H, MAX_H)
-    theta0 = np.zeros(X.shape[1]) if theta0 is None else theta0
-    res = minimize(objective, theta0, args=(X, t, p, h_obs, w), jac=True, method="L-BFGS-B", options={"maxiter": 500})
-    return res.x
+    return np.clip(-t / np.log2(pc), MIN_H, MAX_H)
 
 
-def evaluate(theta, X, t, p):
-    phat, _ = predict(theta, X, t)
-    y = np.round(p)
-    auc = roc_auc_score(y, phat) if 0 < y.mean() < 1 else float("nan")
-    return float(np.abs(p - phat).mean()), float(auc)
+def fit(X, t, p):
+    h_obs = half_life_obs(t, p)
+    res = minimize(objective, np.zeros(X.shape[1]), args=(X, t, p, h_obs), jac=True, method="L-BFGS-B", options={"maxiter": 1000})
+    return res.x, h_obs
+
+
+def cluster_se(theta, X, t, p, h_obs, users):
+    n = len(p)
+    _, g = row_terms(theta, X, t, p, h_obs)
+    k = X.shape[1]
+    scores = np.zeros((users.max() + 1, k))
+    for j in range(k):
+        scores[:, j] = np.bincount(users, weights=g * X[:, j], minlength=users.max() + 1)
+    meat = scores.T @ scores / n ** 2
+    eps = 1e-5
+    H = np.zeros((k, k))
+    for j in range(k):
+        e = np.zeros(k)
+        e[j] = eps
+        H[:, j] = (objective(theta + e, X, t, p, h_obs)[1] - objective(theta - e, X, t, p, h_obs)[1]) / (2 * eps)
+    H = (H + H.T) / 2
+    Hinv = np.linalg.pinv(H)
+    V = Hinv @ meat @ Hinv
+    return np.sqrt(np.clip(np.diag(V), 0, None))
+
+
+def predict(theta, X, t):
+    h = np.exp2(np.clip(X @ theta, LO, HI))
+    return np.clip(np.exp2(-t / h), 1e-4, 1 - 1e-4)
+
+
+def mean_cluster_se(d, users):
+    n = len(d)
+    centered = d - d.mean()
+    sums = np.bincount(users, weights=centered)
+    return float(np.sqrt((sums ** 2).sum()) / n)
 
 
 def run(df, label):
-    tr = df[df.split == "train"]
-    te = df[df.split == "test"]
-    t_tr, p_tr = tr.t_days.to_numpy(), tr.p_recall.to_numpy()
-    t_te, p_te = te.t_days.to_numpy(), te.p_recall.to_numpy()
-    out = {"label": label, "n_train": int(len(tr)), "n_test": int(len(te)), "users": int(df.user_id.nunique()), "lexemes": int(df.lexeme_id.nunique())}
-    rng = np.random.default_rng(SEED)
-    _, train_inv = np.unique(tr.user_id.to_numpy(), return_inverse=True)
-    test_codes, test_inv = np.unique(te.user_id.to_numpy(), return_inverse=True)
-    test_boot = [rng.poisson(1.0, len(test_codes)).astype(float)[test_inv] for _ in range(BOOT)]
+    tr = df[df.train.to_numpy()]
+    te = df[~df.train.to_numpy()]
+    t_tr, p_tr = tr.t.to_numpy(np.float64), tr.p.to_numpy(np.float64)
+    t_te, p_te = te.t.to_numpy(np.float64), te.p.to_numpy(np.float64)
+    users_tr = np.unique(tr.user.to_numpy(), return_inverse=True)[1]
+    users_te = np.unique(te.user.to_numpy(), return_inverse=True)[1]
+    out = {
+        "label": label,
+        "n_train": int(len(tr)),
+        "n_test": int(len(te)),
+        "users": int(df.user.nunique()),
+        "lexemes": int(df.lexeme.nunique()),
+    }
     preds = {}
     for name, cols in (("base", BASE), ("cognate", BASE + COGNATE)):
-        X_tr, X_te = tr[cols].to_numpy(float), te[cols].to_numpy(float)
-        theta = fit(X_tr, t_tr, p_tr, np.ones(len(tr)))
-        mae, auc = evaluate(theta, X_te, t_te, p_te)
-        _SHARED.update(X=X_tr, t=t_tr, p=p_tr, theta=theta, inv=train_inv, n_users=int(train_inv.max()) + 1)
-        with Pool(WORKERS) as pool:
-            boots = np.array(pool.map(_boot_fit, range(BOOT), chunksize=1))
-        lo, hi = np.percentile(boots, [2.5, 97.5], axis=0)
-        preds[name] = predict(theta, X_te, t_te)[0]
+        X_tr = tr[cols].to_numpy(np.float64)
+        theta, h_obs = fit(X_tr, t_tr, p_tr)
+        se = cluster_se(theta, X_tr, t_tr, p_tr, h_obs, users_tr)
+        del X_tr, h_obs
+        X_te = te[cols].to_numpy(np.float64)
+        phat = predict(theta, X_te, t_te)
+        preds[name] = phat
+        y = np.round(p_te)
         out[name] = {
-            "mae": mae,
-            "auc": auc,
-            "coef": {c: {"est": float(theta[i]), "lo": float(lo[i]), "hi": float(hi[i]), "boot": boots[:, i].tolist()} for i, c in enumerate(cols)},
+            "mae": float(np.abs(p_te - phat).mean()),
+            "auc": float(roc_auc_score(y, phat)) if 0 < y.mean() < 1 else None,
+            "coef": {c: {"est": float(theta[i]), "se": float(se[i]), "lo": float(theta[i] - Z95 * se[i]), "hi": float(theta[i] + Z95 * se[i])} for i, c in enumerate(cols)},
         }
-    err_b = np.abs(p_te - preds["base"])
-    err_c = np.abs(p_te - preds["cognate"])
-    diffs = [float(((err_c - err_b) * w).sum() / w.sum()) for w in test_boot]
-    out["mae_diff"] = {"est": float((err_c - err_b).mean()), "lo": float(np.percentile(diffs, 2.5)), "hi": float(np.percentile(diffs, 97.5)), "boot": diffs}
-    print(json.dumps({k: out[k] for k in ("label", "n_train", "mae_diff")}), flush=True)
+    d = np.abs(p_te - preds["cognate"]) - np.abs(p_te - preds["base"])
+    est, se = float(d.mean()), mean_cluster_se(d, users_te)
+    out["mae_diff"] = {"est": est, "se": se, "lo": est - Z95 * se, "hi": est + Z95 * se}
+    print(json.dumps({"label": label, "n_train": out["n_train"], "mae_diff": out["mae_diff"]}), flush=True)
     return out
 
 
 def main():
     df = load()
-    results = {"boot": BOOT, "pooled": run(df, "pooled"), "pairs": {}}
-    for pair, g in df.groupby("pair"):
-        results["pairs"][pair] = run(g.reset_index(drop=True), pair)
+    results = {"se_method": "cluster-robust sandwich by learner", "pooled": run(df, "pooled"), "pairs": {}}
+    for pair in sorted(df.pair.unique()):
+        results["pairs"][pair] = run(df[df.pair == pair], pair)
     OUT.write_text(json.dumps(results, indent=2) + "\n")
 
 

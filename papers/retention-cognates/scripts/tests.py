@@ -31,7 +31,7 @@ def quantity(block, q):
 
 def test(entry, bound):
     est = entry["est"]
-    se = float(np.std(entry["boot"], ddof=1))
+    se = entry["se"]
     z = est / se
     p = float(2 * norm.sf(abs(z)))
     p_lower = float(norm.sf((est + bound) / se))
@@ -49,6 +49,8 @@ def test(entry, bound):
 
 
 def verdict(t):
+    if t["p_holm"] < ALPHA and t["tost_p"] < ALPHA:
+        return "small"
     if t["p_holm"] < ALPHA:
         return "effect"
     if t["tost_p"] < ALPHA:

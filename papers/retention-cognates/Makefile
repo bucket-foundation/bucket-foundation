@@ -1,6 +1,5 @@
 PAPER   := main
 PYTHON  := python3
-BOOT    := 200
 
 .PHONY: pdf figures data analysis polingual lean lint clean
 
@@ -18,7 +17,7 @@ data:
 
 analysis: data
 	$(PYTHON) scripts/features.py
-	$(PYTHON) scripts/hlr.py $(BOOT)
+	$(PYTHON) scripts/hlr.py
 	$(PYTHON) scripts/tests.py
 
 polingual:
