@@ -37,6 +37,7 @@ The lint resolves tags. It cannot tell whether the cited theorem supports the se
 | `BucketMath.Grade` | the log-scale grade as an integer inequality: two positive values are within a rational tolerance when a power of the larger is at most a power of ten multiplied by the same power of the smaller; symmetry, scale invariance, monotonicity in the ratio, the boundary at one half |
 | `BucketMath.Fsrs` | the review scheduling clamps in fixed point: a two-sided clamp, a floor, round half up and the capped interval, with their bounds |
 | `BucketMath.Split` | the payment split in integer micro-units: author, node and operations parts, with the node part inside the non-author share and zero under a payment floor |
+| `BucketMath.Papers` | arithmetic and identities behind the paper claims: hypothesis-space sizes, absence likelihood ratio limits, FSRS-5 recall roundings, the weighted variance identity, frontier ratios |
 | `BucketMath.Open` | stated claims without proofs, empty today |
 | `BucketMathAll` | BucketMath plus the history engine package at `papers/history-hypothesis-engine/lean` |
 

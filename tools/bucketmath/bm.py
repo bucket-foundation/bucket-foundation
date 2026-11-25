@@ -181,11 +181,71 @@ def cmd_lookup(args) -> int:
         print(f"{r['name']}  [{r['status']}]  {r['source']}:{r['line']}\n    {r['type']}")
     return 0
 
+TEX_EMP_MACRO = re.compile(r"\\newcommand\{\\([A-Za-z]+)\}\{\\(?:emp\{|([A-Za-z]+)\b)")
+TEX_BM = re.compile(r"\\bm\{([^}]*)\}")
+
+def tex_to_tags(text: str) -> str:
+    emp = {"emp"}
+    changed = True
+    while changed:
+        changed = False
+        for m in TEX_EMP_MACRO.finditer(text):
+            name, inner = m.group(1), m.group(2)
+            if name not in emp and (inner is None or inner in emp):
+                emp.add(name)
+                changed = True
+    start = text.find("\\begin{document}")
+    lines = text.splitlines()
+    head = text[:start].count("\n") + 1 if start >= 0 else 0
+    out = []
+    for i, line in enumerate(lines):
+        if i < head or line.lstrip().startswith("%"):
+            out.append("")
+            continue
+        line = TEX_BM.sub(lambda m: "[bm:" + m.group(1).replace("\\_", "_") + "]", line)
+        line = re.sub(r"\\(" + "|".join(sorted(emp, key=len, reverse=True)) + r")(?![A-Za-z])", "[empirical: tex]", line)
+        out.append(line)
+    def spread(line: str) -> str:
+        return "[empirical: block] " + re.sub(r"([.;!?])\s+", r"\1 [empirical: block] ", line) + " [empirical: block]"
+    start_env = re.compile(r"\\begin\{(figure|table)\*?\}")
+    i = 0
+    while i < len(out):
+        m = start_env.search(out[i])
+        if m:
+            j = i
+            while j < len(out) and "\\end{" + m.group(1) not in out[j]:
+                j += 1
+            block = out[i:j + 1]
+            if any(TAG.search(b) or EMPIRICAL.search(b) for b in block):
+                out[i:j + 1] = [spread(b) if b.strip() else b for b in block]
+            i = j + 1
+            continue
+        if ("\\readingbox" in out[i] or "\\caption{" in out[i]) and (TAG.search(out[i]) or EMPIRICAL.search(out[i])):
+            out[i] = spread(out[i])
+        i += 1
+    joined = []
+    para_start = None
+    for line in out:
+        if line.strip():
+            if para_start is None:
+                para_start = len(joined)
+                joined.append(line.strip())
+            else:
+                joined[para_start] += " " + line.strip()
+                joined.append("")
+        else:
+            para_start = None
+            joined.append("")
+    return "\n".join(joined)
+
 def cmd_lint(args) -> int:
     manifest = load_manifest()
     failed = False
     for f in args.files:
-        errors, warnings = lint_text(Path(f).read_text(encoding="utf-8"), manifest)
+        text = Path(f).read_text(encoding="utf-8")
+        if f.endswith(".tex"):
+            text = tex_to_tags(text)
+        errors, warnings = lint_text(text, manifest)
         for e in errors:
             print(f"{f}: error: {e}")
         for w in warnings:

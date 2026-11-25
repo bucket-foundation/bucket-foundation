@@ -5,7 +5,7 @@
   "status": "def",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 26,
+  "line": 19,
   "type": "Type"
  },
  {
@@ -14,16 +14,16 @@
   "status": "def",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 42,
+  "line": 35,
   "type": "Bucket.Address.SlotTuple → Nat"
  },
  {
   "name": "Bucket.Address.encode_injective",
   "kind": "theorem",
-  "status": "open",
+  "status": "external",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 49,
+  "line": 58,
   "type": "Function.Injective Bucket.Address.encode"
  },
  {
@@ -32,8 +32,17 @@
   "status": "external",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 60,
+  "line": 84,
   "type": "∀ (a1 b1 c1 d1 e1 f1 a2 b2 c2 d2 e2 f2 : Fin 2),\n  2 ^ (↑a1 + 1) * 3 ^ (↑b1 + 1) * 5 ^ (↑c1 + 1) * 7 ^ (↑d1 + 1) * 11 ^ (↑e1 + 1) * 13 ^ (↑f1 + 1) =\n      2 ^ (↑a2 + 1) * 3 ^ (↑b2 + 1) * 5 ^ (↑c2 + 1) * 7 ^ (↑d2 + 1) * 11 ^ (↑e2 + 1) * 13 ^ (↑f2 + 1) →\n    a1 = a2 ∧ b1 = b2 ∧ c1 = c2 ∧ d1 = d2 ∧ e1 = e2 ∧ f1 = f2"
+ },
+ {
+  "name": "Bucket.Address.peel",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 42,
+  "type": "∀ {p x y : Nat}, 1 < p → p.Coprime x → p.Coprime y → ∀ {a b : Nat}, x * p ^ a = y * p ^ b → a = b ∧ x = y"
  },
  {
   "name": "Bucket.Belief.Opinion",
@@ -3445,6 +3454,267 @@
   "source": "lean/BucketMath/Markets.lean",
   "line": 61,
   "type": "∀ (band : Int),\n  0 ≤ band →\n    ∀ (i : BucketMath.Markets.Industry),\n      BucketMath.Markets.spread i = 0 → BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient"
+ },
+ {
+  "name": "BucketMath.Papers.RoundsTo",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 33,
+  "type": "Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 21,
+  "type": "Rat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio_full",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 26,
+  "type": "∀ (q0 q1 : Rat), BucketMath.Papers.absenceRatio q0 q1 1 = (1 - q1) / (1 - q0)"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio_undetectable",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 23,
+  "type": "∀ (q0 q1 : Rat), BucketMath.Papers.absenceRatio q0 q1 0 = 1"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_remaining_shares",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 137,
+  "type": "6 * 2 < 13 ∧ 18 * 4 = 24 * 3"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_settled_rates",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 133,
+  "type": "23 * 161 ≤ 100 * 38 ∧\n  100 * 38 < 24 * 161 + 161 ∧ 5 * 68 < 100 * 4 ∧ 100 * 4 < 6 * 68 ∧ 12 * 272 < 100 * 35 ∧ 100 * 35 < 13 * 272 + 272"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_settled_ratios",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 131,
+  "type": "BucketMath.Papers.ratioRoundsTo 4012 38 161 4 68 ∧ BucketMath.Papers.ratioRoundsTo 21489 35 272 1 167"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5SqDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 31,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5SqNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 29,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_horizon_ninety",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 46,
+  "type": "BucketMath.Papers.RoundsTo 35 90 3 ∧\n  BucketMath.Papers.RoundsTo 50 90 7 ∧ BucketMath.Papers.RoundsTo 71 90 21 ∧ BucketMath.Papers.RoundsTo 90 90 90"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_mastery_threshold_tenths",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 49,
+  "type": "49 * (81 * 203 + 19 * 900) ≤ 100 * 81 * 203 ∧ 100 * 81 * 202 < 49 * (81 * 202 + 19 * 900)"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_retest_week",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 43,
+  "type": "BucketMath.Papers.RoundsTo 80 7 3 ∧\n  BucketMath.Papers.RoundsTo 90 7 7 ∧ BucketMath.Papers.RoundsTo 96 7 21 ∧ BucketMath.Papers.RoundsTo 99 7 90"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_target_at_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 39,
+  "type": "∀ (S : Nat), 100 * BucketMath.Papers.fsrs5SqNum S S = 81 * BucketMath.Papers.fsrs5SqDen S S"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_hypothesis_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 9,
+  "type": "40 * 50 * 300 * 120 * 200 * 25 = 360000000000"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_kind_weights",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 15,
+  "type": "2000 * 900 + 1500 * 500 = 2550000 ∧\n  2550 * 15485 ≤ 39510000 ∧\n    39510000 ≤ 2550 * 15495 ∧\n      1000 * 600 = 600000 ∧ 808 * 1000 ≤ 600 * 1347 ∧ 600 * 1347 < 809 * 1000 ∧ 3951 + 808 = 4759"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_sequence_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 11,
+  "type": "13 * 360000000000 ^ 2 = 1684800000000000000000000 ∧\n  165 * 10 ^ 22 ≤ 13 * 360000000000 ^ 2 ∧ 13 * 360000000000 ^ 2 < 175 * 10 ^ 22"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_slot_products",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 5,
+  "type": "40 * 50 = 2000 ∧\n  2000 * 300 = 600000 ∧ 600000 * 120 = 72000000 ∧ 72000000 * 200 = 14400000000 ∧ 14400000000 * 25 = 360000000000"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_support_score",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 19,
+  "type": "13 * 4759 = 61867 ∧ 6186 * 10 ≤ 61867 ∧ 61867 < 6187 * 10"
+ },
+ {
+  "name": "BucketMath.Papers.mean_sq_le_mean_of_sq",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 99,
+  "type": "∀ (d g : List Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) →\n    (0 < BucketMath.Papers.wsum d g fun x => 1) →\n      (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n          (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) ≤\n        (BucketMath.Papers.wsum d g fun x => x * x) / BucketMath.Papers.wsum d g fun x => 1"
+ },
+ {
+  "name": "BucketMath.Papers.multiplier",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 139,
+  "type": "Rat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.multiplier_one_at_ceiling",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 141,
+  "type": "∀ {J A H : Rat}, 0 < A → H ≤ A → J = A → BucketMath.Papers.multiplier J H A = 1"
+ },
+ {
+  "name": "BucketMath.Papers.ratioRoundsTo",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 126,
+  "type": "Nat → Nat → Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Papers.sq_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 92,
+  "type": "∀ (x : Rat), 0 ≤ x * x"
+ },
+ {
+  "name": "BucketMath.Papers.sq_sum_le_sum",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 110,
+  "type": "∀ (d g : List Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) →\n    (∀ (x : Rat), x ∈ g → 0 ≤ x ∧ x ≤ 1) → (BucketMath.Papers.wsum d g fun x => x * x) ≤ BucketMath.Papers.wsum d g id"
+ },
+ {
+  "name": "BucketMath.Papers.weighted_spread",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 58,
+  "type": "∀ (d g : List Rat) (G : Rat),\n  (BucketMath.Papers.wsum d g fun x => (x - G) * (x - G)) =\n    (BucketMath.Papers.wsum d g fun x => x * x) - 2 * G * BucketMath.Papers.wsum d g id +\n      G * G * BucketMath.Papers.wsum d g fun x => 1"
+ },
+ {
+  "name": "BucketMath.Papers.weighted_variance_identity",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 68,
+  "type": "∀ (d g : List Rat),\n  (BucketMath.Papers.wsum d g fun x => 1) ≠ 0 →\n    ((BucketMath.Papers.wsum d g fun x =>\n          (x - BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n            (x - BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1)) /\n        BucketMath.Papers.wsum d g fun x => 1) =\n      ((BucketMath.Papers.wsum d g fun x => x * x) / BucketMath.Papers.wsum d g fun x => 1) -\n        (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n          (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1)"
+ },
+ {
+  "name": "BucketMath.Papers.wsum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 52,
+  "type": "List Rat → List Rat → (Rat → Rat) → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.wsum_cons",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 54,
+  "type": "∀ (a b : Rat) (d g : List Rat) (f : Rat → Rat),\n  BucketMath.Papers.wsum (a :: d) (b :: g) f = a * f b + BucketMath.Papers.wsum d g f"
+ },
+ {
+  "name": "BucketMath.Papers.wsum_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 79,
+  "type": "∀ (d g : List Rat) (f : Rat → Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) → (∀ (x : Rat), 0 ≤ f x) → 0 ≤ BucketMath.Papers.wsum d g f"
  },
  {
   "name": "BucketMath.Profile.Pair",

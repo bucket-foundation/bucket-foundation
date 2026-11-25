@@ -157,7 +157,7 @@ The protocol of Section~\ref{sec:prelim} measures a person on items. The learnin
 
 \begin{definition}[Catalog, closed state, frontier]
 \label{def:catalog}
-The catalog is a finite set of concepts $V$ with a directed prerequisite relation $E \subseteq V \times V$, where $p \to v$ means $p$ is mandatory before $v$, and the implementation rejects any cycle, so $(V, E)$ is a directed acyclic graph. A knowledge state is a set $K \subseteq V$. $K$ is closed when every immediate prerequisite of every member is a member: $p \to v$ and $v \in K$ imply $p \in K$. A concept $v \notin K$ is ready, and lies on the \term{frontier}{frontier} of $K$, when every $p$ with $p \to v$ lies in $K$ \bm{LearningSystem.Closed}.
+The catalog is a finite set of concepts $V$ with a directed prerequisite relation $E \subseteq V \times V$, where $p \to v$ means $p$ is mandatory before $v$, and the implementation rejects any cycle, so $(V, E)$ is a directed acyclic graph. A knowledge state is a set $K \subseteq V$. $K$ is closed when every immediate prerequisite of every member is a member: $p \to v$ and $v \in K$ imply $p \in K$. A concept $v \notin K$ is ready, and lies on the \term{frontier}{frontier} of $K$, when every $p$ with $p \to v$ lies in $K$ \bm{BucketMath.Learning.Closed}.
 \end{definition}
 
 \begin{definition}[Closure and required set]
@@ -167,7 +167,7 @@ For a target $t$, the \term{closure}{prerequisite closure} is the target with ev
   C(t) = \{t\} \cup \{p \in V : p \leadsto t\}, \qquad R(t, M) = C(t) \setminus M .
   \label{eq:required}
 \end{equation}
-$C(t)$ is the inductive predicate \texttt{Required} and $R$ is its conjunction with $\neg\,\mathrm{known}$ \bm{LearningSystem.Required}.
+$C(t)$ is the inductive predicate \texttt{Required} and $R$ is its conjunction with $\neg\,\mathrm{known}$ \bm{BucketMath.Learning.Required}.
 \end{definition}
 
 \begin{definition}[Transition and feasible sequence]
@@ -177,7 +177,7 @@ A step adds one fresh ready concept and keeps everything already known:
   K_{i+1} = K_i \cup \{v_i\}, \qquad v_i \notin K_i, \qquad (p \to v_i \Rightarrow p \in K_i).
   \label{eq:transition}
 \end{equation}
-A finite list $\pi = (v_1, \ldots, v_n)$ is feasible from $K_0$ when every step satisfies Equation~\eqref{eq:transition}; it reaches $t$ when $t \in K_0$ or $t$ occurs in $\pi$ \bm{LearningSystem.Path, LearningSystem.After}.
+A finite list $\pi = (v_1, \ldots, v_n)$ is feasible from $K_0$ when every step satisfies Equation~\eqref{eq:transition}; it reaches $t$ when $t \in K_0$ or $t$ occurs in $\pi$ \bm{BucketMath.Learning.Path, LearningSystem.After}.
 \end{definition}
 
 \begin{definition}[Cost model]
@@ -187,24 +187,24 @@ Each concept carries a fixed cost $w(v) \in \mathbb{N}$, zero allowed. The effor
   W(\pi) = \sum_{v \in \pi} w(v), \qquad c^*(M, t) = \sum_{v \in R(t, M)} w(v),
   \label{eq:cost}
 \end{equation}
-and the unit-cost distance is $d^*(M, t) = \min\{|\pi| : \pi \text{ feasible from } M_C,\ \pi \text{ reaches } t\}$, with $M_C = M \cap C(t)$ the mastery restricted to the closure \bm{LearningSystem.Effort}.
+and the unit-cost distance is $d^*(M, t) = \min\{|\pi| : \pi \text{ feasible from } M_C,\ \pi \text{ reaches } t\}$, with $M_C = M \cap C(t)$ the mastery restricted to the closure \bm{BucketMath.Learning.Effort}.
 \end{definition}
 
 The brief states five assumptions the results rest on \brief: every encoded edge is mandatory and the snapshot holds every prerequisite the target needs (A1); $C(t)$ is finite and the planner constructs a prerequisite-first order (A2); for each mastered $v \in C(t)$ every immediate prerequisite of $v$ is mastered, so $M_C$ is closed (A3); a step adds one concept and nothing is forgotten during the episode (A4); costs are fixed natural numbers shared across the sequences compared (A5).
 
 \begin{lemma}[Closure is preserved]
 \label{lem:closed}
-If $K$ is closed and $v$ is ready in $K$, then $K \cup \{v\}$ is closed; by induction every state reached by a feasible sequence from a closed state is closed \bm{LearningSystem.after\_closed}.
+If $K$ is closed and $v$ is ready in $K$, then $K \cup \{v\}$ is closed; by induction every state reached by a feasible sequence from a closed state is closed \bm{BucketMath.Learning.after\_closed}.
 \end{lemma}
 
 \begin{lemma}[Target mastery entails ancestor mastery]
 \label{lem:ancestors}
-If a closed state $K$ contains $t$, then $C(t) \subseteq K$ \bm{LearningSystem.required\_known}.
+If a closed state $K$ contains $t$, then $C(t) \subseteq K$ \bm{BucketMath.Learning.required\_known}.
 \end{lemma}
 
 \begin{theorem}[Necessary additions]
 \label{thm:necessary}
-From a closed $M_C$, every feasible sequence $\pi$ that reaches $t$ contains every member of $R(t, M)$, so $|\pi| \geq |R(t, M)|$ \bm{LearningSystem.remaining\_necessary}.
+From a closed $M_C$, every feasible sequence $\pi$ that reaches $t$ contains every member of $R(t, M)$, so $|\pi| \geq |R(t, M)|$ \bm{BucketMath.Learning.remaining\_necessary}.
 \end{theorem}
 
 \begin{proof}
@@ -213,15 +213,15 @@ By Lemma~\ref{lem:closed} the final state is closed; by Lemma~\ref{lem:ancestors
 
 \begin{theorem}[Attained minimum]
 \label{thm:minimum}
-Let $\pi$ list each element of $R(t, M)$ once in an order where every prerequisite of $v_i$ lies in $M_C$ or earlier in $\pi$. Then $\pi$ is feasible, reaches $t$, and $d^*(M, t) = |R(t, M)|$ \bm{LearningSystem.minimum\_unit\_distance}. With fixed costs the same $\pi$ attains $c^*(M, t)$ \bm{LearningSystem.minimum\_weighted\_effort}.
+Let $\pi$ list each element of $R(t, M)$ once in an order where every prerequisite of $v_i$ lies in $M_C$ or earlier in $\pi$. Then $\pi$ is feasible, reaches $t$, and $d^*(M, t) = |R(t, M)|$ \bm{BucketMath.Learning.minimum\_unit\_distance}. With fixed costs the same $\pi$ attains $c^*(M, t)$ \bm{BucketMath.Learning.minimum\_weighted\_effort}.
 \end{theorem}
 
 \begin{corollary}[Mastery shrinks the required set]
 \label{cor:antitone}
-If $M_1 \subseteq M_2$ then $R(t, M_2) \subseteq R(t, M_1)$ and $|R(t, M_2)| \leq |R(t, M_1)|$ \bm{LearningSystem.distance\_antitone}.
+If $M_1 \subseteq M_2$ then $R(t, M_2) \subseteq R(t, M_1)$ and $|R(t, M_2)| \leq |R(t, M_1)|$ \bm{BucketMath.Learning.distance\_antitone}.
 \end{corollary}
 
-Figure~\ref{fig:prereq} shows the diamond that separates the theorem from chain planning: $F \to A$, $F \to B$, $A \to T$, $B \to T$ with empty mastery. The chain $F, A, T$ has three nodes and never reaches $T$, since after $\{F, A\}$ the target is still blocked by $B$; the feasible sequence $F, A, B, T$ has four transitions, equal to $|R(T, \emptyset)|$, and $F, B, A, T$ is a second optimum \bm{LearningSystem.diamond\_minimum, diamond\_chain\_insufficient}. The planner's running time with adjacency lists is $O(|C(t)| + |E_C|)$ for $E_C$ the edges inside the closure \brief; this bound is a human argument outside Lean.
+Figure~\ref{fig:prereq} shows the diamond that separates the theorem from chain planning: $F \to A$, $F \to B$, $A \to T$, $B \to T$ with empty mastery. The chain $F, A, T$ has three nodes and never reaches $T$, since after $\{F, A\}$ the target is still blocked by $B$; the feasible sequence $F, A, B, T$ has four transitions, equal to $|R(T, \emptyset)|$, and $F, B, A, T$ is a second optimum \bm{BucketMath.Learning.diamond\_minimum, diamond\_chain\_insufficient}. The planner's running time with adjacency lists is $O(|C(t)| + |E_C|)$ for $E_C$ the edges inside the closure \brief; this bound is a human argument outside Lean.
 
 \figpage{%
   \includegraphics[width=\linewidth]{figures/fig_prereq_chart.pdf}
@@ -292,12 +292,12 @@ Every $g_j \in [0, 1]$, $G = \sum_v m(v) / |V|$, and $G \leq r \leq \sqrt{G}$ \b
 \end{proposition}
 
 \begin{proof}
-Each row of $A$ sums to one, so interchanging sums gives $\sum_j d_j = |V|$ and $\sum_j d_j g_j = \sum_v m(v)$. The weighted variance $\sum_j d_j (g_j - G)^2 / \sum_j d_j = r^2 - G^2 \geq 0$ gives $G \leq r$; $g_j^2 \leq g_j$ on $[0, 1]$ gives $r^2 \leq G$.
+Each row of $A$ sums to one, so interchanging sums gives $\sum_j d_j = |V|$ and $\sum_j d_j g_j = \sum_v m(v)$. The weighted variance $\sum_j d_j (g_j - G)^2 / \sum_j d_j = r^2 - G^2 \geq 0$ gives $G \leq r$ \bm{BucketMath.Papers.weighted\_variance\_identity}, \bm{BucketMath.Papers.mean\_sq\_le\_mean\_of\_sq}; $g_j^2 \leq g_j$ on $[0, 1]$ gives $r^2 \leq G$ \bm{BucketMath.Papers.sq\_sum\_le\_sum}.
 \end{proof}
 
 \begin{proposition}[Monotonicity]
 \label{prop:mono}
-With $V$, $S$ and $d$ fixed, if no flag $m(v)$ decreases then no $g_j$, $G$ or $r$ decreases \brief. The natural-weight coverage sum and the integer squared extent are the cases proved in Lean \bm{LearningSystem.coverage\_monotone, squared\_extent\_monotone}.
+With $V$, $S$ and $d$ fixed, if no flag $m(v)$ decreases then no $g_j$, $G$ or $r$ decreases \brief. The natural-weight coverage sum and the integer squared extent are the cases proved in Lean \bm{BucketMath.Learning.coverage\_monotone, squared\_extent\_monotone}.
 \end{proposition}
 
 Figure~\ref{fig:region} draws the worked fixture: $S(a) = \{a\}$, $S(b) = \{b\}$, $S(t) = \{a, b\}$, so $d_a = d_b = 3/2$; mastering $a$ gives $g = (2/3, 0)$, $G = 1/3$ and $r^2 = 2/9$; adding $b$ gives $(2/3, 2/3)$, $G = 2/3$ and $r^2 = 4/9$; adding $t$ gives $G = r = 1$ \ls. $r$ and $G$ measure different things, since profiles with the same $G$ can differ in $r$, and neither carries a meaning of intelligence or general competence.
@@ -315,7 +315,7 @@ Figure~\ref{fig:region} draws the worked fixture: $S(a) = \{a\}$, $S(b) = \{b\}$
 
 \begin{definition}[FSRS-5 retrievability]
 \label{def:fsrs}
-After a review that left a concept at stability $S > 0$ days, the predicted recall $t$ days later is
+After a review that left a concept at stability $S > 0$ days, the predicted recall $t$ days later \mast{} is
 \begin{equation}
   R(t, S) = \left(1 + F\,\frac{t}{S}\right)^{-1/2}, \qquad F = 0.9^{-2} - 1 = \frac{19}{81},
   \label{eq:fsrs}
@@ -340,7 +340,7 @@ The exponents are the \texttt{MASTERY\_ALPHA} and \texttt{MASTERY\_BETA} constan
   \caption{FSRS-5 retrievability over 120 days for four stabilities, with the day 7 retest and the 90-day mastery horizon marked, and the mastery surface $M = PR$ over proficiency and retention with the 0.7 mastered contour \mast.}
   \label{fig:mastery}
   \vfill
-  \readingbox{\mast, evaluated from Equation~\eqref{eq:fsrs} and Equation~\eqref{eq:mastery}}{Every curve crosses $0.9$ at $t = S$, since $F$ is chosen so that $R(S, S) = 0.9$. At the day 7 retest a concept at stability 3 days predicts recall $0.80$, at 7 days $0.90$, at 21 days $0.96$ and at 90 days $0.99$; at the 90-day horizon the same four predict $0.35$, $0.50$, $0.71$ and $0.90$, and those are the $R$ values that enter mastery. The surface on the right is the product, so $M = 0.7$ is the hyperbola $PR = 0.7$: a concept with $P = 1$ is mastered at $R \geq 0.7$, which needs $S \geq 20.3$ days at the 90-day horizon, and a concept with $R = 1$ needs $P \geq 0.7$, which is $\theta \geq 0.65$ against the apply offset. With $\alpha = \beta = 1$ the two factors trade one for one in log space; a different pair of exponents would tilt the contour and nothing in the shipped code sets them to anything else. The retention axis is a prediction from the FSRS state, and the protocol's $R_p$ will be the observation that tests it.}
+  \readingbox{\mast, evaluated from Equation~\eqref{eq:fsrs} and Equation~\eqref{eq:mastery}, with the roundings checked in \bm{BucketMath.Papers.fsrs5\_target\_at\_stability}, \bm{BucketMath.Papers.fsrs5\_retest\_week}, \bm{BucketMath.Papers.fsrs5\_horizon\_ninety} and \bm{BucketMath.Papers.fsrs5\_mastery\_threshold\_tenths}}{Every curve crosses $0.9$ at $t = S$, since $F$ is chosen so that $R(S, S) = 0.9$. At the day 7 retest a concept at stability 3 days predicts recall $0.80$, at 7 days $0.90$, at 21 days $0.96$ and at 90 days $0.99$; at the 90-day horizon the same four predict $0.35$, $0.50$, $0.71$ and $0.90$, and those are the $R$ values that enter mastery. The surface on the right is the product, so $M = 0.7$ is the hyperbola $PR = 0.7$: a concept with $P = 1$ is mastered at $R \geq 0.7$, which needs $S \geq 20.3$ days at the 90-day horizon, and a concept with $R = 1$ needs $P \geq 0.7$, which is $\theta \geq 0.65$ against the apply offset. With $\alpha = \beta = 1$ the two factors trade one for one in log space; a different pair of exponents would tilt the contour and nothing in the shipped code sets them to anything else. The retention axis is a prediction from the FSRS state, and the protocol's $R_p$ will be the observation that tests it.}
 }
 
 \section{Connecting the learning system to the protocol}
@@ -352,7 +352,7 @@ What exists in \texttt{packages/bkt/src/hai} is the frozen item bank, the solo a
 The protocol will draw the probe's 40 items from atoms at the learner's \term{frontier}{frontier}: concepts outside their accepted mastery $M$ whose immediate prerequisites are all in $M$, the outlined nodes of Figure~\ref{fig:prereq}. An item on a known atom measures recall of something already mastered and an item on a blocked atom measures a prerequisite gap; an item at the frontier is one the person could answer from what they know, which is where a model's help can either teach or substitute. Within the frontier set, pairs will still be matched on tier and on the model's correctness as in Section~\ref{sec:method}, $A$ stays the per-item score fixed before any draw, $J_p$ will use the pair half of the same draw, and the retest will reuse all 40, so the frontier rule changes the population of items and none of the definitions.
 
 \paragraph{Retention against the predicted recall.}
-$R_p$ is an observed change in recall over seven days. For each solo item the engine will carry a prediction, $R(7, S)$ from Equation~\eqref{eq:fsrs} with $S$ the atom's stability at the probe, and the report will print the predicted mean recall beside the observed one. A retest under the prediction on the pair half and at it on the solo half would be the dependence pattern of Definition~\ref{def:dependence} seen from the engine's side; a retest above the prediction on both halves would be the testing effect \autocite{roediger2006testing}. Probe items stay out of spaced review until the retest ends, so $S$ would be frozen across the seven days and the prediction fixed before the observation.
+$R_p$ is an observed change in recall over seven days. For each solo item the engine will carry a prediction, $R(7, S)$ from Equation~\eqref{eq:fsrs} with $S$ the atom's stability at the probe \mast, and the report will print the predicted mean recall beside the observed one. A retest under the prediction on the pair half and at it on the solo half would be the dependence pattern of Definition~\ref{def:dependence} seen from the engine's side; a retest above the prediction on both halves would be the testing effect \autocite{roediger2006testing}. Probe items stay out of spaced review until the retest ends, so $S$ would be frozen across the seven days and the prediction fixed before the observation.
 
 \paragraph{What the decision rule will read.}
 The cells of Table~\ref{tab:decision} are read per task class, and the frontier rule makes a task class a set of atoms at a depth on frontier concepts. A class in the augment cell will have its atoms' $M$ updated from the pair half as well as the solo half; a class in the dependence cell will update $M$ from the solo half only, so a model's answer could never raise a concept into accepted mastery on its own.
@@ -362,7 +362,7 @@ The cells of Table~\ref{tab:decision} are read per task class, and the frontier 
   \caption{The protocol over a learner's knowledge region. Left: a layered catalog with known, frontier and blocked concepts, and four probe items drawn at the frontier, two solo and two pair. Right: the timeline of one probe with the day 0 scores, the day 7 retest and the FSRS-5 predicted recall for a solo and a pair item. The points are placed to show the pattern and carry no measured value \hai.}
   \label{fig:protocol}
   \vfill
-  \readingbox{a schematic; the two curves are Equation~\eqref{eq:fsrs} at $S = 7$ and $S = 14$ days, and the point heights are illustrative}{The left panel has 18 concepts in five layers: 8 known, 4 at the frontier, where every incoming arrow comes from a known node, and 6 blocked. The four dashed rings are the probe draw, and every one sits on a frontier node; a real probe will draw 40 items across the frontier atoms of all seven branches. The right panel places $H_p$, $A$ and $J_p$ on day 0 and the two retest scores on day 7 at heights chosen to show one dependence pattern: $J_p$ above both single agents on day 0, and on day 7 the ex-pair half back near the ex-solo half, so $D > 0$ and $L \approx 0$. The curves are what the engine predicts for recall of an item reviewed at the probe at stability 7 or 14 days: $0.90$ and $0.95$ on day 7. The gap marked between the pair curve and the ex-pair retest is the quantity the protocol will report beside $R_p$, predicted minus observed recall. The timeline is fixed by the probe, with the next draw at day 14, and the prediction is fixed on day 0 because probe items are held out of spaced review until the retest ends.}
+  \readingbox{a schematic; the two curves are Equation~\eqref{eq:fsrs} at $S = 7$ and $S = 14$ days \mast, and the point heights are illustrative}{The left panel has 18 concepts in five layers: 8 known, 4 at the frontier, where every incoming arrow comes from a known node, and 6 blocked. The four dashed rings are the probe draw, and every one sits on a frontier node; a real probe will draw 40 items across the frontier atoms of all seven branches. The right panel places $H_p$, $A$ and $J_p$ on day 0 and the two retest scores on day 7 at heights chosen to show one dependence pattern: $J_p$ above both single agents on day 0, and on day 7 the ex-pair half back near the ex-solo half, so $D > 0$ and $L \approx 0$. The curves are what the engine predicts for recall of an item reviewed at the probe at stability 7 or 14 days: $0.90$ and $0.95$ on day 7. The gap marked between the pair curve and the ex-pair retest is the quantity the protocol will report beside $R_p$, predicted minus observed recall. The timeline is fixed by the probe, with the next draw at day 14, and the prediction is fixed on day 0 because probe items are held out of spaced review until the retest ends.}
 }
 
 \section{Method}
@@ -478,7 +478,7 @@ $A$ is one run of one model at one effort setting. A different model, a higher e
 The bank measures recognition under four fixed choices. It cannot show divergence, and it rewards a model that is good at eliminating distractors. The open-item bank of Section~\ref{sec:divergence} is unbuilt.
 
 \paragraph{Ceilings, drift, regression and practice.}
-Four artefacts of a repeated test can mimic or hide an effect. A ceiling: when $J_p$ and $A$ both sit near the task maximum, $D$ cannot show a gain and $m_p$ collapses toward 1; the bank's tiers run from recall to teach so that each probe carries items the model and the person miss, and a pair group in which the model is wrong is matched on purpose. Task drift: a probe draws items the person has never seen, so two probes a week apart test different items, and a change in $H_p$ between probes mixes the person's change with the items' difficulty; the design answers this with matching on tier and model correctness inside each probe, so every within-probe statistic compares items of the same difficulty, and item-level difficulty matching across probes, from the pooled item accuracy, is planned before any trend is read. Regression to the mean: a person who scored low on day 0 by chance will tend to score higher on day 7, which inflates $R_p$; the retest reuses the same 40 items, so $R_p$ is a within-item difference and the chance component is bounded by the bootstrap interval, and the planned control arm, a probe with no AI on either half, gives the expected $R_p$ under retest alone. Practice: the weekly unaided retest is itself a retrieval event that raises later recall \autocite{roediger2006testing}; the design reads $L$ as the difference between the pair and solo halves at the same retest, so the practice effect falls on both halves, and parallel item forms, a second frozen bank with the same atoms and new distractors, are planned so that a later probe can test an atom without repeating its item.
+Four artefacts of a repeated test can mimic or hide an effect. A ceiling: when $J_p$ and $A$ both sit near the task maximum, $D$ cannot show a gain and $m_p$ collapses toward 1 \bm{BucketMath.Papers.multiplier\_one\_at\_ceiling}; the bank's tiers run from recall to teach so that each probe carries items the model and the person miss, and a pair group in which the model is wrong is matched on purpose. Task drift: a probe draws items the person has never seen, so two probes a week apart test different items, and a change in $H_p$ between probes mixes the person's change with the items' difficulty; the design answers this with matching on tier and model correctness inside each probe, so every within-probe statistic compares items of the same difficulty, and item-level difficulty matching across probes, from the pooled item accuracy, is planned before any trend is read. Regression to the mean: a person who scored low on day 0 by chance will tend to score higher on day 7, which inflates $R_p$; the retest reuses the same 40 items, so $R_p$ is a within-item difference and the chance component is bounded by the bootstrap interval, and the planned control arm, a probe with no AI on either half, gives the expected $R_p$ under retest alone. Practice: the weekly unaided retest is itself a retrieval event that raises later recall \autocite{roediger2006testing}; the design reads $L$ as the difference between the pair and solo halves at the same retest, so the practice effect falls on both halves, and parallel item forms, a second frozen bank with the same atoms and new distractors, are planned so that a later probe can test an atom without repeating its item.
 
 \paragraph{The three connecting rules.}
 The frontier draw, the predicted-recall report and the solo-only mastery update of Section~\ref{sec:connect} are all design; the probe draws by tier and model correctness today and holds no FSRS or mastery code \hai. Until the Academy's prerequisite graph is bound to the bank's atoms by version, a probe cannot tell a frontier item from a known one. The learning system's theorems hold under A1 through A5, and A1, that every encoded edge is mandatory and none is missing, is a property of the curriculum that no proof can supply.

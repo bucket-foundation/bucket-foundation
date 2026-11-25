@@ -28,3 +28,4 @@ import BucketMath.Literature.KnowledgeSpace
 import BucketMath.Literature.Coverage
 import BucketMath.Literature.Actr
 import BucketMath.Literature.Permastore
+import BucketMath.Papers
