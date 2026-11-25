@@ -14,6 +14,18 @@ test("toPhoton reads rank and derived flag from 7, 8 and 9 column rows", () => {
   assert.equal(nine.freq_derived, true);
 });
 
+test("toPhoton reads the IPA source from 10 column rows", () => {
+  const ten = toPhoton(["photon:word:es:perro", "es", "perro", "dog", "noun", "/ˈpero/", "functional", 1126, 0, "epitran"]);
+  assert.equal(ten.ipa, "/ˈpero/");
+  assert.equal(ten.ipa_source, "epitran");
+  assert.equal(toPhoton(["photon:word:la:aqua", "la", "aqua", "water", "noun", null, "functional"]).ipa_source, null);
+});
+
+test("every shipped IPA names its source", () => {
+  const rows = bakedSearch("a", { topK: 100 }).results;
+  assert.ok(rows.every((p) => (p.ipa ? ["wiktionary", "epitran", "llm"].includes(p.ipa_source ?? "") : p.ipa_source === null)));
+});
+
 test("every shipped row carries a 0 or 1 derived flag", () => {
   const derived = bakedSearch("a", { topK: 100 }).results.map((p) => p.freq_derived);
   assert.ok(derived.every((d) => typeof d === "boolean"));

@@ -9,6 +9,8 @@ const ANON_KEY =
 
 const SCHEMA = "polingual";
 
+export type IpaSource = "wiktionary" | "epitran" | "llm";
+
 export type Photon = {
   id: string;
   kind: string;
@@ -21,6 +23,7 @@ export type Photon = {
   branch: string[];
   pos?: string | null;
   ipa?: string | null;
+  ipa_source?: IpaSource | null;
   provenance?: {
     source: string;
     source_uri: string;

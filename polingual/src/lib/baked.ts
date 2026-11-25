@@ -1,9 +1,9 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { gunzipSync } from "node:zlib";
-import type { Photon, PhotonStats, SearchOptions, SearchResult } from "./photon-db";
+import type { IpaSource, Photon, PhotonStats, SearchOptions, SearchResult } from "./photon-db";
 
-type Row = [string, string, string, string, string | null, string | null, string, (number | null)?, (0 | 1)?];
+type Row = [string, string, string, string, string | null, string | null, string, (number | null)?, (0 | 1)?, (IpaSource | null)?];
 
 let cache: { rows: Row[]; lower: string[]; byId: Map<string, Row>; stats: PhotonStats } | null = null;
 
@@ -23,7 +23,7 @@ function load() {
 }
 
 export function toPhoton(r: Row): Photon {
-  return { id: r[0], kind: "word", lang: r[1], surface: r[2], meaning_en: r[3], pos: r[4], ipa: r[5], tier: r[6], freq_rank: r[7] ?? null, freq_derived: r[8] === 1, branch: [] };
+  return { id: r[0], kind: "word", lang: r[1], surface: r[2], meaning_en: r[3], pos: r[4], ipa: r[5], tier: r[6], freq_rank: r[7] ?? null, freq_derived: r[8] === 1, ipa_source: r[9] ?? null, branch: [] };
 }
 
 export function bakedGet(id: string): Photon | null {
