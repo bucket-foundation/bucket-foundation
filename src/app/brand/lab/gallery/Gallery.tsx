@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Preview, type Kit, type Logo, type Palette } from "../BrandLab";
+import { type Kit, type Logo, type Palette } from "../BrandLab";
+
+const PAGES = ["/", "/about", "/mission", "/canon", "/research-os", "/governance"];
 
 function logosFor(id: string, logos: Logo[]): Logo[] {
   const own = logos.filter((l) => l.label.startsWith(`${id}-`) && !l.label.endsWith("construction"));
@@ -11,6 +13,7 @@ function logosFor(id: string, logos: Logo[]): Logo[] {
 export default function Gallery({ kit, palettes, logos }: { kit: Kit; palettes: Palette[]; logos: Logo[] }) {
   const [pick, setPick] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
+  const [page, setPage] = useState("/");
 
   const save = async (p: Palette, logo: string) => {
     setStatus(`saving ${p.name}`);
@@ -24,13 +27,18 @@ export default function Gallery({ kit, palettes, logos }: { kit: Kit; palettes: 
       <div className="flex items-center gap-4 mb-6 sticky top-0 bg-white z-10 py-3 border-b">
         <h1 className="text-2xl font-bold">Brand Gallery</h1>
         <a href="/brand/lab" className="text-sm underline">Lab</a>
+        <div className="flex gap-2 ml-6">
+          {PAGES.map((p) => (
+            <button key={p} onClick={() => setPage(p)} className={`px-3 py-1 rounded border text-sm ${page === p ? "bg-black text-white" : ""}`}>{p}</button>
+          ))}
+        </div>
         <span className="text-sm ml-auto">{status}</span>
       </div>
       <div className="grid xl:grid-cols-2 gap-10">
         {palettes.map((p) => {
           const own = logosFor(p.id, logos);
           const logo = pick[p.id] ?? own.find((l) => /mho|omega|mark|current/.test(l.label))?.src ?? own[0].src;
-          const draft: Kit = { ...kit, light: { ...kit.light, ...p.colors }, fonts: p.fonts };
+          const url = `${page}?brand=${p.id}&logo=${encodeURIComponent(logo)}`;
           return (
             <section key={p.id}>
               <link rel="stylesheet" href={p.fonts.href} />
@@ -39,7 +47,10 @@ export default function Gallery({ kit, palettes, logos }: { kit: Kit; palettes: 
                 <span className="text-xs text-gray-600">{p.source}</span>
                 <button onClick={() => save(p, logo)} className="ml-auto px-3 py-1 rounded bg-black text-white text-sm">Use on site</button>
               </div>
-              <Preview draft={draft} logo={logo} />
+              <div className="relative w-full overflow-hidden rounded-lg border border-black/20" style={{ aspectRatio: "1280 / 900" }}>
+                <iframe key={url} src={url} title={`${p.name} ${page}`} loading="lazy" className="absolute top-0 left-0 origin-top-left border-0" style={{ width: 1280, height: 900, transform: "scale(var(--s))" }} ref={(el) => { if (el?.parentElement) el.style.setProperty("--s", String(el.parentElement.clientWidth / 1280)); }} />
+              </div>
+              <a href={url} target="_blank" rel="noreferrer" className="text-xs underline">open full page</a>
               <div className="flex flex-wrap gap-2 mt-3">
                 {own.map((l) => (
                   <button key={l.src} onClick={() => setPick((s) => ({ ...s, [p.id]: l.src }))} title={l.label} style={{ background: p.colors.bg }} className={`p-1 rounded border ${logo === l.src ? "ring-4 ring-black" : ""}`}>

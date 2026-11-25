@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/HeaderV3";
+import BrandPreview from "@/components/BrandPreview";
 import { FONTS_HREF, LOGO, THEME_COLOR } from "@/lib/brand";
 import Footer from "@/components/FooterV3";
 import { CANON_BRANCHES } from "@/lib/contribute";
@@ -251,6 +252,7 @@ export default function RootLayout({
             strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
           />
+          <BrandPreview />
           <Header launchList={!signInOpen()} />
           {children}
           <SiteFooter>
