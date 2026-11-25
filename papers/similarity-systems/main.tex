@@ -47,7 +47,7 @@
 \maketitle
 
 \begin{abstract}
-Polingual compares words along meaning, sound and spelling. We state each comparison as a distance, prove in Lean which axioms it satisfies, add a subword level with letter, affix and character n-gram parts, and test two preregistered hypotheses on 61,775 translation pairs across 32 language pairs. Edit distance and Hamming distance are \term{metric}{metrics}; cosine distance fails the triangle inequality; shared prefix and suffix depth give \term{ultrametric}{ultrametrics}; transliteration and fixed-depth morpheme distance give \term{pseudometric}{pseudometrics}. A weighted sum keeps the pseudometric axioms and boundedness, keeps separation when one positive-weight part is a metric, and loses the ultrametric property. A cognate predicate built from the axes adds the full mass of each cognate token to \term{coverage}{coverage}. In the data, five of six axis pairs are distinct at the preregistered rank correlation bound of 0.8; script and subword are not, at $\rho=0.831$. Subword levels raise held-out AUC for known cognates over script alone by 0.0032, 95\% CI 0.0018 to 0.0048 \tg{\run}.
+Polingual compares words along meaning, sound and spelling. We state each comparison as a distance, prove in Lean which axioms it satisfies, add a subword level with letter, affix and character n-gram parts, and test two preregistered hypotheses on 61,775 translation pairs across 32 language pairs. Edit distance and Hamming distance are \term{metric}{metrics}; cosine distance fails the triangle inequality; shared prefix and suffix depth give \term{ultrametric}{ultrametrics}; transliteration and fixed-depth morpheme distance give \term{pseudometric}{pseudometrics}. A weighted sum keeps the pseudometric axioms and boundedness, keeps separation when one positive-weight part is a metric, and loses the ultrametric property. A form-similarity predicate built from the axes adds the full mass of each matched token to \term{coverage}{coverage}. In the data, five of six axis pairs are distinct at the preregistered rank correlation bound of 0.8; script and subword are not, at $\rho=0.831$. Subword levels raise held-out AUC for known cognates over script alone by a small 0.0032, 95\% CI 0.0018 to 0.0048; 11 of 29 language pairs show a negative gain and 26 show none at BH $q<0.05$. With borrowing removed from the label the gain is 0.0061 \tg{\run}.
 \end{abstract}
 
 \section{Introduction}
@@ -92,22 +92,24 @@ Cosine distance $r^2-\langle a,b\rangle$ on vectors of norm $r$ is symmetric and
 
 \begin{theorem}[Subword]
 \label{thm:subword}
-Shared prefix length and shared suffix length are ultrametric similarities, $\min(s(a,b),s(b,c))\le s(a,c)$ (\texttt{sharedPrefix\_isUltra}, \texttt{sharedSuffix\_isUltra}); they are the depth of the lowest common node in a prefix tree. Morpheme distance at depth $k$, $k-\min(k,s(a,b))$, is an ultrametric (\texttt{morphemeDistance\_ultra}) with zero diagonal on words of length at least $k$ and no separation (\texttt{morphemeDistance\_not\_separating}). The n-gram profile distance is a metric (\texttt{ngram\_metric}), and n-gram overlap never exceeds the union (\texttt{overlap\_le\_union}), so the Jaccard ratio lies in $[0,1]$.
+Shared prefix length and shared suffix length are ultrametric similarities, $\min(s(a,b),s(b,c))\le s(a,c)$ (\texttt{sharedPrefix\_isUltra}, \texttt{sharedSuffix\_isUltra}); they are the depth of the lowest common node in a prefix tree. Morpheme distance at depth $k$, $k-\min(k,s(a,b))$, satisfies the ultrametric inequality (\texttt{morphemeDistance\_ultra}); its diagonal is zero on words of length at least $k$ (\texttt{morphemeDistance\_self}), so it is a pseudometric on that set only, and it does not separate (\texttt{morphemeDistance\_not\_separating}). Hamming distance on Boolean n-gram indicator vectors over a fixed n-gram list is a metric (\texttt{ngram\_metric}), and n-gram overlap never exceeds the union (\texttt{overlap\_le\_union}), so the Jaccard ratio lies in $[0,1]$.
 \end{theorem}
+
+\Cref{thm:subword} covers prefix, suffix and Boolean n-gram profiles. The data use three other quantities whose axioms are unproved here: Jaccard distance on trigram sets, the affix ratio, and the mean $W$. Dice distance on letter multisets fails the triangle inequality: for $a=\{x\}$, $b=\{x,y\}$, $c=\{y\}$ it gives $d(a,c)=1>1/3+1/3$.
 
 \begin{theorem}[Weighted sum]
 \label{thm:combined}
-For $d=w_1d_1+w_2d_2$: if $d_1,d_2$ are pseudometrics so is $d$ (\texttt{combined\_pseudo}); if $d_1$ is a metric and $w_1>0$ then $d$ is a metric (\texttt{combined\_metric}); bounds add as $w_1B_1+w_2B_2$ (\texttt{combined\_bounded}). Two ultrametrics can sum to a non-ultrametric (\texttt{combined\_ultra\_fails}, with parts \texttt{combined\_ultra\_components}). Iterating covers any finite sum.
+For $d=w_1d_1+w_2d_2$: if $d_1,d_2$ are pseudometrics so is $d$ (\texttt{combined\_pseudo}); if $d_1$ is a metric and $w_1>0$ then $d$ is a metric (\texttt{combined\_metric}); bounds add as $w_1B_1+w_2B_2$ (\texttt{combined\_bounded}). Two ultrametrics can sum to a non-ultrametric (\texttt{combined\_ultra\_fails}, with parts \texttt{combined\_ultra\_components}). Iterating covers any finite sum. Polingual's joint score, a weighted sum of cosines, is a weighted sum of parts that fail the triangle inequality (\Cref{thm:vectors}), so it is no pseudometric in general; \Cref{thm:combined} applies only to sums of pseudometrics.
 \end{theorem}
 
-\begin{theorem}[Cognates and coverage]
+\begin{theorem}[Form similarity and coverage]
 \label{thm:cognate}
-Let a pair be \term{cognate}{cognate} when meaning similarity clears a threshold and script distance, phonetic distance or subword similarity clears its own. If a held word $l$ is cognate to a text word $w$ of mass $k$, the covered mass is at least $k$ (\texttt{cognate\_axes\_contribute}). Looser thresholds never lower coverage (\texttt{looser\_coverage}). Removing the subword axis never raises it (\texttt{subword\_adds\_coverage}).
+Let a pair be form-similar (\texttt{formSimilar}) when meaning similarity clears a threshold and script distance, phonetic distance or subword similarity clears its own. If a held word $l$ is form-similar to a text word $w$ of mass $k$, the covered mass is at least $k$ (\texttt{formSimilar\_axes\_contribute}). Form similarity is a thresholded proxy; the data below test how far the axes predict \term{cognate}{cognate} labels from etymology, and the theorem transfers to cognates only to the extent that proxy holds. Looser thresholds never lower coverage (\texttt{looser\_coverage}). Removing the subword axis never raises it (\texttt{subword\_adds\_coverage}).
 \end{theorem}
 
 \subsection{Data and tests}
 
-The preregistration (\texttt{PREREGISTRATION.md}) was committed before any similarity was computed. Pairs come from the Wiktionary translation table joined to the photon index; English with 26 languages and six non-English pairs through a shared English sense, at most 2,000 pairs each, seed 20261125. Vectors are read through memory maps. Transliteration is the diacritic fold for Latin script and the Wiktionary romanization otherwise. Cognate labels use the ancestor closure, depth 8, over inheritance, derivation and borrowing; the label is defined when both words have an etymology row.
+The preregistration (\texttt{PREREGISTRATION.md}) was committed before any similarity was computed. Pairs come from the Wiktionary translation table joined to the photon index; English with 26 languages and six non-English pairs through a shared English sense, at most 2,000 pairs each, seed 20261125. Vectors are read through memory maps. Transliteration is the diacritic fold for Latin script and the Wiktionary romanization otherwise. $S$ here is normalized edit distance on that form; it differs from the pixel-CNN script vectors of the three-way embeddings work. Cognate labels use the ancestor closure, depth 8, over inheritance, derivation and borrowing (\texttt{bor}, \texttt{lbor}), the preregistered label; a secondary label drops borrowing and keeps inheritance and derivation only. Either label is defined when both words have an etymology row.
 
 H1: for each of six axis pairs, H0 $|\rho|\ge0.8$ against H1 $|\rho|<0.8$, Spearman, cluster bootstrap over language pairs with 2,000 resamples, Holm correction \autocite{holm1979simple}. H2: logistic regression on $S$ against $S$ plus the three subword levels, leave one language pair out, pooled AUC; H0 gain $\le0$, cluster bootstrap; per language pair, Benjamini--Hochberg at $q=0.05$ \autocite{benjamini1995controlling}.
 
@@ -143,7 +145,9 @@ Five pairs reject H0. Script and subword do not: on these data they rank pairs a
   \label{fig:corr}
 \end{figure}
 
-For H2, script alone gives held-out AUC 0.9222 on 47,013 labeled pairs with 5,774 cognates; adding the subword levels gives 0.9254, a gain of 0.0032, 95\% CI 0.0018 to 0.0048, bootstrap $p<0.0005$ \tg{\run}. H0 is rejected. Of 29 language pairs with at least 30 cognates and 30 non-cognates, three show a gain at BH $q<0.05$: English with Japanese, 0.0109; English with Russian, 0.0115; English with Portuguese, 0.0057 \tg{\run}. Two of the three pass through romanization, where whole-word edit distance on a romanized form misses shared stems the affix level keeps (\Cref{fig:delta}).
+For H2, script alone gives held-out AUC 0.9222 on 47,013 labeled pairs with 5,774 cognates; adding the subword levels gives 0.9254, a gain of 0.0032, 95\% CI 0.0018 to 0.0048, bootstrap $p<0.0005$ \tg{\run}. H0 is rejected, and the gain is small: script alone already reaches 0.92. Of 29 language pairs with at least 30 cognates and 30 non-cognates, 11 show a negative point estimate and 26 show no gain at BH $q<0.05$; the three that do are English with Japanese, 0.0109, English with Russian, 0.0115, and English with Portuguese, 0.0057 \tg{\run} (\Cref{fig:delta}).
+
+Secondary label, borrowing removed: 3,641 of the same 47,013 pairs are inherited or derived cognates. Script alone gives AUC 0.8831, script with subword 0.8892, a gain of 0.0061, 95\% CI 0.0038 to 0.0086; 9 of 23 tested language pairs gain at BH $q<0.05$ and 6 show a negative point estimate \tg{\run}. Borrowings keep their spelling, so whole-word edit distance finds them; inherited cognates drift in form, and the affix and n-gram levels recover part of that drift.
 
 \begin{figure}[htbp]
   \centering
@@ -162,7 +166,7 @@ The axiom results are proofs, checked by \texttt{lake build BucketMath} with no 
 \section{Limitations}
 \label{sec:limitations}
 
-Cognate labels depend on Wiktionary etymology coverage; a pair without an etymology row is unlabeled, and missing links count as non-cognates. Romanization is missing for some non-Latin words, which drops them from $S$ and $W$. Script and subword share one transliteration, which explains part of their correlation; a subword level on IPA would test separation from script directly. The Lean edit-distance result is relational and does not compute the dynamic program. The cosine counterexample uses norm 5 vectors with integer coordinates; the angular distance $\arccos$ of cosine is a metric on the sphere and is outside core Lean. The phonetic vectors here are the 64-d photon vectors, distinct from the 96-d PanPhon vectors of the three-way embeddings work.
+Sampling is English-centric: 26 of 32 language pairs have English on one side, and the six others join through a shared English headword and sense, which ties both words to one English gloss. Both sides must be single tokens, which drops phrases and compounds written with spaces or hyphens. Cognate labels depend on Wiktionary etymology coverage; a pair without an etymology row is unlabeled, and missing links count as non-cognates. Romanization is missing for some non-Latin words, which drops them from $S$ and $W$. Script and subword share one transliteration, which explains part of their correlation; a subword level on IPA would test separation from script directly. The Lean edit-distance result is relational and does not compute the dynamic program. The cosine counterexample uses norm 5 vectors with integer coordinates; the angular distance $\arccos$ of cosine is a metric on the sphere and is outside core Lean. The phonetic vectors here are the 64-d photon vectors, distinct from the 96-d PanPhon vectors of the three-way embeddings work.
 
 \printbibliography
 
@@ -194,9 +198,9 @@ theorem combined_metric {d1 d2 : A -> A -> Nat} {w1 : Nat} (w2 : Nat)
 theorem combined_ultra_fails : Not Ultrametric (combined 1 1
     (fun a b : Nat x Nat => discrete a.1 b.1)
     (fun a b : Nat x Nat => discrete a.2 b.2))
-theorem cognate_axes_contribute (ax : Axes L W) (th : Thresholds)
+theorem formSimilar_axes_contribute (ax : Axes L W) (th : Thresholds)
     (hl : l in held) (hw : (w, k) in text)
-    (hc : cognate ax th l w = true) : k <= CoveredMass (cognate ax th) held text
+    (hc : formSimilar ax th l w = true) : k <= CoveredMass (formSimilar ax th) held text
 \end{lstlisting}
 
 \end{document}

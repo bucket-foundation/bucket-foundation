@@ -65,6 +65,58 @@ def safe_auc(y: np.ndarray, s: np.ndarray) -> float:
     return float(roc_auc_score(y, s)) if 0 < y.sum() < len(y) else float("nan")
 
 
+def h2(d, g, names, label, rng):
+    ok = np.isfinite(d[label]) & np.isfinite(d["S"])
+    y = d[label][ok].astype(int)
+    gg = g[ok]
+    XA = d["S"][ok][:, None]
+    XB = np.column_stack([d["S"][ok], d["letter"][ok], d["affix"][ok], d["ngram"][ok]])
+    sA, sB = fit_scores(XA, y, gg), fit_scores(XB, y, gg)
+    okC = ok & np.isfinite(d["M"]) & np.isfinite(d["P"])
+    keepC = okC[ok]
+    XC = np.column_stack([XB[keepC], d["M"][okC], d["P"][okC]])
+    sB_C = fit_scores(XB[keepC], y[keepC], gg[keepC])
+    sC = fit_scores(XC, y[keepC], gg[keepC])
+    aucA, aucB = safe_auc(y, sA), safe_auc(y, sB)
+    diffs = []
+    for idx in cluster_draws(gg, rng):
+        diffs.append(safe_auc(y[idx], sB[idx]) - safe_auc(y[idx], sA[idx]))
+    diffs = np.array(diffs)
+    diffs = diffs[np.isfinite(diffs)]
+    summary = {
+        "n": int(ok.sum()), "cognates": int(y.sum()), "auc_script": aucA, "auc_script_subword": aucB,
+        "delta": aucB - aucA, "ci": [float(np.quantile(diffs, 0.025)), float(np.quantile(diffs, 0.975))],
+        "p": float((diffs <= 0).mean()),
+    }
+    per = []
+    for gid in np.unique(gg):
+        m = gg == gid
+        yy, a_, b_ = y[m], sA[m], sB[m]
+        if yy.sum() < 30 or (len(yy) - yy.sum()) < 30:
+            continue
+        local = np.random.default_rng(SEED + int(gid))
+        ds = []
+        for _ in range(B):
+            idx = local.integers(0, len(yy), len(yy))
+            ds.append(safe_auc(yy[idx], b_[idx]) - safe_auc(yy[idx], a_[idx]))
+        ds = np.array(ds)
+        ds = ds[np.isfinite(ds)]
+        per.append({
+            "group": names[gid], "n": int(m.sum()), "cognates": int(yy.sum()),
+            "auc_script": safe_auc(yy, a_), "auc_script_subword": safe_auc(yy, b_),
+            "delta": safe_auc(yy, b_) - safe_auc(yy, a_),
+            "ci": [float(np.quantile(ds, 0.025)), float(np.quantile(ds, 0.975))], "p": float((ds <= 0).mean()),
+        })
+    for row, adj in zip(per, bh([r["p"] for r in per])):
+        row["q_bh"] = adj
+
+    yC = y[keepC]
+    summary["negative_pairs"] = sum(r["delta"] < 0 for r in per)
+    summary["significant_pairs"] = sum(r["q_bh"] < 0.05 for r in per)
+    summary["tested_pairs"] = len(per)
+    return summary, per, {"n": int(keepC.sum()), "auc_b": safe_auc(yC, sB_C), "auc_c": safe_auc(yC, sC)}
+
+
 def main() -> None:
     d = np.load(os.path.join(DATA, "pairs.npz"))
     names = d["names"].tolist()
@@ -96,54 +148,11 @@ def main() -> None:
         row["distinct"] = adj < ALPHA
     result["h1"] = h1
 
-    ok = np.isfinite(d["cognate"]) & np.isfinite(d["S"])
-    y = d["cognate"][ok].astype(int)
-    gg = g[ok]
-    XA = d["S"][ok][:, None]
-    XB = np.column_stack([d["S"][ok], d["letter"][ok], d["affix"][ok], d["ngram"][ok]])
-    sA, sB = fit_scores(XA, y, gg), fit_scores(XB, y, gg)
-    okC = ok & np.isfinite(d["M"]) & np.isfinite(d["P"])
-    keepC = okC[ok]
-    XC = np.column_stack([XB[keepC], d["M"][okC], d["P"][okC]])
-    sB_C = fit_scores(XB[keepC], y[keepC], gg[keepC])
-    sC = fit_scores(XC, y[keepC], gg[keepC])
-    aucA, aucB = safe_auc(y, sA), safe_auc(y, sB)
-    diffs = []
-    for idx in cluster_draws(gg, rng):
-        diffs.append(safe_auc(y[idx], sB[idx]) - safe_auc(y[idx], sA[idx]))
-    diffs = np.array(diffs)
-    diffs = diffs[np.isfinite(diffs)]
-    result["h2"] = {
-        "n": int(ok.sum()), "cognates": int(y.sum()), "auc_script": aucA, "auc_script_subword": aucB,
-        "delta": aucB - aucA, "ci": [float(np.quantile(diffs, 0.025)), float(np.quantile(diffs, 0.975))],
-        "p": float((diffs <= 0).mean()),
-    }
-    per = []
-    for gid in np.unique(gg):
-        m = gg == gid
-        yy, a_, b_ = y[m], sA[m], sB[m]
-        if yy.sum() < 30 or (len(yy) - yy.sum()) < 30:
-            continue
-        local = np.random.default_rng(SEED + int(gid))
-        ds = []
-        for _ in range(B):
-            idx = local.integers(0, len(yy), len(yy))
-            ds.append(safe_auc(yy[idx], b_[idx]) - safe_auc(yy[idx], a_[idx]))
-        ds = np.array(ds)
-        ds = ds[np.isfinite(ds)]
-        per.append({
-            "group": names[gid], "n": int(m.sum()), "cognates": int(yy.sum()),
-            "auc_script": safe_auc(yy, a_), "auc_script_subword": safe_auc(yy, b_),
-            "delta": safe_auc(yy, b_) - safe_auc(yy, a_),
-            "ci": [float(np.quantile(ds, 0.025)), float(np.quantile(ds, 0.975))], "p": float((ds <= 0).mean()),
-        })
-    for row, adj in zip(per, bh([r["p"] for r in per])):
-        row["q_bh"] = adj
-    result["h2_per_pair"] = per
-
-    yC = y[keepC]
+    result["h2"], result["h2_per_pair"], model_c = h2(d, g, names, "cognate", rng)
+    result["h2_inherited"], result["h2_inherited_per_pair"], _ = h2(d, g, names, "inherited", rng)
+    result["inherited_positive"] = int(np.nansum(d["inherited"]))
     result["exploratory"] = {
-        "model_c": {"n": int(keepC.sum()), "auc_b": safe_auc(yC, sB_C), "auc_c": safe_auc(yC, sC)},
+        "model_c": model_c,
     }
     all_ok = np.all(np.vstack([np.isfinite(v) for v in axes.values()]), axis=0)
     R = np.corrcoef(np.vstack([rankdata(v[all_ok]) for v in axes.values()]))

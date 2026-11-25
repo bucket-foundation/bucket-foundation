@@ -4374,42 +4374,6 @@
   "type": "{α : Type} → Nat → List α → List α → Prop"
  },
  {
-  "name": "BucketMath.Similarity.cognate",
-  "kind": "def",
-  "status": "def",
-  "module": "BucketMath.Similarity.Cognate",
-  "source": "lean/BucketMath/Similarity/Cognate.lean",
-  "line": 21,
-  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Thresholds → L → W → Bool"
- },
- {
-  "name": "BucketMath.Similarity.cognate_axes_contribute",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Similarity.Cognate",
-  "source": "lean/BucketMath/Similarity/Cognate.lean",
-  "line": 77,
-  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds) {held : List L} {l : L}\n  {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held →\n    (w, k) ∈ text →\n      BucketMath.Similarity.cognate ax θ l w = true →\n        k ≤ BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate ax θ) held text"
- },
- {
-  "name": "BucketMath.Similarity.cognate_contributes",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Similarity.Cognate",
-  "source": "lean/BucketMath/Similarity/Cognate.lean",
-  "line": 59,
-  "type": "∀ {L W : Type} (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held → (w, k) ∈ text → c l w = true → k ≤ BucketMath.Learning.Cognate.CoveredMass c held text"
- },
- {
-  "name": "BucketMath.Similarity.cognate_looser",
-  "kind": "theorem",
-  "status": "proved",
-  "module": "BucketMath.Similarity.Cognate",
-  "source": "lean/BucketMath/Similarity/Cognate.lean",
-  "line": 30,
-  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (l : L) (w : W), BucketMath.Similarity.cognate ax θ l w = true → BucketMath.Similarity.cognate ax θ' l w = true"
- },
- {
   "name": "BucketMath.Similarity.combined",
   "kind": "def",
   "status": "def",
@@ -4572,6 +4536,42 @@
   "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Edit a b → BucketMath.Similarity.Edit b a"
  },
  {
+  "name": "BucketMath.Similarity.formSimilar",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 21,
+  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Thresholds → L → W → Bool"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_axes_contribute",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 77,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds) {held : List L} {l : L}\n  {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held →\n    (w, k) ∈ text →\n      BucketMath.Similarity.formSimilar ax θ l w = true →\n        k ≤ BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.formSimilar ax θ) held text"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_contributes",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 59,
+  "type": "∀ {L W : Type} (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held → (w, k) ∈ text → c l w = true → k ≤ BucketMath.Learning.Cognate.CoveredMass c held text"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_looser",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 30,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (l : L) (w : W),\n      BucketMath.Similarity.formSimilar ax θ l w = true → BucketMath.Similarity.formSimilar ax θ' l w = true"
+ },
+ {
   "name": "BucketMath.Similarity.hamming",
   "kind": "def",
   "status": "def",
@@ -4668,7 +4668,7 @@
   "module": "BucketMath.Similarity.Cognate",
   "source": "lean/BucketMath/Similarity/Cognate.lean",
   "line": 82,
-  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.cognate ax θ) held text ≤\n        BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.cognate ax θ') held text"
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.formSimilar ax θ) held text ≤\n        BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.formSimilar ax θ') held text"
  },
  {
   "name": "BucketMath.Similarity.manhattan",
@@ -4929,7 +4929,7 @@
   "module": "BucketMath.Similarity.Cognate",
   "source": "lean/BucketMath/Similarity/Cognate.lean",
   "line": 93,
-  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds),\n  0 < θ.subword →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate (BucketMath.Similarity.subwordOff ax) θ)\n          held text ≤\n        BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.cognate ax θ) held text"
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds),\n  0 < θ.subword →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass\n          (BucketMath.Similarity.formSimilar (BucketMath.Similarity.subwordOff ax) θ) held text ≤\n        BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.formSimilar ax θ) held text"
  },
  {
   "name": "BucketMath.Similarity.transliterated",

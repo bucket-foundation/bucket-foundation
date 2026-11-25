@@ -18,7 +18,7 @@ structure Axes (L W : Type) where
   phonetic : L → W → Nat
   subword : L → W → Nat
 
-def cognate (ax : Axes L W) (θ : Thresholds) (l : L) (w : W) : Bool :=
+def formSimilar (ax : Axes L W) (θ : Thresholds) (l : L) (w : W) : Bool :=
   decide (θ.meaning ≤ ax.meaning l w) &&
     (decide (ax.script l w ≤ θ.script) || decide (ax.phonetic l w ≤ θ.phonetic) ||
       decide (θ.subword ≤ ax.subword l w))
@@ -27,10 +27,10 @@ def Looser (θ θ' : Thresholds) : Prop :=
   θ'.meaning ≤ θ.meaning ∧ θ.script ≤ θ'.script ∧ θ.phonetic ≤ θ'.phonetic ∧
     θ'.subword ≤ θ.subword
 
-theorem cognate_looser (ax : Axes L W) {θ θ' : Thresholds} (h : Looser θ θ') (l : L) (w : W)
-    (hc : cognate ax θ l w = true) : cognate ax θ' l w = true := by
+theorem formSimilar_looser (ax : Axes L W) {θ θ' : Thresholds} (h : Looser θ θ') (l : L) (w : W)
+    (hc : formSimilar ax θ l w = true) : formSimilar ax θ' l w = true := by
   obtain ⟨hm, hs, hp, hw⟩ := h
-  simp only [cognate, Bool.and_eq_true, Bool.or_eq_true, decide_eq_true_eq] at *
+  simp only [formSimilar, Bool.and_eq_true, Bool.or_eq_true, decide_eq_true_eq] at *
   refine ⟨by omega, ?_⟩
   rcases hc.2 with (h | h) | h
   · exact Or.inl (Or.inl (by omega))
@@ -56,7 +56,7 @@ theorem coveredMass_implies {c c' : L → W → Bool} (imp : ∀ l w, c l w = tr
         · simp [hs, hl]; omega
         · simp [hs, hl]; omega
 
-theorem cognate_contributes (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat}
+theorem formSimilar_contributes (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat}
     {text : List (W × Nat)} (hl : l ∈ held) (hw : (w, k) ∈ text) (hc : c l w = true) :
     k ≤ CoveredMass c held text := by
   have hr : Recognized c held w = true := by
@@ -74,28 +74,28 @@ theorem cognate_contributes (c : L → W → Bool) {held : List L} {l : L} {w : 
         · simp [hs]; omega
         · simp [hs]; omega
 
-theorem cognate_axes_contribute (ax : Axes L W) (θ : Thresholds) {held : List L} {l : L} {w : W}
+theorem formSimilar_axes_contribute (ax : Axes L W) (θ : Thresholds) {held : List L} {l : L} {w : W}
     {k : Nat} {text : List (W × Nat)} (hl : l ∈ held) (hw : (w, k) ∈ text)
-    (hc : cognate ax θ l w = true) : k ≤ CoveredMass (cognate ax θ) held text :=
-  cognate_contributes _ hl hw hc
+    (hc : formSimilar ax θ l w = true) : k ≤ CoveredMass (formSimilar ax θ) held text :=
+  formSimilar_contributes _ hl hw hc
 
 theorem looser_coverage (ax : Axes L W) {θ θ' : Thresholds} (h : Looser θ θ')
     (held : List L) (text : List (W × Nat)) :
-    CognateCoverage (cognate ax θ) held text ≤ CognateCoverage (cognate ax θ') held text := by
+    CognateCoverage (formSimilar ax θ) held text ≤ CognateCoverage (formSimilar ax θ') held text := by
   unfold CognateCoverage
   rw [Rat.div_def, Rat.div_def]
-  have hm : (CoveredMass (cognate ax θ) held text : Rat) ≤ CoveredMass (cognate ax θ') held text := by
-    exact_mod_cast coveredMass_implies (cognate_looser ax h) held text
+  have hm : (CoveredMass (formSimilar ax θ) held text : Rat) ≤ CoveredMass (formSimilar ax θ') held text := by
+    exact_mod_cast coveredMass_implies (formSimilar_looser ax h) held text
   exact Rat.mul_le_mul_of_nonneg_right hm (natCast_inv_nonneg _)
 
 def subwordOff (ax : Axes L W) : Axes L W := { ax with subword := fun _ _ => 0 }
 
 theorem subword_adds_coverage (ax : Axes L W) (θ : Thresholds) (hθ : 0 < θ.subword)
     (held : List L) (text : List (W × Nat)) :
-    CoveredMass (cognate (subwordOff ax) θ) held text ≤ CoveredMass (cognate ax θ) held text := by
+    CoveredMass (formSimilar (subwordOff ax) θ) held text ≤ CoveredMass (formSimilar ax θ) held text := by
   apply coveredMass_implies
   intro l w hc
-  simp [cognate, subwordOff] at hc ⊢
+  simp [formSimilar, subwordOff] at hc ⊢
   rcases hc with ⟨h1, h2⟩
   refine ⟨of_decide_eq_true h1, ?_⟩
   rcases h2 with (h | h) | h

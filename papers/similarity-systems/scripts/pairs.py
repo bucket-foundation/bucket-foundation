@@ -22,7 +22,8 @@ LANGS = [
 ]
 CROSS = [("es", "pt"), ("es", "it"), ("fr", "it"), ("de", "nl"), ("de", "sv"), ("ru", "pl")]
 WIKT = {"zh": ("cmn", "zh")}
-RELS = ("inh", "der", "form", "from", "root", "uder", "bor", "lbor")
+INHERIT = ("inh", "der", "form", "from", "root", "uder")
+BORROW = ("bor", "lbor")
 
 index = sqlite3.connect(f"file:{PHOTONS}/index.sqlite?mode=ro", uri=True)
 roots = sqlite3.connect(f"file:{PHOTONS}/roots.sqlite?mode=ro", uri=True)
@@ -73,8 +74,9 @@ def has_etym(lang: str, word: str) -> bool:
 
 
 @lru_cache(maxsize=None)
-def ancestors(lang: str, word: str) -> frozenset:
-    marks = ",".join("?" * len(RELS))
+def ancestors(lang: str, word: str, borrow: bool = True) -> frozenset:
+    rels = INHERIT + (BORROW if borrow else ())
+    marks = ",".join("?" * len(rels))
     start = {(c, word) for c in codes(lang)}
     seen = set(start)
     frontier = list(start)
@@ -85,7 +87,7 @@ def ancestors(lang: str, word: str) -> frozenset:
                 f"select anc_lang, anc_form from etym where lang=? and word=? and rel in ({marks}) "
                 "union select root_lang, root_form from word_root "
                 "where lang=? and word=? and kind in ('proto', 'root')",
-                (l, w, *RELS, l, w),
+                (l, w, *rels, l, w),
             ).fetchall()
             for r in rows:
                 if r[1] and r not in seen:
@@ -170,7 +172,7 @@ def main() -> None:
         nu, nv = np.linalg.norm(u), np.linalg.norm(v)
         return float(u @ v / (nu * nv)) if nu > 0 and nv > 0 else float("nan")
 
-    cols: dict[str, list] = {k: [] for k in ("group", "M", "P", "S", "letter", "affix", "ngram", "cognate")}
+    cols: dict[str, list] = {k: [] for k in ("group", "M", "P", "S", "letter", "affix", "ngram", "cognate", "inherited")}
     for gid, (name, rows) in enumerate(groups):
         for la, wa, lb, wb in rows:
             pa, pb = photon(la, wa), photon(lb, wb)
@@ -184,9 +186,10 @@ def main() -> None:
                 s = letter = affix = ngram = float("nan")
             if has_etym(la, wa) and has_etym(lb, wb):
                 c = float(bool(ancestors(la, wa) & ancestors(lb, wb)))
+                h = float(bool(ancestors(la, wa, False) & ancestors(lb, wb, False)))
             else:
-                c = float("nan")
-            for k, v in zip(cols, (gid, m, p, s, letter, affix, ngram, c)):
+                c = h = float("nan")
+            for k, v in zip(cols, (gid, m, p, s, letter, affix, ngram, c, h)):
                 cols[k].append(v)
         print(name, len(rows), flush=True)
     np.savez_compressed(

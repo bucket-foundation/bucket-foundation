@@ -49,3 +49,7 @@ Marked as such in the paper: model C adds M and P to B; principal components of 
 ## Stopping and exclusions
 
 One run. Pairs with an empty transliterated form are dropped from S and W. No outlier removal. A change to this file after the first run gets a dated entry below with its reason.
+
+## Amendments
+
+- 2026-11-25, after the first run, on critic request: a secondary cognate label that drops borrowing (bor, lbor) and keeps inheritance and derivation. H2 is repeated on it and reported as secondary. The primary label and every primary test stay as written.
