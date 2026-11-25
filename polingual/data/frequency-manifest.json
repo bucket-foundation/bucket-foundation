@@ -1,5 +1,8 @@
 {
   "column": 7,
+  "derived_column": 8,
+  "derived_field": "freq_derived",
+  "derived_meaning": "1 marks a rank taken from a compound's rarest part; treat it as an upper bound on frequency",
   "field": "freq_rank",
   "languages": {
     "akk": {
@@ -29,7 +32,7 @@
       "source_sha256": "aa12410764f1946f21d986a920c289c22accb069d9b287d71b61657005516eec",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 620701,
-      "table_sha256": "82b957c8e279c6931b5fe60c3a16e478fbc16854ce42e2a038942355bbbcf8e5"
+      "table_sha256": "5f9b650ac97ae5f9bdc6a0576404a952a3adfed4018d241215e534aa6e534b4f"
     },
     "cop": {
       "pack_rows": 0,
@@ -44,7 +47,7 @@
       "pack_rows": 65266,
       "pack_surfaces": 65266,
       "shipped": 7000,
-      "shipped_compound_derived": 181,
+      "shipped_compound_derived": 182,
       "shipped_ranked": 6948,
       "shipped_surface_ranked": 6761,
       "source": "wordfreq 3.1.1 large",
@@ -52,7 +55,7 @@
       "source_sha256": "3971d2ea15c0d0218fb31cdf4f109dfa4027d8f4ea52bd7b574a2b7678f1e60f",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 606360,
-      "table_sha256": "7f37bc0b468896f3bbbf1a02255bd4ae1b282f8bbfc24f5bf5a1d2c150dd3465"
+      "table_sha256": "607b5b2b537bab6dd28fe27502b53ca99fcf3ec844248129ea91a27eda6922c0"
     },
     "de": {
       "coverage": 0.954,
@@ -61,7 +64,7 @@
       "pack_rows": 333622,
       "pack_surfaces": 331330,
       "shipped": 7000,
-      "shipped_compound_derived": 1274,
+      "shipped_compound_derived": 1385,
       "shipped_ranked": 6678,
       "shipped_surface_ranked": 5369,
       "source": "wordfreq 3.1.1 large",
@@ -69,7 +72,7 @@
       "source_sha256": "8ef04d3f4a28fb48d800d25fa80a96d90a5f80c8496c9a453f99f887c6ad3c12",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 634501,
-      "table_sha256": "cc772ab59bfaa0d1331e18afa094905d5048c6c6ab8fd6819909b6156a3e9995"
+      "table_sha256": "589d52b3c8a0b437f6fdc461d2e5e35b1ba0b1d130fd80da4bbf4da014c3f680"
     },
     "egy": {
       "pack_rows": 0,
@@ -84,7 +87,7 @@
       "pack_rows": 78087,
       "pack_surfaces": 78083,
       "shipped": 7000,
-      "shipped_compound_derived": 132,
+      "shipped_compound_derived": 133,
       "shipped_ranked": 6846,
       "shipped_surface_ranked": 6699,
       "source": "wordfreq 3.1.1 small",
@@ -92,7 +95,7 @@
       "source_sha256": "9ec327293a1657eac51518d6506e387dda453b548e506f47ef6e720592c1d9c9",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 46916,
-      "table_sha256": "72e962f342178e3fb0fe1e8509c53c0409dba177693d9bbf7ad4c0e25624f0dc"
+      "table_sha256": "7819e150190506b2f01ec8e26cf0f1e2284b2a846190d42962b942974424077c"
     },
     "en": {
       "coverage": 0.9674,
@@ -101,7 +104,7 @@
       "pack_rows": 1199990,
       "pack_surfaces": 1199982,
       "shipped": 25000,
-      "shipped_compound_derived": 6198,
+      "shipped_compound_derived": 6309,
       "shipped_ranked": 24184,
       "shipped_surface_ranked": 17967,
       "source": "wordfreq 3.1.1 large",
@@ -109,7 +112,7 @@
       "source_sha256": "dffae8066b78dce0a6667cf5f58e567054f902674667090a7ac8a8a44628b05c",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 321180,
-      "table_sha256": "04fbd2a29079dc3ba74c84faa646e9754b50f2bf21cea402d976386f097310a6"
+      "table_sha256": "e5b5f2e5af2d431ad296c219ce2a89daf1fc292e30efcce6976ce1a63dc961bd"
     },
     "es": {
       "coverage": 0.983,
@@ -118,7 +121,7 @@
       "pack_rows": 755090,
       "pack_surfaces": 755090,
       "shipped": 7000,
-      "shipped_compound_derived": 1456,
+      "shipped_compound_derived": 1457,
       "shipped_ranked": 6881,
       "shipped_surface_ranked": 5417,
       "source": "wordfreq 3.1.1 large",
@@ -126,7 +129,7 @@
       "source_sha256": "14f326b4f68d517f9b8b99c1e26ef56a508d2dc8d0ee7a9e6e8732ddab1aa65e",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 342072,
-      "table_sha256": "5211704db99db40d79ef473323d03accca214b37ccaedc19ef7d9916a9550614"
+      "table_sha256": "f48c6c18f3c5c06d64456968fb434f391a773647038a6c595eba8e1311c20b96"
     },
     "fa": {
       "coverage": 0.9889,
@@ -135,7 +138,7 @@
       "pack_rows": 15434,
       "pack_surfaces": 15434,
       "shipped": 7000,
-      "shipped_compound_derived": 941,
+      "shipped_compound_derived": 945,
       "shipped_ranked": 6922,
       "shipped_surface_ranked": 5980,
       "source": "wordfreq 3.1.1 small",
@@ -143,7 +146,7 @@
       "source_sha256": "bfb503f6b0d6bdddce720ee8154faf1c79d8b0417e6c865643da3b17b7638057",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 31389,
-      "table_sha256": "b8c96360fc3b374b66998e4ec897abf09bf3e13461787e02aaf60bd90e6467b5"
+      "table_sha256": "38293f29c9494b14f68bd2f531c35e46b8ebb4ebe505cb43b98549d1eadc05d7"
     },
     "fi": {
       "coverage": 0.9841,
@@ -152,7 +155,7 @@
       "pack_rows": 236638,
       "pack_surfaces": 236637,
       "shipped": 7000,
-      "shipped_compound_derived": 623,
+      "shipped_compound_derived": 629,
       "shipped_ranked": 6889,
       "shipped_surface_ranked": 6251,
       "source": "wordfreq 3.1.1 large",
@@ -160,7 +163,7 @@
       "source_sha256": "98fb498142d5cb4ff47df65d6c4784dff4fa2fc6d191a0b26cf6341101922151",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 734205,
-      "table_sha256": "c8e27085ffc77193dc3417ec1c5108de2e3b1ee01e648d4be82b2b4270a3091a"
+      "table_sha256": "d8d7f7306c4fbc5393485a5198671fe2fe31d99b54c8b4bb41eec071f143d68e"
     },
     "fr": {
       "coverage": 0.936,
@@ -169,7 +172,7 @@
       "pack_rows": 378499,
       "pack_surfaces": 378499,
       "shipped": 7000,
-      "shipped_compound_derived": 2111,
+      "shipped_compound_derived": 2124,
       "shipped_ranked": 6552,
       "shipped_surface_ranked": 4422,
       "source": "wordfreq 3.1.1 large",
@@ -177,7 +180,7 @@
       "source_sha256": "6f16cd80b9b66c5698ed002becea83ae30d0584c3205f1cf01714ad562c00c8b",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 311411,
-      "table_sha256": "ccf9d6d9f644754f1cfbeb6b4777394c173e471abf2a39c777cf8818e00b3ae2"
+      "table_sha256": "fcaefd2d849313315df1d22b26cb8b1b5d29e23cb3a9dd99bdf899d91c527802"
     },
     "got": {
       "pack_rows": 0,
@@ -198,7 +201,7 @@
       "pack_rows": 13108,
       "pack_surfaces": 13108,
       "shipped": 7000,
-      "shipped_compound_derived": 783,
+      "shipped_compound_derived": 782,
       "shipped_ranked": 6913,
       "shipped_surface_ranked": 6129,
       "source": "wordfreq 3.1.1 large",
@@ -206,7 +209,7 @@
       "source_sha256": "4b35ef0a8e6226e4f062d3220c9b2982f4c70a5c90f60864e16e7ed98bbfb3d9",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 591944,
-      "table_sha256": "b804e17996463d3a79c10a9653a594ccfe5a4d505c7452d301e6515221f3541b"
+      "table_sha256": "689b1d5694bff779c5a9e2ddff93d57fc32b5b9b9c80ccda3ca2c2f4c7448edc"
     },
     "hi": {
       "coverage": 0.9804,
@@ -223,7 +226,7 @@
       "source_sha256": "92ccbf70297d28e97af55a2a517b95c3d8b599e4cc943fb6d4612a3d44a86992",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 26653,
-      "table_sha256": "dd03b3198f6a1279c670e69c14a23ce7a1efe029e88d84833fb54f58278ac761"
+      "table_sha256": "e917d43c95413d8afc7985e52b7017b47a5a50e5dc4bd2f9ff9f8a197396914f"
     },
     "id": {
       "coverage": 0.9867,
@@ -232,7 +235,7 @@
       "pack_rows": 30611,
       "pack_surfaces": 30611,
       "shipped": 7000,
-      "shipped_compound_derived": 1245,
+      "shipped_compound_derived": 1247,
       "shipped_ranked": 6907,
       "shipped_surface_ranked": 5655,
       "source": "wordfreq 3.1.1 small",
@@ -240,7 +243,7 @@
       "source_sha256": "6fd891027cd6395b5c038c0e6402fa7e107ffd8973f862053246b897beb1bcd3",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 31188,
-      "table_sha256": "383672f872490ecbb74fa0f633a16b18ea01a163a64ad7836dffec23ca830ef3"
+      "table_sha256": "6a30b7c7893e41d9e3ed3eda858f1b9ac3039d16e9bca99cc2a4b33cf2146365"
     },
     "it": {
       "coverage": 0.9671,
@@ -249,7 +252,7 @@
       "pack_rows": 574346,
       "pack_surfaces": 574346,
       "shipped": 7000,
-      "shipped_compound_derived": 873,
+      "shipped_compound_derived": 881,
       "shipped_ranked": 6770,
       "shipped_surface_ranked": 5881,
       "source": "wordfreq 3.1.1 large",
@@ -257,7 +260,7 @@
       "source_sha256": "0b5500e425a50e0f1fefb256d9125e74f586ac6b2f2a6e41bc96634bd5613cc7",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 322796,
-      "table_sha256": "cb243324e88f901f530a02d3569ba4743eddf6873b36648721c2f52782cc48dc"
+      "table_sha256": "856f84c90936c426bf49c9d82747bac9efc96cf35a66b707a5b2a3b3f2ec8340"
     },
     "ja": {
       "coverage": 0.8351,
@@ -291,7 +294,7 @@
       "source_sha256": "01014287a9e779d232f965d054a9cb5eb10b0bc46ee464fbd42935a5df7c8319",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 29988,
-      "table_sha256": "2330b405f937455e2da7a56e271ea21731de853d2e462d610f6e17d99ecfa69e"
+      "table_sha256": "997ba495de3910de84d17925f14f8f89f6ceba5825bb3ef45763deb434108ae6"
     },
     "la": {
       "pack_rows": 0,
@@ -306,7 +309,7 @@
       "pack_rows": 132744,
       "pack_surfaces": 132744,
       "shipped": 7000,
-      "shipped_compound_derived": 1753,
+      "shipped_compound_derived": 1841,
       "shipped_ranked": 6924,
       "shipped_surface_ranked": 5161,
       "source": "wordfreq 3.1.1 large",
@@ -314,7 +317,7 @@
       "source_sha256": "cfdae01b2ccd5bc94be046645b6ba8682e65d6709beedf6ab98d7bdc5414d671",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 311278,
-      "table_sha256": "31a9ef35fea85c72049e424fd59d64fe6ef2441e736ad46a67cb5b3e75daf629"
+      "table_sha256": "27e412010770b291bd1cf132115aab5470d962b66ad4bbd06518ca9040ac4fd4"
     },
     "non": {
       "pack_rows": 0,
@@ -329,7 +332,7 @@
       "pack_rows": 156252,
       "pack_surfaces": 156252,
       "shipped": 7000,
-      "shipped_compound_derived": 536,
+      "shipped_compound_derived": 540,
       "shipped_ranked": 6896,
       "shipped_surface_ranked": 6344,
       "source": "wordfreq 3.1.1 large",
@@ -337,7 +340,7 @@
       "source_sha256": "fac63e49c49ea2e39dd8a48152d7e54cec0920abbc59993088063ed5d9b528c2",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 453320,
-      "table_sha256": "c52c20a18666135827994d73e181379a6473e7184a5c1f62423548da4669eff1"
+      "table_sha256": "5d35e04378041bc3e448ef299450ccec29d2d503a8a0a1329037655bab377258"
     },
     "pt": {
       "coverage": 0.9714,
@@ -346,7 +349,7 @@
       "pack_rows": 399783,
       "pack_surfaces": 399783,
       "shipped": 7000,
-      "shipped_compound_derived": 1312,
+      "shipped_compound_derived": 1315,
       "shipped_ranked": 6800,
       "shipped_surface_ranked": 5479,
       "source": "wordfreq 3.1.1 large",
@@ -354,7 +357,7 @@
       "source_sha256": "7d764586bca6262f554d5fa77ad8e6841ef42534776e70558065140853660ce2",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 267979,
-      "table_sha256": "6d536c5b4f0e09dcede1f5f221de51c49402a541e0934f0d4974dba07b184a3f"
+      "table_sha256": "1fae60da87616e1d55d32c2e7e7a0461e04f60eea1c768f3fca94ed3e2a5eb7c"
     },
     "ru": {
       "coverage": 0.9829,
@@ -363,7 +366,7 @@
       "pack_rows": 422697,
       "pack_surfaces": 422697,
       "shipped": 7000,
-      "shipped_compound_derived": 573,
+      "shipped_compound_derived": 577,
       "shipped_ranked": 6880,
       "shipped_surface_ranked": 6299,
       "source": "wordfreq 3.1.1 large",
@@ -371,7 +374,7 @@
       "source_sha256": "0440613cc765c14a20fb9483225f2fec4d85e66672809076bcec9b29119f9b43",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 713447,
-      "table_sha256": "20eb90775deee9ab104ac45617e8309509cde6a5045a964aa5b585de904b4cc3"
+      "table_sha256": "9a3e1a6940cf9afafdacba73f801f19c4e02e4e33d4033bef727f139365f9795"
     },
     "sa": {
       "pack_rows": 0,
@@ -392,7 +395,7 @@
       "pack_rows": 297795,
       "pack_surfaces": 297712,
       "shipped": 7000,
-      "shipped_compound_derived": 1459,
+      "shipped_compound_derived": 1466,
       "shipped_ranked": 6860,
       "shipped_surface_ranked": 5374,
       "source": "wordfreq 3.1.1 large",
@@ -400,7 +403,7 @@
       "source_sha256": "16971de5b9c6731b0dc3647743f93357bd7ead336f783aa3f747db6855e36a90",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 340815,
-      "table_sha256": "130fb4367ce1e2fc788fc39a9e6bf2d9c844309b2b38ccac4042cf9ac4abafe8"
+      "table_sha256": "e0936f8ff8403d38e14f6bf9930d5d07d9127742b23712d70684b51eb150dd93"
     },
     "ta": {
       "coverage": 0.8349,
@@ -409,7 +412,7 @@
       "pack_rows": 9893,
       "pack_surfaces": 9893,
       "shipped": 7000,
-      "shipped_compound_derived": 208,
+      "shipped_compound_derived": 207,
       "shipped_ranked": 5844,
       "shipped_surface_ranked": 5608,
       "source": "wordfreq 3.1.1 small",
@@ -417,7 +420,7 @@
       "source_sha256": "68ed68a8bd703e1aafe8c0adc3827dada57eb3226837dabf26716187fb796547",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 68526,
-      "table_sha256": "ee086de7789f20c3b03f1ae0227d3927dc2b0ec91ba737c142174a5e00929891"
+      "table_sha256": "d4fe25748fb5eb3f9b9f235e5af9b45628a9a7c1b298beb0cefbdc1ef45ef467"
     },
     "th": {
       "coverage": 0.3299,
@@ -426,7 +429,7 @@
       "pack_rows": 15963,
       "pack_surfaces": 15963,
       "shipped": 7000,
-      "shipped_compound_derived": 1,
+      "shipped_compound_derived": 2,
       "shipped_ranked": 2309,
       "shipped_surface_ranked": 2278,
       "source": "Hermit Dave FrequencyWords OpenSubtitles 2018",
@@ -434,7 +437,7 @@
       "source_sha256": "20e7052f2d64222e1420c5d0b4ed6b68cd6290f0cf8b908d8bc6b0af781b6083",
       "source_url": "https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/th/th_50k.txt",
       "source_words": 50000,
-      "table_sha256": "4d617f318e87202629b68644cbb23ba36a39ed6b5b178a342c99ca56a807acc8"
+      "table_sha256": "a20aa039e47eb2a2a2125e15d039c488af68e56a5219ea6d2918c8426454a6a7"
     },
     "tr": {
       "coverage": 0.9843,
@@ -443,7 +446,7 @@
       "pack_rows": 38083,
       "pack_surfaces": 38083,
       "shipped": 7000,
-      "shipped_compound_derived": 581,
+      "shipped_compound_derived": 584,
       "shipped_ranked": 6890,
       "shipped_surface_ranked": 6298,
       "source": "wordfreq 3.1.1 small",
@@ -451,7 +454,7 @@
       "source_sha256": "10980704ee3ac5b52f226579251905412a04ead57092a12182dd0b8be6a765df",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 63345,
-      "table_sha256": "d1056bbe180157307f01417373e6ea37b26dffdaa3ee9715f6dbb11515fe2ded"
+      "table_sha256": "7650e4233a07882f34642e951d5174ffb2e000fae59c8cbdcdfade91df8db920"
     },
     "vi": {
       "coverage": 0.9429,
@@ -460,7 +463,7 @@
       "pack_rows": 35806,
       "pack_surfaces": 35806,
       "shipped": 7000,
-      "shipped_compound_derived": 4649,
+      "shipped_compound_derived": 4637,
       "shipped_ranked": 6600,
       "shipped_surface_ranked": 1949,
       "source": "wordfreq 3.1.1 small",
@@ -468,7 +471,7 @@
       "source_sha256": "bde76e2846f38fc8f4ad5112493d524c0c7f5e5545072b4de773d0a83159f15f",
       "source_url": "https://github.com/rspeer/wordfreq",
       "source_words": 10719,
-      "table_sha256": "484b0e66761c083c252ca81c62148bb306bcf891f9ff61b7cb3fb7db252ed3a2"
+      "table_sha256": "cd52fe9b36b96ce414c1d3d09c8d22dfdbb0a81db9ba4594affc8aa7d8315016"
     },
     "zh": {
       "coverage": 0.4286,
@@ -489,6 +492,6 @@
     }
   },
   "rule": "rank of the lemma group: the best rank among the lemma and every pack entry whose meaning names it as a form; an unlisted compound of hyphen or space separated parts takes its rarest part's rank and is marked derived",
-  "shipped_sha256": "07240465464074e2c9dbe53d4bae45b5e72efaf7047809f8473889073995636b",
+  "shipped_sha256": "edc781e84b8f3fbbe53ca9c2de203d4bd65c8c16df4bf7ee0c7ad3271d37fcba",
   "subtlex": "SUBTLEX lists (SUBTLEX-US, -UK, -NL, -DE, -ESP, -PL, -CH, -GR) were checked and not used: none carries a licence that grants redistribution of derived ranks, and every language they cover already has a wordfreq list."
 }

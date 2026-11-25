@@ -2,11 +2,21 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { bakedGet, bakedSearch, bakedStats, toPhoton } from "./baked";
 
-test("toPhoton reads freq_rank from an 8-column row and null from a 7-column row", () => {
-  const eight = toPhoton(["photon:word:es:perro", "es", "perro", "dog", "noun", null, "functional", 1126]);
-  assert.equal(eight.freq_rank, 1126);
+test("toPhoton reads rank and derived flag from 7, 8 and 9 column rows", () => {
   const seven = toPhoton(["photon:word:la:aqua", "la", "aqua", "water", "noun", null, "functional"]);
   assert.equal(seven.freq_rank, null);
+  assert.equal(seven.freq_derived, false);
+  const eight = toPhoton(["photon:word:es:perro", "es", "perro", "dog", "noun", null, "functional", 1126]);
+  assert.equal(eight.freq_rank, 1126);
+  assert.equal(eight.freq_derived, false);
+  const nine = toPhoton(["photon:word:es:año luz", "es", "año luz", "light year", "noun", null, "functional", 812, 1]);
+  assert.equal(nine.freq_rank, 812);
+  assert.equal(nine.freq_derived, true);
+});
+
+test("every shipped row carries a 0 or 1 derived flag", () => {
+  const derived = bakedSearch("a", { topK: 100 }).results.map((p) => p.freq_derived);
+  assert.ok(derived.every((d) => typeof d === "boolean"));
 });
 
 test("stats count every row", () => {

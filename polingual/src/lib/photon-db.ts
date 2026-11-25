@@ -17,6 +17,7 @@ export type Photon = {
   meaning_en: string;
   tier: string;
   freq_rank?: number | null;
+  freq_derived?: boolean;
   branch: string[];
   pos?: string | null;
   ipa?: string | null;

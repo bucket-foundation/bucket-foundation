@@ -78,7 +78,7 @@ def compound_rank(s: str, rank: dict[str, int]) -> int | None:
 
 def lemma_ranks(surfaces: Iterable[tuple[str, str | None]], rank: dict[str, int]) -> dict[str, tuple[int | None, str, int | None, bool]]:
     lemma_for: dict[str, str] = {}
-    group_best: dict[str, int] = {}
+    group_best: dict[str, tuple[int, bool]] = {}
     own: dict[str, tuple[int | None, bool]] = {}
     for surface, lemma in surfaces:
         s = fold(surface)
@@ -88,14 +88,16 @@ def lemma_ranks(surfaces: Iterable[tuple[str, str | None]], rank: dict[str, int]
         if s not in own:
             direct = rank.get(s)
             own[s] = (direct, False) if direct is not None else (compound_rank(s, rank), True)
-        r = own[s][0]
+        r, derived = own[s]
+        if r is None:
+            continue
         for key in {s, lem}:
-            if r is not None and r < group_best.get(key, 1 << 62):
-                group_best[key] = r
+            if (r, derived) < group_best.get(key, (1 << 62, True)):
+                group_best[key] = (r, derived)
     out: dict[str, tuple[int | None, str, int | None, bool]] = {}
     for s, lem in lemma_for.items():
-        r, derived = own[s]
-        out[s] = (r, lem, group_best.get(lem), derived and r is not None)
+        best = group_best.get(lem)
+        out[s] = (own[s][0], lem, best[0] if best else None, bool(best and best[1]))
     return out
 
 
@@ -206,7 +208,7 @@ def main() -> int:
     for r in shipped:
         by_lang.setdefault(r[1], []).append(r)
 
-    manifest = {"field": "freq_rank", "column": 7, "rule": "rank of the lemma group: the best rank among the lemma and every pack entry whose meaning names it as a form; an unlisted compound of hyphen or space separated parts takes its rarest part's rank and is marked derived", "subtlex": SUBTLEX_NOTE, "languages": {}}
+    manifest = {"field": "freq_rank", "column": 7, "derived_field": "freq_derived", "derived_column": 8, "derived_meaning": "1 marks a rank taken from a compound's rarest part; treat it as an upper bound on frequency", "rule": "rank of the lemma group: the best rank among the lemma and every pack entry whose meaning names it as a form; an unlisted compound of hyphen or space separated parts takes its rarest part's rank and is marked derived", "subtlex": SUBTLEX_NOTE, "languages": {}}
     with tempfile.TemporaryDirectory(dir=args.out) as tmp:
         for lang in langs:
             src = wordfreq_source(lang) or hermitdave_source(lang, args.hermitdave)
@@ -214,7 +216,7 @@ def main() -> int:
             if src is None:
                 entry.update({"source": None, "reason": "no frequency list with a redistributable licence covers this language"})
                 for r in by_lang.get(lang, []):
-                    r[7:] = [None]
+                    r[7:] = [None, 0]
                 manifest["languages"][lang] = entry
                 print(lang, "no source", file=sys.stderr)
                 continue
@@ -238,7 +240,7 @@ def main() -> int:
                 hit_derived += bool(t and t[3])
                 hit_surface += sr is not None
                 hit_lemma += lr is not None
-                r[7:] = [lr]
+                r[7:] = [lr, int(bool(t and t[3]))]
             entry.update({
                 "source": src["name"], "source_url": src["url"], "licence": src["licence"],
                 "source_file": src["file"], "source_sha256": src["sha256"], "source_words": len(rank),
@@ -255,8 +257,8 @@ def main() -> int:
             del table, rank
 
     for r in shipped:
-        if len(r) < 8:
-            r[7:] = [None]
+        if len(r) < 9:
+            r[7:] = [r[7] if len(r) > 7 else None, 0]
     blob = dump_shipped(shipped)
     with open(args.shipped, "wb") as f:
         f.write(blob)

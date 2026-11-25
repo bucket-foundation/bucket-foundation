@@ -55,7 +55,16 @@ class Ranks(unittest.TestCase):
 
     def test_multiword_lemma_group(self):
         t = fr.lemma_ranks([("año luz", None), ("años luz", "año luz")], {"año": 40, "luz": 200})
-        self.assertEqual(t["años luz"], (None, "año luz", 200, False))
+        self.assertEqual(t["años luz"], (None, "año luz", 200, True))
+
+    def test_inflection_of_derived_lemma_inherits_flag(self):
+        t = fr.lemma_ranks([("well-known", None), ("well-knowns", "well-known")], {"well": 50, "known": 300})
+        self.assertTrue(t["well-knowns"][3])
+        self.assertEqual(t["well-knowns"][2], 300)
+
+    def test_direct_rank_beats_derived_tie(self):
+        t = fr.lemma_ranks([("a-b", None), ("ab", "a-b")], {"a": 1, "b": 7, "ab": 7})
+        self.assertEqual(t["ab"], (7, "a-b", 7, False))
 
 
 class Determinism(unittest.TestCase):
