@@ -16,6 +16,7 @@ export type Photon = {
   surface: string;
   meaning_en: string;
   tier: string;
+  freq_rank?: number | null;
   branch: string[];
   pos?: string | null;
   ipa?: string | null;
