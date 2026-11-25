@@ -31,9 +31,9 @@ function utm(store: Store | null, search: string): Utm {
   }
 }
 
-export function funnelBody(step: FunnelStep, ctx: { store: Store | null; search: string; path: string; lang: string; make: () => string; detail?: string }): string | null {
+export function funnelBody(step: FunnelStep | "beta_signup", ctx: { store: Store | null; search: string; path: string; lang: string; make: () => string; detail?: string }): string | null {
   const onceKey = `pl.funnel.${step}`;
-  if (ONCE.includes(step)) {
+  if ((ONCE as readonly string[]).includes(step)) {
     if (ctx.store?.getItem(onceKey)) return null;
     ctx.store?.setItem(onceKey, "1");
   }
@@ -68,7 +68,7 @@ export function onboarding(screen: OnboardingScreen, send: Send = beacon): void 
   track("onboarding_view", send, screen);
 }
 
-export function track(step: FunnelStep, send: Send = beacon, detail?: string): void {
+export function track(step: FunnelStep | "beta_signup", send: Send = beacon, detail?: string): void {
   if (typeof window === "undefined") return;
   const body = funnelBody(step, {
     store: local(),
