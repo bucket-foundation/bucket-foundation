@@ -1,0 +1,62 @@
+{
+ "es": [
+  ["casas", false, "casa"], ["tiene", false, "tener"], ["fue", false, ["ir", "ser"]], ["es", false, "ser"], ["Es", true, "ser"],
+  ["La", true, "la"], ["El", true, "el"], ["los", false, "el"], ["niños", false, "niño"], ["creíamos", false, "creer"],
+  ["puede", false, "poder"], ["quiero", false, "querer"], ["Tengo", true, "tener"], ["hace", false, "hacer"], ["dijo", false, "decir"],
+  ["está", false, "estar"], ["estoy", false, "estar"], ["soy", false, "ser"], ["voy", false, "ir"], ["hablo", false, "hablar"],
+  ["libros", false, "libro"], ["buena", false, "bueno"], ["grandes", false, "grande"], ["perros", false, "perro"], ["comí", false, "comer"],
+  ["sabe", false, "saber"], ["vino", false, "venir"], ["Tom", true, "Tom"], ["Tom", false, "Tom"], ["María", false, "María"],
+  ["con", false, "con"], ["pero", false, "pero"], ["muy", false, "muy"], ["siempre", false, "siempre"], ["aquí", false, "aquí"],
+  ["mi", false, "mi"], ["Mis", true, "mi"], ["padres", false, "padre"], ["ojos", false, "ojo"], ["casa", false, "casa"],
+  ["dormir", false, "dormir"], ["llegó", false, "llegar"], ["mujeres", false, "mujer"], ["hay", false, "haber"], ["he", false, "haber"],
+  ["vamos", false, "ir"], ["Puedes", true, "poder"], ["tenemos", false, "tener"], ["años", false, "año"], ["temprano", false, "temprano"]
+ ],
+ "fr": [
+  ["est", false, "être"], ["Il", true, "il"], ["La", true, "le"], ["mais", false, "mais"], ["suis", false, "être"],
+  ["as", false, "avoir"], ["ai", false, "avoir"], ["a", false, "avoir"], ["sont", false, "être"], ["heures", false, "heure"],
+  ["passé", false, "passer"], ["coûterait", false, "coûter"], ["dormais", false, "dormir"], ["veux", false, "vouloir"], ["peux", false, "pouvoir"],
+  ["fait", false, "faire"], ["dit", false, "dire"], ["vais", false, "aller"], ["va", false, "aller"], ["Je", true, "je"],
+  ["l'", false, "le"], ["d'", false, "de"], ["n'", false, "ne"], ["j'", false, "je"], ["J'", true, "je"],
+  ["qu'", false, "que"], ["enfants", false, "enfant"], ["livres", false, "livre"], ["belle", false, "beau"], ["grands", false, "grand"],
+  ["Tom", true, "Tom"], ["Tom", false, "Tom"], ["avec", false, "avec"], ["très", false, "très"], ["toujours", false, "toujours"],
+  ["mes", false, "mon"], ["yeux", false, "œil"], ["parents", false, "parent"], ["maison", false, "maison"], ["arrivé", false, "arriver"],
+  ["femmes", false, "femme"], ["avons", false, "avoir"], ["Nous", true, "nous"], ["ans", false, "an"], ["sais", false, "savoir"],
+  ["faut", false, "falloir"], ["mange", false, "manger"], ["parle", false, "parler"], ["chiens", false, "chien"], ["aujourd'hui", false, "aujourd'hui"]
+ ],
+ "it": [
+  ["è", false, "essere"], ["Sono", true, "essere"], ["sono", false, "essere"], ["andato", false, "andare"], ["amici", false, "amico"],
+  ["gradi", false, "grado"], ["ha", false, "avere"], ["ho", false, "avere"], ["La", true, "la"], ["Il", true, "il"],
+  ["voglio", false, "volere"], ["posso", false, "potere"], ["fa", false, "fare"], ["detto", false, "dire"], ["vado", false, "andare"],
+  ["libri", false, "libro"], ["case", false, "casa"], ["bambini", false, "bambino"], ["bella", false, "bello"], ["grandi", false, "grande"],
+  ["Tom", true, "Tom"], ["Tom", false, "Tom"], ["con", false, "con"], ["ma", false, "ma"], ["molto", false, "molto"],
+  ["sempre", false, "sempre"], ["qui", false, "qui"], ["miei", false, "mio"], ["occhi", false, "occhio"], ["genitori", false, "genitore"],
+  ["donne", false, "donna"], ["abbiamo", false, "avere"], ["anni", false, "anno"], ["so", false, "sapere"], ["parlo", false, "parlare"],
+  ["mangia", false, "mangiare"], ["cani", false, "cane"], ["stato", false, "essere"], ["sta", false, "stare"], ["Ci", true, "ci"],
+  ["dormire", false, "dormire"], ["arrivato", false, "arrivare"], ["siamo", false, "essere"], ["Io", true, "io"], ["deve", false, "dovere"],
+  ["piace", false, "piacere"], ["Questo", true, "questo"], ["tutti", false, "tutto"], ["casa", false, "casa"], ["oggi", false, "oggi"]
+ ],
+ "pt": [
+  ["está", false, "estar"], ["dormindo", false, "dormir"], ["Quantas", true, "quanto"], ["horas", false, "hora"], ["precisa", false, "precisar"],
+  ["é", false, "ser"], ["sou", false, "ser"], ["foi", false, ["ser", "ir"]], ["tenho", false, "ter"], ["Tenho", true, "ter"],
+  ["Ele", true, "ele"], ["Eu", true, "eu"], ["quero", false, "querer"], ["posso", false, "poder"], ["faz", false, "fazer"],
+  ["disse", false, "dizer"], ["vou", false, "ir"], ["livros", false, "livro"], ["casas", false, "casa"], ["crianças", false, "criança"],
+  ["bonita", false, "bonito"], ["grandes", false, "grande"], ["Tom", true, "Tom"], ["Tom", false, "Tom"], ["com", false, "com"],
+  ["mas", false, "mas"], ["muito", false, "muito"], ["sempre", false, "sempre"], ["aqui", false, "aqui"], ["meus", false, "meu"],
+  ["olhos", false, "olho"], ["pais", false, "pai"], ["mulheres", false, "mulher"], ["temos", false, "ter"], ["anos", false, "ano"],
+  ["sei", false, "saber"], ["falo", false, "falar"], ["come", false, "comer"], ["cães", false, "cão"], ["estou", false, "estar"],
+  ["dormir", false, "dormir"], ["chegou", false, "chegar"], ["somos", false, "ser"], ["A", true, "a"], ["O", true, "o"],
+  ["tem", false, "ter"], ["gosto", false, "gostar"], ["Você", true, "você"], ["casa", false, "casa"], ["hoje", false, "hoje"]
+ ],
+ "de": [
+  ["war", false, "sein"], ["ist", false, "sein"], ["bin", false, "sein"], ["Es", true, "es"], ["es", false, "es"],
+  ["Du", true, "du"], ["kannst", false, "können"], ["weiß", false, "wissen"], ["Himmel", false, "Himmel"], ["Wolke", false, "Wolke"],
+  ["eine", false, "ein"], ["einen", false, "ein"], ["Die", true, "der"], ["Der", true, "der"], ["Ich", true, "ich"],
+  ["habe", false, "haben"], ["hat", false, "haben"], ["will", false, "wollen"], ["geht", false, "gehen"], ["gesagt", false, "sagen"],
+  ["Bücher", false, "Buch"], ["Kinder", false, "Kind"], ["Häuser", false, "Haus"], ["Augen", false, "Auge"], ["Frauen", false, "Frau"],
+  ["Tom", true, "Tom"], ["Tom", false, "Tom"], ["mit", false, "mit"], ["aber", false, "aber"], ["sehr", false, "sehr"],
+  ["immer", false, "immer"], ["hier", false, "hier"], ["meine", false, "mein"], ["Eltern", false, "Eltern"], ["Jahre", false, "Jahr"],
+  ["sind", false, "sein"], ["haben", false, "haben"], ["Wir", true, "wir"], ["spreche", false, "sprechen"], ["isst", false, "essen"],
+  ["Hunde", false, "Hund"], ["schlafen", false, "schlafen"], ["kam", false, "kommen"], ["Haus", false, "Haus"], ["heute", false, "heute"],
+  ["muss", false, "müssen"], ["Mann", false, "Mann"], ["großen", false, "groß"], ["schöne", false, "schön"], ["gibt", false, "geben"]
+ ]
+}

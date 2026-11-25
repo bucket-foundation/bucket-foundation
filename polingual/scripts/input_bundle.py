@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import argparse
+import bz2
 import hashlib
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -14,12 +16,16 @@ ROOT = Path(__file__).resolve().parents[2]
 LAYERS = ROOT / "learning/app/corpus/lang-layers.json"
 VIDEOS = ROOT / "polingual/public/videos"
 OUT = ROOT / "polingual/public/input"
-PACKS = Path.home() / "agfarms/.polingual-packs"
+GOLDEN = Path(__file__).resolve().parent / "input_golden.json"
 LANGS = ["es", "fr", "it", "pt", "de"]
+ISO3 = {"es": "spa", "fr": "fra", "it": "ita", "pt": "por", "de": "deu"}
 MIN_TOKENS = 40
 SET_MIN, SET_MAX = 4, 6
 TATOEBA_LICENSE = "CC-BY 2.0 FR"
+TATOEBA_SHOW = "https://tatoeba.org/en/sentences/show/"
 WORD = re.compile(r"[^\W\d_]+(?:['’\-][^\W\d_]+)*['’]?")
+OPENERS = " \t\n¡¿«»\"'(“”„‚-–—"
+ENDERS = ".!?…:"
 FORM_WORDS = set("""
 first second third first-person second-person third-person singular plural feminine masculine neuter
 participle past present future perfect pluperfect preterite imperfect indicative subjunctive conditional
@@ -35,6 +41,14 @@ FORM_HEADS = {"plural", "singular", "feminine", "masculine", "neuter", "particip
 ELISION_TAILS = ("e", "a", "o", "")
 RANK_MARGIN = 200
 STOP_SHARE = 0.05
+INF = float("inf")
+CLOSED_CLASS = {
+    "es": {"a": "a", "al": "a"},
+    "fr": {"a": "avoir"},
+    "it": {"a": "a"},
+    "pt": {"a": "a"},
+    "de": {"im": "in"},
+}
 
 
 def fold(s):
@@ -52,17 +66,31 @@ def split_word(w, known):
     return [w.strip("-")]
 
 
-def tokenize(text, known=lambda w: False):
+def tokenize_with_position(text, known=lambda w: False):
     out = []
     for m in WORD.finditer(text):
-        out.extend(split_word(m.group(0), known))
+        prev = text[: m.start()].rstrip(OPENERS)
+        initial = not prev or prev[-1] in ENDERS
+        for k, part in enumerate(split_word(m.group(0), known)):
+            out.append((part, initial and k == 0))
     return out
+
+
+def tokenize(text, known=lambda w: False):
+    return [w for w, _ in tokenize_with_position(text, known)]
+
+
+def is_tag_only(sense):
+    words = sense.lower().replace(",", " ").replace("/", " ").rstrip(":. ").split()
+    return bool(words) and set(words) <= FORM_WORDS
 
 
 def lemma_of_meaning(sense):
     head, sep, rest = sense.strip().partition(" of ")
-    words = head.lower().replace(",", " ").split()
+    words = head.lower().replace(",", " ").replace("/", " ").split()
     if not sep or not words or not set(words) <= FORM_WORDS or not set(words) & FORM_HEADS:
+        return None
+    if words[0] == "apocopic" and ";" in rest:
         return None
     parts = rest.split()
     target = parts[0].strip(".,;:()'’“”") if parts else ""
@@ -70,71 +98,92 @@ def lemma_of_meaning(sense):
 
 
 class Lexicon:
-    def __init__(self, lookup, keep_case=False):
+    def __init__(self, lookup, noun_caps=False, closed=None):
         self.lookup = lookup
-        self.keep_case = keep_case
+        self.closed = closed or {}
+        self.noun_caps = noun_caps
         self.cache = {}
 
-    def _entry(self, surface):
-        cands = [surface.lower(), surface, surface[:1].upper() + surface[1:].lower()]
-        if surface.endswith(("'", "’")):
-            cands = [surface[:-1].lower() + t for t in ELISION_TAILS] + cands
-        found = []
-        for i, cand in enumerate(dict.fromkeys(cands)):
-            senses, rank = self.lookup(cand)
-            if senses:
-                found.append((rank if rank is not None else float("inf"), i, cand, senses, rank))
-        if not found:
-            return None, [], None
-        _, _, cand, senses, rank = min(found)
-        return cand, senses, rank
+    def _find(self, cand):
+        senses, rank = self.lookup(cand)
+        return (cand, senses, rank) if senses else None
+
+    def _entry(self, surface, initial=False):
+        lower = surface.lower()
+        cands = [lower[:-1] + t for t in ELISION_TAILS] if surface.endswith(("'", "’")) else []
+        found = [e for e in map(self._find, dict.fromkeys(cands)) if e]
+        if found:
+            return found[0]
+        low = self._find(lower)
+        exact = self._find(surface) if surface != lower else None
+        if surface == lower:
+            return low or (None, [], None)
+        if exact and (not initial or not low or low[2] is None) and any(p == "name" for _, p in exact[1]):
+            return exact
+        if initial and not self.noun_caps:
+            return low or exact or (None, [], None)
+        if initial and low and exact:
+            low_rank = low[2] if low[2] is not None else INF
+            exact_rank = exact[2] if exact[2] is not None else INF
+            return low if low_rank <= exact_rank + RANK_MARGIN else exact
+        if initial and low:
+            return low
+        return exact or low or (None, [], None)
 
     def known(self, surface):
         return self._entry(surface)[0] is not None
 
-    def _base(self, found, senses, rank, hops):
-        targets = [t for t in map(lemma_of_meaning, senses) if t]
-        if not targets or hops == 0:
+    def _base(self, found, senses, rank):
+        forms = [(t, pos) for g, pos in senses for t in [lemma_of_meaning(g)] if t]
+        if not forms:
             return found
-        own = any(lemma_of_meaning(x) is None for x in senses)
-        resolved = [self._entry(t) for t in dict.fromkeys(targets)]
-        resolved = sorted((r for r in resolved if r[0]), key=lambda r: r[2] if r[2] is not None else float("inf"))
-        for t_found, t_senses, t_rank in resolved:
+        own = any((lemma_of_meaning(g) is None and not is_tag_only(g)) or g.lower().startswith("apocopic") and ";" in g
+                  for g, _ in senses)
+        choices = []
+        for target, pos in dict.fromkeys(forms):
+            t_found, t_senses, t_rank = self._entry(target)
+            if not t_found:
+                continue
+            pos_match = any(p == pos and lemma_of_meaning(g) is None for g, p in t_senses)
+            choices.append((not pos_match, t_rank if t_rank is not None else INF, t_found, t_rank))
+        for *_, t_found, t_rank in sorted(choices):
             if own and (t_rank is None or rank is None or t_rank > rank + RANK_MARGIN):
                 continue
-            return self._base(t_found, t_senses, t_rank, hops - 1)
-        return found if own else targets[0]
+            return t_found
+        return found if own else forms[0][0]
 
-    def lemma(self, surface):
-        if surface not in self.cache:
-            found, senses, rank = self._entry(surface)
-            if found is None:
-                self.cache[surface] = (surface.lower(), False)
+    def lemma(self, surface, initial=False):
+        key = (surface, initial)
+        if key not in self.cache:
+            found, senses, rank = self._entry(surface, initial)
+            if found is None and surface.lower() in self.closed:
+                self.cache[key] = (self.closed[surface.lower()], True)
+            elif found is None:
+                self.cache[key] = (surface, False)
             else:
-                base = self._base(found, senses, rank, 1)
-                keep = self.keep_case and base[:1].isupper()
-                self.cache[surface] = (base if keep else base.lower(), True)
-        return self.cache[surface]
+                self.cache[key] = (self._base(found, senses, rank), True)
+        return self.cache[key]
 
 
 def sqlite_lookup(index_db, pack_db, lang):
-    idx = sqlite3.connect(f"file:{index_db}?mode=ro", uri=True) if index_db else None
-    pack = sqlite3.connect(f"file:{pack_db}?mode=ro", uri=True) if pack_db else None
+    idx = sqlite3.connect(f"file:{index_db}?mode=ro", uri=True)
+    pack = sqlite3.connect(f"file:{pack_db}?mode=ro", uri=True)
 
     def lookup(surface):
         senses, rank = [], None
-        if idx:
-            row = idx.execute(
-                "select rowid, payload from photons where lang = ? and surface = ? limit 1", (lang, surface)
-            ).fetchone()
-            if row:
-                rank = row[0]
-                senses = [x["gloss"] for x in json.loads(row[1]).get("senses", []) if x.get("gloss")]
-        if pack:
-            rows = pack.execute(
-                "select meaning from words where folded = ? and surface = ? order by id limit 4", (fold(surface), surface)
-            ).fetchall()
-            senses += [m for r in rows for m in r[0].split(" · ") if m not in senses]
+        row = idx.execute(
+            "select rowid, payload, pos from photons where lang = ? and surface = ? limit 1", (lang, surface)
+        ).fetchone()
+        if row:
+            rank = row[0]
+            for x in json.loads(row[1]).get("senses", []):
+                if x.get("gloss"):
+                    senses.append((x["gloss"], x.get("pos") or row[2]))
+        rows = pack.execute(
+            "select meaning, pos from words where folded = ? and surface = ? order by id limit 4", (fold(surface), surface)
+        ).fetchall()
+        for meaning, pos in rows:
+            senses += [(m, pos) for m in meaning.split(" · ") if (m, pos) not in senses]
         return senses, rank
 
     return lookup
@@ -142,8 +191,8 @@ def sqlite_lookup(index_db, pack_db, lang):
 
 def tokens_for(text, lex):
     toks = []
-    for s in tokenize(text, lex.known):
-        lemma, mapped = lex.lemma(s)
+    for s, initial in tokenize_with_position(text, lex.known):
+        lemma, mapped = lex.lemma(s, initial)
         toks.append({"surface": s, "lemma": lemma, **({} if mapped else {"unmapped": True})})
     return toks
 
@@ -162,17 +211,58 @@ def make_item(id_, lang, kind, text, lex, source, license_, translation=None, me
     return item
 
 
-def tatoeba_items(lang, pool, lex):
+def bz2_rows(path):
+    with bz2.open(path, "rt", encoding="utf-8") as f:
+        for line in f:
+            yield line.rstrip("\n").split("\t")
+
+
+def author(user):
+    return None if user in ("", "\\N") else user
+
+
+def tatoeba_meta(tatoeba_dir, lang, pool):
+    wanted = {en_id: p["t"][lang].strip() for en_id, p in pool.items() if lang in p["t"]}
+    cand = defaultdict(set)
+    for r in bz2_rows(tatoeba_dir / f"{ISO3[lang]}-eng_links.tsv.bz2"):
+        if len(r) >= 2 and r[1] in wanted:
+            cand[r[0]].add(r[1])
+    meta = {}
+    for r in bz2_rows(tatoeba_dir / f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
+        if len(r) >= 4 and r[0] in cand:
+            for en_id in cand[r[0]]:
+                if r[2].strip() == wanted[en_id] and en_id not in meta:
+                    meta[en_id] = {"id": r[0], "author": author(r[3])}
+    return meta
+
+
+def tatoeba_en_authors(tatoeba_dir, en_ids):
+    out = {}
+    for r in bz2_rows(tatoeba_dir / "eng_sentences_detailed.tsv.bz2"):
+        if len(r) >= 4 and r[0] in en_ids:
+            out[r[0]] = author(r[3])
+    return out
+
+
+def tatoeba_items(lang, pool, lex, meta, en_authors):
+    seen = set()
     for en_id in sorted(pool, key=int):
         t = pool[en_id]["t"]
         if lang not in t:
             continue
-        lv = pool[en_id].get("lv", {}).get(lang)
+        m = meta.get(en_id, {})
+        ids = {"en": en_id, **({lang: m["id"]} if m.get("id") else {})}
+        authors = {"en": en_authors.get(en_id), **({lang: m.get("author")} if m.get("id") else {})}
+        main_id = m.get("id", en_id)
+        if main_id in seen:
+            continue
+        seen.add(main_id)
         item = make_item(
-            f"tatoeba:{lang}:{en_id}", lang, "sentence", t[lang], lex,
-            {"name": "tatoeba", "url": f"https://tatoeba.org/en/sentences/show/{en_id}", "sentenceIds": {"en": en_id}},
+            f"tatoeba:{lang}:{main_id}", lang, "sentence", t[lang], lex,
+            {"name": "tatoeba", "url": f"{TATOEBA_SHOW}{main_id}", "sentenceIds": ids, "authors": authors},
             TATOEBA_LICENSE, translation=t.get("en"),
         )
+        lv = pool[en_id].get("lv", {}).get(lang)
         if lv:
             item["cefr"] = ["A1", "A2", "B1"][lv - 1]
         yield item
@@ -196,7 +286,7 @@ def ntok(item):
     return len(item["tokens"])
 
 
-def episode_units(video_id, items):
+def episode_units(video, items):
     units, cur = [], []
     for it in items:
         cur.append(it)
@@ -208,25 +298,40 @@ def episode_units(video_id, items):
             units[-1].extend(cur)
         elif sum(map(ntok, cur)) >= MIN_TOKENS:
             units.append(cur)
+    credit = f"{video.get('title', video['id'])}, {video.get('channel') or 'unknown channel'}, {video['source_url']}, {video.get('license', 'unknown')}"
     return [
-        {"id": f"episode:{video_id}:{n}", "kind": "episode", "itemIds": [i["id"] for i in u],
-         "targetLemmas": [], "tokenCount": sum(map(ntok, u))}
+        {"id": f"episode:{video['id']}:{n}", "kind": "episode", "itemIds": [i["id"] for i in u],
+         "targetLemmas": [], "tokenCount": sum(map(ntok, u)), "credit": credit,
+         "credits": [{"url": video["source_url"], "author": video.get("channel")}]}
         for n, u in enumerate(units)
     ]
 
 
+def tatoeba_credits(items):
+    credits = []
+    for it in items:
+        src = it["source"]
+        for lang, sid in src["sentenceIds"].items():
+            credits.append({"sentenceId": sid, "lang": lang, "author": src.get("authors", {}).get(lang),
+                            "url": f"{TATOEBA_SHOW}{sid}"})
+    return credits
+
+
+def credit_line(credits):
+    parts = [f"#{c['sentenceId']} by {c['author'] or 'unknown'} ({c['url']})" for c in credits]
+    return f"Tatoeba sentences {', '.join(parts)}, {TATOEBA_LICENSE}"
+
+
 def sentence_set_units(lang, items):
     df = Counter(l for it in items for l in set(it["lemmas"]))
-    stop = {l for l, c in df.items() if c > STOP_SHARE * max(len(items), 1)}
+    stop = {l for l, c in df.items() if c > max(SET_MAX, STOP_SHARE * len(items))}
     by_lemma = defaultdict(list)
     for it in items:
         for l in set(it["lemmas"]) - stop:
             by_lemma[l].append(it)
     units, used = [], set()
     for lemma in sorted(by_lemma, key=lambda l: (-len(by_lemma[l]), l)):
-        pool = sorted(by_lemma[lemma], key=lambda it: (it["id"] in used, -ntok(it), it["id"]))
-        if len(pool) < SET_MIN:
-            continue
+        pool = sorted((it for it in by_lemma[lemma] if it["id"] not in used), key=lambda it: (-ntok(it), it["id"]))
         chosen = []
         for it in pool:
             chosen.append(it)
@@ -240,8 +345,10 @@ def sentence_set_units(lang, items):
         shared = Counter(l for it in chosen for l in set(it["lemmas"]) - stop)
         targets = [lemma] + [l for l, c in shared.most_common() if c >= 2 and l != lemma][:2]
         used.update(it["id"] for it in chosen)
+        credits = tatoeba_credits(chosen) if all(it["source"]["name"] == "tatoeba" for it in chosen) else []
         units.append({"id": f"set:{lang}:{lemma}", "kind": "sentence_set", "itemIds": [it["id"] for it in chosen],
-                      "targetLemmas": targets, "tokenCount": total})
+                      "targetLemmas": targets, "tokenCount": total,
+                      "credit": credit_line(credits) if credits else "", "credits": credits})
     return units
 
 
@@ -257,32 +364,45 @@ def coverage(items):
     }
 
 
-def build_lang(lang, lex, pool, videos):
-    tat = list(tatoeba_items(lang, pool, lex))
+def build_lang(lang, lex, pool, videos, meta=None, en_authors=None):
+    tat = list(tatoeba_items(lang, pool, lex, meta or {}, en_authors or {}))
     units = sentence_set_units(lang, tat)
     vid_items = []
     for v in videos:
         its = list(video_items(lang, v, lex))
         vid_items.extend(its)
-        units.extend(episode_units(v["id"], its))
+        units.extend(episode_units(v, its))
     in_unit = {i for u in units for i in u["itemIds"]}
     items = [it for it in tat + vid_items if it["id"] in in_unit]
     return {
         "format": "polingual-input", "version": 1, "lang": lang,
         "attribution": [
-            "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its English Tatoeba sentence number.",
+            "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
             "Lemmas from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.",
         ],
         "coverage": coverage(tat + vid_items),
+        "tatoebaIdsMatched": sum(1 for it in tat if len(it["source"]["sentenceIds"]) > 1),
+        "tatoebaItems": len(tat),
         "items": items, "units": units,
     }
 
 
 def open_lexicon(lang, packs, scratch, index_db):
+    zst = packs / lang / f"polingual-{lang}.sqlite.zst"
+    if not zst.exists():
+        sys.exit(f"input_bundle: missing pack {zst}")
     db = scratch / f"{lang}.sqlite"
     if not db.exists():
-        subprocess.run(["zstd", "-dqf", str(packs / lang / f"polingual-{lang}.sqlite.zst"), "-o", str(db)], check=True)
-    return Lexicon(sqlite_lookup(index_db if index_db.exists() else None, db, lang), keep_case=lang == "de")
+        subprocess.run(["zstd", "-dqf", str(zst), "-o", str(db)], check=True)
+    return Lexicon(sqlite_lookup(index_db, db, lang), noun_caps=lang == "de", closed=CLOSED_CLASS.get(lang))
+
+
+def sha(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def write_bundle(bundle, out):
@@ -296,25 +416,77 @@ def write_bundle(bundle, out):
     return name
 
 
-def main(argv=None):
+def golden_error_rate(lex, rows):
+    wrong = [r for r in rows if lex.lemma(r[0], r[1])[0] not in (r[2] if isinstance(r[2], list) else [r[2]])]
+    return len(wrong) / len(rows), wrong
+
+
+def env_path(value, env):
+    v = value or os.environ.get(env)
+    return Path(v).expanduser() if v else None
+
+
+def parse(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--langs", default=",".join(LANGS))
-    ap.add_argument("--packs", type=Path, default=PACKS)
-    ap.add_argument("--index", type=Path, default=Path.home() / "agfarms/bucket-foundation/_intake/photons/index.sqlite")
-    ap.add_argument("--scratch", type=Path, required=True)
-    ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--packs", help="dir of Polingual packs, or POLINGUAL_PACKS_DIR")
+    ap.add_argument("--index", help="photons index.sqlite, or PHOTONS_INDEX")
+    ap.add_argument("--tatoeba", help="dir from fetch_tatoeba.sh, or TATOEBA_DIR")
+    ap.add_argument("--scratch", help="dir for unpacked packs, or INPUT_SCRATCH_DIR")
+    ap.add_argument("--layers", default=str(LAYERS))
+    ap.add_argument("--videos", default=str(VIDEOS))
+    ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--golden", action="store_true")
     a = ap.parse_args(argv)
+    a.packs = env_path(a.packs, "POLINGUAL_PACKS_DIR")
+    a.index = env_path(a.index, "PHOTONS_INDEX")
+    a.tatoeba = env_path(a.tatoeba, "TATOEBA_DIR")
+    a.scratch = env_path(a.scratch, "INPUT_SCRATCH_DIR")
+    for name in ("packs", "index", "scratch") + (() if a.golden else ("tatoeba",)):
+        p = getattr(a, name)
+        if p is None:
+            ap.error(f"--{name} is required (flag or env var)")
+        if name != "scratch" and not p.exists():
+            ap.error(f"--{name} {p} does not exist")
+    a.layers, a.videos, a.out = Path(a.layers), Path(a.videos), Path(a.out)
+    return a
+
+
+def main(argv=None):
+    a = parse(argv)
     a.scratch.mkdir(parents=True, exist_ok=True)
+    langs = a.langs.split(",")
+    if a.golden:
+        gold = json.loads(GOLDEN.read_text())
+        for lang in langs:
+            rate, wrong = golden_error_rate(open_lexicon(lang, a.packs, a.scratch, a.index), gold[lang])
+            print(f"{lang} golden error {rate:.3f} ({len(wrong)}/{len(gold[lang])}) {wrong}")
+        return
     a.out.mkdir(parents=True, exist_ok=True)
-    pool = json.load(open(LAYERS))["sentences"]["pool"]
-    videos = [json.load(open(p)) for p in sorted(VIDEOS.glob("*.json")) if p.name != "index.json"]
+    pool = json.loads(a.layers.read_text())["sentences"]["pool"]
+    video_paths = [p for p in sorted(a.videos.glob("*.json")) if p.name != "index.json"]
+    videos = [json.loads(p.read_text()) for p in video_paths]
+    en_authors = tatoeba_en_authors(a.tatoeba, set(pool))
     manifest_path = a.out / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
-    for lang in a.langs.split(","):
-        b = build_lang(lang, open_lexicon(lang, a.packs, a.scratch, a.index), pool, videos)
+    inputs = manifest.setdefault("inputs", {})
+    inputs["layers"] = sha(a.layers)
+    inputs["videos"] = {p.name: sha(p) for p in video_paths}
+    inputs["index"] = sha(a.index)
+    inputs["tatoeba"] = {"eng_sentences_detailed": sha(a.tatoeba / "eng_sentences_detailed.tsv.bz2")}
+    inputs.setdefault("packs", {})
+    for lang in langs:
+        lex = open_lexicon(lang, a.packs, a.scratch, a.index)
+        b = build_lang(lang, lex, pool, videos, tatoeba_meta(a.tatoeba, lang, pool), en_authors)
         name = write_bundle(b, a.out)
-        manifest["langs"][lang] = {"file": name, "items": len(b["items"]), "units": len(b["units"]), "coverage": b["coverage"]}
-        print(lang, name, len(b["items"]), len(b["units"]), json.dumps(b["coverage"]), file=sys.stderr)
+        inputs["packs"][lang] = sha(a.packs / lang / f"polingual-{lang}.sqlite.zst")
+        for f in (f"{ISO3[lang]}-eng_links.tsv.bz2", f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
+            inputs["tatoeba"][f.removesuffix(".tsv.bz2")] = sha(a.tatoeba / f)
+        manifest["langs"][lang] = {"file": name, "items": len(b["items"]), "units": len(b["units"]),
+                                   "coverage": b["coverage"],
+                                   "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"]}
+        print(lang, name, len(b["items"]), len(b["units"]), b["tatoebaIdsMatched"], b["tatoebaItems"],
+              json.dumps(b["coverage"]), file=sys.stderr)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
 
 

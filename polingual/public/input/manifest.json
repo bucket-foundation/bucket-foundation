@@ -1,70 +1,109 @@
 {
  "format": "polingual-input",
+ "inputs": {
+  "index": "ad4f6e9aa58639b2e0dfc78344b17e9ae050c6d8be5e1e9475befbf4da68e0ce",
+  "layers": "c8787dbb46aeb3ef998d1c6c4300e726280b49976a5489a4c094626344ee5f7a",
+  "packs": {
+   "de": "f9292be69cd2a53df7da6cc861741bab662f1d9a2bfb35b9eca5dbc2b6619698",
+   "es": "52da7e340d53794a9f05b80023af2f14bb35b6f37fcc48b0024185aec2fc4c9d",
+   "fr": "a3b9251a7a6a4790e37c58e2ea2a6707052088eccd727ce7d998d4caf525e433",
+   "it": "fc4ab3b3726064eb373c004d5bb1d60875e08efbba35abd8a3bf5c59b38edebb",
+   "pt": "419a460652224b1ce311626fad7bd92d7608274b6a7545ef5964c368bb21fbbc"
+  },
+  "tatoeba": {
+   "deu-eng_links": "30f79bb84d2b579482bb43b15e90091595bde629063195555aeda535f6ecda2e",
+   "deu_sentences_detailed": "69600c2f96ac4cf5d45fb88f2f469b57aff20b4df15096481ac81c0098e3d38e",
+   "eng_sentences_detailed": "3a0e7a2fdd7cbad76f226de4c28371a15a2fc4d115001617288b16a35c6293db",
+   "fra-eng_links": "1c6421927725d67cd87f39c3176e18623927c4cda9797dd87ca9a18830fb463d",
+   "fra_sentences_detailed": "3d7feee8d677b24233be6955018fcac5e9f4fc1c06327b25f4479cc1d162a8bb",
+   "ita-eng_links": "f0f401cd887b3a1797a07b7254441738c252c36ad424f47217762767f8c381f1",
+   "ita_sentences_detailed": "8644595c7f87a375909eed7830dd34785d59bf7d802937d420a84831008e933c",
+   "por-eng_links": "bebf6a4b96c63d6f69de28a4ae339b89e3e5cbcc5d0a8e91f991bcc02c8689ec",
+   "por_sentences_detailed": "801bcb759061280471a5ccded5a9ba759b6df44937fcd575d6076ed2f8aacf73",
+   "spa-eng_links": "abff2861bda7d801f44566abdf95d0ed0303a45ce6b6e869031146de53ebd8a5",
+   "spa_sentences_detailed": "7c41001b1790fffa0dd794f05ec8dcac6d51251d4374d884e5c88d14b4b2e327"
+  },
+  "videos": {
+   "-TcPOLkccaI.json": "192dad4b788ece428f9804fdcd5b74db38fb11e7317e4b8eab3f5b9c20b175f9",
+   "D1kHs14kcw4.json": "528c4d504debd61e050396ef96776f3597f9dc15c037e898417e21b8f529641e",
+   "GVwdwoC5Lvk.json": "15b05943f7f30efbdb11be0090df8a0b5499b4936686526dd34b5d648b2e1836"
+  }
+ },
  "langs": {
   "de": {
    "coverage": {
-    "tokenShare": 0.9798,
-    "tokens": 18652,
-    "tokensMapped": 18275,
-    "typeShare": 0.9396,
+    "tokenShare": 0.9794,
+    "tokens": 18240,
+    "tokensMapped": 17865,
+    "typeShare": 0.9308,
     "types": 3078,
-    "typesMapped": 2892
+    "typesMapped": 2865
    },
-   "file": "de.7cf2747ba483.json",
-   "items": 483,
-   "units": 95
+   "file": "de.456e081c4ba4.json",
+   "items": 447,
+   "tatoebaIdsMatched": 4008,
+   "tatoebaItems": 4008,
+   "units": 84
   },
   "es": {
    "coverage": {
-    "tokenShare": 0.971,
-    "tokens": 14533,
-    "tokensMapped": 14111,
-    "typeShare": 0.9679,
+    "tokenShare": 0.975,
+    "tokens": 14260,
+    "tokensMapped": 13904,
+    "typeShare": 0.9672,
     "types": 2804,
-    "typesMapped": 2714
+    "typesMapped": 2712
    },
-   "file": "es.fe0cc886ac26.json",
-   "items": 360,
-   "units": 77
+   "file": "es.5fca856f7cf9.json",
+   "items": 359,
+   "tatoebaIdsMatched": 3287,
+   "tatoebaItems": 3287,
+   "units": 70
   },
   "fr": {
    "coverage": {
-    "tokenShare": 0.9818,
-    "tokens": 18960,
-    "tokensMapped": 18614,
-    "typeShare": 0.972,
+    "tokenShare": 0.9811,
+    "tokens": 18482,
+    "tokensMapped": 18132,
+    "typeShare": 0.9703,
     "types": 2824,
-    "typesMapped": 2745
+    "typesMapped": 2740
    },
-   "file": "fr.566bd8e3c3d7.json",
-   "items": 644,
-   "units": 131
+   "file": "fr.eddbe836b678.json",
+   "items": 552,
+   "tatoebaIdsMatched": 3757,
+   "tatoebaItems": 3759,
+   "units": 109
   },
   "it": {
    "coverage": {
-    "tokenShare": 0.9636,
-    "tokens": 20144,
-    "tokensMapped": 19411,
-    "typeShare": 0.9529,
+    "tokenShare": 0.9628,
+    "tokens": 19713,
+    "tokensMapped": 18980,
+    "typeShare": 0.9514,
     "types": 3269,
-    "typesMapped": 3115
+    "typesMapped": 3110
    },
-   "file": "it.5f22266110e5.json",
-   "items": 378,
-   "units": 74
+   "file": "it.ad8224dc27d6.json",
+   "items": 379,
+   "tatoebaIdsMatched": 4756,
+   "tatoebaItems": 4757,
+   "units": 72
   },
   "pt": {
    "coverage": {
-    "tokenShare": 0.9924,
-    "tokens": 15014,
-    "tokensMapped": 14900,
-    "typeShare": 0.9739,
+    "tokenShare": 0.9921,
+    "tokens": 14701,
+    "tokensMapped": 14585,
+    "typeShare": 0.9731,
     "types": 2643,
-    "typesMapped": 2574
+    "typesMapped": 2572
    },
-   "file": "pt.8a55dc005843.json",
-   "items": 347,
-   "units": 68
+   "file": "pt.bff5586568b6.json",
+   "items": 328,
+   "tatoebaIdsMatched": 3345,
+   "tatoebaItems": 3346,
+   "units": 62
   }
  }
 }

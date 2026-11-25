@@ -12,6 +12,7 @@ export interface InputSource {
   name: "tatoeba" | "youtube" | "graded";
   url: string;
   sentenceIds?: Record<string, string>;
+  authors?: Record<string, string | null>;
   title?: string;
   channel?: string | null;
 }
@@ -43,6 +44,15 @@ export interface InputUnit {
   itemIds: string[];
   targetLemmas: string[];
   tokenCount: number;
+  credit: string;
+  credits: InputCredit[];
+}
+
+export interface InputCredit {
+  url: string;
+  author: string | null;
+  sentenceId?: string;
+  lang?: string;
 }
 
 export interface LemmaCoverage {
@@ -60,13 +70,19 @@ export interface InputBundle {
   lang: string;
   attribution: string[];
   coverage: LemmaCoverage;
+  tatoebaItems: number;
+  tatoebaIdsMatched: number;
   items: InputItem[];
   units: InputUnit[];
 }
 
 export interface InputManifest {
   format: "polingual-input";
-  langs: Record<string, { file: string; items: number; units: number; coverage: LemmaCoverage }>;
+  inputs: Record<string, unknown>;
+  langs: Record<
+    string,
+    { file: string; items: number; units: number; coverage: LemmaCoverage; tatoebaItems: number; tatoebaIdsMatched: number }
+  >;
 }
 
 export const MIN_UNIT_TOKENS = 40;
