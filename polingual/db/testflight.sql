@@ -54,8 +54,14 @@ begin
 end;
 $$;
 
+grant usage on schema polingual to service_role;
+
 revoke all on polingual.testflight_attempts from public, anon, authenticated;
 revoke all on function polingual.record_testflight_attempt(text, text, int, int, int) from public, anon, authenticated;
 grant execute on function polingual.record_testflight_attempt(text, text, int, int, int) to service_role;
 revoke all on function polingual.prune_testflight_attempts() from public, anon, authenticated;
 grant execute on function polingual.prune_testflight_attempts() to service_role;
+
+alter role authenticator set pgrst.db_schemas = 'public, graphql_public, graph, bucket, polingual';
+notify pgrst, 'reload config';
+notify pgrst, 'reload schema';
