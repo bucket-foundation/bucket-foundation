@@ -228,7 +228,7 @@ def main() -> None:
         se = np.sqrt(p_pool * (1 - p_pool) * (1 / n_f + 1 / n_w)) or 1e-12
         z = (k_f / n_f - k_w / n_w) / se
         p = float(stats.norm.cdf(z))
-        pvals.append(p)
+        pvals.append(max(p, 1e-300))
         t2[lang] = {"frequent": dict(c), "n_classified": n_f, "borrowed_share": k_f / n_f, "ci95": wilson(k_f, n_f),
                     "lexicon_borrowed_share": k_w / n_w, "lexicon_n": n_w, "z": float(z), "p": p}
     for (lang, row), q in zip(t2.items(), bh(pvals)):
@@ -317,7 +317,7 @@ def main() -> None:
           "secondary_donor": {"rho": float(rho2), "p": float(p2)}}
     print("t3 done", file=sys.stderr, flush=True)
 
-    prim = [t1["phonetic"]["p_one_sided"], t1["semantic"]["p_one_sided"], t2_summary["fisher_p"] or 1.0, t3["p"]]
+    prim = [t1["phonetic"]["p_one_sided"], t1["semantic"]["p_one_sided"], 1.0 if t2_summary["fisher_p"] is None else t2_summary["fisher_p"], t3["p"]]
     out = {"seed": SEED, "T1": t1, "T2": {"summary": t2_summary, "family": t2_family, "languages": t2}, "T3": t3,
            "holm": dict(zip(("T1a", "T1b", "T2", "T3"), holm(prim))), "raw_p": dict(zip(("T1a", "T1b", "T2", "T3"), prim))}
     os.makedirs(DATA, exist_ok=True)

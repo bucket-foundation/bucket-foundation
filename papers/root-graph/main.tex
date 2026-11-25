@@ -1,0 +1,336 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{bib/refs.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+\newcommand{\emp}[1]{{\small[empirical: #1]}}
+\newcommand{\bm}[1]{{\small[bm:#1]}}
+\newcommand{\sumrun}{data/summary.json, 2026-11-25, python3 scripts/stats.py}
+\newcommand{\testrun}{data/tests.json, 2026-11-25, python3 scripts/tests.py}
+
+\glossentry{forest}{inheritance forest}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/lean/BucketMath/Etymology/Forest.lean}%
+  {The graph whose nodes are lexemes and reconstructed roots and whose
+   edges point from each node to the one form it was inherited from; see
+   \Cref{def:forest}.}
+\glossentry{rootdist}{root distance}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/papers/root-graph/scripts/tests.py}%
+  {The number of inheritance steps from two lexemes up to their lowest
+   common ancestor, summed; see \Cref{def:rootdist}.}
+\glossentry{bshare}{borrowed share}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/papers/root-graph/PREREGISTRATION.md}%
+  {Borrowed words divided by borrowed plus inherited words, among words
+   whose first etymology relation is one of the two.}
+
+\title{A Root Graph for Every Language in Wiktionary}
+\author{Bucket Foundation}
+\date{2026-11-25}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We build an etymology graph over every language in English Wiktionary:
+12,242,009 nodes for 7,601 language codes, 163,258 of them reconstructed
+forms, and 5.3 million edges of types inherited, borrowed, derived,
+cognate, calque and affix \emp{\sumrun}. Inheritance edges form a
+\term{forest}{forest} with 514 family roots and depth up to 18. We prove
+in Lean that such a forest is acyclic, that the depth of the lowest common
+ancestor is an ultrametric similarity, and that borrowing breaks the
+ultrametric inequality only through a word with two ancestry paths
+\bm{BucketMath.Etymology.single\_address\_ultra}. Three preregistered
+tests follow. \term{rootdist}{Root distance} predicts the phonetic
+similarity of translation pairs, Spearman $\rho=-0.41$, 95\% CI
+$[-0.53,-0.29]$, $n=236$, Holm $p=6.8\times10^{-11}$; it does not predict
+semantic similarity, $n=46$. Frequent vocabulary has a lower
+\term{bshare}{borrowed share} than the whole lexicon in 186 of 198
+languages, 156 significant after Benjamini-Hochberg. Borrowed share does
+not explain the residuals of cognate coverage once genealogy is
+regressed out, $\rho=0.28$, CI $[-0.15,0.64]$, $n=23$: inconclusive
+\emp{\testrun}.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+A learner who knows that German \emph{Wasser} and English \emph{water}
+come from one Proto-Germanic form has a reason to expect the two to sound
+alike. A learner who meets Japanese \emph{tēburu} has a different reason:
+Japanese borrowed it from English. Course sequencing in Bucket's learning
+engine uses a tree similarity, the depth of the shared prefix of two
+taxonomy addresses, and the proof that every acquisition order costs the
+same rests on that similarity being an ultrametric
+\bm{BucketMath.Learning.Sequencing.lcp\_isUltra}. Etymology gives a
+natural tree for words. Borrowing makes it a graph. We build the graph at
+full Wiktionary scale, prove what survives of the tree structure, and test
+three empirical claims against it.
+
+\section{Related Work}
+\label{sec:related}
+
+Wiktextract turns Wiktionary pages into structured records, including the
+etymology templates we parse \autocite{ylonen2022wiktextract,kaikki2026raw}.
+The World Loanword Database measured borrowing rates over 41 languages and
+found core vocabulary resists borrowing \autocite{haspelmath2009loanwords};
+our T2 repeats that question over 198 languages with a cruder
+classification. Phonetic alignment for cognate detection is surveyed by
+List \autocite{list2014sequence}. Ultrametrics on rooted trees are
+standard in phylogenetics \autocite{semple2003phylogenetics}.
+
+\section{Graph}
+\label{sec:graph}
+
+\begin{definition}[Root graph]
+\label{def:graph}
+Nodes are pairs (language code, entry form). Forms are normalized to
+Wiktionary entry names by removing macrons and breves in every language,
+acute and grave accents in Slavic languages, and overdots in Old and
+Middle English. A node is reconstructed when its form starts with an
+asterisk or its language is a proto-language. Edges come from the
+etymology templates of each entry: inherited, borrowed, derived, calque,
+cognate and affix, each with the source page and template name.
+\end{definition}
+
+Lineage templates in one etymology section chain: in ``from Middle English
+X, from Old English Y'', the second edge leaves X. Cognate and affix edges
+leave the headword.
+
+\begin{definition}[Inheritance forest]
+\label{def:forest}
+Each node keeps the first inheritance parent claimed for it in file
+order. A claim that would close a cycle is dropped. The result is a
+forest, \Cref{thm:acyclic}.
+\end{definition}
+
+The build streams the 3.1 GB compressed dump line by line in one process
+under a 20 GB memory cap and writes SQLite. It read 11,071,398 entries in
+six minutes and dropped 247 cycle-closing claims \emp{\sumrun}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Graph size \emp{\sumrun}.}
+  \label{tab:graph}
+  \begin{tabular}{@{}lr@{}}
+    \toprule
+    Item & Count \\
+    \midrule
+    Nodes & 12,242,009 \\
+    Reconstructed nodes & 163,258 \\
+    Language codes with entries & 5,162 \\
+    Affix edges & 2,907,461 \\
+    Cognate edges & 746,920 \\
+    Inherited edges & 623,120 \\
+    Borrowed edges & 513,409 \\
+    Derived edges & 506,264 \\
+    Calque edges & 28,335 \\
+    Family roots with descendants & 514 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The largest families by rooted lexemes are Proto-Indo-European (40,040
+lexemes over 418 languages), Proto-Slavic (31,905), Proto-Germanic
+(31,413), Latin (23,349) and Proto-Turkic (14,807). Latin and Middle
+English appear as roots where Wiktionary stops the chain there. Per-language
+and per-family tables are in \texttt{\_intake/root-graph/stats\_lang.csv}
+and \texttt{stats\_family.csv}.
+
+\section{Proofs}
+\label{sec:proofs}
+
+\begin{theorem}[Acyclicity]
+\label{thm:acyclic}
+If every parent has strictly smaller rank than its child, no node is its
+own ancestor at any positive number of steps
+\bm{BucketMath.Etymology.forest\_acyclic}.
+\end{theorem}
+
+\begin{proof}
+Each step lowers the rank, so after $n+1$ steps the rank is strictly
+below the start.
+\end{proof}
+
+Represent a node by its root path, the list of child indices from its
+family root. Depth is the length of the path; the parent drops the last
+index, so depth is a valid rank \bm{BucketMath.Etymology.address\_acyclic}.
+
+\begin{theorem}[LCA depth]
+\label{thm:lca}
+The longest common prefix of two root paths is a common ancestor
+\bm{BucketMath.Etymology.lcp\_common\_prefix}, and every common ancestor
+has depth at most its length \bm{BucketMath.Etymology.lcp\_deepest}. Its
+length is therefore the depth of the lowest common ancestor.
+\end{theorem}
+
+\begin{theorem}[Ultrametric]
+\label{thm:ultra}
+LCA depth satisfies $\min(s(a,b), s(b,c)) \le s(a,c)$
+\bm{BucketMath.Etymology.lcaDepth\_ultra}. For any height $H$ the distance
+$H - s(a,b)$ is symmetric and satisfies $d(a,c) \le \max(d(a,b), d(b,c))$
+\bm{BucketMath.Etymology.rootDist\_ultrametric}.
+\end{theorem}
+
+\begin{definition}[Root distance]
+\label{def:rootdist}
+For lexemes $u,v$ with depths $d_u,d_v$ and LCA depth $s$, root distance
+is $d_u + d_v - 2s$. Pairs with no common ancestor have none.
+\end{definition}
+
+A borrowed word has two lineages: its inherited parent inside its own
+family and its donor in another. Give each node the set of its root paths
+and set similarity to the largest LCA depth over pairs of paths.
+
+\begin{theorem}[When borrowing breaks the ultrametric]
+\label{thm:borrow}
+If the middle word $b$ has one root path, the ultrametric inequality holds
+for any path sets of $a$ and $c$
+\bm{BucketMath.Etymology.single\_address\_ultra}. With two paths it fails:
+$a$ at $[0,0,0]$, $b$ at $\{[0,0,1],[1,0,1]\}$ and $c$ at $[1,0,0]$ give
+$s(a,b)=s(b,c)=2$ and $s(a,c)=0$
+\bm{BucketMath.Etymology.borrowing\_breaks\_ultra}, so no proof of the
+inequality for general path sets exists
+\bm{BucketMath.Etymology.borrowing\_needs\_two\_addresses}.
+\end{theorem}
+
+\begin{proof}
+Take $x$ in $a$'s set attaining $s(a,b)$ and $z$ in $c$'s set attaining
+$s(b,c)$. Then $\min(\mathrm{lcp}(x,b),\mathrm{lcp}(b,z)) \le
+\mathrm{lcp}(x,z) \le s(a,c)$. The counterexample is checked by
+\texttt{decide}.
+\end{proof}
+
+The sequencing result that every acquisition order costs the same
+\bm{BucketMath.Learning.Sequencing.totalCost\_perm} therefore applies to
+vocabulary ordered by the inheritance forest, and stops applying as soon
+as a word can be reached through a borrowing edge.
+
+\section{Preregistered Tests}
+\label{sec:tests}
+
+Hypotheses, sampling, corrections and thresholds were committed in
+\texttt{PREREGISTRATION.md} before any test statistic was computed. Every
+number in T1 to T3 comes from \emp{\testrun}.
+
+\paragraph{T1.} Out of 200,000 sampled translation pairs, 333 share an
+inheritance ancestor. Among the 236 of those with IPA on both sides, root
+distance correlates with phonetic similarity at $\rho=-0.41$, cluster
+bootstrap CI $[-0.53,-0.29]$, Holm $p=6.8\times10^{-11}$. Related pairs
+average phonetic similarity 0.47 against 0.16 for the 42,705 unrelated
+pairs, rank-biserial $r=0.65$. Semantic similarity has 46 related pairs
+with vectors, $\rho=-0.07$, Holm $p=0.39$: H0b stands. Related pairs do
+have higher LaBSE cosine than unrelated ones, 0.76 against 0.66
+(exploratory).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{figures/fig_distance.png}
+  \caption{Mean similarity of translation pairs by root distance. Dotted
+    lines: pairs with no common ancestor.}
+  \label{fig:distance}
+\end{figure}
+
+\paragraph{T2.} Among the words that translate the 1,000 most-translated
+English senses, 198 languages have at least 100 classified words. The
+median borrowed share is 0.19. Frequent vocabulary has a lower borrowed
+share than the whole lexicon in 186 languages, and 156 reject H0 at BH
+$q<0.05$; the Fisher-pooled $p$ is below $10^{-300}$, the floor we clip
+to. German goes from 0.52 over the lexicon to 0.15 in frequent words,
+Spanish from 0.76 to 0.37, Japanese from 0.94 to 0.52. By family, median
+borrowed share is 0.12 for the 48 Indo-European languages and 0.30 for
+the 16 Turkic ones.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.62\linewidth]{figures/fig_borrowed.png}
+  \caption{Borrowed share of frequent vocabulary with Wilson 95\% CI,
+    against the whole lexicon, for the 40 languages with most classified
+    frequent words.}
+  \label{fig:borrowed}
+\end{figure}
+
+\paragraph{T3.} Over the 23 languages of the cognate-coverage study,
+genealogical closeness to English explains $R^2=0.56$ of cognate
+coverage. The residuals correlate with borrowed share at $\rho=0.28$, CI
+$[-0.15,0.64]$, Holm $p=0.39$. The CI reaches past 0.4, so by the
+preregistered rule the result is inconclusive. Residuals against the
+share borrowed from Latin, French, English or Greek give $\rho=0.23$,
+$p=0.29$ (exploratory).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figures/fig_residuals.png}
+  \caption{Cognate-coverage residual after genealogy, against borrowed
+    share of frequent vocabulary.}
+  \label{fig:residuals}
+\end{figure}
+
+\section{Limitations}
+\label{sec:limitations}
+
+Nodes are keyed by form, so homographs share one node and their first
+etymology claims the parent. Only 0.17\% of translation pairs reach a
+common ancestor, because most translation-table words have no page with
+an inheritance chain that reaches a shared proto-form; T1 rests on 236
+pairs drawn mostly from well-documented families. Semantic similarity uses
+the 27-language photon index and covers 46 related pairs. The
+word classification uses the first etymology relation on the page, which
+labels a word inherited when Wiktionary writes the chain from its own
+earlier stage, and English is absent from T2 because the translation
+tables are English-to-other. Genealogical closeness in T3 is near zero for
+most languages outside Germanic, which leaves little variance to remove.
+
+\paragraph{Deviation, 2026-11-25.} The first T2 run mapped a Fisher
+$p$ of 0 to 1 in the Holm family through a falsy check. We fixed the
+check and clipped per-language $p$ to $10^{-300}$ before pooling. No
+hypothesis, sample or threshold changed.
+
+\paragraph{Data and license.} Wiktionary content via Kaikki.org,
+CC BY-SA 4.0 \autocite{kaikki2026raw}. The dump and graph live under
+\texttt{\_intake/} and stay out of git; \texttt{make graph} and
+\texttt{make data} rebuild them.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{forest}
+\printglossaryentry{rootdist}
+\printglossaryentry{bshare}
+
+\section{Lean Listings}
+\label{app:lean}
+
+From \texttt{lean/BucketMath/Etymology/Forest.lean}, checked by
+\texttt{make lean} with Lean 4 \autocite{demoura2021lean4}:
+
+\begin{lstlisting}[style=bucketlean]
+theorem single_address_ultra (A C : List (List Nat)) (b : List Nat) :
+    min (setSim A [b]) (setSim [b] C) <= setSim A C
+
+theorem borrowing_breaks_ultra :
+    setSim inherited otherFamily <
+      min (setSim inherited borrowed) (setSim borrowed otherFamily) := by
+  decide
+\end{lstlisting}
+
+\end{document}
