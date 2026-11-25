@@ -1,0 +1,109 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "805143e5d7760a147fe784e98dee3e5910cf9bc5b1e10a9e2a678a1f0f766a4c",
+  "response": {
+    "items": [
+      {
+        "id": "work:schepens-2013-cross-linguistic-similarity",
+        "mechanism": "lexical_proximity",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:ringbom-2007-cross-linguistic-similarity",
+        "mechanism": "lexical_proximity",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:bahrick-1993-maintenance-foreign-vocabulary",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:kornell-2008-interleaving-induction",
+        "mechanism": "interleaving",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:rohrer-2007-shuffling-math-problems",
+        "mechanism": "interleaving",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "tripled",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:rohrer-2020-interleaved-math-classroom-rct",
+        "mechanism": "interleaving",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:shea-1979-contextual-interference",
+        "mechanism": "interleaving",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:shea-1979-contextual-interference",
+        "mechanism": "interleaving",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:anderson-1994-retrieval-induced-forgetting",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:levy-2007-inhibiting-native-language",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

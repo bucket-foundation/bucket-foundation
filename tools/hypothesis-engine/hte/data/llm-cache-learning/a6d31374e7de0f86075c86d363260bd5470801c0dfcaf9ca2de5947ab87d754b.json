@@ -1,0 +1,189 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "0c22d72fa1c3347d911405910719608ddf0153a064006d86606029140530b1f7",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": "d = \u22120.30",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "transfer",
+        "direction": "negative",
+        "effect_size": "d = \u22120.48",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:cognitive-load-theory",
+        "mechanism": "worked_examples",
+        "outcome": "comprehension",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "proficiency",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:self-explanation",
+        "mechanism": "elaboration",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "2 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "1 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:two-sigma-did-not-replicate",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.37\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:mastery-learning-effect",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.5\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d\u22480.79",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d\u22480.76",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-effects-shrink-at-scale",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.66\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-effects-shrink-at-scale",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.21\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:k12-math-its-near-zero",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "g\u22480.09",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:feedback-power-and-variance",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.79\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:kestin-ai-tutor-rct",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "more than doubled learning gains",
+        "n": 194,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

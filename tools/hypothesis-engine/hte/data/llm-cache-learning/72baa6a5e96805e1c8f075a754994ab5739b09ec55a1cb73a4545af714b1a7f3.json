@@ -1,0 +1,149 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "d5d3a348bd4802f9185d402b1b0760c7b03dc362e014e65f079b4978e99a53f1",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": "d=-0.30",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:seductive-details-effect",
+        "mechanism": "worked_examples",
+        "outcome": "transfer",
+        "direction": "negative",
+        "effect_size": "d=-0.48",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:self-explanation",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:productive-failure",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "2 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bloom-two-sigma",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "1 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:two-sigma-did-not-replicate",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.37 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:mastery-learning-effect",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.5 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-interaction-plateau",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d\u22480.76 (ITS) vs d\u22480.31 (answer-based)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:its-effects-shrink-at-scale",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.66 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:k12-math-its-near-zero",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": "g\u22480.09",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:feedback-power-and-variance",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.79 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:kestin-ai-tutor-rct",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "more than 2x learning gain",
+        "n": 194,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "4decb16fd932fd3c5963279a4ba4d1005f137e08e72eb7aadbeb9d988e1afbd3",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:retrieval-is-not-education-outcome",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 2.4x retention for users with 7+ day streaks",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 21% churn reduction for at-risk users with Streak Freeze",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:value-led-notifications",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "guilt framing tested 5-8% more effective",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

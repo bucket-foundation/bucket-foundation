@@ -1,0 +1,109 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "9fc8e4cfb5f073a27c0db3e8628eb28f3305995fb861dd20393b5a1e3d176d51",
+  "response": {
+    "items": [
+      {
+        "id": "claim:career-work:apprenticeship-transfers-tacit-knowledge",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:hidden-apprenticeship-in-autodidacts",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 2 sigma (Bloom's original one-to-one mastery tutoring vs class instruction)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.25 to 0.37 sigma (durable figure for tutoring at scale, later reviews)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "near 0.5 sigma (durable figure, later reviews)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:research-apprenticeship-review-sadler-2010",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:summer-apprenticeship-md-phd-entry",
+        "mechanism": "tutoring",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null,
+        "n": 236432,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice-variance-explained",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "variance explained 26% in games, 21% in music, 4% in education",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:expertise-reversal",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

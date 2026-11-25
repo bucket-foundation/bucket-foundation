@@ -1,0 +1,39 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "4d3cd13a9856f1c6cb0ef0066c15737ce6edbae9a0be53a6838874ee1f21c6f2",
+  "response": {
+    "items": [
+      {
+        "id": "work:ericsson-1993-deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:ericsson-2008-deliberate-practice-expert",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:ericsson-2008-deliberate-practice-expert",
+        "mechanism": "corrective_feedback",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

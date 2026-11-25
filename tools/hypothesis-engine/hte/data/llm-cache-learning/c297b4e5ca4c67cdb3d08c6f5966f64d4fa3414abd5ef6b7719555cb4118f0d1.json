@@ -1,0 +1,89 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "e81d10f4ed5db02707761a336fa0d8ca8be1981e81df8df1626943167e54b951",
+  "response": {
+    "items": [
+      {
+        "id": "work:macnamara-2016-deliberate-practice-sports",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "18% of variance overall; 1% among elite performers",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:mosing-2014-practice-twins",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:renkl-2003-example-fading",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:rittle-johnson-2017-self-explanation-math-meta",
+        "mechanism": "elaboration",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small to moderate",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:rittle-johnson-2017-self-explanation-math-meta",
+        "mechanism": "elaboration",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": "small to moderate",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:sleiman-2020-performance-feedback-obm",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "large",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:smither-2005-multisource-feedback-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:stadler-et-al-2024-cognitive-ease-at-a-cost",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

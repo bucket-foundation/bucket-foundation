@@ -1,0 +1,39 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "dd8e514d5cca1040ae1b0ca6f9010a2d6cf3b8290f3bfd14f302b5cd7a622b30",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:retrieval-is-not-education-outcome",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 2.4x",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:value-led-notifications",
+        "mechanism": "anxiety",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "5-8% more effective",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

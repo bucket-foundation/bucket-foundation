@@ -1,0 +1,79 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "f5ebbd27e3bf85a2b1a272cab17945eb45da5fde174c1edc189736a278598dbe",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:dependence-flag",
+        "mechanism": "ai_assistance",
+        "outcome": "retention",
+        "direction": "null",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:ai-without-guardrails-harms-learning",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "interleaving",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:study-technique-utility",
+        "mechanism": "elaboration",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:cognitive-load-theory",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "ci": null,
+        "n": null,
+        "se": null
+      }
+    ]
+  }
+}

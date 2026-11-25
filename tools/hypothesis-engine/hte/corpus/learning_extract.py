@@ -74,6 +74,9 @@ EXTRACT_SCHEMA: dict[str, Any] = {
                     "outcome": {"type": "string", "enum": [*OUTCOME_GLOSS, "none"]},
                     "direction": {"type": "string", "enum": list(DIRECTIONS)},
                     "effect_size": {"type": ["string", "null"]},
+                    "n": {"type": ["integer", "null"]},
+                    "ci": {"type": ["string", "null"]},
+                    "se": {"type": ["number", "null"]},
                 },
             },
         },
@@ -111,7 +114,7 @@ def prompt_for(records: Sequence[Record], pass_index: int) -> str:
         "You code learning-science findings as mechanism-to-outcome links. "
         f"{_PASS_ANGLES[pass_index % len(_PASS_ANGLES)]}\n"
         "For each record return zero or more items with the record id, one mechanism, one outcome, "
-        "a direction, and the effect size string when the text states one (for example g=0.51, d=0.2, 2 sigma). "
+        "a direction, and the effect size string when the text states one (for example g=0.51, d=0.2, 2 sigma). When the text states them, also return n (total participants), ci (the 95% interval of that effect as low to high) and se (its standard error); leave them null otherwise and never estimate them. "
         "direction is positive when the mechanism raises the outcome, negative when it lowers it, and null when "
         "the record reports no effect, no reliable effect, or an effect that vanishes under controls. "
         "Use mechanism or outcome none when nothing fits; omit such items.\n\n"
@@ -124,8 +127,21 @@ def _parse(response: dict[str, Any], ids: set[str]) -> dict[str, set[Extraction]
         rid, m, o, d = raw.get("id"), raw.get("mechanism"), raw.get("outcome"), raw.get("direction")
         if rid not in ids or m not in MECHANISM_GLOSS or o not in OUTCOME_GLOSS or d not in DIRECTIONS:
             continue
-        got.setdefault(rid, set()).add(Extraction(m, o, d, raw.get("effect_size") or None))
+        got.setdefault(rid, set()).add(Extraction(m, o, d, effect_string(raw)))
     return got
+
+def effect_string(raw: dict[str, Any]) -> str | None:
+    eff = raw.get("effect_size")
+    if not eff:
+        return None
+    parts = [str(eff)]
+    if isinstance(raw.get("se"), (int, float)) and raw["se"] > 0:
+        parts.append(f"SE={raw['se']}")
+    if raw.get("ci"):
+        parts.append(f"CI {raw['ci']}")
+    if isinstance(raw.get("n"), int) and raw["n"] > 0:
+        parts.append(f"n={raw['n']}")
+    return "; ".join(parts)
 
 def _key(e: Extraction) -> tuple[str, str, str]:
     return (e.mechanism, e.outcome, e.direction)

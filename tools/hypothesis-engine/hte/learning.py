@@ -166,15 +166,21 @@ def bucket_proposals(hypotheses: Sequence[LearningHypothesis]) -> list[dict[str,
         if h.mechanism not in BUCKET_MEASURES or not (h.supports or h.refutes):
             continue
         measure, test = BUCKET_MEASURES[h.mechanism]
-        pooled = h.meta is not None and abs(h.meta.pooled) >= 0.05
+        pooled = h.meta is not None and not h.meta.descriptive and abs(h.meta.pooled) >= 0.05
         d = abs(h.meta.pooled) if pooled else DEFAULT_PLANNING_D
+        design = "two_sample" if test.startswith("two-sample") else ("mixed" if "random intercept" in test else "regression")
+        if design == "two_sample":
+            n, unit = meta.n_per_group(d), "per group"
+        else:
+            n, unit = meta.n_regression(d), "total learners"
+        note = "simulate with the learner design effect before fielding; n is the single-level f² bound" if design == "mixed" else ""
         mech, outc = h.mechanism.replace("_", " "), h.outcome.replace("_", " ")
         out.append({
             "hypothesis": h.id, "statement": h.statement,
             "H0": f"In Bucket learner data, {mech} ({measure}) has no effect on {outc}.",
             "H1": f"{mech} changes {outc}, standardized effect of at least d={d:.2f}.",
             "test": test, "planning_d": round(d, 3), "planning_d_source": "pooled" if pooled else "default",
-            "alpha": meta.ALPHA, "power": meta.POWER, "n_per_group": meta.n_per_group(d),
+            "alpha": meta.ALPHA, "power": meta.POWER, "design": design, "n": n, "n_unit": unit, "note": note,
         })
     return out
 
@@ -190,11 +196,11 @@ def attach_meta(lc: learning_corpus.LearningCorpus, hypotheses: Sequence[Learnin
             eff = meta.parse_effect(f"{text} {e.span.quote}", e.source_id)
             if eff is None:
                 continue
-            if eid.endswith(":negative") and eff.d > 0:
-                eff = meta.Effect(-eff.d, eff.se, eff.imputed_se, eff.source_id)
+            signed = -abs(eff.d) if e.stance is Stance.NEGATIVE else abs(eff.d)
+            eff = meta.Effect(signed, eff.se, eff.imputed_se, eff.source_id)
             per_source.setdefault(e.source_id, eff)
         h.meta = meta.random_effects(list(per_source.values()))
-    qs = meta.benjamini_hochberg([h.meta.p if h.meta else None for h in hypotheses])
+    qs = meta.benjamini_hochberg([h.meta.p if h.meta and not h.meta.descriptive else None for h in hypotheses])
     for h, q in zip(hypotheses, qs):
         h.q_bh = q
 
@@ -335,23 +341,27 @@ def render_markdown(result: dict[str, Any], *, top: int = 25, gaps: int = 10, ta
     metas = [h for h in result["hypotheses"] if h.get("meta")]
     out += [
         "", "## Meta-Analysis", "",
-        "DerSimonian-Laird random effects over one standardized effect per source. r and odds ratios convert to d; SE comes from a stated CI or n, else 0.15 imputed and counted. q is the Benjamini-Hochberg adjusted p across every hypothesis with a pooled effect. Egger needs three or more studies with distinct SEs.",
+        "DerSimonian-Laird random effects over one standardized effect per source, signed by the item's final stance. r and odds ratios convert to d. SE comes from a stated SE, CI or n; otherwise 0.15 is assumed. Rows with k below 2 or more than half assumed SEs are descriptive only: no CI, p or q. q is Benjamini-Hochberg over the inferential rows. Egger uses studies with stated SEs and needs three.",
         "",
-        "| Hypothesis | k | Imputed SE | Pooled d | 95% CI | p | q | I² | Egger p | P |",
+        "| Hypothesis | k | Assumed SE share | Pooled d | 95% CI | p | q | I² | Egger p | P |",
         "|---|---|---|---|---|---|---|---|---|---|",
     ]
-    for h in sorted(metas, key=lambda h: h["q_bh"] if h["q_bh"] is not None else 1.0):
+    for h in sorted(metas, key=lambda h: (h["meta"]["descriptive"], h["q_bh"] if h["q_bh"] is not None else 1.0, h["id"])):
         m = h["meta"]
         eg = f"{m['egger_p']:.3f}" if m["egger_p"] is not None else "n/a"
+        if m["descriptive"]:
+            ci = p = q = "assumed SE, descriptive only" if m["k"] >= 2 else "k=1, descriptive only"
+        else:
+            ci, p, q = f"{m['ci_low']:.2f} to {m['ci_high']:.2f}", f"{m['p']:.3g}", f"{h['q_bh']:.3g}"
         out.append(
-            f"| {h['statement']} | {m['k']} | {m['k_imputed_se']} | {m['pooled']:.2f} | {m['ci_low']:.2f} to {m['ci_high']:.2f} | "
-            f"{m['p']:.3g} | {h['q_bh']:.3g} | {m['i2']:.2f} | {eg} | {h['P']:.3f} |"
+            f"| {h['statement']} | {m['k']} | {m['imputed_share']:.0%} | {m['pooled']:.2f} | {ci} | {p} | {q} | "
+            f"{m['i2']:.2f} | {eg} | {h['P']:.3f} |"
         )
     out += ["", "## Tests On Bucket Data", "",
-            "Two-sided alpha 0.05, power 0.8. Planning d is the absolute pooled effect when one exists, else 0.2.", "",
-            "| Hypothesis | H0 | H1 | Test | d | n per group |", "|---|---|---|---|---|---|"]
-    for pr in result.get("bucket_proposals", [])[:15]:
-        out.append(f"| {pr['statement']} | {pr['H0']} | {pr['H1']} | {pr['test']} | {pr['planning_d']:.2f} | {pr['n_per_group']} |")
+            "Two-sided alpha 0.05, power 0.8, every proposal listed. Planning d is the absolute pooled effect from an inferential row, else 0.2. Two-sample tests give n per group; regression rows use Cohen's f² with f² = r²/(1-r²) and r from d; mixed-effects rows show that bound and need a simulation with the learner design effect.", "",
+            "| Hypothesis | H0 | H1 | Test | Design | d | n |", "|---|---|---|---|---|---|---|"]
+    for pr in result.get("bucket_proposals", []):
+        out.append(f"| {pr['statement']} | {pr['H0']} | {pr['H1']} | {pr['test']} | {pr['design']} | {pr['planning_d']:.2f} | {pr['n']} {pr['n_unit']} |")
     out += ["", "## Gap Queue", "", "Ordered by value of information, the summed u² of the hypotheses each gap would move.", "",
             "| Gap | Kind | VoI | Description |", "|---|---|---|---|"]
     for g in result["gap_nodes"][:gaps]:

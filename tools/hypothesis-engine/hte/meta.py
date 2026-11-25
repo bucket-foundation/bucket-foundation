@@ -8,6 +8,7 @@ from typing import Sequence
 
 _N = NormalDist()
 DEFAULT_IMPUTED_SE = 0.15
+MAX_IMPUTED_SHARE = 0.5
 ALPHA = 0.05
 POWER = 0.8
 
@@ -17,6 +18,7 @@ _SIGMA_RE = re.compile(_NUM + r"\s?(?:σ|sigma|sd\b)", re.IGNORECASE)
 _R_RE = re.compile(r"\br\s*[≈=~]\s*" + _NUM, re.IGNORECASE)
 _OR_RE = re.compile(r"\bOR\s*[≈=~]\s*" + _NUM)
 _CI_RE = re.compile(r"(?:CI[^\d-]*|\[)" + _NUM + r"\s*(?:,|to|–|-)\s*" + _NUM)
+_SE_RE = re.compile(r"\bSE\s*=\s*" + _NUM)
 _N_RE = re.compile(r"\b[nN]\s*=\s*([\d,]+)")
 
 @dataclass(frozen=True)
@@ -43,6 +45,9 @@ def parse_effect(text: str, source_id: str = "") -> Effect | None:
         d = float(m.group(1))
     if d is None or not math.isfinite(d):
         return None
+    se = _SE_RE.search(text)
+    if se and float(se.group(1)) > 0:
+        return Effect(d, float(se.group(1)), False, source_id)
     ci = _CI_RE.search(text)
     if ci and m is not None and _SMD_RE.search(text):
         lo, hi = float(ci.group(1)), float(ci.group(2))
@@ -91,16 +96,21 @@ class MetaResult:
     k_imputed_se: int
     pooled: float
     se: float
-    ci_low: float
-    ci_high: float
-    p: float
+    ci_low: float | None
+    ci_high: float | None
+    p: float | None
     tau2: float
     i2: float
     egger_intercept: float | None
     egger_p: float | None
+    descriptive: bool = False
+
+    @property
+    def imputed_share(self) -> float:
+        return self.k_imputed_se / self.k if self.k else 1.0
 
     def to_dict(self) -> dict:
-        return dict(self.__dict__)
+        return {**self.__dict__, "imputed_share": self.imputed_share}
 
 def egger(effects: Sequence[Effect]) -> tuple[float | None, float | None]:
     if len(effects) < 3:
@@ -138,9 +148,16 @@ def random_effects(effects: Sequence[Effect]) -> MetaResult | None:
     se = math.sqrt(1 / sum(ws))
     z = pooled / se
     p = 2 * (1 - _N.cdf(abs(z)))
-    ei, ep = egger(effects)
+    k_imp = sum(e.imputed_se for e in effects)
+    descriptive = len(effects) < 2 or k_imp / len(effects) > MAX_IMPUTED_SHARE
+    ei, ep = egger([e for e in effects if not e.imputed_se])
+    if descriptive:
+        return MetaResult(
+            k=len(effects), k_imputed_se=k_imp, pooled=pooled, se=se, ci_low=None, ci_high=None, p=None,
+            tau2=tau2, i2=i2, egger_intercept=ei, egger_p=ep, descriptive=True,
+        )
     return MetaResult(
-        k=len(effects), k_imputed_se=sum(e.imputed_se for e in effects), pooled=pooled, se=se,
+        k=len(effects), k_imputed_se=k_imp, pooled=pooled, se=se,
         ci_low=pooled - 1.959964 * se, ci_high=pooled + 1.959964 * se, p=p, tau2=tau2, i2=i2,
         egger_intercept=ei, egger_p=ep,
     )
@@ -155,6 +172,15 @@ def benjamini_hochberg(pvalues: Sequence[float | None]) -> list[float | None]:
         running = min(running, pvalues[i] * m / rank)
         out[i] = min(1.0, running)
     return out
+
+def n_regression(d: float, alpha: float = ALPHA, power: float = POWER, predictors: int = 1) -> int:
+    d = abs(d)
+    if d <= 0:
+        raise ValueError("effect size must be nonzero")
+    r2 = d * d / (d * d + 4)
+    f2 = r2 / (1 - r2)
+    za, zb = _N.inv_cdf(1 - alpha / 2), _N.inv_cdf(power)
+    return math.ceil((za + zb) ** 2 / f2 + predictors + 1)
 
 def n_per_group(d: float, alpha: float = ALPHA, power: float = POWER) -> int:
     d = abs(d)

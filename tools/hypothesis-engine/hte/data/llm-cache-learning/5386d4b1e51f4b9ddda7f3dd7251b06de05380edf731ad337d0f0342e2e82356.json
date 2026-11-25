@@ -1,0 +1,169 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "7948512312ab8368e3fa8ac4687e6ad549f5f9c32f8dec3a396c27dca582b318",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:bastani-unguarded-llm-harm",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "48% increase in assisted scores vs control",
+        "n": 1000,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bastani-unguarded-llm-harm",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "negative",
+        "effect_size": "17% decrease in unassisted exam vs control",
+        "n": 1000,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:bastani-unguarded-llm-harm",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": 1000,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:replicated-efficacy-band",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5-0.8\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:replicated-efficacy-band",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5-0.8\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:replicated-efficacy-band",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5\u03c3",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "explained variance about 26% (games)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "explained variance about 21% (music)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "explained variance about 4% (education)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:self-determination-theory",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:reward-crowding-out",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:reward-crowding-out",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:reward-crowding-out",
+        "mechanism": "corrective_feedback",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:gamification-meta-analysis",
+        "mechanism": "motivation",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "g=0.49",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:gamification-meta-analysis",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "g=0.36",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:gamification-meta-analysis",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "g=0.25",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

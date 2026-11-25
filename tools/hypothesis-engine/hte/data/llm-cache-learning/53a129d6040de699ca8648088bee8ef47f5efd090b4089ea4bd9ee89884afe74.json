@@ -1,0 +1,39 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "3aa1ba7bb65e80502c4345e6c97ea7efb5acf3d62bf221df81e305f66f02c13d",
+  "response": {
+    "items": [
+      {
+        "id": "claim:career-work:smpy-ability-predicts-career",
+        "mechanism": "aptitude",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:mentorship-into-a-domain",
+        "mechanism": "tutoring",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:tutor-copilot-scaling-expertise",
+        "mechanism": "ai_assistance",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "+4 percentage points topic mastery; +9 points for students of weaker tutors",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

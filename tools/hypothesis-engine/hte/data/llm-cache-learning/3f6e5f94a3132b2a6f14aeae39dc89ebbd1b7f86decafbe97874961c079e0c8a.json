@@ -1,0 +1,49 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "82dad9ac23b5a6b406d8a2e1f2b73f28a58f6ace7eaff94a65773e8f3b885353",
+  "response": {
+    "items": [
+      {
+        "id": "work:steenbergen-hu-2013-k-12-mathematical-learning",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:steenbergen-hu-2014-college-students-academic-learning",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "small",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:sweller-1988-cognitive-load-problem-solving",
+        "mechanism": "worked_examples",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:tannenbaum-2012-debriefs-meta",
+        "mechanism": "corrective_feedback",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 25%",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

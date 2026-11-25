@@ -1,0 +1,129 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "f3228c63f1c243fde802d680477b8106d105073a59df462bca1449398223c53f",
+  "response": {
+    "items": [
+      {
+        "id": "work:zeng-2019-topic-switching",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:lariviere-2015-long-distance-interdisciplinarity",
+        "mechanism": "breadth_of_domains",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:ellis-2002-frequency-effects",
+        "mechanism": "comprehensible_input",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:retrieval-practice-testing-effect",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:roediger-karpicke-2006-crossover",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:roediger-karpicke-2006-crossover",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:karpicke-roediger-2008-retrieval-critical",
+        "mechanism": "retrieval_practice",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:karpicke-roediger-2008-retrieval-critical",
+        "mechanism": "metacognition",
+        "outcome": "retention",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:feedback-mandatory-with-retrieval",
+        "mechanism": "corrective_feedback",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:forgetting-curve",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:spacing-effect",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:cepeda-2008-optimal-gap",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

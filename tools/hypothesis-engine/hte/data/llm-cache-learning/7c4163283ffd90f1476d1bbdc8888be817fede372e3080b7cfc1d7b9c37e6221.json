@@ -1,0 +1,58 @@
+{
+  "model": "sonnet",
+  "role": "learning_escalation",
+  "prompt_sha256": "f2e975ceb67237e89bccf6fc724dcf558178f329d8c7d29fe5ca3b03c0e359c5",
+  "response": {
+    "items": [
+      {
+        "id": "work:hambrick-2016-multifactorial-expertise",
+        "mechanism": "aptitude",
+        "outcome": "expert_performance",
+        "direction": "positive"
+      },
+      {
+        "id": "work:hambrick-2016-multifactorial-expertise",
+        "mechanism": "age_of_onset",
+        "outcome": "expert_performance",
+        "direction": "positive"
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "positive"
+      },
+      {
+        "id": "claim:core:study-technique-utility-tiering",
+        "mechanism": "spacing",
+        "outcome": "achievement",
+        "direction": "positive"
+      },
+      {
+        "id": "claim:core:fsrs-memory-laws",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive"
+      },
+      {
+        "id": "claim:core:fsrs-benchmark-efficiency",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": "20-30% fewer reviews than SM-2 for equal retention"
+      },
+      {
+        "id": "claim:core:expertise-reversal-effect",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive"
+      },
+      {
+        "id": "claim:core:fluency-illusion-of-knowing",
+        "mechanism": "metacognition",
+        "outcome": "retention",
+        "direction": "null"
+      }
+    ]
+  }
+}

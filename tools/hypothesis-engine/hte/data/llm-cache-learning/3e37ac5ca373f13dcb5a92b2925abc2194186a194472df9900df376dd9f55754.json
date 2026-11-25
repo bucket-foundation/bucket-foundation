@@ -1,0 +1,79 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "7c7fb7b18928de480d5d0cbb17defba9abb67ca10e21d8a797bfbda781665b10",
+  "response": {
+    "items": [
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 2 SD",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "mastery_learning",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "about 0.5 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:bloom-two-sigma-and-deflation",
+        "mechanism": "tutoring",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.25 to 0.37 sigma",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice-variance-explained",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "explains about 26% of performance variance (games)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice-variance-explained",
+        "mechanism": "deliberate_practice",
+        "outcome": "expert_performance",
+        "direction": "positive",
+        "effect_size": "explains about 21% of performance variance (music)",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:career-work:deliberate-practice-variance-explained",
+        "mechanism": "deliberate_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "explains about 4% of performance variance (education)",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

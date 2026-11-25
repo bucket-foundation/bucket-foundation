@@ -1,0 +1,129 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "a7268549df4d5409d3bd90833eb418bf8e3a4342d24eb01a92049980511b7a7a",
+  "response": {
+    "items": [
+      {
+        "id": "claim:epistemics-impact:spacing-illusion",
+        "mechanism": "spacing",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:critical-thinking-domain-specific",
+        "mechanism": "explicit_instruction",
+        "outcome": "transfer",
+        "direction": "positive",
+        "effect_size": "g = 0.30",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:self-determination-theory",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:curiosity-information-gap",
+        "mechanism": "motivation",
+        "outcome": "retention",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:small-incentives-backfire",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "negative",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:cognitive-load-theory",
+        "mechanism": "worked_examples",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:guidance-in-inquiry",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "d = 0.50",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:guidance-in-inquiry",
+        "mechanism": "worked_examples",
+        "outcome": "proficiency",
+        "direction": "positive",
+        "effect_size": "d = 0.71",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:guidance-in-inquiry",
+        "mechanism": "explicit_instruction",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": "0.40 SD",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:minimal-guidance-debate",
+        "mechanism": "worked_examples",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:research-apprenticeships",
+        "mechanism": "deliberate_practice",
+        "outcome": "achievement",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:epistemics-impact:learning-styles-null",
+        "mechanism": "aptitude",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

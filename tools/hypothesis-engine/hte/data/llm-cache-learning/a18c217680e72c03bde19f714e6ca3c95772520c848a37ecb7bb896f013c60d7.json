@@ -1,0 +1,39 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "0e9ee965994b3c840aa9453c233d9aae122047c67164b9a2e4494ee2b2581ffe",
+  "response": {
+    "items": [
+      {
+        "id": "work:ringbom-2007-cross-linguistic-similarity-foreign",
+        "mechanism": "lexical_proximity",
+        "outcome": "time_to_proficiency",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:hirosh-2018-direct-indirect-effects-multilingualism",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "work:kaushanskaya-2009-bilingual-advantage-novel-word",
+        "mechanism": "multilingual_transfer",
+        "outcome": "vocabulary_gain",
+        "direction": "positive",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}

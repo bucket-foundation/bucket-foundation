@@ -70,10 +70,70 @@ def test_campaign_reports_meta_and_bucket_tests(tmp_path):
     assert lc.load(tmp_path, cache_dir=tmp_path / "c").effects
 
 def test_bucket_proposal_uses_pooled_effect():
-    h = learning.LearningHypothesis("spacing", "retention", supports=["a"])
+    h = learning.LearningHypothesis("retrieval_practice", "retention", supports=["a"])
     h.meta = meta.random_effects([E(0.5, 0.1), E(0.5, 0.1)])
     [p] = learning.bucket_proposals([h])
-    assert p["planning_d_source"] == "pooled" and p["n_per_group"] == 64
+    assert p["planning_d_source"] == "pooled" and p["design"] == "two_sample" and p["n"] == 64
     assert p["H0"].startswith("In Bucket learner data")
     other = learning.LearningHypothesis("motivation", "persistence", supports=["a"])
     assert learning.bucket_proposals([other]) == []
+
+def test_imputed_pool_is_descriptive_and_defaults_planning_d():
+    imputed = [meta.Effect(0.5, 0.15, True, "a"), meta.Effect(0.6, 0.15, True, "b"), E(0.4, 0.1, "c")]
+    r = meta.random_effects(imputed)
+    assert r.descriptive and r.p is None and r.ci_low is None
+    assert r.imputed_share == pytest.approx(2 / 3)
+    single = meta.random_effects([E(0.5, 0.1)])
+    assert single.descriptive and single.p is None
+    h = learning.LearningHypothesis("retrieval_practice", "retention", supports=["a"])
+    h.meta = r
+    [p] = learning.bucket_proposals([h])
+    assert p["planning_d_source"] == "default" and p["planning_d"] == learning.DEFAULT_PLANNING_D
+
+def test_regression_and_mixed_designs_use_f2():
+    assert meta.n_regression(0.5) == math.ceil((1.959964 + 0.841621) ** 2 / 0.0625 + 2)
+    lex = learning.LearningHypothesis("comprehensible_input", "comprehension", supports=["a"])
+    sp = learning.LearningHypothesis("spacing", "retention", supports=["a"])
+    a, b = learning.bucket_proposals([lex, sp])
+    assert a["design"] == "regression" and a["n_unit"] == "total learners"
+    assert b["design"] == "mixed" and "simulate" in b["note"]
+
+def test_se_parsing_and_effect_string():
+    from hte.corpus import learning_extract as lx
+    s = lx.effect_string({"effect_size": "d=0.3", "se": 0.05, "ci": "0.2 to 0.4", "n": 120})
+    e = meta.parse_effect(s)
+    assert e.se == pytest.approx(0.05) and not e.imputed_se
+    assert lx.effect_string({"effect_size": None, "se": 0.1}) is None
+
+def _sign_root(tmp_path):
+    import json
+    rows = [{"id": f"w{i}", "authors": ["A"], "year": 2020, "title": "t", "study_type": "RCT", "topics": [], "withdrawn": False,
+             "finding": f"Spaced practice improved retention, d=0.5, n={n}."} for i, n in enumerate((100, 200))]
+    path = tmp_path / "learning/corpus/works.jsonl"
+    path.parent.mkdir(parents=True)
+    path.write_text("\n".join(json.dumps(r) for r in rows) + "\n")
+    (tmp_path / "learning/corpus/claims.jsonl").write_text(json.dumps(
+        {"id": "c1", "name": "Spacing", "statement": "Spaced practice improves retention, d=0.5.", "topics": [],
+         "supports": [], "contradicted_by": ["w0", "w1"]}) + "\n")
+    return tmp_path
+
+def test_contradicted_by_signs_effect_negative(tmp_path):
+    root = _sign_root(tmp_path)
+    corpus = lc.load(root, cache_dir=root / "c")
+    hyps = {h.id: h for h in learning.build_hypotheses(corpus.corpus.evidence)}
+    h = hyps["spacing>retention"]
+    learning.attach_meta(corpus, [h])
+    assert any(i.startswith("claim:c1@") for i in h.refutes)
+    assert h.meta.k == 2
+    by_id = {e.id: e for e in corpus.corpus.evidence}
+    neg_only = learning.LearningHypothesis("spacing", "retention", refutes=[i for i in h.refutes if i in by_id])
+    learning.attach_meta(corpus, [neg_only])
+    assert neg_only.meta.pooled < 0
+
+def test_bh_skips_descriptive_rows(tmp_path):
+    a = learning.LearningHypothesis("spacing", "retention")
+    b = learning.LearningHypothesis("tutoring", "achievement")
+    a.meta = meta.random_effects([E(0.5, 0.1), E(0.6, 0.1)])
+    b.meta = meta.random_effects([E(0.5, 0.1)])
+    qs = meta.benjamini_hochberg([h.meta.p if not h.meta.descriptive else None for h in (a, b)])
+    assert qs[0] is not None and qs[1] is None

@@ -1,0 +1,49 @@
+{
+  "model": "haiku",
+  "role": "learning_extractor",
+  "prompt_sha256": "42f2beea3ea6c35256164ef55e6a1a0bd6b75d69fba3c044a2decd1f6c781683",
+  "response": {
+    "items": [
+      {
+        "id": "claim:core:retrieval-is-not-education-outcome",
+        "mechanism": "retrieval_practice",
+        "outcome": "achievement",
+        "direction": "null",
+        "effect_size": null,
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "2.4x retention for users with 7+ day streaks",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 90% vs about 20% day-30 retention for a 7-day streak",
+        "n": null,
+        "ci": null,
+        "se": null
+      },
+      {
+        "id": "claim:core:streak-loss-aversion",
+        "mechanism": "motivation",
+        "outcome": "persistence",
+        "direction": "positive",
+        "effect_size": "about 21% churn reduction for at-risk users with Streak Freeze",
+        "n": null,
+        "ci": null,
+        "se": null
+      }
+    ]
+  }
+}
