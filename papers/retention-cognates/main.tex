@@ -52,7 +52,7 @@ $p=10^{-42}$) and full spelling overlap by 1.018 (CI 1.011 to 1.024).
 Cognate features add no predictive value detectable at a minimum
 detectable effect of $7.6\times10^{-6}$ in MAE: the change is
 $2.9\times10^{-6}$ (CI $-2.4\times10^{-6}$ to $8.2\times10^{-6}$), and TOST
-passes at $\pm5\times10^{-5}$. On the same split, lexeme indicators, a
+passes at a post hoc bound of $\pm5\times10^{-5}$. On the same split, lexeme indicators, a
 positive control, move MAE by $-1.18\times10^{-4}$ (CI $-1.83$ to
 $-0.53\times10^{-4}$). Predicted recall saturates near one, with a median
 predicted half-life of 164 days, which limits what any word-level feature can do
@@ -170,7 +170,8 @@ the last 10\% test. AUC uses the rounded session recall as the label;
 COR$_h$ is the Spearman correlation of predicted and observed half-life,
 as in \autocite{settles2016hlr}.
 
-\paragraph{Positive controls.} Two models show how far MAE can move on
+\paragraph{Positive controls.} Added after critic review and listed as a
+deviation in \texttt{PREREG.md}, two models show how far MAE can move on
 this split. The lexeme control adds one indicator per training lexeme to
 the base model, the HLR variant of \autocite{settles2016hlr}. The history
 control removes the two practice-history features. Each is compared with
