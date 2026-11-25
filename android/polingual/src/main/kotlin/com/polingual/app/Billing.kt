@@ -31,6 +31,11 @@ class Billing(context: Context, private val graph: Graph) {
     var trialEligible = true
         private set
     private var serverTrialUsed = false
+    private var subToken: Pair<String, String>? = null
+    private val _upsell = MutableStateFlow(false)
+    val upsell: StateFlow<Boolean> = _upsell
+    fun dismissUpsell() { _upsell.value = false }
+    val returning: Boolean get() = !trialEligible && !_access.value.unlocked
 
     private val client = BillingClient.newBuilder(context)
         .setListener { result, purchases -> graph.scope.launch { onPurchases(result, purchases.orEmpty()) } }
@@ -96,9 +101,14 @@ class Billing(context: Context, private val graph: Graph) {
     fun buy(activity: Activity, product: ProductDetails) {
         val userId = graph.account.userId
         if (!PlayVerify.canBuy(userId)) { _message.value = "Sign in before you subscribe so your purchase follows your account."; return }
-        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId != null && trialEligible && Plan.hasTrial(product.productId) } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
+        val chosen = product.subscriptionOfferDetails?.let { offers -> Offers.pick(product.productId, offers.map { it.offerId }, trialEligible, returning) }
+        val offer = product.subscriptionOfferDetails?.let { offers -> offers.firstOrNull { it.offerId == chosen } ?: offers.firstOrNull { it.offerId == null } ?: offers.first() }
         val params = BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(product).apply { offer?.let { setOfferToken(it.offerToken) } }.build()
-        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).setObfuscatedAccountId(accountHash(userId!!)).build()
+        val replace = subToken?.takeIf { Offers.upgradeFrom(product.productId, it.first) != null }?.second
+        val flow = BillingFlowParams.newBuilder().setProductDetailsParamsList(listOf(params)).apply {
+            setObfuscatedAccountId(accountHash(userId!!))
+            replace?.let { setSubscriptionUpdateParams(BillingFlowParams.SubscriptionUpdateParams.newBuilder().setOldPurchaseToken(it).setSubscriptionReplacementMode(BillingFlowParams.SubscriptionUpdateParams.ReplacementMode.WITH_TIME_PRORATION).build()) }
+        }.build()
         client.launchBillingFlow(activity, flow)
     }
 
@@ -121,8 +131,11 @@ class Billing(context: Context, private val graph: Graph) {
                 client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
             }
             p.products.forEach { id -> records += PurchaseRecord(id, p.purchaseTime, p.isAcknowledged, pending, p.isAutoRenewing) }
+            p.products.firstOrNull { it in Plan.subscriptions }?.let { subToken = it to p.purchaseToken }
         }
-        records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
+        val started = records.firstOrNull { TrialReminder.startedTrial(it, wasEligible, fromPurchase) }
+        started?.let { graph.kv.set(TrialReminder.START_KEY, it.purchasedMs.toString()) }
+        if (Offers.upsellDue(started != null, graph.kv.get(Offers.UPSELL_KEY) != null)) { graph.kv.set(Offers.UPSELL_KEY, "1"); _upsell.value = true }
         TrialReminder.sync(graph.context, TrialReminder.plan(records, graph.kv.get(TrialReminder.START_KEY)?.toLongOrNull(), System.currentTimeMillis()))
         reportTrial()
         trialEligible = Entitlement.trialEligible(records.map { it.productId }, serverTrialUsed)

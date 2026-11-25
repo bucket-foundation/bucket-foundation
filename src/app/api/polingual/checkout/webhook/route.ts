@@ -3,7 +3,7 @@ import { handleWebhook, trialEndingEmail, type TrialEnding } from "@/lib/billing
 import { claimPaidOnce, sendBillingFunnel } from "@/lib/billing/funnel-send";
 import { giftFulfilDeps, sendGiftEmail } from "@/lib/billing/gift-store";
 import { giftMailConfig, handleGiftEvent } from "@/lib/billing/polingual-gift";
-import { entitlementStoreConfigured, patchEntitlement, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
+import { entitlementStoreConfigured, markOfferUsed, patchEntitlement, releaseOffer, readEntitlementByCustomer, readEntitlementState, recordEntitlement } from "@/lib/billing/entitlement-store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +32,18 @@ async function remindTrialEnding(t: TrialEnding): Promise<boolean> {
   return sendGiftEmail(mail, { to: j.email, subject: m.subject, text: m.text, html: `<p>${m.text}</p>` }, `trial-ending-${t.eventId}`);
 }
 
+async function cancelSubscription(subscription: string): Promise<boolean> {
+  const key = process.env.STRIPE_SECRET_KEY?.trim();
+  if (!key) return false;
+  const url = `${STRIPE_API}/v1/subscriptions/${encodeURIComponent(subscription)}`;
+  const now = await fetch(url, { headers: { authorization: `Bearer ${key}` } });
+  if (now.status === 404) return true;
+  const j = (await now.json().catch(() => ({}))) as { status?: unknown };
+  if (now.ok && j.status === "canceled") return true;
+  const res = await fetch(url, { method: "DELETE", headers: { authorization: `Bearer ${key}` } });
+  return res.ok || res.status === 404;
+}
+
 export async function POST(req: Request): Promise<Response> {
   try {
     const payload = await req.text();
@@ -48,6 +60,9 @@ export async function POST(req: Request): Promise<Response> {
         trialEnding: remindTrialEnding,
         funnel: sendBillingFunnel,
         claimPaid: claimPaidOnce,
+        cancelSubscription,
+        markOffer: markOfferUsed,
+        releaseOffer,
       },
       payload,
       req.headers.get("stripe-signature"),

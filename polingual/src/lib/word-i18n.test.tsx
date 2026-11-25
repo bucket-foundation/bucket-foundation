@@ -103,7 +103,7 @@ test("each locale has a self canonical and its own og:locale", () => {
 
 test("the sitemap lists localized word urls only for the indexed rollout locales", () => {
   const paths = sitemapPaths();
-  const base = 1 + SITE_LANGS.length + 6 + comparePaths().length + teachersPaths().length + GUIDES.length + LOCAL_GUIDES.length + 1 + WORDS.length;
+  const base = 1 + SITE_LANGS.length + 7 + comparePaths().length + teachersPaths().length + GUIDES.length + LOCAL_GUIDES.length + 1 + WORDS.length;
   assert.deepEqual(INDEXED_WORD_LOCALES, ["es", "fr", "de", "pt", "it", "ja", "ar", "hi"]);
   assert.equal(paths.length, base + INDEXED_WORD_LOCALES.length * (WORDS.length + 1));
   assert.equal(new Set(paths).size, paths.length);

@@ -1,11 +1,14 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-export type Plan = "monthly" | "yearly";
+export type Plan = "monthly" | "yearly" | "lifetime" | "winback";
+export const PLANS: readonly Plan[] = ["monthly", "yearly", "lifetime", "winback"];
+export const UPGRADES: readonly Plan[] = ["lifetime"];
 export type AffiliateNetwork = "rewardful" | "impact";
 
 export interface CheckoutConfig {
   secretKey: string;
-  prices: Record<Plan, string>;
+  prices: Record<"monthly" | "yearly", string> & Partial<Record<"lifetime", string>>;
+  winbackCoupon: string | null;
   successUrl: string;
   cancelUrl: string;
   site: string;
@@ -24,7 +27,12 @@ export function checkoutConfig(env: Env): CheckoutConfig | null {
   const site = (env.POLINGUAL_SITE_URL ?? "https://polingual.com").replace(/\/$/, "");
   return {
     secretKey,
-    prices: { monthly, yearly },
+    prices: {
+      monthly,
+      yearly,
+      ...(env.STRIPE_PRICE_POLINGUAL_LIFETIME ? { lifetime: env.STRIPE_PRICE_POLINGUAL_LIFETIME } : {}),
+    },
+    winbackCoupon: env.STRIPE_COUPON_POLINGUAL_WINBACK || null,
     successUrl: `${site}/welcome?session_id={CHECKOUT_SESSION_ID}`,
     cancelUrl: `${site}/pricing`,
     site,
@@ -38,6 +46,7 @@ export interface CheckoutRequest {
   email: string | null;
   returnTo?: "app";
   visitor?: string;
+  replaces?: string;
 }
 
 const REF_RE = /^[A-Za-z0-9_.-]{1,128}$/;
@@ -47,13 +56,13 @@ const VISITOR_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
 export function parseCheckoutRequest(body: unknown): { ok: true; req: CheckoutRequest } | { ok: false; error: string } {
   const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
   const plan = b.plan ?? "yearly";
-  if (plan !== "monthly" && plan !== "yearly") return { ok: false, error: "bad_plan" };
+  if (!(PLANS as readonly unknown[]).includes(plan)) return { ok: false, error: "bad_plan" };
   const rawRef = typeof b.referral === "string" ? b.referral.trim() : "";
   if (rawRef && !REF_RE.test(rawRef)) return { ok: false, error: "bad_referral" };
   const network = b.affiliate_network ?? (rawRef ? "rewardful" : null);
   if (network !== null && network !== "rewardful" && network !== "impact") return { ok: false, error: "bad_affiliate_network" };
   const email = typeof b.email === "string" && EMAIL_RE.test(b.email.trim()) ? b.email.trim().toLowerCase() : null;
-  const req: CheckoutRequest = { plan, referral: rawRef || null, network: rawRef ? network : null, email };
+  const req: CheckoutRequest = { plan: plan as Plan, referral: rawRef || null, network: rawRef ? network : null, email };
   if (b.return_to === "app") req.returnTo = "app";
   if (typeof b.visitor === "string" && VISITOR_RE.test(b.visitor)) req.visitor = b.visitor.toLowerCase();
   return { ok: true, req };
@@ -66,33 +75,40 @@ export interface TrialHistory {
 
 export const FRESH: TrialHistory = { used: false, customer: null };
 
+export function priceFor(cfg: CheckoutConfig, plan: Plan): string | null {
+  if (plan === "winback") return cfg.winbackCoupon ? cfg.prices.yearly : null;
+  return cfg.prices[plan] ?? null;
+}
+
 export function checkoutForm(cfg: CheckoutConfig, req: CheckoutRequest, userId: string, history: TrialHistory = FRESH): URLSearchParams {
   const f = new URLSearchParams();
-  f.set("mode", "subscription");
-  f.set("line_items[0][price]", cfg.prices[req.plan]);
+  const once = req.plan === "lifetime";
+  f.set("mode", once ? "payment" : "subscription");
+  f.set("line_items[0][price]", priceFor(cfg, req.plan) ?? "");
   f.set("line_items[0][quantity]", "1");
   f.set("success_url", req.returnTo === "app" ? `${cfg.site}/app?checkout=done` : cfg.successUrl);
   f.set("cancel_url", req.returnTo === "app" ? `${cfg.site}/app` : cfg.cancelUrl);
   if (TRIAL_PLANS.includes(req.plan) && !history.used) f.set("subscription_data[trial_period_days]", String(TRIAL_DAYS));
-  f.set("allow_promotion_codes", "true");
-  f.set("metadata[product]", "polingual");
-  f.set("metadata[plan]", req.plan);
-  f.set("subscription_data[metadata][product]", "polingual");
-  f.set("subscription_data[metadata][plan]", req.plan);
+  if (req.plan === "winback" && cfg.winbackCoupon) f.set("discounts[0][coupon]", cfg.winbackCoupon);
+  else f.set("allow_promotion_codes", "true");
+  const meta = (k: string, v: string) => {
+    f.set(`metadata[${k}]`, v);
+    if (!once) f.set(`subscription_data[metadata][${k}]`, v);
+  };
+  meta("product", "polingual");
+  meta("plan", req.plan);
   if (history.customer) f.set("customer", history.customer);
-  else if (req.email) f.set("customer_email", req.email);
-  f.set("metadata[user_id]", userId);
-  f.set("subscription_data[metadata][user_id]", userId);
-  if (req.visitor) {
-    f.set("metadata[visitor]", req.visitor);
-    f.set("subscription_data[metadata][visitor]", req.visitor);
+  else {
+    if (req.email) f.set("customer_email", req.email);
+    if (once) f.set("customer_creation", "always");
   }
+  meta("user_id", userId);
+  if (req.visitor) meta("visitor", req.visitor);
+  if (req.replaces) f.set("metadata[replaces]", req.replaces);
   if (req.referral && req.network) {
     if (req.network === "rewardful") f.set("client_reference_id", req.referral);
-    f.set("metadata[referral]", req.referral);
-    f.set("metadata[affiliate_network]", req.network);
-    f.set("subscription_data[metadata][referral]", req.referral);
-    f.set("subscription_data[metadata][affiliate_network]", req.network);
+    meta("referral", req.referral);
+    meta("affiliate_network", req.network);
   }
   return f;
 }
@@ -184,9 +200,10 @@ export function entitlementFromEvent(event: unknown): Entitlement | null {
     affiliate_network: str(meta.affiliate_network),
     ...eventStamp(e),
   };
-  if (e.type === "checkout.session.completed") {
+  if (e.type === "checkout.session.completed" || e.type === "checkout.session.async_payment_succeeded") {
     if (o.payment_status !== "paid" && o.payment_status !== "no_payment_required") return null;
-    return { ...base, status: o.payment_status === "paid" ? "active" : "trialing", stripe_subscription: str(o.subscription), current_period_end: null };
+    const lifetime = meta.plan === "lifetime" && str(o.id) ? `lifetime:${str(o.id)}` : null;
+    return { ...base, status: o.payment_status === "paid" ? "active" : "trialing", stripe_subscription: lifetime ?? str(o.subscription), current_period_end: null };
   }
   if (e.type === "customer.subscription.updated" || e.type === "customer.subscription.created" || e.type === "customer.subscription.deleted") {
     const end = typeof o.current_period_end === "number" ? new Date(o.current_period_end * 1000).toISOString() : null;
@@ -194,6 +211,10 @@ export function entitlementFromEvent(event: unknown): Entitlement | null {
     return { ...base, status, stripe_subscription: str(o.id), current_period_end: end };
   }
   return null;
+}
+
+export function isLifetime(e: { stripe_subscription: string | null }): boolean {
+  return e.stripe_subscription?.startsWith("lifetime:") === true;
 }
 
 export interface CustomerEvent {
@@ -217,6 +238,7 @@ export function isStale(current: EntitlementState | null, next: { status: string
   if (current.last_event_id && current.last_event_id === next.last_event_id) return true;
   if (current.last_event_at && next.last_event_at && Date.parse(next.last_event_at) < Date.parse(current.last_event_at)) return true;
   if (fromCheckout && REVOKED_STATUSES.has(current.status) && current.stripe_subscription !== null && current.stripe_subscription === next.stripe_subscription) return true;
+  if (!fromCheckout && next.stripe_subscription && current.stripe_subscription !== next.stripe_subscription && (current.stripe_subscription !== null || ACTIVE_STATUSES.has(current.status))) return true;
   return false;
 }
 
@@ -225,6 +247,11 @@ export interface CheckoutDeps {
   userId: () => Promise<string | null>;
   currentStatus: (userId: string) => Promise<string | null>;
   trialHistory: (userId: string) => Promise<TrialHistory>;
+  trialSubscription?: (userId: string) => Promise<string | null>;
+  offerUsed?: (userId: string, offer: "winback") => Promise<boolean>;
+  reserveOffer?: (userId: string, offer: "winback") => Promise<boolean>;
+  attachOffer?: (userId: string, offer: "winback", sessionId: string) => Promise<void>;
+  releaseOffer?: (userId: string, offer: "winback", sessionId: string | null) => Promise<void>;
   createSession: (cfg: CheckoutConfig, form: URLSearchParams) => Promise<{ url: string | null; id: string | null }>;
 }
 
@@ -237,10 +264,31 @@ export async function handleCheckout(deps: CheckoutDeps, body: unknown): Promise
   if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   const uid = await deps.userId();
   if (!uid) return { status: 401, body: { error: "unauthorized" } };
+  const plan = parsed.req.plan;
+  if (!priceFor(cfg, plan)) return { status: 503, body: { error: "plan_unavailable" } };
   const current = await deps.currentStatus(uid);
-  if (current && ACTIVE_STATUSES.has(current)) return { status: 409, body: { error: "already_subscribed", portal: true } };
-  const s = await deps.createSession(cfg, checkoutForm(cfg, parsed.req, uid, await deps.trialHistory(uid)));
-  if (!s.url) return { status: 502, body: { error: "checkout_failed" } };
+  const upgrade = current === "trialing" && UPGRADES.includes(plan);
+  if (current && ACTIVE_STATUSES.has(current) && !upgrade) return { status: 409, body: { error: "already_subscribed", portal: true } };
+  const history = await deps.trialHistory(uid);
+  if (plan === "winback" && (!history.used || (await deps.offerUsed?.(uid, "winback")))) return { status: 409, body: { error: "not_eligible" } };
+  const reserved = plan === "winback" && deps.reserveOffer ? await deps.reserveOffer(uid, "winback") : null;
+  if (reserved === false) return { status: 409, body: { error: "not_eligible" } };
+  const release = async () => {
+    if (reserved) await deps.releaseOffer?.(uid, "winback", null).catch(() => undefined);
+  };
+  const replaces = upgrade ? ((await deps.trialSubscription?.(uid)) ?? undefined) : undefined;
+  let s: { url: string | null; id: string | null };
+  try {
+    s = await deps.createSession(cfg, checkoutForm(cfg, replaces ? { ...parsed.req, replaces } : parsed.req, uid, history));
+  } catch (e) {
+    await release();
+    throw e;
+  }
+  if (!s.url) {
+    await release();
+    return { status: 502, body: { error: "checkout_failed" } };
+  }
+  if (reserved && s.id) await deps.attachOffer?.(uid, "winback", s.id);
   return { status: 200, body: { url: s.url, id: s.id } };
 }
 
@@ -295,6 +343,9 @@ export interface WebhookDeps {
   trialEnding?: (t: TrialEnding) => Promise<boolean>;
   funnel?: (visitor: string, name: FunnelBillingStep) => Promise<void>;
   claimPaid?: (userId: string) => Promise<boolean>;
+  cancelSubscription?: (subscription: string) => Promise<boolean>;
+  markOffer?: (userId: string, offer: "winback") => Promise<void>;
+  releaseOffer?: (userId: string, offer: "winback", sessionId: string | null) => Promise<void>;
 }
 
 async function emitPaid(deps: WebhookDeps, event: unknown, ent: Pick<Entitlement, "user_id">): Promise<void> {
@@ -328,6 +379,16 @@ async function applyCustomerEvent(deps: WebhookDeps, ce: CustomerEvent, event: u
   return { status: 200, body: { received: true, status: ce.patch.status } };
 }
 
+export function expiredWinback(event: unknown): { userId: string; sessionId: string } | null {
+  const e = (event && typeof event === "object" ? event : {}) as Obj;
+  if (e.type !== "checkout.session.expired") return null;
+  const object = ((e.data as Obj | undefined)?.object ?? {}) as Obj;
+  const meta = (object.metadata ?? {}) as Obj;
+  const userId = str(meta.user_id);
+  const sessionId = str(object.id);
+  return meta.product === "polingual" && meta.plan === "winback" && userId && sessionId ? { userId, sessionId } : null;
+}
+
 export async function handleWebhook(deps: WebhookDeps, payload: string, signature: string | null): Promise<HandlerResult> {
   const secret = deps.secret();
   if (!secret) return { status: 503, body: { error: "webhook_unavailable" } };
@@ -343,6 +404,11 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
     if (deps.trialEnding && !(await deps.trialEnding(ending))) return { status: 500, body: { error: "reminder_failed" } };
     return { status: 200, body: { received: true, reminded: !!deps.trialEnding } };
   }
+  const lapsed = expiredWinback(event);
+  if (lapsed) {
+    if (deps.releaseOffer) await deps.releaseOffer(lapsed.userId, "winback", lapsed.sessionId);
+    return { status: 200, body: { received: true, released: !!deps.releaseOffer } };
+  }
   const d0 = dayZeroCancel(event);
   if (d0 && deps.funnel) await deps.funnel(d0, "trial_cancel_d0").catch(() => undefined);
   const ce = customerEventFrom(event);
@@ -353,14 +419,32 @@ export async function handleWebhook(deps: WebhookDeps, payload: string, signatur
   if (sub) return sub;
   const ent = entitlementFromEvent(event);
   if (!ent) return { status: 200, body: { received: true, ignored: true } };
-  const fromCheckout = (event as Obj).type === "checkout.session.completed";
-  const prev = await deps.current(ent.user_id);
-  if (isStale(prev, ent, fromCheckout)) return { status: 200, body: { received: true, stale: true } };
-  if (!(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
-  const step = billingStep(prev, ent);
+  const type = (event as Obj).type;
+  const fromCheckout = type === "checkout.session.completed" || type === "checkout.session.async_payment_succeeded";
+  const before = await deps.current(ent.user_id);
+  const stale = isStale(before, ent, fromCheckout);
+  if (!stale && !(await deps.record(ent))) return { status: 500, body: { error: "record_failed" } };
+  const step = stale ? null : billingStep(before, ent);
   if (step === "paid") await emitPaid(deps, event, ent).catch(() => undefined);
   else if (step && deps.funnel) await deps.funnel(funnelVisitor(event, ent), step).catch(() => undefined);
-  return { status: 200, body: { received: true, status: ent.status } };
+  const follow = fromCheckout ? await afterPurchase(deps, event, ent) : null;
+  if (follow) return follow;
+  return { status: 200, body: stale ? { received: true, stale: true } : { received: true, status: ent.status } };
+}
+
+export function replacesFrom(event: unknown): string | null {
+  const o = (((event as Obj)?.data as Obj | undefined)?.object ?? {}) as Obj;
+  const meta = (o.metadata ?? {}) as Obj;
+  const r = str(meta.replaces);
+  return r && r.startsWith("sub_") ? r : null;
+}
+
+async function afterPurchase(deps: WebhookDeps, event: unknown, ent: Entitlement): Promise<HandlerResult | null> {
+  if (ent.status !== "active") return null;
+  const replaced = replacesFrom(event);
+  if (replaced && replaced !== ent.stripe_subscription && deps.cancelSubscription && !(await deps.cancelSubscription(replaced))) return { status: 500, body: { error: "cancel_failed" } };
+  if (ent.plan === "winback" && deps.markOffer) await deps.markOffer(ent.user_id, "winback");
+  return null;
 }
 
 export interface PortalDeps {

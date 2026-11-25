@@ -1,5 +1,5 @@
 import { visitor } from "@/lib/funnel";
-export type WebPlan = "monthly" | "yearly";
+export type WebPlan = "monthly" | "yearly" | "lifetime" | "winback";
 
 export type BillingResult = { ok: true; url: string } | { ok: false; error: string };
 
@@ -8,6 +8,8 @@ const MESSAGES: Record<string, string> = {
   portal_unavailable: "Billing management is not open yet.",
   no_web_subscription: "Your plan was bought in the app. Manage it in your Apple account settings.",
   unauthorized: "Sign in again to continue.",
+  plan_unavailable: "That plan is not open on the web yet. Pick another plan.",
+  not_eligible: "The welcome-back price is for returning members.",
 };
 
 export function billingMessage(error: string): string {

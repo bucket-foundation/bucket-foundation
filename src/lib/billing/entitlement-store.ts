@@ -1,5 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { Entitlement, EntitlementPatch, EntitlementState } from "./polingual-checkout";
+import { isLifetime, type Entitlement, type EntitlementPatch, type EntitlementState } from "./polingual-checkout";
 
 let bucket: SupabaseClient | null = null;
 
@@ -16,7 +16,7 @@ function client(): SupabaseClient {
 
 export async function recordEntitlement(e: Entitlement): Promise<boolean> {
   const row: Record<string, unknown> = { ...e, updated_at: new Date().toISOString() };
-  if (e.current_period_end === null) delete row.current_period_end;
+  if (e.current_period_end === null && !isLifetime(e)) delete row.current_period_end;
   if (e.stripe_subscription === null) delete row.stripe_subscription;
   if (e.last_event_id === null) delete row.last_event_id;
   if (e.last_event_at === null) delete row.last_event_at;
@@ -76,4 +76,32 @@ export async function claimFunnelPaid(userId: string): Promise<boolean> {
   const { data, error } = await client().from("polingual_funnel_paid").upsert({ user_id: userId }, { onConflict: "user_id", ignoreDuplicates: true }).select("user_id");
   if (error) throw new Error(`polingual_funnel_paid write failed: ${error.message}`);
   return Array.isArray(data) && data.length > 0;
+}
+
+export async function offerUsed(userId: string, offer: "winback"): Promise<boolean> {
+  const { data, error } = await client().from("polingual_offer_used").select("offer").eq("user_id", userId).eq("offer", offer).maybeSingle();
+  if (error) throw new Error(`polingual_offer_used read failed: ${error.message}`);
+  return data !== null;
+}
+
+export async function markOfferUsed(userId: string, offer: "winback"): Promise<void> {
+  const { error } = await client().from("polingual_offer_used").upsert({ user_id: userId, offer }, { onConflict: "user_id,offer", ignoreDuplicates: true });
+  if (error) throw new Error(`polingual_offer_used write failed: ${error.message}`);
+}
+
+export async function reserveOffer(userId: string, offer: "winback"): Promise<boolean> {
+  const { data, error } = await client().from("polingual_offer_used").upsert({ user_id: userId, offer }, { onConflict: "user_id,offer", ignoreDuplicates: true }).select("offer");
+  if (error) throw new Error(`polingual_offer_used reserve failed: ${error.message}`);
+  return Array.isArray(data) && data.length > 0;
+}
+
+export async function attachOffer(userId: string, offer: "winback", sessionId: string): Promise<void> {
+  const { error } = await client().from("polingual_offer_used").update({ session_id: sessionId }).eq("user_id", userId).eq("offer", offer).is("session_id", null);
+  if (error) throw new Error(`polingual_offer_used attach failed: ${error.message}`);
+}
+
+export async function releaseOffer(userId: string, offer: "winback", sessionId: string | null): Promise<void> {
+  const base = client().from("polingual_offer_used").delete().eq("user_id", userId).eq("offer", offer);
+  const { error } = await (sessionId === null ? base.is("session_id", null) : base.eq("session_id", sessionId));
+  if (error) throw new Error(`polingual_offer_used release failed: ${error.message}`);
 }

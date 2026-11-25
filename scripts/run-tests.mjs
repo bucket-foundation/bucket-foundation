@@ -92,6 +92,7 @@ const SUITES = {
       "scripts/test-polingual-deck.ts",
       "scripts/test-polingual-lookup.ts",
       "scripts/test-polingual-checkout.ts",
+      "scripts/test-polingual-lifetime-revoke.ts",
       "scripts/test-polingual-trial-used.ts",
       "scripts/test-play-billing.ts",
       "scripts/test-polingual-gift.ts",

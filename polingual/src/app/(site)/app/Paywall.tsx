@@ -1,6 +1,6 @@
 "use client";
 
-import { APP_STORE_URL, PLANS, type Access } from "@/lib/app/plans";
+import { APP_STORE_URL, PLANS, WINBACK, type Access } from "@/lib/app/plans";
 import {
   billingMessage,
   fetchTrial,
@@ -15,7 +15,7 @@ import { DEFAULT_PLAN, perWeek, TRIAL_DAYS, trialDays, trialTimeline } from "@/l
 import styles from "./app.module.css";
 import { Button, ButtonLink, Stage } from "@/ui";
 
-const WEB_PLANS: readonly string[] = ["monthly", "yearly"];
+const WEB_PLANS: readonly string[] = ["monthly", "yearly", "lifetime"];
 
 function PlanList({
   busy,
@@ -67,6 +67,20 @@ function PlanList({
   );
 }
 
+
+function WinBack({ busy, buy }: { busy: WebPlan | null; buy: (plan: WebPlan) => Promise<void> }) {
+  return (
+    <div className={styles.plan} data-testid="winback">
+      <span className={styles.planName}>{WINBACK.name}</span>
+      <span className={styles.planPrice}>{WINBACK.price}</span>
+      <span className={styles.small}>{WINBACK.cadence}. {WINBACK.note}.</span>
+      <Button size="sm" disabled={busy !== null} onClick={() => void buy("winback")} data-testid="checkout-winback">
+        {busy === "winback" ? "Opening checkout" : "Continue"}
+      </Button>
+    </div>
+  );
+}
+
 function Actions({ apple, retry }: { apple: boolean; retry: () => void }) {
   return (
     <div className={styles.row}>
@@ -88,14 +102,8 @@ function usePaywall() {
   const [busy, setBusy] = useState<WebPlan | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [trial, setTrial] = useState<TrialState>({ used: false, reminderEmail: false });
-  useEffect(() => {
-    void fetchTrial().then(setTrial);
-  }, []);
-  useEffect(
-    () =>
-      setApple(isAppleDevice(navigator.userAgent, navigator.maxTouchPoints)),
-    [],
-  );
+  useEffect(() => void fetchTrial().then(setTrial), []);
+  useEffect(() => setApple(isAppleDevice(navigator.userAgent, navigator.maxTouchPoints)), []);
 
   async function buy(plan: WebPlan) {
     setBusy(plan);
@@ -151,6 +159,7 @@ export default function Paywall({
     <Stage ground="lattice">
       <section className={styles.stack} data-testid="paywall">
         <TrialIntro trial={trial} />
+        {trial.used ? <WinBack busy={busy} buy={buy} /> : null}
         <PlanList busy={busy} buy={buy} all={all} trialOk={!trial.used} />
         {all ? null : (
           <Button variant="quiet" size="sm" onDark onClick={() => setAll(true)} data-testid="see-all-plans">
