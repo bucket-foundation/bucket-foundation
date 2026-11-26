@@ -23,6 +23,8 @@ struct StudyView: View {
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
     @State private var limited = false
+    @State private var input: InputPlanState?
+    @State private var inputTick = 0
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
@@ -49,6 +51,7 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onChange(of: i) { _, _ in prepareInput() }
         .onChange(of: DailyLedger.shared.spent) { _, spent in
             guard limited, !spent else { return }
             limited = false
@@ -90,6 +93,28 @@ struct StudyView: View {
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+        loadInput(system)
+    }
+
+    func loadInput(_ system: LangSystem) {
+        input = nil
+        let cards = queue?.count ?? 0
+        Task {
+            let plan = await InputConfig.load(store: store, system: system, cards: cards)
+            input = plan
+            prepareInput()
+        }
+    }
+
+    func prepareInput() {
+        guard let input else { return }
+        input.prepare(answered: i, state: store.state(systemId))
+        inputTick += 1
+    }
+
+    func endInput() {
+        guard let input, let row = input.end(answered: graded) else { return }
+        store.log([row])
     }
 
     func budgeted(_ planned: [QueueEntry], _ state: EngineState, now: Double) -> [QueueEntry] {
@@ -231,6 +256,17 @@ struct StudyView: View {
                 .buttonStyle(.pl(.primary))
             }
             .padding(PL.Space.s5)
+        } else if let input, i < queue.count, let choice = input.due(answered: i) {
+            ScrollView {
+                InputStageView(choice: choice, lang: input.lang, gloss: { input.itemId($0).flatMap { corpus.byId[$0]?.gloss } }) { rows, seconds in
+                    store.log(input.finish(rows, seconds: seconds))
+                    inputTick += 1
+                }
+                .id("input-\(i)-\(inputTick)")
+                .padding(PL.Space.s4)
+                .frame(maxWidth: 640)
+            }
+            .frame(maxWidth: .infinity)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
                 let gap = vertical == .compact ? 10.0 : 16.0
@@ -241,6 +277,7 @@ struct StudyView: View {
                             .frame(width: 76, height: 76)
                             .onAppear {
                                 haptic(true)
+                                endInput()
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
                                 FirstLesson.mark(graded: graded)
                             }
@@ -269,6 +306,7 @@ struct StudyView: View {
                             correct = 0
                             xpStart = state.xp
                             makeExercise()
+                            loadInput(system)
                         }
                         .buttonStyle(D8Primary())
                         ForEach(NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay })) { other in

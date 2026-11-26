@@ -65,6 +65,7 @@ public struct ExposureInput: Equatable, Sendable {
     public var coveragePred: Double
     public var completed: Bool
     public var revealed: Bool
+    public var playback: String? = nil
 }
 
 public enum InputStage {
@@ -128,15 +129,20 @@ public enum InputStage {
         return xs.filter { seen.insert($0).inserted }
     }
 
-    public static func exposureRows(_ choice: StageChoice, viewing v: Viewing, completed: Bool) -> [ExposureInput] {
+    public static func present(_ v: Viewing, visible: [String]) -> Viewing {
+        var out = v
+        for id in visible where out.seenMs[id] == nil { out.seenMs[id] = 0 }
+        return out
+    }
+
+    public static func exposureRows(_ choice: StageChoice, viewing v: Viewing, completed: Bool, playerUnavailable: Bool = false) -> [ExposureInput] {
         choice.items.compactMap { item in
-            let ms = v.seenMs[item.id] ?? 0
-            guard ms > 0 else { return nil }
+            guard let ms = v.seenMs[item.id], ms > 0 || playerUnavailable else { return nil }
             let lemmas = Array(distinct(item.tokens.map(\.lemma).filter(lemmaOk)).prefix(200))
             let taps = Array(distinct(v.taps[item.id] ?? []).filter(lemmaOk).prefix(50))
             let secs = Int(min(Double(maxExposureSeconds), max(0, jsRound(ms / 1000))))
             let cov = jsRound(min(1, max(0, choice.plan.coverage)) * 1e4) / 1e4
-            return ExposureInput(item: item.id, unit: choice.unit.id, lemmasSeen: lemmas, taps: taps, seconds: secs, coveragePred: cov, completed: completed, revealed: v.revealed.contains(item.id))
+            return ExposureInput(item: item.id, unit: choice.unit.id, lemmasSeen: lemmas, taps: taps, seconds: secs, coveragePred: cov, completed: completed, revealed: v.revealed.contains(item.id), playback: playerUnavailable && item.media != nil ? "unavailable" : nil)
         }
     }
 }

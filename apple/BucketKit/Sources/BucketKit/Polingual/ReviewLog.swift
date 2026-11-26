@@ -33,6 +33,8 @@ public enum LogRow: Equatable, Sendable {
         public var seconds: Int
         public var coveragePred: Double
         public var completed: Bool
+        public var revealed: Bool? = nil
+        public var playback: String? = nil
     }
 
     public struct Session: Equatable, Sendable {
@@ -145,7 +147,17 @@ public enum ReviewLog {
                   let seen = lemmas(o, "lemmas_seen", maxLemmas), let taps = lemmas(o, "taps", maxTaps),
                   let seconds = nat(o, "seconds", maxExposureSeconds), let cov = share(o, "coverage_pred"),
                   let done = o["completed"] as? NSNumber, CFGetTypeID(done) == CFBooleanGetTypeID() else { return nil }
-            return .exposure(.init(meta: meta, lang: lang, item: item, unit: unit, lemmasSeen: seen, taps: taps, seconds: seconds, coveragePred: cov, completed: done.boolValue))
+            var revealed: Bool?
+            if let r = o["revealed"] {
+                guard let n = r as? NSNumber, CFGetTypeID(n) == CFBooleanGetTypeID() else { return nil }
+                revealed = n.boolValue
+            }
+            var playback: String?
+            if let p = o["playback"] {
+                guard let s = p as? String, s == "unavailable" else { return nil }
+                playback = s
+            }
+            return .exposure(.init(meta: meta, lang: lang, item: item, unit: unit, lemmasSeen: seen, taps: taps, seconds: seconds, coveragePred: cov, completed: done.boolValue, revealed: revealed, playback: playback))
         case "session":
             guard let sid = str(o, "id"), let started = num(o, "started"), let ended = num(o, "ended"), ended >= started,
                   let target = orNull(o, "share_target", { share($0, $1) }), let real = orNull(o, "share_real", { share($0, $1) }),
@@ -221,7 +233,10 @@ public enum ReviewLog {
             switch row {
             case .review: return nil
             case .exposure(let e):
-                return ["id": e.meta.id, "name": "exposure", "props": ["item": e.item, "unit": e.unit, "lemmas_seen": e.lemmasSeen, "taps": e.taps, "seconds": e.seconds, "coverage_pred": e.coveragePred, "completed": e.completed] as [String: Any]]
+                var props: [String: Any] = ["item": e.item, "unit": e.unit, "lemmas_seen": e.lemmasSeen, "taps": e.taps, "seconds": e.seconds, "coverage_pred": e.coveragePred, "completed": e.completed]
+                if let r = e.revealed { props["revealed"] = r }
+                if let p = e.playback { props["playback"] = p }
+                return ["id": e.meta.id, "name": "exposure", "props": props]
             case .session(let s):
                 return ["id": s.meta.id, "name": "session_mix", "props": ["session": s.sessionId, "share_target": s.shareTarget as Any? ?? NSNull(), "share_real": s.shareReal as Any? ?? NSNull(), "arm": s.arm as Any? ?? NSNull(), "units": s.units as Any? ?? NSNull(), "cards": s.cards, "seconds": min(86_400, Int(((s.ended - s.started) / 1000).rounded()))] as [String: Any]]
             }

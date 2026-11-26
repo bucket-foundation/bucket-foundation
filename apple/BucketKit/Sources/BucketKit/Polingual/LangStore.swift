@@ -491,6 +491,10 @@ public final class LangStore {
         commit(s, next)
     }
 
+    public func log(_ rows: [LogRow]) { reviewLog.append(contentsOf: rows) }
+
+    public static var deviceId: String { installDevice }
+
     public func queue(_ systemId: String, lang: String, itemId: String) {
         guard let s = system(systemId) else { return }
         commit(s, queueNew(state(systemId), lang, itemId, now: now()))

@@ -109,6 +109,8 @@ public enum SessionMix {
     public static let cardSeconds = 12.0
     public static let idleMs = 60_000.0
 
+    public static func isActive(visible: Bool, focused: Bool, playing: Bool, needsPlayer: Bool, idle: Bool = false) -> Bool { visible && focused && (needsPlayer ? playing : !idle) }
+
     public struct InputMix: Equatable, Sendable {
         public var target: Double
         public var share: Double
