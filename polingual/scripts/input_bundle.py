@@ -225,7 +225,7 @@ class Lexicon:
                                              for g, _ in t_senses):
                 return self._base(t_found, t_senses, t_rank, depth + 1)
             return t_found
-        return found if own else forms[0][0]
+        return found if own or not forms else forms[0][0]
 
     def lemma(self, surface, initial=False, hints=None):
         key = (surface, initial, tuple(hints or ()))
