@@ -22,7 +22,7 @@ sealed interface LogRow {
 
     data class Exposure(
         override val id: String, override val at: Long, override val device: String, override val tz: String, override val systemId: String,
-        val lang: String, val item: String, val unit: String, val lemmasSeen: List<String>, val taps: List<String>, val seconds: Int, val coveragePred: Double, val completed: Boolean, val revealed: Boolean? = null,
+        val lang: String, val item: String, val unit: String, val lemmasSeen: List<String>, val taps: List<String>, val seconds: Int, val coveragePred: Double, val completed: Boolean, val revealed: Boolean? = null, val playback: String? = null,
     ) : LogRow
 
     data class Session(
@@ -93,7 +93,9 @@ object ReviewLog {
                 val done = (o["completed"] as? JsonPrimitive)?.takeIf { !it.isString }?.booleanOrNull ?: return null
                 val rev = o["revealed"]
                 val revealed = if (rev == null) null else (rev as? JsonPrimitive)?.takeIf { !it.isString }?.booleanOrNull ?: return null
-                LogRow.Exposure(id, at, device, tz, system, lang, item, unit, seen, taps, seconds, cov, done, revealed)
+                val pb = o["playback"]
+                val playback = if (pb == null) null else (pb as? JsonPrimitive)?.takeIf { it.isString && it.content == "unavailable" }?.content ?: return null
+                LogRow.Exposure(id, at, device, tz, system, lang, item, unit, seen, taps, seconds, cov, done, revealed, playback)
             }
             "session" -> {
                 val sid = o.str("id") ?: return null

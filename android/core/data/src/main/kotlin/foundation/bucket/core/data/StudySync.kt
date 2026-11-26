@@ -103,7 +103,7 @@ object StudySync {
                     "item" to JsonPrimitive(r.item), "unit" to JsonPrimitive(r.unit),
                     "lemmas_seen" to JsonArray(r.lemmasSeen.map(::JsonPrimitive)), "taps" to JsonArray(r.taps.map(::JsonPrimitive)),
                     "seconds" to JsonPrimitive(r.seconds), "coverage_pred" to JsonPrimitive(r.coveragePred), "completed" to JsonPrimitive(r.completed),
-                ) + (r.revealed?.let { mapOf("revealed" to JsonPrimitive(it)) } ?: emptyMap()))))
+                ) + (r.revealed?.let { mapOf("revealed" to JsonPrimitive(it)) } ?: emptyMap()) + (r.playback?.let { mapOf("playback" to JsonPrimitive(it)) } ?: emptyMap()))))
                 is LogRow.Session -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("session_mix"), "props" to JsonObject(mapOf(
                     "session" to JsonPrimitive(r.sessionId), "share_target" to JsonPrimitive(r.shareTarget), "share_real" to JsonPrimitive(r.shareReal),
                     "arm" to JsonPrimitive(r.arm), "units" to JsonPrimitive(r.units), "cards" to JsonPrimitive(r.cards),

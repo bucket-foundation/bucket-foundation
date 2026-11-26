@@ -62,4 +62,22 @@ class InputStageTest {
         assertNotNull(InputStage.choose(b, nothing, allowFallback = true))
         assertNull(InputStage.parseBundle("{\"format\":\"other\"}"))
     }
+
+    @Test
+    fun aVideoThatNeverPlaysLogsZeroSecondsWithTheReason() {
+        val media = InputMedia("vid", 0.0, 3.0)
+        val items = listOf(InputItem("video:vid:es:0", "video_segment", listOf(InputToken("Hola", "hola")), "Hola", null, null, media), InputItem("video:vid:es:1", "video_segment", listOf(InputToken("dos", "dos")), "dos", null, null, media))
+        val plan = InputPlan("episode:vid:0", 40, true, 0.93, emptyList(), emptyList(), true, 0.0)
+        val choice = StageChoice(InputUnit("episode:vid:0", "episode", items.map { it.id }, emptyList()), items, plan, false)
+        val shown = InputStage.present(Viewing(), listOf(items[0].id))
+        assertEquals(emptyList(), InputStage.exposureRows(choice, shown, completed = true))
+        val rows = InputStage.exposureRows(choice, shown, completed = true, playerUnavailable = true)
+        assertEquals(1, rows.size)
+        assertEquals(0, rows[0].seconds)
+        assertEquals("unavailable", rows[0].playback)
+        val row = InputStage.logRow(rows[0], "es", "r", 1, "d", "UTC", "s")
+        assertEquals("unavailable", (ReviewLog.parse(kotlinx.serialization.json.Json.parseToJsonElement(
+            "{\"review_id\":\"r\",\"reviewed_at\":1,\"device_id\":\"d\",\"tz\":\"UTC\",\"system_id\":\"s\",\"kind\":\"exposure\",\"lang\":\"es\",\"item\":\"${row.item}\",\"unit\":\"u\",\"lemmas_seen\":[],\"taps\":[],\"seconds\":0,\"coverage_pred\":0.9,\"completed\":true,\"playback\":\"unavailable\"}",
+        )) as LogRow.Exposure).playback)
+    }
 }

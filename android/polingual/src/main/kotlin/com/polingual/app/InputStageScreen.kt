@@ -1,7 +1,5 @@
 package com.polingual.app
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +17,22 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.boundsInWindow
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.foundation.layout.aspectRatio
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -54,7 +62,8 @@ object InputStageCopy {
     const val SHOW_MEANING = "Show meaning"
     const val MACHINE = "machine translation"
     const val PLAY = "Play the clip"
-    const val PLAY_NOTE = "Opens the video in YouTube"
+    const val PLAY_NOTE = "Loads the video from YouTube"
+    const val UNAVAILABLE = "The video did not load. Read along below."
     const val FALLBACK = "No video? Read along below."
     fun rest(n: Int) = if (n == 1) "1 more word to tap while you read." else "$n more words to tap while you read."
 }
@@ -88,22 +97,25 @@ private fun GlossCard(choice: StageChoice, lang: String, gloss: (String) -> Stri
     }
 }
 
+class PlayFlags {
+    var resumed by mutableStateOf(true)
+    var playing by mutableStateOf(false)
+    var unavailable by mutableStateOf(false)
+    var lastInput by mutableStateOf(System.currentTimeMillis())
+    val visible = mutableStateMapOf<String, Boolean>()
+}
+
 @Composable
-private fun PlayCard(choice: StageChoice, gloss: (String) -> String?, onFinish: (List<ExposureInput>, Double) -> Unit) {
-    val p = LocalPalette.current
-    val context = LocalContext.current
-    var view by remember { mutableStateOf(Viewing()) }
-    var resumed by remember { mutableStateOf(true) }
-    var lastInput by remember { mutableStateOf(System.currentTimeMillis()) }
+private fun rememberActivity(choice: StageChoice, view: () -> Viewing, setView: (Viewing) -> Unit, onExit: (Viewing, Boolean) -> Unit): PlayFlags {
+    val flags = remember { PlayFlags() }
     val needsPlayer = choice.items.firstOrNull()?.media != null
     val owner = LocalLifecycleOwner.current
-    val latest by rememberUpdatedState(view)
-    val finish by rememberUpdatedState(onFinish)
+    val exit by rememberUpdatedState(onExit)
     DisposableEffect(owner) {
         val obs = LifecycleEventObserver { _, e ->
-            if (e == Lifecycle.Event.ON_RESUME) resumed = true
-            if (e == Lifecycle.Event.ON_PAUSE) resumed = false
-            if (e == Lifecycle.Event.ON_STOP) finish(InputStage.exposureRows(choice, latest, completed = false), latest.seenMs.values.sum() / 1000)
+            if (e == Lifecycle.Event.ON_RESUME) flags.resumed = true
+            if (e == Lifecycle.Event.ON_PAUSE) flags.resumed = false
+            if (e == Lifecycle.Event.ON_STOP) exit(view(), flags.unavailable)
         }
         owner.lifecycle.addObserver(obs)
         onDispose { owner.lifecycle.removeObserver(obs) }
@@ -111,27 +123,66 @@ private fun PlayCard(choice: StageChoice, gloss: (String) -> String?, onFinish: 
     LaunchedEffect(choice.unit.id) {
         while (true) {
             delay(1000)
-            val idle = System.currentTimeMillis() - lastInput >= SessionMix.IDLE_MS
-            if (SessionMix.isActive(resumed, resumed, false, needsPlayer, idle)) view = InputStage.addSeen(view, choice.items.map { it.id }, 1000.0)
+            val idle = System.currentTimeMillis() - flags.lastInput >= SessionMix.IDLE_MS
+            val onScreen = flags.visible.filterValues { it }.keys.toList()
+            setView(InputStage.present(view(), onScreen))
+            if (SessionMix.isActive(flags.resumed, flags.resumed, flags.playing, needsPlayer, idle)) setView(InputStage.addSeen(view(), onScreen, 1000.0))
         }
     }
-    Card(Modifier.fillMaxWidth().pointerInput(Unit) { awaitPointerEventScope { while (true) { awaitPointerEvent(); lastInput = System.currentTimeMillis() } } }) {
-        choice.items.firstOrNull()?.media?.let { m ->
-            Column(
-                Modifier.fillMaxWidth().background(PL.Paper3, RoundedCornerShape(12.dp)).clickable {
-                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + Uri.encode(m.videoId) + "&t=" + m.start.toInt())))
-                }.padding(24.dp),
-            ) {
-                Text(InputStageCopy.PLAY, fontSize = 20.sp, color = p.ink)
-                Text(InputStageCopy.PLAY_NOTE, fontSize = 13.sp, color = p.muted)
-            }
-            Text(InputStageCopy.FALLBACK, fontSize = 13.sp, color = p.muted)
+    return flags
+}
+
+@Composable
+private fun PlayCard(choice: StageChoice, gloss: (String) -> String?, onFinish: (List<ExposureInput>, Double) -> Unit) {
+    val p = LocalPalette.current
+    var view by remember { mutableStateOf(Viewing()) }
+    val flags = rememberActivity(choice, { view }, { view = it }) { v, unavailable -> onFinish(InputStage.exposureRows(choice, v, completed = false, playerUnavailable = unavailable), v.seenMs.values.sum() / 1000) }
+    Card(Modifier.fillMaxWidth().pointerInput(Unit) { awaitPointerEventScope { while (true) { awaitPointerEvent(); flags.lastInput = System.currentTimeMillis() } } }) {
+        choice.items.firstOrNull()?.media?.let { m -> InputVideo(m, flags) }
+        choice.items.forEach { item ->
+            Column(Modifier.onGloballyPositioned { flags.visible[item.id] = visibleShare(it) >= 0.6f }) { SentenceRow(item, view) { view = it } }
         }
-        choice.items.forEach { item -> SentenceRow(item, view) { view = it } }
         Text(InputStageCopy.TAP_HINT, color = p.muted)
-        PrimaryButton(InputStageCopy.DONE, Modifier.fillMaxWidth()) { onFinish(InputStage.exposureRows(choice, view, completed = true), view.seenMs.values.sum() / 1000) }
+        PrimaryButton(InputStageCopy.DONE, Modifier.fillMaxWidth()) { onFinish(InputStage.exposureRows(choice, view, completed = true, playerUnavailable = flags.unavailable), view.seenMs.values.sum() / 1000) }
         Text(InputStageCopy.SKIP, color = PL.Lapis, modifier = Modifier.padding(8.dp).clickable(role = Role.Button) { onFinish(emptyList(), 0.0) })
     }
+}
+
+fun visibleShare(c: LayoutCoordinates): Float {
+    val h = c.size.height
+    if (h <= 0 || !c.isAttached) return 0f
+    return (c.boundsInWindow().height / h).coerceIn(0f, 1f)
+}
+
+@Composable
+private fun InputVideo(m: foundation.bucket.core.engine.InputMedia, flags: PlayFlags) {
+    val p = LocalPalette.current
+    var load by remember { mutableStateOf(false) }
+    val owner = LocalLifecycleOwner.current
+    if (!load || flags.unavailable) {
+        Column(Modifier.fillMaxWidth().background(PL.Paper3, RoundedCornerShape(12.dp)).clickable(role = Role.Button) { load = true }.padding(24.dp)) {
+            Text(InputStageCopy.PLAY, fontSize = 20.sp, color = p.ink)
+            Text(if (flags.unavailable) InputStageCopy.UNAVAILABLE else InputStageCopy.PLAY_NOTE, fontSize = 13.sp, color = p.muted)
+        }
+    } else {
+        AndroidView(
+            modifier = Modifier.fillMaxWidth().aspectRatio(16f / 9f),
+            factory = { ctx ->
+                YouTubePlayerView(ctx).apply {
+                    enableAutomaticInitialization = false
+                    owner.lifecycle.addObserver(this)
+                    val options = IFramePlayerOptions.Builder().controls(1).rel(0).build()
+                    initialize(object : AbstractYouTubePlayerListener() {
+                        override fun onReady(youTubePlayer: YouTubePlayer) = youTubePlayer.loadVideo(m.videoId, m.start.toFloat())
+                        override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) { flags.playing = state == PlayerConstants.PlayerState.PLAYING }
+                        override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) { flags.playing = false; flags.unavailable = true }
+                    }, options)
+                }
+            },
+            onRelease = { it.release() },
+        )
+    }
+    Text(InputStageCopy.FALLBACK, fontSize = 13.sp, color = p.muted)
 }
 
 @OptIn(ExperimentalLayoutApi::class)

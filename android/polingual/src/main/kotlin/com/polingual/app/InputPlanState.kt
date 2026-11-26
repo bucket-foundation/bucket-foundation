@@ -78,7 +78,7 @@ class InputPlanState(
             INSTALL_SALT = graph.kv.get(SALT_KEY) ?: UUID.randomUUID().toString().also { graph.kv.set(SALT_KEY, it) }
             val corpus = graph.corpus.load()
             for (lang in targets) {
-                val bundle = graph.corpus.input(lang) ?: continue
+                val bundle = graph.inputs.bundle(lang) ?: continue
                 val resolve = InputStage.resolver(mapOf(lang to InputStage.lemmaCardMap(corpus, lang)))
                 val learner = InputStage.learner(s.state, lang, resolve, System.currentTimeMillis(), emptyMap(), null)
                 val demo = InputModeFlag.mode == InputModeFlag.Mode.Demo

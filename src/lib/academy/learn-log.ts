@@ -50,6 +50,7 @@ export interface ExposureRow extends RowBase {
   coverage_pred: number;
   completed: boolean;
   revealed?: boolean;
+  playback?: "unavailable";
 }
 
 export interface SessionRow extends RowBase {
@@ -108,6 +109,8 @@ export function parseLogRow(raw: unknown): LogRow | null {
     if (o.revealed !== undefined && typeof o.revealed !== "boolean") return null;
     const row: ExposureRow = { ...b, kind: "exposure", lang: o.lang, item: o.item, unit: o.unit, lemmas_seen: o.lemmas_seen, taps: o.taps, seconds: o.seconds, coverage_pred: o.coverage_pred, completed: o.completed };
     if (o.revealed !== undefined) row.revealed = o.revealed;
+    if (o.playback !== undefined && o.playback !== "unavailable") return null;
+    if (o.playback === "unavailable") row.playback = "unavailable";
     return row;
   }
   if (o.kind === "session") {
@@ -170,6 +173,7 @@ export interface ExposureInput {
   coverage_pred: number;
   completed: boolean;
   revealed?: boolean;
+  playback?: "unavailable";
 }
 
 export interface SessionInput {
@@ -190,7 +194,7 @@ export type BatchEvent =
 export function batchEvents(rows: readonly LogRow[]): BatchEvent[] {
   const out: BatchEvent[] = [];
   for (const r of orderRows(rows)) {
-    if (r.kind === "exposure") out.push({ id: r.review_id, name: "exposure", props: { item: r.item, unit: r.unit, lemmas_seen: r.lemmas_seen, taps: r.taps, seconds: r.seconds, coverage_pred: r.coverage_pred, completed: r.completed, ...(r.revealed !== undefined ? { revealed: r.revealed } : {}) } });
+    if (r.kind === "exposure") out.push({ id: r.review_id, name: "exposure", props: { item: r.item, unit: r.unit, lemmas_seen: r.lemmas_seen, taps: r.taps, seconds: r.seconds, coverage_pred: r.coverage_pred, completed: r.completed, ...(r.revealed !== undefined ? { revealed: r.revealed } : {}), ...(r.playback ? { playback: r.playback } : {}) } });
     else if (r.kind === "session") out.push({ id: r.review_id, name: "session_mix", props: { session: r.id, share_target: r.share_target, share_real: r.share_real, arm: r.arm, units: r.units, cards: r.cards, seconds: Math.min(86_400, Math.round((r.ended - r.started) / 1000)) } });
   }
   return out;

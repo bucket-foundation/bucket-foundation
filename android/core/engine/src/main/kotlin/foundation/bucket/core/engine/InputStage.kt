@@ -39,6 +39,7 @@ data class ExposureInput(
     val coveragePred: Double,
     val completed: Boolean,
     val revealed: Boolean,
+    val playback: String? = null,
 )
 
 object InputStage {
@@ -119,9 +120,11 @@ object InputStage {
 
     private fun round(x: Double): Long = Math.floor(x + 0.5).toLong()
 
-    fun exposureRows(choice: StageChoice, v: Viewing, completed: Boolean): List<ExposureInput> = choice.items.mapNotNull { item ->
-        val ms = v.seenMs[item.id] ?: 0.0
-        if (ms <= 0) return@mapNotNull null
+    fun present(v: Viewing, visible: List<String>): Viewing = v.copy(seenMs = v.seenMs + visible.filter { it !in v.seenMs }.associateWith { 0.0 })
+
+    fun exposureRows(choice: StageChoice, v: Viewing, completed: Boolean, playerUnavailable: Boolean = false): List<ExposureInput> = choice.items.mapNotNull { item ->
+        val ms = v.seenMs[item.id] ?: return@mapNotNull null
+        if (ms <= 0 && !playerUnavailable) return@mapNotNull null
         val lemmas = item.tokens.map { it.lemma }.filter { LEMMA.matches(it) }.distinct().take(200)
         ExposureInput(
             item.id, choice.unit.id, lemmas,
@@ -129,9 +132,10 @@ object InputStage {
             min(MAX_EXPOSURE_SECONDS.toLong(), max(0L, round(ms / 1000))).toInt(),
             round(min(1.0, max(0.0, choice.plan.coverage)) * 1e4) / 1e4,
             completed, item.id in v.revealed,
+            if (playerUnavailable && item.media != null) "unavailable" else null,
         )
     }
 
     fun logRow(e: ExposureInput, lang: String, id: String, at: Long, device: String, tz: String, systemId: String): LogRow.Exposure =
-        LogRow.Exposure(id, at, device, tz, systemId, lang, e.item, e.unit, e.lemmasSeen, e.taps, e.seconds, e.coveragePred, e.completed, e.revealed)
+        LogRow.Exposure(id, at, device, tz, systemId, lang, e.item, e.unit, e.lemmasSeen, e.taps, e.seconds, e.coveragePred, e.completed, e.revealed, e.playback)
 }

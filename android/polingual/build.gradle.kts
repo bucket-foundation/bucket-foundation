@@ -38,6 +38,7 @@ android {
         versionCode = 1
         versionName = "1.0.2"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
+        buildConfigField("String", "INPUT_BASE", "\"${project.findProperty("polingualInputBase") ?: "https://polingual.com/input"}\"")
         buildConfigField("String", "INPUT_STAGE", "\"${project.findProperty("polingualInputStage") ?: ""}\"")
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
         buildConfigField("boolean", "ADS_ENABLED", "true")
@@ -103,6 +104,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.core.ktx)
     implementation(libs.media3.exoplayer)
+    implementation(libs.youtube.player)
     implementation(libs.media3.session)
     implementation(libs.billing)
     implementation(libs.ads)
