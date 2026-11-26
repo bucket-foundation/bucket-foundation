@@ -34,13 +34,14 @@ def test_manifest_matches_shipped_file():
     import hashlib
     import json
 
-    from fill_ipa import MANIFEST, SHIPPED, coverage, load
+    from fill_ipa import MANIFEST, SHIPPED, load
+    from fill_thin_langs import READING_COL, coverage
 
     manifest = json.load(open(MANIFEST))
     assert hashlib.sha256(open(SHIPPED, "rb").read()).hexdigest() == manifest["shipped_sha256"]
     rows = load(SHIPPED)
-    assert all(len(r) == 10 for r in json.loads(gzip.open(SHIPPED).read()))
-    assert coverage(rows) == manifest["after"]
+    assert all(len(r) == READING_COL + 1 for r in json.loads(gzip.open(SHIPPED).read()))
+    assert coverage(rows) == manifest["thin_langs"]["after"]
     for r in rows:
         assert (r[5] is None) == (r[9] is None)
     for lang, v in manifest["after"].items():
