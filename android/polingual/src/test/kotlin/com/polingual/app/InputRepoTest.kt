@@ -46,4 +46,20 @@ class InputRepoTest {
         dir.deleteRecursively()
         Unit
     }
+
+    @Test
+    fun aNewManifestPrunesBundlesItNoLongerLists() = runBlocking {
+        val dir = Files.createTempDirectory("input").toFile()
+        var current = manifest
+        val next = manifest.replace("es.0123456789ab.json", "es.fedcba987654.json")
+        val repo = InputRepo(dir, "https://example.test/input") { url -> if (url.endsWith("manifest.json")) current else bundle }
+        assertNotNull(repo.bundle("es"))
+        assertEquals(true, File(dir, "es.0123456789ab.json").isFile)
+        current = next
+        assertNotNull(repo.bundle("es"))
+        assertEquals(false, File(dir, "es.0123456789ab.json").exists())
+        assertEquals(true, File(dir, "es.fedcba987654.json").isFile)
+        dir.deleteRecursively()
+        Unit
+    }
 }

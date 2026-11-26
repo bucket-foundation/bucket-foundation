@@ -56,7 +56,7 @@ class InputStageTest {
     fun theFixtureBundleParsesAndABeginnerGetsNoEligibleUnit() {
         val b = assertNotNull(InputStage.parseBundle(fixture))
         assertEquals("es", b.lang)
-        val nothing = InputStage.learner(StudyState(), "es", { _, _ -> null }, 0, emptyMap(), null)
+        val nothing = InputStage.learner(StudyState(), "es", { _, _ -> null }, 0, 0, emptySet(), emptyMap(), null)
         assertEquals(emptyList(), InputStage.eligibleUnitSeconds(b, nothing))
         assertNull(InputStage.choose(b, nothing, allowFallback = false))
         assertNotNull(InputStage.choose(b, nothing, allowFallback = true))
@@ -79,5 +79,24 @@ class InputStageTest {
         assertEquals("unavailable", (ReviewLog.parse(kotlinx.serialization.json.Json.parseToJsonElement(
             "{\"review_id\":\"r\",\"reviewed_at\":1,\"device_id\":\"d\",\"tz\":\"UTC\",\"system_id\":\"s\",\"kind\":\"exposure\",\"lang\":\"es\",\"item\":\"${row.item}\",\"unit\":\"u\",\"lemmas_seen\":[],\"taps\":[],\"seconds\":0,\"coverage_pred\":0.9,\"completed\":true,\"playback\":\"unavailable\"}",
         )) as LogRow.Exposure).playback)
+    }
+
+    @Test
+    fun learnerAndDueLemmasMatchTheWebThroughTheResolver() {
+        val lv = Json.parseToJsonElement(File(System.getProperty("learnerInputVectors")).readText()).jsonObject
+        val now = lv["now"]!!.jsonPrimitive.double.toLong()
+        val cards = lv["cards"]!!.jsonObject.mapValues { (_, c) ->
+            val o = c.jsonObject
+            CardState(reps = 1, intervalDays = o["stability"]!!.jsonPrimitive.double, due = o["due"]!!.jsonPrimitive.double.toLong(), last = o["lastReview"]!!.jsonPrimitive.double.toLong())
+        }
+        val state = StudyState(cards = cards)
+        val resolve = { _: String, lemma: String -> "es:$lemma" }
+        val b = assertNotNull(InputStage.parseBundle(fixture))
+        assertEquals(lv["due"]!!.jsonArray.map { it.jsonPrimitive.content }.toSet(), InputStage.dueLemmas(b, state, "es", resolve, now))
+        for (c in lv["cases"]!!.jsonArray) {
+            val o = c.jsonObject
+            val l = InputStage.learner(state, "es", resolve, now, o["tier"]!!.jsonPrimitive.int, emptySet(), emptyMap(), null)
+            for ((lemma, p) in o["p"]!!.jsonObject) assertEquals(p.jsonPrimitive.double, l.p(lemma), 1e-8, lemma)
+        }
     }
 }

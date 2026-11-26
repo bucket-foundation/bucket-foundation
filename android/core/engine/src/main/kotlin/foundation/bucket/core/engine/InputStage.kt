@@ -81,13 +81,20 @@ object InputStage {
 
     fun resolver(maps: Map<String, Map<String, String>>): (String, String) -> String? = { lang, lemma -> maps[lang]?.get(key(lemma)) }
 
-    fun known(card: CardState?): Double = if (card == null || card.reps == 0) 0.0 else 1 - exp(-card.intervalDays / 21.0)
+    fun evidence(card: CardState?): LemmaEvidence =
+        if (card == null || (card.reps == 0 && card.lapses == 0) || card.intervalDays <= 0) LemmaEvidence() else LemmaEvidence(stability = card.intervalDays, lastReview = card.last.toDouble())
 
-    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, shown: Map<String, Int>, lastVideo: String?): InputLearner {
-        val card = { lemma: String -> resolve(lang, lemma)?.let { state.cards[it] } }
-        val due = state.cards.filter { (id, c) -> id.startsWith("$lang:") && c.due <= now }.keys
-        return InputLearner({ known(card(it)) }, due.map { it.substringAfter(':') }.toSet(), { null }, shown, lastVideo)
+    fun dueLemmas(b: InputBundle, state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long): Set<String> {
+        val out = linkedSetOf<String>()
+        for (item in b.items) for (t in item.tokens) {
+            val due = resolve(lang, t.lemma)?.let { state.cards[it]?.due } ?: continue
+            if (due <= now) out += t.lemma
+        }
+        return out
     }
+
+    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, tier: Int, due: Set<String>, shown: Map<String, Int>, lastVideo: String?): InputLearner =
+        InputLearner({ lemma -> LearnerModel.known(evidence(resolve(lang, lemma)?.let { state.cards[it] }), now.toDouble(), tier).p }, due, { null }, shown, lastVideo)
 
     fun plans(b: InputBundle, l: InputLearner): List<InputPlan> = b.units.map { u ->
         InputSelector.plan(u.id, b.lemmas(u), u.targetLemmas, u.kind == "episode", u.itemIds.firstOrNull()?.let { b.byId[it]?.media?.videoId }, l)

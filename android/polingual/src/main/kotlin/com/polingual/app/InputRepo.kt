@@ -16,6 +16,10 @@ import java.io.File
 object InputManifest {
     private val FILE = Regex("^[a-z]{2,3}\\.[0-9a-f]{8,64}\\.json$")
 
+    fun files(manifest: String): Set<String> = runCatching {
+        ((Json.parseToJsonElement(manifest) as JsonObject)["langs"] as JsonObject).values.mapNotNull { ((it as? JsonObject)?.get("file"))?.jsonPrimitive?.content?.takeIf { f -> FILE.matches(f) } }.toSet()
+    }.getOrDefault(emptySet())
+
     fun file(manifest: String, lang: String): String? = runCatching {
         (((Json.parseToJsonElement(manifest) as JsonObject)["langs"] as JsonObject)[lang] as JsonObject)["file"]!!.jsonPrimitive.content
     }.getOrNull()?.takeIf { FILE.matches(it) }
@@ -35,8 +39,19 @@ class InputRepo(private val cacheDir: File, private val base: String, private va
         tmp.renameTo(File(cacheDir, name))
     }
 
+    fun prune(manifest: String) {
+        val keep = InputManifest.files(manifest)
+        if (keep.isEmpty()) return
+        cacheDir.listFiles()?.filter { it.isFile && it.name != "manifest.json" && it.name !in keep }?.forEach { it.delete() }
+    }
+
     suspend fun bundle(lang: String): InputBundle? = withContext(Dispatchers.IO) {
-        val manifest = fetch("$base/manifest.json")?.also { store("manifest.json", it) } ?: cached("manifest.json") ?: return@withContext null
+        val fresh = fetch("$base/manifest.json")?.takeIf { InputManifest.files(it).isNotEmpty() }
+        if (fresh != null && fresh != cached("manifest.json")) {
+            store("manifest.json", fresh)
+            prune(fresh)
+        }
+        val manifest = fresh ?: cached("manifest.json") ?: return@withContext null
         val file = InputManifest.file(manifest, lang) ?: return@withContext null
         val text = cached(file) ?: fetch("$base/$file")?.takeIf { InputStage.parseBundle(it) != null }?.also { store(file, it) } ?: return@withContext null
         InputStage.parseBundle(text)

@@ -64,7 +64,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         }
         if (input != null && InputStep(input, s) { tick += 1 }) return@Page
         val ex = s.current
-        if (ex == null) { input?.end(s); SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
+        if (ex == null) { input?.end(s.view()); SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         ExerciseHeader(ex)
@@ -152,8 +152,8 @@ private fun rememberInputPlan(graph: Graph, s: StudySession?): InputPlanState? {
 
 @Composable
 private fun InputStep(input: InputPlanState, s: StudySession, changed: () -> Unit): Boolean {
-    input.prepare(s)
+    input.prepare(s.view())
     val stage = input.due(s.answered) ?: return false
-    InputStageScreen(stage, input.lang, input.gloss) { rows, seconds -> input.finish(s, rows, seconds); changed() }
+    InputStageScreen(stage, input.lang, input.gloss) { rows, seconds -> input.finish(s.view(), rows, seconds); changed() }
     return true
 }

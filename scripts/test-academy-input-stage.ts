@@ -160,3 +160,15 @@ test("on mode: a learner who knows the words gets eligible units, a non-zero sha
   const choice = chooseUnit(bundle, learner, false);
   assert.ok(choice && !choice.fallback && choice.plan.eligible);
 });
+
+test("golden learner and due lemmas through the resolver match the app ports", () => {
+  const lv = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "src/lib/academy/learner-input-vectors.json"), "utf8"));
+  const resolve = (_l: string, lemma: string) => `es:${lemma}`;
+  const state = normalizeState(null);
+  for (const [id, c] of Object.entries(lv.cards as Record<string, { stability: number; lastReview: number; due: number }>)) state.cards[id] = { state: "review", stability: c.stability, lastReview: c.lastReview, due: c.due, reps: 1, lapses: 0, difficulty: 5 };
+  assert.deepEqual(Array.from(dueLemmas(bundle, state, "es", resolve, lv.now)).sort(), lv.due);
+  for (const c of lv.cases) {
+    const l = learnerFromState(state, "es", resolve, lv.now, c.tier, new Set());
+    for (const [lemma, p] of Object.entries(c.p as Record<string, number>)) assert.ok(Math.abs(l.p(lemma) - p) < 1e-8, lemma);
+  }
+});

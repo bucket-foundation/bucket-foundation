@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "now": 1795176000000,
+  "cards": {
+    "es:A": {
+      "stability": 0.5,
+      "lastReview": 1795176000000,
+      "due": 1796040000000
+    },
+    "es:Mary": {
+      "stability": 3,
+      "lastReview": 1795089600000,
+      "due": 1795089600000
+    },
+    "es:Tom": {
+      "stability": 20,
+      "lastReview": 1794744000000,
+      "due": 1796040000000
+    },
+    "es:abuela": {
+      "stability": 0.5,
+      "lastReview": 1795089600000,
+      "due": 1796040000000
+    },
+    "es:acuerdo": {
+      "stability": 3,
+      "lastReview": 1794744000000,
+      "due": 1795089600000
+    },
+    "es:allí": {
+      "stability": 20,
+      "lastReview": 1795176000000,
+      "due": 1796040000000
+    },
+    "es:anochecer": {
+      "stability": 0.5,
+      "lastReview": 1794744000000,
+      "due": 1796040000000
+    },
+    "es:ante": {
+      "stability": 3,
+      "lastReview": 1795176000000,
+      "due": 1795089600000
+    },
+    "es:aquí": {
+      "stability": 20,
+      "lastReview": 1795089600000,
+      "due": 1796040000000
+    }
+  },
+  "cases": [
+    {
+      "tier": 0,
+      "p": {
+        "A": 1,
+        "Mary": 0.963058106,
+        "Tom": 0.971908645,
+        "a": 0,
+        "abuela": 0.825028647,
+        "acuerdo": 0.847900296,
+        "allí": 1,
+        "anillo": 0,
+        "anochecer": 0.546711065,
+        "ante": 1,
+        "aquí": 0.994186887,
+        "armario": 0,
+        "nada-unseen": 0
+      }
+    },
+    {
+      "tier": 2,
+      "p": {
+        "A": 1,
+        "Mary": 0.963058106,
+        "Tom": 0.971908645,
+        "a": 0,
+        "abuela": 0.825028647,
+        "acuerdo": 0.847900296,
+        "allí": 1,
+        "anillo": 0,
+        "anochecer": 0.546711065,
+        "ante": 1,
+        "aquí": 0.994186887,
+        "armario": 0,
+        "nada-unseen": 0
+      }
+    },
+    {
+      "tier": 8,
+      "p": {
+        "A": 1,
+        "Mary": 0.963058106,
+        "Tom": 0.971908645,
+        "a": 0,
+        "abuela": 0.825028647,
+        "acuerdo": 0.847900296,
+        "allí": 1,
+        "anillo": 0,
+        "anochecer": 0.546711065,
+        "ante": 1,
+        "aquí": 0.994186887,
+        "armario": 0,
+        "nada-unseen": 0
+      }
+    }
+  ],
+  "due": [
+    "Mary",
+    "acuerdo",
+    "ante"
+  ]
+}
