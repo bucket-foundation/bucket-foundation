@@ -133,7 +133,13 @@ struct TodayView: View {
         LiveStreak(deckStates + langs.systems.map { langs.state($0.id) }, now: Date().timeIntervalSince1970 * 1000)
     }
 
-    var streak: Double { live.days }
+    var inputStreak: InputStreak {
+        let states = deckStates + langs.systems.map { langs.state($0.id) }
+        let langCodes = Array(Set(langs.systems.flatMap(\.targets))).sorted()
+        return ProgressMetric.streak(studyDays: states.flatMap { Array($0.history.keys) }, log: ProgressMetric.rows(langs.reviewLog), langs: langCodes, today: dayKey(Date().timeIntervalSince1970 * 1000))
+    }
+
+    var streak: Double { max(live.days, Double(inputStreak.streak)) }
 
     func startNext() {
         guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
@@ -310,6 +316,9 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     PLScreenTop(title: "Today", stickers: Stickers.today)
                     goalCard(done: done, later: later).todayCard()
+                    if !langs.systems.isEmpty {
+                        LangProgressCard(langs: Array(Set(langs.systems.flatMap(\.targets))).sorted(), states: langs.systems.map { langs.state($0.id) }, log: langs.reviewLog, now: now).todayCard()
+                    }
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
@@ -510,5 +519,29 @@ struct TodaySkeleton: View {
         .scrollDisabled(true)
         .accessibilityElement()
         .accessibilityLabel("Loading your reviews")
+    }
+}
+
+struct LangProgressCard: View {
+    let langs: [String]
+    let states: [EngineState]
+    let log: [LogRow]
+    let now: Double
+
+    var body: some View {
+        let cards = ProgressMetric.cards(states)
+        let rows = ProgressMetric.rows(log)
+        VStack(alignment: .leading, spacing: 10) {
+            ForEach(langs, id: \.self) { lang in
+                let m = ProgressMetric.langMetrics(lang: lang, cards: cards, rows: rows, now: now)
+                HStack(spacing: 8) {
+                    PLBadge(lang.uppercased(), tone: .ink)
+                    PLBadge(String(localized: "\(m.inputHours, specifier: "%.1f") h input"), tone: .lapis)
+                    PLBadge(String(localized: "\(m.knownWords) known words"), tone: .paper)
+                }
+                .accessibilityElement(children: .combine)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

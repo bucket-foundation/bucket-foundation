@@ -54,6 +54,13 @@
 .streakNote{font-size:15px}
 .streakBar{height:10px;border-radius:999px;background:rgba(246,238,220,.2);overflow:hidden}
 .streakBar>div{height:100%;width:var(--pct,0);background:var(--ochre);border-radius:999px}
+.streakRowWrap{display:grid;gap:16px}
+@media (min-width:900px){.streakRowWrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}}
+.langProgress{display:flex;flex-direction:column;gap:12px}
+.progressList{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.progressItem{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.progressLang{font-family:var(--pl-font-display);font-weight:700;font-size:18px}
+.progressNums{display:flex;flex-wrap:wrap;gap:8px}
 .gapTop{margin-top:16px}
 .soon{align-self:flex-start;font-family:var(--pl-font-mono);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--parchment);background:var(--lapis);border-radius:999px;padding:3px 10px;margin-top:4px}
 .plan[data-available=no] .planPrice{color:var(--ink-2)}
