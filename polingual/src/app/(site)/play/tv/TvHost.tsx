@@ -11,6 +11,7 @@ import { Brand, Standings } from "../../live/parts";
 import Qr from "../../live/Qr";
 import { MixBar, useStage } from "../../live/show";
 import styles from "../../live/stoa.module.css";
+import tv from "./tv.module.css";
 import Nickname from "../Nickname";
 import { gameName } from "../langs";
 import { savedNickname, usePlay } from "../usePlay";
@@ -85,27 +86,27 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
   const round = tvRound(lobby, phase);
   const rows = tvPlayers(lobby);
   return (
-    <div data-testid="tv-board" data-phase={phase.kind}>
-      <section aria-label="Join">
-        <p className={styles.label}>{gameName(lobby.game)}</p>
-        <h1 data-testid="tv-code">{lobby.code}</h1>
-        <p className={styles.muted}>{tvShortUrl(url)}</p>
+    <div className={tv.board} data-testid="tv-board" data-phase={phase.kind}>
+      <section className={tv.panel} aria-label="Join">
+        <p className={tv.label}>{gameName(lobby.game)}</p>
+        <h1 className={tv.code} data-testid="tv-code">{lobby.code}</h1>
+        <p className={tv.url}>{tvShortUrl(url)}</p>
         <Qr text={url} />
       </section>
-      <section aria-label="Round" data-testid="tv-round">
+      <section className={tv.panel} aria-label="Round" data-testid="tv-round">
         <Tag>{round.label}</Tag>
-        {round.seconds !== null ? <p data-testid="tv-seconds">{round.seconds}</p> : null}
-        {round.gloss ? <h2>{round.gloss}</h2> : null}
+        {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
+        {round.gloss ? <h2 className={tv.word}>{round.gloss}</h2> : null}
         {round.choices.length ? (
-          <div role="list">
+          <div className={tv.choices} role="list">
             {round.choices.map((c) => (
               <Pill key={c} role="listitem" active={round.answer === c} tabIndex={-1}>{c}</Pill>
             ))}
           </div>
         ) : null}
       </section>
-      <section aria-label="Players">
-        {rows.length ? <Standings rows={rows} testId="tv-players" /> : <p className={styles.muted}>Scan the code to join.</p>}
+      <section className={tv.panel} aria-label="Players">
+        {rows.length ? <Standings rows={rows} testId="tv-players" /> : <p className={tv.empty}>Scan the code to join.</p>}
       </section>
     </div>
   );

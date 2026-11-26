@@ -850,6 +850,17 @@ export function wantsScreen(body: unknown): boolean {
   return typeof body === "object" && body !== null && (body as { screen?: unknown }).screen === true;
 }
 
+export const SCREEN_CAP = 3;
+
+export type ScreenJoin = "player" | "screen" | "add" | "full" | "closed";
+
+export function screenJoinDecision(lobby: Pick<LobbyRow, "status">, playerIds: string[], screenIds: string[], uid: string): ScreenJoin {
+  if (playerIds.includes(uid)) return "player";
+  if (screenIds.includes(uid)) return "screen";
+  if (lobby.status === "done") return "closed";
+  return screenIds.length >= SCREEN_CAP ? "full" : "add";
+}
+
 export function seatAllowed(seat: LobbySeat, screenOk: boolean): boolean {
   return seat === "player" || (seat === "screen" && screenOk);
 }

@@ -80,6 +80,7 @@ function check<T>(res: { data: T | null; error: { message: string } | null }, wh
   if (res.error) {
     if (res.error.message.includes("lobby_full")) throw new GroupsError("lobby_full", 409);
     if (res.error.message.includes("lobby_started")) throw new GroupsError("lobby_started", 409);
+    if (res.error.message.includes("lobby_closed")) throw new GroupsError("not_found", 404);
     throw new Error(`${what}: ${res.error.message}`);
   }
   return res.data as T;
@@ -295,6 +296,10 @@ async function seatOf(lobbyId: string, uid: string, screenOk: boolean): Promise<
   if (!screenOk) return null;
   const screens = check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "screen") as unknown[];
   return screens.length ? "screen" : null;
+}
+
+export async function screensOf(lobbyId: string): Promise<string[]> {
+  return (check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId), "screens") as { user_id: string }[]).map((r) => r.user_id);
 }
 
 export async function addScreen(lobbyId: string, uid: string): Promise<void> {
