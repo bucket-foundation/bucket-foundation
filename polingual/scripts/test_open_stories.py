@@ -184,8 +184,10 @@ class Units(unittest.TestCase):
 class Shipped(unittest.TestCase):
     def test_bundles_validate_and_credit(self):
         manifest = json.loads((SHIPPED / "manifest.json").read_text())
+        self.assertTrue({"pa", "ko"} <= set(manifest["langs"]))
+        self.assertTrue(manifest["langs"]["pa"]["beta"])
         for lang, m in manifest["langs"].items():
-            self.assertNotIn("pa", manifest["langs"])
+            self.assertEqual(m["beta"], m["tokenShare"] < os_.BETA_SHARE or not m["wordPack"])
             path = BUNDLES / m["file"]
             self.assertTrue(path.exists(), f"missing bundle {path}; run open_stories.py build")
             b = json.loads(path.read_text())

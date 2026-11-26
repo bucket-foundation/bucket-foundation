@@ -33,6 +33,7 @@ RESTRICTED = re.compile(r"all rights reserved|non.?commercial|no.?deriv|share.?a
 PAIR_RATIO = (0.25, 4.0)
 PAIR_SHARE = 0.8
 EXCLUDED = Counter()
+BETA_SHARE = 0.9
 UA = "polingual-open-stories/1 (+https://polingual.com)"
 DELAY = 1.0
 REPOS = {"asp-source": "gsb", "global-asp": "gsb", "pb-source": "sw", "global-pb": "sw"}
@@ -581,7 +582,7 @@ def build(a):
     BUNDLES.mkdir(parents=True, exist_ok=True)
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     base = os.environ.get(BASE_ENV)
-    manifest = {"format": "polingual-input", "kind": "open-stories", "licences": "CC BY or CC0 only, read per book", "langs": {}, "excluded": {},
+    manifest = {"format": "polingual-input", "kind": "open-stories", "licences": "CC BY or CC0 only, read per book", "langs": {}, "betaRule": f"tokenShare below {BETA_SHARE} or no word pack ships as beta with coverage shown",
                 "bucket": BUCKET, "prefix": PREFIX,
                 "bundleBase": None if not base or re.match(r"https?://(127\.0\.0\.1|localhost)[:/]", base) else base,
                 "bundleBaseEnv": BASE_ENV,
@@ -594,11 +595,7 @@ def build(a):
                 "machineFilter": MACHINE.pattern, "pairing": {"ratio": list(PAIR_RATIO), "share": PAIR_SHARE, "digitsMatch": True}}
     for lang in sorted(by_lang):
         lex = lexicon(lang, a)
-        if lex is None:
-            manifest["excluded"][lang] = "no Polingual word pack"
-            log(lang, "excluded, no word pack")
-            continue
-        tk = Tokenizer(lex, lang)
+        tk = Tokenizer(lex or NullLex(), lang)
         items, units, books, seen = [], [], [], set()
         for b in sorted(by_lang[lang], key=lambda b: (b["source"] != "african-storybook", b["source"], b["id"])):
             its, us = book_units(b, tk, seen)
@@ -621,6 +618,8 @@ def build(a):
                  "tokens": bundle["coverage"]["tokens"], "tokenShare": bundle["coverage"]["tokenShare"],
                  "pairedUnits": paired_units, "pairedShare": round(paired_units / len(units), 4),
                  "bySource": {s: sum(1 for b in books if b["source"] == s) for s in sorted({b["source"] for b in books})}}
+        stats["wordPack"] = lex is not None
+        stats["beta"] = lex is None or stats["tokenShare"] < BETA_SHARE
         manifest["langs"][lang] = stats
         log(lang, json.dumps(stats))
     manifest["booksExcluded"] = dict(sorted(EXCLUDED.items()))

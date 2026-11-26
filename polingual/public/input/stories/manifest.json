@@ -1,4 +1,5 @@
 {
+ "betaRule": "tokenShare below 0.9 or no word pack ships as beta with coverage shown",
  "booksExcluded": {
   "african-storybook licence": 40,
   "global-asp licence [CC-BY-NC]": 208,
@@ -24,13 +25,11 @@
  "bucket": "polingual-input",
  "bundleBase": null,
  "bundleBaseEnv": "NEXT_PUBLIC_POLINGUAL_INPUT_BASE",
- "excluded": {
-  "pa": "no Polingual word pack"
- },
  "format": "polingual-input",
  "kind": "open-stories",
  "langs": {
   "ar": {
+   "beta": true,
    "books": 25,
    "bySource": {
     "global-storybooks": 25
@@ -41,9 +40,11 @@
    "pairedUnits": 122,
    "tokenShare": 0.4273,
    "tokens": 7042,
-   "units": 122
+   "units": 122,
+   "wordPack": true
   },
   "de": {
+   "beta": false,
    "books": 49,
    "bySource": {
     "global-storybooks": 30,
@@ -55,9 +56,11 @@
    "pairedUnits": 271,
    "tokenShare": 0.9418,
    "tokens": 16970,
-   "units": 279
+   "units": 279,
+   "wordPack": true
   },
   "el": {
+   "beta": true,
    "books": 26,
    "bySource": {
     "global-storybooks": 26
@@ -68,9 +71,11 @@
    "pairedUnits": 146,
    "tokenShare": 0.8552,
    "tokens": 8818,
-   "units": 146
+   "units": 146,
+   "wordPack": true
   },
   "en": {
+   "beta": false,
    "books": 975,
    "bySource": {
     "african-storybook": 605,
@@ -82,9 +87,11 @@
    "pairedUnits": 0,
    "tokenShare": 0.9717,
    "tokens": 321446,
-   "units": 4627
+   "units": 4627,
+   "wordPack": true
   },
   "es": {
+   "beta": false,
    "books": 55,
    "bySource": {
     "african-storybook": 23,
@@ -97,9 +104,11 @@
    "pairedUnits": 232,
    "tokenShare": 0.9231,
    "tokens": 14939,
-   "units": 255
+   "units": 255,
+   "wordPack": true
   },
   "fa": {
+   "beta": true,
    "books": 27,
    "bySource": {
     "global-storybooks": 27
@@ -110,9 +119,11 @@
    "pairedUnits": 161,
    "tokenShare": 0.8029,
    "tokens": 9685,
-   "units": 161
+   "units": 161,
+   "wordPack": true
   },
   "fr": {
+   "beta": true,
    "books": 63,
    "bySource": {
     "african-storybook": 39,
@@ -124,9 +135,11 @@
    "pairedUnits": 218,
    "tokenShare": 0.8787,
    "tokens": 22827,
-   "units": 348
+   "units": 348,
+   "wordPack": true
   },
   "hi": {
+   "beta": true,
    "books": 170,
    "bySource": {
     "global-storybooks": 27,
@@ -138,9 +151,11 @@
    "pairedUnits": 723,
    "tokenShare": 0.8501,
    "tokens": 89673,
-   "units": 1073
+   "units": 1073,
+   "wordPack": true
   },
   "it": {
+   "beta": false,
    "books": 29,
    "bySource": {
     "global-storybooks": 26,
@@ -152,9 +167,11 @@
    "pairedUnits": 152,
    "tokenShare": 0.956,
    "tokens": 9190,
-   "units": 152
+   "units": 152,
+   "wordPack": true
   },
   "ja": {
+   "beta": false,
    "books": 32,
    "bySource": {
     "global-storybooks": 31,
@@ -166,9 +183,11 @@
    "pairedUnits": 198,
    "tokenShare": 0.9454,
    "tokens": 16984,
-   "units": 233
+   "units": 233,
+   "wordPack": true
   },
   "ko": {
+   "beta": true,
    "books": 25,
    "bySource": {
     "global-storybooks": 25
@@ -179,9 +198,11 @@
    "pairedUnits": 116,
    "tokenShare": 0.2491,
    "tokens": 6262,
-   "units": 116
+   "units": 116,
+   "wordPack": true
   },
   "nl": {
+   "beta": false,
    "books": 13,
    "bySource": {
     "global-storybooks": 12,
@@ -193,9 +214,27 @@
    "pairedUnits": 26,
    "tokenShare": 0.948,
    "tokens": 1462,
-   "units": 26
+   "units": 26,
+   "wordPack": true
+  },
+  "pa": {
+   "beta": true,
+   "books": 64,
+   "bySource": {
+    "global-storybooks": 27,
+    "storyweaver": 37
+   },
+   "file": "pa.eec0ed025e2f.json",
+   "items": 720,
+   "pairedShare": 0.9702,
+   "pairedUnits": 293,
+   "tokenShare": 0.0,
+   "tokens": 17943,
+   "units": 302,
+   "wordPack": false
   },
   "pl": {
+   "beta": true,
    "books": 25,
    "bySource": {
     "global-storybooks": 25
@@ -206,9 +245,11 @@
    "pairedUnits": 125,
    "tokenShare": 0.83,
    "tokens": 6947,
-   "units": 125
+   "units": 125,
+   "wordPack": true
   },
   "pt": {
+   "beta": false,
    "books": 132,
    "bySource": {
     "african-storybook": 127,
@@ -220,9 +261,11 @@
    "pairedUnits": 306,
    "tokenShare": 0.9016,
    "tokens": 40701,
-   "units": 679
+   "units": 679,
+   "wordPack": true
   },
   "ru": {
+   "beta": false,
    "books": 13,
    "bySource": {
     "global-storybooks": 13
@@ -233,9 +276,11 @@
    "pairedUnits": 47,
    "tokenShare": 0.9249,
    "tokens": 2755,
-   "units": 47
+   "units": 47,
+   "wordPack": true
   },
   "sa": {
+   "beta": true,
    "books": 29,
    "bySource": {
     "storyweaver": 29
@@ -246,9 +291,11 @@
    "pairedUnits": 87,
    "tokenShare": 0.304,
    "tokens": 7706,
-   "units": 121
+   "units": 121,
+   "wordPack": true
   },
   "sv": {
+   "beta": false,
    "books": 27,
    "bySource": {
     "global-storybooks": 27
@@ -259,9 +306,11 @@
    "pairedUnits": 150,
    "tokenShare": 0.9568,
    "tokens": 8735,
-   "units": 150
+   "units": 150,
+   "wordPack": true
   },
   "ta": {
+   "beta": true,
    "books": 53,
    "bySource": {
     "storyweaver": 53
@@ -272,9 +321,11 @@
    "pairedUnits": 144,
    "tokenShare": 0.3716,
    "tokens": 19560,
-   "units": 308
+   "units": 308,
+   "wordPack": true
   },
   "tr": {
+   "beta": true,
    "books": 25,
    "bySource": {
     "global-storybooks": 25
@@ -285,9 +336,11 @@
    "pairedUnits": 120,
    "tokenShare": 0.5879,
    "tokens": 6617,
-   "units": 120
+   "units": 120,
+   "wordPack": true
   },
   "vi": {
+   "beta": false,
    "books": 29,
    "bySource": {
     "global-storybooks": 29
@@ -298,9 +351,11 @@
    "pairedUnits": 168,
    "tokenShare": 0.9586,
    "tokens": 10081,
-   "units": 169
+   "units": 169,
+   "wordPack": true
   },
   "zh": {
+   "beta": true,
    "books": 41,
    "bySource": {
     "global-storybooks": 41
@@ -311,7 +366,8 @@
    "pairedUnits": 207,
    "tokenShare": 0.709,
    "tokens": 14102,
-   "units": 217
+   "units": 217,
+   "wordPack": true
   }
  },
  "licences": "CC BY or CC0 only, read per book",
