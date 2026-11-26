@@ -504,6 +504,10 @@ def lemmatizer(lang):
     if lang in SEGMENTED or lang in ("ar", "he", "ta", "vi"):
         return None
     import simplemma
+    from simplemma.strategies.dictionaries.dictionary_factory import SUPPORTED_LANGUAGES
+
+    if lang not in SUPPORTED_LANGUAGES:
+        return None
 
     def guesses(surface):
         g = simplemma.lemmatize(surface, lang=lang)
