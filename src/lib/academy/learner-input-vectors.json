@@ -55,16 +55,17 @@
         "A": 1,
         "Mary": 0.963058106,
         "Tom": 0.971908645,
-        "a": 0,
+        "a": 0.85,
         "abuela": 0.825028647,
         "acuerdo": 0.847900296,
         "allí": 1,
-        "anillo": 0,
+        "anillo": 0.038461538,
         "anochecer": 0.546711065,
         "ante": 1,
         "aquí": 0.994186887,
-        "armario": 0,
-        "nada-unseen": 0
+        "armario": 0.113122172,
+        "nada-unseen": 0.85,
+        "cero": 0
       }
     },
     {
@@ -73,16 +74,17 @@
         "A": 1,
         "Mary": 0.963058106,
         "Tom": 0.971908645,
-        "a": 0,
+        "a": 0.85,
         "abuela": 0.825028647,
         "acuerdo": 0.847900296,
         "allí": 1,
-        "anillo": 0,
+        "anillo": 0.264705882,
         "anochecer": 0.546711065,
         "ante": 1,
         "aquí": 0.994186887,
-        "armario": 0,
-        "nada-unseen": 0
+        "armario": 0.534441805,
+        "nada-unseen": 0.85,
+        "cero": 0
       }
     },
     {
@@ -91,16 +93,17 @@
         "A": 1,
         "Mary": 0.963058106,
         "Tom": 0.971908645,
-        "a": 0,
+        "a": 0.85,
         "abuela": 0.825028647,
         "acuerdo": 0.847900296,
         "allí": 1,
-        "anillo": 0,
+        "anillo": 0.764150943,
         "anochecer": 0.546711065,
         "ante": 1,
         "aquí": 0.994186887,
-        "armario": 0,
-        "nada-unseen": 0
+        "armario": 0.85,
+        "nada-unseen": 0.85,
+        "cero": 0
       }
     }
   ],
@@ -108,5 +111,51 @@
     "Mary",
     "acuerdo",
     "ante"
-  ]
+  ],
+  "freq": [
+    [
+      "a",
+      3,
+      false
+    ],
+    [
+      "Anillo",
+      2500,
+      false
+    ],
+    [
+      "anillo",
+      9000,
+      false
+    ],
+    [
+      "armario",
+      700,
+      true
+    ],
+    [
+      "nada-unseen",
+      40,
+      false
+    ],
+    [
+      "A",
+      5,
+      false
+    ],
+    [
+      "cero",
+      0,
+      false
+    ]
+  ],
+  "rank": {
+    "a": 3,
+    "anillo": 2500,
+    "armario": 700,
+    "nada-unseen": 40,
+    "Anillo": 2500,
+    "cero": null,
+    "missing": null
+  }
 }

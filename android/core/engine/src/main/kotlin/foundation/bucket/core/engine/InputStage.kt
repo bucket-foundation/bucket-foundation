@@ -93,8 +93,19 @@ object InputStage {
         return out
     }
 
-    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, tier: Int, due: Set<String>, shown: Map<String, Int>, lastVideo: String?): InputLearner =
-        InputLearner({ lemma -> LearnerModel.known(evidence(resolve(lang, lemma)?.let { state.cards[it] }), now.toDouble(), tier).p }, due, { null }, shown, lastVideo)
+    fun freqIndex(entries: List<Triple<String, Double, Boolean>>): (String) -> FreqPrior? {
+        val m = HashMap<String, FreqPrior>()
+        for ((word, rank, derived) in entries) {
+            val k = key(word)
+            if (k.isEmpty() || !rank.isFinite() || rank < 1) continue
+            val prev = m[k]
+            if (prev == null || rank < prev.rank) m[k] = FreqPrior(rank, derived)
+        }
+        return { m[key(it)] }
+    }
+
+    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, tier: Int, due: Set<String>, shown: Map<String, Int>, lastVideo: String?, freq: (String) -> FreqPrior? = { null }): InputLearner =
+        InputLearner({ lemma -> LearnerModel.known(evidence(resolve(lang, lemma)?.let { state.cards[it] }).copy(freq = freq(lemma)), now.toDouble(), tier).p }, due, { freq(it)?.rank }, shown, lastVideo)
 
     fun plans(b: InputBundle, l: InputLearner): List<InputPlan> = b.units.map { u ->
         InputSelector.plan(u.id, b.lemmas(u), u.targetLemmas, u.kind == "episode", u.itemIds.firstOrNull()?.let { b.byId[it]?.media?.videoId }, l)

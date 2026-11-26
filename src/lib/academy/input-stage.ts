@@ -1,5 +1,5 @@
 import type { EngineState } from "./engine";
-import { known } from "./learner-model";
+import { known, NO_FREQ, type FreqLookup } from "./learner-model";
 import type { ExposureInput } from "./learn-log";
 import { planBundle, select, unitLemmas, type InputBundle, type InputItem, type InputUnit, type Learner, type Plan } from "./input-selector";
 import type { LemmaResolver } from "./exposure-replay";
@@ -30,7 +30,7 @@ export function eligibleUnitSeconds(bundle: InputBundle, learner: Learner, mode:
   return fallback ? [unitSeconds(fallback.plan.tokens)] : [];
 }
 
-export function learnerFromState(state: EngineState, lang: string, resolve: LemmaResolver, now: number, tier: number, due: ReadonlySet<string>, recent: Readonly<Record<string, number>> = {}, lastVideo: string | null = null): Learner {
+export function learnerFromState(state: EngineState, lang: string, resolve: LemmaResolver, now: number, tier: number, due: ReadonlySet<string>, recent: Readonly<Record<string, number>> = {}, lastVideo: string | null = null, freq: FreqLookup = NO_FREQ): Learner {
   const card = (lemma: string) => {
     const id = resolve(lang, lemma);
     return id ? state.cards[id] : undefined;
@@ -38,10 +38,10 @@ export function learnerFromState(state: EngineState, lang: string, resolve: Lemm
   return {
     p: (lemma) => {
       const c = card(lemma);
-      return known({ stability: c?.stability, lastReview: c?.lastReview }, now, tier).p;
+      return known({ stability: c?.stability, lastReview: c?.lastReview, freq: freq(lemma) }, now, tier).p;
     },
     due,
-    rank: () => null,
+    rank: (lemma) => freq(lemma)?.rank ?? null,
     recent,
     lastVideo,
   };

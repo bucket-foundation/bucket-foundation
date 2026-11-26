@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { FSRS } from "../src/lib/academy/fsrs";
-import { boundedPriors, DEFAULT_PRIORS, firstReviewObservations, fitPriors, freqFromRow, frequencyPrior, inputEvidence, KNOWN_R, known, knownCount, MIN_FIT_OBSERVATIONS, placementObservations, PRIOR_BOUNDS, retrievability, type FrequencyPriors, type LemmaEvidence, type PriorObservation } from "../src/lib/academy/learner-model";
+import { boundedPriors, UNSTUDIED_PRIORS, firstReviewObservations, fitPriors, freqFromRow, frequencyPrior, inputEvidence, KNOWN_R, known, knownCount, MIN_FIT_OBSERVATIONS, placementObservations, PRIOR_BOUNDS, retrievability, type FrequencyPriors, type LemmaEvidence, type PriorObservation } from "../src/lib/academy/learner-model";
 
 const V = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "src/lib/academy/learner-model-vectors.json"), "utf8"));
 const close = (a: number, b: number, m: string) => assert.ok(Math.abs(a - b) < 1e-8, `${m}: ${a} vs ${b}`);
@@ -46,21 +46,21 @@ test("input evidence counts exposures once per row and keeps the latest tap", ()
 });
 
 test("golden priors match the defaults", () => {
-  assert.deepEqual(V.priors, DEFAULT_PRIORS);
+  assert.deepEqual(V.priors, UNSTUDIED_PRIORS);
 });
 
 test("no unseen word counts as known from the prior alone, at any rank or tier", () => {
   for (const rank of [1, 2, 10, 100]) for (const tier of [0, 5, 50]) for (const derived of [false, true]) {
     const k = known({ freq: { rank, derived } }, V.now, tier);
-    assert.ok(k.p <= DEFAULT_PRIORS.cap && !k.known, `${rank}/${tier}`);
+    assert.ok(k.p <= UNSTUDIED_PRIORS.cap && !k.known, `${rank}/${tier}`);
   }
-  assert.ok(DEFAULT_PRIORS.cap < KNOWN_R && PRIOR_BOUNDS.cap[1] < KNOWN_R);
+  assert.ok(UNSTUDIED_PRIORS.cap < KNOWN_R && PRIOR_BOUNDS.cap[1] < KNOWN_R);
   assert.ok(boundedPriors({ cap: 0.99 }).cap < KNOWN_R);
 });
 
 test("priors are clamped to their bounds and non-finite values fall back", () => {
   const b = boundedPriors({ halfRank: 1, slope: 99, derivedRankFactor: Number.NaN });
-  assert.deepEqual([b.halfRank, b.slope, b.derivedRankFactor], [PRIOR_BOUNDS.halfRank[0], PRIOR_BOUNDS.slope[1], DEFAULT_PRIORS.derivedRankFactor]);
+  assert.deepEqual([b.halfRank, b.slope, b.derivedRankFactor], [PRIOR_BOUNDS.halfRank[0], PRIOR_BOUNDS.slope[1], UNSTUDIED_PRIORS.derivedRankFactor]);
 });
 
 function synthetic(truth: FrequencyPriors, n: number): PriorObservation[] {
@@ -79,19 +79,19 @@ function synthetic(truth: FrequencyPriors, n: number): PriorObservation[] {
 }
 
 test("the fit hook recovers the half rank, slope and derived factor from answers", () => {
-  const truth = { ...DEFAULT_PRIORS, halfRank: 1500, slope: 1.4, derivedRankFactor: 3.5 };
+  const truth = { ...UNSTUDIED_PRIORS, halfRank: 1500, slope: 1.4, derivedRankFactor: 3.5 };
   const fit = fitPriors(synthetic(truth, 6000));
   assert.equal(fit.fitted, true);
   assert.ok(Math.abs(Math.log(fit.priors.halfRank / truth.halfRank)) < 0.25, `halfRank ${fit.priors.halfRank}`);
   assert.ok(Math.abs(fit.priors.slope - truth.slope) < 0.3, `slope ${fit.priors.slope}`);
   assert.ok(Math.abs(fit.priors.derivedRankFactor - truth.derivedRankFactor) < 1.2, `derived ${fit.priors.derivedRankFactor}`);
-  assert.equal(fit.priors.cap, DEFAULT_PRIORS.cap);
+  assert.equal(fit.priors.cap, UNSTUDIED_PRIORS.cap);
 });
 
 test("the fit hook keeps the defaults below the observation floor", () => {
-  const fit = fitPriors(synthetic(DEFAULT_PRIORS, MIN_FIT_OBSERVATIONS - 1));
+  const fit = fitPriors(synthetic(UNSTUDIED_PRIORS, MIN_FIT_OBSERVATIONS - 1));
   assert.equal(fit.fitted, false);
-  assert.deepEqual(fit.priors, DEFAULT_PRIORS);
+  assert.deepEqual(fit.priors, UNSTUDIED_PRIORS);
 });
 
 test("placement answers and first reviews become observations", () => {

@@ -1,7 +1,9 @@
 package foundation.bucket.core.engine
 
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.doubleOrNull
 import kotlinx.serialization.json.double
 import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonArray
@@ -93,10 +95,22 @@ class InputStageTest {
         val resolve = { _: String, lemma: String -> "es:$lemma" }
         val b = assertNotNull(InputStage.parseBundle(fixture))
         assertEquals(lv["due"]!!.jsonArray.map { it.jsonPrimitive.content }.toSet(), InputStage.dueLemmas(b, state, "es", resolve, now))
+        val freq = InputStage.freqIndex(lv["freq"]!!.jsonArray.map { e -> e.jsonArray.let { Triple(it[0].jsonPrimitive.content, it[1].jsonPrimitive.double, it[2].jsonPrimitive.boolean) } })
         for (c in lv["cases"]!!.jsonArray) {
             val o = c.jsonObject
-            val l = InputStage.learner(state, "es", resolve, now, o["tier"]!!.jsonPrimitive.int, emptySet(), emptyMap(), null)
+            val l = InputStage.learner(state, "es", resolve, now, o["tier"]!!.jsonPrimitive.int, emptySet(), emptyMap(), null, freq)
+            for ((lemma, r) in lv["rank"]!!.jsonObject) assertEquals(r.jsonPrimitive.doubleOrNull, l.rank(lemma), lemma)
             for ((lemma, p) in o["p"]!!.jsonObject) assertEquals(p.jsonPrimitive.double, l.p(lemma), 1e-8, lemma)
         }
+    }
+
+    @Test
+    fun aFrequencyPriorAloneNeverMarksAnUnseenWordKnown() {
+        val freq = InputStage.freqIndex(listOf(Triple("uno", 1.0, false)))
+        for (tier in listOf(0, 4, 20)) {
+            val l = InputStage.learner(StudyState(), "es", { _, lemma -> "es:$lemma" }, 0, tier, emptySet(), emptyMap(), null, freq)
+            kotlin.test.assertTrue(l.p("uno") < LearnerModel.KNOWN_R, "$tier")
+        }
+        kotlin.test.assertTrue(FrequencyPriors.UNSTUDIED.cap < LearnerModel.KNOWN_R)
     }
 }

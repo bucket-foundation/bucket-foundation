@@ -9,7 +9,7 @@ export interface FrequencyPriors {
   cap: number;
 }
 
-export const DEFAULT_PRIORS: FrequencyPriors = { halfRank: 500, slope: 2, derivedRankFactor: 2, cap: 0.85 };
+export const UNSTUDIED_PRIORS: FrequencyPriors = { halfRank: 500, slope: 2, derivedRankFactor: 2, cap: 0.85 };
 
 export const PRIOR_BOUNDS: { [K in keyof FrequencyPriors]: readonly [number, number] } = {
   halfRank: [50, 20_000],
@@ -19,10 +19,10 @@ export const PRIOR_BOUNDS: { [K in keyof FrequencyPriors]: readonly [number, num
 };
 
 export function boundedPriors(p: Partial<FrequencyPriors>): FrequencyPriors {
-  const out = { ...DEFAULT_PRIORS, ...p };
+  const out = { ...UNSTUDIED_PRIORS, ...p };
   for (const k of Object.keys(PRIOR_BOUNDS) as (keyof FrequencyPriors)[]) {
     const [lo, hi] = PRIOR_BOUNDS[k];
-    out[k] = Number.isFinite(out[k]) ? Math.min(hi, Math.max(lo, out[k])) : DEFAULT_PRIORS[k];
+    out[k] = Number.isFinite(out[k]) ? Math.min(hi, Math.max(lo, out[k])) : UNSTUDIED_PRIORS[k];
   }
   return out;
 }
@@ -65,13 +65,30 @@ export function freqFromRow(row: readonly unknown[]): FreqPrior | null {
   return { rank, derived: row[8] === 1 };
 }
 
+export type FreqLookup = (lemma: string) => FreqPrior | null;
+
+export const lemmaKey = (lemma: string) => lemma.normalize("NFC").toLowerCase().trim();
+
+export function freqIndex(entries: Iterable<readonly [string, number, boolean?]>): FreqLookup {
+  const m = new Map<string, FreqPrior>();
+  for (const [word, rank, derived] of Array.from(entries)) {
+    const k = lemmaKey(word);
+    if (!k || !Number.isFinite(rank) || rank < 1) continue;
+    const prev = m.get(k);
+    if (!prev || rank < prev.rank) m.set(k, { rank, derived: derived === true });
+  }
+  return (lemma) => m.get(lemmaKey(lemma)) ?? null;
+}
+
+export const NO_FREQ: FreqLookup = () => null;
+
 function uncappedPrior(freq: FreqPrior, tier: number, p: FrequencyPriors): number {
   const rank = freq.derived ? freq.rank * p.derivedRankFactor : freq.rank;
   const half = p.halfRank * (1 + Math.max(0, tier));
   return 1 / (1 + Math.pow(rank / half, p.slope));
 }
 
-export function frequencyPrior(freq: FreqPrior | null | undefined, tier: number, priors: FrequencyPriors = DEFAULT_PRIORS): Probability {
+export function frequencyPrior(freq: FreqPrior | null | undefined, tier: number, priors: FrequencyPriors = UNSTUDIED_PRIORS): Probability {
   if (!freq) return 0;
   return Math.min(priors.cap, uncappedPrior(freq, tier, priors));
 }
@@ -82,7 +99,7 @@ export function exposureGain(n: number, lambda: number = EXPOSURE_LAMBDA): numbe
 
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 
-export function known(e: LemmaEvidence, now: number, tier: number, lambda: number = EXPOSURE_LAMBDA, priors: FrequencyPriors = DEFAULT_PRIORS): Known {
+export function known(e: LemmaEvidence, now: number, tier: number, lambda: number = EXPOSURE_LAMBDA, priors: FrequencyPriors = UNSTUDIED_PRIORS): Known {
   if (typeof e.lastTap === "number" && now - e.lastTap >= 0 && now - e.lastTap < TAP_WINDOW_DAYS * DAY_MS) return { p: 0, known: false, source: "tap" };
   if (typeof e.stability === "number" && e.stability > 0 && typeof e.lastReview === "number") {
     const r = clamp01(retrievability((now - e.lastReview) / DAY_MS, e.stability));
@@ -120,7 +137,7 @@ export function priorLogLoss(obs: readonly PriorObservation[], priors: Frequency
 
 export const MIN_FIT_OBSERVATIONS = 200;
 
-export function fitPriors(obs: readonly PriorObservation[], start: FrequencyPriors = DEFAULT_PRIORS): { priors: FrequencyPriors; loss: number; fitted: boolean } {
+export function fitPriors(obs: readonly PriorObservation[], start: FrequencyPriors = UNSTUDIED_PRIORS): { priors: FrequencyPriors; loss: number; fitted: boolean } {
   if (obs.length < MIN_FIT_OBSERVATIONS) return { priors: start, loss: priorLogLoss(obs, start), fitted: false };
   let best = boundedPriors(start);
   let loss = priorLogLoss(obs, best);
@@ -160,7 +177,7 @@ export function inputEvidence(rows: readonly InputRow[]): Record<string, Pick<Le
   return out;
 }
 
-export function knownCount(lemmas: Readonly<Record<string, LemmaEvidence>>, now: number, tier: number, lambda: number = EXPOSURE_LAMBDA, priors: FrequencyPriors = DEFAULT_PRIORS): SumOfProbabilities {
+export function knownCount(lemmas: Readonly<Record<string, LemmaEvidence>>, now: number, tier: number, lambda: number = EXPOSURE_LAMBDA, priors: FrequencyPriors = UNSTUDIED_PRIORS): SumOfProbabilities {
   let sum = 0;
   for (const id of Object.keys(lemmas).sort()) sum += known(lemmas[id], now, tier, lambda, priors).p;
   return sum;

@@ -33,11 +33,22 @@ extension InputStage {
         return out
     }
 
-    public static func learner(_ state: EngineState, lang: String, resolve: @escaping LemmaResolver, now: Double, tier: Int, due: Set<String>, recent: [String: Int] = [:], lastVideo: String? = nil) -> InputLearner {
+    public static func learner(_ state: EngineState, lang: String, resolve: @escaping LemmaResolver, now: Double, tier: Int, due: Set<String>, recent: [String: Int] = [:], lastVideo: String? = nil, freq: @escaping (String) -> FreqPrior? = { _ in nil }) -> InputLearner {
         InputLearner(p: { lemma in
             let c = resolve(lang, lemma).flatMap { state.cards[$0] }
-            return LearnerModel.known(LemmaEvidence(stability: c?.stability, lastReview: c?.lastReview), now: now, tier: tier).p
-        }, due: due, rank: { _ in nil }, recent: recent, lastVideo: lastVideo)
+            return LearnerModel.known(LemmaEvidence(stability: c?.stability, lastReview: c?.lastReview, freq: freq(lemma)), now: now, tier: tier).p
+        }, due: due, rank: { freq($0)?.rank }, recent: recent, lastVideo: lastVideo)
+    }
+
+    public static func freqIndex(_ entries: [(String, Double, Bool)]) -> (String) -> FreqPrior? {
+        var m: [String: FreqPrior] = [:]
+        for (word, rank, derived) in entries {
+            let k = lemmaKey(word)
+            guard !k.isEmpty, rank.isFinite, rank >= 1 else { continue }
+            if let prev = m[k], prev.rank <= rank { continue }
+            m[k] = FreqPrior(rank: rank, derived: derived)
+        }
+        return { m[lemmaKey($0)] }
     }
 
     public static func eligibleUnitSeconds(_ b: InputBundle, learner l: InputLearner) -> [Double] {

@@ -9,6 +9,24 @@ private func repoFile(_ path: String) -> URL {
 private let now = 1_800_000_000_000.0
 private func resolve(_ lang: String, _ lemma: String) -> String? { "es:\(lemma)" }
 
+@Test func learnerFrequencyPriorsMatchTheWeb() throws {
+    let lv = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: repoFile("src/lib/academy/learner-input-vectors.json"))) as? [String: Any])
+    let at = try #require(lv["now"] as? Double)
+    var s = EngineState()
+    for (id, raw) in try #require(lv["cards"] as? [String: [String: Double]]) {
+        var c = Card()
+        c.stability = raw["stability"]!; c.lastReview = raw["lastReview"]!; c.due = raw["due"]!; c.reps = 1
+        s.cards[id] = c
+    }
+    let entries = try #require(lv["freq"] as? [[Any]]).map { ($0[0] as! String, ($0[1] as! NSNumber).doubleValue, $0[2] as! Bool) }
+    let freq = InputStage.freqIndex(entries)
+    for case let c as [String: Any] in try #require(lv["cases"] as? [Any]) {
+        let l = InputStage.learner(s, lang: "es", resolve: resolve, now: at, tier: c["tier"] as! Int, due: [], freq: freq)
+        for (lemma, p) in c["p"] as! [String: Double] { #expect(abs(l.p(lemma) - p) < 1e-8, "\(lemma)") }
+        for (lemma, r) in lv["rank"] as! [String: Any] { #expect(l.rank(lemma) == (r as? NSNumber)?.doubleValue, "\(lemma)") }
+    }
+}
+
 private func fixture() throws -> InputBundle {
     try #require(InputStage.parseBundle(Data(contentsOf: repoFile("scripts/fixtures/polingual-input/es.json"))))
 }
