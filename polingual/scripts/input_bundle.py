@@ -41,7 +41,7 @@ first second third first-person second-person third-person singular plural femin
 participle past present future perfect pluperfect preterite imperfect indicative subjunctive conditional
 imperative infinitive gerund personal impersonal inflected inflection form the and or with
 diminutive augmentative superlative comparative contraction genitive dative accusative nominative
-strong weak mixed definite indefinite apocopic elative pronominal combined
+strong weak mixed definite indefinite apocopic elative pronominal combined historic anterior
 affirmative negative informal formal polite familiar active passive simple compound tense mood
 """.split())
 WIDE_FORM_WORDS = set("""
@@ -84,6 +84,14 @@ CLOSED_CLASS = {
     "it": {"a": "a"},
     "pt": {"a": "a"},
     "de": {"im": "in"},
+}
+IT_ARTICULATED = {"de": "di", "a": "a", "da": "da", "ne": "in", "su": "su"}
+FIXED = {
+    "fr": {"ma": "mon", "ta": "ton", "sa": "son", "mes": "mon", "tes": "ton", "ses": "son",
+           "nos": "notre", "vos": "votre", "leurs": "leur"},
+    "it": {"i": "il", "l'": None, "l’": None, "d'": "di", "d’": "di",
+           **{stem + tail: prep for stem, prep in IT_ARTICULATED.items()
+              for tail in ("l", "llo", "lla", "ll'", "ll’", "i", "gli", "lle") if stem + tail != "dai"}},
 }
 
 
@@ -139,8 +147,9 @@ def lemma_of_meaning(sense, vocab=FORM_WORDS):
 
 class Lexicon:
     def __init__(self, lookup, noun_caps=False, closed=None, key=None, variants=None, wide=False, analyze=None,
-                 fallback=None):
+                 fallback=None, fixed=None):
         self.lookup = lookup
+        self.fixed = fixed or {}
         self.key = key or (lambda s: s)
         self.variants = variants
         self.vocab = FORM_WORDS | WIDE_FORM_WORDS if wide else FORM_WORDS
@@ -189,10 +198,16 @@ class Lexicon:
     def known(self, surface):
         return self._entry(surface)[0] is not None
 
-    def _base(self, found, senses, rank):
-        forms = [(self.key(t), pos) for g, pos in senses for t in [lemma_of_meaning(g, self.vocab)] if t]
+    def _forms(self, senses):
+        return [(self.key(t), pos) for g, pos in senses for t in [lemma_of_meaning(g, self.vocab)] if t]
+
+    def _base(self, found, senses, rank, depth=0):
+        forms = self._forms(senses)
         if not forms:
             return found
+        targets = {t for t, _ in forms}
+        forms = [(t, pos) for t, pos in forms
+                 if not any(u in targets and u != t and p == pos for u, p in self._forms(self._entry(t)[1]))]
         own = any((lemma_of_meaning(g, self.vocab) is None and not is_tag_only(g, self.vocab)) or g.lower().startswith("apocopic") and ";" in g
                   for g, _ in senses)
         choices = []
@@ -205,11 +220,18 @@ class Lexicon:
         for *_, t_found, t_rank in sorted(choices):
             if own and (t_rank is None or rank is None or t_rank > rank + RANK_MARGIN):
                 continue
+            t_senses = self._entry(t_found)[1]
+            if depth < 2 and t_senses and all(lemma_of_meaning(g, self.vocab) or is_tag_only(g, self.vocab)
+                                             for g, _ in t_senses):
+                return self._base(t_found, t_senses, t_rank, depth + 1)
             return t_found
         return found if own else forms[0][0]
 
     def lemma(self, surface, initial=False, hints=None):
         key = (surface, initial, tuple(hints or ()))
+        if key not in self.cache and surface.lower() in self.fixed:
+            fixed = self.fixed[surface.lower()]
+            self.cache[key] = (fixed, True) if fixed else (surface, False)
         if key not in self.cache and surface in self.names and not self._find(surface):
             self.cache[key] = (surface, False)
         if key not in self.cache:
@@ -495,7 +517,8 @@ def open_lexicon(lang, packs, scratch, index_db):
     if not db.exists():
         subprocess.run(["zstd", "-dqf", str(zst), "-o", str(db)], check=True)
     if lang in LANGS:
-        return Lexicon(sqlite_lookup(index_db, db, lang), noun_caps=lang == "de", closed=CLOSED_CLASS.get(lang))
+        return Lexicon(sqlite_lookup(index_db, db, lang), noun_caps=lang == "de", closed=CLOSED_CLASS.get(lang),
+                       fixed=FIXED.get(lang))
     return Lexicon(sqlite_lookup(index_db, db, lang), closed=CLOSED_CLASS.get(lang), key=lookup_key(lang),
                    variants=VARIANTS.get(lang), wide=True, analyze=analyzer(lang), fallback=lemmatizer(lang))
 
@@ -608,6 +631,11 @@ def gate(lang, sentences, evaluation):
     if evaluation.get("heldOut", {}).get("error", 0) > MAX_HELD_OUT_ERROR:
         return f"held-out lemma error {evaluation['heldOut']['error']:.2f} above {MAX_HELD_OUT_ERROR}"
     return None
+
+
+def ship_status(evaluation):
+    upper = evaluation.get("heldOut", {}).get("ci95", [0, 0])[1]
+    return "stable" if "heldOut" in evaluation and upper <= MAX_HELD_OUT_ERROR else "beta"
 
 
 def display_forms(bundle):
@@ -772,7 +800,7 @@ def main(argv=None):
                              f"needs {MIN_UNITS} units and {MIN_TOKEN_SHARE}")
             print(lang, "excluded:", excluded[tag], file=sys.stderr)
             continue
-        entry["status"] = "stable" if lang in LANGS else "beta"
+        entry["status"] = ship_status(evaluation) if lang in LANGS else "beta"
         if tag in by_lang:
             entry["lemmaError"] = by_lang[tag]
         manifest["langs"][tag] = entry

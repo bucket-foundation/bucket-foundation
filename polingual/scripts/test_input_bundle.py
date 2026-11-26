@@ -91,6 +91,51 @@ class Tokenize(unittest.TestCase):
         self.assertEqual(got, [("Es", True), ("Tom", False), ("Sí", True), ("dijo", False), ("Ana", True), ("vino", False)])
 
 
+class RomanceLemma(unittest.TestCase):
+    ROWS = {
+        "donna": ([("third-person singular past historic of donner", "verb")], None),
+        "donner": ([("to give", "verb")], 300),
+        "apparue": ([("feminine singular of apparu", "verb")], None),
+        "apparu": ([("past participle of apparaître", "verb")], None),
+        "apparaître": ([("to appear", "verb")], 900),
+        "livres": ([("plural of livre", "noun"), ("second-person singular present of livrer", "verb")], 600),
+        "livre": ([("book", "noun"), ("inflection of livrer:", "verb")], 200),
+        "livrer": ([("to deliver", "verb")], 900),
+    }
+
+    def lex(self, lang):
+        return ib.Lexicon(lambda s: self.ROWS.get(s, ([], None)), fixed=ib.FIXED[lang])
+
+    def test_past_historic(self):
+        self.assertEqual(self.lex("fr").lemma("donna"), ("donner", True))
+
+    def test_participle_chain(self):
+        self.assertEqual(self.lex("fr").lemma("apparue")[0], "apparaître")
+
+    def test_own_sense_target_kept(self):
+        self.assertEqual(self.lex("fr").lemma("livres")[0], "livre")
+
+    def test_fixed_closed_class(self):
+        fr, it = self.lex("fr"), self.lex("it")
+        self.assertEqual(fr.lemma("sa")[0], "son")
+        self.assertEqual(it.lemma("nei")[0], "in")
+        self.assertEqual(it.lemma("dell'")[0], "di")
+        self.assertEqual(it.lemma("I", True)[0], "il")
+
+    def test_ambiguous_italian_forms_not_forced(self):
+        rows = {"gli": ([("to him", "pron"), ("the", "article")], 50), "dai": ([("second-person singular present indicative of dare", "verb")], 60),
+                "dare": ([("to give", "verb")], 70)}
+        it = ib.Lexicon(lambda s: rows.get(s, ([], None)), fixed=ib.FIXED["it"])
+        self.assertEqual(it.lemma("gli")[0], "gli")
+        self.assertEqual(it.lemma("dai")[0], "dare")
+        self.assertEqual(it.lemma("l'"), ("l'", False))
+
+    def test_stable_needs_upper_bound_under_gate(self):
+        self.assertEqual(ib.ship_status({"heldOut": {"ci95": [0.01, 0.085]}}), "stable")
+        self.assertEqual(ib.ship_status({"heldOut": {"ci95": [0.01, 0.105]}}), "beta")
+        self.assertEqual(ib.ship_status({}), "beta")
+
+
 class Lemma(unittest.TestCase):
     def test_form_of_parsing(self):
         self.assertEqual(ib.lemma_of_meaning("plural of casa"), "casa")
