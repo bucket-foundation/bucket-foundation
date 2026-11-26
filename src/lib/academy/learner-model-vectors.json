@@ -118,7 +118,7 @@
       }
     },
     {
-      "name": "unseen frequent word at tier 0",
+      "name": "an unseen frequent word is capped below the known bar",
       "evidence": {
         "freq": {
           "rank": 100,
@@ -128,9 +128,26 @@
       "tier": 0,
       "lambda": 0,
       "expect": {
-        "p": 0.961538462,
-        "known": true,
+        "p": 0.85,
+        "known": false,
         "source": "prior"
+      }
+    },
+    {
+      "name": "a capped prior plus exposures can cross the bar",
+      "evidence": {
+        "exposures": 30,
+        "freq": {
+          "rank": 1,
+          "derived": false
+        }
+      },
+      "tier": 0,
+      "lambda": 0.1,
+      "expect": {
+        "p": 0.99253194,
+        "known": true,
+        "source": "exposure"
       }
     },
     {
@@ -153,14 +170,14 @@
       "name": "a higher placement tier raises the prior",
       "evidence": {
         "freq": {
-          "rank": 600,
+          "rank": 1500,
           "derived": false
         }
       },
       "tier": 2,
       "lambda": 0,
       "expect": {
-        "p": 0.862068966,
+        "p": 0.5,
         "known": false,
         "source": "prior"
       }
@@ -274,26 +291,33 @@
           }
         },
         "l9": {
+          "exposures": 30,
           "freq": {
-            "rank": 500,
+            "rank": 1,
             "derived": false
           }
         },
         "l10": {
           "freq": {
-            "rank": 600,
+            "rank": 500,
             "derived": false
           }
         },
         "l11": {
           "freq": {
+            "rank": 1500,
+            "derived": false
+          }
+        },
+        "l12": {
+          "freq": {
             "rank": 500,
             "derived": true
           }
         },
-        "l12": {}
+        "l13": {}
       },
-      "expect": 8.651200497
+      "expect": 9.076031617
     }
   ],
   "freqRows": [
@@ -346,24 +370,30 @@
       "expect": null
     }
   ],
+  "priors": {
+    "halfRank": 500,
+    "slope": 2,
+    "derivedRankFactor": 2,
+    "cap": 0.85
+  },
   "prior": [
     {
       "tier": 0,
-      "rank": 1000,
+      "rank": 300,
       "derived": false,
-      "expect": 0.2
+      "expect": 0.735294118
     },
     {
       "tier": 1,
-      "rank": 1000,
+      "rank": 300,
       "derived": false,
-      "expect": 0.5
+      "expect": 0.85
     },
     {
       "tier": 3,
-      "rank": 1000,
+      "rank": 300,
       "derived": false,
-      "expect": 0.8
+      "expect": 0.85
     }
   ]
 }

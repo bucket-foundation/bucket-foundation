@@ -44,3 +44,11 @@ private func evidence(_ o: [String: Any]) -> LemmaEvidence {
         #expect(abs(got - (p["expect"] as! NSNumber).doubleValue) < 1e-8)
     }
 }
+
+@Test func learnerModelPriorsMatchTheWebAndStayBelowTheBar() throws {
+    let v = try learnerVectors()
+    let p = v["priors"] as! [String: NSNumber]
+    #expect(FrequencyPriors(halfRank: p["halfRank"]!.doubleValue, slope: p["slope"]!.doubleValue, derivedRankFactor: p["derivedRankFactor"]!.doubleValue, cap: p["cap"]!.doubleValue) == .standard)
+    for rank in [1.0, 10, 100] { for tier in [0, 50] { #expect(!LearnerModel.known(LemmaEvidence(freq: FreqPrior(rank: rank, derived: false)), now: 0, tier: tier).known) } }
+    #expect(FrequencyPriors(cap: 0.99).bounded().cap < LearnerModel.knownR)
+}
