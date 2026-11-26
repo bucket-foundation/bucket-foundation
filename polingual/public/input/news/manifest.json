@@ -1,0 +1,396 @@
+{
+ "articlesExcluded": {
+  "boilerplate paragraph": 17338,
+  "caption paragraph": 3,
+  "global-voices partner content": 4,
+  "global-voices partner original": 8,
+  "global-voices translation of partner content": 8,
+  "paragraph too short": 8871,
+  "voa blockquote": 0,
+  "voa names a wire agency": 130,
+  "voa no text": 47,
+  "voa third-party copyright or contractor credit": 2,
+  "voa wire dateline": 16
+ },
+ "betaRule": "tokenShare below 0.9 or no word pack ships as beta with coverage shown",
+ "bucket": "polingual-input",
+ "bundleBase": null,
+ "bundleBaseEnv": "NEXT_PUBLIC_POLINGUAL_INPUT_BASE",
+ "format": "polingual-input",
+ "kind": "open-news",
+ "langs": {
+  "ar": {
+   "articles": 28,
+   "beta": true,
+   "bySource": {
+    "global-voices": 28
+   },
+   "file": "ar.440291d04cb0.json",
+   "items": 584,
+   "pairedShare": 0.1789,
+   "pairedUnits": 73,
+   "tokenShare": 0.7718,
+   "tokens": 27296,
+   "units": 408,
+   "wordPack": true
+  },
+  "cs": {
+   "articles": 28,
+   "beta": true,
+   "bySource": {
+    "global-voices": 28
+   },
+   "file": "cs.e9a58cee522e.json",
+   "items": 424,
+   "pairedShare": 0.4463,
+   "pairedUnits": 108,
+   "tokenShare": 0.8348,
+   "tokens": 15818,
+   "units": 242,
+   "wordPack": true
+  },
+  "de": {
+   "articles": 28,
+   "beta": false,
+   "bySource": {
+    "global-voices": 28
+   },
+   "file": "de.3af29b52f845.json",
+   "items": 465,
+   "pairedShare": 0.3537,
+   "pairedUnits": 110,
+   "tokenShare": 0.9133,
+   "tokens": 23312,
+   "units": 311,
+   "wordPack": true
+  },
+  "el": {
+   "articles": 27,
+   "beta": false,
+   "bySource": {
+    "global-voices": 27
+   },
+   "file": "el.68b8bbad1484.json",
+   "items": 464,
+   "pairedShare": 0.6814,
+   "pairedUnits": 246,
+   "tokenShare": 0.9181,
+   "tokens": 26594,
+   "units": 361,
+   "wordPack": true
+  },
+  "en": {
+   "articles": 569,
+   "beta": false,
+   "bySource": {
+    "global-voices": 513,
+    "voa-learning-english": 56
+   },
+   "file": "en.e72b3fc43d50.json",
+   "items": 10408,
+   "pairedShare": 0.0,
+   "pairedUnits": 0,
+   "tokenShare": 0.9789,
+   "tokens": 465602,
+   "units": 6778,
+   "wordPack": true
+  },
+  "es": {
+   "articles": 45,
+   "beta": false,
+   "bySource": {
+    "global-voices": 27,
+    "voa": 18
+   },
+   "file": "es.0590b994763e.json",
+   "items": 881,
+   "pairedShare": 0.415,
+   "pairedUnits": 254,
+   "tokenShare": 0.9707,
+   "tokens": 43094,
+   "units": 612,
+   "wordPack": true
+  },
+  "fa": {
+   "articles": 63,
+   "beta": true,
+   "bySource": {
+    "global-voices": 29,
+    "voa": 34
+   },
+   "file": "fa.63f42b86c52a.json",
+   "items": 799,
+   "pairedShare": 0.2398,
+   "pairedUnits": 123,
+   "tokenShare": 0.8872,
+   "tokens": 34302,
+   "units": 513,
+   "wordPack": true
+  },
+  "fr": {
+   "articles": 52,
+   "beta": false,
+   "bySource": {
+    "global-voices": 28,
+    "voa": 24
+   },
+   "file": "fr.d28c645c47d3.json",
+   "items": 663,
+   "pairedShare": 0.3135,
+   "pairedUnits": 163,
+   "tokenShare": 0.9613,
+   "tokens": 40038,
+   "units": 520,
+   "wordPack": true
+  },
+  "he": {
+   "articles": 26,
+   "beta": true,
+   "bySource": {
+    "global-voices": 26
+   },
+   "file": "he.5f20e61b567c.json",
+   "items": 332,
+   "pairedShare": 0.3771,
+   "pairedUnits": 66,
+   "tokenShare": 0.6465,
+   "tokens": 11267,
+   "units": 175,
+   "wordPack": true
+  },
+  "hi": {
+   "articles": 30,
+   "beta": false,
+   "bySource": {
+    "global-voices": 30
+   },
+   "file": "hi.09178d7ca2d5.json",
+   "items": 485,
+   "pairedShare": 0.4344,
+   "pairedUnits": 159,
+   "tokenShare": 0.9025,
+   "tokens": 29480,
+   "units": 366,
+   "wordPack": true
+  },
+  "id": {
+   "articles": 53,
+   "beta": true,
+   "bySource": {
+    "global-voices": 28,
+    "voa": 25
+   },
+   "file": "id.c52cf211026c.json",
+   "items": 818,
+   "pairedShare": 0.3838,
+   "pairedUnits": 185,
+   "tokenShare": 0.8944,
+   "tokens": 31116,
+   "units": 482,
+   "wordPack": true
+  },
+  "it": {
+   "articles": 28,
+   "beta": false,
+   "bySource": {
+    "global-voices": 28
+   },
+   "file": "it.860d3077f562.json",
+   "items": 678,
+   "pairedShare": 0.5956,
+   "pairedUnits": 296,
+   "tokenShare": 0.941,
+   "tokens": 34653,
+   "units": 497,
+   "wordPack": true
+  },
+  "ja": {
+   "articles": 30,
+   "beta": false,
+   "bySource": {
+    "global-voices": 30
+   },
+   "file": "ja.73c23d82eec1.json",
+   "items": 680,
+   "pairedShare": 0.2391,
+   "pairedUnits": 131,
+   "tokenShare": 0.9881,
+   "tokens": 47823,
+   "units": 548,
+   "wordPack": true
+  },
+  "ko": {
+   "articles": 61,
+   "beta": true,
+   "bySource": {
+    "global-voices": 27,
+    "voa": 34
+   },
+   "file": "ko.b4d1938cb0fb.json",
+   "items": 1046,
+   "pairedShare": 0.1417,
+   "pairedUnits": 69,
+   "tokenShare": 0.3265,
+   "tokens": 28583,
+   "units": 487,
+   "wordPack": true
+  },
+  "nl": {
+   "articles": 27,
+   "beta": false,
+   "bySource": {
+    "global-voices": 27
+   },
+   "file": "nl.dd0aa5b76291.json",
+   "items": 626,
+   "pairedShare": 0.471,
+   "pairedUnits": 187,
+   "tokenShare": 0.9289,
+   "tokens": 26900,
+   "units": 397,
+   "wordPack": true
+  },
+  "pa": {
+   "articles": 29,
+   "beta": true,
+   "bySource": {
+    "global-voices": 29
+   },
+   "file": "pa.63de1e66cad9.json",
+   "items": 362,
+   "pairedShare": 0.5142,
+   "pairedUnits": 127,
+   "tokenShare": 0.0,
+   "tokens": 18527,
+   "units": 247,
+   "wordPack": false
+  },
+  "pl": {
+   "articles": 29,
+   "beta": false,
+   "bySource": {
+    "global-voices": 29
+   },
+   "file": "pl.1294ed3c4b0e.json",
+   "items": 529,
+   "pairedShare": 0.5748,
+   "pairedUnits": 219,
+   "tokenShare": 0.9216,
+   "tokens": 25066,
+   "units": 381,
+   "wordPack": true
+  },
+  "pt": {
+   "articles": 52,
+   "beta": false,
+   "bySource": {
+    "global-voices": 29,
+    "voa": 23
+   },
+   "file": "pt.40bb389c15b7.json",
+   "items": 840,
+   "pairedShare": 0.3516,
+   "pairedUnits": 205,
+   "tokenShare": 0.9675,
+   "tokens": 41833,
+   "units": 583,
+   "wordPack": true
+  },
+  "ru": {
+   "articles": 63,
+   "beta": false,
+   "bySource": {
+    "global-voices": 27,
+    "voa": 36
+   },
+   "file": "ru.120f9e8dc955.json",
+   "items": 999,
+   "pairedShare": 0.1572,
+   "pairedUnits": 94,
+   "tokenShare": 0.9327,
+   "tokens": 42070,
+   "units": 598,
+   "wordPack": true
+  },
+  "sv": {
+   "articles": 29,
+   "beta": false,
+   "bySource": {
+    "global-voices": 29
+   },
+   "file": "sv.0118bd6b6de3.json",
+   "items": 369,
+   "pairedShare": 0.3442,
+   "pairedUnits": 74,
+   "tokenShare": 0.918,
+   "tokens": 14529,
+   "units": 215,
+   "wordPack": true
+  },
+  "tr": {
+   "articles": 60,
+   "beta": false,
+   "bySource": {
+    "global-voices": 28,
+    "voa": 32
+   },
+   "file": "tr.be6e7d53235a.json",
+   "items": 803,
+   "pairedShare": 0.3675,
+   "pairedUnits": 154,
+   "tokenShare": 0.9403,
+   "tokens": 31960,
+   "units": 419,
+   "wordPack": true
+  },
+  "vi": {
+   "articles": 27,
+   "beta": false,
+   "bySource": {
+    "voa": 27
+   },
+   "file": "vi.4b1e26803982.json",
+   "items": 338,
+   "pairedShare": 0.0,
+   "pairedUnits": 0,
+   "tokenShare": 0.9376,
+   "tokens": 19433,
+   "units": 256,
+   "wordPack": true
+  },
+  "zh": {
+   "articles": 53,
+   "beta": true,
+   "bySource": {
+    "global-voices": 28,
+    "voa": 25
+   },
+   "file": "zh.824579f43c6a.json",
+   "items": 852,
+   "pairedShare": 0.0271,
+   "pairedUnits": 18,
+   "tokenShare": 0.6192,
+   "tokens": 55173,
+   "units": 663,
+   "wordPack": true
+  }
+ },
+ "pairing": {
+  "digitsMatch": true,
+  "ratio": [
+   0.25,
+   4.0
+  ],
+  "share": 0.8
+ },
+ "prefix": "news/",
+ "sources": {
+  "global-voices": {
+   "licence": "rel=license link on each article page, CC BY only; blockquotes, figures and embeds dropped"
+  },
+  "voa": {
+   "licence": "US public domain per article page; paragraphs naming AP, Reuters, AFP or other agencies dropped; wire datelines drop the article; captions and embeds dropped"
+  }
+ },
+ "translationRule": "item.translation holds the Global Voices English original paragraph when paragraph count, length ratio and digits match; VOA language services are separate reporting and carry none"
+}

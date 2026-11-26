@@ -193,6 +193,17 @@ class Lemma(unittest.TestCase):
         self.assertEqual((rate, [w[0] for w in wrong]), (0.5, ["casas"]))
 
 
+class CyclicForms(unittest.TestCase):
+    def test_mutual_form_targets_keep_surface(self):
+        lex_data = {
+            "xa": ([("plural of pa", "noun"), ("plural of qa", "noun")], 10),
+            "pa": ([("plural of qa", "noun")], 20),
+            "qa": ([("plural of pa", "noun")], 30),
+        }
+        lex = ib.Lexicon(lambda s: lex_data.get(s, ([], None)))
+        self.assertEqual(lex.lemma("xa"), ("xa", True))
+
+
 class Units(unittest.TestCase):
     def test_episode_units_reach_min_tokens(self):
         units = ib.episode_units({"id": "v", "source_url": "u"}, [item(i, ["a"], 9) for i in range(13)])

@@ -217,7 +217,10 @@
                 "graded",
                 "african-storybook",
                 "global-storybooks",
-                "storyweaver"
+                "storyweaver",
+                "global-voices",
+                "voa",
+                "voa-learning-english"
               ]
             },
             "url": {
@@ -458,7 +461,10 @@
           "enum": [
             "african-storybook",
             "global-storybooks",
-            "storyweaver"
+            "storyweaver",
+            "global-voices",
+            "voa",
+            "voa-learning-english"
           ]
         },
         "lang": {
@@ -494,7 +500,8 @@
             "CC BY 2.0",
             "CC BY 3.0",
             "CC BY 4.0",
-            "CC0 1.0"
+            "CC0 1.0",
+            "Public Domain"
           ]
         },
         "level": {
@@ -533,7 +540,7 @@
         },
         "licenseUrl": {
           "type": "string",
-          "pattern": "^https://creativecommons\\.org/(licenses/by/|publicdomain/zero/1\\.0/)"
+          "pattern": "^https://(creativecommons\\.org/(licenses/by/|publicdomain/zero/1\\.0/)|www\\.usagm\\.gov/terms-of-use/)"
         },
         "pairedBook": {
           "type": "object",
@@ -551,6 +558,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "licenseBasis": {
+          "type": "string"
         }
       },
       "additionalProperties": false

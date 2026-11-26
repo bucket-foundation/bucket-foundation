@@ -471,7 +471,7 @@ def credit_for(b):
     if b["translators"]:
         parts.append("translated by " + ", ".join(b["translators"]))
     src = {"african-storybook": "African Storybook", "global-storybooks": "Global Storybooks",
-           "storyweaver": "StoryWeaver"}[b["source"]]
+           "storyweaver": "StoryWeaver"}.get(b["source"], b["source"])
     tail = f", {b['rightsHolder']}" if b.get("rightsHolder") else ""
     line = f"{', '.join(parts)}. {src}, {b['url']}{tail}, {b['licence']['label']} ({b['licence']['url']})"
     e = b.get("pairedBook")
@@ -639,7 +639,8 @@ def request(method, url, key, body=None, headers=None):
         return e.code, e.read()
 
 
-def upload():
+def upload(manifest=None, bundles=None, prefix=None):
+    manifest, bundles, prefix = manifest or MANIFEST, bundles or BUNDLES, prefix or PREFIX
     api = (os.environ.get("SUPABASE_URL") or os.environ.get("NEXT_PUBLIC_SUPABASE_URL") or "").rstrip("/")
     key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
     if not api or not key:
@@ -649,17 +650,17 @@ def upload():
     if code not in (200, 201) and b"already exists" not in out.lower() and b"duplicate" not in out.lower():
         sys.exit(f"open_stories: bucket create failed {code} {out[:200]!r}")
     sent = skipped = 0
-    for entry in json.loads(MANIFEST.read_text())["langs"].values():
-        name = PREFIX + entry["file"]
+    for entry in json.loads(manifest.read_text())["langs"].values():
+        name = prefix + entry["file"]
         if request("HEAD", f"{api}/storage/v1/object/public/{BUCKET}/{name}", key)[0] == 200:
             skipped += 1
             continue
-        code, out = request("POST", f"{api}/storage/v1/object/{BUCKET}/{name}", key, (BUNDLES / entry["file"]).read_bytes(),
+        code, out = request("POST", f"{api}/storage/v1/object/{BUCKET}/{name}", key, (bundles / entry["file"]).read_bytes(),
                             {"Content-Type": "application/json", "cache-control": CACHE_CONTROL, "x-upsert": "true"})
         if code not in (200, 201):
             sys.exit(f"open_stories: {name} failed {code} {out[:200]!r}")
         sent += 1
-    print(f"uploaded {sent}, already present {skipped}, base {api}/storage/v1/object/public/{BUCKET}/{PREFIX}")
+    print(f"uploaded {sent}, already present {skipped}, base {api}/storage/v1/object/public/{BUCKET}/{prefix}")
 
 
 def check_bundles_dir(path=None):
