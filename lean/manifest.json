@@ -2016,6 +2016,177 @@
   "type": "{α : Type} → (α → α → Prop) → α → (α → Prop) → α → Prop"
  },
  {
+  "name": "BucketMath.Learning.Selector.Plan",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.best",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 25,
+  "type": "List BucketMath.Learning.Selector.Plan → Option BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.best_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 47,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.best ps = some p → p ∈ ps"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 23,
+  "type": "BucketMath.Learning.Selector.Plan → BucketMath.Learning.Selector.Plan → BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 31,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  BucketMath.Learning.Selector.better a b = a ∨ BucketMath.Learning.Selector.better a b = b"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_score",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 90,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  a.score ≤ (BucketMath.Learning.Selector.better a b).score ∧ b.score ≤ (BucketMath.Learning.Selector.better a b).score"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_tie_lowest_id",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 94,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  a.score = b.score → (BucketMath.Learning.Selector.better a b).id = min a.id b.id"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_gloss_budget",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 69,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.glossed ≤ 2 ∨ 100 * p.glossed ≤ 5 * p.tokens"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_media_floor",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 80,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.media = true → 900 ≤ p.coverMilli"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_new_share",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 86,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → 100 * p.newWords ≤ 5 * p.tokens"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_selected",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 62,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p →\n    BucketMath.Learning.Selector.minTokens ≤ p.tokens ∧\n      BucketMath.Learning.Selector.inBand p = true ∧\n        1 ≤ p.newWords ∧\n          p.newWords ≤ 3 ∧ 20 * p.newWords ≤ p.tokens ∧ BucketMath.Learning.Selector.withinGlossBudget p = true"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_text_band",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 74,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.media = false → 950 ≤ p.coverMilli ∧ p.coverMilli ≤ 980"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.eligible",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 20,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.foldl_better_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 35,
+  "type": "∀ (ps : List BucketMath.Learning.Selector.Plan) (a : BucketMath.Learning.Selector.Plan),\n  List.foldl BucketMath.Learning.Selector.better a ps = a ∨ List.foldl BucketMath.Learning.Selector.better a ps ∈ ps"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.inBand",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 15,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.minTokens",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 13,
+  "type": "Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.select",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 29,
+  "type": "List BucketMath.Learning.Selector.Plan → Option BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.select_eligible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 58,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → BucketMath.Learning.Selector.eligible p = true"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.withinGlossBudget",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 18,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
   "name": "BucketMath.Learning.Sequencing.Ultra",
   "kind": "inductive",
   "status": "def",
@@ -2241,6 +2412,51 @@
   "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ {l l' : List α},\n      l.Perm l' →\n        ∀ (held : List α),\n          BucketMath.Learning.Sequencing.totalShared sim held l = BucketMath.Learning.Sequencing.totalShared sim held l'"
  },
  {
+  "name": "BucketMath.Learning.SessionMix.eligibleRate",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 32,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 34,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_le_eligible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 38,
+  "type": "∀ (t e s : Nat), BucketMath.Learning.SessionMix.inputShare t e s ≤ BucketMath.Learning.SessionMix.eligibleRate e s"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_le_target",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 36,
+  "type": "∀ (t e s : Nat), BucketMath.Learning.SessionMix.inputShare t e s ≤ t"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_zero_without_input",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 40,
+  "type": "∀ (t s : Nat), BucketMath.Learning.SessionMix.inputShare t 0 s = 0"
+ },
+ {
   "name": "BucketMath.Learning.SessionMix.m1_units_within_one_item",
   "kind": "theorem",
   "status": "proved",
@@ -2257,6 +2473,60 @@
   "source": "lean/BucketMath/Learning/SessionMix.lean",
   "line": 5,
   "type": "∀ (t n : Nat),\n  1000 * BucketMath.Learning.SessionMix.roundedItems t n ≤ t * n + 1000 ∧\n    t * n ≤ 1000 * BucketMath.Learning.SessionMix.roundedItems t n + 1000"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 44,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_le_cards",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 48,
+  "type": "∀ (p c r : Nat), 0 < c → BucketMath.Learning.SessionMix.planUnits p c r ≤ c"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_le_pool",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 46,
+  "type": "∀ (p c r : Nat), BucketMath.Learning.SessionMix.planUnits p c r ≤ p"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_pos",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 54,
+  "type": "∀ (p c r : Nat), 0 < p → 0 < BucketMath.Learning.SessionMix.planUnits p c r"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.position",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 58,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.position_lt_cards",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 60,
+  "type": "∀ (c u i : Nat), 0 < c → BucketMath.Learning.SessionMix.position c u i < c"
  },
  {
   "name": "BucketMath.Learning.SessionMix.roundedItems",
