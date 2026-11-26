@@ -6,6 +6,8 @@ import json
 import os
 import re
 import sys
+import urllib.error
+import urllib.request
 import urllib.robotparser
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -33,7 +35,8 @@ VOA_PER_LANG = 40
 LE_ARTICLES = 200
 THREADS = 8
 GV_LICENCE = re.compile(r"<a rel='license' href='https://creativecommons\.org/licenses/by/(\d\.\d)/[^']*'")
-AGENCY = re.compile(r"(?<![A-Za-z])(Associated Press|AP|Reuters|AFP|Agence France-Presse|France-Presse|France Presse|Getty|EFE|Europa Press|ANSA|dpa|Xinhua|Anadolu|Antara|Kyodo|Yonhap|Bloomberg)(?![A-Za-z])"
+AGENCY = re.compile(r"(?<![A-Za-z])(Associated Press|AP|Reuters|AFP|Agence France-Presse|France-Presse|France Presse|Getty|EFE|Europa Press|ANSA|dpa|Xinhua|Anadolu|Antara|Kyodo|Yonhap|Bloomberg|TASS|Lusa)(?![A-Za-z])"
+                    r"|(?<![А-Яа-яЁё])(АП|ТАСС|Луза)(?![А-Яа-яЁё])"
                     r"|美联社|美聯社|路透社|路透|法新社|新华社|新華社|共同社|共同通信|ロイター|AP通信|ＡＰ|ＡＦＰ|AP통신|로이터|AFP통신|연합뉴스|블룸버그"
                     r"|Ассошиэйтед Пресс|Ассошиэйтед|Рейтер|Франс Пресс|Франс-Пресс|АФП|Синьхуа|Блумберг"
                     r"|آسوشیتدپرس|آسوشیتد پرس|اسوشیتدپرس|رویترز|خبرگزاری فرانسه|فرانس‌پرس|فرانس پرس|بلومبرگ"
@@ -76,17 +79,11 @@ class Robots:
     def __init__(self, f):
         self.f = f
         self.parsers = {}
-        self.rf = st.Fetcher()
 
     def parser(self, url):
         host = url.split("/")[2]
         if host not in self.parsers:
-            try:
-                text = self.rf.get(f"https://{host}/robots.txt", CACHE / "robots" / f"{host}.txt").read_text(errors="replace")
-            except RuntimeError:
-                log("robots.txt unreachable, disallowing", host)
-                text = "User-agent: *\nDisallow: /\n"
-            self.parsers[host] = robots_from_text(text)
+            self.parsers[host] = robots_from_text(robots_text(host, fetch_robots))
         return self.parsers[host]
 
     def allowed(self, url):
@@ -95,6 +92,35 @@ class Robots:
         if delay:
             self.f.delay = max(self.f.delay, float(delay))
         return rp.can_fetch(UA, url)
+
+
+DISALLOW_ALL = "User-agent: *\nDisallow: /\n"
+
+
+def fetch_robots(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return r.status, r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        return e.code, ""
+    except (urllib.error.URLError, TimeoutError) as e:
+        log("robots.txt unreachable", url, e)
+        return None, ""
+
+
+def robots_text(host, fetch):
+    path = CACHE / "robots" / f"{host}.txt"
+    if path.exists():
+        return path.read_text(errors="replace")
+    status, text = fetch(f"https://{host}/robots.txt")
+    if status is not None and 400 <= status < 500:
+        text = ""
+    elif status != 200:
+        return DISALLOW_ALL
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text)
+    return text
 
 
 def robots_from_text(text):

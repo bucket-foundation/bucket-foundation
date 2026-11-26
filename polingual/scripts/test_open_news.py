@@ -87,6 +87,39 @@ class Voa(unittest.TestCase):
         self.assertFalse(nw.voa_parse(write(VOA.replace("</html>", "<footer>© 2025 Voice of America</footer></html>")))["thirdParty"])
 
 
+class Wire(unittest.TestCase):
+    def test_tass_lusa_and_cyrillic_ap(self):
+        for text in ["Как сообщает АП, мэр приедет.", "По данным ТАСС, мэр приедет.", "TASS reported the visit.",
+                     "Segundo a Lusa, o presidente chega amanhã."]:
+            self.assertEqual(nw.screen_voa([text]), "voa names a wire agency", text)
+        self.assertIsNone(nw.screen_voa(["Капитан пришёл в АПтеку не вовремя, а лузер ушёл."]))
+
+
+class RobotsStatus(unittest.TestCase):
+    def setUp(self):
+        self.cache = tempfile.mkdtemp()
+        self.old = nw.CACHE
+        nw.CACHE = Path(self.cache)
+
+    def tearDown(self):
+        nw.CACHE = self.old
+
+    def test_404_allows_everything(self):
+        text = nw.robots_text("a.org", lambda url: (404, ""))
+        self.assertTrue(nw.robots_from_text(text).can_fetch(nw.UA, "https://a.org/x"))
+
+    def test_server_error_or_unreachable_disallows(self):
+        for status in (500, None):
+            text = nw.robots_text(f"b{status}.org", lambda url, s=status: (s, ""))
+            self.assertFalse(nw.robots_from_text(text).can_fetch(nw.UA, "https://b.org/x"))
+
+    def test_200_uses_file(self):
+        text = nw.robots_text("c.org", lambda url: (200, "User-agent: *\nDisallow: /p/\n"))
+        rp = nw.robots_from_text(text)
+        self.assertFalse(rp.can_fetch(nw.UA, "https://c.org/p/1"))
+        self.assertTrue(rp.can_fetch(nw.UA, "https://c.org/q"))
+
+
 class Robots(unittest.TestCase):
     def test_disallow_and_crawl_delay(self):
         rp = nw.robots_from_text("User-agent: *\nCrawl-delay: 10\nDisallow: /wp-admin/\n")
