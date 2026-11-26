@@ -140,10 +140,10 @@
           "id": "s-s1",
           "started": 1793620201000,
           "ended": 1793620801000,
-          "share_target": 0.7,
-          "share_real": 0.66,
-          "arm": "share70",
-          "units": 4,
+          "share_target": null,
+          "share_real": null,
+          "arm": null,
+          "units": null,
           "cards": 12
         }
       ],
@@ -808,6 +808,23 @@
           "cards": 12
         },
         {
+          "review_id": "s3",
+          "reviewed_at": 1793620801000,
+          "device_id": "dev-a",
+          "tz": "UTC",
+          "system_id": "sys1",
+          "kind": "session",
+          "lang": "es",
+          "id": "s-s1",
+          "started": 1793620201000,
+          "ended": 1793620801000,
+          "share_target": null,
+          "share_real": null,
+          "arm": null,
+          "units": null,
+          "cards": null
+        },
+        {
           "review_id": "r1",
           "reviewed_at": 1793534400000,
           "device_id": "dev-a",
@@ -860,6 +877,23 @@
           }
         }
       }
+    }
+  ],
+  "deviceHash": [
+    {
+      "salt": "",
+      "device": "",
+      "hash": "d-af63b74c8601adad"
+    },
+    {
+      "salt": "salt-1",
+      "device": "3f9a2c1e-0000-4000-8000-000000000001",
+      "hash": "d-c6b64da22d12df9e"
+    },
+    {
+      "salt": "é-salt",
+      "device": "android",
+      "hash": "d-3a7f1ea1dc541789"
     }
   ]
 }

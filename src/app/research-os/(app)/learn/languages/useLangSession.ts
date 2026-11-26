@@ -68,7 +68,7 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
   useEffect(() => {
     if (!queue || i < queue.length || graded === 0 || ended.current || !h.endSession) return;
     ended.current = true;
-    h.endSession({ id: sessionId.current || (sessionId.current = crypto.randomUUID()), started: started.current, ended: Date.now(), share_target: 0, share_real: 0, arm: "control", units: 0, cards: Math.min(graded, 1000) });
+    h.endSession({ id: sessionId.current || (sessionId.current = crypto.randomUUID()), started: started.current, ended: Date.now(), share_target: null, share_real: null, arm: null, units: null, cards: Math.min(graded, 1000) });
   }, [queue, i, graded, h]);
 
   const entry = queue?.[i];

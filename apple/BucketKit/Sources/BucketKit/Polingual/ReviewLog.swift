@@ -41,10 +41,10 @@ public enum LogRow: Equatable, Sendable {
         public var sessionId: String
         public var started: Double
         public var ended: Double
-        public var shareTarget: Double
-        public var shareReal: Double
-        public var arm: String
-        public var units: Int
+        public var shareTarget: Double?
+        public var shareReal: Double?
+        public var arm: String?
+        public var units: Int?
         public var cards: Int
     }
 
@@ -115,6 +115,11 @@ public enum ReviewLog {
         return out
     }
 
+    private static func orNull<T>(_ o: [String: Any], _ k: String, _ read: ([String: Any], String) -> T?) -> T?? {
+        if o[k] is NSNull { return .some(nil) }
+        return read(o, k).map { .some($0) }
+    }
+
     public static func parse(_ raw: Any) -> LogRow? {
         guard let o = raw as? [String: Any],
               let id = str(o, "review_id"), let device = str(o, "device_id", 64), let tz = str(o, "tz", 64),
@@ -143,9 +148,9 @@ public enum ReviewLog {
             return .exposure(.init(meta: meta, lang: lang, item: item, unit: unit, lemmasSeen: seen, taps: taps, seconds: seconds, coveragePred: cov, completed: done.boolValue))
         case "session":
             guard let sid = str(o, "id"), let started = num(o, "started"), let ended = num(o, "ended"), ended >= started,
-                  let target = share(o, "share_target"), let real = share(o, "share_real"),
-                  let arm = str(o, "arm", 32), matches(arm, "^[a-z0-9_-]{1,32}$"),
-                  let units = nat(o, "units", maxSessionItems), let cards = nat(o, "cards", maxSessionItems) else { return nil }
+                  let target = orNull(o, "share_target", { share($0, $1) }), let real = orNull(o, "share_real", { share($0, $1) }),
+                  let arm = orNull(o, "arm", { o, k in str(o, k, 32).flatMap { matches($0, "^[a-z0-9_-]{1,32}$") ? $0 : nil } }),
+                  let units = orNull(o, "units", { nat($0, $1, maxSessionItems) }), let cards = nat(o, "cards", maxSessionItems) else { return nil }
             return .session(.init(meta: meta, lang: lang, sessionId: sid, started: started, ended: ended, shareTarget: target, shareReal: real, arm: arm, units: units, cards: cards))
         default:
             return nil
@@ -178,18 +183,47 @@ public enum ReviewLog {
     }
 
     public static func shareable(_ rows: [LogRow], gate: UploadGate) -> [LogRow] {
-        gate == .open ? rows : rows.filter(\.isReview)
+        switch gate {
+        case .open: rows
+        case .unknown: rows.filter(\.isReview)
+        case .closed: []
+        }
+    }
+
+    public static let exposureCap = 300
+    public static let sessionMixCap = 60
+
+    public static func take(_ rows: [LogRow]) -> [LogRow] {
+        var e = exposureCap
+        var m = sessionMixCap
+        return order(rows).filter { r in
+            switch r {
+            case .exposure: e -= 1; return e >= 0
+            case .session: m -= 1; return m >= 0
+            case .review: return false
+            }
+        }
+    }
+
+    public static func deviceHash(salt: String, device: String) -> String {
+        var h: UInt64 = 0xcbf29ce484222325
+        for b in "\(salt):\(device)".utf8 {
+            h ^= UInt64(b)
+            h = h &* 0x100000001b3
+        }
+        let hex = String(h, radix: 16)
+        return "d-" + String(repeating: "0", count: 16 - hex.count) + hex
     }
 
     public static func batch(_ rows: [LogRow], gate: UploadGate) -> [[String: Any]]? {
         if gate == .closed { return nil }
-        let events: [[String: Any]] = order(rows).compactMap { row in
+        let events: [[String: Any]] = take(rows).compactMap { row in
             switch row {
             case .review: return nil
             case .exposure(let e):
                 return ["id": e.meta.id, "name": "exposure", "props": ["item": e.item, "unit": e.unit, "lemmas_seen": e.lemmasSeen, "taps": e.taps, "seconds": e.seconds, "coverage_pred": e.coveragePred, "completed": e.completed] as [String: Any]]
             case .session(let s):
-                return ["id": s.meta.id, "name": "session_mix", "props": ["session": s.sessionId, "share_target": s.shareTarget, "share_real": s.shareReal, "arm": s.arm, "units": s.units, "cards": s.cards, "seconds": min(86_400, Int(((s.ended - s.started) / 1000).rounded()))] as [String: Any]]
+                return ["id": s.meta.id, "name": "session_mix", "props": ["session": s.sessionId, "share_target": s.shareTarget as Any? ?? NSNull(), "share_real": s.shareReal as Any? ?? NSNull(), "arm": s.arm as Any? ?? NSNull(), "units": s.units as Any? ?? NSNull(), "cards": s.cards, "seconds": min(86_400, Int(((s.ended - s.started) / 1000).rounded()))] as [String: Any]]
             }
         }
         return events.isEmpty ? nil : events

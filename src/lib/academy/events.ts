@@ -6,7 +6,7 @@ export type LearnEventName = (typeof LEARN_EVENT_NAMES)[number];
 export const CLIENT_EVENT_NAMES = ["placement_done", "study_session_done", "assess_done", "exposure", "session_mix"] as const;
 export const BATCH_EVENT_NAMES = ["exposure", "session_mix"] as const;
 export type BatchEventName = (typeof BATCH_EVENT_NAMES)[number];
-export const MAX_BATCH_EVENTS = 400;
+export const MAX_BATCH_EVENTS = 360;
 export type ClientEventName = (typeof CLIENT_EVENT_NAMES)[number];
 
 export const EVENT_DAILY_CAPS: Record<ClientEventName, number> = { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60 };
@@ -32,7 +32,7 @@ export interface LearnEventProps {
   study_session_done: { branch: string; items: number; correct: number; seconds: number };
   assess_done: { branch: string; items: AssessItemVerdict[] };
   exposure: ExposureInput;
-  session_mix: { session: string; share_target: number; share_real: number; arm: string; units: number; cards: number; seconds: number };
+  session_mix: { session: string; share_target: number | null; share_real: number | null; arm: string | null; units: number | null; cards: number; seconds: number };
   tutor_turn: { atom: string; abstained: boolean; leakBlocked: boolean; inputTokens: number | null; outputTokens: number | null; costUsd: number | null };
 }
 
@@ -61,6 +61,10 @@ const LEMMA_RE = /^\S{1,40}$/;
 
 function share(v: unknown): v is number {
   return typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1;
+}
+
+function orNull<T>(v: unknown, ok: (x: unknown) => x is T): v is T | null {
+  return v === null || ok(v);
 }
 
 function lemmaList(v: unknown, max: number): v is string[] {
@@ -108,8 +112,8 @@ export function parseProps<N extends LearnEventName>(name: N, raw: unknown): Par
       if (!int(raw.seconds, MAX_EXPOSURE_SECONDS) || !share(raw.coverage_pred) || typeof raw.completed !== "boolean") return fail;
       return done({ item: raw.item, unit: raw.unit, lemmas_seen: raw.lemmas_seen, taps: raw.taps, seconds: raw.seconds, coverage_pred: raw.coverage_pred, completed: raw.completed });
     case "session_mix":
-      if (!key(raw.session) || !share(raw.share_target) || !share(raw.share_real) || !validArm(raw.arm)) return fail;
-      if (!int(raw.units, MAX_SESSION_ITEMS) || !int(raw.cards, MAX_SESSION_ITEMS) || !int(raw.seconds, 86_400)) return fail;
+      if (!key(raw.session) || !orNull(raw.share_target, share) || !orNull(raw.share_real, share) || !orNull(raw.arm, validArm)) return fail;
+      if (!orNull(raw.units, (v): v is number => int(v, MAX_SESSION_ITEMS)) || !int(raw.cards, MAX_SESSION_ITEMS) || !int(raw.seconds, 86_400)) return fail;
       return done({ session: raw.session, share_target: raw.share_target, share_real: raw.share_real, arm: raw.arm, units: raw.units, cards: raw.cards, seconds: raw.seconds });
     case "tutor_turn":
       if (typeof raw.atom !== "string" || !ATOM_RE.test(raw.atom)) return fail;

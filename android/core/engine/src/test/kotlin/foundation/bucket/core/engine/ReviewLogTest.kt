@@ -50,8 +50,16 @@ class ReviewLogTest {
         val rows = vectors["cases"]!!.jsonArray[1].jsonObject["rows"]!!.jsonArray.mapNotNull(ReviewLog::parse)
         assertEquals(4, rows.size)
         assertEquals(1, ReviewLog.shareable(rows, UploadGate.Unknown).size)
-        assertEquals(1, ReviewLog.shareable(rows, UploadGate.Closed).size)
+        assertEquals(0, ReviewLog.shareable(rows, UploadGate.Closed).size)
         assertEquals(4, ReviewLog.shareable(rows, UploadGate.Open).size)
+    }
+
+    @Test
+    fun deviceHashMatchesTheWeb() {
+        for (v in vectors["deviceHash"]!!.jsonArray) {
+            val o = v.jsonObject
+            assertEquals(o["hash"]!!.jsonPrimitive.content, ReviewLog.deviceHash(o["salt"]!!.jsonPrimitive.content, o["device"]!!.jsonPrimitive.content))
+        }
     }
 
     @Test

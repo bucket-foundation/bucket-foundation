@@ -70,6 +70,7 @@ class StudySession(
     maxReviews: Int = 30,
     freq: FrequencyRank? = null,
     private val roll: (() -> Double)? = null,
+    private val device: String = ReviewLog.deviceHash("", "android"),
 ) {
     val tally = SoundTally()
     private var planned = 0
@@ -154,7 +155,7 @@ class StudySession(
         val id = ex.word.id
         val prev = state.cards[id] ?: CardState()
         val graded = Scheduler.grade(prev, ok, now)
-        log += LogRow.Review("$now-${log.size}", now, "android", "UTC", root, id, if (ok) 3 else 1, if (prev.last > 0) (now - prev.last) / 86_400_000.0 else 0.0, prev.intervalDays, graded.intervalDays, null)
+        log += LogRow.Review("$now-${log.size}", now, device, "UTC", root, id, if (ok) 3 else 1, if (prev.last > 0) (now - prev.last) / 86_400_000.0 else 0.0, prev.intervalDays, graded.intervalDays, null)
         val newCount = if (ex.isNew && id !in state.cards) mapOf(ex.word.lang to (state.newToday[ex.word.lang] ?: 0) + 1) else emptyMap()
         state = state.copy(
             cards = state.cards + (id to graded),

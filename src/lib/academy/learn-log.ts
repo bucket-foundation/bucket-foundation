@@ -57,10 +57,10 @@ export interface SessionRow extends RowBase {
   id: string;
   started: number;
   ended: number;
-  share_target: number;
-  share_real: number;
-  arm: string;
-  units: number;
+  share_target: number | null;
+  share_real: number | null;
+  arm: string | null;
+  units: number | null;
   cards: number;
 }
 
@@ -78,6 +78,7 @@ const str = (v: unknown, max = 128): v is string => typeof v === "string" && v.l
 const nat = (v: unknown, max: number): v is number => typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= max;
 const unit = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1;
 const pos = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v) && v >= 0;
+const nullable = <T>(v: unknown, ok: (x: unknown) => x is T): v is T | null => v === null || ok(v);
 const lemmas = (v: unknown, max: number): v is string[] => Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && LEMMA_RE.test(x));
 
 function base(o: Record<string, unknown>): RowBase | null {
@@ -107,8 +108,8 @@ export function parseLogRow(raw: unknown): LogRow | null {
   }
   if (o.kind === "session") {
     if (!str(o.id) || typeof o.started !== "number" || typeof o.ended !== "number" || !(o.ended >= o.started)) return null;
-    if (!unit(o.share_target) || !unit(o.share_real) || !str(o.arm, 32) || !ARM_RE.test(o.arm)) return null;
-    if (!nat(o.units, MAX_SESSION_ITEMS) || !nat(o.cards, MAX_SESSION_ITEMS)) return null;
+    if (!nullable(o.share_target, unit) || !nullable(o.share_real, unit) || !nullable(o.arm, (v): v is string => str(v, 32) && ARM_RE.test(v))) return null;
+    if (!nullable(o.units, (v): v is number => nat(v, MAX_SESSION_ITEMS)) || !nat(o.cards, MAX_SESSION_ITEMS)) return null;
     return { ...b, kind: "session", lang: o.lang, id: o.id, started: o.started, ended: o.ended, share_target: o.share_target, share_real: o.share_real, arm: o.arm, units: o.units, cards: o.cards };
   }
   return null;
@@ -170,16 +171,16 @@ export interface SessionInput {
   id: string;
   started: number;
   ended: number;
-  share_target: number;
-  share_real: number;
-  arm: string;
-  units: number;
+  share_target: number | null;
+  share_real: number | null;
+  arm: string | null;
+  units: number | null;
   cards: number;
 }
 
 export type BatchEvent =
   | { id: string; name: "exposure"; props: ExposureInput }
-  | { id: string; name: "session_mix"; props: { session: string; share_target: number; share_real: number; arm: string; units: number; cards: number; seconds: number } };
+  | { id: string; name: "session_mix"; props: { session: string; share_target: number | null; share_real: number | null; arm: string | null; units: number | null; cards: number; seconds: number } };
 
 export function batchEvents(rows: readonly LogRow[]): BatchEvent[] {
   const out: BatchEvent[] = [];
@@ -195,10 +196,42 @@ export type GateState = "unknown" | "open" | "closed";
 export interface UploadGate {
   state: GateState;
   at: number;
+  holdUntil?: number;
 }
 
 export function shareable<T extends LogRow>(rows: readonly T[], gate: UploadGate): T[] {
+  if (gate.state === "closed") return [];
   return gate.state === "open" ? [...rows] : rows.filter(isReview);
+}
+
+export function uploads(gate: UploadGate): boolean {
+  return gate.state !== "closed";
+}
+
+export const BATCH_CAPS = { exposure: 300, session_mix: 60 } as const;
+
+export function takeBatch(rows: readonly LogRow[]): { send: BatchEvent[]; rest: LogRow[] } {
+  const left: Record<BatchEvent["name"], number> = { exposure: BATCH_CAPS.exposure, session_mix: BATCH_CAPS.session_mix };
+  const send: BatchEvent[] = [];
+  const taken = new Set<string>();
+  for (const e of batchEvents(rows)) {
+    if (left[e.name] <= 0) continue;
+    left[e.name] -= 1;
+    send.push(e);
+    taken.add(e.id);
+  }
+  return { send, rest: rows.filter((r) => !taken.has(r.review_id)) };
+}
+
+const FNV_OFFSET = BigInt("0xcbf29ce484222325");
+const FNV_PRIME = BigInt("0x100000001b3");
+const MASK = (BigInt(1) << BigInt(64)) - BigInt(1);
+
+export function deviceHash(salt: string, device: string): string {
+  let h = FNV_OFFSET;
+  const bytes = new TextEncoder().encode(`${salt}:${device}`);
+  for (const b of Array.from(bytes)) h = ((h ^ BigInt(b)) * FNV_PRIME) & MASK;
+  return `d-${h.toString(16).padStart(16, "0")}`;
 }
 
 export function shouldProbe(gate: UploadGate, now: number): boolean {
@@ -206,6 +239,16 @@ export function shouldProbe(gate: UploadGate, now: number): boolean {
 }
 
 export type GateReply = "recorded" | "under_age" | "no_consent" | "no_profile" | "retry";
+
+export interface BatchReply {
+  outcome: GateReply;
+  limited: string[];
+}
+
+export function nextUtcMidnight(now: number): number {
+  const d = new Date(now);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1);
+}
 
 export function nextGate(reply: GateReply, gate: UploadGate, now: number): UploadGate {
   if (reply === "recorded") return { state: "open", at: now };

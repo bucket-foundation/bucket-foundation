@@ -27,7 +27,7 @@ sealed interface LogRow {
 
     data class Session(
         override val id: String, override val at: Long, override val device: String, override val tz: String, override val systemId: String,
-        val lang: String, val sessionId: String, val started: Long, val ended: Long, val shareTarget: Double, val shareReal: Double, val arm: String, val units: Int, val cards: Int,
+        val lang: String, val sessionId: String, val started: Long, val ended: Long, val shareTarget: Double?, val shareReal: Double?, val arm: String?, val units: Int?, val cards: Int,
     ) : LogRow
 }
 
@@ -56,6 +56,11 @@ object ReviewLog {
         if (a.size > max) return null
         return a.map { e -> (e as? JsonPrimitive)?.takeIf { it.isString }?.content?.takeIf { LEMMA.matches(it) } ?: return null }
     }
+
+    private class Opt<T>(val value: T?)
+
+    private fun <T> JsonObject.orNull(k: String, read: JsonObject.() -> T?): Opt<T>? =
+        if (this[k] is kotlinx.serialization.json.JsonNull) Opt(null) else read()?.let { Opt(it) }
 
     fun parse(raw: JsonElement?): LogRow? {
         val o = raw as? JsonObject ?: return null
@@ -93,12 +98,12 @@ object ReviewLog {
                 val started = o.num("started") ?: return null
                 val ended = o.num("ended") ?: return null
                 if (ended < started) return null
-                val target = o.share("share_target") ?: return null
-                val real = o.share("share_real") ?: return null
-                val arm = o.str("arm", 32)?.takeIf { ARM.matches(it) } ?: return null
-                val units = o.nat("units", MAX_SESSION_ITEMS) ?: return null
+                val target = o.orNull("share_target") { share("share_target") } ?: return null
+                val real = o.orNull("share_real") { share("share_real") } ?: return null
+                val arm = o.orNull("arm") { str("arm", 32)?.takeIf { ARM.matches(it) } } ?: return null
+                val units = o.orNull("units") { nat("units", MAX_SESSION_ITEMS) } ?: return null
                 val cards = o.nat("cards", MAX_SESSION_ITEMS) ?: return null
-                LogRow.Session(id, at, device, tz, system, lang, sid, started.toLong(), ended.toLong(), target, real, arm, units, cards)
+                LogRow.Session(id, at, device, tz, system, lang, sid, started.toLong(), ended.toLong(), target.value, real.value, arm.value, units.value, cards)
             }
             else -> null
         }
@@ -126,5 +131,33 @@ object ReviewLog {
         return rows.map { it.id } to cards
     }
 
-    fun shareable(rows: List<LogRow>, gate: UploadGate): List<LogRow> = if (gate == UploadGate.Open) rows else rows.filterIsInstance<LogRow.Review>()
+    fun shareable(rows: List<LogRow>, gate: UploadGate): List<LogRow> = when (gate) {
+        UploadGate.Open -> rows
+        UploadGate.Unknown -> rows.filterIsInstance<LogRow.Review>()
+        UploadGate.Closed -> emptyList()
+    }
+
+    const val EXPOSURE_CAP = 300
+    const val SESSION_MIX_CAP = 60
+
+    fun take(rows: List<LogRow>): List<LogRow> {
+        var e = EXPOSURE_CAP
+        var s = SESSION_MIX_CAP
+        return order(rows).filter { r ->
+            when (r) {
+                is LogRow.Exposure -> (e-- > 0)
+                is LogRow.Session -> (s-- > 0)
+                is LogRow.Review -> false
+            }
+        }
+    }
+
+    fun deviceHash(salt: String, device: String): String {
+        var h = -0x340d631b7bdddcdbL
+        for (b in "$salt:$device".toByteArray(Charsets.UTF_8)) {
+            h = h xor (b.toLong() and 0xff)
+            h *= 0x100000001b3L
+        }
+        return "d-" + java.lang.Long.toUnsignedString(h, 16).padStart(16, '0')
+    }
 }

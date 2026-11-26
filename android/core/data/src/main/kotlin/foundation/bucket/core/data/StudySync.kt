@@ -2,6 +2,7 @@ package foundation.bucket.core.data
 
 import foundation.bucket.core.engine.CardState
 import foundation.bucket.core.engine.LogRow
+import foundation.bucket.core.engine.ReviewLog
 import foundation.bucket.core.engine.UploadGate
 import foundation.bucket.core.engine.StudyState
 import kotlinx.serialization.json.JsonArray
@@ -96,7 +97,7 @@ object StudySync {
 
     fun batch(rows: List<LogRow>, gate: UploadGate): JsonObject? {
         if (gate == UploadGate.Closed) return null
-        val events = rows.mapNotNull { r ->
+        val events = ReviewLog.take(rows).mapNotNull { r ->
             when (r) {
                 is LogRow.Exposure -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("exposure"), "props" to JsonObject(mapOf(
                     "item" to JsonPrimitive(r.item), "unit" to JsonPrimitive(r.unit),
