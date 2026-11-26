@@ -12,6 +12,7 @@ create table if not exists bucket.experiment_enrolments (
 alter table bucket.experiment_enrolments enable row level security;
 
 revoke all on bucket.experiment_enrolments from anon, authenticated;
+grant select, insert on bucket.experiment_enrolments to service_role;
 
 create or replace function bucket.experiment_enrolments_frozen()
 returns trigger
