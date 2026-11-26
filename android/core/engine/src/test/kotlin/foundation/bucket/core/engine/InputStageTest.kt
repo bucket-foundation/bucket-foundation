@@ -1,6 +1,8 @@
 package foundation.bucket.core.engine
 
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.boolean
 import kotlinx.serialization.json.booleanOrNull
 import kotlinx.serialization.json.doubleOrNull
@@ -112,5 +114,20 @@ class InputStageTest {
             kotlin.test.assertTrue(l.p("uno") < LearnerModel.KNOWN_R, "$tier")
         }
         kotlin.test.assertTrue(FrequencyPriors.UNSTUDIED.cap < LearnerModel.KNOWN_R)
+    }
+
+    @Test
+    fun gradedBandsExpandAndMergeLikeTheWeb() {
+        val gv = Json.parseToJsonElement(File(System.getProperty("gradedVectors")).readText()).jsonObject
+        for (e in gv["bands"]!!.jsonArray[0].jsonObject["items"]!!.jsonArray) {
+            val o = e.jsonObject
+            val want = (gv["expanded"]!!.jsonObject[o["id"]!!.jsonPrimitive.content] as? JsonArray)?.map { p -> p.jsonArray.map { it.jsonPrimitive.content } }
+            assertEquals(want, InputStage.expandBandItem(o)?.tokens?.map { listOf(it.surface, it.lemma) }, o["id"].toString())
+        }
+        val base = assertNotNull(InputStage.parseBundle(gv["base"].toString()))
+        val merged = InputStage.mergeBands(base, gv["bands"]!!.jsonArray.map { if (it is JsonNull) null else it.toString() })
+        assertEquals(gv["mergedUnits"]!!.jsonArray.map { it.jsonPrimitive.content }, merged.units.map { it.id })
+        assertEquals(gv["mergedItems"]!!.jsonArray.map { it.jsonPrimitive.content }, merged.items.map { it.id }.sorted())
+        for (c in gv["bandsFor"]!!.jsonArray) assertEquals(c.jsonArray[1].jsonArray.map { it.jsonPrimitive.int }, InputStage.bandsFor(c.jsonArray[0].jsonPrimitive.int))
     }
 }

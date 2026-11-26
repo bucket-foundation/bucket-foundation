@@ -27,6 +27,25 @@ private func resolve(_ lang: String, _ lemma: String) -> String? { "es:\(lemma)"
     }
 }
 
+@Test func gradedBandsExpandAndMergeLikeTheWeb() throws {
+    let gv = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: repoFile("src/lib/academy/graded-vectors.json"))) as? [String: Any])
+    let bands = try #require(gv["bands"] as? [Any])
+    let expanded = try #require(gv["expanded"] as? [String: Any])
+    for case let it as [String: Any] in try #require((bands[0] as? [String: Any])?["items"] as? [Any]) {
+        let id = it["id"] as! String
+        let want = (expanded[id] as? [[String]])
+        #expect(InputStage.expandBandItem(it)?.tokens.map { [$0.surface, $0.lemma] } == want, "\(id)")
+    }
+    let base = try #require(InputStage.parseBundle(JSONSerialization.data(withJSONObject: gv["base"]!)))
+    let datas: [Data?] = try bands.map { $0 is NSNull ? nil : try JSONSerialization.data(withJSONObject: $0) }
+    let merged = InputStage.mergeBands(base, bands: datas)
+    #expect(merged.units.map(\.id) == gv["mergedUnits"] as! [String])
+    #expect(merged.items.map(\.id).sorted() == gv["mergedItems"] as! [String])
+    for case let c as [Any] in gv["bandsFor"] as! [Any] {
+        #expect(InputStage.bandsFor((c[0] as! NSNumber).intValue) == c[1] as! [Int])
+    }
+}
+
 private func fixture() throws -> InputBundle {
     try #require(InputStage.parseBundle(Data(contentsOf: repoFile("scripts/fixtures/polingual-input/es.json"))))
 }

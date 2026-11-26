@@ -1,9 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { loadBundle } from "@/lib/academy/input-selector";
+import { bandsFor, loadBundle } from "@/lib/academy/input-selector";
 import { planInputMix, type InputMix } from "@/lib/academy/input-mix";
-import { dueLemmas, eligibleUnitSeconds, inputMode, learnerFromState } from "@/lib/academy/input-stage";
+import { dueLemmas, eligibleUnitSeconds, inputMode, knownWords, learnerFromState } from "@/lib/academy/input-stage";
 import { loadTopWords } from "@/lib/academy/lang-client";
 import { freqIndex } from "@/lib/academy/learner-model";
 import type { LangSystemHandle } from "./useLangSystem";
@@ -40,7 +40,7 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
     let live = true;
     const resolve = h.resolve;
     const tier = h.system?.placement[lang] ?? 0;
-    Promise.all([loadBundle(lang), loadTopWords(lang)]).then(([b, top]) => {
+    Promise.all([loadBundle(lang, undefined, undefined, bandsFor(knownWords(stateRef.current, lang, Date.now()))), loadTopWords(lang)]).then(([b, top]) => {
       if (!live || !b) return;
       const now = Date.now();
       const learner = learnerFromState(stateRef.current, lang, resolve, now, tier, dueLemmas(b, stateRef.current, lang, resolve, now), {}, null, freqIndex((top ?? []).map((w) => [w.word, w.rank] as const)));

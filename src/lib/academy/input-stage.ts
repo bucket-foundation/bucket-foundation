@@ -1,5 +1,5 @@
 import type { EngineState } from "./engine";
-import { known, NO_FREQ, type FreqLookup } from "./learner-model";
+import { known, KNOWN_R, NO_FREQ, type FreqLookup } from "./learner-model";
 import type { ExposureInput } from "./learn-log";
 import { planBundle, select, unitLemmas, type InputBundle, type InputItem, type InputUnit, type Learner, type Plan } from "./input-selector";
 import type { LemmaResolver } from "./exposure-replay";
@@ -45,6 +45,15 @@ export function learnerFromState(state: EngineState, lang: string, resolve: Lemm
     recent,
     lastVideo,
   };
+}
+
+export function knownWords(state: EngineState, lang: string, now: number): number {
+  let n = 0;
+  const prefix = `${lang}:`;
+  for (const [id, c] of Object.entries(state.cards)) {
+    if (id.startsWith(prefix) && known({ stability: c.stability, lastReview: c.lastReview }, now, 0).p >= KNOWN_R) n++;
+  }
+  return n;
 }
 
 export function dueLemmas(bundle: InputBundle, state: EngineState, lang: string, resolve: LemmaResolver, now: number): Set<string> {

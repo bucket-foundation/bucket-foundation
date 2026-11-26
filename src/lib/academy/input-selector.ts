@@ -151,12 +151,91 @@ export function resolverFrom(maps: Readonly<Record<string, ReadonlyMap<string, s
   return (lang, lemma) => maps[lang]?.get(lemma.normalize("NFC").toLowerCase()) ?? null;
 }
 
-export async function loadBundle(lang: string, base = "/input", fetcher: typeof fetch = fetch): Promise<InputBundle | null> {
+export const BAND_RANKS: readonly number[] = [500, 1000, 2000, 4000, 8000];
+
+export function bandsFor(knownWords: number): number[] {
+  const i = BAND_RANKS.findIndex((b) => b > Math.max(0, knownWords));
+  return i < 0 ? [BAND_RANKS[BAND_RANKS.length - 1]] : BAND_RANKS.slice(i, i + 2);
+}
+
+export type BandTok = readonly [number, number] | readonly [number, number, string];
+
+export interface BandItem extends Omit<InputItem, "tokens" | "lemmas"> {
+  tok: BandTok[];
+}
+
+export function expandBandItem(it: BandItem): InputItem | null {
+  if (typeof it?.id !== "string" || typeof it.text !== "string" || !Array.isArray(it.tok)) return null;
+  const cps = Array.from(it.text);
+  const tokens: InputToken[] = [];
+  for (const t of it.tok) {
+    const [at, n, lemma] = t;
+    if (!Number.isInteger(at) || !Number.isInteger(n) || at < 0 || n < 1 || at + n > cps.length) return null;
+    const surface = cps.slice(at, at + n).join("");
+    tokens.push({ surface, lemma: typeof lemma === "string" ? lemma : surface });
+  }
+  const { tok: _tok, ...rest } = it;
+  void _tok;
+  return { ...rest, tokens, lemmas: Array.from(new Set(tokens.map((t) => t.lemma))).sort() };
+}
+
+export function mergeBands(bundle: InputBundle, bands: readonly unknown[]): InputBundle {
+  const items = new Map(bundle.items.map((i) => [i.id, i]));
+  const unitIds = new Set(bundle.units.map((u) => u.id));
+  const units = [...bundle.units];
+  for (const raw of bands) {
+    const b = raw as { format?: string; lang?: string; items?: BandItem[]; units?: InputUnit[] } | null;
+    if (!b || b.format !== "polingual-input-band" || b.lang !== bundle.lang || !Array.isArray(b.items) || !Array.isArray(b.units)) continue;
+    const fresh = new Map<string, InputItem>();
+    for (const it of b.items) {
+      if (items.has(it?.id)) continue;
+      const x = expandBandItem(it);
+      if (x) fresh.set(x.id, x);
+    }
+    for (const u of b.units) {
+      if (!u || typeof u.id !== "string" || !Array.isArray(u.itemIds) || unitIds.has(u.id) || !u.itemIds.every((id) => items.has(id) || fresh.has(id))) continue;
+      for (const id of u.itemIds) if (!items.has(id)) items.set(id, fresh.get(id)!);
+      unitIds.add(u.id);
+      units.push({ id: u.id, kind: u.kind, itemIds: u.itemIds, targetLemmas: Array.isArray(u.targetLemmas) ? u.targetLemmas : [], tokenCount: u.tokenCount });
+    }
+  }
+  return { ...bundle, items: Array.from(items.values()), units };
+}
+
+const TAG = "[a-z]{2,3}(?:-[A-Za-z]{2,8})?";
+const BUNDLE_FILE = new RegExp(`^${TAG}\\.[0-9a-f]{8,64}\\.json$`);
+const BAND_FILE = new RegExp(`^${TAG}\\.b\\d{1,5}\\.p\\d{1,3}\\.[0-9a-f]{8,64}\\.json$`);
+const LOOPBACK = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3}|\[::1\]|0\.0\.0\.0)(?::\d+)?(?:\/|$)/i;
+
+export interface InputManifestLite {
+  bandBase?: string | null;
+  langs?: Record<string, { file?: string; graded?: { files?: Record<string, { file?: string }[]> } }>;
+}
+
+export function bandFileUrls(manifest: InputManifestLite, lang: string, bands: readonly number[], base: string | null | undefined, production: boolean): string[] {
+  if (!base || !/^https?:\/\//.test(base) || (production && LOOPBACK.test(base))) return [];
+  const files = manifest.langs?.[lang]?.graded?.files ?? {};
+  const root = base.replace(/\/$/, "");
+  return bands.flatMap((b) => (files[String(b)] ?? []).map((p) => p?.file).filter((f): f is string => typeof f === "string" && BAND_FILE.test(f)).map((f) => `${root}/${f}`));
+}
+
+export async function loadBundle(
+  lang: string,
+  base = "/input",
+  fetcher: typeof fetch = fetch,
+  bands: readonly number[] = [],
+  bandBase: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE,
+  production: boolean = process.env.NODE_ENV === "production",
+): Promise<InputBundle | null> {
   try {
-    const manifest = (await (await fetcher(`${base}/manifest.json`)).json()) as { langs?: Record<string, { file?: string }> };
+    const manifest = (await (await fetcher(`${base}/manifest.json`)).json()) as InputManifestLite;
     const file = manifest.langs?.[lang]?.file;
-    if (!file || !/^[a-z]{2,3}\.[0-9a-f]{8,64}\.json$/.test(file)) return null;
-    return parseBundle(await (await fetcher(`${base}/${file}`)).json());
+    if (!file || !BUNDLE_FILE.test(file)) return null;
+    const bundle = parseBundle(await (await fetcher(`${base}/${file}`)).json());
+    if (!bundle || !bands.length) return bundle;
+    const urls = bandFileUrls(manifest, lang, bands, bandBase || manifest.bandBase, production);
+    const parts = await Promise.all(urls.map((u) => fetcher(u).then((r) => (r.ok ? r.json() : null)).catch(() => null)));
+    return mergeBands(bundle, parts);
   } catch {
     return null;
   }
