@@ -14,4 +14,6 @@ tasks.test {
     systemProperty("exposureVectors", rootProject.file("../src/lib/academy/exposure-vectors.json").absolutePath)
     systemProperty("selectorVectors", rootProject.file("../src/lib/academy/selector-vectors.json").absolutePath)
     systemProperty("inputMixVectors", rootProject.file("../src/lib/academy/input-mix-vectors.json").absolutePath)
+    systemProperty("inputStageVectors", rootProject.file("../src/lib/academy/input-stage-vectors.json").absolutePath)
+    systemProperty("inputFixture", rootProject.file("../scripts/fixtures/polingual-input/es.json").absolutePath)
 }
