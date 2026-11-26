@@ -11,6 +11,8 @@ import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
 import type { SessionInput } from "@/lib/academy/learn-log";
+import { registerLemmaMap } from "@/lib/academy/exposure-replay";
+import { lemmaCardMap } from "@/lib/academy/input-selector";
 import { browserMemoryIO, flushSession, gradeShared, logSession, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
@@ -157,6 +159,7 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
           setStatus("missing");
           return;
         }
+        for (const l of sys.targets) registerLemmaMap(l, lemmaCardMap(c, l));
         const s = await openShared(browserMemoryIO, sys, systems, server);
         const branch = progressBranch(sys);
         const setState0 = await webProgressStore.load(branch, server);

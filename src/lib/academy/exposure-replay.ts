@@ -11,7 +11,17 @@ export interface ExposureParams {
   resolve: (lang: string, lemma: string) => string | null;
 }
 
-export const DEFAULT_EXPOSURE_PARAMS: ExposureParams = { alpha: EXPOSURE_ALPHA, resolve: (lang, lemma) => `${lang}:${lemma}` };
+const lemmaMaps = new Map<string, ReadonlyMap<string, string>>();
+
+export function registerLemmaMap(lang: string, map: ReadonlyMap<string, string>): void {
+  lemmaMaps.set(lang, map);
+}
+
+export function resolveLemma(lang: string, lemma: string): string | null {
+  return lemmaMaps.get(lang)?.get(lemma.normalize("NFC").toLowerCase()) ?? null;
+}
+
+export const DEFAULT_EXPOSURE_PARAMS: ExposureParams = { alpha: EXPOSURE_ALPHA, resolve: resolveLemma };
 
 export type ExposureCard = Card & { exposureDay?: string };
 
@@ -76,7 +86,9 @@ export function replayLangLog(baseline: EngineState | null, log: readonly LogRow
       if (!isReview(r)) continue;
       if (r.atoms_version !== LANG_ATOMS_VERSION) continue;
       const { lang, itemId } = parseCardId(r.card_id);
+      const day = (state.cards[r.card_id] as ExposureCard | undefined)?.exposureDay;
       state = gradeCard(state, lang, itemId, r.rating, r.reviewed_at, r.tz);
+      if (day && state.cards[r.card_id]) state.cards[r.card_id] = { ...state.cards[r.card_id], exposureDay: day } as ExposureCard;
     }
     const exposures = group.filter((r): r is ExposureRow => r.kind === "exposure");
     if (exposures.length) state = applyExposureGroup(state, exposures, p);
