@@ -33,6 +33,9 @@ FORM_OF = re.compile(
     re.I,
 )
 QUOTED = re.compile(r"“([^”]{2,80})”")
+VARIANT_OF = re.compile(r"^(?:alternative|defective|plene|excessive|archaic|obsolete|nonstandard) (?:form|spelling) of\b", re.I)
+FUNCTION_POS = {"prep", "conj", "particle", "det", "pron"}
+CONTENT_POS = {"verb", "adj"}
 
 JMDICT_ATTR = "JMdict and KANJIDIC by the Electronic Dictionary Research and Development Group, CC BY-SA 4.0"
 CEDICT_ATTR = "CC-CEDICT by MDBG, CC BY-SA 4.0"
@@ -428,11 +431,15 @@ def better_gloss(r: list, info: dict, lemmas: dict, jm: dict, ce: dict) -> tuple
     plural = f" ({kind.group(1).lower()})" if kind else ""
     m = QUOTED.search(gloss or "")
     if lang in UNPOINTED_LANGS:
+        own = first_gloss([e for e in info["entries"] if e.get("pos") in FUNCTION_POS]) if lang in HOMOGRAPH_LANGS and r[4] not in FUNCTION_POS | CONTENT_POS else None
+        if own:
+            return own, "wiktionary-sense"
+        note = f" ({gloss.strip()})" if VARIANT_OF.match(gloss or "") else ""
         if m:
-            return m.group(1) + plural, "wiktionary-quoted"
+            return m.group(1) + plural + note, "wiktionary-quoted"
         g = lemma_gloss(r, info, lemmas)
         if g:
-            return g + plural, "wiktionary-lemma"
+            return g + plural + note, "wiktionary-lemma"
         return None
     g = first_gloss(info["entries"], r[4])
     if g:
