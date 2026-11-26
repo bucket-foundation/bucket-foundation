@@ -30,7 +30,7 @@ VOA_HOSTS = {"en": "learningenglish.voanews.com", "es": "www.vozdeamerica.com", 
              "pt": "www.voaportugues.com", "zh": "www.voachinese.com", "id": "www.voaindonesia.com",
              "ko": "www.voakorea.com", "vi": "www.voatiengviet.com", "tr": "www.voaturkce.com",
              "ru": "www.golosameriki.com", "fa": "ir.voanews.com"}
-GV_PER_LANG = 30
+GV_PER_LANG = 50
 VOA_PER_LANG = 40
 LE_ARTICLES = 200
 THREADS = 8
