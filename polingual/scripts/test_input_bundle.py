@@ -229,6 +229,9 @@ class EndToEnd(unittest.TestCase):
             no_golden = mock.patch.object(ib, "GOLDEN", d / "golden.json")
             no_golden.start()
             self.addCleanup(no_golden.stop)
+            no_held = mock.patch.object(ib, "HELD_OUT", d / "golden.json")
+            no_held.start()
+            self.addCleanup(no_held.stop)
             ib.main(args)
             manifest = json.loads((out / "manifest.json").read_text())
             self.assertNotIn("es", manifest["langs"])
@@ -342,6 +345,11 @@ class Policy(unittest.TestCase):
                 else:
                     self.assertIn(tag, manifest["lemmaEvaluation"]["heldOut"]["langs"])
         self.assertNotIn("ar", manifest["langs"])
+        for tag, entry in manifest["langs"].items():
+            self.assertEqual(entry["status"], "stable" if tag in ib.LANGS else "beta")
+            self.assertIn("ci95", entry["lemmaError"]["heldOut"])
+        self.assertEqual(manifest["bandBaseEnv"], "NEXT_PUBLIC_POLINGUAL_INPUT_BASE")
+        self.assertIsNone(manifest["bandBase"])
         self.assertTrue(any("Share-alike" in c for c in manifest["credits"]))
 
     @unittest.skipIf(importlib.util.find_spec("opencc") is None, "opencc missing")

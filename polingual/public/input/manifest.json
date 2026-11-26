@@ -1,4 +1,6 @@
 {
+ "bundleBase": null,
+ "bundleBaseEnv": "NEXT_PUBLIC_POLINGUAL_INPUT_BASE",
  "credits": [
   "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
   "Lemmas from Wiktionary via Kaikki (kaikki.org), CC BY-SA 3.0. Share-alike: lemma data and works adapted from it are distributed under CC BY-SA 3.0 or a compatible license, with attribution."
@@ -9,8 +11,10 @@
   "el": "no 50-token held-out set drawn",
   "fa": "no 50-token held-out set drawn",
   "fi": "no 50-token held-out set drawn",
+  "fr": "held-out lemma error 0.16 above 0.1",
   "he": "golden lemma error 0.24 above 0.1",
   "id": "no 50-token held-out set drawn",
+  "it": "held-out lemma error 0.14 above 0.1",
   "pl": "no 50-token held-out set drawn",
   "sv": "no 50-token held-out set drawn",
   "ta": "35 Tatoeba sentences linked to the English pool, below 200",
@@ -86,7 +90,29 @@
    },
    "file": "de.07d9945bc428.json",
    "items": 447,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
+     "error": 0.1,
+     "errors": 5,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "de",
+   "status": "stable",
    "tatoebaIdsMatched": 4008,
    "tatoebaItems": 4008,
    "units": 84
@@ -102,26 +128,32 @@
    },
    "file": "es.fab021e6f3e5.json",
    "items": 359,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
+     "error": 0.0,
+     "errors": 0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "es",
+   "status": "stable",
    "tatoebaIdsMatched": 3287,
    "tatoebaItems": 3287,
    "units": 70
-  },
-  "fr": {
-   "coverage": {
-    "tokenShare": 0.9811,
-    "tokens": 18482,
-    "tokensMapped": 18132,
-    "typeShare": 0.9703,
-    "types": 2824,
-    "typesMapped": 2740
-   },
-   "file": "fr.f2720def4270.json",
-   "items": 552,
-   "pack": "fr",
-   "tatoebaIdsMatched": 3757,
-   "tatoebaItems": 3759,
-   "units": 109
   },
   "hi": {
    "coverage": {
@@ -134,26 +166,32 @@
    },
    "file": "hi.e3be23ff1874.json",
    "items": 143,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
+     "error": 0.1,
+     "errors": 5,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "hi",
+   "status": "beta",
    "tatoebaIdsMatched": 746,
    "tatoebaItems": 746,
    "units": 29
-  },
-  "it": {
-   "coverage": {
-    "tokenShare": 0.9628,
-    "tokens": 19713,
-    "tokensMapped": 18980,
-    "typeShare": 0.9514,
-    "types": 3269,
-    "typesMapped": 3110
-   },
-   "file": "it.15594fcfdd41.json",
-   "items": 379,
-   "pack": "it",
-   "tatoebaIdsMatched": 4756,
-   "tatoebaItems": 4757,
-   "units": 72
   },
   "ja": {
    "coverage": {
@@ -166,7 +204,29 @@
    },
    "file": "ja.b680da0f0e94.json",
    "items": 923,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
+     "error": 0.0,
+     "errors": 0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "ja",
+   "status": "beta",
    "tatoebaIdsMatched": 3084,
    "tatoebaItems": 3084,
    "units": 182
@@ -182,7 +242,29 @@
    },
    "file": "ko.1af70d28e3bd.json",
    "items": 138,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "ko",
+   "status": "beta",
    "tatoebaIdsMatched": 768,
    "tatoebaItems": 768,
    "units": 27
@@ -198,7 +280,29 @@
    },
    "file": "nl.a699bf0fa7bd.json",
    "items": 210,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "nl",
+   "status": "beta",
    "tatoebaIdsMatched": 3384,
    "tatoebaItems": 3384,
    "units": 39
@@ -214,7 +318,29 @@
    },
    "file": "pt.ca5a9c57d682.json",
    "items": 328,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.032,
+      0.188
+     ],
+     "error": 0.08,
+     "errors": 4,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "pt",
+   "status": "stable",
    "tatoebaIdsMatched": 3345,
    "tatoebaItems": 3346,
    "units": 62
@@ -230,7 +356,29 @@
    },
    "file": "ru.723a2a05c357.json",
    "items": 269,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "ru",
+   "status": "beta",
    "tatoebaIdsMatched": 5943,
    "tatoebaItems": 5943,
    "units": 49
@@ -246,7 +394,29 @@
    },
    "file": "zh-Hans.a2160d8810f7.json",
    "items": 340,
+   "lemmaError": {
+    "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.032,
+      0.188
+     ],
+     "error": 0.08,
+     "errors": 4,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
+    }
+   },
    "pack": "zh",
+   "status": "beta",
    "tatoebaIdsMatched": 1918,
    "tatoebaItems": 1918,
    "units": 67
@@ -285,6 +455,16 @@
      "error": 0.04,
      "errors": 2,
      "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
+     "error": 0.1,
+     "errors": 5,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
     }
    },
    "el": {
@@ -306,6 +486,16 @@
      ],
      "error": 0.0,
      "errors": 0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
+     "file": "scripts/input_heldout.json",
      "tokens": 50
     }
    },
@@ -339,6 +529,16 @@
      ],
      "error": 0.02,
      "errors": 1,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.083,
+      0.285
+     ],
+     "error": 0.16,
+     "errors": 8,
+     "file": "scripts/input_heldout.json",
      "tokens": 50
     }
    },
@@ -393,6 +593,16 @@
      ],
      "error": 0.0,
      "errors": 0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.07,
+      0.262
+     ],
+     "error": 0.14,
+     "errors": 7,
+     "file": "scripts/input_heldout.json",
      "tokens": 50
     }
    },
@@ -478,6 +688,16 @@
      ],
      "error": 0.08,
      "errors": 4,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "file": "scripts/input_heldout.json",
      "tokens": 50
     }
    },

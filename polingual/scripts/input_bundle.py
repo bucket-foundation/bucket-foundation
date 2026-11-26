@@ -61,6 +61,7 @@ INF = float("inf")
 GOLDEN_MAX_ERROR = 0.10
 MIN_UNITS = 20
 BCP47 = {"zh": "zh-Hans"}
+PACK_OF = {v: k for k, v in BCP47.items()}
 LEMMA_EVALUATION = {
     "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
     "goldenTunedRules": True,
@@ -604,7 +605,7 @@ def gate(lang, sentences, evaluation):
 
 
 def display_forms(bundle):
-    lang = bundle["lang"]
+    lang = PACK_OF.get(bundle["lang"], bundle["lang"])
     tag = BCP47.get(lang, lang)
     bundle["lang"] = tag
     if lang != "zh":
@@ -699,7 +700,12 @@ def main(argv=None):
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
     manifest["credits"] = [TATOEBA_CREDIT, KAIKKI_CREDIT]
     manifest["lemmaEvaluation"] = {**LEMMA_EVALUATION, "byLang": manifest.get("lemmaEvaluation", {}).get("byLang", {})}
-    manifest["bandBase"] = os.environ.get("NEXT_PUBLIC_POLINGUAL_INPUT_BASE") or manifest.get("bandBase")
+    base = os.environ.get("NEXT_PUBLIC_POLINGUAL_INPUT_BASE") or manifest.get("bandBase")
+    manifest["bandBase"] = None if base and re.match(r"https?://(127\.0\.0\.1|localhost)[:/]", base) else base
+    manifest["bandBaseEnv"] = "NEXT_PUBLIC_POLINGUAL_INPUT_BASE"
+    manifest.pop("bundleBase", None)
+    manifest.pop("bundleBaseEnv", None)
+    manifest.pop("tags", None)
     manifest["langTags"] = "BCP-47"
     inputs = manifest.setdefault("inputs", {})
     inputs["layers"] = sha(a.layers)
@@ -736,16 +742,16 @@ def main(argv=None):
         if a.ranks:
             import graded_input
             graded = graded_input.extend_bundle(b, lang, lex, a.tatoeba, a.ranks, a.graded_cap)
-            b, parts = graded_input.split_bands(b)
+            b, parts = graded_input.split_bands(display_forms(b))
             a.bands_out.mkdir(parents=True, exist_ok=True)
             graded["files"] = {}
             for band, chunks in parts.items():
                 graded["files"][str(band)] = []
                 for k, part in enumerate(chunks):
-                    f = write_bundle(display_forms(part), a.bands_out, f"b{band}.p{k}")
+                    f = write_bundle(part, a.bands_out, f"b{band}.p{k}")
                     graded["files"][str(band)].append({"file": f, "units": len(part["units"]), "items": len(part["items"]),
                                                        "bytes": (a.bands_out / f).stat().st_size})
-        b = display_forms(b)
+        b = display_forms(b) if graded is None else b
         name = write_bundle(b, a.out)
         inputs["packs"][lang] = sha(a.packs / lang / f"polingual-{lang}.sqlite.zst")
         for f in (f"{ISO3[lang]}-eng_links.tsv.bz2", f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
@@ -759,6 +765,9 @@ def main(argv=None):
             excluded[tag] = f"built with {len(b['units'])} units, below {MIN_UNITS}; held out of the manifest"
             print(lang, "excluded:", excluded[tag], file=sys.stderr)
             continue
+        entry["status"] = "stable" if lang in LANGS else "beta"
+        if tag in by_lang:
+            entry["lemmaError"] = by_lang[tag]
         manifest["langs"][tag] = entry
         print(lang, name, len(b["items"]), len(b["units"]), json.dumps(b["coverage"]), file=sys.stderr)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")

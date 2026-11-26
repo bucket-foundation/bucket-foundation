@@ -32,9 +32,10 @@ def ensure_bucket(api, key):
 
 def band_files(manifest):
     for entry in manifest["langs"].values():
+        yield "bundles", entry["file"]
         for parts in entry.get("graded", {}).get("files", {}).values():
             for p in parts:
-                yield p["file"]
+                yield "bands", p["file"]
 
 
 def exists(api, key, name):
@@ -46,6 +47,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--bands", default=os.environ.get("POLINGUAL_INPUT_BANDS_DIR", str(Path.home() / ".cache/polingual-input-bands")))
     ap.add_argument("--manifest", default=str(MANIFEST))
+    ap.add_argument("--bundles", default=str(MANIFEST.parent))
     a = ap.parse_args(argv)
     api = (os.environ.get("SUPABASE_URL") or os.environ.get("NEXT_PUBLIC_SUPABASE_URL") or "").rstrip("/")
     key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
@@ -53,11 +55,11 @@ def main(argv=None):
         sys.exit("upload_input_bands: set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (npm run db:local:status)")
     ensure_bucket(api, key)
     sent = skipped = 0
-    for name in band_files(json.loads(Path(a.manifest).read_text())):
+    for kind, name in band_files(json.loads(Path(a.manifest).read_text())):
         if exists(api, key, name):
             skipped += 1
             continue
-        body = (Path(a.bands) / name).read_bytes()
+        body = (Path(a.bands if kind == "bands" else a.bundles) / name).read_bytes()
         code, out = request("POST", f"{api}/storage/v1/object/{BUCKET}/{name}", key, body,
                             {"Content-Type": "application/json", "cache-control": CACHE_CONTROL, "x-upsert": "true"})
         if code not in (200, 201):

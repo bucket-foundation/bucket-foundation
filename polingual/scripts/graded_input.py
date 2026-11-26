@@ -235,7 +235,7 @@ def band_report(units):
 
 def extend_bundle(bundle, lang, lex, tatoeba_dir, ranks_dir, cap=PER_BAND_CAP):
     ranks, _ = load_ranks(Path(ranks_dir) / f"{lang}.tsv.gz", lang)
-    grader = Grader(lex, ranks, NAMES[lang] + TATOEBA_NAMES)
+    grader = Grader(lex, ranks, NAMES.get(lang, []) + TATOEBA_NAMES)
     profiles = profile(tatoeba_sentences(Path(tatoeba_dir), lang), lex, grader)
     taken = {i for u in bundle["units"] for i in u["itemIds"]}
     items, units = graded_tatoeba(profiles, lang, lex, cap, {i.rsplit(":", 1)[1] for i in taken if i.startswith("tatoeba:")})

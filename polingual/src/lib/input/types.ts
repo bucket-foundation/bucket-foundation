@@ -82,6 +82,9 @@ export interface InputManifest {
   format: "polingual-input";
   inputs: Record<string, unknown>;
   bandBase?: string | null;
+  bandBaseEnv?: string;
+  credits?: string[];
+  excluded?: Record<string, string>;
   langTags?: "BCP-47";
   langs: Record<
     string,
@@ -93,9 +96,24 @@ export interface InputManifest {
       tatoebaItems: number;
       tatoebaIdsMatched: number;
       tag?: string;
+      pack?: string;
+      status?: "stable" | "beta";
+      lemmaError?: LemmaError;
       graded?: { files: Record<string, { file: string; units: number; items: number; bytes: number }[]> };
     }
   >;
+}
+
+export interface LemmaErrorReport {
+  tokens: number;
+  errors: number;
+  error: number;
+  ci95: [number, number];
+}
+
+export interface LemmaError {
+  golden?: LemmaErrorReport;
+  heldOut?: LemmaErrorReport & { file: string };
 }
 
 export interface InputBandFile {
@@ -113,9 +131,16 @@ export interface InputBandFile {
 export const MIN_UNIT_TOKENS = 40;
 export const INPUT_BASE = "/input";
 
-export function bundleUrl(manifest: InputManifest, lang: string): string | null {
+export function bundleUrl(
+  manifest: InputManifest,
+  lang: string,
+  base: string | null | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE || manifest.bandBase,
+  production: boolean = process.env.NODE_ENV === "production",
+): string | null {
   const entry = manifest.langs[lang];
-  return entry ? `${INPUT_BASE}/${entry.file}` : null;
+  if (!entry) return null;
+  if (!base || (production && isLoopback(base))) return `${INPUT_BASE}/${entry.file}`;
+  return `${base.replace(/\/$/, "")}/${entry.file}`;
 }
 
 const LOOPBACK = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3}|\[::1\]|0\.0\.0\.0)(?::\d+)?(?:\/|$)/i;
