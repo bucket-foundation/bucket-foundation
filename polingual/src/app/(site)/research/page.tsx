@@ -3,6 +3,7 @@ import { pageMeta } from "@/lib/meta";
 import Site from "@/app/site";
 import { P } from "./parts";
 import { FrequencyCredit } from "./frequency-credit";
+import { DictionaryCredit } from "./dictionary-credit";
 import { RecordSection, MathSection, NetworkSection, ScaleSection, SourcesSection, QuestionsSection, JoinSection } from "./sections";
 
 const NAV = [
@@ -90,6 +91,7 @@ export default function ResearchPage() {
               <a href="https://creativecommons.org/licenses/by-sa/4.0/" className="underline">CC BY-SA 4.0</a>.
             </p>
             <FrequencyCredit />
+            <DictionaryCredit />
             <p>
               Same graph as <a href="https://www.bucket.foundation" className="underline text-[color:var(--blue)]">bucket.foundation</a>.
             </p>

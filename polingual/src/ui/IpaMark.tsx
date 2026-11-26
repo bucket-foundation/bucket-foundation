@@ -1,7 +1,7 @@
 import { Tag } from "./primitives";
 
 export function isGeneratedIpa(source: string | null | undefined): boolean {
-  return source === "epitran" || source === "llm";
+  return !!source && source !== "wiktionary";
 }
 
 export function IpaMark({ source }: { source: string | null | undefined }) {

@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import Site from "../app/site";
 import { FrequencyCredit } from "../app/(site)/research/frequency-credit";
+import { DictionaryCredit } from "../app/(site)/research/dictionary-credit";
 
 test("the research page credits the frequency lists under CC BY-SA 4.0 with share-alike terms", () => {
   const html = renderToStaticMarkup(<FrequencyCredit />);
@@ -13,6 +14,16 @@ test("the research page credits the frequency lists under CC BY-SA 4.0 with shar
   assert.match(html, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
   assert.match(html, /same licence/);
   assert.match(readFileSync(join(__dirname, "../app/(site)/research/page.tsx"), "utf8"), /<FrequencyCredit \/>/);
+});
+test("the research page credits JMdict, KANJIDIC and CC-CEDICT under their share-alike licences", () => {
+  const html = renderToStaticMarkup(<DictionaryCredit />);
+  assert.match(html, /JMdict/);
+  assert.match(html, /KANJIDIC/);
+  assert.match(html, /Electronic Dictionary Research and Development Group/);
+  assert.match(html, /edrdg\.org\/edrdg\/licence\.html/);
+  assert.match(html, /CC-CEDICT/);
+  assert.match(html, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
+  assert.match(readFileSync(join(__dirname, "../app/(site)/research/page.tsx"), "utf8"), /<FrequencyCredit \/>\s*<DictionaryCredit \/>/);
 });
 import LearnPage, { metadata as learnMeta } from "../app/(site)/learn/page";
 import { GUIDES } from "./guides";

@@ -13,6 +13,7 @@ test("IpaMark shows generated for epitran and llm only", () => {
   assert.equal(renderToStaticMarkup(<IpaMark source="wiktionary" />), "");
   assert.equal(renderToStaticMarkup(<IpaMark source={null} />), "");
   assert.equal(isGeneratedIpa(undefined), false);
+  for (const s of ["rules", "jmdict", "cedict"]) assert.match(renderToStaticMarkup(<IpaMark source={s} />), /title="Pronunciation from spelling rules"/);
 });
 
 function card(source?: "wiktionary" | "llm") {
