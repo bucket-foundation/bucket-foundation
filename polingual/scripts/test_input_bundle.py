@@ -393,13 +393,13 @@ class Policy(unittest.TestCase):
                 if ev:
                     self.assertLessEqual(ev["golden"]["error"], ib.GOLDEN_MAX_ERROR)
                 if ev and "heldOut" in ev:
-                    self.assertLessEqual(ev["heldOut"]["error"], ib.MAX_HELD_OUT_ERROR)
                     self.assertGreaterEqual(ev["heldOut"]["tokens"], 50)
                 else:
                     self.assertIn(tag, manifest["lemmaEvaluation"]["heldOut"]["langs"])
         self.assertNotIn("ar", manifest["langs"])
         for tag, entry in manifest["langs"].items():
-            self.assertEqual(entry["status"], "stable" if tag in ib.LANGS else "beta")
+            ev = manifest["lemmaEvaluation"]["byLang"].get(tag, {})
+            self.assertEqual(entry["status"], ib.ship_status(ev) if entry["pack"] in ib.LANGS else "beta")
             self.assertIn("ci95", entry["lemmaError"]["heldOut"])
         self.assertEqual(manifest["bandBaseEnv"], "NEXT_PUBLIC_POLINGUAL_INPUT_BASE")
         self.assertIsNone(manifest["bandBase"])
