@@ -32,6 +32,8 @@ LIGATURES = str.maketrans({"œ": "oe", "Œ": "Oe", "æ": "ae", "Æ": "Ae"})
 ALWAYS_DROP = {"̄", "̆", "̑"}
 ACCENT_LANGS = {"ru", "uk", "be", "bg", "mk", "sh", "orv", "cu", "rue", "sl"}
 DOT_LANGS = {"ang", "enm"}
+PROTO_ACCENT_LANGS = {"sla-pro", "ine-bsl-pro", "zle-ort"}
+PROTO_ACCENTS = {"\u0300", "\u0301", "\u030f", "\u0311", "\u0303", "\u0302"}
 LANG_CODE = re.compile(r"^[a-z]{2,3}(-[a-zA-Z]{2,5}){0,3}$")
 TREE_DEC = json.JSONDecoder()
 
@@ -49,6 +51,8 @@ def entry_name(lang: str, form: str) -> str:
         drop |= {"́", "̀"}
     if lang in DOT_LANGS:
         drop.add("̇")
+    if lang in PROTO_ACCENT_LANGS:
+        drop |= PROTO_ACCENTS
     nfd = unicodedata.normalize("NFD", form)
     return unicodedata.normalize("NFC", "".join(ch for ch in nfd if ch not in drop))
 
@@ -60,7 +64,7 @@ def clean(form: str | None) -> str | None:
     cut = form.find("<")
     if cut >= 0:
         form = form[:cut]
-    form = form.replace("[[", "").replace("]]", "").strip().translate(LIGATURES)
+    form = form.replace("[[", "").replace("]]", "").split(", ")[0].strip().translate(LIGATURES)
     if not form or form == "-" or len(form) > 80:
         return None
     return form
@@ -163,12 +167,13 @@ def form_of_map(src: str) -> dict:
     bad: set[tuple[str, str]] = set()
     with gzip.open(src, "rb") as fh:
         for line in fh:
-            if b'"form_of"' not in line:
-                continue
             d = orjson.loads(line)
-            lang, word = d.get("lang_code"), d.get("word")
+            lang, word = d.get("lang_code"), clean(d.get("word"))
             senses = d.get("senses") or ()
-            if not lang or not word or not senses:
+            if not lang or not word:
+                continue
+            if b'"form_of"' not in line or not senses:
+                bad.add((lang, entry_name(lang, word)))
                 continue
             lemmas = set()
             for s in senses:
@@ -205,6 +210,14 @@ create table lang_anc(lang text, anc text, source text);
 
 def main(src: str, out: str, langdata: str) -> None:
     t0 = time.time()
+    _, variety = parse_lua(langdata)
+
+    def base_lang(lang: str) -> str:
+        hops = 0
+        while lang in variety and hops < 10:
+            lang, hops = variety[lang], hops + 1
+        return lang
+
     alias = form_of_map(src)
     print(f"form_of aliases {len(alias)} {time.time() - t0:.0f}s", file=sys.stderr, flush=True)
     if os.path.exists(out):
@@ -217,6 +230,7 @@ def main(src: str, out: str, langdata: str) -> None:
     buf = {"lexeme": [], "edge": [], "translation": [], "page": [], "sense": []}
 
     def nid(lang: str, form: str) -> int:
+        lang = base_lang(lang)
         form = entry_name(lang, form)
         form = alias.get((lang, form), form)
         k = (lang, form)
@@ -385,7 +399,8 @@ def build_forest(db: sqlite3.Connection, n: int, anc: dict[str, set]) -> None:
     parent = np.full(n, -1, np.int64)
     via = np.zeros(n, np.int8)
     cut = off_line = 0
-    q = "select src, dst, rel from edge where rel in ('inh', 'der') order by page, ord"
+    q = """select src, dst, rel from edge where rel in ('inh', 'der')
+           order by page, rel = 'inh' desc, tmpl = 'root', ord"""
     for s, a, rel in db.execute(q):
         if parent[s] != -1 or s == a:
             continue
