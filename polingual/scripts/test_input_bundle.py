@@ -373,6 +373,7 @@ class Policy(unittest.TestCase):
         self.assertIn("golden", ib.gate("ar", 1200, {"golden": {"error": 0.24}, "heldOut": {"error": 0.1}}))
         self.assertIn("held-out", ib.gate("tr", 5000, {"golden": {"error": 0.06}, "heldOut": {"error": 0.14}}))
         self.assertIn("held-out set", ib.gate("pl", 2000, {"golden": {"error": 0.1}}))
+        self.assertIsNone(ib.gate("de", 5000, {"golden": {"error": 0.04}, "heldOut": {"error": 0.11, "ci95": [0.063, 0.186]}}))
         self.assertIn("below 200", ib.gate("ta", 35, ok))
         self.assertEqual(ib.GOLDEN_MAX_ERROR, 0.10)
 

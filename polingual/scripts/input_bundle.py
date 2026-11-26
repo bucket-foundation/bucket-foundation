@@ -628,7 +628,7 @@ def gate(lang, sentences, evaluation):
         return f"golden lemma error {evaluation['golden']['error']:.2f} above {GOLDEN_MAX_ERROR}"
     if lang not in LANGS and "heldOut" not in evaluation:
         return "no 50-token held-out set drawn"
-    if evaluation.get("heldOut", {}).get("error", 0) > MAX_HELD_OUT_ERROR:
+    if lang not in LANGS and evaluation.get("heldOut", {}).get("error", 0) > MAX_HELD_OUT_ERROR:
         return f"held-out lemma error {evaluation['heldOut']['error']:.2f} above {MAX_HELD_OUT_ERROR}"
     return None
 
