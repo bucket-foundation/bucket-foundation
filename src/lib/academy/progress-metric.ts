@@ -59,7 +59,7 @@ export function epochDay(day: string): number {
 
 export function streakFromDays(days: Iterable<string>, today: string): { streak: number; studiedToday: boolean } {
   const set = new Set<number>();
-  for (const d of days) set.add(epochDay(d));
+  for (const d of Array.from(days)) set.add(epochDay(d));
   const t = epochDay(today);
   const studiedToday = set.has(t);
   let cur = studiedToday ? t : t - 1;
