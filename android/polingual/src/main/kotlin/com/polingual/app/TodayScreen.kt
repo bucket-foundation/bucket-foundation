@@ -31,7 +31,7 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     Page("Today", ground = Ground.Diagonal, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 58.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 72.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(system?.name ?: "No language set yet", style = Type.body, color = p.muted, modifier = Modifier.weight(1f))
-            StreakFlame(ProgressMetric.streak(study?.days.orEmpty(), emptyList(), system?.targets.orEmpty(), today()).streak)
+            StreakFlame(syncedStreak(study))
         }
         if (system != null) LangProgress(system.targets, study)
         if (system == null) PrimaryButton("Pick languages", color = PL.Lapis) { nav.navigate("system/new") }
@@ -49,10 +49,11 @@ fun LangProgress(langs: List<String>, study: StudyState?) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         langs.forEach { lang ->
             val m = ProgressMetric.langMetrics(lang, cards, emptyList(), now)
+            val hours = if (m.inputSeconds > 0) m.inputHours.toString() else "\u2013"
             val label = stringResource(R.string.d_progress_for, lang.uppercase())
             Row(Modifier.semantics { contentDescription = label }, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 FlagTile(lang, 44.dp)
-                PLBadge(stringResource(R.string.d_input_hours, m.inputHours.toString()), BadgeTone.Lapis)
+                PLBadge(stringResource(R.string.d_input_hours, hours), BadgeTone.Lapis)
                 PLBadge(stringResource(R.string.d_known_words, m.knownWords), BadgeTone.Parchment)
             }
         }
