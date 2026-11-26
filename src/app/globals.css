@@ -361,3 +361,6 @@ p.chisel, li.chisel, small.chisel, .chisel p, .chisel li {
 .lesson-prose table { border-collapse: collapse; margin: 0.8em 0; }
 .lesson-prose th, .lesson-prose td { border: 1px solid var(--hairline); padding: 0.3em 0.6em; text-align: left; }
 .lesson-prose .katex-display { overflow-x: auto; padding: 0.4em 0; }
+
+body:has(main[data-lander]) { display: flex; flex-direction: column; height: 100svh; overflow: hidden; }
+body:has(main[data-lander]) > main { flex: 1 1 auto; min-height: 0; }
