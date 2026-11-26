@@ -14,6 +14,7 @@ import { fetchAccess, type Access } from "@/lib/app/plans";
 import { accessStep, track } from "@/lib/funnel";
 import { appGate, firstLessonDone, subscribeFirstLesson } from "@/lib/app/first-lesson";
 import Paywall from "./Paywall";
+import RadioLog from "./listen/RadioLog";
 import Upsell from "./Upsell";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
@@ -57,6 +58,7 @@ function MiniPlayer() {
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <PlayerProvider>
+      <RadioLog />
       <Shell>{children}</Shell>
     </PlayerProvider>
   );

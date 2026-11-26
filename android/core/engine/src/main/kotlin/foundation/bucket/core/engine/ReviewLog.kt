@@ -113,6 +113,25 @@ object ReviewLog {
         }
     }
 
+    fun encode(r: LogRow.Exposure): JsonObject = JsonObject(buildMap {
+        put("kind", JsonPrimitive("exposure"))
+        put("review_id", JsonPrimitive(r.id))
+        put("reviewed_at", JsonPrimitive(r.at))
+        put("device_id", JsonPrimitive(r.device))
+        put("tz", JsonPrimitive(r.tz))
+        put("system_id", JsonPrimitive(r.systemId))
+        put("lang", JsonPrimitive(r.lang))
+        put("item", JsonPrimitive(r.item))
+        put("unit", JsonPrimitive(r.unit))
+        put("lemmas_seen", JsonArray(r.lemmasSeen.map(::JsonPrimitive)))
+        put("taps", JsonArray(r.taps.map(::JsonPrimitive)))
+        put("seconds", JsonPrimitive(r.seconds))
+        put("coverage_pred", JsonPrimitive(r.coveragePred))
+        put("completed", JsonPrimitive(r.completed))
+        r.revealed?.let { put("revealed", JsonPrimitive(it)) }
+        r.playback?.let { put("playback", JsonPrimitive(it)) }
+    })
+
     private val order = compareBy<LogRow>({ it.at }, { it.device }, { it.id })
 
     fun order(rows: List<LogRow>): List<LogRow> {
