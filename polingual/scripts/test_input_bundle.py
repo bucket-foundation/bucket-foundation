@@ -431,3 +431,16 @@ class GoldenRegression(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SimplemmaLangsTest(unittest.TestCase):
+    def test_pinned_list_matches_installed_simplemma(self):
+        try:
+            from simplemma.strategies.dictionaries.dictionary_factory import SUPPORTED_LANGUAGES
+        except ImportError:
+            self.skipTest("simplemma missing")
+        self.assertEqual(ib.SIMPLEMMA_LANGS, frozenset(SUPPORTED_LANGUAGES))
+
+    def test_unsupported_language_has_no_lemmatizer(self):
+        self.assertIsNone(ib.lemmatizer("pa"))
+        self.assertIsNone(ib.lemmatizer("sa"))

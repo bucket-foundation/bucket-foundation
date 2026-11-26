@@ -616,6 +616,7 @@ def build(a):
         paired_units = sum(u["paired"] for u in units)
         stats = {"file": name, "books": len(books), "units": len(units), "items": len(items),
                  "tokens": bundle["coverage"]["tokens"], "tokenShare": bundle["coverage"]["tokenShare"],
+                 "typeShare": bundle["coverage"]["typeShare"],
                  "pairedUnits": paired_units, "pairedShare": round(paired_units / len(units), 4),
                  "bySource": {s: sum(1 for b in books if b["source"] == s) for s in sorted({b["source"] for b in books})}}
         stats["wordPack"] = lex is not None

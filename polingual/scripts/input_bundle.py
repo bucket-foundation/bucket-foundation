@@ -26,6 +26,10 @@ ISO3 = {"es": "spa", "fr": "fra", "it": "ita", "pt": "por", "de": "deu", "nl": "
         "ru": "rus", "cs": "ces", "tr": "tur", "fi": "fin", "el": "ell", "id": "ind", "ar": "ara", "he": "heb",
         "hi": "hin", "fa": "pes", "ko": "kor", "ja": "jpn", "zh": "cmn", "th": "tha", "vi": "vie", "ta": "tam"}
 SEGMENTED = {"ja", "zh", "th", "ko"}
+SIMPLEMMA_LANGS = frozenset("""
+ar ast bg ca cs cy da de el en enm eo es et fa fi fr ga gd gl grc gv hbs he hi hu hy id is it ka la lb lt lv mk ml
+ms nb nl nn pl pt ro ru se sk sl sq sv sw tl tr uk
+""".split())
 MIN_SENTENCES = 200
 MAX_HELD_OUT_ERROR = 0.10
 HELD_OUT = Path(__file__).resolve().parent / "input_heldout.json"
@@ -526,11 +530,9 @@ def open_lexicon(lang, packs, scratch, index_db):
 def lemmatizer(lang):
     if lang in SEGMENTED or lang in ("ar", "he", "ta", "vi"):
         return None
-    import simplemma
-    from simplemma.strategies.dictionaries.dictionary_factory import SUPPORTED_LANGUAGES
-
-    if lang not in SUPPORTED_LANGUAGES:
+    if lang not in SIMPLEMMA_LANGS:
         return None
+    import simplemma
 
     def guesses(surface):
         g = simplemma.lemmatize(surface, lang=lang)
