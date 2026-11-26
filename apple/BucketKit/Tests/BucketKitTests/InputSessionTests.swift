@@ -109,6 +109,19 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
     #expect(row.shareTarget == 0.7)
     #expect(row.shareReal == 0.25)
     #expect(row.units == 1)
+    #expect(row.arm == nil)
+}
+
+@Test func theExperimentFlagLogsTheStableArmOnTheSessionRow() throws {
+    let b = try fixture()
+    var n = 0
+    let s = try #require(InputPlanState.plan(mode: .on, lang: "es", bundle: b, resolve: resolve, state: knowsAllBut(b, ["mi", "casa"]), cards: 20, tier: 2, systemId: "sys", device: "d-0", now: now, clock: { now }, ids: { n += 1; return "id-\(n)" }, tz: "UTC", experiment: true))
+    let arm = try #require(s.arm)
+    let assigned = InputExperiment.assignArm("d-0", tier: 2)
+    #expect(arm == assigned || arm == assigned + InputExperiment.notFilledSuffix)
+    if arm == assigned { #expect(s.mix.target == InputExperiment.armShares[arm]) }
+    guard case .session(let row) = try #require(s.end(answered: 20)) else { Issue.record("not a session"); return }
+    #expect(row.arm == arm)
 }
 
 @Test func anUnavailablePlayerStillLogsEachPresentedRow() throws {

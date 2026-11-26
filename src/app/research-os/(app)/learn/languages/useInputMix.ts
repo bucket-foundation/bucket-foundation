@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { bandsFor, loadBundle } from "@/lib/academy/input-selector";
-import { planInputMix, type InputMix } from "@/lib/academy/input-mix";
+import type { InputMix } from "@/lib/academy/input-mix";
+import { experimentMix, experimentOn } from "@/lib/academy/input-experiment";
+import { browserMemoryIO } from "@/lib/academy/lang-memory-store";
 import { dueLemmas, eligibleUnitSeconds, inputMode, knownWords, learnerFromState } from "@/lib/academy/input-stage";
 import { loadTopWords } from "@/lib/academy/lang-client";
 import { freqIndex } from "@/lib/academy/learner-model";
@@ -10,6 +12,7 @@ import type { LangSystemHandle } from "./useLangSystem";
 
 export interface InputMixState {
   mix: InputMix | null;
+  arm: string | null;
   due: (i: number) => boolean;
   finish: (i: number, unit: string | null, seconds: number) => void;
   shown: Readonly<Record<string, number>>;
@@ -19,6 +22,7 @@ export interface InputMixState {
 
 export function useInputMix(h: LangSystemHandle, queueLength: number | null, round: number): InputMixState {
   const [mix, setMix] = useState<InputMix | null>(null);
+  const [arm, setArm] = useState<string | null>(null);
   const [done, setDone] = useState<ReadonlySet<number>>(new Set());
   const [shown, setShown] = useState<Record<string, number>>({});
   const totals = useRef({ units: 0, seconds: 0 });
@@ -32,6 +36,7 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
 
   useEffect(() => {
     setMix(null);
+    setArm(null);
     setDone(new Set());
     setShown({});
     totals.current = { units: 0, seconds: 0 };
@@ -44,7 +49,10 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
       if (!live || !b) return;
       const now = Date.now();
       const learner = learnerFromState(stateRef.current, lang, resolve, now, tier, dueLemmas(b, stateRef.current, lang, resolve, now), {}, null, freqIndex((top ?? []).map((w) => [w.word, w.rank] as const)));
-      setMix(planInputMix(tier, cards, eligibleUnitSeconds(b, learner, mode)));
+      const on = experimentOn();
+      const planned = experimentMix(on, on ? browserMemoryIO.deviceId() : null, tier, cards, eligibleUnitSeconds(b, learner, mode));
+      setMix(planned.mix);
+      setArm(planned.arm);
     });
     return () => {
       live = false;
@@ -59,5 +67,5 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
       totals.current = { units: totals.current.units + 1, seconds: totals.current.seconds + Math.max(0, seconds) };
     }
   }, []);
-  return { mix, due, finish, shown, units: totals.current.units, seconds: totals.current.seconds };
+  return { mix, arm, due, finish, shown, units: totals.current.units, seconds: totals.current.seconds };
 }

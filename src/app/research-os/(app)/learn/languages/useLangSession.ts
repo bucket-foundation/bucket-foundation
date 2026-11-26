@@ -83,7 +83,7 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
       ended: endedAt,
       share_target: mix ? mix.target : null,
       share_real: mix ? Math.round(realizedShare(mixState.seconds, (endedAt - started.current) / 1000) * 1e4) / 1e4 : null,
-      arm: null,
+      arm: mixState.arm,
       units: mix ? Math.min(mixState.units, 1000) : null,
       cards: Math.min(graded, 1000),
     });

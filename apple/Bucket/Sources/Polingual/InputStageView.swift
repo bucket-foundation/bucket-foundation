@@ -68,7 +68,7 @@ enum InputConfig {
             let resolve = InputStage.resolver([lang: InputStage.lemmaCardMap(corpus, lang: lang)])
             let tier = Int(system.placement[lang] ?? 0)
             let freq = InputStage.freqIndex((LangStore.topWords(lang) ?? []).map { ($0.word, Double($0.rank), false) })
-            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq) { return p }
+            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, experiment: InputExperiment.on(Bundle.main.object(forInfoDictionaryKey: "PolingualInputExperiment") as? String)) { return p }
         }
         return nil
     }

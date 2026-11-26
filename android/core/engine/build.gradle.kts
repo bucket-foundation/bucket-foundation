@@ -17,6 +17,7 @@ tasks.test {
     systemProperty("inputMixVectors", rootProject.file("../src/lib/academy/input-mix-vectors.json").absolutePath)
     systemProperty("inputStageVectors", rootProject.file("../src/lib/academy/input-stage-vectors.json").absolutePath)
     systemProperty("learnerInputVectors", rootProject.file("../src/lib/academy/learner-input-vectors.json").absolutePath)
+    systemProperty("inputExperimentVectors", rootProject.file("../src/lib/academy/input-experiment-vectors.json").absolutePath)
     systemProperty("inputFixture", rootProject.file("../scripts/fixtures/polingual-input/es.json").absolutePath)
     systemProperty("progressMetricVectors", rootProject.file("../src/lib/academy/progress-metric-vectors.json").absolutePath)
 }

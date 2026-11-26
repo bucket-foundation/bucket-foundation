@@ -125,14 +125,14 @@ public enum SessionMix {
         sessionSeconds > 0 && eligibleSeconds > 0 ? min(inputTarget(tier: tier), eligibleSeconds / sessionSeconds) : 0
     }
 
-    public static func planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: [Double]) -> InputMix {
-        let target = inputTarget(tier: tier)
+    public static func planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: [Double], targetShare: Double? = nil) -> InputMix {
+        let target = targetShare ?? inputTarget(tier: tier)
         let cardTime = Double(max(0, cards)) * cardSeconds
         let pool = eligibleUnitSeconds.filter { $0 > 0 }
         if pool.isEmpty { return InputMix(target: target, share: 0, units: 0, positions: [], plannedShare: 0) }
         let eligible = pool.reduce(0, +)
         let avg = eligible / Double(pool.count)
-        let share = cardTime > 0 ? inputShare(tier: tier, eligibleSeconds: eligible, sessionSeconds: eligible + cardTime) : target
+        let share = cardTime > 0 ? min(target, eligible / (eligible + cardTime)) : target
         let want = cardTime > 0 ? share * cardTime / (1 - share) : avg
         let units = min(pool.count, max(1, cards), max(1, Int((want / avg).rounded())))
         let positions = (0..<units).map { min(max(0, cards - 1), (($0 + 1) * cards) / (units + 1)) }

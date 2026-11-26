@@ -2,6 +2,7 @@ package com.polingual.app
 
 import foundation.bucket.core.engine.CardState
 import foundation.bucket.core.engine.ExposureInput
+import foundation.bucket.core.engine.InputExperiment
 import foundation.bucket.core.engine.InputStage
 import foundation.bucket.core.engine.LogRow
 import foundation.bucket.core.engine.StudyState
@@ -75,5 +76,18 @@ class InputPlanStateTest {
         assertEquals(0.7, sessions[0].shareTarget)
         assertEquals(0.25, sessions[0].shareReal)
         assertEquals(1, sessions[0].units)
+        assertNull(sessions[0].arm)
+    }
+
+    @Test
+    fun theExperimentFlagLogsTheStableArmOnTheSessionRow() {
+        var n = 0
+        val s = assertNotNull(InputPlanState.plan(InputModeFlag.Mode.On, "es", bundle, { "gloss" }, resolve, knowsAllBut("mi", "casa"), 20, 2, "sys", "d-0", now, { now }, { "id-${n++}" }, "UTC", experiment = true))
+        val arm = assertNotNull(s.arm)
+        assertTrue(arm == InputExperiment.assignArm("d-0", 2) || arm == InputExperiment.assignArm("d-0", 2) + InputExperiment.NOT_FILLED_SUFFIX)
+        if (!arm.endsWith(InputExperiment.NOT_FILLED_SUFFIX)) assertEquals(InputExperiment.ARM_SHARES.getValue(arm), s.mix.target)
+        val v = View(20, knowsAllBut("mi", "casa"))
+        s.end(v)
+        assertEquals(arm, v.log.filterIsInstance<LogRow.Session>().single().arm)
     }
 }

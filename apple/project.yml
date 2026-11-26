@@ -164,6 +164,7 @@ targets:
         PolingualInputBase: $(POLINGUAL_INPUT_BASE)
         PolingualInputBandBase: $(POLINGUAL_INPUT_BAND_BASE)
         PolingualInputStage: $(POLINGUAL_INPUT_STAGE)
+        PolingualInputExperiment: $(POLINGUAL_INPUT_EXPERIMENT)
         NSUserTrackingUsageDescription: Polingual uses this to show ads that fit you better between games. Ads keep the games free. You can say no and still play every game.
         SKAdNetworkItems:
           - SKAdNetworkIdentifier: cstr6suwn9.skadnetwork
@@ -240,6 +241,7 @@ targets:
         POLINGUAL_INPUT_BASE: https:/$()/polingual.com/input
         POLINGUAL_INPUT_BAND_BASE: ""
         POLINGUAL_INPUT_STAGE: ""
+        POLINGUAL_INPUT_EXPERIMENT: ""
         MARKETING_VERSION: "1.0.4"
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1,2"

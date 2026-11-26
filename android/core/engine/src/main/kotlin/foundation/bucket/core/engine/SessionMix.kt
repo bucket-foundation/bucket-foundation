@@ -94,14 +94,14 @@ object SessionMix {
     fun inputShare(tier: Int, eligibleSeconds: Double, sessionSeconds: Double): Double =
         if (sessionSeconds <= 0 || eligibleSeconds <= 0) 0.0 else minOf(inputTarget(tier), eligibleSeconds / sessionSeconds)
 
-    fun planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: List<Double>): InputMix {
-        val target = inputTarget(tier)
+    fun planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: List<Double>, targetShare: Double? = null): InputMix {
+        val target = targetShare ?: inputTarget(tier)
         val cardTime = maxOf(0, cards) * CARD_SECONDS
         val pool = eligibleUnitSeconds.filter { it > 0 }
         if (pool.isEmpty()) return InputMix(target, 0.0, 0, emptyList(), 0.0)
         val eligible = pool.sum()
         val avg = eligible / pool.size
-        val share = if (cardTime > 0) inputShare(tier, eligible, eligible + cardTime) else target
+        val share = if (cardTime > 0) minOf(target, eligible / (eligible + cardTime)) else target
         val want = if (cardTime > 0) share * cardTime / (1 - share) else avg
         val units = minOf(pool.size, maxOf(1, cards), maxOf(1, Math.round(want / avg).toInt()))
         val positions = (0 until units).map { minOf(maxOf(0, cards - 1), ((it + 1) * cards) / (units + 1)) }

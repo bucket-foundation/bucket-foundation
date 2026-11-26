@@ -92,7 +92,7 @@ Every write passes the `events-server` gates; on `under_age` or `no_consent` not
 
 ## 9. Preregistered experiment
 
-- **Design:** arms with input share 50/70/90 among learners whose eligible input can fill the target share. Assign by user hash, stratified by placement tier. Write PREREG.md before launch.
+- **Design:** arms with input share 50/70/90 among learners whose eligible input can fill the target share. Assign by device hash, stratified by placement tier. The preregistration is `CI14-PREREG.md`.
 - **Primary outcome:** known words at day 28, measured by a held-out yes/no test with pseudowords.
 - **Secondary outcomes:** input hours, day-28 retention, lapse rate.
 - **Power:** two primary comparisons, 50 vs 70 and 90 vs 70, Holm-corrected at α 0.05. At d = 0.3 and power 0.8 that is about 211 per arm; with 40% loss by day 28, enrol 352 per arm, about 1,060 in total. Intention to treat, with multiple imputation as a sensitivity check.

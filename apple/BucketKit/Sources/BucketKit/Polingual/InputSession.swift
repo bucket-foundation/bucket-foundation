@@ -102,24 +102,27 @@ public final class InputPlanState {
     private var current: (Int, StageChoice)?
 
     let freq: (String) -> FreqPrior?
+    public let arm: String?
 
-    init(lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, mix: SessionMix.InputMix, tier: Int, systemId: String, started: Double, allowFallback: Bool, device: String, clock: @escaping () -> Double, ids: @escaping () -> String, tz: String, freq: @escaping (String) -> FreqPrior? = { _ in nil }) {
+    init(lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, mix: SessionMix.InputMix, tier: Int, systemId: String, started: Double, allowFallback: Bool, device: String, clock: @escaping () -> Double, ids: @escaping () -> String, tz: String, freq: @escaping (String) -> FreqPrior? = { _ in nil }, arm: String? = nil) {
         self.freq = freq
+        self.arm = arm
         self.lang = lang; self.bundle = bundle; self.resolve = resolve; self.mix = mix; self.tier = tier; self.systemId = systemId
         self.started = started; self.allowFallback = allowFallback; self.device = device; self.clock = clock; self.ids = ids; self.tz = tz
     }
 
     public static func plan(mode: InputMode, lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, state: EngineState, cards: Int, tier: Int, systemId: String, device: String, now: Double,
                             clock: @escaping () -> Double = { Date().timeIntervalSince1970 * 1000 }, ids: @escaping () -> String = { UUID().uuidString.lowercased() }, tz: String = TimeZone.current.identifier,
-                            freq: @escaping (String) -> FreqPrior? = { _ in nil }) -> InputPlanState? {
+                            freq: @escaping (String) -> FreqPrior? = { _ in nil }, experiment: Bool = false) -> InputPlanState? {
         if mode == .off { return nil }
         let l = InputStage.learner(state, lang: lang, resolve: resolve, now: now, tier: tier, due: InputStage.dueLemmas(bundle, state: state, lang: lang, resolve: resolve, now: now), freq: freq)
         let demo = mode == .demo
         var eligible = InputStage.eligibleUnitSeconds(bundle, learner: l)
         if eligible.isEmpty && demo, let c = InputStage.choose(bundle, learner: l, allowFallback: true) { eligible = [Double(c.plan.tokens) * 1.5] }
-        let mix = SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligible)
+        let planned = InputExperiment.mix(on: experiment, userKey: device, tier: tier, cards: cards, eligibleUnitSeconds: eligible)
+        let mix = planned.mix
         if mix.units == 0 { return nil }
-        return InputPlanState(lang: lang, bundle: bundle, resolve: resolve, mix: mix, tier: tier, systemId: systemId, started: now, allowFallback: demo, device: device, clock: clock, ids: ids, tz: tz, freq: freq)
+        return InputPlanState(lang: lang, bundle: bundle, resolve: resolve, mix: mix, tier: tier, systemId: systemId, started: now, allowFallback: demo, device: device, clock: clock, ids: ids, tz: tz, freq: freq, arm: planned.arm)
     }
 
     public func itemId(_ lemma: String) -> String? {
@@ -158,7 +161,7 @@ public final class InputPlanState {
         let now = clock()
         let total = (now - started) / 1000
         let real = total > 0 ? (min(1, seconds / total) * 1e4).rounded() / 1e4 : 0
-        return .session(.init(meta: LogRow.Meta(id: ids(), at: now, device: device, tz: tz, systemId: systemId), lang: lang, sessionId: ids(), started: started, ended: now, shareTarget: mix.target, shareReal: real, arm: nil, units: min(units, 1000), cards: min(answered, 1000)))
+        return .session(.init(meta: LogRow.Meta(id: ids(), at: now, device: device, tz: tz, systemId: systemId), lang: lang, sessionId: ids(), started: started, ended: now, shareTarget: mix.target, shareReal: real, arm: arm, units: min(units, 1000), cards: min(answered, 1000)))
     }
 }
 

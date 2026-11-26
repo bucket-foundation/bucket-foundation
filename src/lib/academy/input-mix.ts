@@ -25,15 +25,15 @@ export interface InputMix {
   plannedShare: number;
 }
 
-export function planInputMix(tier: number, cards: number, eligibleUnitSeconds: readonly number[]): InputMix {
-  const target = inputTarget(tier);
+export function planInputMix(tier: number, cards: number, eligibleUnitSeconds: readonly number[], targetShare?: number): InputMix {
+  const target = targetShare ?? inputTarget(tier);
   const cardTime = Math.max(0, cards) * CARD_SECONDS;
   const pool = eligibleUnitSeconds.filter((s) => s > 0);
   const avg = pool.length ? pool.reduce((a, b) => a + b, 0) / pool.length : 0;
   const eligible = pool.reduce((a, b) => a + b, 0);
   const maxUnits = pool.length;
   if (!avg || !maxUnits) return { target, share: 0, units: 0, positions: [], plannedShare: 0 };
-  const share = cardTime > 0 ? inputShare(tier, eligible, eligible + cardTime) : target;
+  const share = cardTime > 0 ? Math.min(target, eligible / (eligible + cardTime)) : target;
   const wantSeconds = cardTime > 0 ? (share * cardTime) / (1 - share) : avg;
   const units = Math.min(maxUnits, Math.max(1, cards), Math.max(1, Math.round(wantSeconds / avg)));
   const positions = Array.from({ length: units }, (_, i) => Math.min(Math.max(0, cards - 1), Math.floor(((i + 1) * cards) / (units + 1))));
