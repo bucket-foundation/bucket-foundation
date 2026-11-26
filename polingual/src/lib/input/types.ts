@@ -118,13 +118,20 @@ export function bundleUrl(manifest: InputManifest, lang: string): string | null 
   return entry ? `${INPUT_BASE}/${entry.file}` : null;
 }
 
+const LOOPBACK = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3}|\[::1\]|0\.0\.0\.0)(?::\d+)?(?:\/|$)/i;
+
+export function isLoopback(url: string): boolean {
+  return LOOPBACK.test(url);
+}
+
 export function bandUrls(
   manifest: InputManifest,
   lang: string,
   band: number,
-  base: string | null | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE ?? manifest.bandBase,
+  base: string | null | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE || manifest.bandBase,
+  production: boolean = process.env.NODE_ENV === "production",
 ): string[] {
   const parts = manifest.langs[lang]?.graded?.files[String(band)];
-  if (!parts || !base) return [];
+  if (!parts || !base || (production && isLoopback(base))) return [];
   return parts.map((p) => `${base.replace(/\/$/, "")}/${p.file}`);
 }

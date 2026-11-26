@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { bundleUrl, MIN_UNIT_TOKENS, type InputBundle, type InputManifest } from "./types";
+import { bandUrls, bundleUrl, isLoopback, MIN_UNIT_TOKENS, type InputBundle, type InputManifest } from "./types";
 
 const dir = join(process.cwd(), "public", "input");
 const manifest: InputManifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
@@ -48,3 +48,15 @@ for (const [lang, entry] of Object.entries(manifest.langs)) {
     assert.ok(b.coverage.tokenShare >= 0.9, `${lang} lemma coverage ${b.coverage.tokenShare}`);
   });
 }
+
+test("bandUrls refuses a loopback base in production and joins a public one", () => {
+  const remote = "https://cdn.example.org/storage/v1/object/public/polingual-input/";
+  const local = "http://127.0.0.1:54321/storage/v1/object/public/polingual-input";
+  const first = manifest.langs.es.graded!.files["500"][0].file;
+  assert.deepEqual(bandUrls(manifest, "es", 500, local, true), []);
+  assert.equal(bandUrls(manifest, "es", 500, local, false)[0], `${local}/${first}`);
+  assert.equal(bandUrls(manifest, "es", 500, remote, true)[0], `${remote.slice(0, -1)}/${first}`);
+  assert.deepEqual(bandUrls(manifest, "es", 500, "", false), []);
+  assert.ok(isLoopback("http://localhost:3000/x"));
+  assert.ok(!isLoopback("https://localhost.example.org/x"));
+});
