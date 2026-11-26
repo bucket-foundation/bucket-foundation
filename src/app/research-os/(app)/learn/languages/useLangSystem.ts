@@ -10,9 +10,10 @@ import { flagTables, runGated, saveSetFlags, withFlagTables, type FlagTables } f
 import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
-import type { SessionInput } from "@/lib/academy/learn-log";
+import type { ExposureInput, SessionInput } from "@/lib/academy/learn-log";
+import type { LemmaResolver } from "@/lib/academy/exposure-replay";
 import { lemmaCardMap, resolverFrom } from "@/lib/academy/input-selector";
-import { browserMemoryIO, flushSession, gradeShared, logSession, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
+import { browserMemoryIO, flushSession, gradeShared, logExposure, logSession, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
 
@@ -29,6 +30,8 @@ export interface LangSystemHandle {
   langStatus: Record<string, LangLoadStatus>;
   shared?: boolean;
   endSession?: (input: SessionInput) => void;
+  logExposures?: (lang: string, rows: ExposureInput[]) => void;
+  resolve?: LemmaResolver;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
@@ -197,6 +200,14 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     void flushSession(browserMemoryIO);
   }, []);
 
+  const logExposures = useCallback((lang: string, rows: ExposureInput[]) => {
+    let s = ref.current;
+    if (!s || s.langStatus[lang] !== "ready") return;
+    for (const row of rows) s = logExposure(browserMemoryIO, s, lang, row).session;
+    ref.current = s;
+    setSession(s);
+  }, []);
+
   const recordFlags = useCallback((tables: FlagTables) => {
     setFlags(tables);
     const branch = setBranch.current;
@@ -238,6 +249,8 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     edit,
     langStatus: session?.langStatus ?? {},
     endSession,
+    logExposures,
+    resolve: session?.resolve,
   };
 }
 

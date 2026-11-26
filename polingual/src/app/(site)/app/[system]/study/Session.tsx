@@ -8,6 +8,7 @@ import { appHref } from "@/lib/app/systems";
 import { streakCard } from "@/lib/app/streak";
 import StreakCard from "../../StreakCard";
 import WordCard, { QuizCard } from "./WordCard";
+import InputStage from "./InputStage";
 import styles from "../../app.module.css";
 import { useEffect, useSyncExternalStore } from "react";
 import { track } from "@/lib/funnel";
@@ -154,6 +155,7 @@ export default function Session({ systemId }: { systemId: string }) {
     );
   }
 
+  if (s.inputDue) return <InputStage h={h} onDone={s.finishInput} />;
   if (s.i >= s.queue.length || !s.ex) return <SessionDone s={s} system={system} state={state} />;
   return <ActiveSession h={h} s={s} queue={s.queue} ex={s.ex} />;
 }

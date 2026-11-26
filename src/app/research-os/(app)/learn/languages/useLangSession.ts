@@ -8,6 +8,7 @@ import { linkForms, targetFirst, type LinkForm } from "@/lib/academy/lang-layout
 import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import type { ExerciseResult, MatchGrading } from "./LangExercise";
 import type { LangSystemHandle } from "./useLangSystem";
+import { inputSlot, inputStageOn } from "@/lib/academy/input-stage";
 
 export interface LangSession {
   queue: QueueEntry[] | null;
@@ -26,6 +27,8 @@ export interface LangSession {
   showReadings: (on: boolean) => void;
   skip: () => void;
   restart: () => void;
+  inputDue: boolean;
+  finishInput: () => void;
 }
 
 export function useLangSession(h: LangSystemHandle, heritage = false): LangSession {
@@ -70,6 +73,10 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     ended.current = true;
     h.endSession({ id: sessionId.current || (sessionId.current = crypto.randomUUID()), started: started.current, ended: Date.now(), share_target: null, share_real: null, arm: null, units: null, cards: Math.min(graded, 1000) });
   }, [queue, i, graded, h]);
+
+  const [inputDone, setInputDone] = useState(false);
+  const inputDue = !!queue && !!h.logExposures && inputStageOn() && !inputDone && i === inputSlot(queue.length);
+  const finishInput = useCallback(() => setInputDone(true), []);
 
   const entry = queue?.[i];
   const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
@@ -139,6 +146,7 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     started.current = Date.now();
     ended.current = false;
     sessionId.current = "";
+    setInputDone(false);
     setI(0);
     setGraded(0);
     setCorrect(0);
@@ -149,5 +157,5 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     writeReadingsPref(on);
   }, []);
 
-  return { queue, i, entry, ex, unitTitle, links, optionReadings, onDone, match, graded, correct, xpGained: state.stats.xp - xpStart.current, readings, showReadings, skip, restart };
+  return { queue, i, entry, ex, unitTitle, links, optionReadings, onDone, match, graded, correct, xpGained: state.stats.xp - xpStart.current, readings, showReadings, skip, restart, inputDue, finishInput };
 }
