@@ -8,7 +8,7 @@ div.screen{position:fixed;inset:0;z-index:1000;overflow:auto;min-height:100dvh;b
 .join,.round{align-items:center;justify-content:center;text-align:center}
 .standings{overflow:auto}
 .label{margin:0;font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(14px,1.2vw,24px);text-transform:uppercase;letter-spacing:.12em;color:var(--pl-tyrian)}
-.code{margin:0;font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(44px,5vw,110px);letter-spacing:.1em;line-height:1;color:var(--pl-ink);overflow-wrap:anywhere}
+.code{margin:0;font-family:"Space Mono",monospace;font-weight:700;font-size:clamp(40px,4vw,96px);letter-spacing:.06em;line-height:1;color:var(--pl-ink);white-space:nowrap}
 .qr{width:clamp(120px,16vh,240px)}
 .qr>div{width:100%;height:auto;padding:0;box-shadow:none}
 .url{margin:0;font-weight:800;font-size:clamp(16px,1.4vw,28px);overflow-wrap:anywhere}
