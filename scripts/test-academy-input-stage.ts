@@ -176,7 +176,7 @@ test("golden learner and due lemmas through the resolver match the app ports", (
 });
 
 test("a frequency prior alone never marks an unseen word known", () => {
-  const freq = freqIndex([["uno", 1, false]]);
+  const freq = freqIndex([["uno", 1, false] as const]);
   for (const tier of [0, 4, 20]) {
     const l = learnerFromState(normalizeState(null), "es", (_x, lemma) => `es:${lemma}`, 0, tier, new Set(), {}, null, freq);
     assert.ok(l.p("uno") < KNOWN_R, String(tier));

@@ -218,3 +218,13 @@ test("shareable strips non-review rows until the gate opens, and batchEvents ski
   assert.equal(shareable(rows, { state: "open", at: 0 }).length, 4);
   assert.deepEqual(batchEvents(rows).map((e) => e.name), ["exposure", "exposure", "session_mix"]);
 });
+
+test("a vocab test row parses, batches, and rejects impossible counts", () => {
+  const raw = { kind: "vocab_test", review_id: "v1", reviewed_at: 5, device_id: "d", tz: "UTC", system_id: "s", lang: "es", phase: "day28", form: "B", arm: "s70", hits: 40, words: 50, false_alarms: 2, pseudowords: 20, known: 6222.2, day: 30, seconds: 140 };
+  const row = parseLogRow(raw);
+  assert.ok(row && row.kind === "vocab_test");
+  assert.deepEqual(batchEvents([row!]), [{ id: "v1", name: "vocab_test", props: { phase: "day28", form: "B", arm: "s70", hits: 40, words: 50, false_alarms: 2, pseudowords: 20, known: 6222.2, day: 30, seconds: 140 } }]);
+  assert.equal(parseLogRow({ ...raw, hits: 51 }), null);
+  assert.equal(parseLogRow({ ...raw, phase: "day7" }), null);
+  assert.equal(parseLogRow({ ...raw, arm: "S70!" }), null);
+});

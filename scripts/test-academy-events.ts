@@ -139,8 +139,8 @@ test("the route answers a minor with recorded false and writes nothing", async (
   assert.equal(store.hits, 0, "a minor leaves no counter row either");
 });
 
-test("the daily caps are placement 20, study sessions 60, assessments 30, exposures 300 and session mixes 60", () => {
-  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60 });
+test("the daily caps are placement 20, study sessions 60, assessments 30, exposures 300, session mixes 60 and vocab tests 4", () => {
+  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60, vocab_test: 4 });
 });
 
 test("past the daily cap the route answers 429 with Retry-After and writes nothing more", async () => {

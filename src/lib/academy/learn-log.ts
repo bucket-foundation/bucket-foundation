@@ -1,3 +1,4 @@
+import { parseVocabTest, type VocabTestProps } from "./events";
 import type { Card, Rating } from "./fsrs";
 import type { Depth } from "./engine";
 import { parseCardId } from "./lang-systems";
@@ -66,7 +67,12 @@ export interface SessionRow extends RowBase {
   cards: number;
 }
 
-export type LogRow = ReviewLogRow | ExposureRow | SessionRow;
+export interface VocabTestRow extends RowBase, VocabTestProps {
+  kind: "vocab_test";
+  lang: string;
+}
+
+export type LogRow = ReviewLogRow | ExposureRow | SessionRow | VocabTestRow;
 
 export function isReview(r: LogRow): r is ReviewLogRow {
   return r.kind === undefined || r.kind === "review";
@@ -118,6 +124,10 @@ export function parseLogRow(raw: unknown): LogRow | null {
     if (!nullable(o.share_target, unit) || !nullable(o.share_real, unit) || !nullable(o.arm, (v): v is string => str(v, 32) && ARM_RE.test(v))) return null;
     if (!nullable(o.units, (v): v is number => nat(v, MAX_SESSION_ITEMS)) || !nat(o.cards, MAX_SESSION_ITEMS)) return null;
     return { ...b, kind: "session", lang: o.lang, id: o.id, started: o.started, ended: o.ended, share_target: o.share_target, share_real: o.share_real, arm: o.arm, units: o.units, cards: o.cards };
+  }
+  if (o.kind === "vocab_test") {
+    const v = parseVocabTest(o);
+    return v ? { ...b, kind: "vocab_test", lang: o.lang, ...v } : null;
   }
   return null;
 }
@@ -189,12 +199,14 @@ export interface SessionInput {
 
 export type BatchEvent =
   | { id: string; name: "exposure"; props: ExposureInput }
-  | { id: string; name: "session_mix"; props: { session: string; share_target: number | null; share_real: number | null; arm: string | null; units: number | null; cards: number; seconds: number } };
+  | { id: string; name: "session_mix"; props: { session: string; share_target: number | null; share_real: number | null; arm: string | null; units: number | null; cards: number; seconds: number } }
+  | { id: string; name: "vocab_test"; props: VocabTestProps };
 
 export function batchEvents(rows: readonly LogRow[]): BatchEvent[] {
   const out: BatchEvent[] = [];
   for (const r of orderRows(rows)) {
     if (r.kind === "exposure") out.push({ id: r.review_id, name: "exposure", props: { item: r.item, unit: r.unit, lemmas_seen: r.lemmas_seen, taps: r.taps, seconds: r.seconds, coverage_pred: r.coverage_pred, completed: r.completed, ...(r.revealed !== undefined ? { revealed: r.revealed } : {}), ...(r.playback ? { playback: r.playback } : {}) } });
+    else if (r.kind === "vocab_test") out.push({ id: r.review_id, name: "vocab_test", props: { phase: r.phase, form: r.form, arm: r.arm, hits: r.hits, words: r.words, false_alarms: r.false_alarms, pseudowords: r.pseudowords, known: r.known, day: r.day, seconds: r.seconds } });
     else if (r.kind === "session") out.push({ id: r.review_id, name: "session_mix", props: { session: r.id, share_target: r.share_target, share_real: r.share_real, arm: r.arm, units: r.units, cards: r.cards, seconds: Math.min(86_400, Math.round((r.ended - r.started) / 1000)) } });
   }
   return out;
@@ -217,10 +229,10 @@ export function uploads(gate: UploadGate): boolean {
   return gate.state !== "closed";
 }
 
-export const BATCH_CAPS = { exposure: 300, session_mix: 60 } as const;
+export const BATCH_CAPS = { exposure: 300, session_mix: 60, vocab_test: 4 } as const;
 
 export function takeBatch(rows: readonly LogRow[]): { send: BatchEvent[]; rest: LogRow[] } {
-  const left: Record<BatchEvent["name"], number> = { exposure: BATCH_CAPS.exposure, session_mix: BATCH_CAPS.session_mix };
+  const left: Record<BatchEvent["name"], number> = { exposure: BATCH_CAPS.exposure, session_mix: BATCH_CAPS.session_mix, vocab_test: BATCH_CAPS.vocab_test };
   const send: BatchEvent[] = [];
   const taken = new Set<string>();
   for (const e of batchEvents(rows)) {
