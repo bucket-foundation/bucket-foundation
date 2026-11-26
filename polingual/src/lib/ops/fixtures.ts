@@ -1,4 +1,4 @@
-import type { PostPatch, PostWriter, SocialPost } from "./ops";
+import type { Platform, PostPatch, PostWriter, SendRecord, SocialPost } from "./ops";
 
 export const POST_ID = "0b6f1d2e-8a4c-4f3e-9d2a-1c5b7e9f0a12";
 
@@ -22,6 +22,20 @@ export function memWriter(rows: SocialPost[]): PostWriter & { patches: PostPatch
       patches.push(patch);
       Object.assign(r, patch);
       return true;
+    },
+    claim: async (post: SocialPost, platform: Platform, record: SendRecord) => {
+      const r = rows.find((x) => x.id === post.id);
+      if (!r || r.sent[platform] || r.status === "skipped") return false;
+      r.sent = { ...r.sent, [platform]: record };
+      return true;
+    },
+    release: async (id: string, platform: Platform) => {
+      const r = rows.find((x) => x.id === id);
+      if (r && r.sent[platform]?.state === "sending") {
+        const next = { ...r.sent };
+        delete next[platform];
+        r.sent = next;
+      }
     },
   };
 }

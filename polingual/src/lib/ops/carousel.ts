@@ -1,5 +1,11 @@
 export type CarouselFiles = { meta: string; caption: string; hashtags: string; slides: string[] };
-export type Carousel = { slug: string; platform: string; postDate: string; caption: string; hashtags: string; slideFiles: string[]; slides: string[] };
+export type Carousel = { slug: string; platform: string; postDate: string; caption: string; hashtags: string; slideFiles: string[]; slideNumbers: number[] };
+
+export const SLIDE_PATH = /^[a-z0-9][a-z0-9-]*\/slide-\d{1,2}-[0-9a-f]{12}\.jpg$/;
+
+export function slidePath(slug: string, n: number, sha256Hex: string): string {
+  return `${slug}/slide-${n}-${sha256Hex.slice(0, 12)}.jpg`;
+}
 
 const SLUG = /^[a-z0-9][a-z0-9-]*$/;
 
@@ -25,11 +31,11 @@ export function parseCarousel(folder: string, files: CarouselFiles): Carousel {
     caption: lines.join("\n").trim(),
     hashtags,
     slideFiles,
-    slides: slideFiles.map((f) => `${slug}/slide-${slideNumber(f)}.jpg`),
+    slideNumbers: slideFiles.map(slideNumber),
   };
 }
 
-export function carouselRow(c: Carousel) {
+export function carouselRow(c: Carousel, slides: string[]) {
   return {
     slug: c.slug,
     platform: c.platform,
@@ -37,7 +43,7 @@ export function carouselRow(c: Carousel) {
     status: "ready" as const,
     caption: c.caption,
     hashtags: c.hashtags,
-    slides: c.slides,
+    slides,
     preview_url: null,
   };
 }

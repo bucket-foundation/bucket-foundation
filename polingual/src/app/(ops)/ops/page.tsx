@@ -68,7 +68,7 @@ function Spark({ points }: { points: { day: string; views: number }[] }) {
 
 function SendButton({ post, platform }: { post: SocialPost; platform: Platform }) {
   const sent = post.sent[platform];
-  if (sent) return <Badge tone="malachite">{platform} sent {when(sent.at)}</Badge>;
+  if (sent) return <Badge tone={sent.state === "sent" ? "malachite" : "ochre"}>{platform} {sent.state} {when(sent.at)}</Badge>;
   const missing = missingEnv(platform, process.env);
   const blocked = missing.length ? `Missing ${missing.join(", ")}` : !post.approved_at ? "Approve first" : post.slides.length === 0 ? "No slides uploaded" : null;
   return (

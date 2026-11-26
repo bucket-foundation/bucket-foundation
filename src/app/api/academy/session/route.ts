@@ -64,8 +64,8 @@ const handle = createSessionHandler({
     if (error) throw new Error(`session rate: ${error.message}`);
     return data === true;
   },
-  sendOtp: async (email, redirectTo) => {
-    const { error } = await anonClient().auth.signInWithOtp({ email, options: { shouldCreateUser: true, ...(redirectTo ? { emailRedirectTo: redirectTo } : {}) } });
+  sendOtp: async (email, redirectTo, create = true) => {
+    const { error } = await anonClient().auth.signInWithOtp({ email, options: { shouldCreateUser: create, ...(redirectTo ? { emailRedirectTo: redirectTo } : {}) } });
     return { status: error ? (error.status ?? 500) : null };
   },
   verifyOtp: async (email, code) => {

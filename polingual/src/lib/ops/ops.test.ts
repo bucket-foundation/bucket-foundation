@@ -40,7 +40,7 @@ test("decisions refuse without an admin and on bad input", async () => {
 });
 
 test("a failing store reports update_failed", async () => {
-  const w = { find: async () => post(), update: async () => { throw new Error("db down"); } };
+  const w = { find: async () => post(), update: async () => { throw new Error("db down"); }, claim: async () => true, release: async () => {} };
   assert.deepEqual(await decidePost(w, ADMIN, POST_ID, "approve"), { ok: false, error: "update_failed" });
 });
 
@@ -55,9 +55,9 @@ test("editCaption trims and refuses posted rows", async () => {
 test("reviewQueue keeps rows with an unsent platform and drops skipped", () => {
   const q = reviewQueue([
     post({ id: "a", scheduled_for: "2026-12-02T15:00:00Z" }),
-    post({ id: "b", scheduled_for: "2026-12-01T15:00:00Z", status: "posted", sent: { instagram: { id: "1", at: "x", mode: "PUBLISH" } } }),
+    post({ id: "b", scheduled_for: "2026-12-01T15:00:00Z", status: "posted", sent: { instagram: { id: "1", at: "x", mode: "PUBLISH", state: "sent" } } }),
     post({ id: "c", status: "skipped" }),
-    post({ id: "d", sent: { instagram: { id: "1", at: "x", mode: "PUBLISH" }, tiktok: { id: "2", at: "x", mode: "MEDIA_UPLOAD" } } }),
+    post({ id: "d", sent: { instagram: { id: "1", at: "x", mode: "PUBLISH", state: "sent" }, tiktok: { id: "2", at: "x", mode: "MEDIA_UPLOAD", state: "sent" } } }),
   ]);
   assert.deepEqual(q.map((p) => p.id), ["b", "a"]);
 });

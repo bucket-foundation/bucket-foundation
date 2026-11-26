@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { GRAPH_BASE, missingEnv, sendPost, TIKTOK_INIT_URL, TIKTOK_TOKEN_URL } from "./send";
 import { memWriter, post, POST_ID } from "./fixtures";
-import { parseCarousel } from "./carousel";
+import { parseCarousel, SLIDE_PATH, slidePath } from "./carousel";
 
 const ADMIN = "gianyrox@gmail.com";
 const NOW = new Date("2026-11-26T12:00:00Z");
@@ -34,7 +34,7 @@ test("send refuses unapproved, skipped, resent and anonymous requests", async ()
   const f = none();
   assert.deepEqual(await sendPost(memWriter([post()]), ADMIN, POST_ID, "tiktok", TT, f.send), { ok: false, error: "not_approved" });
   assert.deepEqual(await sendPost(memWriter([post({ status: "skipped", approved_at: "x" })]), ADMIN, POST_ID, "tiktok", TT, f.send), { ok: false, error: "skipped" });
-  assert.deepEqual(await sendPost(memWriter([post({ approved_at: "x", sent: { tiktok: { id: "1", at: "x", mode: "MEDIA_UPLOAD" } } })]), ADMIN, POST_ID, "tiktok", TT, f.send), { ok: false, error: "already_sent" });
+  assert.deepEqual(await sendPost(memWriter([post({ approved_at: "x", sent: { tiktok: { id: "1", at: "x", mode: "MEDIA_UPLOAD", state: "sent" } } })]), ADMIN, POST_ID, "tiktok", TT, f.send), { ok: false, error: "already_sent" });
   assert.deepEqual(await sendPost(memWriter([approved()]), null, POST_ID, "tiktok", TT, f.send), { ok: false, error: "forbidden" });
   assert.deepEqual(await sendPost(memWriter([approved()]), ADMIN, POST_ID, "youtube", TT, f.send), { ok: false, error: "bad_platform" });
   assert.equal(f.calls.length, 0);
@@ -56,7 +56,7 @@ test("TikTok send refreshes the token and posts a MEDIA_UPLOAD draft", async () 
   assert.deepEqual(payload.source_info.photo_images, ["https://polingual.com/media/social/night/slide-1.jpg", "https://polingual.com/media/social/night/slide-2.jpg"]);
   assert.equal(payload.post_info.description, "Night, Nacht, noche.\n\n#etymology #spanish");
   assert.equal(rows[0].status, "draft_delivered");
-  assert.deepEqual(rows[0].sent.tiktok, { id: "pub_1", at: NOW.toISOString(), mode: "MEDIA_UPLOAD" });
+  assert.deepEqual(rows[0].sent.tiktok, { id: "pub_1", at: NOW.toISOString(), mode: "MEDIA_UPLOAD", state: "sent" });
 });
 
 test("TikTok errors come back with the platform message", async () => {
@@ -105,7 +105,7 @@ test("Instagram send builds items, a carousel, then publishes", async () => {
 test("TikTok still sends after Instagram marked the row posted", async () => {
   const rows = [approved()];
   rows[0].status = "posted";
-  rows[0].sent = { instagram: { id: "m", at: "x", mode: "PUBLISH" } };
+  rows[0].sent = { instagram: { id: "m", at: "x", mode: "PUBLISH", state: "sent" } };
   const f = fake((url) => (url === TIKTOK_TOKEN_URL ? new Response(JSON.stringify({ access_token: "at" })) : new Response(JSON.stringify({ data: { publish_id: "p2" } }))));
   const r = await sendPost(memWriter(rows), ADMIN, POST_ID, "tiktok", TT, f.send);
   assert.ok(r.ok);
@@ -128,6 +128,44 @@ test("parseCarousel reads the folder contract", () => {
   });
   assert.equal(c.caption, "Night grew from one word.");
   assert.equal(c.hashtags, "#languagelearning #polyglot");
-  assert.deepEqual(c.slides, ["night/slide-1.jpg", "night/slide-2.jpg", "night/slide-10.jpg"]);
+  assert.deepEqual(c.slideNumbers, [1, 2, 10]);
+  const p = slidePath("night", 10, "ab".repeat(32));
+  assert.equal(p, "night/slide-10-abababababab.jpg");
+  assert.ok(SLIDE_PATH.test(p));
+  assert.ok(!SLIDE_PATH.test("night/slide-1.jpg"));
+  assert.ok(!SLIDE_PATH.test("../x/slide-1-abababababab.jpg"));
   assert.throws(() => parseCarousel("002-x", { meta: "{}", caption: "", hashtags: "", slides: ["slide-1.png"] }), /post_date/);
+});
+
+const ttOk = () => fake((url) => (url === TIKTOK_TOKEN_URL ? new Response(JSON.stringify({ access_token: "at" })) : new Response(JSON.stringify({ data: { publish_id: "pub" } }))));
+
+test("a double submit publishes once", async () => {
+  const rows = [approved()];
+  const w = memWriter(rows);
+  const f = ttOk();
+  const [a, b] = await Promise.all([sendPost(w, ADMIN, POST_ID, "tiktok", TT, f.send), sendPost(w, ADMIN, POST_ID, "tiktok", TT, f.send)]);
+  assert.equal([a, b].filter((r) => r.ok).length, 1);
+  assert.ok([a, b].some((r) => !r.ok && r.error === "already_sent"));
+  assert.equal(f.calls.filter((c) => c.url === TIKTOK_INIT_URL).length, 1);
+});
+
+test("a failed stamp after publish keeps the claim so a retry never republishes", async () => {
+  const rows = [approved()];
+  const w = memWriter(rows);
+  w.update = async () => false;
+  const f = ttOk();
+  const r = await sendPost(w, ADMIN, POST_ID, "tiktok", TT, f.send);
+  assert.ok(!r.ok && r.error === "update_failed" && /pub/.test(r.detail ?? ""));
+  assert.equal(rows[0].sent.tiktok?.state, "sending");
+  const again = await sendPost(memWriter(rows), ADMIN, POST_ID, "tiktok", TT, f.send);
+  assert.deepEqual(again, { ok: false, error: "already_sent" });
+  assert.equal(f.calls.filter((c) => c.url === TIKTOK_INIT_URL).length, 1);
+});
+
+test("a lost claim race makes no platform call", async () => {
+  const w = memWriter([approved()]);
+  w.claim = async () => false;
+  const f = none();
+  assert.deepEqual(await sendPost(w, ADMIN, POST_ID, "instagram", IG, f.send), { ok: false, error: "already_sent" });
+  assert.equal(f.calls.length, 0);
 });

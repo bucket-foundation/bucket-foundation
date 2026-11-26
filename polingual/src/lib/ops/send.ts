@@ -130,17 +130,35 @@ export async function sendPost(deps: PostWriter, admin: string | null, postId: s
   if (post.status === "skipped") return { ok: false, error: "skipped" };
   if (!post.approved_at) return { ok: false, error: "not_approved" };
   if (post.slides.length === 0) return { ok: false, error: "no_slides" };
+  const at = now.toISOString();
+  let claimed = false;
+  try {
+    claimed = await deps.claim(post, platform, { id: null, at, mode: "claim", state: "sending" });
+  } catch (err) {
+    return { ok: false, error: "update_failed", detail: `claim failed: ${err instanceof Error ? err.message : String(err)}` };
+  }
+  if (!claimed) return { ok: false, error: "already_sent" };
   const r = platform === "tiktok" ? await sendTikTok(post, env, send) : await sendInstagram(post, env, send);
   if (!r.ok) {
     console.error("[ops] polingual send failed", postId, platform, r.error, r.detail ?? "");
+    try {
+      await deps.release(postId, platform);
+    } catch (err) {
+      console.error("[ops] polingual claim release failed", postId, platform, err instanceof Error ? err.message : err);
+    }
     return r;
   }
-  const sent = { ...post.sent, [platform]: { id: r.id, at: now.toISOString(), mode: r.mode } };
+  const sent = { ...post.sent, [platform]: { id: r.id, at, mode: r.mode, state: "sent" as const } };
   const status = platform === "instagram" ? "posted" : post.status === "ready" ? "draft_delivered" : post.status;
+  let stored = false;
   try {
-    if (!(await deps.update(postId, { sent, status }))) return { ok: false, error: "update_failed", detail: `${platform} accepted ${r.id ?? "the post"} but the row did not update` };
+    stored = await deps.update(postId, { sent, status });
   } catch (err) {
-    return { ok: false, error: "update_failed", detail: `${platform} accepted ${r.id ?? "the post"}; row update failed: ${err instanceof Error ? err.message : String(err)}` };
+    console.error("[ops] polingual send stamp failed", postId, platform, r.id, err instanceof Error ? err.message : err);
+  }
+  if (!stored) {
+    console.error("[ops] polingual send accepted but unrecorded", postId, platform, r.id);
+    return { ok: false, error: "update_failed", detail: `${platform} accepted ${r.id ?? "the post"}; the row keeps its sending claim so a retry cannot publish twice` };
   }
   return r;
 }

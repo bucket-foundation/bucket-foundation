@@ -15,7 +15,7 @@ function fake(routes: Record<string, (init: RequestInit) => Response>) {
   return { send, calls };
 }
 
-const user = (email: string) => () => new Response(JSON.stringify({ id: "u", email }), { status: 200 });
+const user = (email: string, confirmed: string | null = "2026-01-01T00:00:00Z") => () => new Response(JSON.stringify({ id: "u", email, email_confirmed_at: confirmed }), { status: 200 });
 const tokens = () => new Response(JSON.stringify({ access_token: "at", refresh_token: "rt", expires_at: 2_000_000_000 }), { status: 200 });
 
 test("founderFromToken accepts the founder email only", async () => {
@@ -41,7 +41,7 @@ test("sendFounderCode asks the academy session route for a code", async () => {
   let body = "";
   const f = fake({ "https://bucket.test/api/academy/session": (init) => ((body = String(init.body)), new Response('{"ok":true}', { status: 200 })) });
   assert.deepEqual(await sendFounderCode(FOUNDER_EMAIL, env, f.send), { ok: true });
-  assert.deepEqual(JSON.parse(body), { action: "otp", email: FOUNDER_EMAIL, app: "polingual" });
+  assert.deepEqual(JSON.parse(body), { action: "otp", email: FOUNDER_EMAIL, app: "polingual", create: false });
 });
 
 test("verifyFounderCode returns tokens only when the session user is the founder", async () => {
@@ -57,4 +57,8 @@ test("refreshFounder rechecks the founder on the new token", async () => {
   const r = await refreshFounder("rt", env, fake({ "https://bucket.test/": tokens, "https://db.test/": user(FOUNDER_EMAIL) }).send);
   assert.ok(r.ok);
   assert.deepEqual(await refreshFounder("", env, fake({}).send), { ok: false, error: "no_session" });
+});
+
+test("founderFromToken refuses an unconfirmed founder email", async () => {
+  assert.equal(await founderFromToken("t", env, fake({ "https://db.test/auth/v1/user": user(FOUNDER_EMAIL, null) }).send), null);
 });

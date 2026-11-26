@@ -6,7 +6,7 @@ export const OUTREACH_KINDS = ["creator", "teacher", "press", "club", "agency"] 
 export const OUTREACH_STATUSES = ["drafted", "sent", "followup_due", "replied", "won", "lost"] as const;
 export type OutreachStatus = (typeof OUTREACH_STATUSES)[number];
 
-export type SendRecord = { id: string | null; at: string; mode: string };
+export type SendRecord = { id: string | null; at: string; mode: string; state: "sending" | "sent" | "unrecorded" };
 
 export interface SocialPost {
   id: string;
@@ -137,6 +137,8 @@ export type PostPatch = Partial<Pick<SocialPost, "status" | "approved_at" | "app
 export interface PostWriter {
   find: (id: string) => Promise<SocialPost | null>;
   update: (id: string, patch: PostPatch) => Promise<boolean>;
+  claim: (post: SocialPost, platform: Platform, record: SendRecord) => Promise<boolean>;
+  release: (id: string, platform: Platform) => Promise<void>;
 }
 
 export const POST_DECISIONS = ["approve", "skip"] as const;

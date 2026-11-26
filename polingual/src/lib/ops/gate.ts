@@ -35,8 +35,9 @@ export async function founderFromToken(token: string | null | undefined, env: Op
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
     if (!r.ok) return null;
-    const u = (await r.json()) as { email?: unknown };
-    return typeof u.email === "string" && isFounder(u.email) ? FOUNDER_EMAIL : null;
+    const u = (await r.json()) as { email?: unknown; email_confirmed_at?: unknown };
+    const confirmed = typeof u.email_confirmed_at === "string" && Number.isFinite(Date.parse(u.email_confirmed_at));
+    return confirmed && typeof u.email === "string" && isFounder(u.email) ? FOUNDER_EMAIL : null;
   } catch {
     return null;
   }
@@ -49,7 +50,7 @@ function sessionBase(env: OpsEnv): string {
   return (env.POLINGUAL_SYNC_BASE?.trim() || "https://www.bucket.foundation").replace(/\/$/, "");
 }
 
-async function session(body: Record<string, string>, env: OpsEnv, send: Fetcher): Promise<SessionCall> {
+async function session(body: Record<string, string | boolean>, env: OpsEnv, send: Fetcher): Promise<SessionCall> {
   try {
     const r = await send(`${sessionBase(env)}/api/academy/session`, {
       method: "POST",
@@ -70,7 +71,7 @@ async function session(body: Record<string, string>, env: OpsEnv, send: Fetcher)
 
 export async function sendFounderCode(email: string, env: OpsEnv, send: Fetcher): Promise<SessionCall> {
   if (!isFounder(email)) return { ok: false, error: "not_founder" };
-  return session({ action: "otp", email: FOUNDER_EMAIL, app: "polingual" }, env, send);
+  return session({ action: "otp", email: FOUNDER_EMAIL, app: "polingual", create: false }, env, send);
 }
 
 export async function verifyFounderCode(email: string, code: string, env: OpsEnv, send: Fetcher): Promise<SessionCall> {

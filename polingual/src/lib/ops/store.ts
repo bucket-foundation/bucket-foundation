@@ -56,6 +56,20 @@ export function postgrestOps(env: OpsEnv, send: Fetcher): OpsSource | null {
         const rows = await req<{ id: string }[]>("polingual_social_posts update", `polingual_social_posts?id=eq.${q(id)}${guardQuery(patch)}&select=id`, { method: "PATCH", body: JSON.stringify(patch), prefer: "return=representation" });
         return rows.length > 0;
       },
+      claim: async (post, platform, record) => {
+        if (!UUID.test(post.id)) return false;
+        const sent = { ...post.sent, [platform]: record };
+        const rows = await req<{ id: string }[]>("polingual_social_posts claim", `polingual_social_posts?id=eq.${q(post.id)}&updated_at=eq.${q(post.updated_at)}&sent->>${platform}=is.null&status=neq.skipped&select=id`, { method: "PATCH", body: JSON.stringify({ sent }), prefer: "return=representation" });
+        return rows.length > 0;
+      },
+      release: async (id, platform) => {
+        if (!UUID.test(id)) return;
+        const rows = await req<{ sent: SocialPost["sent"] }[]>("polingual_social_posts release read", `polingual_social_posts?select=sent&id=eq.${q(id)}&limit=1`);
+        const sent = { ...(rows[0]?.sent ?? {}) };
+        if (sent[platform]?.state !== "sending") return;
+        delete sent[platform];
+        await req("polingual_social_posts release", `polingual_social_posts?id=eq.${q(id)}&sent->${platform}->>state=eq.sending`, { method: "PATCH", body: JSON.stringify({ sent }) });
+      },
     },
   };
 }
