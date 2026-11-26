@@ -344,6 +344,29 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   return { name: name || "Polingual lobby", game: setup.game, root, targets, rounds, roundSeconds, revealSeconds, listed: body.listed !== false, playlist: setup.playlist, mix: setup.mix };
 }
 
+export type LobbySettingsPatch = { game: LobbyGame; targets: string[]; playlist?: LobbyGame[]; mix?: boolean };
+
+export function normalizeLobbySettings(body: Record<string, unknown> | null, lobby: Pick<LobbyRow, "game" | "root" | "targets" | "status">): LobbySettingsPatch | null {
+  if (!body || lobby.status !== "lobby" || isRace(lobby.game)) return null;
+  let targets = lobby.targets;
+  if (body.targets !== undefined) {
+    const raw = body.targets;
+    if (!Array.isArray(raw) || raw.length < 1 || raw.length > 8 || !raw.every((t) => typeof t === "string" && LANG.test(t))) return null;
+    targets = (raw as string[]).filter((t, i, all) => t !== lobby.root && all.indexOf(t) === i);
+    if (targets.length === 0) return null;
+  }
+  const game = body.game === undefined ? (lobby.game ?? "daily") : (setupGames() as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
+  if (!game) return null;
+  if (!setupEnabled()) {
+    if (body.setup !== undefined && body.setup !== "single") return null;
+    if (game === "same-word" && targets.length < 2) return null;
+    return { game, targets };
+  }
+  const setup = normalizeSetup(body, game, targets);
+  if (!setup || (setup.game === "same-word" && targets.length < 2)) return null;
+  return { game: setup.game, targets, playlist: setup.playlist ?? [setup.game], mix: setup.mix };
+}
+
 export function normalizeMessage(input: unknown): string | null {
   if (typeof input !== "string") return null;
   const s = input.replace(/\s+/g, " ").trim();
