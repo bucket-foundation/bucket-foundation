@@ -195,6 +195,17 @@ const gaps = (q: QueueEntry[]) =>
 }
 
 {
+  const sys = createSystem("en", ["fr", "es"], [], 0);
+  const item = corpus.items.find((i) => isVocab(i) && i.forms.fr && i.forms.es && i.forms.en && i.forms.fr !== i.forms.es)!;
+  const state = empty();
+  state.cards[cardId("fr", item.id)] = { ...masteredCard(), due: NOW + 365 * 86_400_000 };
+  state.cards[cardId("es", item.id)] = { ...masteredCard(), due: NOW + 365 * 86_400_000 };
+  const q = session(sys, corpus, state, NOW, freq(sys.targets));
+  ok(q.some((e) => e.stage === "intro"), "the session brings new words alongside the mastered one");
+  ok(q.some((e) => e.stage === "match" && e.itemId === item.id), "a mastered word gets its comparison while new words fill the session");
+}
+
+{
   const sys = createSystem("en", ["fr", "es", "it"], [], 0);
   const item = corpus.items.find((i) => sys.targets.some((l) => i.falseFriends[l]))!;
   const lang = sys.targets.find((l) => item.falseFriends[l])!;

@@ -248,7 +248,10 @@ export function sessionQueue(
   freq: FrequencyRank,
   opts: { size?: number; heritage?: boolean } = {}
 ): QueueEntry[] {
-  const built = buildQueue(system, frequencyFirst(corpus, freq, system.targets), state, now, opts.size ?? 14, { heritage: opts.heritage });
+  const built = buildQueue(system, frequencyFirst(corpus, freq, system.targets), state, now, opts.size ?? 14, {
+    heritage: opts.heritage,
+    matchReady: (item) => compareReady(item, state, system.targets.filter((l) => item.forms[l])),
+  });
   return gateComparisons(built, system, corpus, state);
 }
 
