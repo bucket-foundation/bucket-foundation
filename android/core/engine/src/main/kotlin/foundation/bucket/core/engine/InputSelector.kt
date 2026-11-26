@@ -23,7 +23,9 @@ data class InputPlan(
     val score: Double,
 )
 
-data class SelectorWeights(val due: Double = 2.0, val frequency: Double = 1.0, val repeat: Double = 3.0, val continuity: Double = 1.5)
+data class SelectorWeights(val due: Double, val frequency: Double, val repeat: Double, val continuity: Double)
+
+val UnfittedSelectorWeights = SelectorWeights(due = 2.0, frequency = 1.0, repeat = 3.0, continuity = 1.5)
 
 object InputSelector {
     const val MIN_UNIT_TOKENS = 40
@@ -36,7 +38,7 @@ object InputSelector {
 
     private fun bonus(rank: Double?) = if (rank == null) 0.0 else 1000.0 / (1000.0 + max(1.0, rank))
 
-    fun plan(unit: String, lemmas: List<String>, targets: List<String>, media: Boolean, video: String?, l: InputLearner, w: SelectorWeights = SelectorWeights()): InputPlan {
+    fun plan(unit: String, lemmas: List<String>, targets: List<String>, media: Boolean, video: String?, l: InputLearner, w: SelectorWeights = UnfittedSelectorWeights): InputPlan {
         val n = lemmas.size
         val distinct = lemmas.toSortedSet().toList()
         val unknown = distinct.filter { l.p(it) < UNKNOWN_BELOW }

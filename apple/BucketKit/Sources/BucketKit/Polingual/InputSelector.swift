@@ -23,11 +23,14 @@ public struct InputPlan: Equatable, Sendable {
 }
 
 public struct SelectorWeights: Sendable {
-    public var due = 2.0
-    public var frequency = 1.0
-    public var repeatPenalty = 3.0
-    public var continuity = 1.5
-    public init() {}
+    public var due: Double
+    public var frequency: Double
+    public var repeatPenalty: Double
+    public var continuity: Double
+    public init(due: Double, frequency: Double, repeatPenalty: Double, continuity: Double) {
+        self.due = due; self.frequency = frequency; self.repeatPenalty = repeatPenalty; self.continuity = continuity
+    }
+    public static let unfitted = SelectorWeights(due: 2, frequency: 1, repeatPenalty: 3, continuity: 1.5)
 }
 
 public enum InputSelector {
@@ -40,7 +43,7 @@ public enum InputSelector {
 
     static func bonus(_ rank: Double?) -> Double { rank.map { 1000 / (1000 + max(1, $0)) } ?? 0 }
 
-    public static func plan(_ unit: String, lemmas: [String], targets: [String], media: Bool, video: String?, learner l: InputLearner, weights w: SelectorWeights = SelectorWeights()) -> InputPlan {
+    public static func plan(_ unit: String, lemmas: [String], targets: [String], media: Bool, video: String?, learner l: InputLearner, weights w: SelectorWeights = .unfitted) -> InputPlan {
         let n = lemmas.count
         let distinct = Array(Set(lemmas)).sorted()
         let unknown = distinct.filter { l.p($0) < unknownBelow }

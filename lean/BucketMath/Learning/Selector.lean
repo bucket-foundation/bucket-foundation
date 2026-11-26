@@ -17,7 +17,7 @@ def inBand (p : Plan) : Bool :=
 def eligible (p : Plan) : Bool :=
   minTokens ≤ p.tokens && inBand p && 1 ≤ p.newWords && p.newWords ≤ 3 && 20 * p.newWords ≤ p.tokens
 
-def better (a b : Plan) : Plan := if b.score > a.score then b else a
+def better (a b : Plan) : Plan := if b.score > a.score ∨ (b.score = a.score ∧ b.id < a.id) then b else a
 
 def best : List Plan → Option Plan
   | [] => none
@@ -78,5 +78,13 @@ theorem c2_media_floor {ps : List Plan} {p : Plan} (h : select ps = some p) (hm 
 theorem c2_new_share {ps : List Plan} {p : Plan} (h : select ps = some p) : 100 * p.newWords ≤ 5 * p.tokens := by
   have := (c2_selected h).2.2.2.2
   omega
+
+theorem better_score (a b : Plan) : a.score ≤ (better a b).score ∧ b.score ≤ (better a b).score := by
+  unfold better
+  split <;> rename_i h <;> omega
+
+theorem better_tie_lowest_id (a b : Plan) (h : a.score = b.score) : (better a b).id = min a.id b.id := by
+  unfold better
+  split <;> rename_i h' <;> omega
 
 end BucketMath.Learning.Selector

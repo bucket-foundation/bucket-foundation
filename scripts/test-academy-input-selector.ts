@@ -2,9 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
 import { buildLangCorpus } from "../src/lib/academy/lang-systems";
-import { lemmaCardMap, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
+import { lemmaCardMap, UNFITTED_SELECTOR_WEIGHTS, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
 
 const ROOT = path.join(__dirname, "..");
 const V = JSON.parse(fs.readFileSync(path.join(ROOT, "src/lib/academy/selector-vectors.json"), "utf8"));
@@ -59,18 +58,13 @@ test("the lemma map points bundle lemmas at corpus word cards", () => {
   assert.equal(resolverFrom({ es: map })("es", lemma.toUpperCase()), card);
 });
 
-function realBundle(): unknown | null {
-  try {
-    const manifest = JSON.parse(execFileSync("git", ["show", "integrate/learning-program:polingual/public/input/manifest.json"], { cwd: ROOT, encoding: "utf8" }));
-    return JSON.parse(execFileSync("git", ["show", `integrate/learning-program:polingual/public/input/${manifest.langs.es.file}`], { cwd: ROOT, encoding: "utf8", maxBuffer: 64 << 20 }));
-  } catch {
-    return null;
-  }
+function realBundle(): unknown {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, "scripts/fixtures/polingual-input/es.json"), "utf8"));
 }
 
 const bundle = realBundle();
 
-test("the CI 2 Spanish bundle plans and selects within the rules", { skip: bundle ? false : "integrate/learning-program not fetched" }, () => {
+test("the CI 2 Spanish fixture plans and selects within the rules", () => {
   const b = parseBundle(bundle)!;
   assert.ok(b);
   const all = new Set(b.items.flatMap((i) => i.tokens.map((t) => t.lemma)));
@@ -90,4 +84,11 @@ test("loadBundle reads the manifest, rejects odd file names and survives a faile
   assert.equal((await loadBundle("es", "/input", fetcher))?.lang, "es");
   assert.equal(await loadBundle("fr", "/input", fetcher), null);
   assert.equal(await loadBundle("es", "/input", (async () => { throw new Error("down"); }) as unknown as typeof fetch), null);
+});
+
+test("equal scores pick the lowest unit id, matching the Lean model", () => {
+  const l = learner({ p: {}, due: [], rank: {}, recent: {}, lastVideo: null });
+  const mk = (unit: string) => ({ unit, tokens: 40, media: false, coverage: 0.96, newWords: ["a"], glossed: [], eligible: true, score: 1 });
+  assert.equal(select([mk("u:b"), mk("u:a"), mk("u:c")], l, () => [])!.plan.unit, "u:a");
+  assert.deepEqual(UNFITTED_SELECTOR_WEIGHTS, { due: 2, frequency: 1, repeat: 3, continuity: 1.5 });
 });

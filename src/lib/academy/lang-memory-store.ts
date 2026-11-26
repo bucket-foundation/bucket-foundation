@@ -2,6 +2,7 @@ import { mergeState, normalizeState, type EngineState } from "./engine";
 import type { Rating } from "./fsrs";
 import { backupBranch, emptyMemory, foldByLang, langBranch, makeRow, memoryState, mergeMemory, migrateLang, normalizeMemory, planningSystem, withRows, type LangMemory, type LangRow } from "./lang-memory";
 import { applyPlacement, cardId, progressBranch, type LangCorpus, type LangSystem } from "./lang-systems";
+import { NO_RESOLVER, type LemmaResolver } from "./exposure-replay";
 import { deviceHash, MAX_PENDING_ROWS, nextGate, nextUtcMidnight, reviewMetrics, shareable, shouldProbe, takeBatch, uploads, type BatchEvent, type BatchReply, type ExposureInput, type ExposureRow, type LogRow, type SessionInput, type SessionRow, type UploadGate } from "./learn-log";
 import { LS_BASE, pullServer, webProgressStore, type ServerBranches } from "./progress-store";
 
@@ -34,6 +35,7 @@ export interface SharedSession {
   langStatus: Record<string, LangLoadStatus>;
   oldStates: Record<string, EngineState | null>;
   view: EngineState;
+  resolve: LemmaResolver;
 }
 
 function stateOf(raw: unknown): EngineState | null {
@@ -93,7 +95,7 @@ async function persist(io: MemoryIO, mine: LangMemory, push: boolean): Promise<b
   return ok;
 }
 
-export async function openShared(io: MemoryIO, system: LangSystem, systems: LangSystem[], server?: ServerBranches | null): Promise<SharedSession> {
+export async function openShared(io: MemoryIO, system: LangSystem, systems: LangSystem[], server?: ServerBranches | null, resolve: LemmaResolver = NO_RESOLVER): Promise<SharedSession> {
   await probeGate(io);
   const srv = server === undefined ? await io.pull() : server;
   const oldStates: Record<string, EngineState | null> = {};
@@ -106,19 +108,19 @@ export async function openShared(io: MemoryIO, system: LangSystem, systems: Lang
     langStatus[lang] = r.status === "fulfilled" ? "ready" : "error";
     if (r.status === "fulfilled") memories[lang] = r.value;
   });
-  return refold({ system, plan: planningSystem(system, systems), systems, memories, langStatus, oldStates, view: normalizeState(null) });
+  return refold({ system, plan: planningSystem(system, systems), systems, memories, langStatus, oldStates, view: normalizeState(null), resolve });
 }
 
 function refold(s: SharedSession): SharedSession {
-  return { ...s, view: foldByLang(s.system, s.memories, s.systems, s.oldStates) };
+  return { ...s, view: foldByLang(s.system, s.memories, s.systems, s.oldStates, s.resolve) };
 }
 
 export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId: string, rating: Rating): { session: SharedSession; saved: Promise<boolean> } {
   const id = cardId(lang, itemId);
   const row = makeRow(s.system.id, id, rating, io.uuid(), io.deviceId(), io.now(), io.tz());
   if (s.langStatus[lang] === "ready") {
-    const before = memoryState(s.memories[lang] ?? emptyMemory(lang)).cards[id];
-    const after = memoryState(withRows(s.memories[lang] ?? emptyMemory(lang), [row])).cards[id];
+    const before = memoryState(s.memories[lang] ?? emptyMemory(lang), s.resolve).cards[id];
+    const after = memoryState(withRows(s.memories[lang] ?? emptyMemory(lang), [row]), s.resolve).cards[id];
     const metrics = reviewMetrics(before, after, row.reviewed_at);
     if (metrics) Object.assign(row, metrics);
   }
@@ -194,7 +196,7 @@ export function placeShared(io: MemoryIO, s: SharedSession, corpus: LangCorpus, 
   const systems = s.systems.map((x) => (x.id === system.id ? system : x));
   if (s.langStatus[lang] !== "ready") return { session: { ...s, system, systems, plan: planningSystem(system, systems) }, system, saved: Promise.resolve(false) };
   const m0 = s.memories[lang] ?? emptyMemory(lang);
-  const full = memoryState(m0);
+  const full = memoryState(m0, s.resolve);
   const placed = applyPlacement(full, system, corpus, lang, kept, io.now(), only ? new Set(only) : undefined);
   const baseline = normalizeState(m0.baseline);
   for (const [id, c] of Object.entries(placed.cards)) if (!full.cards[id]) baseline.cards[id] = c;

@@ -3,7 +3,7 @@ import { laterCard } from "./card-merge";
 import type { Card } from "./fsrs";
 import { parseCardId, progressBranch, type LangCard, type LangSystem } from "./lang-systems";
 import { LANG_ATOMS_VERSION, orderLog, replay } from "./replay";
-import { replayLangLog } from "./exposure-replay";
+import { NO_RESOLVER, exposureParams, replayLangLog, type LemmaResolver } from "./exposure-replay";
 import { isReview, parseLogRow, rowLang, type LogRow, type ReviewLogRow } from "./learn-log";
 
 export function sharedMemoryOn(value: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_SHARED_MEMORY): boolean {
@@ -112,8 +112,8 @@ export function unionCards(a: EngineState, b: EngineState): EngineState {
   return out;
 }
 
-export function memoryState(m: LangMemory): EngineState {
-  return onlyLang(replayLangLog(m.baseline, m.log), m.lang);
+export function memoryState(m: LangMemory, resolve: LemmaResolver = NO_RESOLVER): EngineState {
+  return onlyLang(replayLangLog(m.baseline, m.log, exposureParams(resolve)), m.lang);
 }
 
 export function migrateLang(lang: string, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>, existing: LangMemory | null): LangMemory {
@@ -135,11 +135,11 @@ export function planningSystem(system: LangSystem, systems: readonly LangSystem[
   return { ...system, placement: Object.fromEntries(system.targets.map((l) => [l, maxPlacement(all, l)])) };
 }
 
-export function foldByLang(system: LangSystem, memories: Readonly<Record<string, LangMemory>>, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>): EngineState {
+export function foldByLang(system: LangSystem, memories: Readonly<Record<string, LangMemory>>, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>, resolve: LemmaResolver = NO_RESOLVER): EngineState {
   let view = normalizeState(null);
   for (const lang of system.targets) {
     const m = memories[lang];
-    let s = m ? memoryState(m) : normalizeState(null);
+    let s = m ? memoryState(m, resolve) : normalizeState(null);
     for (const other of systems) {
       if (!other.targets.includes(lang)) continue;
       const old = oldStates[progressBranch(other)];

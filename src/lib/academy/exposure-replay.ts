@@ -11,17 +11,15 @@ export interface ExposureParams {
   resolve: (lang: string, lemma: string) => string | null;
 }
 
-const lemmaMaps = new Map<string, ReadonlyMap<string, string>>();
+export type LemmaResolver = (lang: string, lemma: string) => string | null;
 
-export function registerLemmaMap(lang: string, map: ReadonlyMap<string, string>): void {
-  lemmaMaps.set(lang, map);
+export const NO_RESOLVER: LemmaResolver = () => null;
+
+export function exposureParams(resolve: LemmaResolver = NO_RESOLVER, alpha: number = EXPOSURE_ALPHA): ExposureParams {
+  return { alpha, resolve };
 }
 
-export function resolveLemma(lang: string, lemma: string): string | null {
-  return lemmaMaps.get(lang)?.get(lemma.normalize("NFC").toLowerCase()) ?? null;
-}
-
-export const DEFAULT_EXPOSURE_PARAMS: ExposureParams = { alpha: EXPOSURE_ALPHA, resolve: resolveLemma };
+export const DEFAULT_EXPOSURE_PARAMS: ExposureParams = exposureParams();
 
 export type ExposureCard = Card & { exposureDay?: string };
 

@@ -14,7 +14,7 @@ export interface SelectorWeights {
   continuity: number;
 }
 
-export const DEFAULT_WEIGHTS: SelectorWeights = { due: 2, frequency: 1, repeat: 3, continuity: 1.5 };
+export const UNFITTED_SELECTOR_WEIGHTS: SelectorWeights = { due: 2, frequency: 1, repeat: 3, continuity: 1.5 };
 
 export interface InputToken {
   surface: string;
@@ -82,7 +82,7 @@ export function unitVideo(unit: InputUnit, items: ReadonlyMap<string, InputItem>
 
 const rankBonus = (rank: number | null) => (rank === null ? 0 : 1000 / (1000 + Math.max(1, rank)));
 
-export function planUnit(unitId: string, lemmas: readonly string[], targets: readonly string[], media: boolean, video: string | null, l: Learner, w: SelectorWeights = DEFAULT_WEIGHTS): Plan {
+export function planUnit(unitId: string, lemmas: readonly string[], targets: readonly string[], media: boolean, video: string | null, l: Learner, w: SelectorWeights = UNFITTED_SELECTOR_WEIGHTS): Plan {
   const n = lemmas.length;
   const distinct = Array.from(new Set(lemmas)).sort();
   const unknown = distinct.filter((x) => l.p(x) < UNKNOWN_BELOW);
@@ -107,7 +107,7 @@ export function rawCoverage(lemmas: readonly string[], l: Learner): number {
   return lemmas.length ? lemmas.reduce((s, x) => s + Math.min(1, Math.max(0, l.p(x))), 0) / lemmas.length : 0;
 }
 
-export function planBundle(bundle: InputBundle, l: Learner, w: SelectorWeights = DEFAULT_WEIGHTS): Plan[] {
+export function planBundle(bundle: InputBundle, l: Learner, w: SelectorWeights = UNFITTED_SELECTOR_WEIGHTS): Plan[] {
   const items = new Map(bundle.items.map((i) => [i.id, i]));
   return bundle.units.map((u) => planUnit(u.id, unitLemmas(u, items), u.targetLemmas, u.kind === "episode", unitVideo(u, items), l, w));
 }
