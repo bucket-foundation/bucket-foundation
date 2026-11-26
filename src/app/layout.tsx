@@ -5,6 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/HeaderV3";
 import BrandPreview from "@/components/BrandPreview";
+import DailyTheme from "@/components/DailyTheme";
+import { applyScript } from "@/lib/daily-theme";
 import { FONTS_HREF, LOGO, THEME_COLOR } from "@/lib/brand";
 import Footer from "@/components/FooterV3";
 import { CANON_BRANCHES } from "@/lib/contribute";
@@ -241,6 +243,7 @@ export default function RootLayout({
           href={FONTS_HREF}
           rel="stylesheet"
         />
+        <script dangerouslySetInnerHTML={{ __html: applyScript }} />
       </head>
       <body className="stone-bg min-h-screen">
         <SessionProvider>
@@ -253,6 +256,7 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
           />
           <BrandPreview />
+          <DailyTheme />
           <Header launchList={!signInOpen()} />
           {children}
           <SiteFooter>
