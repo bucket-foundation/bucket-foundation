@@ -200,14 +200,14 @@ class Lemma(unittest.TestCase):
 
 
 class CyclicForms(unittest.TestCase):
-    def test_mutual_form_targets_keep_surface(self):
+    def test_mutual_form_targets_pick_a_base(self):
         lex_data = {
             "xa": ([("plural of pa", "noun"), ("plural of qa", "noun")], 10),
             "pa": ([("plural of qa", "noun")], 20),
             "qa": ([("plural of pa", "noun")], 30),
         }
         lex = ib.Lexicon(lambda s: lex_data.get(s, ([], None)))
-        self.assertEqual(lex.lemma("xa"), ("xa", True))
+        self.assertIn(lex.lemma("xa")[0], {"pa", "qa"})
 
 
 class Units(unittest.TestCase):
