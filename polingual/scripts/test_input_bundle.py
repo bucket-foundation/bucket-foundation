@@ -91,6 +91,38 @@ class Tokenize(unittest.TestCase):
         self.assertEqual(got, [("Es", True), ("Tom", False), ("Sí", True), ("dijo", False), ("Ana", True), ("vino", False)])
 
 
+class RomanceLemma(unittest.TestCase):
+    ROWS = {
+        "donna": ([("third-person singular past historic of donner", "verb")], None),
+        "donner": ([("to give", "verb")], 300),
+        "apparue": ([("feminine singular of apparu", "verb")], None),
+        "apparu": ([("past participle of apparaître", "verb")], None),
+        "apparaître": ([("to appear", "verb")], 900),
+        "livres": ([("plural of livre", "noun"), ("second-person singular present of livrer", "verb")], 600),
+        "livre": ([("book", "noun"), ("inflection of livrer:", "verb")], 200),
+        "livrer": ([("to deliver", "verb")], 900),
+    }
+
+    def lex(self, lang):
+        return ib.Lexicon(lambda s: self.ROWS.get(s, ([], None)), fixed=ib.FIXED[lang])
+
+    def test_past_historic(self):
+        self.assertEqual(self.lex("fr").lemma("donna"), ("donner", True))
+
+    def test_participle_chain(self):
+        self.assertEqual(self.lex("fr").lemma("apparue")[0], "apparaître")
+
+    def test_own_sense_target_kept(self):
+        self.assertEqual(self.lex("fr").lemma("livres")[0], "livre")
+
+    def test_fixed_closed_class(self):
+        fr, it = self.lex("fr"), self.lex("it")
+        self.assertEqual(fr.lemma("sa")[0], "son")
+        self.assertEqual(it.lemma("nei")[0], "in")
+        self.assertEqual(it.lemma("dell'")[0], "di")
+        self.assertEqual(it.lemma("I", True)[0], "il")
+
+
 class Lemma(unittest.TestCase):
     def test_form_of_parsing(self):
         self.assertEqual(ib.lemma_of_meaning("plural of casa"), "casa")
