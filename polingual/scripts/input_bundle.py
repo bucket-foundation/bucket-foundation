@@ -89,9 +89,9 @@ IT_ARTICULATED = {"de": "di", "a": "a", "da": "da", "ne": "in", "su": "su"}
 FIXED = {
     "fr": {"ma": "mon", "ta": "ton", "sa": "son", "mes": "mon", "tes": "ton", "ses": "son",
            "nos": "notre", "vos": "votre", "leurs": "leur"},
-    "it": {"i": "il", "gli": "il", "l'": "il", "l’": "il", "d'": "di", "d’": "di",
+    "it": {"i": "il", "l'": None, "l’": None, "d'": "di", "d’": "di",
            **{stem + tail: prep for stem, prep in IT_ARTICULATED.items()
-              for tail in ("l", "llo", "lla", "ll'", "ll’", "i", "gli", "lle")}},
+              for tail in ("l", "llo", "lla", "ll'", "ll’", "i", "gli", "lle") if stem + tail != "dai"}},
 }
 
 
@@ -230,7 +230,8 @@ class Lexicon:
     def lemma(self, surface, initial=False, hints=None):
         key = (surface, initial, tuple(hints or ()))
         if key not in self.cache and surface.lower() in self.fixed:
-            self.cache[key] = (self.fixed[surface.lower()], True)
+            fixed = self.fixed[surface.lower()]
+            self.cache[key] = (fixed, True) if fixed else (surface, False)
         if key not in self.cache and surface in self.names and not self._find(surface):
             self.cache[key] = (surface, False)
         if key not in self.cache:
@@ -628,6 +629,11 @@ def gate(lang, sentences, evaluation):
     return None
 
 
+def ship_status(evaluation):
+    upper = evaluation.get("heldOut", {}).get("ci95", [0, 0])[1]
+    return "stable" if "heldOut" in evaluation and upper <= MAX_HELD_OUT_ERROR else "beta"
+
+
 def display_forms(bundle):
     lang = PACK_OF.get(bundle["lang"], bundle["lang"])
     tag = BCP47.get(lang, lang)
@@ -790,7 +796,7 @@ def main(argv=None):
                              f"needs {MIN_UNITS} units and {MIN_TOKEN_SHARE}")
             print(lang, "excluded:", excluded[tag], file=sys.stderr)
             continue
-        entry["status"] = "stable" if lang in LANGS else "beta"
+        entry["status"] = ship_status(evaluation) if lang in LANGS else "beta"
         if tag in by_lang:
             entry["lemmaError"] = by_lang[tag]
         manifest["langs"][tag] = entry

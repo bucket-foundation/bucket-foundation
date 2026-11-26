@@ -122,6 +122,19 @@ class RomanceLemma(unittest.TestCase):
         self.assertEqual(it.lemma("dell'")[0], "di")
         self.assertEqual(it.lemma("I", True)[0], "il")
 
+    def test_ambiguous_italian_forms_not_forced(self):
+        rows = {"gli": ([("to him", "pron"), ("the", "article")], 50), "dai": ([("second-person singular present indicative of dare", "verb")], 60),
+                "dare": ([("to give", "verb")], 70)}
+        it = ib.Lexicon(lambda s: rows.get(s, ([], None)), fixed=ib.FIXED["it"])
+        self.assertEqual(it.lemma("gli")[0], "gli")
+        self.assertEqual(it.lemma("dai")[0], "dare")
+        self.assertEqual(it.lemma("l'"), ("l'", False))
+
+    def test_stable_needs_upper_bound_under_gate(self):
+        self.assertEqual(ib.ship_status({"heldOut": {"ci95": [0.01, 0.085]}}), "stable")
+        self.assertEqual(ib.ship_status({"heldOut": {"ci95": [0.01, 0.105]}}), "beta")
+        self.assertEqual(ib.ship_status({}), "beta")
+
 
 class Lemma(unittest.TestCase):
     def test_form_of_parsing(self):
