@@ -29,7 +29,7 @@ data class FrequencyPriors(val halfRank: Double = 500.0, val slope: Double = 2.0
     }
 
     companion object {
-        val DEFAULT = FrequencyPriors()
+        val UNSTUDIED = FrequencyPriors()
         val HALF_RANK = 50.0..20_000.0
         val SLOPE = 0.5..5.0
         val DERIVED = 1.0..10.0
@@ -54,7 +54,7 @@ object LearnerModel {
         return FreqPrior(rank, (row.getOrNull(8) as? Number)?.toInt() == 1)
     }
 
-    fun frequencyPrior(freq: FreqPrior?, tier: Int, priors: FrequencyPriors = FrequencyPriors.DEFAULT): Probability {
+    fun frequencyPrior(freq: FreqPrior?, tier: Int, priors: FrequencyPriors = FrequencyPriors.UNSTUDIED): Probability {
         if (freq == null) return 0.0
         val rank = if (freq.derived) freq.rank * priors.derivedRankFactor else freq.rank
         val half = priors.halfRank * (1 + max(0, tier))
@@ -65,7 +65,7 @@ object LearnerModel {
 
     private fun clamp(x: Double) = min(1.0, max(0.0, x))
 
-    fun known(e: LemmaEvidence, now: Double, tier: Int, lambda: Double = EXPOSURE_LAMBDA, priors: FrequencyPriors = FrequencyPriors.DEFAULT): Known {
+    fun known(e: LemmaEvidence, now: Double, tier: Int, lambda: Double = EXPOSURE_LAMBDA, priors: FrequencyPriors = FrequencyPriors.UNSTUDIED): Known {
         val tap = e.lastTap
         if (tap != null && now - tap >= 0 && now - tap < TAP_WINDOW_DAYS * DAY_MS) return Known(0.0, false, "tap")
         val s = e.stability
@@ -80,6 +80,6 @@ object LearnerModel {
         return Known(p, p >= KNOWN_R, if (gain > 0) "exposure" else "prior")
     }
 
-    fun knownCount(lemmas: Map<String, LemmaEvidence>, now: Double, tier: Int, lambda: Double = EXPOSURE_LAMBDA, priors: FrequencyPriors = FrequencyPriors.DEFAULT): SumOfProbabilities =
+    fun knownCount(lemmas: Map<String, LemmaEvidence>, now: Double, tier: Int, lambda: Double = EXPOSURE_LAMBDA, priors: FrequencyPriors = FrequencyPriors.UNSTUDIED): SumOfProbabilities =
         lemmas.keys.sorted().sumOf { known(lemmas.getValue(it), now, tier, lambda, priors).p }
 }

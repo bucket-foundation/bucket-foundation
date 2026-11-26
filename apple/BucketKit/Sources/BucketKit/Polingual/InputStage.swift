@@ -92,6 +92,58 @@ public enum InputStage {
         return InputBundle(lang: lang, items: items, units: units)
     }
 
+    public static let bandRanks = [500, 1000, 2000, 4000, 8000]
+
+    public static func bandsFor(_ knownWords: Int) -> [Int] {
+        guard let i = bandRanks.firstIndex(where: { $0 > max(0, knownWords) }) else { return [bandRanks.last!] }
+        return Array(bandRanks[i..<min(i + 2, bandRanks.count)])
+    }
+
+    public static func expandBandItem(_ o: [String: Any]) -> InputItem? {
+        guard let id = o["id"] as? String, let text = o["text"] as? String, let tok = o["tok"] as? [[Any]] else { return nil }
+        let cps = Array(text.unicodeScalars)
+        var tokens: [InputToken] = []
+        for t in tok {
+            guard t.count >= 2, let at = (t[0] as? NSNumber)?.intValue, let n = (t[1] as? NSNumber)?.intValue, at >= 0, n >= 1, at + n <= cps.count else { return nil }
+            var s = String.UnicodeScalarView()
+            s.append(contentsOf: cps[at..<(at + n)])
+            let surface = String(s)
+            tokens.append(InputToken(surface: surface, lemma: t.count > 2 ? (t[2] as? String ?? surface) : surface))
+        }
+        let media = (o["media"] as? [String: Any]).flatMap { m -> InputMedia? in
+            guard let v = m["videoId"] as? String, let s = (m["start"] as? NSNumber)?.doubleValue, let e = (m["end"] as? NSNumber)?.doubleValue else { return nil }
+            return InputMedia(videoId: v, start: s, end: e)
+        }
+        return InputItem(id: id, tokens: tokens, text: text, translation: o["translation"] as? String, translationSource: o["translationSource"] as? String, media: media)
+    }
+
+    public static func mergeBands(_ b: InputBundle, bands: [Data?]) -> InputBundle {
+        var items = b.items
+        var have = Set(items.map(\.id))
+        var unitIds = Set(b.units.map(\.id))
+        var units = b.units
+        for data in bands {
+            guard let data, let o = try? JSONSerialization.jsonObject(with: data) as? [String: Any], o["format"] as? String == "polingual-input-band",
+                  o["lang"] as? String == b.lang, let rawItems = o["items"] as? [[String: Any]], let rawUnits = o["units"] as? [[String: Any]] else { continue }
+            var fresh: [String: InputItem] = [:]
+            for i in rawItems {
+                if let id = i["id"] as? String, have.contains(id) { continue }
+                if let x = expandBandItem(i) { fresh[x.id] = x }
+            }
+            for u in rawUnits {
+                guard let id = u["id"] as? String, let kind = u["kind"] as? String, let ids = u["itemIds"] as? [String],
+                      !unitIds.contains(id), ids.allSatisfy({ have.contains($0) || fresh[$0] != nil }) else { continue }
+                for i in ids where !have.contains(i) {
+                    items.append(fresh[i]!)
+                    have.insert(i)
+                }
+                unitIds.insert(id)
+                units.append(InputUnitRef(id: id, kind: kind, itemIds: ids, targetLemmas: u["targetLemmas"] as? [String] ?? []))
+            }
+        }
+        return InputBundle(lang: b.lang, items: items, units: units)
+    }
+
     public static func choose(_ b: InputBundle, learner l: InputLearner, allowFallback: Bool) -> StageChoice? {
         let map = b.byId
         let byId = Dictionary(b.units.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })

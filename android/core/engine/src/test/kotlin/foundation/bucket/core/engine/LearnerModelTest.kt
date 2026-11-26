@@ -65,7 +65,7 @@ class LearnerModelTest {
     @Test
     fun priorsMatchTheWebAndStayBelowTheBar() {
         val p = v["priors"]!!.jsonObject
-        assertEquals(FrequencyPriors(p["halfRank"]!!.jsonPrimitive.double, p["slope"]!!.jsonPrimitive.double, p["derivedRankFactor"]!!.jsonPrimitive.double, p["cap"]!!.jsonPrimitive.double), FrequencyPriors.DEFAULT)
+        assertEquals(FrequencyPriors(p["halfRank"]!!.jsonPrimitive.double, p["slope"]!!.jsonPrimitive.double, p["derivedRankFactor"]!!.jsonPrimitive.double, p["cap"]!!.jsonPrimitive.double), FrequencyPriors.UNSTUDIED)
         for (rank in listOf(1.0, 10.0, 100.0)) for (tier in listOf(0, 50)) assertTrue(!LearnerModel.known(LemmaEvidence(freq = FreqPrior(rank, false)), now, tier).known)
         assertTrue(FrequencyPriors(cap = 0.99).bounded().cap < LearnerModel.KNOWN_R)
         assertEquals(FrequencyPriors.SLOPE.endInclusive, FrequencyPriors(slope = 99.0).bounded().slope)

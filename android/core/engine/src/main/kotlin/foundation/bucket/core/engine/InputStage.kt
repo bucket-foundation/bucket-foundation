@@ -93,8 +93,71 @@ object InputStage {
         return out
     }
 
-    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, tier: Int, due: Set<String>, shown: Map<String, Int>, lastVideo: String?): InputLearner =
-        InputLearner({ lemma -> LearnerModel.known(evidence(resolve(lang, lemma)?.let { state.cards[it] }), now.toDouble(), tier).p }, due, { null }, shown, lastVideo)
+    val BAND_RANKS = listOf(500, 1000, 2000, 4000, 8000)
+
+    fun bandsFor(knownWords: Int): List<Int> {
+        val i = BAND_RANKS.indexOfFirst { it > max(0, knownWords) }
+        return if (i < 0) listOf(BAND_RANKS.last()) else BAND_RANKS.subList(i, min(i + 2, BAND_RANKS.size))
+    }
+
+    fun expandBandItem(o: JsonObject): InputItem? = runCatching {
+        val text = o.s("text") ?: return null
+        val cps = text.codePoints().toArray()
+        val tokens = o["tok"]!!.jsonArray.map { e ->
+            val t = e.jsonArray
+            val at = t[0].jsonPrimitive.content.toInt()
+            val n = t[1].jsonPrimitive.content.toInt()
+            if (at < 0 || n < 1 || at + n > cps.size) return null
+            val surface = String(cps, at, n)
+            InputToken(surface, (t.getOrNull(2) as? JsonPrimitive)?.takeIf { it.isString }?.content ?: surface)
+        }
+        val m = o["media"] as? JsonObject
+        InputItem(o.s("id")!!, o.s("kind") ?: "sentence", tokens, text, o.s("translation"), o.s("translationSource"),
+            m?.let { InputMedia(it.s("videoId")!!, it["start"]!!.jsonPrimitive.doubleOrNull!!, it["end"]!!.jsonPrimitive.doubleOrNull!!) })
+    }.getOrNull()
+
+    fun mergeBands(b: InputBundle, bands: List<String?>): InputBundle {
+        val items = LinkedHashMap(b.byId)
+        val unitIds = b.units.map { it.id }.toMutableSet()
+        val units = b.units.toMutableList()
+        for (text in bands) {
+            val o = text?.let { runCatching { Json.parseToJsonElement(it).jsonObject }.getOrNull() } ?: continue
+            if (o.s("format") != "polingual-input-band" || o.s("lang") != b.lang) continue
+            val rawItems = o["items"] as? JsonArray ?: continue
+            val rawUnits = o["units"] as? JsonArray ?: continue
+            val fresh = HashMap<String, InputItem>()
+            for (e in rawItems) {
+                val io = e as? JsonObject ?: continue
+                if (io.s("id")?.let { it in items } == true) continue
+                expandBandItem(io)?.let { fresh[it.id] = it }
+            }
+            for (e in rawUnits) {
+                val u = runCatching {
+                    val uo = e.jsonObject
+                    InputUnit(uo.s("id")!!, uo.s("kind")!!, uo["itemIds"]!!.jsonArray.map { it.jsonPrimitive.content }, (uo["targetLemmas"] as? JsonArray)?.map { it.jsonPrimitive.content }.orEmpty())
+                }.getOrNull() ?: continue
+                if (u.id in unitIds || !u.itemIds.all { it in items || it in fresh }) continue
+                for (id in u.itemIds) if (id !in items) items[id] = fresh.getValue(id)
+                unitIds += u.id
+                units += u
+            }
+        }
+        return InputBundle(b.lang, items.values.toList(), units)
+    }
+
+    fun freqIndex(entries: List<Triple<String, Double, Boolean>>): (String) -> FreqPrior? {
+        val m = HashMap<String, FreqPrior>()
+        for ((word, rank, derived) in entries) {
+            val k = key(word)
+            if (k.isEmpty() || !rank.isFinite() || rank < 1) continue
+            val prev = m[k]
+            if (prev == null || rank < prev.rank) m[k] = FreqPrior(rank, derived)
+        }
+        return { m[key(it)] }
+    }
+
+    fun learner(state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long, tier: Int, due: Set<String>, shown: Map<String, Int>, lastVideo: String?, freq: (String) -> FreqPrior? = { null }): InputLearner =
+        InputLearner({ lemma -> LearnerModel.known(evidence(resolve(lang, lemma)?.let { state.cards[it] }).copy(freq = freq(lemma)), now.toDouble(), tier).p }, due, { freq(it)?.rank }, shown, lastVideo)
 
     fun plans(b: InputBundle, l: InputLearner): List<InputPlan> = b.units.map { u ->
         InputSelector.plan(u.id, b.lemmas(u), u.targetLemmas, u.kind == "episode", u.itemIds.firstOrNull()?.let { b.byId[it]?.media?.videoId }, l)

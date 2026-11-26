@@ -11,7 +11,7 @@ Per language L, `known(L, lemma)` gives a probability:
 - **Studied word:** the FSRS card's retrievability R(t, S) at today. If R is at least 0.9, the word counts as known.
 - **Tapped word:** a tap within the last 7 days sets the word to unknown, whatever the card says.
 - **Exposed word:** the probability of knowing it rises with the number of times met, as `1 − exp(−λ·n)`. λ is fitted from the exposure and review rows (§7). Until about 1,000 learners have logged data, λ = 0 and exposure counts for nothing. The literature bounds the rate only: gains are slow and depend on encounter count (uchihara-2019, r .34; webb-2007).
-- **Unseen word:** a prior from frequency rank (bkt-08oii) and the placement tier.
+- **Unseen word:** a prior from frequency rank (bkt-08oii) and the placement tier, `p = min(cap, 1 / (1 + (rank / (halfRank·(1+tier)))^slope))`, with a derived compound rank multiplied first. The values halfRank 500, slope 2, derived factor 2 and cap 0.85 are unstudied priors (`UNSTUDIED_PRIORS`); bkt-xgfh0 fits them from placement and first-review rows by log-loss. The cap stays below the 0.9 known cut, so a prior alone never marks a word known.
 
 `knownCount(L)` is the sum of these probabilities.
 

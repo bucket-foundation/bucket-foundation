@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { normalizeState } from "../src/lib/academy/engine";
+import { freqIndex, KNOWN_R, PRIOR_BOUNDS, UNSTUDIED_PRIORS } from "../src/lib/academy/learner-model";
 import { parseProps } from "../src/lib/academy/events";
 import { addSeen, chooseUnit, dueLemmas, EMPTY_VIEWING, exposureRows, reveal, eligibleUnitSeconds, inputMode, inputStageOn, learnerFromState, toggleTap } from "../src/lib/academy/input-stage";
 import { parseBundle } from "../src/lib/academy/input-selector";
@@ -168,7 +169,17 @@ test("golden learner and due lemmas through the resolver match the app ports", (
   for (const [id, c] of Object.entries(lv.cards as Record<string, { stability: number; lastReview: number; due: number }>)) state.cards[id] = { state: "review", stability: c.stability, lastReview: c.lastReview, due: c.due, reps: 1, lapses: 0, difficulty: 5 };
   assert.deepEqual(Array.from(dueLemmas(bundle, state, "es", resolve, lv.now)).sort(), lv.due);
   for (const c of lv.cases) {
-    const l = learnerFromState(state, "es", resolve, lv.now, c.tier, new Set());
+    const l = learnerFromState(state, "es", resolve, lv.now, c.tier, new Set(), {}, null, freqIndex(lv.freq));
+    for (const [lemma, r] of Object.entries(lv.rank as Record<string, number | null>)) assert.equal(l.rank(lemma), r, lemma);
     for (const [lemma, p] of Object.entries(c.p as Record<string, number>)) assert.ok(Math.abs(l.p(lemma) - p) < 1e-8, lemma);
   }
+});
+
+test("a frequency prior alone never marks an unseen word known", () => {
+  const freq = freqIndex([["uno", 1, false]]);
+  for (const tier of [0, 4, 20]) {
+    const l = learnerFromState(normalizeState(null), "es", (_x, lemma) => `es:${lemma}`, 0, tier, new Set(), {}, null, freq);
+    assert.ok(l.p("uno") < KNOWN_R, String(tier));
+  }
+  assert.ok(UNSTUDIED_PRIORS.cap < KNOWN_R && PRIOR_BOUNDS.cap[1] < KNOWN_R);
 });

@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { loadBundle, type InputBundle } from "@academy/input-selector";
-import { chooseUnit, dueLemmas, exposureRows, inputMode, learnerFromState, type StageChoice, type Viewing } from "@academy/input-stage";
+import { bandsFor, loadBundle, type InputBundle } from "@academy/input-selector";
+import { chooseUnit, dueLemmas, knownWords, exposureRows, inputMode, learnerFromState, type StageChoice, type Viewing } from "@academy/input-stage";
 import { heldCognates, heldFrom, loadCognates, withCognates, type CognateIndex, type HeldP } from "@academy/cognate-coverage";
 import { langName } from "@academy/lang-systems";
 import InputPlay from "./InputPlay";
@@ -49,10 +49,11 @@ function useChoice(h: Lang, lang: string | undefined, shown: Readonly<Record<str
   useEffect(() => {
     if (!lang) return;
     let live = true;
-    loadBundle(lang).then((b) => live && setBundle(b));
+    loadBundle(lang, undefined, undefined, bandsFor(knownWords(h.state, lang, Date.now()))).then((b) => live && setBundle(b));
     return () => {
       live = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
   return useMemo(() => {
     if (bundle === "loading") return "loading";

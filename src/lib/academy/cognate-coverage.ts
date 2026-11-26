@@ -1,4 +1,4 @@
-import { KNOWN_R, known, type FrequencyPriors, type LemmaEvidence, DEFAULT_PRIORS, EXPOSURE_LAMBDA } from "./learner-model";
+import { KNOWN_R, known, type FrequencyPriors, type LemmaEvidence, UNSTUDIED_PRIORS, EXPOSURE_LAMBDA } from "./learner-model";
 import type { Learner } from "./input-selector";
 
 export const UNSTUDIED_COGNATE_WEIGHT = 0.5;
@@ -65,7 +65,7 @@ export function cognateKnownCount(
   now: number,
   tier: number,
   lambda: number = EXPOSURE_LAMBDA,
-  priors: FrequencyPriors = DEFAULT_PRIORS,
+  priors: FrequencyPriors = UNSTUDIED_PRIORS,
 ): number {
   const ids = new Set([...Object.keys(lemmas), ...Object.keys(index ?? {})]);
   let sum = 0;

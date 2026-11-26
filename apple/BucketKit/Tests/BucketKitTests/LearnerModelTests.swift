@@ -48,7 +48,7 @@ private func evidence(_ o: [String: Any]) -> LemmaEvidence {
 @Test func learnerModelPriorsMatchTheWebAndStayBelowTheBar() throws {
     let v = try learnerVectors()
     let p = v["priors"] as! [String: NSNumber]
-    #expect(FrequencyPriors(halfRank: p["halfRank"]!.doubleValue, slope: p["slope"]!.doubleValue, derivedRankFactor: p["derivedRankFactor"]!.doubleValue, cap: p["cap"]!.doubleValue) == .standard)
+    #expect(FrequencyPriors(halfRank: p["halfRank"]!.doubleValue, slope: p["slope"]!.doubleValue, derivedRankFactor: p["derivedRankFactor"]!.doubleValue, cap: p["cap"]!.doubleValue) == .unstudied)
     for rank in [1.0, 10, 100] { for tier in [0, 50] { #expect(!LearnerModel.known(LemmaEvidence(freq: FreqPrior(rank: rank, derived: false)), now: 0, tier: tier).known) } }
     #expect(FrequencyPriors(cap: 0.99).bounded().cap < LearnerModel.knownR)
 }

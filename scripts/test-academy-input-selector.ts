@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { buildLangCorpus } from "../src/lib/academy/lang-systems";
-import { glossBudget, lemmaCardMap, UNFITTED_SELECTOR_WEIGHTS, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
+import { bandFileUrls, bandsFor, expandBandItem, glossBudget, mergeBands, type BandItem, type InputBundle, lemmaCardMap, UNFITTED_SELECTOR_WEIGHTS, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
 
 const ROOT = path.join(__dirname, "..");
 const V = JSON.parse(fs.readFileSync(path.join(ROOT, "src/lib/academy/selector-vectors.json"), "utf8"));
@@ -99,4 +99,37 @@ test("the gloss budget is max(2, 5 percent of the unit)", () => {
   assert.equal(glossBudget(40), 2);
   assert.equal(glossBudget(60), 3);
   assert.equal(glossBudget(100), 5);
+});
+
+const gv = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "src/lib/academy/graded-vectors.json"), "utf8"));
+
+test("graded band items expand by code point and merge into the bundle", () => {
+  for (const it of gv.bands[0].items as BandItem[]) {
+    const x = expandBandItem(it);
+    assert.deepEqual(x ? x.tokens.map((t) => [t.surface, t.lemma]) : null, gv.expanded[it.id], it.id);
+  }
+  const merged = mergeBands(gv.base as InputBundle, gv.bands);
+  assert.deepEqual(merged.units.map((u) => u.id), gv.mergedUnits);
+  assert.deepEqual(merged.items.map((i) => i.id).sort(), gv.mergedItems);
+  for (const [k, want] of gv.bandsFor as [number, number[]][]) assert.deepEqual(bandsFor(k), want, String(k));
+});
+
+test("band urls come from the manifest and refuse loopback in production", () => {
+  const m = { langs: { "zh-Hans": { file: "zh-Hans.4e30a68e39ea.json", graded: { files: { "500": [{ file: "zh-Hans.b500.p0.76b9c85a128a.json" }, { file: "../evil.json" }] } } } } };
+  assert.deepEqual(bandFileUrls(m, "zh-Hans", [500, 1000], "https://cdn.example/x/", true), ["https://cdn.example/x/zh-Hans.b500.p0.76b9c85a128a.json"]);
+  assert.deepEqual(bandFileUrls(m, "zh-Hans", [500], "http://localhost:9000", true), []);
+  assert.deepEqual(bandFileUrls(m, "zh-Hans", [500], undefined, false), []);
+});
+
+test("loadBundle merges graded bands and keeps the bundle when a band fails", async () => {
+  const files: Record<string, unknown> = {
+    "/input/manifest.json": { langs: { es: { file: "es.32b6f1d49094.json", graded: { files: { "500": [{ file: "es.b500.p0.76b9c85a128a.json" }, { file: "es.b500.p1.76b9c85a128b.json" }] } } } } },
+    "/input/es.32b6f1d49094.json": gv.base,
+    "https://cdn.example/es.b500.p0.76b9c85a128a.json": gv.bands[0],
+  };
+  const fetcher = (async (u: string) => (u in files ? { ok: true, json: async () => files[u] } : { ok: false, json: async () => null })) as unknown as typeof fetch;
+  const b = await loadBundle("es", "/input", fetcher, [500], "https://cdn.example", true);
+  assert.deepEqual(b?.units.map((u) => u.id), gv.mergedUnits);
+  const plain = await loadBundle("es", "/input", fetcher);
+  assert.deepEqual(plain?.units.map((u) => u.id), ["base:u"]);
 });

@@ -35,7 +35,7 @@ public struct FrequencyPriors: Equatable, Sendable {
     public init(halfRank: Double = 500, slope: Double = 2, derivedRankFactor: Double = 2, cap: Double = 0.85) {
         self.halfRank = halfRank; self.slope = slope; self.derivedRankFactor = derivedRankFactor; self.cap = cap
     }
-    public static let standard = FrequencyPriors()
+    public static let unstudied = FrequencyPriors()
     public static let halfRankBounds = 50.0...20_000.0
     public static let slopeBounds = 0.5...5.0
     public static let derivedBounds = 1.0...10.0
@@ -43,7 +43,7 @@ public struct FrequencyPriors: Equatable, Sendable {
 
     public func bounded() -> FrequencyPriors {
         func b(_ v: Double, _ r: ClosedRange<Double>, _ d: Double) -> Double { v.isFinite ? min(r.upperBound, max(r.lowerBound, v)) : d }
-        let z = FrequencyPriors.standard
+        let z = FrequencyPriors.unstudied
         return FrequencyPriors(halfRank: b(halfRank, Self.halfRankBounds, z.halfRank), slope: b(slope, Self.slopeBounds, z.slope), derivedRankFactor: b(derivedRankFactor, Self.derivedBounds, z.derivedRankFactor), cap: b(cap, Self.capBounds, z.cap))
     }
 }
@@ -68,7 +68,7 @@ public enum LearnerModel {
         return FreqPrior(rank: rank, derived: derived)
     }
 
-    public static func frequencyPrior(_ freq: FreqPrior?, tier: Int, priors: FrequencyPriors = .standard) -> Probability {
+    public static func frequencyPrior(_ freq: FreqPrior?, tier: Int, priors: FrequencyPriors = .unstudied) -> Probability {
         guard let freq else { return 0 }
         let rank = freq.derived ? freq.rank * priors.derivedRankFactor : freq.rank
         let half = priors.halfRank * Double(1 + max(0, tier))
@@ -81,7 +81,7 @@ public enum LearnerModel {
 
     private static func clamp(_ x: Double) -> Double { min(1, max(0, x)) }
 
-    public static func known(_ e: LemmaEvidence, now: Double, tier: Int, lambda: Double = exposureLambda, priors: FrequencyPriors = .standard) -> Known {
+    public static func known(_ e: LemmaEvidence, now: Double, tier: Int, lambda: Double = exposureLambda, priors: FrequencyPriors = .unstudied) -> Known {
         if let tap = e.lastTap, now - tap >= 0, now - tap < tapWindowDays * dayMs { return Known(p: 0, known: false, source: "tap") }
         if let s = e.stability, s > 0, let last = e.lastReview {
             let r = clamp(retrievability((now - last) / dayMs, s))
@@ -93,7 +93,7 @@ public enum LearnerModel {
         return Known(p: p, known: p >= knownR, source: gain > 0 ? "exposure" : "prior")
     }
 
-    public static func knownCount(_ lemmas: [String: LemmaEvidence], now: Double, tier: Int, lambda: Double = exposureLambda, priors: FrequencyPriors = .standard) -> SumOfProbabilities {
+    public static func knownCount(_ lemmas: [String: LemmaEvidence], now: Double, tier: Int, lambda: Double = exposureLambda, priors: FrequencyPriors = .unstudied) -> SumOfProbabilities {
         lemmas.keys.sorted().reduce(0) { $0 + known(lemmas[$1]!, now: now, tier: tier, lambda: lambda, priors: priors).p }
     }
 }
