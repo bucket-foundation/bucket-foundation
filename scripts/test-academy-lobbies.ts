@@ -6,6 +6,7 @@ import {
   joinedRound,
   nextGame,
   normalizeSetup,
+  normalizeLobbySettings,
   setupOf,
   answerDecision,
   hostedSince,
@@ -388,4 +389,29 @@ test("joined round: before the start counts from round zero, mid game from the n
   assert.equal(joinedRound(l, new Date(T0 + 1000).toISOString()), 0);
   assert.equal(joinedRound(l, new Date(T0 + 9000).toISOString()), 1);
   assert.equal(joinedRound(l, new Date(T0 + 13000).toISOString()), 1);
+});
+
+test("lobby settings: host patch validates games and languages before start", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on";
+  const lobby = { game: "flags" as const, root: "en", targets: ["es"], status: "lobby" as const };
+  try {
+    assert.deepEqual(normalizeLobbySettings({ setup: "single", game: "tiles" }, lobby), { game: "tiles", targets: ["es"], playlist: ["tiles"], mix: false });
+    assert.deepEqual(normalizeLobbySettings({ setup: "sequence", games: ["daily", "flags"] }, lobby), { game: "daily", targets: ["es"], playlist: ["daily", "flags"], mix: false });
+    assert.equal(normalizeLobbySettings({ setup: "mix" }, lobby)?.mix, true);
+    assert.deepEqual(normalizeLobbySettings({ targets: ["fr", "en", "fr"] }, lobby)?.targets, ["fr"]);
+    assert.equal(normalizeLobbySettings({ targets: ["en"] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ targets: [] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ targets: ["<x>"] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ game: "nope" }, lobby), null);
+    assert.equal(normalizeLobbySettings({ setup: "single", game: "same-word" }, lobby), null);
+    assert.equal(normalizeLobbySettings({ setup: "single", game: "same-word", targets: ["es", "fr"] }, lobby)?.game, "same-word");
+    assert.equal(normalizeLobbySettings({ game: "tiles" }, { ...lobby, status: "playing" }), null);
+    assert.equal(normalizeLobbySettings(null, lobby), null);
+    process.env.POLINGUAL_LOBBY_SETUP = "off";
+    assert.deepEqual(normalizeLobbySettings({ game: "tiles" }, lobby), { game: "tiles", targets: ["es"] });
+    assert.equal(normalizeLobbySettings({ setup: "mix" }, lobby), null);
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
 });

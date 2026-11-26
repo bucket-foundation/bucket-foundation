@@ -167,6 +167,10 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/ready", { body: { lobbyId, ready } })).lobby;
   }
 
+  async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[] }): Promise<WebLobbyState> {
+    return (await this.call<{ lobby: WebLobbyState }>("/settings", { body: { lobbyId, ...input } })).lobby;
+  }
+
   async start(lobbyId: string): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/start", { body: { lobbyId } })).lobby;
   }

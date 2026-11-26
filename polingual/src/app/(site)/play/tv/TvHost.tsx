@@ -6,7 +6,8 @@ import { useNow } from "@/lib/hooks/clock";
 import { phaseAt, type WebLobbyState } from "@/lib/lobby/client";
 import { TV_ORIGIN, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
-import { ButtonLink, Pill, Stage, Tag } from "@/ui";
+import { createPortal } from "react-dom";
+import { ButtonLink, Pill, Tag } from "@/ui";
 import { Brand, Standings } from "../../live/parts";
 import Qr from "../../live/Qr";
 import { MixBar, useStage } from "../../live/show";
@@ -14,6 +15,8 @@ import styles from "../../live/stoa.module.css";
 import tv from "./tv.module.css";
 import Nickname from "../Nickname";
 import { gameName } from "../langs";
+import { usePauseAds } from "../AdsContext";
+import { WaitingBoard } from "../room/WaitingBoard";
 import { savedNickname, usePlay } from "../usePlay";
 import { useRoomSync } from "../room/useRoomSync";
 
@@ -39,25 +42,31 @@ export default function TvHost({ code: rawCode }: { code: string }) {
   const now = useNow(TICK_MS) + sync.offset;
   const { stage, mix, setMix, ready: soundReady, unlock } = useStage({ music: true, voice: false, sfx: true });
   const [origin, setOrigin] = useState(TV_ORIGIN);
-  useEffect(() => setOrigin(window.location.origin), []);
+  const [host, setHost] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setOrigin(window.location.origin);
+    setHost(document.body);
+  }, []);
   useTvSound(sync.lobby, now, stage);
+  usePauseAds(true);
 
-  const view = <TvView code={code} play={{ state, connect }} sync={sync} now={now} origin={origin} />;
-
-  return (
-    <div className={styles.page} onClick={unlock} onTouchEnd={unlock} onKeyDown={unlock}>
-      <Stage ground="lattice" testId="tv">
-        <header className={styles.bar}>
-          <Brand />
+  const screen = (
+    <div className={`${styles.page} ${tv.screen}`} data-testid="tv" onClick={unlock} onTouchEnd={unlock} onKeyDown={unlock}>
+      <div className={tv.frame}>
+        <header className={tv.bar}>
+          <Brand link={false} />
           <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} />
         </header>
-        <main className={styles.main}>{view}</main>
-      </Stage>
+        <main className={tv.main}>
+          <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} />
+        </main>
+      </div>
     </div>
   );
+  return host ? createPortal(screen, host) : null;
 }
 
-function TvView({ code, play, sync, now, origin }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string }) {
+function TvView({ code, play, sync, now, origin }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect" | "api">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string }) {
   const { state, connect } = play;
   const ready = state.status === "ready";
   if (!code) {
@@ -78,7 +87,9 @@ function TvView({ code, play, sync, now, origin }: { code: string | null; play: 
     );
   }
   if (!sync.lobby) return sync.error ? <p className={styles.error} role="alert">{sync.error}</p> : <p className={styles.muted} aria-busy="true">Opening the room</p>;
-  return <TvBoard lobby={sync.lobby} now={now} url={tvJoinUrl(origin, code)} />;
+  const url = tvJoinUrl(origin, code);
+  if (phaseAt(sync.lobby, now).kind === "waiting") return <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} />;
+  return <TvBoard lobby={sync.lobby} now={now} url={url} />;
 }
 
 function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: string }) {
@@ -87,13 +98,15 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
   const rows = tvPlayers(lobby);
   return (
     <div className={tv.board} data-testid="tv-board" data-phase={phase.kind}>
-      <section className={tv.panel} aria-label="Join">
+      <section className={tv.join} aria-label="Join">
         <p className={tv.label}>{gameName(lobby.game)}</p>
-        <h1 className={tv.code} data-testid="tv-code">{lobby.code}</h1>
+        <p className={tv.code} data-testid="tv-code">{lobby.code}</p>
+        <div className={tv.qr}>
+          <Qr text={url} />
+        </div>
         <p className={tv.url}>{tvShortUrl(url)}</p>
-        <Qr text={url} />
       </section>
-      <section className={tv.panel} aria-label="Round" data-testid="tv-round">
+      <section className={tv.round} aria-label="Round" data-testid="tv-round">
         <Tag>{round.label}</Tag>
         {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
         {round.gloss ? <h2 className={tv.word}>{round.gloss}</h2> : null}
@@ -105,7 +118,8 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
           </div>
         ) : null}
       </section>
-      <section className={tv.panel} aria-label="Players">
+      <section className={tv.standings} aria-label="Standings">
+        <p className={tv.label}>Standings</p>
         {rows.length ? <Standings rows={rows} testId="tv-players" /> : <p className={tv.empty}>Scan the code to join.</p>}
       </section>
     </div>
