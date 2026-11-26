@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { activeMs, fromYouTube, inputShare, inputTarget, isActive, planInputMix, realizedShare, roundedItems, youtubePlaying } from "../src/lib/academy/input-mix";
+import { activeMs, fromYouTube, IDLE_MS, inputShare, inputTarget, isActive, planInputMix, realizedShare, roundedItems, youtubePlaying } from "../src/lib/academy/input-mix";
 import { inputShare as fromSessionMix } from "../src/lib/academy/session-mix";
 
 const V = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "src/lib/academy/input-mix-vectors.json"), "utf8"));
@@ -54,4 +54,7 @@ test("the YouTube state parser and the activity gate", () => {
   assert.equal(fromYouTube("null"), false);
   assert.equal(isActive({ visible: true, focused: true, playing: false }, true), false);
   assert.equal(isActive({ visible: true, focused: true, playing: false }, false), true);
+  assert.equal(isActive({ visible: true, focused: true, playing: false, idle: true }, false), false, "idle text stops the counter");
+  assert.equal(isActive({ visible: true, focused: true, playing: true, idle: true }, true), true, "idle does not stop a playing video");
+  assert.equal(IDLE_MS, 60_000);
 });

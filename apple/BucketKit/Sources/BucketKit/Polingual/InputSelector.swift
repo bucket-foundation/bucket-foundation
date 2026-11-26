@@ -40,6 +40,10 @@ public enum InputSelector {
     public static let maxNew = 3
     public static let newShare = 0.05
     public static let unknownBelow = 0.5
+    public static let minGlossBudget = 2.0
+    public static let glossShare = 0.05
+
+    public static func glossBudget(_ tokens: Int) -> Double { max(minGlossBudget, glossShare * Double(tokens)) }
 
     static func bonus(_ rank: Double?) -> Double { rank.map { 1000 / (1000 + max(1, $0)) } ?? 0 }
 
@@ -62,7 +66,7 @@ public enum InputSelector {
         let coverage = n > 0 ? sum / Double(n) : 0
         let band = media ? coverage >= mediaFloor : coverage >= textBand.lowerBound && coverage <= textBand.upperBound
         let k = newWords.count
-        let eligible = n >= minUnitTokens && band && k >= 1 && k <= maxNew && Double(k) <= newShare * Double(n)
+        let eligible = n >= minUnitTokens && band && k >= 1 && k <= maxNew && Double(k) <= newShare * Double(n) && Double(glossed.count) <= glossBudget(n)
         let dueHits = distinct.filter { l.due.contains($0) }.count
         var freq = 0.0
         for x in newWords { freq += bonus(l.rank(x)) }

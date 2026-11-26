@@ -48,7 +48,7 @@ class InputMixTest {
             val marks = o["marks"]!!.jsonArray.map {
                 val m = it.jsonObject
                 fun b(k: String) = (m[k])?.jsonPrimitive?.booleanOrNull
-                SessionMix.ActivityMark(m["at"]!!.jsonPrimitive.long, b("visible"), b("focused"), b("playing"))
+                SessionMix.ActivityMark(m["at"]!!.jsonPrimitive.long, b("visible"), b("focused"), b("playing"), b("idle"))
             }
             assertEquals(o["expect"]!!.jsonPrimitive.long, SessionMix.activeMs(marks, o["end"]!!.jsonPrimitive.long, o["needsPlayer"]!!.jsonPrimitive.booleanOrNull!!), o["name"]!!.jsonPrimitive.content)
         }

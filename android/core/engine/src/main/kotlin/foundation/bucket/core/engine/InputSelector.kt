@@ -35,6 +35,10 @@ object InputSelector {
     const val MAX_NEW = 3
     const val NEW_SHARE = 0.05
     const val UNKNOWN_BELOW = 0.5
+    const val MIN_GLOSS_BUDGET = 2.0
+    const val GLOSS_SHARE = 0.05
+
+    fun glossBudget(tokens: Int): Double = maxOf(MIN_GLOSS_BUDGET, GLOSS_SHARE * tokens)
 
     private fun bonus(rank: Double?) = if (rank == null) 0.0 else 1000.0 / (1000.0 + max(1.0, rank))
 
@@ -54,7 +58,7 @@ object InputSelector {
         val coverage = if (n > 0) sum / n else 0.0
         val band = if (media) coverage >= MEDIA_FLOOR else coverage >= TEXT_LOW && coverage <= TEXT_HIGH
         val k = newWords.size
-        val eligible = n >= MIN_UNIT_TOKENS && band && k >= 1 && k <= MAX_NEW && k <= NEW_SHARE * n
+        val eligible = n >= MIN_UNIT_TOKENS && band && k >= 1 && k <= MAX_NEW && k <= NEW_SHARE * n && glossed.size <= glossBudget(n)
         val dueHits = distinct.count { it in l.due }
         var freq = 0.0
         for (x in newWords) freq += bonus(l.rank(x))

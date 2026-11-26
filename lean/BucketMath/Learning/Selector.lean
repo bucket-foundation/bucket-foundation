@@ -5,6 +5,7 @@ structure Plan where
   tokens : Nat
   coverMilli : Nat
   newWords : Nat
+  glossed : Nat
   media : Bool
   score : Int
   deriving DecidableEq, Repr
@@ -14,8 +15,10 @@ def minTokens : Nat := 40
 def inBand (p : Plan) : Bool :=
   if p.media then 900 ≤ p.coverMilli else 950 ≤ p.coverMilli && p.coverMilli ≤ 980
 
+def withinGlossBudget (p : Plan) : Bool := p.glossed ≤ 2 || 20 * p.glossed ≤ p.tokens
+
 def eligible (p : Plan) : Bool :=
-  minTokens ≤ p.tokens && inBand p && 1 ≤ p.newWords && p.newWords ≤ 3 && 20 * p.newWords ≤ p.tokens
+  minTokens ≤ p.tokens && inBand p && 1 ≤ p.newWords && p.newWords ≤ 3 && 20 * p.newWords ≤ p.tokens && withinGlossBudget p
 
 def better (a b : Plan) : Plan := if b.score > a.score ∨ (b.score = a.score ∧ b.id < a.id) then b else a
 
@@ -57,11 +60,16 @@ theorem select_eligible {ps : List Plan} {p : Plan} (h : select ps = some p) : e
   exact (List.mem_filter.mp hm).2
 
 theorem c2_selected {ps : List Plan} {p : Plan} (h : select ps = some p) :
-    minTokens ≤ p.tokens ∧ inBand p = true ∧ 1 ≤ p.newWords ∧ p.newWords ≤ 3 ∧ 20 * p.newWords ≤ p.tokens := by
+    minTokens ≤ p.tokens ∧ inBand p = true ∧ 1 ≤ p.newWords ∧ p.newWords ≤ 3 ∧ 20 * p.newWords ≤ p.tokens ∧ withinGlossBudget p = true := by
   have he := select_eligible h
   simp only [eligible, Bool.and_eq_true, decide_eq_true_eq] at he
-  obtain ⟨⟨⟨⟨h1, h2⟩, h3⟩, h4⟩, h5⟩ := he
-  exact ⟨h1, h2, h3, h4, h5⟩
+  obtain ⟨⟨⟨⟨⟨h1, h2⟩, h3⟩, h4⟩, h5⟩, h6⟩ := he
+  exact ⟨h1, h2, h3, h4, h5, h6⟩
+
+theorem c2_gloss_budget {ps : List Plan} {p : Plan} (h : select ps = some p) : p.glossed ≤ 2 ∨ 100 * p.glossed ≤ 5 * p.tokens := by
+  have hb := (c2_selected h).2.2.2.2.2
+  simp only [withinGlossBudget, Bool.or_eq_true, decide_eq_true_eq] at hb
+  omega
 
 theorem c2_text_band {ps : List Plan} {p : Plan} (h : select ps = some p) (ht : p.media = false) :
     950 ≤ p.coverMilli ∧ p.coverMilli ≤ 980 := by
@@ -76,7 +84,7 @@ theorem c2_media_floor {ps : List Plan} {p : Plan} (h : select ps = some p) (hm 
   exact hb
 
 theorem c2_new_share {ps : List Plan} {p : Plan} (h : select ps = some p) : 100 * p.newWords ≤ 5 * p.tokens := by
-  have := (c2_selected h).2.2.2.2
+  have := (c2_selected h).2.2.2.2.1
   omega
 
 theorem better_score (a b : Plan) : a.score ≤ (better a b).score ∧ b.score ≤ (better a b).score := by

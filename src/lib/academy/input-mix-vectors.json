@@ -321,6 +321,41 @@
       "expect": 10000
     },
     {
+      "name": "reading idle for a stretch adds nothing",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 0
+        },
+        {
+          "at": 60000,
+          "idle": true
+        },
+        {
+          "at": 90000,
+          "idle": false
+        }
+      ],
+      "end": 100000,
+      "expect": 70000
+    },
+    {
+      "name": "idle does not stop a playing video",
+      "needsPlayer": true,
+      "marks": [
+        {
+          "at": 0,
+          "playing": true
+        },
+        {
+          "at": 1000,
+          "idle": true
+        }
+      ],
+      "end": 5000,
+      "expect": 5000
+    },
+    {
       "name": "unsorted marks are sorted",
       "needsPlayer": false,
       "marks": [

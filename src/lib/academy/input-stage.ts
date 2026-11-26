@@ -10,15 +10,16 @@ const LEMMA = /^\S{1,40}$/;
 
 export type InputMode = "off" | "on" | "demo";
 
-export function inputMode(env: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_STAGE, nodeEnv: string | undefined = process.env.NODE_ENV): InputMode {
+export function inputMode(env: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_STAGE, nodeEnv: string | undefined = process.env.NODE_ENV, vercelEnv: string | undefined = process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.VERCEL_ENV): InputMode {
+  const production = nodeEnv === "production" || vercelEnv === "production";
   if (env === "0" || env === "false") return "off";
-  if (env === "demo") return "demo";
   if (env === "1" || env === "true") return "on";
-  return nodeEnv !== "production" ? "on" : "off";
+  if (env === "demo" && !production) return "demo";
+  return production ? "off" : "on";
 }
 
-export function inputStageOn(env?: string, nodeEnv?: string): boolean {
-  return inputMode(env, nodeEnv) !== "off";
+export function inputStageOn(env?: string, nodeEnv?: string, vercelEnv?: string): boolean {
+  return inputMode(env, nodeEnv, vercelEnv) !== "off";
 }
 
 export function eligibleUnitSeconds(bundle: InputBundle, learner: Learner, mode: InputMode): number[] {

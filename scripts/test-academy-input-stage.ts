@@ -22,14 +22,18 @@ test("the stage is on in dev, off in production unless the flag says 1, and 0 tu
 });
 
 test("demo mode is opt-in and the only path that counts a fallback unit as eligible", () => {
-  assert.equal(inputMode("demo", "production"), "demo");
+  assert.equal(inputMode("demo", "production"), "off", "demo is ignored in production");
+  assert.equal(inputMode("demo", "development", "production"), "off", "demo is ignored on a Vercel production deploy");
+  assert.equal(inputMode("demo", "development", "preview"), "demo");
+  assert.equal(inputMode(undefined, "development", "production"), "off");
   const resolve = (_l: string, lemma: string) => `es:${lemma}`;
   const nothing = learnerFromState(normalizeState(null), "es", resolve, T0, 0, new Set());
   const short = { ...bundle, units: bundle.units.map((u) => ({ ...u, itemIds: u.itemIds.slice(0, 1) })) };
   assert.deepEqual(eligibleUnitSeconds(short, nothing, "on"), []);
   assert.equal(eligibleUnitSeconds(short, nothing, "demo").length, 0);
   assert.equal(chooseUnit(short, nothing, false), null);
-  assert.ok(eligibleUnitSeconds(bundle, nothing, "on").length > 0);
+  assert.deepEqual(eligibleUnitSeconds(bundle, nothing, "on"), [], "a beginner passes the gloss budget nowhere");
+  assert.equal(eligibleUnitSeconds(bundle, nothing, "demo").length, 1);
 });
 
 const allKnownBut = (unknown: Set<string>) => {

@@ -2,28 +2,34 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { addSeen, EMPTY_VIEWING, reveal, toggleTap, type StageChoice, type Viewing } from "@academy/input-stage";
-import { fromYouTube, isActive, youtubePlaying } from "@academy/input-mix";
+import { fromYouTube, IDLE_MS, isActive, youtubePlaying } from "@academy/input-mix";
 import { Button } from "@/ui";
 import styles from "../../app.module.css";
 import own from "./InputStage.module.css";
 
 export const TICK_MS = 1000;
 
-function useActivity(needsPlayer: boolean): React.MutableRefObject<() => boolean> {
-  const flags = useRef({ visible: true, focused: true, playing: false });
+function useActivity(needsPlayer: boolean, player: React.MutableRefObject<HTMLIFrameElement | null>): React.MutableRefObject<() => boolean> {
+  const flags = useRef({ visible: true, focused: true, playing: false, idle: false });
+  const lastInput = useRef(Date.now());
   const check = useRef(() => isActive(flags.current, needsPlayer));
-  check.current = () => isActive(flags.current, needsPlayer);
+  check.current = () => isActive({ ...flags.current, idle: Date.now() - lastInput.current >= IDLE_MS }, needsPlayer);
   useEffect(() => {
     const sync = () => {
       flags.current.visible = document.visibilityState === "visible";
       flags.current.focused = document.hasFocus();
     };
     const onMessage = (e: MessageEvent) => {
-      if (!fromYouTube(e.origin)) return;
+      if (!fromYouTube(e.origin) || !player.current || e.source !== player.current.contentWindow) return;
       const p = youtubePlaying(e.data);
       if (p !== null) flags.current.playing = p;
     };
+    const touch = () => {
+      lastInput.current = Date.now();
+    };
+    const inputs = ["scroll", "pointerdown", "keydown", "touchstart", "wheel"] as const;
     sync();
+    for (const n of inputs) window.addEventListener(n, touch, { passive: true, capture: true });
     document.addEventListener("visibilitychange", sync);
     window.addEventListener("focus", sync);
     window.addEventListener("blur", sync);
@@ -33,8 +39,9 @@ function useActivity(needsPlayer: boolean): React.MutableRefObject<() => boolean
       window.removeEventListener("focus", sync);
       window.removeEventListener("blur", sync);
       window.removeEventListener("message", onMessage);
+      for (const n of inputs) window.removeEventListener(n, touch, { capture: true });
     };
-  }, []);
+  }, [player]);
   return check;
 }
 
@@ -70,7 +77,7 @@ function useViewing(active: React.MutableRefObject<() => boolean>): { v: Viewing
   return { v, set, watch, ref };
 }
 
-function Video({ choice }: { choice: StageChoice }) {
+function Video({ choice, player }: { choice: StageChoice; player: React.MutableRefObject<HTMLIFrameElement | null> }) {
   const [load, setLoad] = useState(false);
   const v = choice.items[0]?.media;
   if (!v) return null;
@@ -80,7 +87,7 @@ function Video({ choice }: { choice: StageChoice }) {
   return (
     <div className={own.videoBox}>
       {load ? (
-        <iframe className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" onLoad={(e) => e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: "listening" }), "*")} />
+        <iframe ref={player} className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" onLoad={(e) => e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: "listening" }), "*")} />
       ) : (
         <button type="button" className={own.poster} onClick={() => setLoad(true)} data-testid="input-video-poster">
           Play the clip
@@ -95,7 +102,8 @@ function Video({ choice }: { choice: StageChoice }) {
 }
 
 export default function InputPlay({ lang, choice, gloss, onFinish, onExit }: { lang: string; choice: StageChoice; gloss: (lemma: string) => string | null; onFinish: (v: Viewing | null) => void; onExit: (v: Viewing) => void }) {
-  const active = useActivity(!!choice.items[0]?.media);
+  const player = useRef<HTMLIFrameElement | null>(null);
+  const active = useActivity(!!choice.items[0]?.media, player);
   const { v, set, watch, ref } = useViewing(active);
   useEffect(() => {
     const leave = () => onExit(ref.current);
@@ -104,7 +112,7 @@ export default function InputPlay({ lang, choice, gloss, onFinish, onExit }: { l
   }, [onExit, ref]);
   return (
     <>
-      <Video choice={choice} />
+      <Video choice={choice} player={player} />
       <ol className={own.lines} data-testid="input-lines">
         {choice.items.map((item) => (
           <li key={item.id} lang={lang} ref={watch(item.id)} data-testid="input-line">
@@ -116,7 +124,12 @@ export default function InputPlay({ lang, choice, gloss, onFinish, onExit }: { l
                 </button>
               );
             })}
-            {item.translation && v.revealed.has(item.id) ? <span className={own.translation} data-testid="input-translation">{item.translation}</span> : null}
+            {item.translation && v.revealed.has(item.id) ? (
+              <span className={own.translation} data-testid="input-translation">
+                {item.translation}
+                {item.translationSource === "machine" ? <em className={own.machine} data-testid="input-machine-label"> machine translation</em> : null}
+              </span>
+            ) : null}
             {item.translation && !v.revealed.has(item.id) ? (
               <button type="button" className={own.reveal} onClick={() => set((x) => reveal(x, item.id))} data-testid="input-reveal">
                 Show meaning

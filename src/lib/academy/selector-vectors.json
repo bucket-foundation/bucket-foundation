@@ -604,7 +604,7 @@
             "mar",
             "rio"
           ],
-          "eligible": true,
+          "eligible": false,
           "score": 4.952380952
         },
         {
@@ -759,6 +759,303 @@
         "fallback": true,
         "glossed": [
           "casa"
+        ],
+        "newWords": []
+      }
+    },
+    {
+      "name": "a beginner with no known words passes the gloss budget nowhere",
+      "learner": {
+        "p": {},
+        "due": [
+          "k1",
+          "k2"
+        ],
+        "rank": {
+          "casa": 50,
+          "perro": 300,
+          "gato": 900,
+          "sol": 120,
+          "luna": 2000,
+          "mar": 400,
+          "rio": 700
+        },
+        "recent": {
+          "set:a": 1
+        },
+        "lastVideo": "v1"
+      },
+      "units": [
+        "set:a",
+        "set:b",
+        "set:c",
+        "set:d",
+        "set:e",
+        "set:f",
+        "ep:v1:0",
+        "ep:v2:0",
+        "set:g"
+      ],
+      "plans": [
+        {
+          "unit": "set:a",
+          "tokens": 40,
+          "media": false,
+          "coverage": 0.95,
+          "newWords": [
+            "casa",
+            "perro"
+          ],
+          "glossed": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9"
+          ],
+          "eligible": false,
+          "score": 2.721611722
+        },
+        {
+          "unit": "set:b",
+          "tokens": 60,
+          "media": false,
+          "coverage": 0.95,
+          "newWords": [
+            "casa",
+            "sol",
+            "gato"
+          ],
+          "glossed": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9"
+          ],
+          "eligible": false,
+          "score": 6.371553885
+        },
+        {
+          "unit": "set:c",
+          "tokens": 40,
+          "media": false,
+          "coverage": 0.95,
+          "newWords": [
+            "casa",
+            "sol"
+          ],
+          "glossed": [
+            "gato",
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9",
+            "perro"
+          ],
+          "eligible": false,
+          "score": 5.845238095
+        },
+        {
+          "unit": "set:d",
+          "tokens": 32,
+          "media": false,
+          "coverage": 0.96875,
+          "newWords": [
+            "casa"
+          ],
+          "glossed": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9",
+            "perro"
+          ],
+          "eligible": false,
+          "score": 4.952380952
+        },
+        {
+          "unit": "set:e",
+          "tokens": 40,
+          "media": false,
+          "coverage": 0.9,
+          "newWords": [
+            "k1"
+          ],
+          "glossed": [
+            "k0",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9"
+          ],
+          "eligible": false,
+          "score": 4
+        },
+        {
+          "unit": "set:f",
+          "tokens": 40,
+          "media": false,
+          "coverage": 0.975,
+          "newWords": [
+            "casa"
+          ],
+          "glossed": [
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9",
+            "luna",
+            "mar",
+            "rio"
+          ],
+          "eligible": false,
+          "score": 4.952380952
+        },
+        {
+          "unit": "ep:v1:0",
+          "tokens": 40,
+          "media": true,
+          "coverage": 0.95,
+          "newWords": [
+            "casa",
+            "luna"
+          ],
+          "glossed": [
+            "h0",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "h7",
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9"
+          ],
+          "eligible": false,
+          "score": 6.785714286
+        },
+        {
+          "unit": "ep:v2:0",
+          "tokens": 40,
+          "media": true,
+          "coverage": 0.95,
+          "newWords": [
+            "casa",
+            "luna"
+          ],
+          "glossed": [
+            "h0",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "h7",
+            "k0",
+            "k1",
+            "k2",
+            "k3",
+            "k4",
+            "k5",
+            "k6",
+            "k7",
+            "k8",
+            "k9"
+          ],
+          "eligible": false,
+          "score": 5.285714286
+        },
+        {
+          "unit": "set:g",
+          "tokens": 40,
+          "media": false,
+          "coverage": 0.975,
+          "newWords": [
+            "casa"
+          ],
+          "glossed": [
+            "h0",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "h7",
+            "h8",
+            "h9"
+          ],
+          "eligible": false,
+          "score": 0.952380952
+        }
+      ],
+      "selected": {
+        "unit": "ep:v1:0",
+        "fallback": true,
+        "glossed": [
+          "casa",
+          "h0",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "h5",
+          "h6",
+          "h7",
+          "k0",
+          "k1",
+          "k2",
+          "k3",
+          "k4",
+          "k5",
+          "k6",
+          "k7",
+          "k8",
+          "k9",
+          "luna"
         ],
         "newWords": []
       }

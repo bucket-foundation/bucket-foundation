@@ -4,7 +4,13 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 import { mockApi, seeded, signIn } from "./mock";
 
 const SHOTS = process.env.PL_SHOTS_DIR;
-const FIXTURE = readFileSync(join(__dirname, "../../scripts/fixtures/polingual-input/es.json"), "utf8");
+
+test.skip(process.env.NEXT_PUBLIC_POLINGUAL_INPUT_STAGE !== "demo", "needs the dev server started with NEXT_PUBLIC_POLINGUAL_INPUT_STAGE=demo, since a seeded beginner passes the gloss budget nowhere");
+const RAW = JSON.parse(readFileSync(join(__dirname, "../../scripts/fixtures/polingual-input/es.json"), "utf8")) as { items: { translationSource?: string }[] };
+RAW.items.forEach((i) => {
+  i.translationSource = "machine";
+});
+const FIXTURE = JSON.stringify(RAW);
 
 async function mockInput(page: Page, present = true): Promise<void> {
   await page.route("**/input/manifest.json", (route) => (present ? route.fulfill({ json: { format: "polingual-input", langs: { es: { file: "es.0123456789ab.json" } } } }) : route.fulfill({ status: 404, body: "missing" })));
@@ -67,6 +73,7 @@ for (const width of [390, 1440]) {
     await expect(page.getByTestId("input-translation")).toHaveCount(0);
     await page.getByTestId("input-reveal").first().click();
     await expect(page.getByTestId("input-translation")).toHaveCount(1);
+    await expect(page.getByTestId("input-machine-label")).toHaveText(/machine translation/);
     const tokens = page.getByTestId("input-token");
     await tokens.nth(1).click();
     await expect(tokens.nth(1)).toHaveAttribute("aria-pressed", "true");

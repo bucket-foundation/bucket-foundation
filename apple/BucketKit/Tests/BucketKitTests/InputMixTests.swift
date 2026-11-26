@@ -19,7 +19,7 @@ import Testing
     }
     for r in v["rounded"] as! [[String: Any]] { #expect(SessionMix.roundedItems(targetPermille: i(r, "targetPermille"), items: i(r, "items")) == i(r, "expect")) }
     for a in v["activity"] as! [[String: Any]] {
-        let marks = (a["marks"] as! [[String: Any]]).map { SessionMix.ActivityMark(at: n($0, "at"), visible: $0["visible"] as? Bool, focused: $0["focused"] as? Bool, playing: $0["playing"] as? Bool) }
+        let marks = (a["marks"] as! [[String: Any]]).map { SessionMix.ActivityMark(at: n($0, "at"), visible: $0["visible"] as? Bool, focused: $0["focused"] as? Bool, playing: $0["playing"] as? Bool, idle: $0["idle"] as? Bool) }
         #expect(SessionMix.activeMs(marks, end: n(a, "end"), needsPlayer: a["needsPlayer"] as! Bool) == n(a, "expect"), "\(a["name"] as! String)")
     }
 }

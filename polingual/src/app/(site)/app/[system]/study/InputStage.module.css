@@ -17,3 +17,4 @@
 .actions{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;width:min(680px,calc(100% - 32px));background:var(--pl-card);border:1px solid var(--pl-hairline);border-radius:var(--pl-radius-lg);padding:10px 16px 12px;display:flex;flex-direction:column;gap:6px;z-index:30}
 .stage{padding-bottom:140px}
 @media (max-width:600px){.actions{bottom:84px}.stage{padding-bottom:150px;margin-bottom:84px}}
+.machine{font-style:normal;font-family:var(--pl-font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--pl-ink-dim);margin-left:6px}

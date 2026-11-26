@@ -54,10 +54,13 @@ export interface ActivityMark {
   visible?: boolean;
   focused?: boolean;
   playing?: boolean;
+  idle?: boolean;
 }
 
-export function isActive(f: { visible: boolean; focused: boolean; playing: boolean }, needsPlayer: boolean): boolean {
-  return f.visible && f.focused && (!needsPlayer || f.playing);
+export const IDLE_MS = 60_000;
+
+export function isActive(f: { visible: boolean; focused: boolean; playing: boolean; idle?: boolean }, needsPlayer: boolean): boolean {
+  return f.visible && f.focused && (needsPlayer ? f.playing : !f.idle);
 }
 
 const YT_HOST = /(^|\.)youtube(-nocookie)?\.com$/;
@@ -93,13 +96,15 @@ export function activeMs(marks: readonly ActivityMark[], end: number, needsPlaye
   let playing = false;
   let since: number | null = null;
   let total = 0;
-  const on = () => isActive({ visible, focused, playing }, needsPlayer);
+  let idle = false;
+  const on = () => isActive({ visible, focused, playing, idle }, needsPlayer);
   for (const m of sorted) {
     if (m.at > end) break;
     if (since !== null && on()) total += m.at - since;
     if (m.visible !== undefined) visible = m.visible;
     if (m.focused !== undefined) focused = m.focused;
     if (m.playing !== undefined) playing = m.playing;
+    if (m.idle !== undefined) idle = m.idle;
     since = m.at;
   }
   if (since !== null && on() && end > since) total += end - since;

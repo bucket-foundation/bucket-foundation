@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { buildLangCorpus } from "../src/lib/academy/lang-systems";
-import { lemmaCardMap, UNFITTED_SELECTOR_WEIGHTS, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
+import { glossBudget, lemmaCardMap, UNFITTED_SELECTOR_WEIGHTS, loadBundle, MAX_NEW, MEDIA_FLOOR, MIN_UNIT_TOKENS, NEW_SHARE, parseBundle, planBundle, planUnit, resolverFrom, select, TEXT_BAND, type Learner } from "../src/lib/academy/input-selector";
 
 const ROOT = path.join(__dirname, "..");
 const V = JSON.parse(fs.readFileSync(path.join(ROOT, "src/lib/academy/selector-vectors.json"), "utf8"));
@@ -44,6 +44,7 @@ test("C2: every eligible plan meets size, band and new-word bounds", () => {
     assert.ok(media ? plan.coverage >= MEDIA_FLOOR : plan.coverage >= TEXT_BAND[0] && plan.coverage <= TEXT_BAND[1]);
     const k = plan.newWords.length;
     assert.ok(k >= 1 && k <= MAX_NEW && k <= NEW_SHARE * plan.tokens);
+    assert.ok(plan.glossed.length <= glossBudget(plan.tokens));
   }
 });
 
@@ -91,4 +92,11 @@ test("equal scores pick the lowest unit id, matching the Lean model", () => {
   const mk = (unit: string) => ({ unit, tokens: 40, media: false, coverage: 0.96, newWords: ["a"], glossed: [], eligible: true, score: 1 });
   assert.equal(select([mk("u:b"), mk("u:a"), mk("u:c")], l, () => [])!.plan.unit, "u:a");
   assert.deepEqual(UNFITTED_SELECTOR_WEIGHTS, { due: 2, frequency: 1, repeat: 3, continuity: 1.5 });
+});
+
+test("the gloss budget is max(2, 5 percent of the unit)", () => {
+  assert.equal(glossBudget(20), 2);
+  assert.equal(glossBudget(40), 2);
+  assert.equal(glossBudget(60), 3);
+  assert.equal(glossBudget(100), 5);
 });

@@ -110,27 +110,31 @@ object SessionMix {
 
     fun roundedItems(targetPermille: Int, items: Int): Int = (targetPermille * items + 500) / 1000
 
-    fun isActive(visible: Boolean, focused: Boolean, playing: Boolean, needsPlayer: Boolean): Boolean = visible && focused && (!needsPlayer || playing)
+    const val IDLE_MS = 60_000L
 
-    data class ActivityMark(val at: Long, val visible: Boolean? = null, val focused: Boolean? = null, val playing: Boolean? = null)
+    fun isActive(visible: Boolean, focused: Boolean, playing: Boolean, needsPlayer: Boolean, idle: Boolean = false): Boolean = visible && focused && (if (needsPlayer) playing else !idle)
+
+    data class ActivityMark(val at: Long, val visible: Boolean? = null, val focused: Boolean? = null, val playing: Boolean? = null, val idle: Boolean? = null)
 
     fun activeMs(marks: List<ActivityMark>, end: Long, needsPlayer: Boolean): Long {
         var visible = true
         var focused = true
         var playing = false
+        var idle = false
         var since: Long? = null
         var total = 0L
         for (m in marks.sortedBy { it.at }) {
             if (m.at > end) break
             val s = since
-            if (s != null && isActive(visible, focused, playing, needsPlayer)) total += m.at - s
+            if (s != null && isActive(visible, focused, playing, needsPlayer, idle)) total += m.at - s
             m.visible?.let { visible = it }
             m.focused?.let { focused = it }
             m.playing?.let { playing = it }
+            m.idle?.let { idle = it }
             since = m.at
         }
         val s = since
-        if (s != null && isActive(visible, focused, playing, needsPlayer) && end > s) total += end - s
+        if (s != null && isActive(visible, focused, playing, needsPlayer, idle) && end > s) total += end - s
         return total
     }
 

@@ -6,6 +6,12 @@ export const MEDIA_FLOOR = 0.9;
 export const MAX_NEW = 3;
 export const NEW_SHARE = 0.05;
 export const UNKNOWN_BELOW = 0.5;
+export const MIN_GLOSS_BUDGET = 2;
+export const GLOSS_SHARE = 0.05;
+
+export function glossBudget(tokens: number): number {
+  return Math.max(MIN_GLOSS_BUDGET, GLOSS_SHARE * tokens);
+}
 
 export interface SelectorWeights {
   due: number;
@@ -29,6 +35,7 @@ export interface InputItem {
   tokens: InputToken[];
   text: string;
   translation?: string;
+  translationSource?: "human" | "machine";
   media?: { videoId: string; start: number; end: number };
 }
 
@@ -96,7 +103,7 @@ export function planUnit(unitId: string, lemmas: readonly string[], targets: rea
   const coverage = n ? lemmas.reduce((s, x) => s + (g.has(x) ? 1 : Math.min(1, Math.max(0, l.p(x)))), 0) / n : 0;
   const band = media ? coverage >= MEDIA_FLOOR : coverage >= TEXT_BAND[0] && coverage <= TEXT_BAND[1];
   const k = newWords.length;
-  const eligible = n >= MIN_UNIT_TOKENS && band && k >= 1 && k <= MAX_NEW && k <= NEW_SHARE * n;
+  const eligible = n >= MIN_UNIT_TOKENS && band && k >= 1 && k <= MAX_NEW && k <= NEW_SHARE * n && glossed.length <= glossBudget(n);
   const dueHits = distinct.filter((x) => l.due.has(x)).length;
   const freq = newWords.reduce((s, x) => s + rankBonus(l.rank(x)), 0);
   const score = w.due * dueHits + w.frequency * freq - w.repeat * (l.recent[unitId] ?? 0) + (video && video === l.lastVideo ? w.continuity : 0);

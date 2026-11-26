@@ -107,6 +107,7 @@ public enum SessionMix {
     public static let inputTargetPastA2 = 0.6
     public static let a2TopTier = 6
     public static let cardSeconds = 12.0
+    public static let idleMs = 60_000.0
 
     public struct InputMix: Equatable, Sendable {
         public var target: Double
@@ -143,22 +144,24 @@ public enum SessionMix {
         public var visible: Bool?
         public var focused: Bool?
         public var playing: Bool?
-        public init(at: Double, visible: Bool? = nil, focused: Bool? = nil, playing: Bool? = nil) {
-            self.at = at; self.visible = visible; self.focused = focused; self.playing = playing
+        public var idle: Bool?
+        public init(at: Double, visible: Bool? = nil, focused: Bool? = nil, playing: Bool? = nil, idle: Bool? = nil) {
+            self.at = at; self.visible = visible; self.focused = focused; self.playing = playing; self.idle = idle
         }
     }
 
     public static func activeMs(_ marks: [ActivityMark], end: Double, needsPlayer: Bool) -> Double {
-        var visible = true, focused = true, playing = false
+        var visible = true, focused = true, playing = false, idle = false
         var since: Double?
         var total = 0.0
-        func on() -> Bool { visible && focused && (!needsPlayer || playing) }
+        func on() -> Bool { visible && focused && (needsPlayer ? playing : !idle) }
         for m in marks.sorted(by: { $0.at < $1.at }) {
             if m.at > end { break }
             if let s = since, on() { total += m.at - s }
             if let v = m.visible { visible = v }
             if let f = m.focused { focused = f }
             if let p = m.playing { playing = p }
+            if let i = m.idle { idle = i }
             since = m.at
         }
         if let s = since, on(), end > s { total += end - s }
