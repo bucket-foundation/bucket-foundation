@@ -53,6 +53,12 @@
     "tatoebaIdsMatched": {
       "type": "integer",
       "minimum": 0
+    },
+    "books": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/book"
+      }
     }
   },
   "$defs": {
@@ -208,7 +214,10 @@
               "enum": [
                 "tatoeba",
                 "youtube",
-                "graded"
+                "graded",
+                "african-storybook",
+                "global-storybooks",
+                "storyweaver"
               ]
             },
             "url": {
@@ -243,6 +252,26 @@
         "license": {
           "type": "string",
           "minLength": 1
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "image": {
+          "type": "object",
+          "required": [
+            "url",
+            "credit"
+          ],
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "credit": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false,
@@ -349,10 +378,35 @@
           "type": "integer",
           "minimum": 1
         },
+        "bookId": {
+          "type": "string"
+        },
+        "cefr": {
+          "enum": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            null
+          ]
+        },
+        "sourceLevel": {
+          "type": "object",
+          "required": [
+            "scale",
+            "value",
+            "cefr"
+          ]
+        },
         "coverage": {
           "type": "number",
           "minimum": 0,
           "maximum": 1
+        },
+        "paired": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false,
@@ -378,6 +432,128 @@
           }
         }
       ]
+    },
+    "book": {
+      "type": "object",
+      "required": [
+        "id",
+        "source",
+        "lang",
+        "title",
+        "url",
+        "authors",
+        "illustrators",
+        "translators",
+        "license",
+        "level",
+        "pages",
+        "licenseVersion",
+        "licenseUrl"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "african-storybook",
+            "global-storybooks",
+            "storyweaver"
+          ]
+        },
+        "lang": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "illustrators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "translators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "license": {
+          "enum": [
+            "CC BY",
+            "CC BY 2.0",
+            "CC BY 3.0",
+            "CC BY 4.0",
+            "CC0 1.0"
+          ]
+        },
+        "level": {
+          "type": "object"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "pairedWith": {
+          "type": "string"
+        },
+        "via": {
+          "type": "string"
+        },
+        "cover": {
+          "type": "object",
+          "required": [
+            "url",
+            "credit"
+          ]
+        },
+        "rightsHolder": {
+          "type": "string"
+        },
+        "original": {
+          "type": "object"
+        },
+        "approved": {
+          "const": true
+        },
+        "licenseVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "licenseUrl": {
+          "type": "string",
+          "pattern": "^https://creativecommons\\.org/(licenses/by/|publicdomain/zero/1\\.0/)"
+        },
+        "pairedBook": {
+          "type": "object",
+          "required": [
+            "id",
+            "title",
+            "url",
+            "authors",
+            "translators",
+            "license"
+          ]
+        },
+        "review": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
