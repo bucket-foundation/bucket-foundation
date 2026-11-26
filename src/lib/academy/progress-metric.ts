@@ -1,5 +1,6 @@
 import { dayKey } from "./engine";
 import { inputEvidence, knownCount, type LemmaEvidence } from "./learner-model";
+import { cognateKnownCount, type CognateIndex, type HeldP } from "./cognate-coverage";
 
 export const INPUT_COVERAGE = 0.9;
 export const STREAK_INPUT_SECONDS = 300;
@@ -83,12 +84,13 @@ export function lemmaEvidence(lang: string, cards: Readonly<Record<string, Metri
   return out;
 }
 
-export function langMetrics(lang: string, cards: Readonly<Record<string, MetricCard>>, rows: readonly MetricRow[], now: number, tier = 0): LangMetrics {
+export function langMetrics(lang: string, cards: Readonly<Record<string, MetricCard>>, rows: readonly MetricRow[], now: number, tier = 0, cognates?: { index: CognateIndex; held: HeldP }): LangMetrics {
   const secs = inputSeconds(rows, lang);
+  const evidence = lemmaEvidence(lang, cards, rows);
   return {
     inputSeconds: secs,
     inputHours: Math.floor(secs / 360) / 10,
-    knownWords: Math.round(knownCount(lemmaEvidence(lang, cards, rows), now, tier)),
+    knownWords: Math.round(cognates ? cognateKnownCount(lang, evidence, cognates.index, cognates.held, now, tier) : knownCount(evidence, now, tier)),
   };
 }
 

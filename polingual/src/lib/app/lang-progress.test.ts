@@ -25,3 +25,15 @@ test("langProgress sums covered input, counts known words and marks 5-minute inp
   assert.equal(hoursText(0), "0.0");
   assert.equal(hoursText(12.3), "12.3");
 });
+
+test("langProgress counts a cognate held in another studied language at weight 0.5", () => {
+  const card = { state: "review" as const, stability: 40, difficulty: 5, lastReview: NOW - 86_400_000, due: NOW + 10 * 86_400_000, reps: 3, lapses: 0 };
+  const es = emptyMemory("es");
+  es.baseline.cards["es:casa"] = card;
+  const fr = emptyMemory("fr");
+  fr.baseline.cards["fr:nation"] = card;
+  fr.baseline.cards["fr:nom"] = card;
+  const index = { nación: { fr: ["nation"] }, nombre: { fr: ["nom"] }, perro: { fr: ["chien"] } };
+  assert.deepEqual(langProgress([es, fr], NOW).langs.map((l) => l.knownWords), [1, 2]);
+  assert.deepEqual(langProgress([es, fr], NOW, { es: index }).langs.map((l) => l.knownWords), [2, 2]);
+});
