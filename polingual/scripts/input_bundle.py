@@ -412,12 +412,13 @@ def sha(path):
     return h.hexdigest()
 
 
-def write_bundle(bundle, out):
+def write_bundle(bundle, out, part=""):
     body = json.dumps(bundle, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
     digest = hashlib.sha256(body.encode()).hexdigest()[:12]
-    name = f"{bundle['lang']}.{digest}.json"
-    for old in out.glob(f"{bundle['lang']}.*.json"):
-        if old.name != name:
+    prefix = f"{bundle['lang']}.{part + '.' if part else ''}"
+    name = f"{prefix}{digest}.json"
+    for old in out.glob(f"{prefix}*.json"):
+        if old.name != name and re.fullmatch(re.escape(prefix) + r"[0-9a-f]{12}\.json", old.name):
             old.unlink()
     (out / name).write_text(body)
     return name
@@ -443,12 +444,16 @@ def parse(argv):
     ap.add_argument("--layers", default=str(LAYERS))
     ap.add_argument("--videos", default=str(VIDEOS))
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--bands-out", help="dir for band files kept out of git, or POLINGUAL_INPUT_BANDS_DIR")
     ap.add_argument("--golden", action="store_true")
+    ap.add_argument("--ranks", help="dir of frequency rank tables, or POLINGUAL_RANKS_DIR; enables graded units")
+    ap.add_argument("--graded-cap", type=int, default=None, help="max graded sets per band; default uses every usable set")
     a = ap.parse_args(argv)
     a.packs = env_path(a.packs, "POLINGUAL_PACKS_DIR")
     a.index = env_path(a.index, "PHOTONS_INDEX")
     a.tatoeba = env_path(a.tatoeba, "TATOEBA_DIR")
     a.scratch = env_path(a.scratch, "INPUT_SCRATCH_DIR")
+    a.ranks = env_path(a.ranks, "POLINGUAL_RANKS_DIR")
     for name in ("packs", "index", "scratch") + (() if a.golden else ("tatoeba",)):
         p = getattr(a, name)
         if p is None:
@@ -456,6 +461,7 @@ def parse(argv):
         if name != "scratch" and not p.exists():
             ap.error(f"--{name} {p} does not exist")
     a.layers, a.videos, a.out = Path(a.layers), Path(a.videos), Path(a.out)
+    a.bands_out = env_path(a.bands_out, "POLINGUAL_INPUT_BANDS_DIR") or Path.home() / ".cache/polingual-input-bands"
     return a
 
 
@@ -477,6 +483,8 @@ def main(argv=None):
     manifest_path = a.out / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
     manifest["lemmaEvaluation"] = LEMMA_EVALUATION
+    manifest["bandBase"] = os.environ.get("NEXT_PUBLIC_POLINGUAL_INPUT_BASE") or manifest.get("bandBase")
+    manifest["langTags"] = "BCP-47"
     inputs = manifest.setdefault("inputs", {})
     inputs["layers"] = sha(a.layers)
     inputs["videos"] = {p.name: sha(p) for p in video_paths}
@@ -486,13 +494,27 @@ def main(argv=None):
     for lang in langs:
         lex = open_lexicon(lang, a.packs, a.scratch, a.index)
         b = build_lang(lang, lex, pool, videos, tatoeba_meta(a.tatoeba, lang, pool), en_authors)
+        graded = None
+        if a.ranks:
+            import graded_input
+            graded = graded_input.extend_bundle(b, lang, lex, a.tatoeba, a.ranks, a.graded_cap)
+            b, parts = graded_input.split_bands(b)
+            a.bands_out.mkdir(parents=True, exist_ok=True)
+            graded["files"] = {}
+            for band, chunks in parts.items():
+                graded["files"][str(band)] = []
+                for n, part in enumerate(chunks):
+                    f = write_bundle(part, a.bands_out, f"b{band}.p{n}")
+                    graded["files"][str(band)].append({"file": f, "units": len(part["units"]), "items": len(part["items"]),
+                                                       "bytes": (a.bands_out / f).stat().st_size})
         name = write_bundle(b, a.out)
         inputs["packs"][lang] = sha(a.packs / lang / f"polingual-{lang}.sqlite.zst")
         for f in (f"{ISO3[lang]}-eng_links.tsv.bz2", f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
             inputs["tatoeba"][f.removesuffix(".tsv.bz2")] = sha(a.tatoeba / f)
-        manifest["langs"][lang] = {"file": name, "items": len(b["items"]), "units": len(b["units"]),
+        manifest["langs"][lang] = {"tag": lang, "file": name, "items": len(b["items"]), "units": len(b["units"]),
                                    "coverage": b["coverage"],
-                                   "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"]}
+                                   "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"],
+                                   **({"graded": graded} if graded else {})}
         print(lang, name, len(b["items"]), len(b["units"]), b["tatoebaIdsMatched"], b["tatoebaItems"],
               json.dumps(b["coverage"]), file=sys.stderr)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")

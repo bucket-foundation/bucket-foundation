@@ -1,4 +1,5 @@
 {
+ "bandBase": "http://127.0.0.1:54321/storage/v1/object/public/polingual-input",
  "format": "polingual-input",
  "inputs": {
   "index": "ad4f6e9aa58639b2e0dfc78344b17e9ae050c6d8be5e1e9475befbf4da68e0ce",
@@ -29,6 +30,7 @@
    "GVwdwoC5Lvk.json": "15b05943f7f30efbdb11be0090df8a0b5499b4936686526dd34b5d648b2e1836"
   }
  },
+ "langTags": "BCP-47",
  "langs": {
   "de": {
    "coverage": {
@@ -39,8 +41,137 @@
     "types": 3078,
     "typesMapped": 2865
    },
-   "file": "de.7184d7971a9a.json",
+   "file": "de.add255f1ca61.json",
+   "graded": {
+    "bands": {
+     "1000": {
+      "sentence_set": 655
+     },
+     "2000": {
+      "sentence_set": 1249
+     },
+     "4000": {
+      "sentence_set": 1978
+     },
+     "500": {
+      "sentence_set": 305
+     },
+     "8000": {
+      "sentence_set": 2984
+     }
+    },
+    "files": {
+     "1000": [
+      {
+       "bytes": 1997077,
+       "file": "de.b1000.p0.160685a6a3eb.json",
+       "items": 2488,
+       "units": 512
+      },
+      {
+       "bytes": 550078,
+       "file": "de.b1000.p1.0f0c23b2808c.json",
+       "items": 692,
+       "units": 143
+      }
+     ],
+     "2000": [
+      {
+       "bytes": 1998838,
+       "file": "de.b2000.p0.27be54a132a0.json",
+       "items": 2456,
+       "units": 524
+      },
+      {
+       "bytes": 1997885,
+       "file": "de.b2000.p1.fac247c6cb94.json",
+       "items": 2505,
+       "units": 522
+      },
+      {
+       "bytes": 788512,
+       "file": "de.b2000.p2.caf575ea4463.json",
+       "items": 1000,
+       "units": 203
+      }
+     ],
+     "4000": [
+      {
+       "bytes": 1997114,
+       "file": "de.b4000.p0.69e57ffadd6d.json",
+       "items": 2448,
+       "units": 531
+      },
+      {
+       "bytes": 1997280,
+       "file": "de.b4000.p1.cb6a48c64084.json",
+       "items": 2495,
+       "units": 528
+      },
+      {
+       "bytes": 1998813,
+       "file": "de.b4000.p2.c2dfd6b0695e.json",
+       "items": 2480,
+       "units": 526
+      },
+      {
+       "bytes": 1516713,
+       "file": "de.b4000.p3.7d2a450e18bc.json",
+       "items": 1889,
+       "units": 393
+      }
+     ],
+     "500": [
+      {
+       "bytes": 1227547,
+       "file": "de.b500.p0.d14dc4c5b177.json",
+       "items": 1558,
+       "units": 305
+      }
+     ],
+     "8000": [
+      {
+       "bytes": 1999234,
+       "file": "de.b8000.p0.f2ad6b78ecfd.json",
+       "items": 2464,
+       "units": 527
+      },
+      {
+       "bytes": 1998536,
+       "file": "de.b8000.p1.f6b77f521d70.json",
+       "items": 2477,
+       "units": 531
+      },
+      {
+       "bytes": 1997239,
+       "file": "de.b8000.p2.d85679c2c9f3.json",
+       "items": 2478,
+       "units": 520
+      },
+      {
+       "bytes": 1998785,
+       "file": "de.b8000.p3.bb500e85c8ea.json",
+       "items": 2484,
+       "units": 521
+      },
+      {
+       "bytes": 1998949,
+       "file": "de.b8000.p4.bc2d7b73ad0c.json",
+       "items": 2501,
+       "units": 518
+      },
+      {
+       "bytes": 1425883,
+       "file": "de.b8000.p5.77104323a71c.json",
+       "items": 1775,
+       "units": 367
+      }
+     ]
+    },
+    "tatoebaSentencesUsable": 663953
+   },
    "items": 447,
+   "tag": "de",
    "tatoebaIdsMatched": 4008,
    "tatoebaItems": 4008,
    "units": 84
@@ -54,8 +185,119 @@
     "types": 2804,
     "typesMapped": 2712
    },
-   "file": "es.6868a53514ef.json",
+   "file": "es.85c42f78ad36.json",
+   "graded": {
+    "bands": {
+     "1000": {
+      "sentence_set": 455
+     },
+     "2000": {
+      "sentence_set": 861
+     },
+     "4000": {
+      "sentence_set": 1567
+     },
+     "500": {
+      "sentence_set": 201
+     },
+     "8000": {
+      "sentence_set": 2482
+     }
+    },
+    "files": {
+     "1000": [
+      {
+       "bytes": 1836734,
+       "file": "es.b1000.p0.8b4433ed030c.json",
+       "items": 2337,
+       "units": 455
+      }
+     ],
+     "2000": [
+      {
+       "bytes": 1996625,
+       "file": "es.b2000.p0.4c9b0d71e15a.json",
+       "items": 2494,
+       "units": 523
+      },
+      {
+       "bytes": 1356487,
+       "file": "es.b2000.p1.640894c4d95f.json",
+       "items": 1691,
+       "units": 338
+      }
+     ],
+     "4000": [
+      {
+       "bytes": 1998230,
+       "file": "es.b4000.p0.ddc02bc50f90.json",
+       "items": 2480,
+       "units": 533
+      },
+      {
+       "bytes": 1998314,
+       "file": "es.b4000.p1.5c4b1a199417.json",
+       "items": 2473,
+       "units": 516
+      },
+      {
+       "bytes": 1998266,
+       "file": "es.b4000.p2.084b5e447da8.json",
+       "items": 2477,
+       "units": 504
+      },
+      {
+       "bytes": 57909,
+       "file": "es.b4000.p3.dce94eb0c9da.json",
+       "items": 75,
+       "units": 14
+      }
+     ],
+     "500": [
+      {
+       "bytes": 813102,
+       "file": "es.b500.p0.0a1e26e9df92.json",
+       "items": 1038,
+       "units": 201
+      }
+     ],
+     "8000": [
+      {
+       "bytes": 1997983,
+       "file": "es.b8000.p0.d6d456d89034.json",
+       "items": 2483,
+       "units": 533
+      },
+      {
+       "bytes": 1997633,
+       "file": "es.b8000.p1.03463667dda0.json",
+       "items": 2490,
+       "units": 522
+      },
+      {
+       "bytes": 1995970,
+       "file": "es.b8000.p2.eda090d6b64b.json",
+       "items": 2488,
+       "units": 517
+      },
+      {
+       "bytes": 1996607,
+       "file": "es.b8000.p3.cd76fffa0a8b.json",
+       "items": 2482,
+       "units": 516
+      },
+      {
+       "bytes": 1563850,
+       "file": "es.b8000.p4.92955d60cc7a.json",
+       "items": 1973,
+       "units": 394
+      }
+     ]
+    },
+    "tatoebaSentencesUsable": 395591
+   },
    "items": 359,
+   "tag": "es",
    "tatoebaIdsMatched": 3287,
    "tatoebaItems": 3287,
    "units": 70
@@ -69,8 +311,149 @@
     "types": 2824,
     "typesMapped": 2740
    },
-   "file": "fr.be8b2a259bd2.json",
+   "file": "fr.8ad27157c704.json",
+   "graded": {
+    "bands": {
+     "1000": {
+      "sentence_set": 834
+     },
+     "2000": {
+      "sentence_set": 1423
+     },
+     "4000": {
+      "sentence_set": 2568
+     },
+     "500": {
+      "sentence_set": 428
+     },
+     "8000": {
+      "sentence_set": 3646
+     }
+    },
+    "files": {
+     "1000": [
+      {
+       "bytes": 1995436,
+       "file": "fr.b1000.p0.108b63ef59ea.json",
+       "items": 2430,
+       "units": 528
+      },
+      {
+       "bytes": 1187888,
+       "file": "fr.b1000.p1.23b5d18dbccf.json",
+       "items": 1473,
+       "units": 306
+      }
+     ],
+     "2000": [
+      {
+       "bytes": 1996949,
+       "file": "fr.b2000.p0.76e479077744.json",
+       "items": 2403,
+       "units": 532
+      },
+      {
+       "bytes": 1999314,
+       "file": "fr.b2000.p1.70e037301948.json",
+       "items": 2427,
+       "units": 531
+      },
+      {
+       "bytes": 1380754,
+       "file": "fr.b2000.p2.0ace0caecf82.json",
+       "items": 1693,
+       "units": 360
+      }
+     ],
+     "4000": [
+      {
+       "bytes": 1998538,
+       "file": "fr.b4000.p0.be666ad2109f.json",
+       "items": 2376,
+       "units": 536
+      },
+      {
+       "bytes": 1996784,
+       "file": "fr.b4000.p1.0344d273b81d.json",
+       "items": 2409,
+       "units": 534
+      },
+      {
+       "bytes": 1998227,
+       "file": "fr.b4000.p2.f9835347fd28.json",
+       "items": 2415,
+       "units": 529
+      },
+      {
+       "bytes": 1998801,
+       "file": "fr.b4000.p3.aad1a16c6e91.json",
+       "items": 2430,
+       "units": 528
+      },
+      {
+       "bytes": 1667523,
+       "file": "fr.b4000.p4.5f33b0c8e05b.json",
+       "items": 2042,
+       "units": 441
+      }
+     ],
+     "500": [
+      {
+       "bytes": 1669076,
+       "file": "fr.b500.p0.71513a9195f8.json",
+       "items": 2095,
+       "units": 428
+      }
+     ],
+     "8000": [
+      {
+       "bytes": 1998648,
+       "file": "fr.b8000.p0.4131d246ec13.json",
+       "items": 2368,
+       "units": 536
+      },
+      {
+       "bytes": 1997850,
+       "file": "fr.b8000.p1.ab0490c59696.json",
+       "items": 2392,
+       "units": 537
+      },
+      {
+       "bytes": 1998142,
+       "file": "fr.b8000.p2.c7fa49051260.json",
+       "items": 2417,
+       "units": 533
+      },
+      {
+       "bytes": 1996023,
+       "file": "fr.b8000.p3.2605a79614e5.json",
+       "items": 2430,
+       "units": 538
+      },
+      {
+       "bytes": 1998818,
+       "file": "fr.b8000.p4.b2969ce3726a.json",
+       "items": 2457,
+       "units": 536
+      },
+      {
+       "bytes": 1995783,
+       "file": "fr.b8000.p5.ec05bec46b56.json",
+       "items": 2447,
+       "units": 531
+      },
+      {
+       "bytes": 1632433,
+       "file": "fr.b8000.p6.7f655601ba3d.json",
+       "items": 2035,
+       "units": 435
+      }
+     ]
+    },
+    "tatoebaSentencesUsable": 669085
+   },
    "items": 552,
+   "tag": "fr",
    "tatoebaIdsMatched": 3757,
    "tatoebaItems": 3759,
    "units": 109
@@ -84,8 +467,119 @@
     "types": 3269,
     "typesMapped": 3110
    },
-   "file": "it.c73619f9ff1e.json",
+   "file": "it.078df54d099a.json",
+   "graded": {
+    "bands": {
+     "1000": {
+      "sentence_set": 478
+     },
+     "2000": {
+      "sentence_set": 967
+     },
+     "4000": {
+      "sentence_set": 1665
+     },
+     "500": {
+      "sentence_set": 188
+     },
+     "8000": {
+      "sentence_set": 2462
+     }
+    },
+    "files": {
+     "1000": [
+      {
+       "bytes": 1972406,
+       "file": "it.b1000.p0.61adb6467b74.json",
+       "items": 2517,
+       "units": 478
+      }
+     ],
+     "2000": [
+      {
+       "bytes": 1995960,
+       "file": "it.b2000.p0.0c617a1b9d0d.json",
+       "items": 2521,
+       "units": 507
+      },
+      {
+       "bytes": 1879952,
+       "file": "it.b2000.p1.347824c617c4.json",
+       "items": 2413,
+       "units": 460
+      }
+     ],
+     "4000": [
+      {
+       "bytes": 1997829,
+       "file": "it.b4000.p0.33c4b137ea61.json",
+       "items": 2524,
+       "units": 516
+      },
+      {
+       "bytes": 1999258,
+       "file": "it.b4000.p1.043a30074466.json",
+       "items": 2525,
+       "units": 504
+      },
+      {
+       "bytes": 1996815,
+       "file": "it.b4000.p2.07b42cd270d2.json",
+       "items": 2563,
+       "units": 498
+      },
+      {
+       "bytes": 595670,
+       "file": "it.b4000.p3.17142b3f444e.json",
+       "items": 759,
+       "units": 147
+      }
+     ],
+     "500": [
+      {
+       "bytes": 791478,
+       "file": "it.b500.p0.22a898527726.json",
+       "items": 1029,
+       "units": 188
+      }
+     ],
+     "8000": [
+      {
+       "bytes": 1998133,
+       "file": "it.b8000.p0.af14dc6310fe.json",
+       "items": 2529,
+       "units": 523
+      },
+      {
+       "bytes": 1998458,
+       "file": "it.b8000.p1.bd7ef7da85bf.json",
+       "items": 2544,
+       "units": 517
+      },
+      {
+       "bytes": 1998146,
+       "file": "it.b8000.p2.9eb904ea4650.json",
+       "items": 2562,
+       "units": 514
+      },
+      {
+       "bytes": 1998791,
+       "file": "it.b8000.p3.320913f4a487.json",
+       "items": 2571,
+       "units": 504
+      },
+      {
+       "bytes": 1608478,
+       "file": "it.b8000.p4.5bef4f5bd7fd.json",
+       "items": 2077,
+       "units": 404
+      }
+     ]
+    },
+    "tatoebaSentencesUsable": 902985
+   },
    "items": 379,
+   "tag": "it",
    "tatoebaIdsMatched": 4756,
    "tatoebaItems": 4757,
    "units": 72
@@ -99,8 +593,119 @@
     "types": 2643,
     "typesMapped": 2572
    },
-   "file": "pt.a11becfd7126.json",
+   "file": "pt.b08c9279384e.json",
+   "graded": {
+    "bands": {
+     "1000": {
+      "sentence_set": 510
+     },
+     "2000": {
+      "sentence_set": 910
+     },
+     "4000": {
+      "sentence_set": 1532
+     },
+     "500": {
+      "sentence_set": 207
+     },
+     "8000": {
+      "sentence_set": 2321
+     }
+    },
+    "files": {
+     "1000": [
+      {
+       "bytes": 1996454,
+       "file": "pt.b1000.p0.e21c2b210ea2.json",
+       "items": 2508,
+       "units": 499
+      },
+      {
+       "bytes": 44590,
+       "file": "pt.b1000.p1.8d77329d8c52.json",
+       "items": 58,
+       "units": 11
+      }
+     ],
+     "2000": [
+      {
+       "bytes": 1998418,
+       "file": "pt.b2000.p0.c8ab1e5af6cc.json",
+       "items": 2487,
+       "units": 512
+      },
+      {
+       "bytes": 1565389,
+       "file": "pt.b2000.p1.991c51e19758.json",
+       "items": 1982,
+       "units": 398
+      }
+     ],
+     "4000": [
+      {
+       "bytes": 1997814,
+       "file": "pt.b4000.p0.de2f9f311279.json",
+       "items": 2477,
+       "units": 516
+      },
+      {
+       "bytes": 1998691,
+       "file": "pt.b4000.p1.33807fe7b6fa.json",
+       "items": 2519,
+       "units": 519
+      },
+      {
+       "bytes": 1912311,
+       "file": "pt.b4000.p2.8e6c5d81575d.json",
+       "items": 2462,
+       "units": 497
+      }
+     ],
+     "500": [
+      {
+       "bytes": 835869,
+       "file": "pt.b500.p0.967044a27b88.json",
+       "items": 1059,
+       "units": 207
+      }
+     ],
+     "8000": [
+      {
+       "bytes": 1997832,
+       "file": "pt.b8000.p0.22f152e6882b.json",
+       "items": 2479,
+       "units": 527
+      },
+      {
+       "bytes": 1997077,
+       "file": "pt.b8000.p1.9611ee8dd534.json",
+       "items": 2525,
+       "units": 525
+      },
+      {
+       "bytes": 1996879,
+       "file": "pt.b8000.p2.f34e0b14c797.json",
+       "items": 2566,
+       "units": 523
+      },
+      {
+       "bytes": 1997171,
+       "file": "pt.b8000.p3.ecf8b6807578.json",
+       "items": 2628,
+       "units": 535
+      },
+      {
+       "bytes": 793544,
+       "file": "pt.b8000.p4.ea5734525525.json",
+       "items": 1042,
+       "units": 211
+      }
+     ]
+    },
+    "tatoebaSentencesUsable": 401792
+   },
    "items": 328,
+   "tag": "pt",
    "tatoebaIdsMatched": 3345,
    "tatoebaItems": 3346,
    "units": 62

@@ -46,6 +46,8 @@ export interface InputUnit {
   tokenCount: number;
   credit: string;
   credits: InputCredit[];
+  band?: number;
+  coverage?: number;
 }
 
 export interface InputCredit {
@@ -79,10 +81,33 @@ export interface InputBundle {
 export interface InputManifest {
   format: "polingual-input";
   inputs: Record<string, unknown>;
+  bandBase?: string | null;
+  langTags?: "BCP-47";
   langs: Record<
     string,
-    { file: string; items: number; units: number; coverage: LemmaCoverage; tatoebaItems: number; tatoebaIdsMatched: number }
+    {
+      file: string;
+      items: number;
+      units: number;
+      coverage: LemmaCoverage;
+      tatoebaItems: number;
+      tatoebaIdsMatched: number;
+      tag?: string;
+      graded?: { files: Record<string, { file: string; units: number; items: number; bytes: number }[]> };
+    }
   >;
+}
+
+export interface InputBandFile {
+  format: "polingual-input-band";
+  version: 1;
+  lang: string;
+  band: number;
+  part: number;
+  parts: number;
+  attribution: string[];
+  items: (Omit<InputItem, "tokens" | "lemmas"> & { tok: ([number, number] | [number, number, string])[] })[];
+  units: InputUnit[];
 }
 
 export const MIN_UNIT_TOKENS = 40;
@@ -91,4 +116,15 @@ export const INPUT_BASE = "/input";
 export function bundleUrl(manifest: InputManifest, lang: string): string | null {
   const entry = manifest.langs[lang];
   return entry ? `${INPUT_BASE}/${entry.file}` : null;
+}
+
+export function bandUrls(
+  manifest: InputManifest,
+  lang: string,
+  band: number,
+  base: string | null | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE ?? manifest.bandBase,
+): string[] {
+  const parts = manifest.langs[lang]?.graded?.files[String(band)];
+  if (!parts || !base) return [];
+  return parts.map((p) => `${base.replace(/\/$/, "")}/${p.file}`);
 }
