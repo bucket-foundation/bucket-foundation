@@ -1,0 +1,74 @@
+{
+ "forest_edges": 563778,
+ "off_line": 0,
+ "attested_parent_of_proto": 0,
+ "meta": {
+  "entries": "11071243",
+  "source": "raw-wiktextract-data.jsonl.gz",
+  "cycle_cuts": "47",
+  "inh_off_line": "6678",
+  "attested_parent_of_proto": "5164",
+  "der_descent_edges": "127351"
+ },
+ "spot_checks": [
+  {
+   "from": "es:agua",
+   "target": "la:aqua",
+   "reaches": true,
+   "chain": [
+    "es:agua",
+    "osp:agua",
+    "la:aqua",
+    "itc-pro:*akʷa",
+    "ine-pro:*h₂ékʷeh₂"
+   ]
+  },
+  {
+   "from": "fr:lait",
+   "target": "la:lac",
+   "reaches": false,
+   "chain": [
+    "fr:lait",
+    "fro:lait",
+    "la:*laitus"
+   ]
+  },
+  {
+   "from": "it:latte",
+   "target": "la:lac",
+   "reaches": true,
+   "chain": [
+    "it:latte",
+    "la:lactem",
+    "la:lac",
+    "ine-pro:*ǵlákts"
+   ]
+  },
+  {
+   "from": "es:leche",
+   "target": "la:lac",
+   "reaches": true,
+   "chain": [
+    "es:leche",
+    "osp:leche",
+    "la:lactis",
+    "la:lac",
+    "ine-pro:*ǵlákts"
+   ]
+  },
+  {
+   "from": "de:Wasser",
+   "target": "gem-pro:*wator",
+   "reaches": true,
+   "chain": [
+    "de:Wasser",
+    "gmh:waȥȥer",
+    "goh:waȥȥar",
+    "gmw-pro:*watar",
+    "gem-pro:*wator",
+    "ine-pro:*wódr̥",
+    "ine-pro:*wédor"
+   ]
+  }
+ ]
+}

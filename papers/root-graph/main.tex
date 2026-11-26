@@ -24,6 +24,7 @@
 \newcommand{\bm}[1]{{\small[bm:#1]}}
 \newcommand{\sumrun}{data/summary.json, 2026-11-26, python3 scripts/stats.py}
 \newcommand{\recrun}{data/recall.json, 2026-11-26, python3 scripts/recall.py}
+\newcommand{\checkrun}{data/forest\_check.json, 2026-11-26, python3 scripts/check\_forest.py}
 \newcommand{\testrun}{data/tests.json, 2026-11-26, python3 scripts/tests.py}
 
 \glossentry{forest}{inheritance forest}%
@@ -49,27 +50,28 @@
 
 \begin{abstract}
 We build an etymology graph over every language in English Wiktionary:
-6,970,532 nodes for 5,967 language codes, 158,107 of them reconstructed
+6,978,752 nodes for 5,969 language codes, 165,539 of them reconstructed
 forms, and 6.5 million edges of types inherited, borrowed, derived,
 cognate, calque and affix \emp{\sumrun}. Descent edges, inheritance plus
 derivation from a language on the target's ancestral line, form a
-\term{forest}{forest} with 370 family roots and depth up to 15. On 90
-hand-listed cognate pairs the forest links 87, against 75 in a first
-build without ancestral-line derivation \emp{\recrun}. We prove in Lean
-that the forest is acyclic, that lowest-common-ancestor depth is an
+\term{forest}{forest} with 368 family roots and depth up to 10, in which
+every parent's language lies on its child's ancestral line and no
+attested form is the parent of a reconstructed one \emp{\checkrun}. The
+forest links 87 of 90 hand-listed cognate pairs and 35 of 90 pairs drawn
+by script from Wiktionary Descendants lists \emp{\recrun}. We prove in
+Lean that the forest is acyclic, that lowest-common-ancestor depth is an
 ultrametric similarity, that the path distance we test with is a metric
 and fails the ultrametric inequality, and that borrowing breaks the
 ultrametric only through a word with two ancestry paths
-\bm{BucketMath.Etymology.single\_address\_ultra}. Three preregistered
-tests follow, run after a dated amendment to the graph.
-\term{rootdist}{Root distance} predicts the phonetic similarity of
-translation pairs, Spearman $\rho=-0.27$, 95\% CI $[-0.36,-0.18]$,
-$n=464$, Holm $p=4.7\times10^{-9}$. We fail to reject H0 for semantic
-similarity, $n=80$. Frequent vocabulary has a lower
-\term{bshare}{borrowed share} than the whole lexicon in 193 of 206
-languages, 158 significant after Benjamini-Hochberg. We fail to reject H0
-for borrowed share against cognate-coverage residuals, $\rho=0.26$, CI
-$[-0.18,0.62]$, $n=23$: inconclusive \emp{\testrun}.
+\bm{BucketMath.Etymology.single\_address\_ultra}. Under a preregistration
+amended before this run, \term{rootdist}{root distance} predicts the
+phonetic similarity of translation pairs, Spearman $\rho=-0.26$, 95\% CI
+$[-0.34,-0.17]$, $n=452$, Holm $p=4.7\times10^{-8}$. We fail to reject H0
+for semantic similarity, $n=77$. Frequent vocabulary has a lower
+\term{bshare}{borrowed share} than the whole lexicon in 195 of 208
+languages, 160 significant after Benjamini-Hochberg. We fail to reject H0
+for borrowed share against cognate-coverage residuals, $\rho=0.25$, CI
+$[-0.19,0.60]$, $n=23$: inconclusive \emp{\testrun}.
 \end{abstract}
 
 \section{Introduction}
@@ -111,13 +113,14 @@ unescaped, wiki brackets and inline modifiers removed, comma-joined forms
 cut to the first, \emph{oe} and \emph{ae} ligatures spelled out, NFC, and
 Wiktionary's entry-name rules applied (macrons and breves everywhere,
 accents in Slavic languages and Proto-Slavic, overdots in Old and Middle
-English). A form whose every sense is a form-of one lemma, and which has
-no lemma entry of its own, maps to that lemma, so Latin \emph{lactem}
-joins \emph{lac}. A node is reconstructed when its form starts with an
-asterisk or its language is a proto-language. Edges come from etymology
-templates and from the ancestry trees that the \texttt{etymon} template
-prints: inherited, borrowed, derived, calque, cognate and affix, each with
-the source page and template name.
+English). When a template leaves its form argument empty, the display
+argument gives the form. A form whose every sense is a form-of one lemma,
+and which has no lemma entry of its own, maps to that lemma. A node is
+reconstructed when its form starts with an asterisk or its language is a
+proto-language. Edges come from etymology templates and from the ancestry
+trees that the \texttt{etymon} template prints: inherited, borrowed,
+derived, calque, cognate and affix, each with the source page and
+template name.
 \end{definition}
 
 \begin{definition}[Ancestral line]
@@ -131,20 +134,25 @@ language names no ancestor, and inheritance language pairs seen at least
 
 \begin{definition}[Inheritance forest]
 \label{def:forest}
-A descent edge is an inheritance edge to a language on the ancestral line,
-or a derivation edge from one. Each node keeps its first descent claim in
-file order, an inheritance claim before a derivation claim on the same
-page. Claims that would close a cycle are dropped. The result is a
-forest, \Cref{thm:acyclic}.
+A descent edge runs from a child to a parent whose language equals the
+child's or lies on the child's ancestral line, by inheritance, or by
+derivation from another language. A reconstructed child never takes an
+attested parent. Each node keeps its first valid claim in file order, an
+inheritance claim before a derivation claim on the same page. Claims that
+would close a cycle are dropped. The result is a forest,
+\Cref{thm:acyclic}.
 \end{definition}
 
 Borrowing, learned borrowing and calque stay outside the forest. A
 derivation from a language off the ancestral line is its own class,
-\texttt{der\_ext}. The build drops 3,835 inheritance claims that point off
-the line, keeps 126,481 derivation edges as descent and drops 187
-cycle-closing claims \emp{\sumrun}. It streams the 3.1 GB compressed
-dump twice, once for the form-of map and once for edges, in one process
-under a 20 GB memory cap, in eleven minutes.
+\texttt{der\_ext}. The build drops 6,678 inheritance claims that point off
+the line, 5,164 claims that would give a reconstructed form an attested
+parent and 47 cycle-closing claims, and keeps 127,351 derivation edges as
+descent. \texttt{scripts/check\_forest.py} rereads all 563,778 forest
+edges and finds no edge off the line and no attested parent of a
+reconstructed node; the build fails otherwise \emp{\checkrun}. The build
+streams the 3.1 GB compressed dump twice in one process under a 20 GB
+memory cap.
 
 \begin{table}[htbp]
   \centering
@@ -154,38 +162,77 @@ under a 20 GB memory cap, in eleven minutes.
     \toprule
     Item & Count \\
     \midrule
-    Nodes & 6,970,532 \\
-    Reconstructed nodes & 158,107 \\
+    Nodes & 6,978,752 \\
+    Reconstructed nodes & 165,539 \\
     Language codes with entries & 5,162 \\
     Affix edges & 3,252,206 \\
-    Inherited edges & 1,079,346 \\
-    Derived edges & 842,406 \\
+    Inherited edges & 1,088,147 \\
+    Derived edges & 847,106 \\
     Cognate edges & 733,497 \\
-    Borrowed edges & 574,094 \\
-    Calque edges & 29,628 \\
-    Family roots with descendants & 370 \\
+    Borrowed edges & 574,692 \\
+    Calque edges & 29,663 \\
+    Forest edges & 563,778 \\
+    Family roots with descendants & 368 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-The largest families by rooted lexemes are Proto-Indo-European (113,380
-lexemes over 480 languages), Latin (46,474), Proto-Slavic (26,970),
-Proto-Germanic (23,511) and Proto-Turkic (17,546). Latin and Middle
-English appear as roots where Wiktionary stops the chain there. Per-language
-and per-family tables are in \texttt{\_intake/root-graph/stats\_lang.csv}
-and \texttt{stats\_family.csv}.
+The largest families by rooted lexemes are Proto-Indo-European (145,564
+lexemes over 457 languages), Latin (49,055), Proto-Slavic (26,860),
+Proto-Turkic (17,573) and Proto-Germanic (17,568). Latin appears as a root
+where Wiktionary stops the chain there. Per-language and per-family
+tables are in \texttt{\_intake/root-graph/stats\_lang.csv} and
+\texttt{stats\_family.csv}.
 
-\paragraph{Linkage recall.} \texttt{data/cognates.tsv} lists 90 cognate
-pairs, six pairs for each of five concepts within Spanish, Italian,
+\paragraph{Spot checks.} Spanish \emph{agua} reaches Latin \emph{aqua}
+through Old Spanish \emph{agua}, then Proto-Italic and
+Proto-Indo-European. Italian \emph{latte} and Spanish \emph{leche} reach
+Latin \emph{lac}; German \emph{Wasser} reaches Proto-Germanic
+\emph{*watōr}. French \emph{lait} fails. Wiktionary gives French
+\emph{lait} from Old French \emph{lait}, from Late Latin \emph{lactis}
+(accusative \emph{lactem}), from Latin \emph{lac}. Our Old French
+\emph{lait} node also stands for the Old French adjective \emph{lait}
+(``ugly''), whose chain through French \emph{laid} claims the parent
+Latin \emph{*laitus} first; the homograph takes the wrong parent
+\emp{\checkrun}.
+
+\paragraph{Linkage recall.} Two cognate sets measure whether forest chains
+meet. The first, \texttt{data/cognates.tsv}, holds 90 pairs we listed by
+hand, six pairs for each of five concepts within Spanish, Italian,
 Portuguese and French; English, German, Dutch and Swedish; and Russian,
-Polish, Czech and Ukrainian. A pair counts as linked when the two forest
-chains meet. The second build links 87 of 90: 27 Romance, 30 Germanic, 30
-Slavic. The first linked 75, with 21 Slavic. The three misses all involve
-French \emph{lait}, which Wiktionary derives from a Vulgar Latin form
-distinct from the Latin lemma. Over all translation-table pairs within
-each group, non-cognate synonyms included, the linked share rises from
-1.1\% to 2.6\% in Romance, 0.9\% to 1.2\% in Germanic and 1.1\% to 1.7\%
-in Slavic \emp{\recrun}.
+Polish, Czech and Ukrainian. It informed Amendment 1. The second,
+\texttt{data/cognates\_descendants.tsv}, holds 90 pairs drawn by script
+with seed 4242 from Descendants lists of Latin, Proto-Germanic and
+Proto-Slavic entries, two descendants of one entry in the same language
+groups, skipping descendants tagged as borrowed or learned; no graph
+change followed from it.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Linked pairs out of 30 per group \emp{\recrun}.}
+  \label{tab:recall}
+  \begin{tabular}{@{}lrrrr@{}}
+    \toprule
+    Set and build & Romance & Germanic & Slavic & Share \\
+    \midrule
+    Hand list, first build & 27 & 27 & 21 & 0.83 \\
+    Hand list, third build & 27 & 30 & 30 & 0.97 \\
+    Descendants, first build & 2 & 12 & 14 & 0.31 \\
+    Descendants, third build & 6 & 14 & 15 & 0.39 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Most Romance misses in the Descendants set are learned words that
+Wiktionary lists under Latin without a borrowing tag, such as Italian
+\emph{miscellaneo} and Spanish \emph{autoridad}. Each Romance language
+takes them from Latin separately, so their chains meet only when both
+pages give the Latin source as inheritance or derivation. The Descendants
+recall measures the share of pairs in which the forest joins two attested reflexes of one
+etymon; the hand-list recall reflects the common, inherited core. Over all
+translation-table pairs within each group, non-cognate synonyms included,
+the linked share is 2.5\% in Romance, 1.2\% in Germanic and 1.7\% in
+Slavic, against 1.1\%, 0.9\% and 1.1\% in the first build.
 
 \section{Proofs}
 \label{sec:proofs}
@@ -248,6 +295,25 @@ and the larger is at most $d_b$.
 T1 tests this metric. The ultrametric of \Cref{thm:ultra} orders pairs by
 LCA depth alone and ignores how far each word sits below the ancestor.
 
+\begin{theorem}[Root distance is a metric]
+\label{thm:metric}
+Root distance is symmetric \bm{BucketMath.Etymology.pathDist\_symm}, zero
+on equal nodes \bm{BucketMath.Etymology.pathDist\_self}, zero only on
+equal nodes \bm{BucketMath.Etymology.pathDist\_eq\_zero}, and satisfies
+the triangle inequality \bm{BucketMath.Etymology.pathDist\_triangle}. It
+is not an ultrametric: a node, its parent and a sibling give distances 1,
+1 and 2 \bm{BucketMath.Etymology.pathDist\_not\_ultra}.
+\end{theorem}
+
+\begin{proof}
+The triangle inequality reduces to $s(a,b)+s(b,c) \le d_b + s(a,c)$. The
+smaller of the two left terms is at most $s(a,c)$ by \Cref{thm:ultra},
+and the larger is at most $d_b$.
+\end{proof}
+
+T1 tests this metric. The ultrametric of \Cref{thm:ultra} orders pairs by
+LCA depth alone and ignores how far each word sits below the ancestor.
+
 A borrowed word has two lineages: its inherited parent inside its own
 family and its donor in another. Give each node the set of its root paths
 and set similarity to the largest LCA depth over pairs of paths.
@@ -280,23 +346,25 @@ as a word can be reached through a borrowing edge.
 \label{sec:tests}
 
 Hypotheses, sampling, corrections and thresholds were committed in
-\texttt{PREREGISTRATION.md} before any test statistic was computed.
-Amendment 1, dated 2026-11-25 and extended 2026-11-26, changed the graph
-and the T2 classes after the first run and before the second; hypotheses,
-samples, alpha and corrections are unchanged. Every number in T1 to T3
-comes from the second build \emp{\testrun}.
+\texttt{PREREGISTRATION.md} on 2026-11-25 before any test statistic was
+computed. Amendment 1 followed the first run. Its last item was committed
+on 2026-11-26 at 09:33, after the second build and tests at 09:29 and
+09:31, so both earlier runs are exploratory. Amendment 2 was committed at
+09:39, before the third build; every number in T1 to T3 below comes from
+that third run \emp{\testrun}. Hypotheses, samples, alpha and corrections
+did not change across amendments. The exploratory runs gave the same
+decisions: T1a rejected with $\rho=-0.41$ and $-0.27$, T1b and T3 not
+rejected, T2 rejected.
 
-\paragraph{T1.} Out of 200,000 sampled translation pairs, 645 share a
-forest ancestor, up from 333 in the first build. Among the 464 with IPA on
-both sides, root distance correlates with phonetic similarity at
-$\rho=-0.27$, cluster bootstrap CI $[-0.36,-0.18]$, Holm
-$p=4.7\times10^{-9}$, so we reject H0a. The first build gave
-$\rho=-0.41$ on 236 pairs. Related pairs average phonetic similarity 0.46
-against 0.16 for the 43,609 unrelated pairs, rank-biserial $r=0.67$.
-Semantic similarity has 80 related pairs with vectors, $\rho=-0.07$, CI
-$[-0.30,0.15]$, Holm $p=0.48$: we fail to reject H0b. Related pairs have
-higher LaBSE cosine than unrelated ones, 0.74 against 0.66
-(exploratory).
+\paragraph{T1.} Out of 200,000 sampled translation pairs, 631 share a
+forest ancestor. Among the 452 with IPA on both sides, root distance
+correlates with phonetic similarity at $\rho=-0.26$, cluster bootstrap
+CI $[-0.34,-0.17]$, Holm $p=4.7\times10^{-8}$, so we reject H0a. Related
+pairs average phonetic similarity 0.46 against 0.16 for the 43,621
+unrelated pairs, rank-biserial $r=0.68$. Semantic similarity has 77
+related pairs with vectors, $\rho=-0.11$, CI $[-0.33,0.12]$, Holm
+$p=0.34$: we fail to reject H0b. Related pairs have higher LaBSE cosine
+than unrelated ones, 0.74 against 0.66 (exploratory).
 
 \begin{figure}[htbp]
   \centering
@@ -310,17 +378,17 @@ higher LaBSE cosine than unrelated ones, 0.74 against 0.66
 ancestral line; borrowed means borrowing, learned borrowing or calque;
 \texttt{der\_ext} is reported apart. Every per-language number depends on
 this classification. Among words that translate the 1,000
-most-translated English senses, 206 languages have at least 100
+most-translated English senses, 208 languages have at least 100
 classified words. Median borrowed share is 0.18, and 0.23 when
 \texttt{der\_ext} counts as borrowed. Frequent vocabulary has a lower
-borrowed share than the whole lexicon in 193 languages; 158 reject H0 at
+borrowed share than the whole lexicon in 195 languages; 160 reject H0 at
 BH $q<0.05$, and the Fisher-pooled $p$ is below the $10^{-300}$ floor.
 German goes from 0.52 over the lexicon to 0.15 in frequent words, Spanish
-from 0.64 to 0.34, Japanese from 0.94 to 0.53. Spanish frequent words
-split 0.30 inherited, 0.05 derived on the line, 0.18 borrowed, 0.03
+from 0.64 to 0.35, Japanese from 0.94 to 0.53. Spanish frequent words
+split 0.30 inherited, 0.04 derived on the line, 0.18 borrowed, 0.03
 \texttt{der\_ext}, 0.11 affixal and 0.33 unclassified; class shares for
 every language are in \texttt{data/tests.json}. By family, median borrowed
-share is 0.11 over 69 Indo-European languages and 0.29 over 16 Turkic
+share is 0.11 over 108 Indo-European languages and 0.29 over 16 Turkic
 ones.
 
 \begin{figure}[htbp]
@@ -333,12 +401,12 @@ ones.
 \end{figure}
 
 \paragraph{T3.} Over the 23 languages of the cognate-coverage study,
-genealogical closeness to English explains $R^2=0.60$ of cognate
-coverage. The residuals correlate with borrowed share at $\rho=0.26$, CI
-$[-0.18,0.62]$, Holm $p=0.48$. We fail to reject H0; the CI reaches past
+genealogical closeness to English explains $R^2=0.59$ of cognate
+coverage. The residuals correlate with borrowed share at $\rho=0.25$, CI
+$[-0.19,0.60]$, Holm $p=0.34$. We fail to reject H0; the CI reaches past
 0.4, so by the preregistered rule the result is inconclusive. Residuals
 against the share borrowed from Latin, French, English or Greek give
-$\rho=0.25$, $p=0.25$ (exploratory).
+$\rho=0.23$, $p=0.29$ (exploratory).
 
 \begin{figure}[htbp]
   \centering
@@ -352,22 +420,24 @@ $\rho=0.25$, $p=0.25$ (exploratory).
 \label{sec:limitations}
 
 Nodes are keyed by form, so homographs share one node and the first
-descent claim wins. Only 0.32\% of sampled translation pairs reach a
-common ancestor: most pairs join languages from different families, and
-most translation-table words have no page whose chain reaches a shared
-form. T1 rests on 464 pairs from well-documented families. The cognate
-sample is ours and small, five concepts per family. Semantic similarity
-uses the 27-language photon index. The classification uses the first
-etymology relation on a page, and a third of Spanish frequent words have
-none. English is absent from T2 because the translation tables run from
+valid claim wins, as French \emph{lait} shows. Only 0.32\% of sampled
+translation pairs reach a common ancestor: most pairs join languages from
+different families, and most translation-table words have no page whose
+chain reaches a shared form. T1 rests on 452 pairs from well-documented
+families. Descendants recall is 0.39, so the forest misses most learned
+reflexes of a shared Latin source. Semantic similarity uses the
+27-language photon index. The classification uses the first etymology
+relation on a page, and a third of Spanish frequent words have none.
+English is absent from T2 because the translation tables run from
 English. Genealogical closeness in T3 is near zero outside Germanic.
 
 \paragraph{Deviations.} 2026-11-25: the first T2 run mapped a Fisher
 $p$ of 0 to 1 in the Holm family through a falsy check; fixed, and
-per-language $p$ clipped to $10^{-300}$ before pooling. 2026-11-25 and
-2026-11-26: Amendment 1, after a review found 85\% of Spanish translation
-nodes without a parent; the graph and T2 classes changed as listed in
-\Cref{sec:graph} and the amendment.
+per-language $p$ clipped to $10^{-300}$ before pooling. Amendment 1
+followed the first run after a review found 85\% of Spanish translation
+nodes without a parent; its last item followed the second run. Amendment
+2 preceded the third run. All three are dated in
+\texttt{PREREGISTRATION.md}.
 
 \paragraph{Data and license.} Wiktionary content via Kaikki.org,
 CC BY-SA 4.0 \autocite{kaikki2026raw}. The dump and graph live under

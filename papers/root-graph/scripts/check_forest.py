@@ -6,6 +6,9 @@ import sqlite3
 import sys
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_graph import entry_name  # noqa: E402
+
 ROOT = os.environ.get("ROOT_GRAPH_DIR", "/home/gian/agfarms/bucket-foundation/_intake/root-graph")
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
@@ -39,7 +42,8 @@ def main() -> None:
     spots = []
     for l, f, tl, tf in SPOT:
         c = chain(db, l, f)
-        spots.append({"from": f"{l}:{f}", "target": f"{tl}:{tf}", "reaches": f"{tl}:{tf}" in c, "chain": c})
+        t = f"{tl}:{entry_name(tl, tf)}"
+        spots.append({"from": f"{l}:{f}", "target": t, "reaches": t in c, "chain": c})
     out = {"forest_edges": edges, "off_line": off_line, "attested_parent_of_proto": proto_child,
            "meta": dict(db.execute("select k, v from meta")), "spot_checks": spots}
     with open(os.path.join(DATA, "forest_check.json"), "w") as fh:

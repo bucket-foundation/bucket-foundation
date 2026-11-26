@@ -91,7 +91,7 @@ def translation_linkage(path):
 
 def main():
     out = {}
-    for name, f in (("v1", "graph-v1.sqlite"), ("v2", "graph.sqlite")):
+    for name, f in (("v1", "graph-v1.sqlite"), ("v2", "graph-v2.sqlite"), ("v3", "graph.sqlite")):
         p = os.path.join(ROOT, f)
         if os.path.exists(p):
             out[name] = recall(p)
