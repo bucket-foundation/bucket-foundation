@@ -136,7 +136,12 @@ def get(f, url, sub):
     if not f.robots.allowed(url):
         EXCLUDED["robots.txt disallow"] += 1
         return None
-    return f.get(url, dest)
+    try:
+        return f.get(url, dest)
+    except RuntimeError as e:
+        log(e)
+        EXCLUDED["fetch failed"] += 1
+        return None
 
 
 ROBOTS = None
