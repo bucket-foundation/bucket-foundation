@@ -10,6 +10,7 @@ import BucketMath.Learning.Diamond
 import BucketMath.Learning.Capacity
 import BucketMath.Learning.Sequencing
 import BucketMath.Learning.Coverage
+import BucketMath.Learning.CognateAdjusted
 import BucketMath.Similarity.Axioms
 import BucketMath.Similarity.Script
 import BucketMath.Similarity.Vector

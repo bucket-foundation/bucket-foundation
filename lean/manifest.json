@@ -1755,6 +1755,96 @@
   "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (w : W),\n      BucketMath.Learning.Cognate.Recognized cognate small w = true →\n        BucketMath.Learning.Cognate.Recognized cognate large w = true"
  },
  {
+  "name": "BucketMath.Learning.CognateAdjusted.AdjustedCoverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 15,
+  "type": "{L W : Type} → (L → W → Bool) → List L → (W → Rat) → Rat → List W → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.AdjustedMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 11,
+  "type": "{L W : Type} → (L → W → Bool) → List L → (W → Rat) → Rat → List W → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 9,
+  "type": "Rat → Rat → Bool → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 47,
+  "type": "∀ {w p : Rat} (r : Bool),\n  0 ≤ w →\n    w ≤ 1 →\n      0 ≤ p →\n        p ≤ 1 →\n          0 ≤ BucketMath.Learning.CognateAdjusted.adjusted w p r ∧\n            BucketMath.Learning.CognateAdjusted.adjusted w p r ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 21,
+  "type": "∀ {w p p' : Rat} {r r' : Bool},\n  p ≤ p' →\n    (r = true → r' = true) →\n      BucketMath.Learning.CognateAdjusted.adjusted w p r ≤ BucketMath.Learning.CognateAdjusted.adjusted w p' r'"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.c1_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 78,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) {known : W → Rat} {w : Rat},\n  0 ≤ w →\n    w ≤ 1 →\n      (∀ (x : W), 0 ≤ known x ∧ known x ≤ 1) →\n        ∀ (text : List W),\n          0 ≤ BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate held known w text ∧\n            BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate held known w text ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.c1_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 94,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ {known known' : W → Rat},\n      (∀ (x : W), known x ≤ known' x) →\n        ∀ (w : Rat) (text : List W),\n          BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate small known w text ≤\n            BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate large known' w text"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.mass_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 65,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) {known : W → Rat} {w : Rat},\n  0 ≤ w →\n    w ≤ 1 →\n      (∀ (x : W), 0 ≤ known x ∧ known x ≤ 1) →\n        ∀ (text : List W),\n          0 ≤ BucketMath.Learning.CognateAdjusted.AdjustedMass cognate held known w text ∧\n            BucketMath.Learning.CognateAdjusted.AdjustedMass cognate held known w text ≤ ↑text.length"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.mass_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 56,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ {known known' : W → Rat},\n      (∀ (x : W), known x ≤ known' x) →\n        ∀ (w : Rat) (text : List W),\n          BucketMath.Learning.CognateAdjusted.AdjustedMass cognate small known w text ≤\n            BucketMath.Learning.CognateAdjusted.AdjustedMass cognate large known' w text"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.rat_add_le_add",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 18,
+  "type": "∀ {a b c d : Rat}, a ≤ b → c ≤ d → a + c ≤ b + d"
+ },
+ {
   "name": "BucketMath.Learning.CoordinateGrowth",
   "kind": "inductive",
   "status": "def",

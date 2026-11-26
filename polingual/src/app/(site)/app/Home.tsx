@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { webProgressStore } from "@academy/progress-store";
 import { streakCard, type StreakCard as StreakData } from "@/lib/app/streak";
 import { langProgress, type LangProgress } from "@/lib/app/lang-progress";
+import { loadCognates } from "@academy/cognate-coverage";
 import { langBranch, memoryState, mergeMemory, normalizeMemory } from "@academy/lang-memory";
 import { browserMemoryIO } from "@academy/lang-memory-store";
 import LangProgressRow from "./LangProgress";
@@ -26,7 +27,9 @@ function useStreakCard(systems: LangSystem[] | null) {
       const states = await Promise.all(systems.map((s) => webProgressStore.load(progressBranch(s), server)));
       const memories = langs.map((l) => mergeMemory(normalizeMemory(l, browserMemoryIO.readRaw(langBranch(l))), normalizeMemory(l, server?.[langBranch(l)]?.data)));
       const now = Date.now();
-      const progress = langProgress(memories, now);
+      const indexes = langs.length > 1 ? await Promise.all(langs.map((l) => loadCognates(l))) : [];
+      const cognates = Object.fromEntries(indexes.flatMap((x, i) => (x ? [[langs[i], x]] : [])));
+      const progress = langProgress(memories, now, cognates);
       if (live) setCard({ streak: streakCard([...states, ...memories.map(memoryState)], now, progress.inputDays), langs: progress.langs });
     });
     return () => {

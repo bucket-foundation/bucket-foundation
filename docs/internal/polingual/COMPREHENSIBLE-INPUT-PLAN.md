@@ -15,7 +15,7 @@ Per language L, `known(L, lemma)` gives a probability:
 
 `knownCount(L)` is the sum of these probabilities.
 
-**Cognate-adjusted coverage** for a polyglot: tokens that are unknown in L but have a cognate in a held language at R of at least 0.9 count as partly known, weight 0.5. This takes Wiktionary links now and bkt-6ge9k data later, with the form predicate from similarity-systems. The cognate-coverage paper shows the gain is large: the best single held language covers 0.26 of target tokens on average. Cognates feed coverage; recall scheduling gets only the small half-life factor in point 5.
+**Cognate-adjusted coverage** for a polyglot: tokens that are unknown in L but have a cognate in a held language at R of at least 0.9 count as partly known, weight 0.5. The 0.5 is an unstudied prior (`UNSTUDIED_COGNATE_WEIGHT`); bkt-xo8p2 measures it. A recognised word sits at the unknown cut (`UNKNOWN_BELOW` 0.5), so it is left out of the pre-reading gloss list and stays tappable for a gloss. This takes Wiktionary links now and bkt-6ge9k data later, with the form predicate from similarity-systems. The cognate-coverage paper shows the gain is large: the best single held language covers 0.26 of target tokens on average. Cognates feed coverage; recall scheduling gets only the small half-life factor in point 5.
 
 ## 2. Input as a typed unit
 
