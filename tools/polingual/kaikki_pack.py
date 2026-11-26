@@ -60,7 +60,16 @@ def kaikki_rows(path):
                 lemmas.append((word, entry_ipa(entry), pos, meaning, "functional", "word", None))
             forms.extend(form_rows(entry, pos))
     known = {r[0] for r in lemmas}
-    return lemmas + [r for r in forms if r[0] not in known]
+    return lemmas + merge_forms(r for r in forms if r[0] not in known)
+
+
+def merge_forms(forms):
+    by_surface = {}
+    for surface, ipa, pos, meaning, tier, kind, rel in forms:
+        row = by_surface.setdefault(surface, [surface, ipa, pos, [], tier, kind, rel])
+        if meaning not in row[3]:
+            row[3].append(meaning)
+    return [(s, i, p, ep.SENSE_JOIN.join(m[:MAX_SENSES]), t, k, r) for s, i, p, m, t, k, r in by_surface.values()]
 
 
 def existing_rows(pack_zst, scratch):

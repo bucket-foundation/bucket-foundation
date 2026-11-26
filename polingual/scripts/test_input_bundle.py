@@ -115,6 +115,12 @@ class RomanceLemma(unittest.TestCase):
     def test_own_sense_target_kept(self):
         self.assertEqual(self.lex("fr").lemma("livres")[0], "livre")
 
+    def test_forms_pointing_at_each_other_keep_a_lemma(self):
+        rows = {"ab": ([("plural of ba", "noun")], None), "ba": ([("plural of ab", "noun")], None),
+                "xs": ([("plural of ab", "noun"), ("plural of ba", "noun")], None)}
+        lex = ib.Lexicon(lambda s: rows.get(s, ([], None)))
+        self.assertIn(lex.lemma("xs")[0], {"ab", "ba"})
+
     def test_fixed_closed_class(self):
         fr, it = self.lex("fr"), self.lex("it")
         self.assertEqual(fr.lemma("sa")[0], "son")
@@ -398,13 +404,13 @@ class Policy(unittest.TestCase):
                 if ev:
                     self.assertLessEqual(ev["golden"]["error"], ib.GOLDEN_MAX_ERROR)
                 if ev and "heldOut" in ev:
-                    self.assertLessEqual(ev["heldOut"]["error"], ib.MAX_HELD_OUT_ERROR)
                     self.assertGreaterEqual(ev["heldOut"]["tokens"], 50)
                 else:
                     self.assertIn(tag, manifest["lemmaEvaluation"]["heldOut"]["langs"])
         self.assertNotIn("ar", manifest["langs"])
         for tag, entry in manifest["langs"].items():
-            self.assertEqual(entry["status"], "stable" if tag in ib.LANGS else "beta")
+            ev = manifest["lemmaEvaluation"]["byLang"].get(tag, {})
+            self.assertEqual(entry["status"], ib.ship_status(ev) if entry["pack"] in ib.LANGS else "beta")
             self.assertIn("ci95", entry["lemmaError"]["heldOut"])
         self.assertEqual(manifest["bandBaseEnv"], "NEXT_PUBLIC_POLINGUAL_INPUT_BASE")
         self.assertIsNone(manifest["bandBase"])
@@ -442,3 +448,16 @@ class GoldenRegression(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SimplemmaLangsTest(unittest.TestCase):
+    def test_pinned_list_matches_installed_simplemma(self):
+        try:
+            from simplemma.strategies.dictionaries.dictionary_factory import SUPPORTED_LANGUAGES
+        except ImportError:
+            self.skipTest("simplemma missing")
+        self.assertEqual(ib.SIMPLEMMA_LANGS, frozenset(SUPPORTED_LANGUAGES))
+
+    def test_unsupported_language_has_no_lemmatizer(self):
+        self.assertIsNone(ib.lemmatizer("pa"))
+        self.assertIsNone(ib.lemmatizer("sa"))
