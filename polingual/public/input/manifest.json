@@ -1,5 +1,23 @@
 {
- "bandBase": "http://127.0.0.1:54321/storage/v1/object/public/polingual-input",
+ "credits": [
+  "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
+  "Lemmas from Wiktionary via Kaikki (kaikki.org), CC BY-SA 3.0. Share-alike: lemma data and works adapted from it are distributed under CC BY-SA 3.0 or a compatible license, with attribution."
+ ],
+ "excluded": {
+  "ar": "golden lemma error 0.24 above 0.1",
+  "cs": "no 50-token held-out set drawn",
+  "el": "no 50-token held-out set drawn",
+  "fa": "no 50-token held-out set drawn",
+  "fi": "no 50-token held-out set drawn",
+  "he": "golden lemma error 0.24 above 0.1",
+  "id": "no 50-token held-out set drawn",
+  "pl": "no 50-token held-out set drawn",
+  "sv": "no 50-token held-out set drawn",
+  "ta": "35 Tatoeba sentences linked to the English pool, below 200",
+  "th": "no 50-token held-out set drawn",
+  "tr": "golden lemma error 0.18 above 0.1",
+  "vi": "no 50-token held-out set drawn"
+ },
  "format": "polingual-input",
  "inputs": {
   "index": "ad4f6e9aa58639b2e0dfc78344b17e9ae050c6d8be5e1e9475befbf4da68e0ce",
@@ -12,10 +30,12 @@
    "fa": "7a67f26d96bb9deebfe713f45906bef5a850ad095696e8ec0a8fbbcf8e1353cc",
    "fi": "90fc34966dbb0df2f69661c4ca84e8f8fa5a12ba798ebb2c47409a6c228be00e",
    "fr": "a3b9251a7a6a4790e37c58e2ea2a6707052088eccd727ce7d998d4caf525e433",
+   "hi": "41d82817ba85f109deb23a5d74d7b5100bba3b04ed2cd0d0e02c1d8342b253e7",
    "id": "0e30a68378e9bcf021921c97ef7339043652bc4c68ef762bdaa2e85e53362ca7",
    "it": "fc4ab3b3726064eb373c004d5bb1d60875e08efbba35abd8a3bf5c59b38edebb",
    "ja": "033cdff96ad6d67d685692c663927168a65d6420343ed55742df9b282ad3e19b",
    "ko": "159fabe3de971e8b0f0fe24351b5b73a45e47b631814e4b563eeb7be0927e239",
+   "nl": "16a2081388b3841c49185a18c32a3f8ffe4df1add12c897325e00b36486f620c",
    "pl": "1f7ed86f08f875002c11567d410be77413f8203eb86c8beca6ce27a28b9e798f",
    "pt": "419a460652224b1ce311626fad7bd92d7608274b6a7545ef5964c368bb21fbbc",
    "ru": "495a2c665446726a2ed7f29cf237370beb1fb8e37c0b3d15d5244b8c02aefe12",
@@ -24,7 +44,29 @@
    "zh": "e0c9a905007bff960047394f67b97067ee780dbf7dba7abeda5a0b8632490bb1"
   },
   "tatoeba": {
-   "eng_sentences_detailed": "c39d2fab0cc5bc2b798b539134b83abaf5dec723a059ce55496907d08e3e9030"
+   "cmn-eng_links": "8f576a5de794ccc86ab7f8f4e156e3f37c72b1d24d43e57c50dcd8d35b22443f",
+   "cmn_sentences_detailed": "7af009b234bbb21ed6a254c2b55fa7c81c9dd53509d0982cd92c1097573f9af5",
+   "deu-eng_links": "30f79bb84d2b579482bb43b15e90091595bde629063195555aeda535f6ecda2e",
+   "deu_sentences_detailed": "ec742488bb6fdd6e827a954141ab1aaa5650f5d9b2099837e91f310d3cfc5384",
+   "eng_sentences_detailed": "c39d2fab0cc5bc2b798b539134b83abaf5dec723a059ce55496907d08e3e9030",
+   "fra-eng_links": "1c6421927725d67cd87f39c3176e18623927c4cda9797dd87ca9a18830fb463d",
+   "fra_sentences_detailed": "07208a7630b7ec3e51d9cbbcd5112295cdba41de82cf35d41ab8797ae9a5802e",
+   "hin-eng_links": "f0d830095d2a25daf280cf9ccaa559510981e6d1686e44cde1323aab53eac5ae",
+   "hin_sentences_detailed": "596c48494d1e76ac7d5954d53a930342628cae9f4c884ae10c080986834bc10f",
+   "ita-eng_links": "f0f401cd887b3a1797a07b7254441738c252c36ad424f47217762767f8c381f1",
+   "ita_sentences_detailed": "b9fe8ed1fa358b3ac22e84510a2c60eaca721bc742f0492dd084e51d8a3f14f2",
+   "jpn-eng_links": "65e5b4ac3a3af435be2d417b9c79e00dcb1516efc6c73353cf52394efcfa975f",
+   "jpn_sentences_detailed": "e305ecf638ab24cd57b0b5f9fcdc342267ef4a3fdb19c71621f1a49baaf6d84f",
+   "kor-eng_links": "6d0815b117f1ae04fe3f90b93c3cd0eb72165b4f805d6444db272dceaaaa83e4",
+   "kor_sentences_detailed": "46fbeaa3cd0b2f140b303149e10881bc49978a3a822efe944b0c4ebabb3ea371",
+   "nld-eng_links": "c0460e79fc7ebb010524c43d1e64b12a38f8ed2c47e03743e77b544b1cc10c56",
+   "nld_sentences_detailed": "13a1fb9653463a09bb568519f187afebe541bb8f3875c6acab2a64753687d633",
+   "por-eng_links": "bebf6a4b96c63d6f69de28a4ae339b89e3e5cbcc5d0a8e91f991bcc02c8689ec",
+   "por_sentences_detailed": "b6ce9f877ea091e2c3a721e72cf1e0d5efb1d0507b4b0748cd4695b8faf42313",
+   "rus-eng_links": "89481cf3f9e522acf713f1be5e5c85c6b1fd4ba3afff06bfc57f302e772245c1",
+   "rus_sentences_detailed": "3993a545d85db1e60a9423c0165a909c0d52beba85070883adf93cf5abe3db5f",
+   "spa-eng_links": "abff2861bda7d801f44566abdf95d0ed0303a45ce6b6e869031146de53ebd8a5",
+   "spa_sentences_detailed": "086c80b7cbe5cbf3e6c77b27f591d680ea66c931e79a0d2573643fa362d6b36f"
   },
   "videos": {
    "-TcPOLkccaI.json": "192dad4b788ece428f9804fdcd5b74db38fb11e7317e4b8eab3f5b9c20b175f9",
@@ -32,23 +74,7 @@
    "GVwdwoC5Lvk.json": "15b05943f7f30efbdb11be0090df8a0b5499b4936686526dd34b5d648b2e1836"
   }
  },
- "langTags": "BCP-47",
  "langs": {
-  "ar": {
-   "coverage": {
-    "tokenShare": 0.7701,
-    "tokens": 3684,
-    "tokensMapped": 2837,
-    "typeShare": 0.6784,
-    "types": 1909,
-    "typesMapped": 1295
-   },
-   "file": "ar.0f1e7d016aa5.json",
-   "items": 27,
-   "tatoebaIdsMatched": 1266,
-   "tatoebaItems": 1266,
-   "units": 5
-  },
   "de": {
    "coverage": {
     "tokenShare": 0.9794,
@@ -58,155 +84,12 @@
     "types": 3078,
     "typesMapped": 2865
    },
-   "file": "de.add255f1ca61.json",
-   "graded": {
-    "bands": {
-     "1000": {
-      "sentence_set": 655
-     },
-     "2000": {
-      "sentence_set": 1249
-     },
-     "4000": {
-      "sentence_set": 1978
-     },
-     "500": {
-      "sentence_set": 305
-     },
-     "8000": {
-      "sentence_set": 2984
-     }
-    },
-    "files": {
-     "1000": [
-      {
-       "bytes": 1997077,
-       "file": "de.b1000.p0.160685a6a3eb.json",
-       "items": 2488,
-       "units": 512
-      },
-      {
-       "bytes": 550078,
-       "file": "de.b1000.p1.0f0c23b2808c.json",
-       "items": 692,
-       "units": 143
-      }
-     ],
-     "2000": [
-      {
-       "bytes": 1998838,
-       "file": "de.b2000.p0.27be54a132a0.json",
-       "items": 2456,
-       "units": 524
-      },
-      {
-       "bytes": 1997885,
-       "file": "de.b2000.p1.fac247c6cb94.json",
-       "items": 2505,
-       "units": 522
-      },
-      {
-       "bytes": 788512,
-       "file": "de.b2000.p2.caf575ea4463.json",
-       "items": 1000,
-       "units": 203
-      }
-     ],
-     "4000": [
-      {
-       "bytes": 1997114,
-       "file": "de.b4000.p0.69e57ffadd6d.json",
-       "items": 2448,
-       "units": 531
-      },
-      {
-       "bytes": 1997280,
-       "file": "de.b4000.p1.cb6a48c64084.json",
-       "items": 2495,
-       "units": 528
-      },
-      {
-       "bytes": 1998813,
-       "file": "de.b4000.p2.c2dfd6b0695e.json",
-       "items": 2480,
-       "units": 526
-      },
-      {
-       "bytes": 1516713,
-       "file": "de.b4000.p3.7d2a450e18bc.json",
-       "items": 1889,
-       "units": 393
-      }
-     ],
-     "500": [
-      {
-       "bytes": 1227547,
-       "file": "de.b500.p0.d14dc4c5b177.json",
-       "items": 1558,
-       "units": 305
-      }
-     ],
-     "8000": [
-      {
-       "bytes": 1999234,
-       "file": "de.b8000.p0.f2ad6b78ecfd.json",
-       "items": 2464,
-       "units": 527
-      },
-      {
-       "bytes": 1998536,
-       "file": "de.b8000.p1.f6b77f521d70.json",
-       "items": 2477,
-       "units": 531
-      },
-      {
-       "bytes": 1997239,
-       "file": "de.b8000.p2.d85679c2c9f3.json",
-       "items": 2478,
-       "units": 520
-      },
-      {
-       "bytes": 1998785,
-       "file": "de.b8000.p3.bb500e85c8ea.json",
-       "items": 2484,
-       "units": 521
-      },
-      {
-       "bytes": 1998949,
-       "file": "de.b8000.p4.bc2d7b73ad0c.json",
-       "items": 2501,
-       "units": 518
-      },
-      {
-       "bytes": 1425883,
-       "file": "de.b8000.p5.77104323a71c.json",
-       "items": 1775,
-       "units": 367
-      }
-     ]
-    },
-    "tatoebaSentencesUsable": 663953
-   },
+   "file": "de.07d9945bc428.json",
    "items": 447,
-   "tag": "de",
+   "pack": "de",
    "tatoebaIdsMatched": 4008,
    "tatoebaItems": 4008,
    "units": 84
-  },
-  "el": {
-   "coverage": {
-    "tokenShare": 0.9455,
-    "tokens": 4748,
-    "tokensMapped": 4489,
-    "typeShare": 0.918,
-    "types": 1463,
-    "typesMapped": 1343
-   },
-   "file": "el.ea80a963dffb.json",
-   "items": 60,
-   "tatoebaIdsMatched": 1213,
-   "tatoebaItems": 1213,
-   "units": 12
   },
   "es": {
    "coverage": {
@@ -217,152 +100,12 @@
     "types": 2804,
     "typesMapped": 2712
    },
-   "file": "es.85c42f78ad36.json",
-   "graded": {
-    "bands": {
-     "1000": {
-      "sentence_set": 455
-     },
-     "2000": {
-      "sentence_set": 861
-     },
-     "4000": {
-      "sentence_set": 1567
-     },
-     "500": {
-      "sentence_set": 201
-     },
-     "8000": {
-      "sentence_set": 2482
-     }
-    },
-    "files": {
-     "1000": [
-      {
-       "bytes": 1836734,
-       "file": "es.b1000.p0.8b4433ed030c.json",
-       "items": 2337,
-       "units": 455
-      }
-     ],
-     "2000": [
-      {
-       "bytes": 1996625,
-       "file": "es.b2000.p0.4c9b0d71e15a.json",
-       "items": 2494,
-       "units": 523
-      },
-      {
-       "bytes": 1356487,
-       "file": "es.b2000.p1.640894c4d95f.json",
-       "items": 1691,
-       "units": 338
-      }
-     ],
-     "4000": [
-      {
-       "bytes": 1998230,
-       "file": "es.b4000.p0.ddc02bc50f90.json",
-       "items": 2480,
-       "units": 533
-      },
-      {
-       "bytes": 1998314,
-       "file": "es.b4000.p1.5c4b1a199417.json",
-       "items": 2473,
-       "units": 516
-      },
-      {
-       "bytes": 1998266,
-       "file": "es.b4000.p2.084b5e447da8.json",
-       "items": 2477,
-       "units": 504
-      },
-      {
-       "bytes": 57909,
-       "file": "es.b4000.p3.dce94eb0c9da.json",
-       "items": 75,
-       "units": 14
-      }
-     ],
-     "500": [
-      {
-       "bytes": 813102,
-       "file": "es.b500.p0.0a1e26e9df92.json",
-       "items": 1038,
-       "units": 201
-      }
-     ],
-     "8000": [
-      {
-       "bytes": 1997983,
-       "file": "es.b8000.p0.d6d456d89034.json",
-       "items": 2483,
-       "units": 533
-      },
-      {
-       "bytes": 1997633,
-       "file": "es.b8000.p1.03463667dda0.json",
-       "items": 2490,
-       "units": 522
-      },
-      {
-       "bytes": 1995970,
-       "file": "es.b8000.p2.eda090d6b64b.json",
-       "items": 2488,
-       "units": 517
-      },
-      {
-       "bytes": 1996607,
-       "file": "es.b8000.p3.cd76fffa0a8b.json",
-       "items": 2482,
-       "units": 516
-      },
-      {
-       "bytes": 1563850,
-       "file": "es.b8000.p4.92955d60cc7a.json",
-       "items": 1973,
-       "units": 394
-      }
-     ]
-    },
-    "tatoebaSentencesUsable": 395591
-   },
+   "file": "es.fab021e6f3e5.json",
    "items": 359,
-   "tag": "es",
+   "pack": "es",
    "tatoebaIdsMatched": 3287,
    "tatoebaItems": 3287,
    "units": 70
-  },
-  "fa": {
-   "coverage": {
-    "tokenShare": 0.9423,
-    "tokens": 884,
-    "tokensMapped": 833,
-    "typeShare": 0.9028,
-    "types": 494,
-    "typesMapped": 446
-   },
-   "file": "fa.56756ec9edcd.json",
-   "items": 11,
-   "tatoebaIdsMatched": 206,
-   "tatoebaItems": 206,
-   "units": 2
-  },
-  "fi": {
-   "coverage": {
-    "tokenShare": 0.9675,
-    "tokens": 6608,
-    "tokensMapped": 6393,
-    "typeShare": 0.9652,
-    "types": 2618,
-    "typesMapped": 2527
-   },
-   "file": "fi.614ea4740562.json",
-   "items": 41,
-   "tatoebaIdsMatched": 2123,
-   "tatoebaItems": 2123,
-   "units": 7
   },
   "fr": {
    "coverage": {
@@ -373,167 +116,28 @@
     "types": 2824,
     "typesMapped": 2740
    },
-   "file": "fr.8ad27157c704.json",
-   "graded": {
-    "bands": {
-     "1000": {
-      "sentence_set": 834
-     },
-     "2000": {
-      "sentence_set": 1423
-     },
-     "4000": {
-      "sentence_set": 2568
-     },
-     "500": {
-      "sentence_set": 428
-     },
-     "8000": {
-      "sentence_set": 3646
-     }
-    },
-    "files": {
-     "1000": [
-      {
-       "bytes": 1995436,
-       "file": "fr.b1000.p0.108b63ef59ea.json",
-       "items": 2430,
-       "units": 528
-      },
-      {
-       "bytes": 1187888,
-       "file": "fr.b1000.p1.23b5d18dbccf.json",
-       "items": 1473,
-       "units": 306
-      }
-     ],
-     "2000": [
-      {
-       "bytes": 1996949,
-       "file": "fr.b2000.p0.76e479077744.json",
-       "items": 2403,
-       "units": 532
-      },
-      {
-       "bytes": 1999314,
-       "file": "fr.b2000.p1.70e037301948.json",
-       "items": 2427,
-       "units": 531
-      },
-      {
-       "bytes": 1380754,
-       "file": "fr.b2000.p2.0ace0caecf82.json",
-       "items": 1693,
-       "units": 360
-      }
-     ],
-     "4000": [
-      {
-       "bytes": 1998538,
-       "file": "fr.b4000.p0.be666ad2109f.json",
-       "items": 2376,
-       "units": 536
-      },
-      {
-       "bytes": 1996784,
-       "file": "fr.b4000.p1.0344d273b81d.json",
-       "items": 2409,
-       "units": 534
-      },
-      {
-       "bytes": 1998227,
-       "file": "fr.b4000.p2.f9835347fd28.json",
-       "items": 2415,
-       "units": 529
-      },
-      {
-       "bytes": 1998801,
-       "file": "fr.b4000.p3.aad1a16c6e91.json",
-       "items": 2430,
-       "units": 528
-      },
-      {
-       "bytes": 1667523,
-       "file": "fr.b4000.p4.5f33b0c8e05b.json",
-       "items": 2042,
-       "units": 441
-      }
-     ],
-     "500": [
-      {
-       "bytes": 1669076,
-       "file": "fr.b500.p0.71513a9195f8.json",
-       "items": 2095,
-       "units": 428
-      }
-     ],
-     "8000": [
-      {
-       "bytes": 1998648,
-       "file": "fr.b8000.p0.4131d246ec13.json",
-       "items": 2368,
-       "units": 536
-      },
-      {
-       "bytes": 1997850,
-       "file": "fr.b8000.p1.ab0490c59696.json",
-       "items": 2392,
-       "units": 537
-      },
-      {
-       "bytes": 1998142,
-       "file": "fr.b8000.p2.c7fa49051260.json",
-       "items": 2417,
-       "units": 533
-      },
-      {
-       "bytes": 1996023,
-       "file": "fr.b8000.p3.2605a79614e5.json",
-       "items": 2430,
-       "units": 538
-      },
-      {
-       "bytes": 1998818,
-       "file": "fr.b8000.p4.b2969ce3726a.json",
-       "items": 2457,
-       "units": 536
-      },
-      {
-       "bytes": 1995783,
-       "file": "fr.b8000.p5.ec05bec46b56.json",
-       "items": 2447,
-       "units": 531
-      },
-      {
-       "bytes": 1632433,
-       "file": "fr.b8000.p6.7f655601ba3d.json",
-       "items": 2035,
-       "units": 435
-      }
-     ]
-    },
-    "tatoebaSentencesUsable": 669085
-   },
+   "file": "fr.f2720def4270.json",
    "items": 552,
-   "tag": "fr",
+   "pack": "fr",
    "tatoebaIdsMatched": 3757,
    "tatoebaItems": 3759,
    "units": 109
   },
-  "id": {
+  "hi": {
    "coverage": {
-    "tokenShare": 0.9567,
-    "tokens": 2469,
-    "tokensMapped": 2362,
-    "typeShare": 0.9205,
-    "types": 843,
-    "typesMapped": 776
+    "tokenShare": 0.9434,
+    "tokens": 3765,
+    "tokensMapped": 3552,
+    "typeShare": 0.895,
+    "types": 1143,
+    "typesMapped": 1023
    },
-   "file": "id.83dafb7255e5.json",
-   "items": 30,
-   "tatoebaIdsMatched": 721,
-   "tatoebaItems": 721,
-   "units": 5
+   "file": "hi.e3be23ff1874.json",
+   "items": 143,
+   "pack": "hi",
+   "tatoebaIdsMatched": 746,
+   "tatoebaItems": 746,
+   "units": 29
   },
   "it": {
    "coverage": {
@@ -544,119 +148,9 @@
     "types": 3269,
     "typesMapped": 3110
    },
-   "file": "it.078df54d099a.json",
-   "graded": {
-    "bands": {
-     "1000": {
-      "sentence_set": 478
-     },
-     "2000": {
-      "sentence_set": 967
-     },
-     "4000": {
-      "sentence_set": 1665
-     },
-     "500": {
-      "sentence_set": 188
-     },
-     "8000": {
-      "sentence_set": 2462
-     }
-    },
-    "files": {
-     "1000": [
-      {
-       "bytes": 1972406,
-       "file": "it.b1000.p0.61adb6467b74.json",
-       "items": 2517,
-       "units": 478
-      }
-     ],
-     "2000": [
-      {
-       "bytes": 1995960,
-       "file": "it.b2000.p0.0c617a1b9d0d.json",
-       "items": 2521,
-       "units": 507
-      },
-      {
-       "bytes": 1879952,
-       "file": "it.b2000.p1.347824c617c4.json",
-       "items": 2413,
-       "units": 460
-      }
-     ],
-     "4000": [
-      {
-       "bytes": 1997829,
-       "file": "it.b4000.p0.33c4b137ea61.json",
-       "items": 2524,
-       "units": 516
-      },
-      {
-       "bytes": 1999258,
-       "file": "it.b4000.p1.043a30074466.json",
-       "items": 2525,
-       "units": 504
-      },
-      {
-       "bytes": 1996815,
-       "file": "it.b4000.p2.07b42cd270d2.json",
-       "items": 2563,
-       "units": 498
-      },
-      {
-       "bytes": 595670,
-       "file": "it.b4000.p3.17142b3f444e.json",
-       "items": 759,
-       "units": 147
-      }
-     ],
-     "500": [
-      {
-       "bytes": 791478,
-       "file": "it.b500.p0.22a898527726.json",
-       "items": 1029,
-       "units": 188
-      }
-     ],
-     "8000": [
-      {
-       "bytes": 1998133,
-       "file": "it.b8000.p0.af14dc6310fe.json",
-       "items": 2529,
-       "units": 523
-      },
-      {
-       "bytes": 1998458,
-       "file": "it.b8000.p1.bd7ef7da85bf.json",
-       "items": 2544,
-       "units": 517
-      },
-      {
-       "bytes": 1998146,
-       "file": "it.b8000.p2.9eb904ea4650.json",
-       "items": 2562,
-       "units": 514
-      },
-      {
-       "bytes": 1998791,
-       "file": "it.b8000.p3.320913f4a487.json",
-       "items": 2571,
-       "units": 504
-      },
-      {
-       "bytes": 1608478,
-       "file": "it.b8000.p4.5bef4f5bd7fd.json",
-       "items": 2077,
-       "units": 404
-      }
-     ]
-    },
-    "tatoebaSentencesUsable": 902985
-   },
+   "file": "it.15594fcfdd41.json",
    "items": 379,
-   "tag": "it",
+   "pack": "it",
    "tatoebaIdsMatched": 4756,
    "tatoebaItems": 4757,
    "units": 72
@@ -670,8 +164,9 @@
     "types": 3461,
     "typesMapped": 3103
    },
-   "file": "ja.cc09d02c2978.json",
+   "file": "ja.b680da0f0e94.json",
    "items": 923,
+   "pack": "ja",
    "tatoebaIdsMatched": 3084,
    "tatoebaItems": 3084,
    "units": 182
@@ -685,26 +180,28 @@
     "types": 1485,
     "typesMapped": 1361
    },
-   "file": "ko.3ebb839c4568.json",
+   "file": "ko.1af70d28e3bd.json",
    "items": 138,
+   "pack": "ko",
    "tatoebaIdsMatched": 768,
    "tatoebaItems": 768,
    "units": 27
   },
-  "pl": {
+  "nl": {
    "coverage": {
-    "tokenShare": 0.9626,
-    "tokens": 7003,
-    "tokensMapped": 6741,
-    "typeShare": 0.9632,
-    "types": 2525,
-    "typesMapped": 2432
+    "tokenShare": 0.9876,
+    "tokens": 13677,
+    "tokensMapped": 13507,
+    "typeShare": 0.9404,
+    "types": 2231,
+    "typesMapped": 2098
    },
-   "file": "pl.a6564de0b65e.json",
-   "items": 68,
-   "tatoebaIdsMatched": 2148,
-   "tatoebaItems": 2148,
-   "units": 12
+   "file": "nl.a699bf0fa7bd.json",
+   "items": 210,
+   "pack": "nl",
+   "tatoebaIdsMatched": 3384,
+   "tatoebaItems": 3384,
+   "units": 39
   },
   "pt": {
    "coverage": {
@@ -715,119 +212,9 @@
     "types": 2643,
     "typesMapped": 2572
    },
-   "file": "pt.b08c9279384e.json",
-   "graded": {
-    "bands": {
-     "1000": {
-      "sentence_set": 510
-     },
-     "2000": {
-      "sentence_set": 910
-     },
-     "4000": {
-      "sentence_set": 1532
-     },
-     "500": {
-      "sentence_set": 207
-     },
-     "8000": {
-      "sentence_set": 2321
-     }
-    },
-    "files": {
-     "1000": [
-      {
-       "bytes": 1996454,
-       "file": "pt.b1000.p0.e21c2b210ea2.json",
-       "items": 2508,
-       "units": 499
-      },
-      {
-       "bytes": 44590,
-       "file": "pt.b1000.p1.8d77329d8c52.json",
-       "items": 58,
-       "units": 11
-      }
-     ],
-     "2000": [
-      {
-       "bytes": 1998418,
-       "file": "pt.b2000.p0.c8ab1e5af6cc.json",
-       "items": 2487,
-       "units": 512
-      },
-      {
-       "bytes": 1565389,
-       "file": "pt.b2000.p1.991c51e19758.json",
-       "items": 1982,
-       "units": 398
-      }
-     ],
-     "4000": [
-      {
-       "bytes": 1997814,
-       "file": "pt.b4000.p0.de2f9f311279.json",
-       "items": 2477,
-       "units": 516
-      },
-      {
-       "bytes": 1998691,
-       "file": "pt.b4000.p1.33807fe7b6fa.json",
-       "items": 2519,
-       "units": 519
-      },
-      {
-       "bytes": 1912311,
-       "file": "pt.b4000.p2.8e6c5d81575d.json",
-       "items": 2462,
-       "units": 497
-      }
-     ],
-     "500": [
-      {
-       "bytes": 835869,
-       "file": "pt.b500.p0.967044a27b88.json",
-       "items": 1059,
-       "units": 207
-      }
-     ],
-     "8000": [
-      {
-       "bytes": 1997832,
-       "file": "pt.b8000.p0.22f152e6882b.json",
-       "items": 2479,
-       "units": 527
-      },
-      {
-       "bytes": 1997077,
-       "file": "pt.b8000.p1.9611ee8dd534.json",
-       "items": 2525,
-       "units": 525
-      },
-      {
-       "bytes": 1996879,
-       "file": "pt.b8000.p2.f34e0b14c797.json",
-       "items": 2566,
-       "units": 523
-      },
-      {
-       "bytes": 1997171,
-       "file": "pt.b8000.p3.ecf8b6807578.json",
-       "items": 2628,
-       "units": 535
-      },
-      {
-       "bytes": 793544,
-       "file": "pt.b8000.p4.ea5734525525.json",
-       "items": 1042,
-       "units": 211
-      }
-     ]
-    },
-    "tatoebaSentencesUsable": 401792
-   },
+   "file": "pt.ca5a9c57d682.json",
    "items": 328,
-   "tag": "pt",
+   "pack": "pt",
    "tatoebaIdsMatched": 3345,
    "tatoebaItems": 3346,
    "units": 62
@@ -841,43 +228,14 @@
     "types": 5131,
     "typesMapped": 4889
    },
-   "file": "ru.055fd929d2a1.json",
+   "file": "ru.723a2a05c357.json",
    "items": 269,
+   "pack": "ru",
    "tatoebaIdsMatched": 5943,
    "tatoebaItems": 5943,
    "units": 49
   },
-  "th": {
-   "coverage": {
-    "tokenShare": 0.9322,
-    "tokens": 958,
-    "tokensMapped": 893,
-    "typeShare": 0.8688,
-    "types": 404,
-    "typesMapped": 351
-   },
-   "file": "th.5b40960a9100.json",
-   "items": 5,
-   "tatoebaIdsMatched": 274,
-   "tatoebaItems": 274,
-   "units": 1
-  },
-  "vi": {
-   "coverage": {
-    "tokenShare": 0.9612,
-    "tokens": 1806,
-    "tokensMapped": 1736,
-    "typeShare": 0.9516,
-    "types": 620,
-    "typesMapped": 590
-   },
-   "file": "vi.3102801818c7.json",
-   "items": 27,
-   "tatoebaIdsMatched": 433,
-   "tatoebaItems": 433,
-   "units": 5
-  },
-  "zh": {
+  "zh-Hans": {
    "coverage": {
     "tokenShare": 0.9516,
     "tokens": 9420,
@@ -886,8 +244,9 @@
     "types": 2692,
     "typesMapped": 2418
    },
-   "file": "zh.7df729846987.json",
+   "file": "zh-Hans.a2160d8810f7.json",
    "items": 340,
+   "pack": "zh",
    "tatoebaIdsMatched": 1918,
    "tatoebaItems": 1918,
    "units": 67
@@ -897,157 +256,330 @@
   "byLang": {
    "ar": {
     "golden": {
+     "ci95": [
+      0.143,
+      0.374
+     ],
      "error": 0.24,
+     "errors": 12,
      "tokens": 50
-    },
-    "heldOut": {
+    }
+   },
+   "cs": {
+    "golden": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
      "error": 0.1,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "errors": 5,
+     "tokens": 50
+    }
+   },
+   "de": {
+    "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
+     "tokens": 50
     }
    },
    "el": {
     "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
      "error": 0.04,
+     "errors": 2,
      "tokens": 50
-    },
-    "heldOut": {
-     "error": 0.05,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
+    }
+   },
+   "es": {
+    "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
+     "error": 0.0,
+     "errors": 0,
+     "tokens": 50
     }
    },
    "fa": {
     "golden": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
      "error": 0.06,
+     "errors": 3,
      "tokens": 50
-    },
-    "heldOut": {
-     "error": 0.1,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
     }
    },
    "fi": {
     "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
      "error": 0.04,
+     "errors": 2,
+     "tokens": 50
+    }
+   },
+   "fr": {
+    "golden": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
+     "tokens": 50
+    }
+   },
+   "he": {
+    "golden": {
+     "ci95": [
+      0.143,
+      0.374
+     ],
+     "error": 0.24,
+     "errors": 12,
+     "tokens": 50
+    }
+   },
+   "hi": {
+    "golden": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
+     "error": 0.1,
+     "errors": 5,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.05,
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
     }
    },
    "id": {
     "golden": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
      "error": 0.02,
+     "errors": 1,
      "tokens": 50
-    },
-    "heldOut": {
+    }
+   },
+   "it": {
+    "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
      "error": 0.0,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "errors": 0,
+     "tokens": 50
     }
    },
    "ja": {
     "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
      "error": 0.0,
+     "errors": 0,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.0,
+     "ci95": [
+      0.011,
+      0.135
+     ],
+     "error": 0.04,
+     "errors": 2,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
     }
    },
    "ko": {
     "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
      "error": 0.04,
+     "errors": 2,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.1,
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
+    }
+   },
+   "nl": {
+    "golden": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "tokens": 50
+    },
+    "heldOut": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "file": "scripts/input_heldout.json",
+     "tokens": 50
     }
    },
    "pl": {
     "golden": {
+     "ci95": [
+      0.043,
+      0.214
+     ],
      "error": 0.1,
+     "errors": 5,
      "tokens": 50
-    },
-    "heldOut": {
-     "error": 0.0,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
+    }
+   },
+   "pt": {
+    "golden": {
+     "ci95": [
+      0.032,
+      0.188
+     ],
+     "error": 0.08,
+     "errors": 4,
+     "tokens": 50
     }
    },
    "ru": {
     "golden": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
      "error": 0.02,
+     "errors": 1,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.05,
+     "ci95": [
+      0.004,
+      0.105
+     ],
+     "error": 0.02,
+     "errors": 1,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
+    }
+   },
+   "sv": {
+    "golden": {
+     "ci95": [
+      0.021,
+      0.162
+     ],
+     "error": 0.06,
+     "errors": 3,
+     "tokens": 50
     }
    },
    "th": {
     "golden": {
+     "ci95": [
+      0.004,
+      0.105
+     ],
      "error": 0.02,
+     "errors": 1,
+     "tokens": 50
+    }
+   },
+   "tr": {
+    "golden": {
+     "ci95": [
+      0.098,
+      0.308
+     ],
+     "error": 0.18,
+     "errors": 9,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.0,
+     "ci95": [
+      0.07,
+      0.262
+     ],
+     "error": 0.14,
+     "errors": 7,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
     }
    },
    "vi": {
     "golden": {
+     "ci95": [
+      0.0,
+      0.071
+     ],
      "error": 0.0,
+     "errors": 0,
      "tokens": 50
-    },
-    "heldOut": {
-     "error": 0.0,
-     "file": "scripts/input_heldout.json",
-     "tokens": 20
     }
    },
-   "zh": {
+   "zh-Hans": {
     "golden": {
+     "ci95": [
+      0.011,
+      0.135
+     ],
      "error": 0.04,
+     "errors": 2,
      "tokens": 50
     },
     "heldOut": {
-     "error": 0.05,
+     "ci95": [
+      0.032,
+      0.188
+     ],
+     "error": 0.08,
+     "errors": 4,
      "file": "scripts/input_heldout.json",
-     "tokens": 20
+     "tokens": 50
     }
    }
   },
   "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
-  "goldenError": {
-   "ar": 0.24,
-   "de": 0.04,
-   "el": 0.04,
-   "es": 0.0,
-   "fa": 0.06,
-   "fi": 0.04,
-   "fr": 0.02,
-   "id": 0.02,
-   "it": 0.0,
-   "ja": 0.0,
-   "ko": 0.04,
-   "pl": 0.1,
-   "pt": 0.08,
-   "ru": 0.02,
-   "th": 0.02,
-   "vi": 0.0,
-   "zh": 0.04
-  },
+  "goldenMaxError": 0.1,
   "goldenTunedRules": true,
   "heldOut": {
    "by": "critic round 2",
@@ -1056,16 +588,18 @@
     "es nos mapped to no",
     "pt mostra"
    ],
+   "langs": [
+    "es",
+    "fr",
+    "it",
+    "pt",
+    "de"
+   ],
    "tokens": 100
-  }
+  },
+  "heldOutMaxError": 0.1,
+  "interval": "Wilson score, 95%",
+  "minUnits": 20
  },
- "skipped": {
-  "cs": "held-out lemma error 0.20 above 0.1",
-  "he": "held-out lemma error 0.25 above 0.1",
-  "hi": "held-out lemma error 0.15 above 0.1",
-  "nl": "held-out lemma error 0.15 above 0.1",
-  "sv": "held-out lemma error 0.15 above 0.1",
-  "ta": "35 Tatoeba sentences linked to the English pool, below 200",
-  "tr": "held-out lemma error 0.25 above 0.1"
- }
+ "tags": "BCP 47"
 }

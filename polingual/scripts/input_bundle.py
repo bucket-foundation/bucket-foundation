@@ -3,6 +3,7 @@ import argparse
 import bz2
 import hashlib
 import json
+import math
 import os
 import re
 import sqlite3
@@ -57,14 +58,23 @@ ELISION_TAILS = ("e", "a", "o", "")
 RANK_MARGIN = 200
 STOP_SHARE = 0.05
 INF = float("inf")
-GOLDEN_MAX_ERROR = {"es": 0.0, "fr": 0.02, "it": 0.0, "pt": 0.08, "de": 0.04, "pl": 0.10, "ru": 0.02, "fi": 0.04,
-                    "el": 0.04, "id": 0.02, "ar": 0.24, "fa": 0.06, "ko": 0.04, "ja": 0.0, "zh": 0.04, "th": 0.02, "vi": 0.0}
+GOLDEN_MAX_ERROR = 0.10
+MIN_UNITS = 20
+BCP47 = {"zh": "zh-Hans"}
 LEMMA_EVALUATION = {
     "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
     "goldenTunedRules": True,
-    "goldenError": GOLDEN_MAX_ERROR,
-    "heldOut": {"tokens": 100, "errors": 2, "examples": ["es nos mapped to no", "pt mostra"], "by": "critic round 2"},
+    "goldenMaxError": GOLDEN_MAX_ERROR,
+    "heldOutMaxError": MAX_HELD_OUT_ERROR,
+    "minUnits": MIN_UNITS,
+    "interval": "Wilson score, 95%",
+    "heldOut": {"tokens": 100, "errors": 2, "examples": ["es nos mapped to no", "pt mostra"], "by": "critic round 2",
+                "langs": ["es", "fr", "it", "pt", "de"]},
 }
+KAIKKI_CREDIT = ("Lemmas from Wiktionary via Kaikki (kaikki.org), CC BY-SA 3.0. Share-alike: lemma data and "
+                 "works adapted from it are distributed under CC BY-SA 3.0 or a compatible license, with attribution.")
+TATOEBA_CREDIT = ("Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and "
+                  "authors; each unit carries a credit line.")
 CLOSED_CLASS = {
     "es": {"a": "a", "al": "a"},
     "fr": {"a": "avoir"},
@@ -464,8 +474,8 @@ def build_lang(lang, lex, pool, videos, meta=None, en_authors=None):
     return {
         "format": "polingual-input", "version": 1, "lang": lang,
         "attribution": [
-            "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
-            "Lemmas from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+            TATOEBA_CREDIT,
+            KAIKKI_CREDIT,
         ],
         "coverage": coverage(tat + vid_items),
         "tatoebaIdsMatched": sum(1 for it in tat if len(it["source"]["sentenceIds"]) > 1),
@@ -558,6 +568,70 @@ def golden_error_rate(lex, rows):
     return len(wrong) / len(rows), wrong
 
 
+def wilson(errors, n, z=1.96):
+    if not n:
+        return [0.0, 1.0]
+    p = errors / n
+    centre = (p + z * z / (2 * n)) / (1 + z * z / n)
+    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / (1 + z * z / n)
+    return [round(max(0.0, centre - half), 3), round(min(1.0, centre + half), 3)]
+
+
+def error_report(lex, rows):
+    rate, wrong = golden_error_rate(lex, rows)
+    return {"tokens": len(rows), "errors": len(wrong), "error": round(rate, 3), "ci95": wilson(len(wrong), len(rows))}
+
+
+def evaluate(lex, golden_rows, held_rows):
+    out = {}
+    if golden_rows:
+        out["golden"] = error_report(lex, golden_rows)
+    if held_rows:
+        out["heldOut"] = {**error_report(lex, held_rows), "file": "scripts/input_heldout.json"}
+    return out
+
+
+def gate(lang, sentences, evaluation):
+    if lang not in LANGS and sentences < MIN_SENTENCES:
+        return f"{sentences} Tatoeba sentences linked to the English pool, below {MIN_SENTENCES}"
+    if evaluation.get("golden", {}).get("error", 0) > GOLDEN_MAX_ERROR:
+        return f"golden lemma error {evaluation['golden']['error']:.2f} above {GOLDEN_MAX_ERROR}"
+    if lang not in LANGS and "heldOut" not in evaluation:
+        return "no 50-token held-out set drawn"
+    if evaluation.get("heldOut", {}).get("error", 0) > MAX_HELD_OUT_ERROR:
+        return f"held-out lemma error {evaluation['heldOut']['error']:.2f} above {MAX_HELD_OUT_ERROR}"
+    return None
+
+
+def display_forms(bundle):
+    lang = bundle["lang"]
+    tag = BCP47.get(lang, lang)
+    bundle["lang"] = tag
+    if lang != "zh":
+        for it in bundle["items"]:
+            it["lang"] = tag
+        return bundle
+    from opencc import OpenCC
+    simple = OpenCC("t2s").convert
+    for it in bundle["items"]:
+        it["lang"] = tag
+        it["text"] = simple(it["text"])
+        for t in it.get("tokens", []):
+            t["surface"] = simple(t["surface"])
+            t["display"] = simple(t["lemma"])
+    return bundle
+
+
+def write_sample(bundle, out):
+    unit = bundle["units"][0] if bundle["units"] else None
+    ids = set(unit["itemIds"]) if unit else set()
+    sample = {**{k: v for k, v in bundle.items() if k not in ("items", "units")},
+              "items": [it for it in bundle["items"] if it["id"] in ids], "units": [unit] if unit else []}
+    (out / "sample").mkdir(exist_ok=True)
+    (out / "sample" / f"{bundle['lang']}.json").write_text(
+        json.dumps(sample, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
+
+
 def golden_lexicon(lang, a):
     lex = open_lexicon(lang, a.packs, a.scratch, a.index)
     if lang not in LANGS and a.tatoeba:
@@ -623,6 +697,7 @@ def main(argv=None):
     en_authors = tatoeba_en_authors(a.tatoeba, set(pool))
     manifest_path = a.out / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
+    manifest["credits"] = [TATOEBA_CREDIT, KAIKKI_CREDIT]
     manifest["lemmaEvaluation"] = {**LEMMA_EVALUATION, "byLang": manifest.get("lemmaEvaluation", {}).get("byLang", {})}
     manifest["bandBase"] = os.environ.get("NEXT_PUBLIC_POLINGUAL_INPUT_BASE") or manifest.get("bandBase")
     manifest["langTags"] = "BCP-47"
@@ -630,33 +705,32 @@ def main(argv=None):
     inputs["layers"] = sha(a.layers)
     inputs["videos"] = {p.name: sha(p) for p in video_paths}
     inputs["index"] = sha(a.index)
-    inputs["tatoeba"] = {"eng_sentences_detailed": sha(a.tatoeba / "eng_sentences_detailed.tsv.bz2")}
+    inputs.setdefault("tatoeba", {})["eng_sentences_detailed"] = sha(a.tatoeba / "eng_sentences_detailed.tsv.bz2")
     inputs.setdefault("packs", {})
     held = json.loads(HELD_OUT.read_text()) if HELD_OUT.exists() else {}
-    skipped = manifest.setdefault("skipped", {})
+    gold = json.loads(GOLDEN.read_text())
+    manifest.pop("skipped", None)
+    excluded = manifest.setdefault("excluded", {})
+    by_lang = manifest["lemmaEvaluation"]["byLang"]
     for lang in langs:
+        tag = BCP47.get(lang, lang)
+        for key in {tag, lang}:
+            manifest["langs"].pop(key, None)
+            by_lang.pop(key, None)
+        excluded.pop(tag, None)
         lex = open_lexicon(lang, a.packs, a.scratch, a.index)
         lang_pool = pool if lang in LANGS else augment_pool(a.tatoeba, lang, pool)
         if lang not in LANGS:
             lex.learn_names(p["t"][lang] for p in lang_pool.values() if lang in p["t"])
         n = sum(1 for p in lang_pool.values() if lang in p["t"])
-        if lang not in LANGS and n < MIN_SENTENCES:
-            skipped[lang] = f"{n} Tatoeba sentences linked to the English pool, below {MIN_SENTENCES}"
-            print(lang, "skipped:", skipped[lang], file=sys.stderr)
+        evaluation = evaluate(lex, gold.get(lang), held.get(lang))
+        if evaluation:
+            by_lang[tag] = evaluation
+        reason = gate(lang, n, evaluation)
+        if reason:
+            excluded[tag] = reason
+            print(lang, "excluded:", reason, file=sys.stderr)
             continue
-        if lang in held:
-            rate, _ = golden_error_rate(lex, held[lang])
-            if rate > MAX_HELD_OUT_ERROR:
-                skipped[lang] = f"held-out lemma error {rate:.2f} above {MAX_HELD_OUT_ERROR}"
-                print(lang, "skipped:", skipped[lang], file=sys.stderr)
-                continue
-        skipped.pop(lang, None)
-        if lang in held:
-            g_rate, _ = golden_error_rate(lex, json.loads(GOLDEN.read_text())[lang])
-            manifest["lemmaEvaluation"].setdefault("byLang", {})[lang] = {
-                "golden": {"tokens": 50, "error": round(g_rate, 3)},
-                "heldOut": {"tokens": len(held[lang]), "error": round(rate, 3), "file": "scripts/input_heldout.json"},
-            }
         b = build_lang(lang, lex, lang_pool, videos, tatoeba_meta(a.tatoeba, lang, lang_pool), en_authors)
         graded = None
         if a.ranks:
@@ -667,20 +741,26 @@ def main(argv=None):
             graded["files"] = {}
             for band, chunks in parts.items():
                 graded["files"][str(band)] = []
-                for n, part in enumerate(chunks):
-                    f = write_bundle(part, a.bands_out, f"b{band}.p{n}")
+                for k, part in enumerate(chunks):
+                    f = write_bundle(display_forms(part), a.bands_out, f"b{band}.p{k}")
                     graded["files"][str(band)].append({"file": f, "units": len(part["units"]), "items": len(part["items"]),
                                                        "bytes": (a.bands_out / f).stat().st_size})
+        b = display_forms(b)
         name = write_bundle(b, a.out)
         inputs["packs"][lang] = sha(a.packs / lang / f"polingual-{lang}.sqlite.zst")
         for f in (f"{ISO3[lang]}-eng_links.tsv.bz2", f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
             inputs["tatoeba"][f.removesuffix(".tsv.bz2")] = sha(a.tatoeba / f)
-        manifest["langs"][lang] = {"tag": lang, "file": name, "items": len(b["items"]), "units": len(b["units"]),
-                                   "coverage": b["coverage"],
-                                   "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"],
-                                   **({"graded": graded} if graded else {})}
-        print(lang, name, len(b["items"]), len(b["units"]), b["tatoebaIdsMatched"], b["tatoebaItems"],
-              json.dumps(b["coverage"]), file=sys.stderr)
+        entry = {"tag": tag, "file": name, "pack": lang, "items": len(b["items"]), "units": len(b["units"]),
+                 "coverage": b["coverage"],
+                 "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"],
+                 **({"graded": graded} if graded else {})}
+        write_sample(b, a.out)
+        if len(b["units"]) < MIN_UNITS:
+            excluded[tag] = f"built with {len(b['units'])} units, below {MIN_UNITS}; held out of the manifest"
+            print(lang, "excluded:", excluded[tag], file=sys.stderr)
+            continue
+        manifest["langs"][tag] = entry
+        print(lang, name, len(b["items"]), len(b["units"]), json.dumps(b["coverage"]), file=sys.stderr)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
 
 

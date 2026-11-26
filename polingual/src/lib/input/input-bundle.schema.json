@@ -110,6 +110,10 @@
           "type": "string",
           "minLength": 1
         },
+        "display": {
+          "type": "string",
+          "minLength": 1
+        },
         "unmapped": {
           "const": true
         }

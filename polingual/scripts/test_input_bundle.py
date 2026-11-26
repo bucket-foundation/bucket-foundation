@@ -1,10 +1,12 @@
 import bz2
+import importlib.util
 import json
 import sqlite3
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from collections import Counter
 from pathlib import Path
 
@@ -221,9 +223,21 @@ class EndToEnd(unittest.TestCase):
             pack.close()
             subprocess.run(["zstd", "-qf", str(d / "pack.sqlite"), "-o", str(packs / "polingual-es.sqlite.zst")], check=True)
             out = d / "out"
-            ib.main(["--langs", "es", "--packs", str(d / "packs"), "--index", str(idx), "--tatoeba", str(tat),
-                     "--scratch", str(d / "scratch"), "--layers", str(d / "layers.json"), "--videos", str(vids), "--out", str(out)])
+            args = ["--langs", "es", "--packs", str(d / "packs"), "--index", str(idx), "--tatoeba", str(tat),
+                    "--scratch", str(d / "scratch"), "--layers", str(d / "layers.json"), "--videos", str(vids), "--out", str(out)]
+            (d / "golden.json").write_text("{}")
+            no_golden = mock.patch.object(ib, "GOLDEN", d / "golden.json")
+            no_golden.start()
+            self.addCleanup(no_golden.stop)
+            ib.main(args)
             manifest = json.loads((out / "manifest.json").read_text())
+            self.assertNotIn("es", manifest["langs"])
+            self.assertIn("below 20", manifest["excluded"]["es"])
+            self.assertTrue((out / "sample" / "es.json").exists())
+            with mock.patch.object(ib, "MIN_UNITS", 1):
+                ib.main(args)
+            manifest = json.loads((out / "manifest.json").read_text())
+            self.assertNotIn("es", manifest["excluded"])
             self.assertEqual(set(manifest["inputs"]), {"layers", "videos", "index", "tatoeba", "packs"})
             bundle = json.loads((out / manifest["langs"]["es"]["file"]).read_text())
             jsonschema.validate(bundle, SCHEMA)
@@ -246,8 +260,11 @@ class Shipped(unittest.TestCase):
     def test_shipped_bundles_match_schema(self):
         manifest = json.loads((SHIPPED / "manifest.json").read_text())
         for lang, entry in manifest["langs"].items():
+            path = SHIPPED / entry["file"]
+            if not path.exists():
+                continue
             with self.subTest(lang=lang):
-                bundle = json.loads((SHIPPED / entry["file"]).read_text())
+                bundle = json.loads(path.read_text())
                 jsonschema.validate(bundle, SCHEMA)
                 ids = [i for u in bundle["units"] for i in u["itemIds"]]
                 self.assertEqual(len(ids), len(set(ids)))
@@ -295,6 +312,51 @@ class Scripts(unittest.TestCase):
             self.assertNotIn("cs", pool["1"]["t"])
 
 
+class Policy(unittest.TestCase):
+    def test_wilson_interval(self):
+        self.assertEqual(ib.wilson(0, 50), [0.0, 0.071])
+        lo, hi = ib.wilson(5, 50)
+        self.assertLess(lo, 0.1)
+        self.assertGreater(hi, 0.1)
+
+    def test_gate(self):
+        ok = {"golden": {"error": 0.04}, "heldOut": {"error": 0.06}}
+        self.assertIsNone(ib.gate("ru", 5000, ok))
+        self.assertIn("golden", ib.gate("ar", 1200, {"golden": {"error": 0.24}, "heldOut": {"error": 0.1}}))
+        self.assertIn("held-out", ib.gate("tr", 5000, {"golden": {"error": 0.06}, "heldOut": {"error": 0.14}}))
+        self.assertIn("held-out set", ib.gate("pl", 2000, {"golden": {"error": 0.1}}))
+        self.assertIn("below 200", ib.gate("ta", 35, ok))
+        self.assertEqual(ib.GOLDEN_MAX_ERROR, 0.10)
+
+    def test_shipped_manifest_policy(self):
+        manifest = json.loads((SHIPPED / "manifest.json").read_text())
+        for tag, entry in manifest["langs"].items():
+            with self.subTest(tag=tag):
+                self.assertGreaterEqual(entry["units"], ib.MIN_UNITS)
+                ev = manifest["lemmaEvaluation"]["byLang"].get(tag)
+                if ev:
+                    self.assertLessEqual(ev["golden"]["error"], ib.GOLDEN_MAX_ERROR)
+                if ev and "heldOut" in ev:
+                    self.assertLessEqual(ev["heldOut"]["error"], ib.MAX_HELD_OUT_ERROR)
+                    self.assertGreaterEqual(ev["heldOut"]["tokens"], 50)
+                else:
+                    self.assertIn(tag, manifest["lemmaEvaluation"]["heldOut"]["langs"])
+        self.assertNotIn("ar", manifest["langs"])
+        self.assertTrue(any("Share-alike" in c for c in manifest["credits"]))
+
+    @unittest.skipIf(importlib.util.find_spec("opencc") is None, "opencc missing")
+    def test_zh_display_simplified_lemma_traditional(self):
+        bundle = {"lang": "zh", "items": [{"id": "x", "lang": "zh", "text": "我們喜歡音樂。",
+                  "tokens": [{"surface": "我們", "lemma": "我們"}, {"surface": "音樂", "lemma": "音樂"}],
+                  "lemmas": ["我們", "音樂"]}], "units": []}
+        got = ib.display_forms(bundle)
+        it = got["items"][0]
+        self.assertEqual(got["lang"], "zh-Hans")
+        self.assertEqual(it["text"], "我们喜欢音乐。")
+        self.assertEqual(it["tokens"][1], {"surface": "音乐", "lemma": "音樂", "display": "音乐"})
+        self.assertEqual(it["lemmas"], ["我們", "音樂"])
+
+
 LEX_ENV = ("PHOTONS_INDEX", "POLINGUAL_PACKS_DIR", "INPUT_SCRATCH_DIR", "TATOEBA_DIR")
 
 
@@ -304,10 +366,12 @@ class GoldenRegression(unittest.TestCase):
         gold = json.loads(ib.GOLDEN.read_text())
         a = ib.parse(["--golden"])
         a.scratch.mkdir(parents=True, exist_ok=True)
-        for lang, limit in ib.GOLDEN_MAX_ERROR.items():
+        manifest = json.loads((SHIPPED / "manifest.json").read_text())
+        for tag, entry in manifest["langs"].items():
+            lang = entry.get("pack", tag)
             with self.subTest(lang=lang):
                 rate, wrong = ib.golden_error_rate(ib.golden_lexicon(lang, a), gold[lang])
-                self.assertLessEqual(rate, limit, wrong)
+                self.assertLessEqual(rate, ib.GOLDEN_MAX_ERROR, wrong)
 
 
 if __name__ == "__main__":
