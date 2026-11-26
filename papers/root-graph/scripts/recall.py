@@ -7,12 +7,16 @@ import sqlite3
 import sys
 from collections import defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_graph import clean, entry_name  # noqa: E402
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
 ROOT = "/home/gian/agfarms/bucket-foundation/_intake/root-graph"
 
 
 def chain(db, lang, form):
+    form = entry_name(lang, clean(form) or form)
     r = db.execute("select id from node where lang = ? and form = ?", (lang, form)).fetchone()
     if not r:
         return None
@@ -26,11 +30,11 @@ def chain(db, lang, form):
     return out
 
 
-def recall(path):
+def recall(path, sample="cognates.tsv"):
     db = sqlite3.connect(path)
     by = defaultdict(lambda: [0, 0])
     rows = []
-    for r in csv.DictReader(open(os.path.join(DATA, "cognates.tsv")), delimiter="\t"):
+    for r in csv.DictReader(open(os.path.join(DATA, sample)), delimiter="\t"):
         a, b = chain(db, r["lang_a"], r["form_a"]), chain(db, r["lang_b"], r["form_b"])
         common = sorted(set(a or {}) & set(b or {}), key=lambda x: a[x]) if a and b else []
         hit = bool(common)
@@ -91,6 +95,8 @@ def main():
         p = os.path.join(ROOT, f)
         if os.path.exists(p):
             out[name] = recall(p)
+            if os.path.exists(os.path.join(DATA, "cognates_descendants.tsv")):
+                out[name]["independent"] = recall(p, "cognates_descendants.tsv")
             out[name]["translation_linkage"] = translation_linkage(p)
     with open(os.path.join(DATA, "recall.json"), "w") as fh:
         json.dump(out, fh, indent=1, ensure_ascii=False)

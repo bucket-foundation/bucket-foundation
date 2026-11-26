@@ -127,7 +127,7 @@ def template_edges(t: dict, src_lang: str):
                 else:
                     yield rel, src_lang, form, name
         return
-    form = clean(a.get("3"))
+    form = clean(a.get("3")) or clean(a.get("4"))
     for lg in langs_of(a.get("2")):
         if form:
             yield rel, lg, form, name
@@ -394,21 +394,26 @@ def ancestry(db: sqlite3.Connection, langdata: str) -> dict[str, set]:
 
 def build_forest(db: sqlite3.Connection, n: int, anc: dict[str, set]) -> None:
     lang = [None] * n
-    for i, lg in db.execute("select id, lang from node"):
+    proto = np.zeros(n, np.int8)
+    for i, lg, p in db.execute("select id, lang, proto from node"):
         lang[i] = lg
+        proto[i] = p
     parent = np.full(n, -1, np.int64)
     via = np.zeros(n, np.int8)
-    cut = off_line = 0
+    cut = off_line = proto_child = 0
     q = """select src, dst, rel from edge where rel in ('inh', 'der')
            order by page, rel = 'inh' desc, tmpl = 'root', ord"""
     for s, a, rel in db.execute(q):
         if parent[s] != -1 or s == a:
             continue
         ls, la = lang[s], lang[a]
-        if rel == "der" and (la == ls or la not in anc.get(ls, ())):
+        if rel == "der" and la == ls:
             continue
-        if rel == "inh" and la != ls and ls in anc and la not in anc[ls]:
-            off_line += 1
+        if la != ls and la not in anc.get(ls, ()):
+            off_line += rel == "inh"
+            continue
+        if proto[s] and not proto[a]:
+            proto_child += 1
             continue
         x, steps = a, 0
         while x != -1 and x != s and steps < 200:
@@ -439,6 +444,7 @@ def build_forest(db: sqlite3.Connection, n: int, anc: dict[str, set]) -> None:
                    ((i, int(parent[i]) if parent[i] != -1 else None, int(depth[i]), int(root[i]), int(via[i])) for i in range(n)))
     db.execute("insert into meta values('cycle_cuts',?)", (cut,))
     db.execute("insert into meta values('inh_off_line',?)", (off_line,))
+    db.execute("insert into meta values('attested_parent_of_proto',?)", (proto_child,))
     db.execute("insert into meta values('der_descent_edges',?)", (int((via == 2).sum()),))
     for ix in ("create index node_lf on node(lang, form)", "create index edge_src on edge(src)",
                "create index edge_dst on edge(dst)", "create index lex_node on lexeme(node)",
