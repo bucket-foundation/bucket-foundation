@@ -211,7 +211,7 @@ class Lexicon:
             return found
         targets = {t for t, _ in forms}
         forms = [(t, pos) for t, pos in forms
-                 if not any(u in targets and u != t and p == pos for u, p in self._forms(self._entry(t)[1]))]
+                 if not any(u in targets and u != t and p == pos for u, p in self._forms(self._entry(t)[1]))] or forms
         own = any((lemma_of_meaning(g, self.vocab) is None and not is_tag_only(g, self.vocab)) or g.lower().startswith("apocopic") and ";" in g
                   for g, _ in senses)
         choices = []

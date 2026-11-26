@@ -115,6 +115,12 @@ class RomanceLemma(unittest.TestCase):
     def test_own_sense_target_kept(self):
         self.assertEqual(self.lex("fr").lemma("livres")[0], "livre")
 
+    def test_forms_pointing_at_each_other_keep_a_lemma(self):
+        rows = {"ab": ([("plural of ba", "noun")], None), "ba": ([("plural of ab", "noun")], None),
+                "xs": ([("plural of ab", "noun"), ("plural of ba", "noun")], None)}
+        lex = ib.Lexicon(lambda s: rows.get(s, ([], None)))
+        self.assertIn(lex.lemma("xs")[0], {"ab", "ba"})
+
     def test_fixed_closed_class(self):
         fr, it = self.lex("fr"), self.lex("it")
         self.assertEqual(fr.lemma("sa")[0], "son")
