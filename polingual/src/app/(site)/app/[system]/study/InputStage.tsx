@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { loadBundle, type InputBundle } from "@academy/input-selector";
-import { chooseUnit, dueLemmas, exposureRows, learnerFromState, type StageChoice, type Viewing } from "@academy/input-stage";
+import { chooseUnit, dueLemmas, exposureRows, inputMode, learnerFromState, type StageChoice, type Viewing } from "@academy/input-stage";
 import InputPlay from "./InputPlay";
 import type { useLangSystem } from "@learn/languages/useLangSystem";
 import { Button, Card, Stage } from "@/ui";
@@ -17,7 +17,7 @@ export function glossFor(h: Lang, lang: string, lemma: string): string | null {
   return h.corpus.byId.get(id.slice(id.indexOf(":") + 1))?.gloss ?? null;
 }
 
-function useChoice(h: Lang, lang: string | undefined): StageChoice | null | "loading" {
+function useChoice(h: Lang, lang: string | undefined, shown: Readonly<Record<string, number>>): StageChoice | null | "loading" {
   const [bundle, setBundle] = useState<InputBundle | null | "loading">("loading");
   useEffect(() => {
     if (!lang) return;
@@ -32,8 +32,9 @@ function useChoice(h: Lang, lang: string | undefined): StageChoice | null | "loa
     if (!bundle || !lang || !h.resolve) return null;
     const now = Date.now();
     const tier = h.system?.placement[lang] ?? 0;
-    return chooseUnit(bundle, learnerFromState(h.state, lang, h.resolve, now, tier, dueLemmas(bundle, h.state, lang, h.resolve, now)));
-  }, [bundle, lang, h.resolve, h.state, h.system]);
+    return chooseUnit(bundle, learnerFromState(h.state, lang, h.resolve, now, tier, dueLemmas(bundle, h.state, lang, h.resolve, now), shown), inputMode() === "demo");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bundle, lang, h.resolve, h.system]);
 }
 
 function GlossList({ h, lang, newWords, glossed }: { h: Lang; lang: string; newWords: string[]; glossed: string[] }) {
@@ -55,14 +56,14 @@ function GlossList({ h, lang, newWords, glossed }: { h: Lang; lang: string; newW
   );
 }
 
-export default function InputStage({ h, onDone }: { h: Lang; onDone: () => void }) {
+export default function InputStage({ h, shown, onDone }: { h: Lang; shown: Readonly<Record<string, number>>; onDone: (unit: string | null, seconds: number) => void }) {
   const lang = h.system?.targets.find((l) => h.langStatus[l] === "ready");
-  const choice = useChoice(h, lang);
+  const choice = useChoice(h, lang, shown);
   const [phase, setPhase] = useState<"gloss" | "play">("gloss");
   const logged = useRef(false);
 
   useEffect(() => {
-    if (!lang || choice === null) onDone();
+    if (!lang || choice === null) onDone(null, 0);
   }, [lang, choice, onDone]);
 
   const log = useCallback(
@@ -80,7 +81,7 @@ export default function InputStage({ h, onDone }: { h: Lang; onDone: () => void 
   const finish = (v: Viewing | null) => {
     if (v) log(v, true);
     else logged.current = true;
-    onDone();
+    onDone(v ? choice.unit.id : null, v ? Object.values(v.seenMs).reduce((a, b) => a + b, 0) / 1000 : 0);
   };
 
   return (

@@ -316,3 +316,5 @@ export function longestRun(queue: QueueEntry[]): number {
   }
   return best;
 }
+
+export { inputShare, inputTarget, planInputMix } from "./input-mix";

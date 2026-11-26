@@ -11,7 +11,10 @@ async function mockInput(page: Page, present = true): Promise<void> {
   await page.route("**/input/es.0123456789ab.json", (route) => route.fulfill({ body: FIXTURE, contentType: "application/json" }));
 }
 
+const PLAYER = `<html><body>clip<script>setTimeout(() => parent.postMessage(JSON.stringify({ event: "onStateChange", info: 1 }), "*"), 100);</script></body></html>`;
+
 async function open(page: Page, width: number, present = true): Promise<void> {
+  await page.route("**/youtube-nocookie.com/**", (route) => route.fulfill({ body: PLAYER, contentType: "text/html" }));
   await page.setViewportSize({ width, height: width > 500 ? 900 : 844 });
   await mockApi(page, { branches: seeded() });
   await mockInput(page, present);
@@ -68,7 +71,9 @@ for (const width of [390, 1440]) {
     await tokens.nth(1).click();
     await expect(tokens.nth(1)).toHaveAttribute("aria-pressed", "true");
     await fullyClickable(page, page.getByTestId("input-done"));
-    await page.waitForTimeout(2600);
+    await page.getByTestId("input-video-poster").click();
+    await expect(page.getByTestId("input-video")).toBeVisible();
+    await page.waitForTimeout(3200);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/input-stage-read-${width}.png` });
     await page.getByTestId("input-done").click();
     await expect(page.getByTestId("input-stage")).toBeHidden();
@@ -84,7 +89,7 @@ test("the poster loads the YouTube clip only after a click", async ({ page }) =>
   await open(page, 1440);
   expect(await reachStage(page)).toBe(true);
   await page.getByTestId("input-start").click();
-  await page.route("**/youtube-nocookie.com/**", (route) => route.fulfill({ body: "<html><body>clip</body></html>", contentType: "text/html" }));
+  await expect(page.getByTestId("input-video")).toHaveCount(0);
   await page.getByTestId("input-video-poster").click();
   await expect(page.getByTestId("input-video")).toHaveAttribute("src", /youtube-nocookie\.com\/embed\//);
 });

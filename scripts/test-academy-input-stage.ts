@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { normalizeState } from "../src/lib/academy/engine";
 import { parseProps } from "../src/lib/academy/events";
-import { addSeen, chooseUnit, dueLemmas, EMPTY_VIEWING, exposureRows, reveal, inputSlot, inputStageOn, learnerFromState, PLACEHOLDER_INPUT_SHARE, toggleTap } from "../src/lib/academy/input-stage";
+import { addSeen, chooseUnit, dueLemmas, EMPTY_VIEWING, exposureRows, reveal, eligibleUnitSeconds, inputMode, inputStageOn, learnerFromState, toggleTap } from "../src/lib/academy/input-stage";
 import { parseBundle } from "../src/lib/academy/input-selector";
 import { logExposure, openShared, type MemoryIO } from "../src/lib/academy/lang-memory-store";
 import { createSystem } from "../src/lib/academy/lang-systems";
@@ -21,11 +21,15 @@ test("the stage is on in dev, off in production unless the flag says 1, and 0 tu
   assert.equal(inputStageOn("0", "development"), false);
 });
 
-test("the stage sits at the placeholder 0.3 share and never after the last card", () => {
-  assert.equal(PLACEHOLDER_INPUT_SHARE, 0.3);
-  assert.equal(inputSlot(10), 7);
-  assert.equal(inputSlot(1), 0);
-  for (let n = 1; n < 50; n++) assert.ok(inputSlot(n) >= 0 && inputSlot(n) < n);
+test("demo mode is opt-in and the only path that counts a fallback unit as eligible", () => {
+  assert.equal(inputMode("demo", "production"), "demo");
+  const resolve = (_l: string, lemma: string) => `es:${lemma}`;
+  const nothing = learnerFromState(normalizeState(null), "es", resolve, T0, 0, new Set());
+  const short = { ...bundle, units: bundle.units.map((u) => ({ ...u, itemIds: u.itemIds.slice(0, 1) })) };
+  assert.deepEqual(eligibleUnitSeconds(short, nothing, "on"), []);
+  assert.equal(eligibleUnitSeconds(short, nothing, "demo").length, 0);
+  assert.equal(chooseUnit(short, nothing, false), null);
+  assert.ok(eligibleUnitSeconds(bundle, nothing, "on").length > 0);
 });
 
 const allKnownBut = (unknown: Set<string>) => {

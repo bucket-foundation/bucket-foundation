@@ -2,13 +2,43 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { addSeen, EMPTY_VIEWING, reveal, toggleTap, type StageChoice, type Viewing } from "@academy/input-stage";
+import { fromYouTube, isActive, youtubePlaying } from "@academy/input-mix";
 import { Button } from "@/ui";
 import styles from "../../app.module.css";
 import own from "./InputStage.module.css";
 
 export const TICK_MS = 1000;
 
-function useViewing(): { v: Viewing; set: (f: (v: Viewing) => Viewing) => void; watch: (id: string) => (el: HTMLElement | null) => void; ref: React.MutableRefObject<Viewing> } {
+function useActivity(needsPlayer: boolean): React.MutableRefObject<() => boolean> {
+  const flags = useRef({ visible: true, focused: true, playing: false });
+  const check = useRef(() => isActive(flags.current, needsPlayer));
+  check.current = () => isActive(flags.current, needsPlayer);
+  useEffect(() => {
+    const sync = () => {
+      flags.current.visible = document.visibilityState === "visible";
+      flags.current.focused = document.hasFocus();
+    };
+    const onMessage = (e: MessageEvent) => {
+      if (!fromYouTube(e.origin)) return;
+      const p = youtubePlaying(e.data);
+      if (p !== null) flags.current.playing = p;
+    };
+    sync();
+    document.addEventListener("visibilitychange", sync);
+    window.addEventListener("focus", sync);
+    window.addEventListener("blur", sync);
+    window.addEventListener("message", onMessage);
+    return () => {
+      document.removeEventListener("visibilitychange", sync);
+      window.removeEventListener("focus", sync);
+      window.removeEventListener("blur", sync);
+      window.removeEventListener("message", onMessage);
+    };
+  }, []);
+  return check;
+}
+
+function useViewing(active: React.MutableRefObject<() => boolean>): { v: Viewing; set: (f: (v: Viewing) => Viewing) => void; watch: (id: string) => (el: HTMLElement | null) => void; ref: React.MutableRefObject<Viewing> } {
   const [v, setV] = useState<Viewing>(EMPTY_VIEWING);
   const ref = useRef<Viewing>(EMPTY_VIEWING);
   const visible = useRef(new Set<string>());
@@ -25,13 +55,13 @@ function useViewing(): { v: Viewing; set: (f: (v: Viewing) => Viewing) => void; 
       }
     }, { threshold: 0.6 });
     const timer = window.setInterval(() => {
-      if (document.visibilityState === "visible") set((x) => addSeen(x, Array.from(visible.current), TICK_MS));
+      if (active.current()) set((x) => addSeen(x, Array.from(visible.current), TICK_MS));
     }, TICK_MS);
     return () => {
       observer.current?.disconnect();
       window.clearInterval(timer);
     };
-  }, [set]);
+  }, [set, active]);
   const watch = useCallback((id: string) => (el: HTMLElement | null) => {
     if (!el) return;
     el.dataset.item = id;
@@ -46,11 +76,11 @@ function Video({ choice }: { choice: StageChoice }) {
   if (!v) return null;
   const end = Math.ceil(choice.items[choice.items.length - 1].media?.end ?? v.end);
   const watchUrl = "https://www.youtube.com/watch?v=" + encodeURIComponent(v.videoId) + "&t=" + Math.floor(v.start);
-  const src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.videoId) + "?start=" + Math.floor(v.start) + "&end=" + end + "&autoplay=1&rel=0";
+  const src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.videoId) + "?start=" + Math.floor(v.start) + "&end=" + end + "&autoplay=1&rel=0&enablejsapi=1";
   return (
     <div className={own.videoBox}>
       {load ? (
-        <iframe className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" />
+        <iframe className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" onLoad={(e) => e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: "listening" }), "*")} />
       ) : (
         <button type="button" className={own.poster} onClick={() => setLoad(true)} data-testid="input-video-poster">
           Play the clip
@@ -65,7 +95,8 @@ function Video({ choice }: { choice: StageChoice }) {
 }
 
 export default function InputPlay({ lang, choice, gloss, onFinish, onExit }: { lang: string; choice: StageChoice; gloss: (lemma: string) => string | null; onFinish: (v: Viewing | null) => void; onExit: (v: Viewing) => void }) {
-  const { v, set, watch, ref } = useViewing();
+  const active = useActivity(!!choice.items[0]?.media);
+  const { v, set, watch, ref } = useViewing(active);
   useEffect(() => {
     const leave = () => onExit(ref.current);
     window.addEventListener("pagehide", leave);

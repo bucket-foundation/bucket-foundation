@@ -1,0 +1,343 @@
+{
+  "version": 1,
+  "target": [
+    {
+      "tier": 0,
+      "expect": 0.7
+    },
+    {
+      "tier": 3,
+      "expect": 0.7
+    },
+    {
+      "tier": 6,
+      "expect": 0.7
+    },
+    {
+      "tier": 7,
+      "expect": 0.6
+    },
+    {
+      "tier": 10,
+      "expect": 0.6
+    }
+  ],
+  "share": [
+    {
+      "tier": 2,
+      "eligible": 300,
+      "session": 600,
+      "expect": 0.5
+    },
+    {
+      "tier": 2,
+      "eligible": 600,
+      "session": 600,
+      "expect": 0.7
+    },
+    {
+      "tier": 8,
+      "eligible": 600,
+      "session": 600,
+      "expect": 0.6
+    },
+    {
+      "tier": 8,
+      "eligible": 100,
+      "session": 1000,
+      "expect": 0.1
+    },
+    {
+      "tier": 0,
+      "eligible": 0,
+      "session": 600,
+      "expect": 0
+    },
+    {
+      "tier": 0,
+      "eligible": 50,
+      "session": 0,
+      "expect": 0
+    }
+  ],
+  "plan": [
+    {
+      "tier": 2,
+      "cards": 20,
+      "units": [
+        60,
+        70,
+        80,
+        90,
+        75
+      ],
+      "expect": {
+        "target": 0.7,
+        "share": 0.609756098,
+        "units": 5,
+        "positions": [
+          3,
+          6,
+          10,
+          13,
+          16
+        ],
+        "plannedShare": 0.609756098
+      }
+    },
+    {
+      "tier": 8,
+      "cards": 20,
+      "units": [
+        60,
+        70,
+        80,
+        90,
+        75
+      ],
+      "expect": {
+        "target": 0.6,
+        "share": 0.6,
+        "units": 5,
+        "positions": [
+          3,
+          6,
+          10,
+          13,
+          16
+        ],
+        "plannedShare": 0.609756098
+      }
+    },
+    {
+      "tier": 2,
+      "cards": 20,
+      "units": [
+        60
+      ],
+      "expect": {
+        "target": 0.7,
+        "share": 0.2,
+        "units": 1,
+        "positions": [
+          10
+        ],
+        "plannedShare": 0.2
+      }
+    },
+    {
+      "tier": 2,
+      "cards": 3,
+      "units": [
+        60,
+        60,
+        60,
+        60,
+        60,
+        60
+      ],
+      "expect": {
+        "target": 0.7,
+        "share": 0.7,
+        "units": 1,
+        "positions": [
+          1
+        ],
+        "plannedShare": 0.625
+      }
+    },
+    {
+      "tier": 2,
+      "cards": 0,
+      "units": [
+        60,
+        60
+      ],
+      "expect": {
+        "target": 0.7,
+        "share": 0.7,
+        "units": 1,
+        "positions": [
+          0
+        ],
+        "plannedShare": 1
+      }
+    },
+    {
+      "tier": 2,
+      "cards": 20,
+      "units": [],
+      "expect": {
+        "target": 0.7,
+        "share": 0,
+        "units": 0,
+        "positions": [],
+        "plannedShare": 0
+      }
+    }
+  ],
+  "rounded": [
+    {
+      "targetPermille": 700,
+      "items": 10,
+      "expect": 7
+    },
+    {
+      "targetPermille": 700,
+      "items": 3,
+      "expect": 2
+    },
+    {
+      "targetPermille": 600,
+      "items": 7,
+      "expect": 4
+    },
+    {
+      "targetPermille": 650,
+      "items": 1,
+      "expect": 1
+    },
+    {
+      "targetPermille": 0,
+      "items": 5,
+      "expect": 0
+    },
+    {
+      "targetPermille": 1000,
+      "items": 9,
+      "expect": 9
+    }
+  ],
+  "activity": [
+    {
+      "name": "reading while visible and focused counts all of it",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 0
+        }
+      ],
+      "end": 10000,
+      "expect": 10000
+    },
+    {
+      "name": "a hidden tab adds nothing",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 0
+        },
+        {
+          "at": 2000,
+          "visible": false
+        },
+        {
+          "at": 7000,
+          "visible": true
+        }
+      ],
+      "end": 10000,
+      "expect": 5000
+    },
+    {
+      "name": "a blurred window adds nothing",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 0
+        },
+        {
+          "at": 1000,
+          "focused": false
+        },
+        {
+          "at": 4000,
+          "focused": true
+        },
+        {
+          "at": 9000,
+          "focused": false
+        }
+      ],
+      "end": 10000,
+      "expect": 6000
+    },
+    {
+      "name": "video counts only while playing",
+      "needsPlayer": true,
+      "marks": [
+        {
+          "at": 0
+        },
+        {
+          "at": 1000,
+          "playing": true
+        },
+        {
+          "at": 5000,
+          "playing": false
+        },
+        {
+          "at": 6000,
+          "playing": true
+        }
+      ],
+      "end": 8000,
+      "expect": 6000
+    },
+    {
+      "name": "playing in a hidden tab adds nothing",
+      "needsPlayer": true,
+      "marks": [
+        {
+          "at": 0,
+          "playing": true
+        },
+        {
+          "at": 3000,
+          "visible": false
+        },
+        {
+          "at": 6000,
+          "visible": true
+        }
+      ],
+      "end": 9000,
+      "expect": 6000
+    },
+    {
+      "name": "marks after the end are ignored",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 0
+        },
+        {
+          "at": 12000,
+          "visible": false
+        }
+      ],
+      "end": 10000,
+      "expect": 10000
+    },
+    {
+      "name": "unsorted marks are sorted",
+      "needsPlayer": false,
+      "marks": [
+        {
+          "at": 5000,
+          "visible": true
+        },
+        {
+          "at": 0
+        },
+        {
+          "at": 2000,
+          "visible": false
+        }
+      ],
+      "end": 8000,
+      "expect": 5000
+    }
+  ]
+}

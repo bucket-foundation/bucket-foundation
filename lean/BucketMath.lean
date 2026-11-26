@@ -19,6 +19,7 @@ import BucketMath.Similarity.Cognate
 import BucketMath.Etymology.Forest
 import BucketMath.Learning.Exposure
 import BucketMath.Learning.Selector
+import BucketMath.Learning.SessionMix
 import BucketMath.Open
 import BucketMath.Helix
 import BucketMath.Marketing

@@ -2241,6 +2241,60 @@
   "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ {l l' : List α},\n      l.Perm l' →\n        ∀ (held : List α),\n          BucketMath.Learning.Sequencing.totalShared sim held l = BucketMath.Learning.Sequencing.totalShared sim held l'"
  },
  {
+  "name": "BucketMath.Learning.SessionMix.m1_units_within_one_item",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 12,
+  "type": "∀ (want avg : Nat),\n  0 < avg →\n    BucketMath.Learning.SessionMix.units want avg * avg ≤ want + avg ∧\n      want ≤ BucketMath.Learning.SessionMix.units want avg * avg + avg"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.m1_within_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 5,
+  "type": "∀ (t n : Nat),\n  1000 * BucketMath.Learning.SessionMix.roundedItems t n ≤ t * n + 1000 ∧\n    t * n ≤ 1000 * BucketMath.Learning.SessionMix.roundedItems t n + 1000"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.roundedItems",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 3,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.share",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 24,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.share_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 26,
+  "type": "∀ (i c : Nat), BucketMath.Learning.SessionMix.share i c ≤ 1000"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.units",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 10,
+  "type": "Nat → Nat → Nat"
+ },
+ {
   "name": "BucketMath.Learning.SquaredExtent",
   "kind": "def",
   "status": "def",

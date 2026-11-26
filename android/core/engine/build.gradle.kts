@@ -13,4 +13,5 @@ tasks.test {
     systemProperty("learnerModelVectors", rootProject.file("../src/lib/academy/learner-model-vectors.json").absolutePath)
     systemProperty("exposureVectors", rootProject.file("../src/lib/academy/exposure-vectors.json").absolutePath)
     systemProperty("selectorVectors", rootProject.file("../src/lib/academy/selector-vectors.json").absolutePath)
+    systemProperty("inputMixVectors", rootProject.file("../src/lib/academy/input-mix-vectors.json").absolutePath)
 }

@@ -155,7 +155,7 @@ export default function Session({ systemId }: { systemId: string }) {
     );
   }
 
-  if (s.inputDue) return <InputStage h={h} onDone={s.finishInput} />;
+  if (s.inputDue) return <InputStage h={h} shown={s.inputShown} onDone={s.finishInput} />;
   if (s.i >= s.queue.length || !s.ex) return <SessionDone s={s} system={system} state={state} />;
   return <ActiveSession h={h} s={s} queue={s.queue} ex={s.ex} />;
 }
