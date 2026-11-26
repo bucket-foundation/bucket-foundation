@@ -235,7 +235,7 @@ class EndToEnd(unittest.TestCase):
             ib.main(args)
             manifest = json.loads((out / "manifest.json").read_text())
             self.assertNotIn("es", manifest["langs"])
-            self.assertIn("below 20", manifest["excluded"]["es"])
+            self.assertIn("needs 20 units", manifest["excluded"]["es"])
             self.assertTrue((out / "sample" / "es.json").exists())
             with mock.patch.object(ib, "MIN_UNITS", 1):
                 ib.main(args)
@@ -336,6 +336,7 @@ class Policy(unittest.TestCase):
         for tag, entry in manifest["langs"].items():
             with self.subTest(tag=tag):
                 self.assertGreaterEqual(entry["units"], ib.MIN_UNITS)
+                self.assertGreaterEqual(entry["coverage"]["tokenShare"], ib.MIN_TOKEN_SHARE)
                 ev = manifest["lemmaEvaluation"]["byLang"].get(tag)
                 if ev:
                     self.assertLessEqual(ev["golden"]["error"], ib.GOLDEN_MAX_ERROR)

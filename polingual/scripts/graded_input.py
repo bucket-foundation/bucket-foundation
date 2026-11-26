@@ -41,7 +41,11 @@ def wordfreq_ranks(lang):
     import wordfreq
 
     best = {}
-    for word, freq in wordfreq.get_frequency_dict(lang, "large").items():
+    try:
+        table = wordfreq.get_frequency_dict(lang, "large")
+    except LookupError:
+        table = wordfreq.get_frequency_dict(lang, "best")
+    for word, freq in table.items():
         k = fold(word)
         if k and freq > best.get(k, -1.0):
             best[k] = freq

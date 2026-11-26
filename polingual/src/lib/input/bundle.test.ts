@@ -8,11 +8,11 @@ const dir = join(process.cwd(), "public", "input");
 const manifest: InputManifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
 
 test("manifest lists hashed bundles and keeps fr and it out", () => {
-  for (const lang of ["es", "pt", "de", "nl", "ru", "hi", "ko", "ja", "zh-Hans"]) {
+  for (const lang of ["es", "pt", "de", "nl", "ru", "hi", "ja", "zh-Hans"]) {
     const url = bundleUrl(manifest, lang, "", false);
     assert.match(url ?? "", new RegExp(`^/input/${lang}\\.[0-9a-f]{12}\\.json$`));
   }
-  for (const lang of ["fr", "it", "ar"]) assert.equal(manifest.langs[lang], undefined);
+  for (const lang of ["fr", "it", "ar", "ko"]) assert.equal(manifest.langs[lang], undefined);
   assert.equal(bundleUrl(manifest, "xx"), null);
   const remote = "https://cdn.example.org/storage/v1/object/public/polingual-input/";
   assert.equal(bundleUrl(manifest, "es", remote, true), `${remote}${manifest.langs.es.file}`);

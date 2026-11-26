@@ -185,6 +185,10 @@ class Segmenter:
                 continue
             if tag.startswith("E"):
                 continue
+            if out and t.start < out[-1]["end"]:
+                out[-1]["end"] = max(out[-1]["end"], t.start + t.len)
+                cur = out[-1]
+                continue
             hint = t.form + "다" if tag in ("VV", "VA", "VX", "VCP", "VCN") else t.form
             cur = {"start": t.start, "end": t.start + t.len, "hint": hint}
             out.append(cur)

@@ -60,6 +60,7 @@ STOP_SHARE = 0.05
 INF = float("inf")
 GOLDEN_MAX_ERROR = 0.10
 MIN_UNITS = 20
+MIN_TOKEN_SHARE = 0.90
 BCP47 = {"zh": "zh-Hans"}
 PACK_OF = {v: k for k, v in BCP47.items()}
 LEMMA_EVALUATION = {
@@ -68,6 +69,7 @@ LEMMA_EVALUATION = {
     "goldenMaxError": GOLDEN_MAX_ERROR,
     "heldOutMaxError": MAX_HELD_OUT_ERROR,
     "minUnits": MIN_UNITS,
+    "minTokenShare": MIN_TOKEN_SHARE,
     "interval": "Wilson score, 95%",
     "heldOut": {"tokens": 100, "errors": 2, "examples": ["es nos mapped to no", "pt mostra"], "by": "critic round 2",
                 "langs": ["es", "fr", "it", "pt", "de"]},
@@ -761,8 +763,9 @@ def main(argv=None):
                  "tatoebaIdsMatched": b["tatoebaIdsMatched"], "tatoebaItems": b["tatoebaItems"],
                  **({"graded": graded} if graded else {})}
         write_sample(b, a.out)
-        if len(b["units"]) < MIN_UNITS:
-            excluded[tag] = f"built with {len(b['units'])} units, below {MIN_UNITS}; held out of the manifest"
+        if len(b["units"]) < MIN_UNITS or b["coverage"]["tokenShare"] < MIN_TOKEN_SHARE:
+            excluded[tag] = (f"built with {len(b['units'])} units and token coverage {b['coverage']['tokenShare']}; "
+                             f"needs {MIN_UNITS} units and {MIN_TOKEN_SHARE}")
             print(lang, "excluded:", excluded[tag], file=sys.stderr)
             continue
         entry["status"] = "stable" if lang in LANGS else "beta"
