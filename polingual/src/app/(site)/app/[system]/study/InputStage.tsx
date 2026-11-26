@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { loadBundle, type InputBundle } from "@academy/input-selector";
-import { chooseUnit, dueLemmas, exposureRows, learnerFromState, toggleTap, type StageChoice, type TapState } from "@academy/input-stage";
+import { chooseUnit, dueLemmas, exposureRows, learnerFromState, type StageChoice, type Viewing } from "@academy/input-stage";
+import InputPlay from "./InputPlay";
 import type { useLangSystem } from "@learn/languages/useLangSystem";
 import { Button, Card, Stage } from "@/ui";
 import styles from "../../app.module.css";
@@ -54,73 +55,32 @@ function GlossList({ h, lang, newWords, glossed }: { h: Lang; lang: string; newW
   );
 }
 
-function Lines({ h, lang, choice, taps, onTap }: { h: Lang; lang: string; choice: StageChoice; taps: TapState; onTap: (item: string, lemma: string) => void }) {
-  return (
-    <ol className={own.lines} data-testid="input-lines">
-      {choice.items.map((item) => (
-        <li key={item.id} lang={lang}>
-          {item.tokens.map((t, k) => {
-            const on = (taps.taps[item.id] ?? []).includes(t.lemma);
-            return (
-              <button key={k} type="button" className={on ? `${own.token} ${own.tapped}` : own.token} aria-pressed={on} title={on ? glossFor(h, lang, t.lemma) ?? t.lemma : undefined} onClick={() => onTap(item.id, t.lemma)} data-testid="input-token">
-                {t.surface}
-              </button>
-            );
-          })}
-          {item.translation ? <span className={own.translation}>{item.translation}</span> : null}
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function Video({ choice }: { choice: StageChoice }) {
-  const v = choice.items[0]?.media;
-  if (!v) return null;
-  const end = Math.ceil(choice.items[choice.items.length - 1].media?.end ?? v.end);
-  const src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.videoId) + "?start=" + Math.floor(v.start) + "&end=" + end + "&cc_load_policy=0&rel=0";
-  return <iframe className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" />;
-}
-
-function Play({ h, lang, choice, onFinish }: { h: Lang; lang: string; choice: StageChoice; onFinish: (taps: TapState, completed: boolean) => void }) {
-  const [taps, setTaps] = useState<TapState>({ taps: {} });
-  return (
-    <>
-      <Video choice={choice} />
-      <Lines h={h} lang={lang} choice={choice} taps={taps} onTap={(item, lemma) => setTaps((s) => toggleTap(s, item, lemma))} />
-      <p className={styles.small}>Tap a word you do not know.</p>
-      <div className={styles.row}>
-        <Button onClick={() => onFinish(taps, true)} data-testid="input-done">
-          Done
-        </Button>
-        <Button variant="quiet" size="sm" onClick={() => onFinish(taps, false)} data-testid="input-skip">
-          Skip
-        </Button>
-      </div>
-    </>
-  );
-}
-
 export default function InputStage({ h, onDone }: { h: Lang; onDone: () => void }) {
   const lang = h.system?.targets.find((l) => h.langStatus[l] === "ready");
   const choice = useChoice(h, lang);
   const [phase, setPhase] = useState<"gloss" | "play">("gloss");
-  const started = useRef(0);
+  const logged = useRef(false);
 
   useEffect(() => {
-    if (choice === null) onDone();
-  }, [choice, onDone]);
+    if (!lang || choice === null) onDone();
+  }, [lang, choice, onDone]);
 
-  if (choice === "loading" || choice === null || !lang) return <p className={styles.muted} aria-busy="true">Finding something to read</p>;
+  const log = useCallback(
+    (v: Viewing, completed: boolean) => {
+      if (logged.current || !lang || !choice || choice === "loading") return;
+      logged.current = true;
+      const rows = exposureRows(choice, v, completed);
+      if (rows.length) h.logExposures?.(lang, rows);
+    },
+    [h, lang, choice],
+  );
 
-  const finish = (taps: TapState, completed: boolean) => {
-    const seconds = started.current ? (Date.now() - started.current) / 1000 : 0;
-    h.logExposures?.(lang, exposureRows(choice, taps, seconds, completed));
+  if (!lang || choice === "loading" || choice === null) return <p className={styles.muted} aria-busy="true">Finding something to read</p>;
+
+  const finish = (v: Viewing | null) => {
+    if (v) log(v, true);
+    else logged.current = true;
     onDone();
-  };
-  const start = () => {
-    started.current = Date.now();
-    setPhase("play");
   };
 
   return (
@@ -131,12 +91,14 @@ export default function InputStage({ h, onDone }: { h: Lang; onDone: () => void 
           <>
             <h1 className={styles.title}>Before you start</h1>
             <GlossList h={h} lang={lang} newWords={choice.plan.newWords} glossed={choice.plan.glossed} />
-            <Button onClick={start} data-testid="input-start">
-              Start
-            </Button>
+            <div className={own.actions}>
+              <Button onClick={() => setPhase("play")} data-testid="input-start">
+                Start
+              </Button>
+            </div>
           </>
         ) : (
-          <Play h={h} lang={lang} choice={choice} onFinish={finish} />
+          <InputPlay lang={lang} choice={choice} gloss={(l) => glossFor(h, lang, l)} onFinish={finish} onExit={(v) => log(v, false)} />
         )}
       </Card>
     </Stage>

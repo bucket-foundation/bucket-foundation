@@ -49,6 +49,7 @@ export interface ExposureRow extends RowBase {
   seconds: number;
   coverage_pred: number;
   completed: boolean;
+  revealed?: boolean;
 }
 
 export interface SessionRow extends RowBase {
@@ -104,7 +105,10 @@ export function parseLogRow(raw: unknown): LogRow | null {
     if (!str(o.item) || !KEY_RE.test(o.item) || !str(o.unit) || !KEY_RE.test(o.unit)) return null;
     if (!lemmas(o.lemmas_seen, MAX_LEMMAS) || !lemmas(o.taps, MAX_TAPS)) return null;
     if (!nat(o.seconds, MAX_EXPOSURE_SECONDS) || !unit(o.coverage_pred) || typeof o.completed !== "boolean") return null;
-    return { ...b, kind: "exposure", lang: o.lang, item: o.item, unit: o.unit, lemmas_seen: o.lemmas_seen, taps: o.taps, seconds: o.seconds, coverage_pred: o.coverage_pred, completed: o.completed };
+    if (o.revealed !== undefined && typeof o.revealed !== "boolean") return null;
+    const row: ExposureRow = { ...b, kind: "exposure", lang: o.lang, item: o.item, unit: o.unit, lemmas_seen: o.lemmas_seen, taps: o.taps, seconds: o.seconds, coverage_pred: o.coverage_pred, completed: o.completed };
+    if (o.revealed !== undefined) row.revealed = o.revealed;
+    return row;
   }
   if (o.kind === "session") {
     if (!str(o.id) || typeof o.started !== "number" || typeof o.ended !== "number" || !(o.ended >= o.started)) return null;
@@ -165,6 +169,7 @@ export interface ExposureInput {
   seconds: number;
   coverage_pred: number;
   completed: boolean;
+  revealed?: boolean;
 }
 
 export interface SessionInput {
@@ -185,7 +190,7 @@ export type BatchEvent =
 export function batchEvents(rows: readonly LogRow[]): BatchEvent[] {
   const out: BatchEvent[] = [];
   for (const r of orderRows(rows)) {
-    if (r.kind === "exposure") out.push({ id: r.review_id, name: "exposure", props: { item: r.item, unit: r.unit, lemmas_seen: r.lemmas_seen, taps: r.taps, seconds: r.seconds, coverage_pred: r.coverage_pred, completed: r.completed } });
+    if (r.kind === "exposure") out.push({ id: r.review_id, name: "exposure", props: { item: r.item, unit: r.unit, lemmas_seen: r.lemmas_seen, taps: r.taps, seconds: r.seconds, coverage_pred: r.coverage_pred, completed: r.completed, ...(r.revealed !== undefined ? { revealed: r.revealed } : {}) } });
     else if (r.kind === "session") out.push({ id: r.review_id, name: "session_mix", props: { session: r.id, share_target: r.share_target, share_real: r.share_real, arm: r.arm, units: r.units, cards: r.cards, seconds: Math.min(86_400, Math.round((r.ended - r.started) / 1000)) } });
   }
   return out;

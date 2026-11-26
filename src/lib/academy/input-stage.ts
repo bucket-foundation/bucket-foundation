@@ -74,20 +74,42 @@ export function toggleTap(s: TapState, itemId: string, lemma: string): TapState 
   return { taps: { ...s.taps, [itemId]: next } };
 }
 
-export function exposureRows(choice: StageChoice, taps: TapState, seconds: number, completed: boolean): ExposureInput[] {
-  const total = choice.items.reduce((n, i) => n + i.tokens.length, 0) || 1;
-  const budget = Math.max(0, Math.min(MAX_EXPOSURE_SECONDS, Math.round(seconds)));
-  return choice.items.map((item) => {
+export interface Viewing {
+  taps: TapState;
+  seenMs: Readonly<Record<string, number>>;
+  revealed: ReadonlySet<string>;
+}
+
+export const EMPTY_VIEWING: Viewing = { taps: { taps: {} }, seenMs: {}, revealed: new Set() };
+
+export function addSeen(v: Viewing, visible: readonly string[], ms: number): Viewing {
+  if (ms <= 0 || !visible.length) return v;
+  const share = ms / visible.length;
+  const seenMs = { ...v.seenMs };
+  for (const id of visible) seenMs[id] = (seenMs[id] ?? 0) + share;
+  return { ...v, seenMs };
+}
+
+export function reveal(v: Viewing, itemId: string): Viewing {
+  return { ...v, revealed: new Set([...Array.from(v.revealed), itemId]) };
+}
+
+export function exposureRows(choice: StageChoice, v: Viewing, completed: boolean): ExposureInput[] {
+  return choice.items.flatMap((item) => {
+    const ms = v.seenMs[item.id] ?? 0;
+    if (ms <= 0) return [];
     const lemmas = Array.from(new Set(item.tokens.map((t) => t.lemma).filter((l) => LEMMA.test(l)))).slice(0, 200);
-    const n = item.tokens.length;
-    return {
-      item: item.id,
-      unit: choice.unit.id,
-      lemmas_seen: lemmas,
-      taps: Array.from(new Set(taps.taps[item.id] ?? [])).filter((l) => LEMMA.test(l)).slice(0, 50),
-      seconds: Math.min(MAX_EXPOSURE_SECONDS, Math.round((budget * n) / total)),
-      coverage_pred: Math.round(Math.min(1, Math.max(0, choice.plan.coverage)) * 1e4) / 1e4,
-      completed,
-    };
+    return [
+      {
+        item: item.id,
+        unit: choice.unit.id,
+        lemmas_seen: lemmas,
+        taps: Array.from(new Set(v.taps.taps[item.id] ?? [])).filter((l) => LEMMA.test(l)).slice(0, 50),
+        seconds: Math.min(MAX_EXPOSURE_SECONDS, Math.max(0, Math.round(ms / 1000))),
+        coverage_pred: Math.round(Math.min(1, Math.max(0, choice.plan.coverage)) * 1e4) / 1e4,
+        completed,
+        revealed: v.revealed.has(item.id),
+      },
+    ];
   });
 }

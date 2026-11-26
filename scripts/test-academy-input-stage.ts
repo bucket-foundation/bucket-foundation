@@ -4,12 +4,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { normalizeState } from "../src/lib/academy/engine";
 import { parseProps } from "../src/lib/academy/events";
-import { chooseUnit, dueLemmas, exposureRows, inputSlot, inputStageOn, learnerFromState, PLACEHOLDER_INPUT_SHARE, toggleTap } from "../src/lib/academy/input-stage";
+import { addSeen, chooseUnit, dueLemmas, EMPTY_VIEWING, exposureRows, reveal, inputSlot, inputStageOn, learnerFromState, PLACEHOLDER_INPUT_SHARE, toggleTap } from "../src/lib/academy/input-stage";
 import { parseBundle } from "../src/lib/academy/input-selector";
 import { logExposure, openShared, type MemoryIO } from "../src/lib/academy/lang-memory-store";
 import { createSystem } from "../src/lib/academy/lang-systems";
 import type { LangRow } from "../src/lib/academy/lang-memory";
-import type { LogRow } from "../src/lib/academy/learn-log";
+import { parseLogRow, type LogRow } from "../src/lib/academy/learn-log";
 
 const bundle = parseBundle(JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/polingual-input/es.json"), "utf8")))!;
 const T0 = Date.UTC(2026, 10, 20, 12);
@@ -51,13 +51,39 @@ test("taps ride inside the exposure rows and every row passes the server validat
   let taps = toggleTap({ taps: {} }, first.id, first.tokens[0].lemma);
   taps = toggleTap(taps, first.id, first.tokens[1].lemma);
   taps = toggleTap(taps, first.id, first.tokens[1].lemma);
-  const rows = exposureRows(choice, taps, 95, true);
+  const all = choice.items.map((i) => i.id);
+  const v = addSeen({ ...EMPTY_VIEWING, taps }, all, 95_000);
+  const rows = exposureRows(choice, v, true);
   assert.equal(rows.length, choice.items.length);
   assert.deepEqual(rows[0].taps, [first.tokens[0].lemma]);
   assert.ok(rows.slice(1).every((r) => r.taps.length === 0));
   assert.ok(Math.abs(rows.reduce((s, r) => s + r.seconds, 0) - 95) <= rows.length);
   for (const r of rows) assert.equal(parseProps("exposure", r).ok, true, JSON.stringify(r).slice(0, 120));
-  assert.ok(exposureRows(choice, taps, 99_999, false).every((r) => r.seconds <= 3600 && r.completed === false));
+  assert.ok(exposureRows(choice, addSeen(v, all, 99_999_000), false).every((r) => r.seconds <= 3600 && r.completed === false));
+});
+
+test("only sentences on screen count as seen, with their measured seconds", () => {
+  const { state, resolve } = allKnownBut(new Set(["mi"]));
+  const choice = chooseUnit(bundle, learnerFromState(state, "es", resolve, T0, 0, new Set()))!;
+  const [a, b] = choice.items;
+  let v = addSeen(EMPTY_VIEWING, [a.id], 4000);
+  v = addSeen(v, [a.id, b.id], 6000);
+  const rows = exposureRows(choice, v, true);
+  assert.deepEqual(rows.map((r) => [r.item, r.seconds]), [[a.id, 7], [b.id, 3]]);
+  assert.deepEqual(exposureRows(choice, EMPTY_VIEWING, false), [], "a skip before anything shows logs nothing");
+});
+
+test("translations start hidden and a reveal is logged on that sentence's row", () => {
+  const { state, resolve } = allKnownBut(new Set(["mi"]));
+  const choice = chooseUnit(bundle, learnerFromState(state, "es", resolve, T0, 0, new Set()))!;
+  const all = choice.items.map((i) => i.id);
+  assert.equal(EMPTY_VIEWING.revealed.size, 0);
+  const v = reveal(addSeen(EMPTY_VIEWING, all, 10_000), all[1]);
+  const rows = exposureRows(choice, v, true);
+  assert.deepEqual(rows.map((r) => r.revealed), all.map((id) => id === all[1]));
+  assert.equal(parseProps("exposure", { ...rows[0], revealed: "yes" }).ok, false);
+  const parsed = parseLogRow({ ...rows[1], kind: "exposure", review_id: "r", reviewed_at: 1, device_id: "d", tz: "UTC", system_id: "s", lang: "es" });
+  assert.equal(parsed?.kind === "exposure" && parsed.revealed, true);
 });
 
 class IO implements MemoryIO {
@@ -106,7 +132,8 @@ test("completing the stage writes one exposure row per item into the log and the
   const io = new IO();
   const sys = createSystem("en", ["es"], [], T0);
   let s = await openShared(io, sys, [sys], null);
-  const rows = exposureRows(choice, toggleTap({ taps: {} }, choice.items[0].id, choice.items[0].tokens[0].lemma), 60, true);
+  const v = addSeen({ ...EMPTY_VIEWING, taps: toggleTap({ taps: {} }, choice.items[0].id, choice.items[0].tokens[0].lemma) }, choice.items.map((i) => i.id), 60_000);
+  const rows = exposureRows(choice, v, true);
   for (const r of rows) s = logExposure(io, s, "es", r).session;
   const log = s.memories.es.log.filter((r) => r.kind === "exposure");
   assert.equal(log.length, rows.length);

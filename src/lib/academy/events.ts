@@ -110,7 +110,8 @@ export function parseProps<N extends LearnEventName>(name: N, raw: unknown): Par
     case "exposure":
       if (!key(raw.item) || !key(raw.unit) || !lemmaList(raw.lemmas_seen, MAX_LEMMAS) || !lemmaList(raw.taps, MAX_TAPS)) return fail;
       if (!int(raw.seconds, MAX_EXPOSURE_SECONDS) || !share(raw.coverage_pred) || typeof raw.completed !== "boolean") return fail;
-      return done({ item: raw.item, unit: raw.unit, lemmas_seen: raw.lemmas_seen, taps: raw.taps, seconds: raw.seconds, coverage_pred: raw.coverage_pred, completed: raw.completed });
+      if (raw.revealed !== undefined && typeof raw.revealed !== "boolean") return fail;
+      return done({ item: raw.item, unit: raw.unit, lemmas_seen: raw.lemmas_seen, taps: raw.taps, seconds: raw.seconds, coverage_pred: raw.coverage_pred, completed: raw.completed, ...(raw.revealed !== undefined ? { revealed: raw.revealed } : {}) });
     case "session_mix":
       if (!key(raw.session) || !orNull(raw.share_target, share) || !orNull(raw.share_real, share) || !orNull(raw.arm, validArm)) return fail;
       if (!orNull(raw.units, (v): v is number => int(v, MAX_SESSION_ITEMS)) || !int(raw.cards, MAX_SESSION_ITEMS) || !int(raw.seconds, 86_400)) return fail;
