@@ -161,3 +161,61 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
     let offline = InputRepo(dir: dir, base: "https://x.test/input") { _ in nil }
     #expect(await offline.bundle("es")?.lang == "es")
 }
+
+@Test func gradedBandsAreFetchedCachedAndMerged() async throws {
+    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let bundleData = Data(#"{"format":"polingual-input","lang":"es","items":[{"id":"t:1","tokens":[{"surface":"Hola","lemma":"hola"}],"text":"Hola"}],"units":[]}"#.utf8)
+    let manifest = Data(#"{"bandBase":null,"langs":{"es":{"file":"es.0123456789ab.json","graded":{"files":{"500":[{"file":"es.b500.p0.76b9c85a128a.json"},{"file":"../x.json"}],"1000":[{"file":"es.b1000.p0.76b9c85a128b.json"}]}}}}}"#.utf8)
+    let band = Data(#"{"format":"polingual-input-band","lang":"es","band":500,"items":[{"id":"t:2","kind":"sentence","text":"El gato","tok":[[0,2,"el"],[3,4]]}],"units":[{"id":"graded:es:500:gato","kind":"sentence_set","itemIds":["t:2"],"targetLemmas":["gato"]}]}"#.utf8)
+    let repo = InputRepo(dir: dir, base: "https://x.test/input", bandBase: "https://cdn.x.test/bands/") { url in
+        switch url.absoluteString {
+        case "https://x.test/input/manifest.json": return manifest
+        case "https://x.test/input/es.0123456789ab.json": return bundleData
+        case "https://cdn.x.test/bands/es.b500.p0.76b9c85a128a.json": return band
+        default: return nil
+        }
+    }
+    let b = try #require(await repo.bundle("es", bands: [500, 1000]))
+    #expect(b.units.map(\.id) == ["graded:es:500:gato"])
+    #expect(b.byId["t:2"]?.tokens.map(\.lemma) == ["el", "gato"])
+    #expect(FileManager.default.fileExists(atPath: dir.appendingPathComponent("es.b500.p0.76b9c85a128a.json").path))
+    let offline = InputRepo(dir: dir, base: "https://x.test/input", bandBase: "https://cdn.x.test/bands") { _ in nil }
+    #expect(await offline.bundle("es", bands: [500])?.units.count == 1)
+    #expect(await offline.bundle("es")?.units.count == 0)
+    let loop = InputRepo(dir: dir, base: "https://x.test/input", bandBase: "http://127.0.0.1:9000") { _ in nil }
+    #expect(await loop.bundle("es", bands: [500])?.units.count == 0)
+    #expect(InputManifest.bandFiles(Data(#"{"langs":{"zh-Hans":{"graded":{"files":{"500":[{"file":"zh-Hans.b500.p0.76b9c85a128a.json"}]}}}}}"#.utf8), lang: "zh-Hans", bands: [500]) == ["zh-Hans.b500.p0.76b9c85a128a.json"])
+}
+
+@Test func bandsLoadOnlyFromAnHttpsConfigBaseOrLoopbackInDebug() async throws {
+    let manifest = Data(#"{"bandBase":"https://cdn.x.test/bands","langs":{"es":{"file":"es.0123456789ab.json","graded":{"files":{"500":[{"file":"es.b500.p0.76b9c85a128a.json"}]}}}}}"#.utf8)
+    let bundleData = Data(#"{"format":"polingual-input","lang":"es","items":[{"id":"t:1","tokens":[{"surface":"Hola","lemma":"hola"}],"text":"Hola"}],"units":[]}"#.utf8)
+    let band = Data(#"{"format":"polingual-input-band","lang":"es","items":[{"id":"t:2","text":"gato","tok":[[0,4]]}],"units":[{"id":"g:1","kind":"sentence_set","itemIds":["t:2"]}]}"#.utf8)
+    let cases: [(String?, Bool, Int)] = [(nil, false, 0), (nil, true, 0), ("http://127.0.0.1:9000", false, 0), ("http://cdn.x.test", true, 0), ("ftp://cdn.x.test", true, 0), ("http://127.0.0.1:9000", true, 1), ("https://cdn.x.test/bands", false, 1)]
+    for (base, debug, units) in cases {
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
+        defer { try? FileManager.default.removeItem(at: dir) }
+        let repo = InputRepo(dir: dir, base: "https://x.test/input", bandBase: base, debug: debug) { url in
+            url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == "es.0123456789ab.json" ? bundleData : band
+        }
+        #expect(await repo.bundle("es", bands: [500])?.units.count == units, "\(String(describing: base)) \(debug)")
+    }
+}
+
+@Test func theUnstudiedPriorCapStaysBelowTheKnownBar() {
+    #expect(FrequencyPriors.unstudied.cap < LearnerModel.knownR)
+    let freq = InputStage.freqIndex([("uno", 1, false)])
+    for tier in [0, 4, 20] {
+        let l = InputStage.learner(EngineState(), lang: "es", resolve: resolve, now: now, tier: tier, due: [], freq: freq)
+        #expect(l.p("uno") < LearnerModel.knownR)
+    }
+}
+
+@Test func knownWordsCountsCardsAtTheKnownBar() {
+    var s = EngineState()
+    var strong = Card(); strong.stability = 100; strong.lastReview = now
+    var weak = Card(); weak.stability = 1; weak.lastReview = now - 86_400_000 * 30
+    s.cards["es:a"] = strong; s.cards["es:b"] = weak; s.cards["fr:a"] = strong
+    #expect(InputStage.knownWords(s, lang: "es", now: now) == 1)
+}

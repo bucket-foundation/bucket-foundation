@@ -107,6 +107,15 @@ class InputStageTest {
     }
 
     @Test
+    fun knownWordsCountsCardsAtTheKnownBar() {
+        val now = 1_800_000_000_000L
+        val strong = CardState(reps = 3, intervalDays = 100.0, due = now + 1, last = now)
+        val weak = CardState(reps = 1, intervalDays = 1.0, due = now, last = now - 86_400_000L * 30)
+        val s = StudyState(cards = mapOf("es:a" to strong, "es:b" to weak, "fr:a" to strong))
+        assertEquals(1, InputStage.knownWords(s, "es", now))
+    }
+
+    @Test
     fun aFrequencyPriorAloneNeverMarksAnUnseenWordKnown() {
         val freq = InputStage.freqIndex(listOf(Triple("uno", 1.0, false)))
         for (tier in listOf(0, 4, 20)) {

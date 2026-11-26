@@ -40,7 +40,7 @@ class Graph(val context: Context) {
     val api = BucketApi(http, BuildConfig.BUCKET_BASE, app = "polingual")
     val store = AppStore(context)
     val corpus = CorpusRepo(context)
-    val inputs = InputRepo(java.io.File(context.filesDir, "input"), BuildConfig.INPUT_BASE, http)
+    val inputs = InputRepo(java.io.File(context.filesDir, "input"), BuildConfig.INPUT_BASE, BuildConfig.INPUT_BAND_BASE.ifBlank { null }, BuildConfig.DEBUG, http)
     val account = Account(api, KeystoreVault(context))
     val kv = PrefsKeyValue(context)
     val funnel = Funnel(kv, { UUID.randomUUID().toString() }) { body ->

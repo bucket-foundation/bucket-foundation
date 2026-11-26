@@ -39,6 +39,7 @@ android {
         versionName = "1.0.2"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
         buildConfigField("String", "INPUT_BASE", "\"${project.findProperty("polingualInputBase") ?: "https://polingual.com/input"}\"")
+        buildConfigField("String", "INPUT_BAND_BASE", "\"${project.findProperty("polingualInputBandBase") ?: ""}\"")
         buildConfigField("String", "INPUT_STAGE", "\"${project.findProperty("polingualInputStage") ?: ""}\"")
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
         buildConfigField("boolean", "ADS_ENABLED", "true")

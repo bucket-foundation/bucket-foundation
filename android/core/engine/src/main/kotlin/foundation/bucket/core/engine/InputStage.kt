@@ -84,6 +84,9 @@ object InputStage {
     fun evidence(card: CardState?): LemmaEvidence =
         if (card == null || (card.reps == 0 && card.lapses == 0) || card.intervalDays <= 0) LemmaEvidence() else LemmaEvidence(stability = card.intervalDays, lastReview = card.last.toDouble())
 
+    fun knownWords(state: StudyState, lang: String, now: Long): Int =
+        state.cards.count { (id, c) -> id.startsWith("$lang:") && LearnerModel.known(evidence(c), now.toDouble(), 0).p >= LearnerModel.KNOWN_R }
+
     fun dueLemmas(b: InputBundle, state: StudyState, lang: String, resolve: (String, String) -> String?, now: Long): Set<String> {
         val out = linkedSetOf<String>()
         for (item in b.items) for (t in item.tokens) {

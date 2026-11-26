@@ -162,6 +162,7 @@ targets:
         PolingualAdInterstitial: $(POLINGUAL_AD_INTERSTITIAL)
         PolingualAdRewarded: $(POLINGUAL_AD_REWARDED)
         PolingualInputBase: $(POLINGUAL_INPUT_BASE)
+        PolingualInputBandBase: $(POLINGUAL_INPUT_BAND_BASE)
         PolingualInputStage: $(POLINGUAL_INPUT_STAGE)
         NSUserTrackingUsageDescription: Polingual uses this to show ads that fit you better between games. Ads keep the games free. You can say no and still play every game.
         SKAdNetworkItems:
@@ -237,6 +238,7 @@ targets:
         PRODUCT_NAME: Polingual
         POLINGUAL_FREE_BETA: "NO"
         POLINGUAL_INPUT_BASE: https:/$()/polingual.com/input
+        POLINGUAL_INPUT_BAND_BASE: ""
         POLINGUAL_INPUT_STAGE: ""
         MARKETING_VERSION: "1.0.4"
         CURRENT_PROJECT_VERSION: "1"

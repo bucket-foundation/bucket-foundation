@@ -35,7 +35,20 @@ enum InputConfig {
         return v.hasPrefix("https://") ? v : "https://polingual.com/input"
     }
 
-    static let repo = InputRepo(dir: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("input"), base: base)
+    static var bandBase: String? {
+        let v = Bundle.main.object(forInfoDictionaryKey: "PolingualInputBandBase") as? String ?? ""
+        return v.isEmpty ? nil : v
+    }
+
+    static var debug: Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
+
+    static let repo = InputRepo(dir: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("input"), base: base, bandBase: bandBase, debug: debug)
 
     @MainActor
     static func load(store: LangStore, system: LangSystem, cards: Int) async -> InputPlanState? {
@@ -50,10 +63,12 @@ enum InputConfig {
         guard mode != .off, let corpus = store.corpus else { return nil }
         let state = store.state(system.id)
         for lang in system.targets {
-            guard let bundle = await repo.bundle(lang) else { continue }
+            let now = Date().timeIntervalSince1970 * 1000
+            guard let bundle = await repo.bundle(lang, bands: InputStage.bandsFor(InputStage.knownWords(state, lang: lang, now: now))) else { continue }
             let resolve = InputStage.resolver([lang: InputStage.lemmaCardMap(corpus, lang: lang)])
             let tier = Int(system.placement[lang] ?? 0)
-            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: Date().timeIntervalSince1970 * 1000) { return p }
+            let freq = InputStage.freqIndex((LangStore.topWords(lang) ?? []).map { ($0.word, Double($0.rank), false) })
+            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq) { return p }
         }
         return nil
     }

@@ -719,6 +719,28 @@
        4
       ]
      ]
+    },
+    {
+     "id": "x:jamo",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "집에",
+     "tok": [
+      [
+       0,
+       3,
+       "집"
+      ],
+      [
+       3,
+       2
+      ]
+     ]
     }
    ],
    "units": [
@@ -870,7 +892,8 @@
      "kind": "sentence_set",
      "itemIds": [
       "x:ko",
-      "x:th"
+      "x:th",
+      "x:jamo"
      ],
      "targetLemmas": [
       "집"
@@ -1592,6 +1615,28 @@
        4
       ]
      ]
+    },
+    {
+     "id": "x:jamo",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "집에",
+     "tok": [
+      [
+       0,
+       3,
+       "집"
+      ],
+      [
+       3,
+       2
+      ]
+     ]
     }
    ],
    "units": [
@@ -1743,7 +1788,8 @@
      "kind": "sentence_set",
      "itemIds": [
       "x:ko",
-      "x:th"
+      "x:th",
+      "x:jamo"
      ],
      "targetLemmas": [
       "집"
@@ -2216,6 +2262,16 @@
     "บ้าน",
     "บ้าน"
    ]
+  ],
+  "x:jamo": [
+   [
+    "집",
+    "집"
+   ],
+   [
+    "에",
+    "에"
+   ]
   ]
  },
  "mergedUnits": [
@@ -2236,6 +2292,7 @@
   "tatoeba:es:2720",
   "tatoeba:es:2818",
   "x:astral",
+  "x:jamo",
   "x:ko",
   "x:th"
  ],

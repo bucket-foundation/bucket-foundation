@@ -40,6 +40,10 @@ extension InputStage {
         }, due: due, rank: { freq($0)?.rank }, recent: recent, lastVideo: lastVideo)
     }
 
+    public static func knownWords(_ state: EngineState, lang: String, now: Double) -> Int {
+        state.cards.filter { id, c in id.hasPrefix("\(lang):") && LearnerModel.known(LemmaEvidence(stability: c.stability, lastReview: c.lastReview), now: now, tier: 0).p >= LearnerModel.knownR }.count
+    }
+
     public static func freqIndex(_ entries: [(String, Double, Bool)]) -> (String) -> FreqPrior? {
         var m: [String: FreqPrior] = [:]
         for (word, rank, derived) in entries {
@@ -97,21 +101,25 @@ public final class InputPlanState {
     private var ended = false
     private var current: (Int, StageChoice)?
 
-    init(lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, mix: SessionMix.InputMix, tier: Int, systemId: String, started: Double, allowFallback: Bool, device: String, clock: @escaping () -> Double, ids: @escaping () -> String, tz: String) {
+    let freq: (String) -> FreqPrior?
+
+    init(lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, mix: SessionMix.InputMix, tier: Int, systemId: String, started: Double, allowFallback: Bool, device: String, clock: @escaping () -> Double, ids: @escaping () -> String, tz: String, freq: @escaping (String) -> FreqPrior? = { _ in nil }) {
+        self.freq = freq
         self.lang = lang; self.bundle = bundle; self.resolve = resolve; self.mix = mix; self.tier = tier; self.systemId = systemId
         self.started = started; self.allowFallback = allowFallback; self.device = device; self.clock = clock; self.ids = ids; self.tz = tz
     }
 
     public static func plan(mode: InputMode, lang: String, bundle: InputBundle, resolve: @escaping LemmaResolver, state: EngineState, cards: Int, tier: Int, systemId: String, device: String, now: Double,
-                            clock: @escaping () -> Double = { Date().timeIntervalSince1970 * 1000 }, ids: @escaping () -> String = { UUID().uuidString.lowercased() }, tz: String = TimeZone.current.identifier) -> InputPlanState? {
+                            clock: @escaping () -> Double = { Date().timeIntervalSince1970 * 1000 }, ids: @escaping () -> String = { UUID().uuidString.lowercased() }, tz: String = TimeZone.current.identifier,
+                            freq: @escaping (String) -> FreqPrior? = { _ in nil }) -> InputPlanState? {
         if mode == .off { return nil }
-        let l = InputStage.learner(state, lang: lang, resolve: resolve, now: now, tier: tier, due: InputStage.dueLemmas(bundle, state: state, lang: lang, resolve: resolve, now: now))
+        let l = InputStage.learner(state, lang: lang, resolve: resolve, now: now, tier: tier, due: InputStage.dueLemmas(bundle, state: state, lang: lang, resolve: resolve, now: now), freq: freq)
         let demo = mode == .demo
         var eligible = InputStage.eligibleUnitSeconds(bundle, learner: l)
         if eligible.isEmpty && demo, let c = InputStage.choose(bundle, learner: l, allowFallback: true) { eligible = [Double(c.plan.tokens) * 1.5] }
         let mix = SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligible)
         if mix.units == 0 { return nil }
-        return InputPlanState(lang: lang, bundle: bundle, resolve: resolve, mix: mix, tier: tier, systemId: systemId, started: now, allowFallback: demo, device: device, clock: clock, ids: ids, tz: tz)
+        return InputPlanState(lang: lang, bundle: bundle, resolve: resolve, mix: mix, tier: tier, systemId: systemId, started: now, allowFallback: demo, device: device, clock: clock, ids: ids, tz: tz, freq: freq)
     }
 
     public func itemId(_ lemma: String) -> String? {
@@ -126,7 +134,7 @@ public final class InputPlanState {
     public func prepare(answered i: Int, state: EngineState) {
         guard mix.positions.contains(i), !done.contains(i), current?.0 != i else { return }
         let now = clock()
-        let l = InputStage.learner(state, lang: lang, resolve: resolve, now: now, tier: tier, due: InputStage.dueLemmas(bundle, state: state, lang: lang, resolve: resolve, now: now), recent: shown)
+        let l = InputStage.learner(state, lang: lang, resolve: resolve, now: now, tier: tier, due: InputStage.dueLemmas(bundle, state: state, lang: lang, resolve: resolve, now: now), recent: shown, freq: freq)
         if let c = InputStage.choose(bundle, learner: l, allowFallback: allowFallback) { current = (i, c) } else { done.insert(i) }
     }
 
@@ -155,14 +163,35 @@ public final class InputPlanState {
 }
 
 public enum InputManifest {
-    static let file = "^[a-z]{2,3}\\.[0-9a-f]{8,64}\\.json$"
+    static let tag = "[a-z]{2,3}(?:-[A-Za-z]{2,8})?"
+    static let file = "^\(tag)\\.[0-9a-f]{8,64}\\.json$"
+    static let bandFile = "^\(tag)\\.b\\d{1,5}\\.p\\d{1,3}\\.[0-9a-f]{8,64}\\.json$"
+    static let loopback = "^https?://(localhost|127(\\.\\d{1,3}){3}|\\[::1\\]|0\\.0\\.0\\.0)(:\\d+)?(/|$)"
+
+    public static func bandFiles(_ data: Data, lang: String, bands: [Int]) -> [String] {
+        guard let files = ((langs(data)?[lang] as? [String: Any])?["graded"] as? [String: Any])?["files"] as? [String: Any] else { return [] }
+        return bands.flatMap { b in ((files[String(b)] as? [[String: Any]]) ?? []).compactMap { $0["file"] as? String }.filter { $0.range(of: bandFile, options: .regularExpression) != nil } }
+    }
+
+    public static func bandBase(_ config: String?, debug: Bool) -> String? {
+        guard let b = config?.trimmingCharacters(in: .whitespaces), b.hasPrefix("https://") || (debug && b.range(of: loopback, options: [.regularExpression, .caseInsensitive]) != nil) else { return nil }
+        return b.hasSuffix("/") ? String(b.dropLast()) : b
+    }
+
+    public static func isBand(_ data: Data, lang: String) -> Bool {
+        guard let o = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return false }
+        return o["format"] as? String == "polingual-input-band" && o["lang"] as? String == lang && o["items"] is [Any] && o["units"] is [Any]
+    }
 
     static func langs(_ data: Data) -> [String: Any]? {
         (try? JSONSerialization.jsonObject(with: data) as? [String: Any])?["langs"] as? [String: Any]
     }
 
     public static func files(_ data: Data) -> Set<String> {
-        Set((langs(data) ?? [:]).values.compactMap { ($0 as? [String: Any])?["file"] as? String }.filter { $0.range(of: file, options: .regularExpression) != nil })
+        let ls = langs(data) ?? [:]
+        let bundles = ls.values.compactMap { ($0 as? [String: Any])?["file"] as? String }.filter { $0.range(of: file, options: .regularExpression) != nil }
+        if bundles.isEmpty { return [] }
+        return Set(bundles + ls.keys.flatMap { bandFiles(data, lang: $0, bands: InputStage.bandRanks) })
     }
 
     public static func file(_ data: Data, lang: String) -> String? {
@@ -174,14 +203,16 @@ public enum InputManifest {
 public final class InputRepo: @unchecked Sendable {
     let dir: URL
     let base: String
+    let bandBase: String?
+    let debug: Bool
     let fetch: @Sendable (URL) async -> Data?
 
-    public init(dir: URL, base: String, fetch: @escaping @Sendable (URL) async -> Data?) {
-        self.dir = dir; self.base = base; self.fetch = fetch
+    public init(dir: URL, base: String, bandBase: String? = nil, debug: Bool = false, fetch: @escaping @Sendable (URL) async -> Data?) {
+        self.dir = dir; self.base = base; self.bandBase = bandBase; self.debug = debug; self.fetch = fetch
     }
 
-    public convenience init(dir: URL, base: String) {
-        self.init(dir: dir, base: base) { url in
+    public convenience init(dir: URL, base: String, bandBase: String?, debug: Bool) {
+        self.init(dir: dir, base: base, bandBase: bandBase, debug: debug) { url in
             guard let (d, r) = try? await URLSession.shared.data(from: url), (r as? HTTPURLResponse)?.statusCode == 200 else { return nil }
             return d
         }
@@ -202,7 +233,20 @@ public final class InputRepo: @unchecked Sendable {
 
     func url(_ name: String) -> URL? { URL(string: "\(base.hasSuffix("/") ? String(base.dropLast()) : base)/\(name)") }
 
-    public func bundle(_ lang: String) async -> InputBundle? {
+    public func bundle(_ lang: String, bands: [Int] = []) async -> InputBundle? {
+        guard let (manifest, b) = await base(lang) else { return nil }
+        guard let root = InputManifest.bandBase(bandBase, debug: debug) else { return b }
+        var parts: [Data?] = []
+        for f in InputManifest.bandFiles(manifest, lang: lang, bands: bands) {
+            if let d = cached(f) { parts.append(d); continue }
+            guard let u = URL(string: "\(root)/\(f)"), let d = await fetch(u), InputManifest.isBand(d, lang: lang) else { parts.append(nil); continue }
+            store(f, d)
+            parts.append(d)
+        }
+        return InputStage.mergeBands(b, bands: parts)
+    }
+
+    func base(_ lang: String) async -> (Data, InputBundle)? {
         var fresh: Data?
         if let u = url("manifest.json"), let d = await fetch(u), !InputManifest.files(d).isEmpty { fresh = d }
         if let f = fresh, f != cached("manifest.json") {
@@ -210,9 +254,9 @@ public final class InputRepo: @unchecked Sendable {
             prune(f)
         }
         guard let manifest = fresh ?? cached("manifest.json"), let file = InputManifest.file(manifest, lang: lang) else { return nil }
-        if let d = cached(file), let b = InputStage.parseBundle(d) { return b }
+        if let d = cached(file), let b = InputStage.parseBundle(d) { return (manifest, b) }
         guard let u = url(file), let d = await fetch(u), let b = InputStage.parseBundle(d) else { return nil }
         store(file, d)
-        return b
+        return (manifest, b)
     }
 }

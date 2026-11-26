@@ -1,6 +1,7 @@
 package com.polingual.app
 
 import foundation.bucket.core.engine.ExposureInput
+import foundation.bucket.core.engine.FreqPrior
 import foundation.bucket.core.engine.InputBundle
 import foundation.bucket.core.engine.InputStage
 import foundation.bucket.core.engine.LogRow
@@ -38,6 +39,7 @@ class InputPlanState(
     private val clock: () -> Long = System::currentTimeMillis,
     private val ids: () -> String = { UUID.randomUUID().toString() },
     private val tz: String = TimeZone.getDefault().id,
+    private val freq: (String) -> FreqPrior? = { null },
 ) {
     private val done = mutableSetOf<Int>()
     private val shown = mutableMapOf<String, Int>()
@@ -54,7 +56,7 @@ class InputPlanState(
         val i = s.answered
         if (i !in mix.positions || i in done || current?.first == i) return
         val now = clock()
-        val learner = InputStage.learner(s.state, lang, resolve, now, tier, InputStage.dueLemmas(bundle, s.state, lang, resolve, now), shown, null)
+        val learner = InputStage.learner(s.state, lang, resolve, now, tier, InputStage.dueLemmas(bundle, s.state, lang, resolve, now), shown, null, freq)
         val choice = InputStage.choose(bundle, learner, allowFallback)
         if (choice == null) done += i else current = i to choice
     }
@@ -88,14 +90,15 @@ class InputPlanState(
             mode: InputModeFlag.Mode, lang: String, bundle: InputBundle, glossOf: (String) -> String?, resolve: (String, String) -> String?,
             state: StudyState, cards: Int, tier: Int, systemId: String, device: String, now: Long,
             clock: () -> Long = System::currentTimeMillis, ids: () -> String = { UUID.randomUUID().toString() }, tz: String = TimeZone.getDefault().id,
+            freq: (String) -> FreqPrior? = { null },
         ): InputPlanState? {
             if (mode == InputModeFlag.Mode.Off) return null
-            val learner = InputStage.learner(state, lang, resolve, now, tier, InputStage.dueLemmas(bundle, state, lang, resolve, now), emptyMap(), null)
+            val learner = InputStage.learner(state, lang, resolve, now, tier, InputStage.dueLemmas(bundle, state, lang, resolve, now), emptyMap(), null, freq)
             val demo = mode == InputModeFlag.Mode.Demo
             val eligible = InputStage.eligibleUnitSeconds(bundle, learner).ifEmpty { if (demo) listOfNotNull(InputStage.choose(bundle, learner, true)?.plan?.tokens?.times(1.5)) else emptyList() }
             val mix = SessionMix.planInputMix(tier, cards, eligible)
             if (mix.units == 0) return null
-            return InputPlanState(lang, bundle, glossOf, resolve, mix, tier, systemId, now, demo, device, clock, ids, tz)
+            return InputPlanState(lang, bundle, glossOf, resolve, mix, tier, systemId, now, demo, device, clock, ids, tz, freq)
         }
 
         suspend fun load(graph: Graph, s: StudySession, targets: List<String>, placement: Map<String, Double>, systemId: String): InputPlanState? {
@@ -105,9 +108,11 @@ class InputPlanState(
             val device = ReviewLog.deviceHash(salt, graph.kv.get("polingual.install") ?: UUID.randomUUID().toString().also { graph.kv.set("polingual.install", it) })
             val corpus = graph.corpus.load()
             for (lang in targets) {
-                val bundle = graph.inputs.bundle(lang) ?: continue
+                val now = System.currentTimeMillis()
                 val resolve = InputStage.resolver(mapOf(lang to InputStage.lemmaCardMap(corpus, lang)))
-                plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, System.currentTimeMillis())?.let { return it }
+                val bundle = graph.inputs.bundle(lang, InputStage.bandsFor(InputStage.knownWords(s.state, lang, now))) ?: continue
+                val freq = InputStage.freqIndex(graph.corpus.frequency(listOf(lang)).ranks[lang].orEmpty().map { (w, r) -> Triple(w, r.toDouble(), false) })
+                plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, now, freq = freq)?.let { return it }
             }
             return null
         }
