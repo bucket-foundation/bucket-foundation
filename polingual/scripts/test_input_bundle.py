@@ -19,6 +19,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import input_bundle as ib
+import input_segment as seg
 
 SCHEMA = json.loads((HERE.parent / "src/lib/input/input-bundle.schema.json").read_text())
 SHIPPED = HERE.parent / "public/input"
@@ -252,7 +253,49 @@ class Shipped(unittest.TestCase):
                 self.assertEqual(len(ids), len(set(ids)))
 
 
-LEX_ENV = ("PHOTONS_INDEX", "POLINGUAL_PACKS_DIR", "INPUT_SCRATCH_DIR")
+class Scripts(unittest.TestCase):
+    def test_lookup_keys_strip_marks(self):
+        self.assertEqual(seg.lookup_key("ar")("كَتَبَ"), "كتب")
+        self.assertEqual(seg.lookup_key("he")("שָׁלוֹם"), "שלום")
+        self.assertEqual(seg.lookup_key("ru")("идти́"), "идти")
+        self.assertEqual(seg.lookup_key("ru")("ёж"), "ёж")
+        self.assertEqual(seg.lookup_key("tr")("İki".lower()), "iki")
+
+    def test_clitic_variants(self):
+        self.assertIn("كتاب", seg.ar_variants("والكتاب"))
+        self.assertIn("مدرسة", seg.ar_variants("مدرستي"))
+        self.assertIn("בית", seg.he_variants("והבית"))
+        self.assertIn("ayah", seg.id_variants("ayahku"))
+
+    def test_word_regex_keeps_marks(self):
+        self.assertEqual([m.group(0) for m in seg.WORD_ANY.finditer("عليّ أن أنام.")], ["عليّ", "أن", "أنام"])
+        self.assertEqual([m.group(0) for m in seg.WORD_ANY.finditer("मैं एक माँ हूँ।")], ["मैं", "एक", "माँ", "हूँ"])
+
+    def test_compounds_join_known_syllables(self):
+        known = {"hôm qua", "trời"}.__contains__
+        got = seg.compounds([("Hôm", True), ("qua", False), ("trời", False)], lambda w: known(w.lower()))
+        self.assertEqual(got, [("Hôm qua", True), ("trời", False)])
+
+    def test_names_stay_unmapped(self):
+        lex = lexicon()
+        lex.names = {"Casas"}
+        self.assertEqual(lex.lemma("Casas", True), ("Casas", False))
+
+    def test_augment_pool_fills_missing_lang(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            with bz2.open(d / "ces-eng_links.tsv.bz2", "wt") as f:
+                f.write("50\t1\n51\t1\n52\t2\n")
+            with bz2.open(d / "ces_sentences_detailed.tsv.bz2", "wt") as f:
+                f.write("51\tces\tDruhá.\tx\n50\tces\tPrvní.\ty\n")
+            pool = {"1": {"t": {"en": "One."}}, "2": {"t": {"en": "Two."}}}
+            got = ib.augment_pool(d, "cs", pool)
+            self.assertEqual(got["1"]["t"]["cs"], "První.")
+            self.assertNotIn("cs", got["2"]["t"])
+            self.assertNotIn("cs", pool["1"]["t"])
+
+
+LEX_ENV = ("PHOTONS_INDEX", "POLINGUAL_PACKS_DIR", "INPUT_SCRATCH_DIR", "TATOEBA_DIR")
 
 
 @unittest.skipUnless(all(os.environ.get(k) for k in LEX_ENV), f"golden check needs {', '.join(LEX_ENV)}")
@@ -263,7 +306,7 @@ class GoldenRegression(unittest.TestCase):
         a.scratch.mkdir(parents=True, exist_ok=True)
         for lang, limit in ib.GOLDEN_MAX_ERROR.items():
             with self.subTest(lang=lang):
-                rate, wrong = ib.golden_error_rate(ib.open_lexicon(lang, a.packs, a.scratch, a.index), gold[lang])
+                rate, wrong = ib.golden_error_rate(ib.golden_lexicon(lang, a), gold[lang])
                 self.assertLessEqual(rate, limit, wrong)
 
 

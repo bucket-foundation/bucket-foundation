@@ -5,24 +5,26 @@
   "index": "ad4f6e9aa58639b2e0dfc78344b17e9ae050c6d8be5e1e9475befbf4da68e0ce",
   "layers": "c8787dbb46aeb3ef998d1c6c4300e726280b49976a5489a4c094626344ee5f7a",
   "packs": {
+   "ar": "dbc949ddc0c9d3be54f8fe06b4cac39fad7fe6e6011e6a15b46c65f7656c6112",
    "de": "f9292be69cd2a53df7da6cc861741bab662f1d9a2bfb35b9eca5dbc2b6619698",
+   "el": "8868d1e60cf1bc6ed018a0182ee33b3e0b28502348f9e0d17cdd1d3c2dc26073",
    "es": "52da7e340d53794a9f05b80023af2f14bb35b6f37fcc48b0024185aec2fc4c9d",
+   "fa": "7a67f26d96bb9deebfe713f45906bef5a850ad095696e8ec0a8fbbcf8e1353cc",
+   "fi": "90fc34966dbb0df2f69661c4ca84e8f8fa5a12ba798ebb2c47409a6c228be00e",
    "fr": "a3b9251a7a6a4790e37c58e2ea2a6707052088eccd727ce7d998d4caf525e433",
+   "id": "0e30a68378e9bcf021921c97ef7339043652bc4c68ef762bdaa2e85e53362ca7",
    "it": "fc4ab3b3726064eb373c004d5bb1d60875e08efbba35abd8a3bf5c59b38edebb",
-   "pt": "419a460652224b1ce311626fad7bd92d7608274b6a7545ef5964c368bb21fbbc"
+   "ja": "033cdff96ad6d67d685692c663927168a65d6420343ed55742df9b282ad3e19b",
+   "ko": "159fabe3de971e8b0f0fe24351b5b73a45e47b631814e4b563eeb7be0927e239",
+   "pl": "1f7ed86f08f875002c11567d410be77413f8203eb86c8beca6ce27a28b9e798f",
+   "pt": "419a460652224b1ce311626fad7bd92d7608274b6a7545ef5964c368bb21fbbc",
+   "ru": "495a2c665446726a2ed7f29cf237370beb1fb8e37c0b3d15d5244b8c02aefe12",
+   "th": "81ce1da5b768e24f829d5de78a3ad65d95f0f5e9a17cb3e9ae59bdccd378d138",
+   "vi": "f83195016004501ebabc1cd19b54afc97b89ad10e6e31fa64ef12049b0f38683",
+   "zh": "e0c9a905007bff960047394f67b97067ee780dbf7dba7abeda5a0b8632490bb1"
   },
   "tatoeba": {
-   "deu-eng_links": "30f79bb84d2b579482bb43b15e90091595bde629063195555aeda535f6ecda2e",
-   "deu_sentences_detailed": "69600c2f96ac4cf5d45fb88f2f469b57aff20b4df15096481ac81c0098e3d38e",
-   "eng_sentences_detailed": "3a0e7a2fdd7cbad76f226de4c28371a15a2fc4d115001617288b16a35c6293db",
-   "fra-eng_links": "1c6421927725d67cd87f39c3176e18623927c4cda9797dd87ca9a18830fb463d",
-   "fra_sentences_detailed": "3d7feee8d677b24233be6955018fcac5e9f4fc1c06327b25f4479cc1d162a8bb",
-   "ita-eng_links": "f0f401cd887b3a1797a07b7254441738c252c36ad424f47217762767f8c381f1",
-   "ita_sentences_detailed": "8644595c7f87a375909eed7830dd34785d59bf7d802937d420a84831008e933c",
-   "por-eng_links": "bebf6a4b96c63d6f69de28a4ae339b89e3e5cbcc5d0a8e91f991bcc02c8689ec",
-   "por_sentences_detailed": "801bcb759061280471a5ccded5a9ba759b6df44937fcd575d6076ed2f8aacf73",
-   "spa-eng_links": "abff2861bda7d801f44566abdf95d0ed0303a45ce6b6e869031146de53ebd8a5",
-   "spa_sentences_detailed": "7c41001b1790fffa0dd794f05ec8dcac6d51251d4374d884e5c88d14b4b2e327"
+   "eng_sentences_detailed": "c39d2fab0cc5bc2b798b539134b83abaf5dec723a059ce55496907d08e3e9030"
   },
   "videos": {
    "-TcPOLkccaI.json": "192dad4b788ece428f9804fdcd5b74db38fb11e7317e4b8eab3f5b9c20b175f9",
@@ -32,6 +34,21 @@
  },
  "langTags": "BCP-47",
  "langs": {
+  "ar": {
+   "coverage": {
+    "tokenShare": 0.7701,
+    "tokens": 3684,
+    "tokensMapped": 2837,
+    "typeShare": 0.6784,
+    "types": 1909,
+    "typesMapped": 1295
+   },
+   "file": "ar.0f1e7d016aa5.json",
+   "items": 27,
+   "tatoebaIdsMatched": 1266,
+   "tatoebaItems": 1266,
+   "units": 5
+  },
   "de": {
    "coverage": {
     "tokenShare": 0.9794,
@@ -176,6 +193,21 @@
    "tatoebaItems": 4008,
    "units": 84
   },
+  "el": {
+   "coverage": {
+    "tokenShare": 0.9455,
+    "tokens": 4748,
+    "tokensMapped": 4489,
+    "typeShare": 0.918,
+    "types": 1463,
+    "typesMapped": 1343
+   },
+   "file": "el.ea80a963dffb.json",
+   "items": 60,
+   "tatoebaIdsMatched": 1213,
+   "tatoebaItems": 1213,
+   "units": 12
+  },
   "es": {
    "coverage": {
     "tokenShare": 0.975,
@@ -301,6 +333,36 @@
    "tatoebaIdsMatched": 3287,
    "tatoebaItems": 3287,
    "units": 70
+  },
+  "fa": {
+   "coverage": {
+    "tokenShare": 0.9423,
+    "tokens": 884,
+    "tokensMapped": 833,
+    "typeShare": 0.9028,
+    "types": 494,
+    "typesMapped": 446
+   },
+   "file": "fa.56756ec9edcd.json",
+   "items": 11,
+   "tatoebaIdsMatched": 206,
+   "tatoebaItems": 206,
+   "units": 2
+  },
+  "fi": {
+   "coverage": {
+    "tokenShare": 0.9675,
+    "tokens": 6608,
+    "tokensMapped": 6393,
+    "typeShare": 0.9652,
+    "types": 2618,
+    "typesMapped": 2527
+   },
+   "file": "fi.614ea4740562.json",
+   "items": 41,
+   "tatoebaIdsMatched": 2123,
+   "tatoebaItems": 2123,
+   "units": 7
   },
   "fr": {
    "coverage": {
@@ -458,6 +520,21 @@
    "tatoebaItems": 3759,
    "units": 109
   },
+  "id": {
+   "coverage": {
+    "tokenShare": 0.9567,
+    "tokens": 2469,
+    "tokensMapped": 2362,
+    "typeShare": 0.9205,
+    "types": 843,
+    "typesMapped": 776
+   },
+   "file": "id.83dafb7255e5.json",
+   "items": 30,
+   "tatoebaIdsMatched": 721,
+   "tatoebaItems": 721,
+   "units": 5
+  },
   "it": {
    "coverage": {
     "tokenShare": 0.9628,
@@ -584,6 +661,51 @@
    "tatoebaItems": 4757,
    "units": 72
   },
+  "ja": {
+   "coverage": {
+    "tokenShare": 0.9547,
+    "tokens": 18400,
+    "tokensMapped": 17567,
+    "typeShare": 0.8966,
+    "types": 3461,
+    "typesMapped": 3103
+   },
+   "file": "ja.cc09d02c2978.json",
+   "items": 923,
+   "tatoebaIdsMatched": 3084,
+   "tatoebaItems": 3084,
+   "units": 182
+  },
+  "ko": {
+   "coverage": {
+    "tokenShare": 0.892,
+    "tokens": 3953,
+    "tokensMapped": 3526,
+    "typeShare": 0.9165,
+    "types": 1485,
+    "typesMapped": 1361
+   },
+   "file": "ko.3ebb839c4568.json",
+   "items": 138,
+   "tatoebaIdsMatched": 768,
+   "tatoebaItems": 768,
+   "units": 27
+  },
+  "pl": {
+   "coverage": {
+    "tokenShare": 0.9626,
+    "tokens": 7003,
+    "tokensMapped": 6741,
+    "typeShare": 0.9632,
+    "types": 2525,
+    "typesMapped": 2432
+   },
+   "file": "pl.a6564de0b65e.json",
+   "items": 68,
+   "tatoebaIdsMatched": 2148,
+   "tatoebaItems": 2148,
+   "units": 12
+  },
   "pt": {
    "coverage": {
     "tokenShare": 0.9921,
@@ -709,16 +831,222 @@
    "tatoebaIdsMatched": 3345,
    "tatoebaItems": 3346,
    "units": 62
+  },
+  "ru": {
+   "coverage": {
+    "tokenShare": 0.9549,
+    "tokens": 20317,
+    "tokensMapped": 19400,
+    "typeShare": 0.9528,
+    "types": 5131,
+    "typesMapped": 4889
+   },
+   "file": "ru.055fd929d2a1.json",
+   "items": 269,
+   "tatoebaIdsMatched": 5943,
+   "tatoebaItems": 5943,
+   "units": 49
+  },
+  "th": {
+   "coverage": {
+    "tokenShare": 0.9322,
+    "tokens": 958,
+    "tokensMapped": 893,
+    "typeShare": 0.8688,
+    "types": 404,
+    "typesMapped": 351
+   },
+   "file": "th.5b40960a9100.json",
+   "items": 5,
+   "tatoebaIdsMatched": 274,
+   "tatoebaItems": 274,
+   "units": 1
+  },
+  "vi": {
+   "coverage": {
+    "tokenShare": 0.9612,
+    "tokens": 1806,
+    "tokensMapped": 1736,
+    "typeShare": 0.9516,
+    "types": 620,
+    "typesMapped": 590
+   },
+   "file": "vi.3102801818c7.json",
+   "items": 27,
+   "tatoebaIdsMatched": 433,
+   "tatoebaItems": 433,
+   "units": 5
+  },
+  "zh": {
+   "coverage": {
+    "tokenShare": 0.9516,
+    "tokens": 9420,
+    "tokensMapped": 8964,
+    "typeShare": 0.8982,
+    "types": 2692,
+    "typesMapped": 2418
+   },
+   "file": "zh.7df729846987.json",
+   "items": 340,
+   "tatoebaIdsMatched": 1918,
+   "tatoebaItems": 1918,
+   "units": 67
   }
  },
  "lemmaEvaluation": {
+  "byLang": {
+   "ar": {
+    "golden": {
+     "error": 0.24,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.1,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "el": {
+    "golden": {
+     "error": 0.04,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.05,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "fa": {
+    "golden": {
+     "error": 0.06,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.1,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "fi": {
+    "golden": {
+     "error": 0.04,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.05,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "id": {
+    "golden": {
+     "error": 0.02,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.0,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "ja": {
+    "golden": {
+     "error": 0.0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.0,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "ko": {
+    "golden": {
+     "error": 0.04,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.1,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "pl": {
+    "golden": {
+     "error": 0.1,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.0,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "ru": {
+    "golden": {
+     "error": 0.02,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.05,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "th": {
+    "golden": {
+     "error": 0.02,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.0,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "vi": {
+    "golden": {
+     "error": 0.0,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.0,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   },
+   "zh": {
+    "golden": {
+     "error": 0.04,
+     "tokens": 50
+    },
+    "heldOut": {
+     "error": 0.05,
+     "file": "scripts/input_heldout.json",
+     "tokens": 20
+    }
+   }
+  },
   "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
   "goldenError": {
+   "ar": 0.24,
    "de": 0.04,
+   "el": 0.04,
    "es": 0.0,
+   "fa": 0.06,
+   "fi": 0.04,
    "fr": 0.02,
+   "id": 0.02,
    "it": 0.0,
-   "pt": 0.08
+   "ja": 0.0,
+   "ko": 0.04,
+   "pl": 0.1,
+   "pt": 0.08,
+   "ru": 0.02,
+   "th": 0.02,
+   "vi": 0.0,
+   "zh": 0.04
   },
   "goldenTunedRules": true,
   "heldOut": {
@@ -730,5 +1058,14 @@
    ],
    "tokens": 100
   }
+ },
+ "skipped": {
+  "cs": "held-out lemma error 0.20 above 0.1",
+  "he": "held-out lemma error 0.25 above 0.1",
+  "hi": "held-out lemma error 0.15 above 0.1",
+  "nl": "held-out lemma error 0.15 above 0.1",
+  "sv": "held-out lemma error 0.15 above 0.1",
+  "ta": "35 Tatoeba sentences linked to the English pool, below 200",
+  "tr": "held-out lemma error 0.25 above 0.1"
  }
 }

@@ -12,13 +12,22 @@ import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from input_segment import VARIANTS, WORD_ANY, Segmenter, compounds, lookup_key
+
 ROOT = Path(__file__).resolve().parents[2]
 LAYERS = ROOT / "learning/app/corpus/lang-layers.json"
 VIDEOS = ROOT / "polingual/public/videos"
 OUT = ROOT / "polingual/public/input"
 GOLDEN = Path(__file__).resolve().parent / "input_golden.json"
 LANGS = ["es", "fr", "it", "pt", "de"]
-ISO3 = {"es": "spa", "fr": "fra", "it": "ita", "pt": "por", "de": "deu"}
+NEW_LANGS = ["nl", "sv", "pl", "ru", "cs", "tr", "fi", "el", "id", "ar", "he", "hi", "fa", "ko", "ja", "zh", "th", "vi", "ta"]
+ISO3 = {"es": "spa", "fr": "fra", "it": "ita", "pt": "por", "de": "deu", "nl": "nld", "sv": "swe", "pl": "pol",
+        "ru": "rus", "cs": "ces", "tr": "tur", "fi": "fin", "el": "ell", "id": "ind", "ar": "ara", "he": "heb",
+        "hi": "hin", "fa": "pes", "ko": "kor", "ja": "jpn", "zh": "cmn", "th": "tha", "vi": "vie", "ta": "tam"}
+SEGMENTED = {"ja", "zh", "th", "ko"}
+MIN_SENTENCES = 200
+MAX_HELD_OUT_ERROR = 0.10
+HELD_OUT = Path(__file__).resolve().parent / "input_heldout.json"
 MIN_TOKENS = 40
 SET_MIN, SET_MAX = 4, 6
 TATOEBA_LICENSE = "CC-BY 2.0 FR"
@@ -34,6 +43,12 @@ diminutive augmentative superlative comparative contraction genitive dative accu
 strong weak mixed definite indefinite apocopic elative pronominal combined
 affirmative negative informal formal polite familiar active passive simple compound tense mood
 """.split())
+WIDE_FORM_WORDS = set("""
+prepositional instrumental locative vocative partitive ablative illative inessive adessive allative essive
+translative comitative abessive instructive imperfective perfective animate inanimate short long possessive
+aspect case oblique construct state jussive dual paucal honorific humble polite plain attributive terminal
+connective stem continuative conjunctive negative-form verbal adverbial transgressive status of
+""".split())
 FORM_HEADS = {"plural", "singular", "feminine", "masculine", "neuter", "participle", "gerund", "infinitive",
               "imperative", "indicative", "subjunctive", "conditional", "preterite", "imperfect", "present", "past",
               "future", "form", "inflection", "contraction", "diminutive", "augmentative", "superlative",
@@ -42,7 +57,8 @@ ELISION_TAILS = ("e", "a", "o", "")
 RANK_MARGIN = 200
 STOP_SHARE = 0.05
 INF = float("inf")
-GOLDEN_MAX_ERROR = {"es": 0.0, "fr": 0.02, "it": 0.0, "pt": 0.08, "de": 0.04}
+GOLDEN_MAX_ERROR = {"es": 0.0, "fr": 0.02, "it": 0.0, "pt": 0.08, "de": 0.04, "pl": 0.10, "ru": 0.02, "fi": 0.04,
+                    "el": 0.04, "id": 0.02, "ar": 0.24, "fa": 0.06, "ko": 0.04, "ja": 0.0, "zh": 0.04, "th": 0.02, "vi": 0.0}
 LEMMA_EVALUATION = {
     "golden": "scripts/input_golden.json, 50 hand-checked tokens per language",
     "goldenTunedRules": True,
@@ -58,8 +74,11 @@ CLOSED_CLASS = {
 }
 
 
+PACK_FOLD = re.compile("[\u0300-\u036f\u0591-\u05c7\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed]")
+
+
 def fold(s):
-    return "".join(c for c in unicodedata.normalize("NFKD", s.lower()) if not unicodedata.combining(c))
+    return PACK_FOLD.sub("", unicodedata.normalize("NFKD", s)).lower().strip()
 
 
 def split_word(w, known):
@@ -87,15 +106,16 @@ def tokenize(text, known=lambda w: False):
     return [w for w, _ in tokenize_with_position(text, known)]
 
 
-def is_tag_only(sense):
+def is_tag_only(sense, vocab=FORM_WORDS):
     words = sense.lower().replace(",", " ").replace("/", " ").rstrip(":. ").split()
-    return bool(words) and set(words) <= FORM_WORDS
+    return bool(words) and set(words) <= vocab
 
 
-def lemma_of_meaning(sense):
+def lemma_of_meaning(sense, vocab=FORM_WORDS):
     head, sep, rest = sense.strip().partition(" of ")
     words = head.lower().replace(",", " ").replace("/", " ").split()
-    if not sep or not words or not set(words) <= FORM_WORDS or not set(words) & FORM_HEADS:
+    heads = FORM_HEADS | (WIDE_FORM_WORDS if vocab is not FORM_WORDS else set())
+    if not sep or not words or not set(words) <= vocab or not set(words) & heads:
         return None
     if words[0] == "apocopic" and ";" in rest:
         return None
@@ -105,13 +125,21 @@ def lemma_of_meaning(sense):
 
 
 class Lexicon:
-    def __init__(self, lookup, noun_caps=False, closed=None):
+    def __init__(self, lookup, noun_caps=False, closed=None, key=None, variants=None, wide=False, analyze=None,
+                 fallback=None):
         self.lookup = lookup
+        self.key = key or (lambda s: s)
+        self.variants = variants
+        self.vocab = FORM_WORDS | WIDE_FORM_WORDS if wide else FORM_WORDS
+        self.analyze = analyze
+        self.fallback = fallback
+        self.names = set()
         self.closed = closed or {}
         self.noun_caps = noun_caps
         self.cache = {}
 
     def _find(self, cand):
+        cand = self.key(cand)
         senses, rank = self.lookup(cand)
         return (cand, senses, rank) if senses else None
 
@@ -137,21 +165,29 @@ class Lexicon:
             return low
         return exact or low or (None, [], None)
 
+    def learn_names(self, texts, min_count=2):
+        seen = Counter()
+        for text in texts:
+            for s, initial, _ in (self.analyze or analyze_default)(text, self):
+                if not initial and s[:1].isupper() and s[1:2].islower():
+                    seen[s] += 1
+        self.names = {s for s, n in seen.items() if n >= min_count}
+
     def known(self, surface):
         return self._entry(surface)[0] is not None
 
     def _base(self, found, senses, rank):
-        forms = [(t, pos) for g, pos in senses for t in [lemma_of_meaning(g)] if t]
+        forms = [(self.key(t), pos) for g, pos in senses for t in [lemma_of_meaning(g, self.vocab)] if t]
         if not forms:
             return found
-        own = any((lemma_of_meaning(g) is None and not is_tag_only(g)) or g.lower().startswith("apocopic") and ";" in g
+        own = any((lemma_of_meaning(g, self.vocab) is None and not is_tag_only(g, self.vocab)) or g.lower().startswith("apocopic") and ";" in g
                   for g, _ in senses)
         choices = []
         for target, pos in dict.fromkeys(forms):
             t_found, t_senses, t_rank = self._entry(target)
             if not t_found:
                 continue
-            pos_match = any(p == pos and lemma_of_meaning(g) is None for g, p in t_senses)
+            pos_match = any(p == pos and lemma_of_meaning(g, self.vocab) is None for g, p in t_senses)
             choices.append((not pos_match, t_rank if t_rank is not None else INF, t_found, t_rank))
         for *_, t_found, t_rank in sorted(choices):
             if own and (t_rank is None or rank is None or t_rank > rank + RANK_MARGIN):
@@ -159,10 +195,28 @@ class Lexicon:
             return t_found
         return found if own else forms[0][0]
 
-    def lemma(self, surface, initial=False):
-        key = (surface, initial)
+    def lemma(self, surface, initial=False, hints=None):
+        key = (surface, initial, tuple(hints or ()))
+        if key not in self.cache and surface in self.names and not self._find(surface):
+            self.cache[key] = (surface, False)
         if key not in self.cache:
-            found, senses, rank = self._entry(surface, initial)
+            found, senses, rank = None, [], None
+            for h in hints or ():
+                found, senses, rank = self._entry(h)
+                if found:
+                    break
+            if found is None:
+                found, senses, rank = self._entry(surface, initial)
+            if found is None and self.fallback:
+                for v in self.fallback(surface):
+                    found, senses, rank = self._entry(v)
+                    if found:
+                        break
+            if found is None and self.variants:
+                for v in self.variants(surface):
+                    found, senses, rank = self._entry(v)
+                    if found:
+                        break
             if found is None and surface.lower() in self.closed:
                 self.cache[key] = (self.closed[surface.lower()], True)
             elif found is None:
@@ -196,10 +250,36 @@ def sqlite_lookup(index_db, pack_db, lang):
     return lookup
 
 
+def analyze_default(text, lex):
+    return [(s, i, None) for s, i in tokenize_with_position(text, lex.known)]
+
+
+def analyzer(lang):
+    if lang in SEGMENTED:
+        seg = Segmenter(lang)
+        if lang == "zh":
+            return lambda text, lex: seg.split_unknown(seg(text), lex.known)
+        return lambda text, lex: seg(text)
+
+    def wide(text, lex):
+        out = []
+        for m in WORD_ANY.finditer(text):
+            prev = text[: m.start()].rstrip(OPENERS)
+            initial = not prev or prev[-1] in ENDERS
+            parts = [m.group(0)] if lang in ("he", "ar", "fa") else split_word(m.group(0), lex.known)
+            for k, part in enumerate(parts):
+                out.append((part, initial and k == 0))
+        if lang == "vi":
+            out = compounds(out, lex.known)
+        return [(s, i, None) for s, i in out]
+
+    return wide
+
+
 def tokens_for(text, lex):
     toks = []
-    for s, initial in tokenize_with_position(text, lex.known):
-        lemma, mapped = lex.lemma(s, initial)
+    for s, initial, hints in (lex.analyze or analyze_default)(text, lex):
+        lemma, mapped = lex.lemma(s, initial, hints)
         toks.append({"surface": s, "lemma": lemma, **({} if mapped else {"unmapped": True})})
     return toks
 
@@ -401,7 +481,44 @@ def open_lexicon(lang, packs, scratch, index_db):
     db = scratch / f"{lang}.sqlite"
     if not db.exists():
         subprocess.run(["zstd", "-dqf", str(zst), "-o", str(db)], check=True)
-    return Lexicon(sqlite_lookup(index_db, db, lang), noun_caps=lang == "de", closed=CLOSED_CLASS.get(lang))
+    if lang in LANGS:
+        return Lexicon(sqlite_lookup(index_db, db, lang), noun_caps=lang == "de", closed=CLOSED_CLASS.get(lang))
+    return Lexicon(sqlite_lookup(index_db, db, lang), closed=CLOSED_CLASS.get(lang), key=lookup_key(lang),
+                   variants=VARIANTS.get(lang), wide=True, analyze=analyzer(lang), fallback=lemmatizer(lang))
+
+
+def lemmatizer(lang):
+    if lang in SEGMENTED or lang in ("ar", "he", "ta", "vi"):
+        return None
+    import simplemma
+
+    def guesses(surface):
+        g = simplemma.lemmatize(surface, lang=lang)
+        if g == surface:
+            return []
+        return [g + ("mak" if any(v in "aıou" for v in g[-2:]) else "mek"), g] if lang == "tr" else [g]
+
+    return guesses
+
+
+def augment_pool(tatoeba_dir, lang, pool):
+    missing = {en_id for en_id, p in pool.items() if lang not in p["t"]}
+    links = defaultdict(set)
+    for r in bz2_rows(tatoeba_dir / f"{ISO3[lang]}-eng_links.tsv.bz2"):
+        if len(r) >= 2 and r[1] in missing:
+            links[r[0]].add(r[1])
+    best = {}
+    for r in bz2_rows(tatoeba_dir / f"{ISO3[lang]}_sentences_detailed.tsv.bz2"):
+        if len(r) >= 3 and r[0] in links:
+            for en_id in links[r[0]]:
+                if en_id not in best or int(r[0]) < int(best[en_id][0]):
+                    best[en_id] = (r[0], r[2].strip())
+    out = {}
+    for en_id, p in pool.items():
+        if en_id in best:
+            p = {**p, "t": {**p["t"], lang: best[en_id][1]}}
+        out[en_id] = p
+    return out
 
 
 def sha(path):
@@ -424,9 +541,29 @@ def write_bundle(bundle, out, part=""):
     return name
 
 
+def lemma_alone(lex, surface, initial, context=None):
+    if lex.analyze and context:
+        for s, i, hints in lex.analyze(context, lex):
+            if s == surface and i == initial:
+                return lex.lemma(s, i, hints)[0]
+    if lex.analyze:
+        got = [t for t in lex.analyze(surface, lex) if t[0] == surface] or lex.analyze(surface, lex)
+        if len(got) == 1 or got[0][0] == surface:
+            return lex.lemma(surface, initial, got[0][2])[0]
+    return lex.lemma(surface, initial)[0]
+
+
 def golden_error_rate(lex, rows):
-    wrong = [r for r in rows if lex.lemma(r[0], r[1])[0] not in (r[2] if isinstance(r[2], list) else [r[2]])]
+    wrong = [r[:3] for r in rows if lemma_alone(lex, *r[:2], *r[3:4]) not in (r[2] if isinstance(r[2], list) else [r[2]])]
     return len(wrong) / len(rows), wrong
+
+
+def golden_lexicon(lang, a):
+    lex = open_lexicon(lang, a.packs, a.scratch, a.index)
+    if lang not in LANGS and a.tatoeba:
+        pool = augment_pool(a.tatoeba, lang, json.loads(a.layers.read_text())["sentences"]["pool"])
+        lex.learn_names(p["t"][lang] for p in pool.values() if lang in p["t"])
+    return lex
 
 
 def env_path(value, env):
@@ -471,9 +608,13 @@ def main(argv=None):
     langs = a.langs.split(",")
     if a.golden:
         gold = json.loads(GOLDEN.read_text())
+        held = json.loads(HELD_OUT.read_text()) if HELD_OUT.exists() else {}
         for lang in langs:
-            rate, wrong = golden_error_rate(open_lexicon(lang, a.packs, a.scratch, a.index), gold[lang])
-            print(f"{lang} golden error {rate:.3f} ({len(wrong)}/{len(gold[lang])}) {wrong}")
+            lex = golden_lexicon(lang, a)
+            for name, rows in (("golden", gold.get(lang)), ("held-out", held.get(lang))):
+                if rows:
+                    rate, wrong = golden_error_rate(lex, rows)
+                    print(f"{lang} {name} error {rate:.3f} ({len(wrong)}/{len(rows)}) {wrong}")
         return
     a.out.mkdir(parents=True, exist_ok=True)
     pool = json.loads(a.layers.read_text())["sentences"]["pool"]
@@ -482,7 +623,7 @@ def main(argv=None):
     en_authors = tatoeba_en_authors(a.tatoeba, set(pool))
     manifest_path = a.out / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"format": "polingual-input", "langs": {}}
-    manifest["lemmaEvaluation"] = LEMMA_EVALUATION
+    manifest["lemmaEvaluation"] = {**LEMMA_EVALUATION, "byLang": manifest.get("lemmaEvaluation", {}).get("byLang", {})}
     manifest["bandBase"] = os.environ.get("NEXT_PUBLIC_POLINGUAL_INPUT_BASE") or manifest.get("bandBase")
     manifest["langTags"] = "BCP-47"
     inputs = manifest.setdefault("inputs", {})
@@ -491,9 +632,32 @@ def main(argv=None):
     inputs["index"] = sha(a.index)
     inputs["tatoeba"] = {"eng_sentences_detailed": sha(a.tatoeba / "eng_sentences_detailed.tsv.bz2")}
     inputs.setdefault("packs", {})
+    held = json.loads(HELD_OUT.read_text()) if HELD_OUT.exists() else {}
+    skipped = manifest.setdefault("skipped", {})
     for lang in langs:
         lex = open_lexicon(lang, a.packs, a.scratch, a.index)
-        b = build_lang(lang, lex, pool, videos, tatoeba_meta(a.tatoeba, lang, pool), en_authors)
+        lang_pool = pool if lang in LANGS else augment_pool(a.tatoeba, lang, pool)
+        if lang not in LANGS:
+            lex.learn_names(p["t"][lang] for p in lang_pool.values() if lang in p["t"])
+        n = sum(1 for p in lang_pool.values() if lang in p["t"])
+        if lang not in LANGS and n < MIN_SENTENCES:
+            skipped[lang] = f"{n} Tatoeba sentences linked to the English pool, below {MIN_SENTENCES}"
+            print(lang, "skipped:", skipped[lang], file=sys.stderr)
+            continue
+        if lang in held:
+            rate, _ = golden_error_rate(lex, held[lang])
+            if rate > MAX_HELD_OUT_ERROR:
+                skipped[lang] = f"held-out lemma error {rate:.2f} above {MAX_HELD_OUT_ERROR}"
+                print(lang, "skipped:", skipped[lang], file=sys.stderr)
+                continue
+        skipped.pop(lang, None)
+        if lang in held:
+            g_rate, _ = golden_error_rate(lex, json.loads(GOLDEN.read_text())[lang])
+            manifest["lemmaEvaluation"].setdefault("byLang", {})[lang] = {
+                "golden": {"tokens": 50, "error": round(g_rate, 3)},
+                "heldOut": {"tokens": len(held[lang]), "error": round(rate, 3), "file": "scripts/input_heldout.json"},
+            }
+        b = build_lang(lang, lex, lang_pool, videos, tatoeba_meta(a.tatoeba, lang, lang_pool), en_authors)
         graded = None
         if a.ranks:
             import graded_input
