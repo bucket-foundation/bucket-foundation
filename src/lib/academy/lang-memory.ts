@@ -3,6 +3,7 @@ import { laterCard } from "./card-merge";
 import type { Card } from "./fsrs";
 import { parseCardId, progressBranch, type LangCard, type LangSystem } from "./lang-systems";
 import { LANG_ATOMS_VERSION, orderLog, replay } from "./replay";
+import { replayLangLog } from "./exposure-replay";
 import { isReview, parseLogRow, rowLang, type LogRow, type ReviewLogRow } from "./learn-log";
 
 export function sharedMemoryOn(value: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_SHARED_MEMORY): boolean {
@@ -112,7 +113,7 @@ export function unionCards(a: EngineState, b: EngineState): EngineState {
 }
 
 export function memoryState(m: LangMemory): EngineState {
-  return onlyLang(replay(m.baseline, m.log.filter(isReview), {}), m.lang);
+  return onlyLang(replayLangLog(m.baseline, m.log), m.lang);
 }
 
 export function migrateLang(lang: string, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>, existing: LangMemory | null): LangMemory {

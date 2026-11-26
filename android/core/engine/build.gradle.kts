@@ -11,4 +11,5 @@ tasks.test {
     systemProperty("corpusDir", rootProject.file("../apple/Shared/Corpus").absolutePath)
     systemProperty("reviewLogVectors", rootProject.file("../src/lib/academy/review-log-vectors.json").absolutePath)
     systemProperty("learnerModelVectors", rootProject.file("../src/lib/academy/learner-model-vectors.json").absolutePath)
+    systemProperty("exposureVectors", rootProject.file("../src/lib/academy/exposure-vectors.json").absolutePath)
 }

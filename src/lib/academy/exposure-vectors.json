@@ -1,0 +1,344 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "alpha 0 changes nothing but marks the day",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 0,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 10,
+            "due": 1795003200000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "alpha 1 raises S by 15 percent and pushes due",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1795176000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "alpha above 1 is capped at 15 percent",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 4,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1795176000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "alpha 0.4 gives a 6 percent gain",
+      "card": {
+        "state": "review",
+        "stability": 20,
+        "difficulty": 5,
+        "lastReview": 1793880000000,
+        "due": 1795608000000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 0.4,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 21.200000000000003,
+            "due": 1795694400000,
+            "lastReview": 1793880000000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "low retrievability is skipped",
+      "card": {
+        "state": "review",
+        "stability": 2,
+        "difficulty": 5,
+        "lastReview": 1791720000000,
+        "due": 1791892800000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 2,
+            "due": 1791892800000,
+            "lastReview": 1791720000000,
+            "exposureDay": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "new cards are skipped",
+      "card": {
+        "state": "new",
+        "stability": 0,
+        "due": 1794312000000,
+        "lastReview": null,
+        "reps": 0,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 0,
+            "due": 1794312000000,
+            "lastReview": null,
+            "exposureDay": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "many rows on one day credit once",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false,
+            false,
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1795176000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        },
+        {
+          "at": 1794315600000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1795176000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "a new day credits again",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1795176000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        },
+        {
+          "at": 1794398400000,
+          "tapped": [
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-11",
+          "expect": {
+            "stability": 13.225,
+            "due": 1795262400000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-11"
+          }
+        }
+      ]
+    },
+    {
+      "name": "a tap sets due to now and keeps S",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            true
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 10,
+            "due": 1794312000000,
+            "lastReview": 1794139200000,
+            "exposureDay": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "tap and exposure at one timestamp give the same state in either order",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            true,
+            false
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1794312000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "name": "the same group in the other order",
+      "card": {
+        "state": "review",
+        "stability": 10,
+        "difficulty": 5,
+        "lastReview": 1794139200000,
+        "due": 1795003200000,
+        "reps": 3,
+        "lapses": 0
+      },
+      "steps": [
+        {
+          "at": 1794312000000,
+          "tapped": [
+            false,
+            true
+          ],
+          "alpha": 1,
+          "day": "2026-11-10",
+          "expect": {
+            "stability": 11.5,
+            "due": 1794312000000,
+            "lastReview": 1794139200000,
+            "exposureDay": "2026-11-10"
+          }
+        }
+      ]
+    }
+  ]
+}
