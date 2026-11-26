@@ -10,6 +10,7 @@ import { logExposure, openShared, type MemoryIO } from "../src/lib/academy/lang-
 import { createSystem } from "../src/lib/academy/lang-systems";
 import type { LangRow } from "../src/lib/academy/lang-memory";
 import { parseLogRow, type LogRow } from "../src/lib/academy/learn-log";
+import { planInputMix } from "../src/lib/academy/input-mix";
 
 const bundle = parseBundle(JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/polingual-input/es.json"), "utf8")))!;
 const T0 = Date.UTC(2026, 10, 20, 12);
@@ -147,4 +148,15 @@ test("completing the stage writes one exposure row per item into the log and the
   assert.equal(log.length, rows.length);
   assert.equal(io.pending.length, rows.length);
   assert.ok(log.every((r) => r.kind === "exposure" && r.unit === choice.unit.id));
+});
+
+test("on mode: a learner who knows the words gets eligible units, a non-zero share and a stage choice", () => {
+  const { state, resolve } = allKnownBut(new Set(["mi", "casa"]));
+  const learner = learnerFromState(state, "es", resolve, T0, 0, new Set());
+  const eligible = eligibleUnitSeconds(bundle, learner, "on");
+  assert.ok(eligible.length > 0, "at least one unit passes the band and the gloss budget");
+  const mix = planInputMix(2, 20, eligible);
+  assert.ok(mix.share > 0 && mix.units >= 1 && mix.positions.length === mix.units);
+  const choice = chooseUnit(bundle, learner, false);
+  assert.ok(choice && !choice.fallback && choice.plan.eligible);
 });
