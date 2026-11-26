@@ -843,3 +843,24 @@ export function messageReportDecision(uid: string, report: MessageReport, messag
   if (!message || message.lobby_id !== report.lobbyId) return "not_found";
   return message.user_id === uid ? "self" : "ok";
 }
+
+export type LobbySeat = "player" | "screen" | null;
+
+export function wantsScreen(body: unknown): boolean {
+  return typeof body === "object" && body !== null && (body as { screen?: unknown }).screen === true;
+}
+
+export const SCREEN_CAP = 3;
+
+export type ScreenJoin = "player" | "screen" | "add" | "full" | "closed";
+
+export function screenJoinDecision(lobby: Pick<LobbyRow, "status">, playerIds: string[], screenIds: string[], uid: string): ScreenJoin {
+  if (playerIds.includes(uid)) return "player";
+  if (screenIds.includes(uid)) return "screen";
+  if (lobby.status === "done") return "closed";
+  return screenIds.length >= SCREEN_CAP ? "full" : "add";
+}
+
+export function seatAllowed(seat: LobbySeat, screenOk: boolean): boolean {
+  return seat === "player" || (seat === "screen" && screenOk);
+}

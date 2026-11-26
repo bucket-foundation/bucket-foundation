@@ -38,10 +38,13 @@ import {
   raceDecision,
   raceOver,
   type RaceDecision,
+  seatAllowed,
+  type LobbySeat,
 } from "./lobbies";
 
 export const LOBBIES = "lobbies";
 export const PLAYERS = "lobby_players";
+export const SCREENS = "lobby_screens";
 export const MESSAGES = "lobby_messages";
 export const ANSWERS = "lobby_answers";
 export const PROMPTS = "lobby_prompts";
@@ -77,6 +80,7 @@ function check<T>(res: { data: T | null; error: { message: string } | null }, wh
   if (res.error) {
     if (res.error.message.includes("lobby_full")) throw new GroupsError("lobby_full", 409);
     if (res.error.message.includes("lobby_started")) throw new GroupsError("lobby_started", 409);
+    if (res.error.message.includes("lobby_closed")) throw new GroupsError("not_found", 404);
     throw new Error(`${what}: ${res.error.message}`);
   }
   return res.data as T;
@@ -278,13 +282,30 @@ export async function pace(lobby: LobbyRow, now: number): Promise<LobbyRow> {
   return autoStart(await armAutoStart(lobby, ready, now), now);
 }
 
-export async function memberLobby(uid: string, lobbyId: unknown): Promise<LobbyRow> {
+export async function memberLobby(uid: string, lobbyId: unknown, screenOk = false): Promise<LobbyRow> {
   const id = lobbyIdOf(lobbyId);
   const lobby = await lobbyById(id);
   if (!lobby) throw new GroupsError("not_found", 404);
-  const rows = check(await service().from(PLAYERS).select("user_id").eq("lobby_id", id).eq("user_id", uid).limit(1), "member") as unknown[];
-  if (rows.length === 0) throw new GroupsError("not_found", 404);
+  if (!seatAllowed(await seatOf(id, uid, screenOk), screenOk)) throw new GroupsError("not_found", 404);
   return lobby;
+}
+
+async function seatOf(lobbyId: string, uid: string, screenOk: boolean): Promise<LobbySeat> {
+  const rows = check(await service().from(PLAYERS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "member") as unknown[];
+  if (rows.length) return "player";
+  if (!screenOk) return null;
+  const screens = check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "screen") as unknown[];
+  return screens.length ? "screen" : null;
+}
+
+export async function screensOf(lobbyId: string): Promise<string[]> {
+  return (check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId), "screens") as { user_id: string }[]).map((r) => r.user_id);
+}
+
+export async function addScreen(lobbyId: string, uid: string): Promise<void> {
+  const res = await service().from(SCREENS).insert({ lobby_id: lobbyId, user_id: uid });
+  if (res.error && /duplicate key|unique/i.test(res.error.message)) return;
+  check(res, "screen insert");
 }
 
 export function guestSecret(): string | null {
