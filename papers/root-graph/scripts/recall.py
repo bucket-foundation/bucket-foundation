@@ -44,9 +44,54 @@ def recall(path):
             "by_family": {f: {"linked": h, "n": n, "recall": h / n} for f, (h, n) in by.items()}, "pairs": rows}
 
 
+FAMILY_LANGS = {"romance": ("es", "it", "pt", "fr"), "germanic": ("en", "de", "nl", "sv"),
+                "slavic": ("ru", "pl", "cs", "uk")}
+
+
+def translation_linkage(path):
+    db = sqlite3.connect(path)
+    parent = {}
+    for n, p in db.execute("select node, parent from forest where parent is not null"):
+        parent[n] = p
+    en = {}
+    for s, w in db.execute("select id, en_word from sense"):
+        en[s] = w
+    out = {}
+    for fam, langs in FAMILY_LANGS.items():
+        by = defaultdict(list)
+        foreign = [l for l in langs if l != "en"]
+        q = f"select t.sense, t.node from translation t join node n on n.id = t.node where n.lang in ({','.join('?' * len(foreign))})"
+        for s, n in db.execute(q, foreign):
+            by[s].append(n)
+        if "en" in langs:
+            for s in list(by):
+                r = db.execute("select id from node where lang = 'en' and form = ?", (en[s],)).fetchone()
+                if r:
+                    by[s].append(r[0])
+        hit = tot = 0
+        for nodes in by.values():
+            chains = []
+            for n in set(nodes):
+                c, x, k = set(), n, 0
+                while x is not None and k < 64:
+                    c.add(x)
+                    x, k = parent.get(x), k + 1
+                chains.append(c)
+            for i in range(len(chains)):
+                for j in range(i + 1, len(chains)):
+                    tot += 1
+                    hit += bool(chains[i] & chains[j])
+        out[fam] = {"pairs": tot, "linked": hit, "share": hit / tot if tot else None}
+    return out
+
+
 def main():
-    out = {name: recall(os.path.join(ROOT, f)) for name, f in (("v1", "graph-v1.sqlite"), ("v2", "graph.sqlite"))
-           if os.path.exists(os.path.join(ROOT, f))}
+    out = {}
+    for name, f in (("v1", "graph-v1.sqlite"), ("v2", "graph.sqlite")):
+        p = os.path.join(ROOT, f)
+        if os.path.exists(p):
+            out[name] = recall(p)
+            out[name]["translation_linkage"] = translation_linkage(p)
     with open(os.path.join(DATA, "recall.json"), "w") as fh:
         json.dump(out, fh, indent=1, ensure_ascii=False)
     print(json.dumps({k: {kk: vv for kk, vv in v.items() if kk != "pairs"} for k, v in out.items()}, indent=1), file=sys.stderr)

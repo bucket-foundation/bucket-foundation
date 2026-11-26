@@ -1010,26 +1010,43 @@
     "distance": null,
     "lca": null
    }
-  ]
+  ],
+  "translation_linkage": {
+   "romance": {
+    "pairs": 1106099,
+    "linked": 12436,
+    "share": 0.011243116574556166
+   },
+   "germanic": {
+    "pairs": 866637,
+    "linked": 7720,
+    "share": 0.008907997235289978
+   },
+   "slavic": {
+    "pairs": 812989,
+    "linked": 9043,
+    "share": 0.011123151727760154
+   }
+  }
  },
  "v2": {
-  "recall": 0.8,
+  "recall": 0.9666666666666667,
   "n": 90,
   "by_family": {
    "romance": {
-    "linked": 25,
+    "linked": 27,
     "n": 30,
-    "recall": 0.8333333333333334
+    "recall": 0.9
    },
    "germanic": {
-    "linked": 23,
+    "linked": 30,
     "n": 30,
-    "recall": 0.7666666666666667
+    "recall": 1.0
    },
    "slavic": {
-    "linked": 24,
+    "linked": 30,
     "n": 30,
-    "recall": 0.8
+    "recall": 1.0
    }
   },
   "pairs": [
@@ -1172,9 +1189,9 @@
     "form_a": "leche",
     "lang_b": "it",
     "form_b": "latte",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 5,
+    "lca": "la|lac"
    },
    {
     "family": "romance",
@@ -1185,7 +1202,7 @@
     "form_b": "leite",
     "linked": true,
     "distance": 4,
-    "lca": "la-lat|lactis"
+    "lca": "la|lactis"
    },
    {
     "family": "romance",
@@ -1205,9 +1222,9 @@
     "form_a": "latte",
     "lang_b": "pt",
     "form_b": "leite",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 5,
+    "lca": "la|lac"
    },
    {
     "family": "romance",
@@ -1392,9 +1409,9 @@
     "form_a": "water",
     "lang_b": "sv",
     "form_b": "vatten",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 6,
+    "lca": "gem-pro|*wator"
    },
    {
     "family": "germanic",
@@ -1414,9 +1431,9 @@
     "form_a": "Wasser",
     "lang_b": "sv",
     "form_b": "vatten",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 6,
+    "lca": "gem-pro|*wator"
    },
    {
     "family": "germanic",
@@ -1425,9 +1442,9 @@
     "form_a": "water",
     "lang_b": "sv",
     "form_b": "vatten",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 6,
+    "lca": "gem-pro|*wator"
    },
    {
     "family": "germanic",
@@ -1635,8 +1652,8 @@
     "lang_b": "de",
     "form_b": "Herz",
     "linked": true,
-    "distance": 2,
-    "lca": "ine-pro|*ḱerd-"
+    "distance": 7,
+    "lca": "gmw-pro|*herta"
    },
    {
     "family": "germanic",
@@ -1645,9 +1662,9 @@
     "form_a": "heart",
     "lang_b": "nl",
     "form_b": "hart",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 8,
+    "lca": "gem-pro|*hertô"
    },
    {
     "family": "germanic",
@@ -1656,9 +1673,9 @@
     "form_a": "heart",
     "lang_b": "sv",
     "form_b": "hjärta",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 8,
+    "lca": "gem-pro|*hertô"
    },
    {
     "family": "germanic",
@@ -1667,9 +1684,9 @@
     "form_a": "Herz",
     "lang_b": "nl",
     "form_b": "hart",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 7,
+    "lca": "gem-pro|*hertô"
    },
    {
     "family": "germanic",
@@ -1678,9 +1695,9 @@
     "form_a": "Herz",
     "lang_b": "sv",
     "form_b": "hjärta",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 7,
+    "lca": "gem-pro|*hertô"
    },
    {
     "family": "germanic",
@@ -1722,9 +1739,9 @@
     "form_a": "вода",
     "lang_b": "uk",
     "form_b": "вода",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 3,
+    "lca": "sla-pro|*voda"
    },
    {
     "family": "slavic",
@@ -1744,9 +1761,9 @@
     "form_a": "woda",
     "lang_b": "uk",
     "form_b": "вода",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 3,
+    "lca": "sla-pro|*voda"
    },
    {
     "family": "slavic",
@@ -1755,9 +1772,9 @@
     "form_a": "voda",
     "lang_b": "uk",
     "form_b": "вода",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 3,
+    "lca": "sla-pro|*voda"
    },
    {
     "family": "slavic",
@@ -1768,7 +1785,7 @@
     "form_b": "noc",
     "linked": true,
     "distance": 4,
-    "lca": "sla-pro|*nòťь"
+    "lca": "sla-pro|*noťь"
    },
    {
     "family": "slavic",
@@ -1778,8 +1795,8 @@
     "lang_b": "cs",
     "form_b": "noc",
     "linked": true,
-    "distance": 6,
-    "lca": "ine-bsl-pro|*náktis"
+    "distance": 4,
+    "lca": "sla-pro|*noťь"
    },
    {
     "family": "slavic",
@@ -1800,8 +1817,8 @@
     "lang_b": "cs",
     "form_b": "noc",
     "linked": true,
-    "distance": 6,
-    "lca": "ine-bsl-pro|*náktis"
+    "distance": 4,
+    "lca": "sla-pro|*noťь"
    },
    {
     "family": "slavic",
@@ -1812,7 +1829,7 @@
     "form_b": "ніч",
     "linked": true,
     "distance": 4,
-    "lca": "sla-pro|*nòťь"
+    "lca": "sla-pro|*noťь"
    },
    {
     "family": "slavic",
@@ -1822,8 +1839,8 @@
     "lang_b": "uk",
     "form_b": "ніч",
     "linked": true,
-    "distance": 6,
-    "lca": "ine-bsl-pro|*náktis"
+    "distance": 4,
+    "lca": "sla-pro|*noťь"
    },
    {
     "family": "slavic",
@@ -1832,9 +1849,9 @@
     "form_a": "брат",
     "lang_b": "pl",
     "form_b": "brat",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 4,
+    "lca": "sla-pro|*bratrъ"
    },
    {
     "family": "slavic",
@@ -1865,9 +1882,9 @@
     "form_a": "brat",
     "lang_b": "cs",
     "form_b": "bratr",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 4,
+    "lca": "sla-pro|*bratrъ"
    },
    {
     "family": "slavic",
@@ -1876,9 +1893,9 @@
     "form_a": "brat",
     "lang_b": "uk",
     "form_b": "брат",
-    "linked": false,
-    "distance": null,
-    "lca": null
+    "linked": true,
+    "distance": 3,
+    "lca": "sla-pro|*bratrъ"
    },
    {
     "family": "slavic",
@@ -1965,8 +1982,8 @@
     "lang_b": "pl",
     "form_b": "ręka",
     "linked": true,
-    "distance": 6,
-    "lca": "ine-pro|*wrenk-"
+    "distance": 4,
+    "lca": "sla-pro|*rǫka"
    },
    {
     "family": "slavic",
@@ -1976,8 +1993,8 @@
     "lang_b": "cs",
     "form_b": "ruka",
     "linked": true,
-    "distance": 5,
-    "lca": "ine-pro|*wrenk-"
+    "distance": 4,
+    "lca": "sla-pro|*rǫka"
    },
    {
     "family": "slavic",
@@ -1987,8 +2004,8 @@
     "lang_b": "uk",
     "form_b": "рука",
     "linked": true,
-    "distance": 6,
-    "lca": "ine-pro|*wrenk-"
+    "distance": 3,
+    "lca": "orv|рѫка"
    },
    {
     "family": "slavic",
@@ -1998,7 +2015,7 @@
     "lang_b": "cs",
     "form_b": "ruka",
     "linked": true,
-    "distance": 5,
+    "distance": 4,
     "lca": "sla-pro|*rǫka"
    },
    {
@@ -2009,7 +2026,7 @@
     "lang_b": "uk",
     "form_b": "рука",
     "linked": true,
-    "distance": 6,
+    "distance": 5,
     "lca": "sla-pro|*rǫka"
    },
    {
@@ -2023,6 +2040,23 @@
     "distance": 5,
     "lca": "sla-pro|*rǫka"
    }
-  ]
+  ],
+  "translation_linkage": {
+   "romance": {
+    "pairs": 1070845,
+    "linked": 28244,
+    "share": 0.026375432485560468
+   },
+   "germanic": {
+    "pairs": 854983,
+    "linked": 10250,
+    "share": 0.011988542462247787
+   },
+   "slavic": {
+    "pairs": 783598,
+    "linked": 13110,
+    "share": 0.01673051743368411
+   }
+  }
  }
 }
