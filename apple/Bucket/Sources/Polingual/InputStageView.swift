@@ -29,6 +29,9 @@ enum InputConfig {
 
     static var base: String {
         let v = Bundle.main.object(forInfoDictionaryKey: "PolingualInputBase") as? String ?? ""
+        #if DEBUG
+        if let local = Launch.value("-inputBase"), local.hasPrefix("http://127.0.0.1:") || local.hasPrefix("http://localhost:") { return local }
+        #endif
         return v.hasPrefix("https://") ? v : "https://polingual.com/input"
     }
 
@@ -36,7 +39,14 @@ enum InputConfig {
 
     @MainActor
     static func load(store: LangStore, system: LangSystem, cards: Int) async -> InputPlanState? {
-        let mode = mode
+        var mode = mode
+        var cards = cards
+        #if DEBUG
+        if Launch.flag("-inputNow") {
+            mode = .demo
+            cards = 1
+        }
+        #endif
         guard mode != .off, let corpus = store.corpus else { return nil }
         let state = store.state(system.id)
         for lang in system.targets {
@@ -50,8 +60,10 @@ enum InputConfig {
 }
 
 struct InputStageView: View {
+    static let space = "input-viewport"
     let choice: StageChoice
     let lang: String
+    let viewport: CGSize
     let gloss: (String) -> String?
     let onFinish: ([ExposureInput], Double) -> Void
     @State private var phase = 0
@@ -60,7 +72,7 @@ struct InputStageView: View {
         if phase == 0 {
             GlossCard(choice: choice, gloss: gloss) { phase = 1 }
         } else {
-            PlayCard(choice: choice, lang: lang, onFinish: onFinish)
+            PlayCard(choice: choice, lang: lang, viewport: viewport, onFinish: onFinish)
         }
     }
 }
@@ -98,6 +110,7 @@ private struct RowVisibility: PreferenceKey {
 private struct PlayCard: View {
     let choice: StageChoice
     let lang: String
+    let viewport: CGSize
     let onFinish: ([ExposureInput], Double) -> Void
     @Environment(\.scenePhase) private var scenePhase
     @State private var view = Viewing()
@@ -118,32 +131,27 @@ private struct PlayCard: View {
     }
 
     var body: some View {
-        GeometryReader { outer in
-            ScrollView {
-                PLCard {
-                    VStack(alignment: .leading, spacing: PL.Space.s4) {
-                        if let m = choice.items.first?.media { video(m) }
-                        ForEach(choice.items, id: \.id) { item in
-                            SentenceRow(item: item, lang: lang, view: $view)
-                                .background(GeometryReader { g in Color.clear.preference(key: RowVisibility.self, value: [item.id: g.frame(in: .global)]) })
-                        }
-                        Text(InputStageCopy.tapHint).foregroundStyle(PL.inkDim)
-                        Button(InputStageCopy.done) { finish(completed: true) }.buttonStyle(PLButtonStyle()).accessibilityIdentifier("input-done")
-                        Button(InputStageCopy.skip) {
-                            finished = true
-                            onFinish([], 0)
-                        }
-                        .foregroundStyle(PL.lapis).padding(PL.Space.s2).accessibilityIdentifier("input-skip")
-                    }
+        PLCard {
+            VStack(alignment: .leading, spacing: PL.Space.s4) {
+                if let m = choice.items.first?.media { video(m) }
+                ForEach(choice.items, id: \.id) { item in
+                    SentenceRow(item: item, lang: lang, view: $view)
+                        .background(GeometryReader { g in Color.clear.preference(key: RowVisibility.self, value: [item.id: g.frame(in: .named(InputStageView.space))]) })
                 }
-                .padding(PL.Space.s4)
+                Text(InputStageCopy.tapHint).foregroundStyle(PL.inkDim)
+                Button(InputStageCopy.done) { finish(completed: true) }.buttonStyle(PLButtonStyle()).accessibilityIdentifier("input-done")
+                Button(InputStageCopy.skip) {
+                    finished = true
+                    onFinish([], 0)
+                }
+                .foregroundStyle(PL.lapis).padding(PL.Space.s2).accessibilityIdentifier("input-skip")
             }
-            .simultaneousGesture(TapGesture().onEnded { lastInput = Date() })
-            .simultaneousGesture(DragGesture(minimumDistance: 4).onChanged { _ in lastInput = Date() })
-            .onPreferenceChange(RowVisibility.self) { frames in
-                let screen = outer.frame(in: .global)
-                visible = Set(frames.filter { _, f in f.height > 0 && f.intersection(screen).height / f.height >= 0.6 }.keys)
-            }
+        }
+        .simultaneousGesture(TapGesture().onEnded { lastInput = Date() })
+        .simultaneousGesture(DragGesture(minimumDistance: 4).onChanged { _ in lastInput = Date() })
+        .onPreferenceChange(RowVisibility.self) { frames in
+            let screen = CGRect(origin: .zero, size: viewport)
+            visible = Set(frames.filter { _, f in f.height > 0 && f.intersection(screen).height / f.height >= 0.6 }.keys)
         }
         .onReceive(tick) { _ in
             let on = Array(visible)

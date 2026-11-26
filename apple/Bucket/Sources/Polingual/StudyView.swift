@@ -257,16 +257,19 @@ struct StudyView: View {
             }
             .padding(PL.Space.s5)
         } else if let input, i < queue.count, let choice = input.due(answered: i) {
-            ScrollView {
-                InputStageView(choice: choice, lang: input.lang, gloss: { input.itemId($0).flatMap { corpus.byId[$0]?.gloss } }) { rows, seconds in
-                    store.log(input.finish(rows, seconds: seconds))
-                    inputTick += 1
+            GeometryReader { outer in
+                ScrollView {
+                    InputStageView(choice: choice, lang: input.lang, viewport: outer.size, gloss: { input.itemId($0).flatMap { corpus.byId[$0]?.gloss } }) { rows, seconds in
+                        store.log(input.finish(rows, seconds: seconds))
+                        inputTick += 1
+                    }
+                    .id("input-\(i)-\(inputTick)")
+                    .padding(PL.Space.s4)
+                    .frame(maxWidth: 640)
+                    .frame(maxWidth: .infinity)
                 }
-                .id("input-\(i)-\(inputTick)")
-                .padding(PL.Space.s4)
-                .frame(maxWidth: 640)
             }
-            .frame(maxWidth: .infinity)
+            .coordinateSpace(name: InputStageView.space)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
                 let gap = vertical == .compact ? 10.0 : 16.0
