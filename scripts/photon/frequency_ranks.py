@@ -178,6 +178,12 @@ def write_table(path: str, table: dict[str, tuple[int | None, str, int | None, b
     return hashlib.sha256(data).hexdigest()
 
 
+def set_rank(r: list, rank: int | None, derived: int) -> None:
+    while len(r) < 9:
+        r.append(None)
+    r[7], r[8] = rank, derived
+
+
 def dump_shipped(rows: list) -> bytes:
     data = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     out = io.BytesIO()
@@ -216,7 +222,7 @@ def main() -> int:
             if src is None:
                 entry.update({"source": None, "reason": "no frequency list with a redistributable licence covers this language"})
                 for r in by_lang.get(lang, []):
-                    r[7:] = [None, 0]
+                    set_rank(r, None, 0)
                 manifest["languages"][lang] = entry
                 print(lang, "no source", file=sys.stderr)
                 continue
@@ -240,7 +246,7 @@ def main() -> int:
                 hit_derived += bool(t and t[3])
                 hit_surface += sr is not None
                 hit_lemma += lr is not None
-                r[7:] = [lr, int(bool(t and t[3]))]
+                set_rank(r, lr, int(bool(t and t[3])))
             entry.update({
                 "source": src["name"], "source_url": src["url"], "licence": src["licence"],
                 "source_file": src["file"], "source_sha256": src["sha256"], "source_words": len(rank),
@@ -258,7 +264,7 @@ def main() -> int:
 
     for r in shipped:
         if len(r) < 9:
-            r[7:] = [r[7] if len(r) > 7 else None, 0]
+            set_rank(r, r[7] if len(r) > 7 else None, 0)
     blob = dump_shipped(shipped)
     with open(args.shipped, "wb") as f:
         f.write(blob)

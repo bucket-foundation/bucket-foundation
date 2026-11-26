@@ -796,7 +796,7 @@
       "words": 6611
     }
   },
-  "shipped_sha256": "900dd0d22718e98a89d5ef0f59aedbb6fcfd867290bf48c74d760e1617661206",
+  "shipped_sha256": "2ff81864b73b7041fc806b08787dbe5228e3c3ae347232bc91ac8f2c3b89d265",
   "source_column": 9,
   "source_field": "ipa_source",
   "sources": {
@@ -810,7 +810,7 @@
   "thin_langs": {
     "after": {
       "ar": {
-        "form_of_glosses": 95,
+        "form_of_glosses": 339,
         "ipa": 6999,
         "ipa_coverage": 0.9999,
         "ipa_sources": {
@@ -834,7 +834,7 @@
         "rows": 7000
       },
       "he": {
-        "form_of_glosses": 38,
+        "form_of_glosses": 295,
         "ipa": 6885,
         "ipa_coverage": 0.9836,
         "ipa_sources": {
@@ -905,7 +905,7 @@
         "rows": 8000
       },
       "ta": {
-        "form_of_glosses": 33,
+        "form_of_glosses": 28,
         "ipa": 6997,
         "ipa_coverage": 0.9996,
         "ipa_sources": {
@@ -1094,9 +1094,9 @@
       }
     },
     "gloss_replacements": {
-      "ar:wiktionary-lemma": 575,
+      "ar:wiktionary-lemma": 331,
       "ar:wiktionary-quoted": 47,
-      "he:wiktionary-lemma": 829,
+      "he:wiktionary-lemma": 572,
       "he:wiktionary-quoted": 29,
       "ja:wiktionary-lemma": 4,
       "ja:wiktionary-quoted": 19,
@@ -1104,7 +1104,7 @@
       "ko:wiktionary-lemma": 52,
       "ko:wiktionary-quoted": 615,
       "ko:wiktionary-sense": 84,
-      "ta:wiktionary-lemma": 401,
+      "ta:wiktionary-lemma": 406,
       "ta:wiktionary-quoted": 56,
       "th:wiktionary-lemma": 223,
       "th:wiktionary-quoted": 13,
@@ -1127,8 +1127,17 @@
       "zh": "Hanyu Pinyin from Wiktionary, else CC-CEDICT"
     },
     "wiktionary_ipa_switched_to_modern": {
-      "fa": 5304,
-      "he": 445
+      "rows": {
+        "fa": 5304,
+        "he": 445
+      },
+      "sidecar": "polingual/data/ipa-variants.json.gz",
+      "sidecar_fields": "photon id to the variant tag and the previous Wiktionary IPA",
+      "total": 5749,
+      "variants": {
+        "fa": "iranian",
+        "he": "modern-israeli"
+      }
     }
   },
   "validation_note": "Held-out words carry Wiktionary IPA, so they skew toward common, well-documented words that are easier than the gap words; treat each PER as a lower bound."

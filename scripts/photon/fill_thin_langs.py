@@ -247,6 +247,8 @@ def fa_ipa(tr: str | None) -> str | None:
 
 
 REF_TAG = {"fa": "Iran", "he": "Modern-Israeli"}
+VARIANT = {"fa": "iranian", "he": "modern-israeli"}
+VARIANTS = os.path.join(REPO_ROOT, "polingual", "data", "ipa-variants.json.gz")
 
 
 def tagged_ref(lang: str, entries: list) -> str | None:
@@ -346,7 +348,8 @@ def lemma_targets(rows: list, kk: dict) -> dict[str, set]:
             continue
         m = LEMMA_IN_GLOSS.search(r[3] or "")
         if m:
-            want[r[1]].update({m.group(1), strip_marks(m.group(1))})
+            t = lemma_text(m.group(1))
+            want[r[1]].update({t, strip_marks(t)})
         for e in kk.get((r[1], r[2]), []):
             for s in e.get("senses") or []:
                 for f in s.get("form_of") or []:
@@ -367,8 +370,12 @@ def first_gloss(entries: list, pos: str | None = None) -> str | None:
     return None
 
 
-LEMMA_IN_GLOSS = re.compile(r"\bof\s+([^\s(,:;]+)")
+LEMMA_IN_GLOSS = re.compile(r"\bof\s+([^(,:;“]+)")
 UNPOINTED_LANGS = ("ar", "he", "ta")
+
+
+def lemma_text(s: str) -> str:
+    return re.sub(r"(\s+[A-Za-z]{1,2})+$", "", s.strip())
 
 
 def strip_marks(w: str) -> str:
@@ -380,7 +387,14 @@ def lemma_gloss(r: list, info: dict, lemmas: dict) -> str | None:
     targets = []
     m = LEMMA_IN_GLOSS.search(r[3] or "")
     if m:
-        targets.append(m.group(1))
+        targets.append(lemma_text(m.group(1)))
+    if lang in HOMOGRAPH_LANGS:
+        if not targets:
+            return None
+        entries = lemmas.get((lang, strip_marks(targets[0])), [])
+        if len(vocalized_forms(entries)) != 1:
+            return None
+        return first_gloss(entries)
     for e in info["entries"]:
         targets += [f.get("word") for s in e.get("senses") or [] for f in s.get("form_of") or [] if f.get("word")]
         if lang == "ko":
@@ -393,11 +407,25 @@ def lemma_gloss(r: list, info: dict, lemmas: dict) -> str | None:
     return None
 
 
+HOMOGRAPH_LANGS = ("ar", "he")
+
+
+def vocalized_forms(entries: list) -> set[str]:
+    out = set()
+    for e in entries:
+        if not first_gloss([e]):
+            continue
+        canon = forms(e, "canonical")
+        out.add(canon[0] if canon else e["word"])
+    return out
+
+
 def better_gloss(r: list, info: dict, lemmas: dict, jm: dict, ce: dict) -> tuple[str, str] | None:
     lang, gloss = r[1], r[3]
     if not is_form_of(gloss):
         return None
-    plural = " (plural)" if re.match(r"^(?:[\w-]+ )*plural\b", gloss or "", re.I) else ""
+    kind = re.match(r"^(?:[\w-]+ )*?(plural|dual)\b", gloss or "", re.I)
+    plural = f" ({kind.group(1).lower()})" if kind else ""
     m = QUOTED.search(gloss or "")
     if lang in UNPOINTED_LANGS:
         if m:
@@ -478,6 +506,7 @@ def main() -> int:
 
     ship = {l for l, v in report.items() if v["ship"]}
     gloss_src, modern_ref = Counter(), Counter()
+    variants: dict[str, dict] = {}
     for r in rows:
         lang = r[1]
         if lang not in SUBSET_LANGS:
@@ -486,6 +515,7 @@ def main() -> int:
         if lang in REF_TAG and r[SOURCE_COL] == "wiktionary":
             ref = tagged_ref(lang, info["entries"])
             if ref and ref != r[IPA_COL]:
+                variants[r[0]] = {"variant": VARIANT[lang], "previous": r[IPA_COL]}
                 r[IPA_COL] = ref
                 modern_ref[lang] += 1
         if not r[IPA_COL] and lang in ship:
@@ -507,7 +537,9 @@ def main() -> int:
         "before": before,
         "after": coverage(rows),
         "gloss_replacements": dict(sorted(gloss_src.items())),
-        "wiktionary_ipa_switched_to_modern": dict(modern_ref),
+        "wiktionary_ipa_switched_to_modern": {"rows": dict(modern_ref), "total": sum(modern_ref.values()),
+                                               "variants": VARIANT, "sidecar": "polingual/data/ipa-variants.json.gz",
+                                               "sidecar_fields": "photon id to the variant tag and the previous Wiktionary IPA"},
         "reading_column": READING_COL,
         "reading_field": "reading",
         "reading_sources": {
@@ -532,6 +564,8 @@ def main() -> int:
     blob = dump(rows)
     with open(args.shipped, "wb") as f:
         f.write(blob)
+    with open(VARIANTS, "wb") as f:
+        f.write(dump(dict(sorted(variants.items()))))
     manifest["shipped_sha256"] = hashlib.sha256(blob).hexdigest()
     with open(args.manifest, "w") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2, sort_keys=True)

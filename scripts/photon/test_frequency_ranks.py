@@ -9,6 +9,15 @@ import frequency_ranks as fr
 
 
 class LemmaOf(unittest.TestCase):
+    def test_set_rank_keeps_ipa_source_and_reading(self):
+        for extra in (["wiktionary"], ["rules", "kanji"]):
+            r = ["id", "ja", "w", "g", "noun", "/a/", "functional", 5, 0] + extra
+            fr.set_rank(r, 9, 1)
+            self.assertEqual(r, ["id", "ja", "w", "g", "noun", "/a/", "functional", 9, 1] + extra)
+        short = ["id", "ja", "w", "g", "noun", None, "functional"]
+        fr.set_rank(short, None, 0)
+        self.assertEqual(short[7:], [None, 0])
+
     def test_form_of_meanings(self):
         self.assertEqual(fr.lemma_of("masculine plural of perro"), "perro")
         self.assertEqual(fr.lemma_of("first-person singular preterite indicative of hablar"), "hablar")

@@ -21,9 +21,21 @@ test("toPhoton reads the IPA source from 10 column rows", () => {
   assert.equal(toPhoton(["photon:word:la:aqua", "la", "aqua", "water", "noun", null, "functional"]).ipa_source, null);
 });
 
+test("toPhoton reads 10 and 11 column rows without shifting rank, source or reading", () => {
+  const ten = toPhoton(["photon:word:ja:耳", "ja", "耳", "ear", "noun", "[mʲimʲi]", "functional", 900, 0, "wiktionary"]);
+  assert.equal(ten.freq_rank, 900);
+  assert.equal(ten.ipa_source, "wiktionary");
+  assert.equal(ten.reading, null);
+  const eleven = toPhoton(["photon:word:ja:白子", "ja", "白子", "milt", "noun", "[ɕiɾa̠ko̞]", "functional", 41000, 1, "rules", "shirako"]);
+  assert.equal(eleven.freq_rank, 41000);
+  assert.equal(eleven.freq_derived, true);
+  assert.equal(eleven.ipa_source, "rules");
+  assert.equal(eleven.reading, "shirako");
+});
+
 test("every shipped IPA names its source", () => {
   const rows = bakedSearch("a", { topK: 100 }).results;
-  assert.ok(rows.every((p) => (p.ipa ? ["wiktionary", "epitran", "llm"].includes(p.ipa_source ?? "") : p.ipa_source === null)));
+  assert.ok(rows.every((p) => (p.ipa ? ["wiktionary", "epitran", "llm", "rules", "jmdict", "cedict"].includes(p.ipa_source ?? "") : p.ipa_source === null)));
 });
 
 test("every shipped row carries a 0 or 1 derived flag", () => {
