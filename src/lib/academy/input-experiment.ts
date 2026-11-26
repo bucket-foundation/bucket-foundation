@@ -11,7 +11,9 @@ export function experimentOn(flag: string | undefined = process.env.NEXT_PUBLIC_
   return flag === "1";
 }
 
-export function stratum(tier: number): "to-a2" | "past-a2" {
+export type Stratum = "to-a2" | "past-a2";
+
+export function stratum(tier: number): Stratum {
   return tier <= A2_TOP_TIER ? "to-a2" : "past-a2";
 }
 
@@ -24,8 +26,12 @@ export function fnv1a32(s: string): number {
   return h >>> 0;
 }
 
-export function assignArm(userKey: string, tier: number): ArmId {
-  return ARM_IDS[fnv1a32(`${EXPERIMENT_ID}:${stratum(tier)}:${userKey}`) % ARM_IDS.length];
+export function enrolmentKey(accountId: string | null | undefined, device: string): string {
+  return accountId ? `acct:${accountId}` : `dev:${device}`;
+}
+
+export function assignArm(key: string): ArmId {
+  return ARM_IDS[fnv1a32(`${EXPERIMENT_ID}:${key}`) % ARM_IDS.length];
 }
 
 export function canFill(cards: number, eligibleUnitSeconds: readonly number[]): boolean {
@@ -34,14 +40,60 @@ export function canFill(cards: number, eligibleUnitSeconds: readonly number[]): 
   return eligible > 0 && (cardTime === 0 || eligible / (eligible + cardTime) >= FILL_SHARE);
 }
 
+export interface Consent {
+  flag: boolean;
+  uploadOpen: boolean;
+  disclosed: boolean;
+  optedOut: boolean;
+}
+
+export function mayTakePart(c: Consent): boolean {
+  return c.flag && c.uploadOpen && c.disclosed && !c.optedOut;
+}
+
+export interface Enrolment {
+  experiment: string;
+  key: string;
+  arm: ArmId;
+  stratum: Stratum;
+  at: number;
+}
+
+export function parseEnrolment(raw: unknown): Enrolment | null {
+  const o = raw as Partial<Enrolment> | null;
+  if (!o || o.experiment !== EXPERIMENT_ID || typeof o.key !== "string" || !o.key || typeof o.at !== "number") return null;
+  if (!ARM_IDS.includes(o.arm as ArmId) || (o.stratum !== "to-a2" && o.stratum !== "past-a2")) return null;
+  return { experiment: EXPERIMENT_ID, key: o.key, arm: o.arm as ArmId, stratum: o.stratum, at: o.at };
+}
+
 export interface ExperimentMix {
   mix: InputMix;
   arm: string | null;
+  enrolment: Enrolment | null;
 }
 
-export function experimentMix(on: boolean, userKey: string | null, tier: number, cards: number, eligibleUnitSeconds: readonly number[]): ExperimentMix {
-  if (!on || !userKey) return { mix: planInputMix(tier, cards, eligibleUnitSeconds), arm: null };
-  const arm = assignArm(userKey, tier);
-  if (!canFill(cards, eligibleUnitSeconds)) return { mix: planInputMix(tier, cards, eligibleUnitSeconds), arm: `${arm}${NOT_FILLED_SUFFIX}` };
-  return { mix: planInputMix(tier, cards, eligibleUnitSeconds, ARM_SHARES[arm]), arm };
+export function experimentMix(consent: Consent, enrolment: Enrolment | null, key: string | null, tier: number, cards: number, eligibleUnitSeconds: readonly number[], now: number): ExperimentMix {
+  const plain = planInputMix(tier, cards, eligibleUnitSeconds);
+  if (!mayTakePart(consent)) return { mix: plain, arm: null, enrolment };
+  const filled = canFill(cards, eligibleUnitSeconds);
+  let e = enrolment;
+  if (!e) {
+    if (!filled || !key) return { mix: plain, arm: null, enrolment: null };
+    const s = stratum(tier);
+    e = { experiment: EXPERIMENT_ID, key, arm: assignArm(key), stratum: s, at: now };
+  }
+  if (!filled) return { mix: plain, arm: `${e.arm}${NOT_FILLED_SUFFIX}`, enrolment: e };
+  return { mix: planInputMix(tier, cards, eligibleUnitSeconds, ARM_SHARES[e.arm]), arm: e.arm, enrolment: e };
+}
+
+export function withoutHeldOut<T extends { items: { kind: string; forms: Record<string, string> }[] }>(corpus: T, heldOut: Readonly<Record<string, ReadonlySet<string>>>): T {
+  const langs = Object.keys(heldOut);
+  if (!langs.length) return corpus;
+  const hit = (i: { kind: string; forms: Record<string, string> }) => i.kind === "word" && langs.some((l) => i.forms[l] !== undefined && heldOut[l].has(i.forms[l].normalize("NFC").toLowerCase().trim()));
+  return { ...corpus, items: corpus.items.filter((i) => !hit(i)) };
+}
+
+export function heldOutWords(forms: { A: readonly { word: string; real: boolean }[]; B: readonly { word: string; real: boolean }[] } | null): Set<string> {
+  if (!forms) return new Set();
+  return new Set([...forms.A, ...forms.B].filter((i) => i.real).map((i) => i.word));
 }

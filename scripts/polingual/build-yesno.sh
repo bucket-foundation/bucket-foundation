@@ -3,10 +3,14 @@ set -euo pipefail
 root="$(cd "$(dirname "$0")/../.." && pwd)"
 tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
-for lang in "${@:-es fr it pt de nl}"; do
-  for l in $lang; do
+langs="${*:-es fr it pt de nl}"
+first=1
+for l in $langs; do
+  if [ "$first" = 1 ]; then
+    python3 "$root/scripts/polingual/yesno_sources.py" "$l" --out "$tmp/$l.json" --reject-out "$tmp/reject.txt"
+    first=0
+  else
     python3 "$root/scripts/polingual/yesno_sources.py" "$l" --out "$tmp/$l.json"
-    NODE_OPTIONS=--max-old-space-size=2800 npx --prefix "$root" tsx "$root/scripts/build-yes-no-forms.ts" "$tmp/$l.json" "$root/learning/app/polingual/yesno" "$root/apple/Shared/Corpus/yesno"
-    echo "built $l"
-  done
+  fi
+  NODE_OPTIONS=--max-old-space-size=2800 npx --prefix "$root" tsx "$root/scripts/build-yes-no-forms.ts" "$tmp/$l.json" "$tmp/reject.txt" "$root/learning/app/polingual/yesno" "$root/apple/Shared/Corpus/yesno"
 done

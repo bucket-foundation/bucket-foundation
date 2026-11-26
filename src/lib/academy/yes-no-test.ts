@@ -192,7 +192,7 @@ export function assembleTest(candidates: readonly RankedWord[], exclude: Readonl
   }
   const taken = new Set([...real.map((r) => r.word), ...Array.from(avoid)]);
   const pseudo: TestItem[] = [];
-  for (let i = 0; pseudo.length < PSEUDOWORDS && i < PSEUDOWORDS * 10; i++) {
+  for (let i = 0; pseudo.length < PSEUDOWORDS && i < PSEUDOWORDS * 40; i++) {
     const ref = real[Math.floor(rand() * real.length)].word;
     const p = pseudoword(ref, lex, rand, taken);
     if (!p) continue;
@@ -206,6 +206,49 @@ export function assembleTest(candidates: readonly RankedWord[], exclude: Readonl
     [all[i], all[j]] = [all[j], all[i]];
   }
   return all;
+}
+
+export const FORM_TOLERANCE = { realLength: 0.3, logRank: 0.03, pseudoLength: 0.5 } as const;
+
+export interface FormBalance {
+  realLength: number;
+  logRank: number;
+  pseudoLength: number;
+}
+
+function meanOf(xs: number[]): number {
+  return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0;
+}
+
+export function formBalance(a: readonly TestItem[], b: readonly TestItem[], rank: (word: string) => number | null): FormBalance {
+  const len = (xs: readonly TestItem[], real: boolean) => meanOf(xs.filter((i) => i.real === real).map((i) => Array.from(i.word).length));
+  const lr = (xs: readonly TestItem[]) => meanOf(xs.filter((i) => i.real).map((i) => Math.log10(rank(i.word) ?? 1)));
+  return { realLength: Math.abs(len(a, true) - len(b, true)), logRank: Math.abs(lr(a) - lr(b)), pseudoLength: Math.abs(len(a, false) - len(b, false)) };
+}
+
+export interface YesNoForms {
+  lang: string;
+  version: string;
+  A: TestItem[];
+  B: TestItem[];
+}
+
+function items(raw: unknown): TestItem[] | null {
+  if (!Array.isArray(raw)) return null;
+  const out: TestItem[] = [];
+  for (const x of raw as Partial<TestItem>[]) {
+    if (!x || typeof x.word !== "string" || typeof x.real !== "boolean") return null;
+    out.push({ word: x.word, real: x.real, band: typeof x.band === "number" ? x.band : null });
+  }
+  return out.filter((i) => i.real).length === REAL_WORDS && out.filter((i) => !i.real).length === PSEUDOWORDS ? out : null;
+}
+
+export function parseYesNoForms(raw: unknown): YesNoForms | null {
+  const o = raw as { format?: string; version?: string; lang?: string; forms?: { A?: unknown; B?: unknown } } | null;
+  if (!o || o.format !== "polingual-yesno" || typeof o.version !== "string" || typeof o.lang !== "string") return null;
+  const A = items(o.forms?.A);
+  const B = items(o.forms?.B);
+  return A && B ? { lang: o.lang, version: o.version, A, B } : null;
 }
 
 export interface YesNoScore {
@@ -228,7 +271,16 @@ export function scoreTest(items: readonly TestItem[], yes: ReadonlySet<string>):
   const pseudo = items.filter((i) => !i.real);
   const hits = real.filter((i) => yes.has(i.word)).length;
   const falseAlarms = pseudo.filter((i) => yes.has(i.word)).length;
-  return { hits, words: real.length, falseAlarms, pseudowords: pseudo.length, known: yesNoKnown(hits, real.length, falseAlarms, pseudo.length) };
+  return { hits, words: real.length, falseAlarms, pseudowords: pseudo.length, known: bandWeightedKnown(real, yes, falseAlarms, pseudo.length) };
+}
+
+export function bandWeightedKnown(real: readonly TestItem[], yes: ReadonlySet<string>, falseAlarms: number, pseudowords: number): number {
+  let sum = 0;
+  RANK_BANDS.forEach(([lo, hi], b) => {
+    const inBand = real.filter((i) => i.band === b);
+    sum += yesNoKnown(inBand.filter((i) => yes.has(i.word)).length, inBand.length, falseAlarms, pseudowords, hi - lo + 1);
+  });
+  return sum;
 }
 
 const DAY_MS = 86_400_000;

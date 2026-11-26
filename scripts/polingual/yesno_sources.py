@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PACKS = Path.home() / "agfarms" / ".polingual-packs"
 CASED_NOUNS = {"de", "lb"}
 SKIP_POS = {"name", "phrase", "intj", "num", "abbrev", "symbol", "prefix", "suffix"}
+REJECT_LANGS = ("es", "fr", "it", "pt", "de", "nl", "en")
 
 
 def ranked(lang, photons=ROOT / "polingual" / "data" / "photons.json.gz"):
@@ -24,13 +25,17 @@ def ranked(lang, photons=ROOT / "polingual" / "data" / "photons.json.gz"):
     return [{"word": w, "rank": r} for w, r in sorted(best.items(), key=lambda kv: (kv[1], kv[0]))]
 
 
+def photon_surfaces(langs, photons=ROOT / "polingual" / "data" / "photons.json.gz"):
+    return {r[2].strip().lower() for r in json.load(gzip.open(photons)) if r[1] in langs and isinstance(r[2], str)}
+
+
 def forms(lang, packs=PACKS):
     src = packs / lang / f"polingual-{lang}.sqlite.zst"
     with tempfile.TemporaryDirectory() as tmp:
         db = Path(tmp) / "pack.sqlite"
         subprocess.run(["zstd", "-dqf", str(src), "-o", str(db)], check=True)
         con = sqlite3.connect(db)
-        out = sorted({s.strip().lower() for (s,) in con.execute("select surface from words") if s and " " not in s.strip()})
+        out = {s.strip().lower() for (s,) in con.execute("select surface from words") if s and " " not in s.strip()}
         con.close()
     return out
 
@@ -39,8 +44,16 @@ def main(argv=None):
     p = argparse.ArgumentParser()
     p.add_argument("lang")
     p.add_argument("--out", required=True)
+    p.add_argument("--reject-out")
+    p.add_argument("--reject-langs", default=",".join(REJECT_LANGS))
     a = p.parse_args(argv)
-    Path(a.out).write_text(json.dumps({"lang": a.lang, "ranked": ranked(a.lang), "forms": forms(a.lang)}, ensure_ascii=False))
+    Path(a.out).write_text(json.dumps({"lang": a.lang, "ranked": ranked(a.lang)}, ensure_ascii=False))
+    if a.reject_out:
+        langs = [l for l in a.reject_langs.split(",") if l]
+        words = set(photon_surfaces(set(langs)))
+        for l in langs:
+            words |= forms(l)
+        Path(a.reject_out).write_text("\n".join(sorted(words)) + "\n")
 
 
 if __name__ == "__main__":

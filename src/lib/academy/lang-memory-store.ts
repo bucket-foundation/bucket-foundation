@@ -3,7 +3,8 @@ import type { Rating } from "./fsrs";
 import { backupBranch, emptyMemory, foldByLang, langBranch, makeRow, memoryState, mergeMemory, migrateLang, normalizeMemory, planningSystem, withRows, type LangMemory, type LangRow } from "./lang-memory";
 import { applyPlacement, cardId, progressBranch, type LangCorpus, type LangSystem } from "./lang-systems";
 import { NO_RESOLVER, type LemmaResolver } from "./exposure-replay";
-import { deviceHash, MAX_PENDING_ROWS, nextGate, nextUtcMidnight, reviewMetrics, shareable, shouldProbe, takeBatch, uploads, type BatchEvent, type BatchReply, type ExposureInput, type ExposureRow, type LogRow, type SessionInput, type SessionRow, type UploadGate } from "./learn-log";
+import { deviceHash, MAX_PENDING_ROWS, nextGate, nextUtcMidnight, reviewMetrics, shareable, shouldProbe, takeBatch, uploads, type BatchEvent, type BatchReply, type ExposureInput, type ExposureRow, type LogRow, type SessionInput, type SessionRow, type UploadGate, type VocabTestRow } from "./learn-log";
+import type { VocabTestProps } from "./events";
 import { LS_BASE, pullServer, webProgressStore, type ServerBranches } from "./progress-store";
 
 export interface MemoryIO {
@@ -146,6 +147,11 @@ export function logExposure(io: MemoryIO, s: SharedSession, lang: string, input:
 
 export function logSession(io: MemoryIO, s: SharedSession, lang: string, input: SessionInput): { session: SharedSession; saved: Promise<boolean> } {
   const row: SessionRow = { kind: "session", review_id: io.uuid(), reviewed_at: input.ended, device_id: io.deviceId(), tz: io.tz(), system_id: s.system.id, lang, ...input };
+  return appendLocal(io, s, lang, row);
+}
+
+export function logVocabTest(io: MemoryIO, s: SharedSession, lang: string, input: VocabTestProps): { session: SharedSession; saved: Promise<boolean> } {
+  const row: VocabTestRow = { kind: "vocab_test", review_id: io.uuid(), reviewed_at: io.now(), device_id: io.deviceId(), tz: io.tz(), system_id: s.system.id, lang, ...input };
   return appendLocal(io, s, lang, row);
 }
 

@@ -115,11 +115,13 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
 @Test func theExperimentFlagLogsTheStableArmOnTheSessionRow() throws {
     let b = try fixture()
     var n = 0
-    let s = try #require(InputPlanState.plan(mode: .on, lang: "es", bundle: b, resolve: resolve, state: knowsAllBut(b, ["mi", "casa"]), cards: 20, tier: 2, systemId: "sys", device: "d-0", now: now, clock: { now }, ids: { n += 1; return "id-\(n)" }, tz: "UTC", experiment: true))
+    let s = try #require(InputPlanState.plan(mode: .on, lang: "es", bundle: b, resolve: resolve, state: knowsAllBut(b, ["mi", "casa"]), cards: 0, tier: 2, systemId: "sys", device: "d-0", now: now, clock: { now }, ids: { n += 1; return "id-\(n)" }, tz: "UTC", consent: InputExperiment.Consent(flag: true, uploadOpen: true, disclosed: true, optedOut: false), key: "dev:d-0"))
     let arm = try #require(s.arm)
-    let assigned = InputExperiment.assignArm("d-0", tier: 2)
-    #expect(arm == assigned || arm == assigned + InputExperiment.notFilledSuffix)
-    if arm == assigned { #expect(s.mix.target == InputExperiment.armShares[arm]) }
+    #expect(arm == InputExperiment.assignArm("dev:d-0"))
+    #expect(s.enrolment?.arm == arm)
+    #expect(s.mix.target == InputExperiment.armShares[arm])
+    let blocked = try #require(InputPlanState.plan(mode: .on, lang: "es", bundle: b, resolve: resolve, state: knowsAllBut(b, ["mi", "casa"]), cards: 0, tier: 2, systemId: "sys", device: "d-0", now: now, consent: InputExperiment.Consent(flag: true, uploadOpen: true, disclosed: false, optedOut: false), key: "dev:d-0"))
+    #expect(blocked.arm == nil)
     guard case .session(let row) = try #require(s.end(answered: 20)) else { Issue.record("not a session"); return }
     #expect(row.arm == arm)
 }

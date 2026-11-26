@@ -1,6 +1,6 @@
 # Input Share Experiment Preregistration
 
-Bead bkt-owjng. Plan: `COMPREHENSIBLE-INPUT-PLAN.md` §9. Experiment id `ci14-share-v1`. Status: prepared and waiting. Launch needs the founder's go.
+Bead bkt-owjng. Plan: `COMPREHENSIBLE-INPUT-PLAN.md` §9. Experiment id `ci14-share-v1`. Status: prepared and waiting. Launch needs the founder's go. Revision 3 answers the second critic review.
 
 ## Question
 
@@ -13,38 +13,53 @@ Does the share of session time spent on comprehensible input change how many wor
 
 Both tests are two-sided. The direction above is the prediction we record before data.
 
+## Consent and Ethics
+
+- **Who can take part:** signed-in learners whose review-log upload gate is open. The gate opens only for a profile in the `18plus` birth-year bucket that has given upload consent, so the existing `under_age` and `no_consent` checks keep minors and non-consenting learners out.
+- **Disclosure:** before anything changes, the app shows a notice that says what the study varies, that a word test runs now and around day 28, and that study logs carry the assigned setting. The learner picks "take part" or "no thanks". Nothing is assigned before "take part".
+- **Opt-out:** a "leave the study" control stays on the study page. Leaving returns sessions to the default mix at once. Rows logged before leaving stay in the intention-to-treat analysis; nothing new is logged under the arm.
+- **Clients:** web carries the disclosure, test and opt-out now. Android and iOS enrol nobody until their disclosure screen and upload gate ship, since their consent check requires both; they will enrol through the same server endpoint.
+
 ## Design
 
 - **Arms:** `s50`, `s70`, `s90`. The arm sets the session input target; `inputShare` still caps the share at eligible input over session time.
-- **Unit:** one install, keyed by the device hash already written on every review log row. A learner on two devices counts as two units; the analysis reports how many device hashes share a signed-in account when that link exists.
-- **Assignment:** `fnv1a32("ci14-share-v1:<stratum>:<device>") mod 3`, where the stratum is `to-a2` for placement tier 6 or below and `past-a2` above. The same function runs on web, Android and iOS and is pinned by `src/lib/academy/input-experiment-vectors.json`. Assignment needs no server and anyone can recompute it from the log.
-- **Eligibility:** a session is filled when eligible input could reach 90% of session time, so every arm can deliver its target. A filled session logs the arm (`s70`); an unfilled one logs the arm with `-x` (`s70-x`) and runs the default mix.
-- **Enrolment:** the first filled session. Day 0 is that session's date. Later unfilled sessions stay in the arm.
-- **Flag:** `NEXT_PUBLIC_POLINGUAL_INPUT_EXPERIMENT=1` on web, `polingualInputExperiment=1` on Android, `POLINGUAL_INPUT_EXPERIMENT=1` on iOS. Every default is off, and with the flag off the arm is null and the mix is unchanged.
+- **Unit:** the account (`acct:<id>`). An anonymous install uses `dev:<device hash>`, though the upload gate keeps anonymous learners out today. Several devices of one account share one arm.
+- **Assignment:** `fnv1a32("ci14-share-v1:<unit>") mod 3`. The hash takes the unit alone, so nothing about the learner can move the arm. The same function runs on the server, web, Android and iOS, pinned by `src/lib/academy/input-experiment-vectors.json`.
+- **Stratum:** `to-a2` for placement tier 6 or below, `past-a2` above, recorded once at enrolment and used as a model covariate. The hash balances arms within each stratum in expectation; the analysis adjusts for it.
+- **Frozen at enrolment, on the server:** the first filled session posts the stratum to `/api/academy/experiment`. The server derives the unit from the signed-in account, computes the arm itself, checks the `18plus` band, and inserts one row in `bucket.experiment_enrolments` keyed by account and experiment. A second post returns the stored row, and a trigger refuses updates. Every later session reads the stored row first; the browser keeps only a cache. If the server cannot be reached, nobody new is enrolled. The analysis refuses a unit whose logged arm disagrees with the hash or changes (`enrolments` raises).
+- **Order:** disclosure, then the baseline test (form A), then enrolment at the first filled session. Enrolment needs the baseline on record, so the baseline always precedes assignment.
+- **Filled session:** eligible input could reach 90% of session time, so every arm can deliver its target. A filled session logs the arm (`s70`); an unfilled one after enrolment logs `s70-x` and runs the default mix.
+- **Flag:** `NEXT_PUBLIC_POLINGUAL_INPUT_EXPERIMENT=1` on web, `polingualInputExperiment=1` on Android, `POLINGUAL_INPUT_EXPERIMENT=1` on iOS. Every default is off.
 
 ## Outcomes
 
-- **Primary:** known words at day 28 from a held-out yes/no test. The learner sees 50 real words sampled across frequency bands, none of them studied as cards, plus 20 pseudowords. Score: `(hits − false alarms) / (1 − false alarms)` times the size of the sampled bank (`yes_no_known` in the analysis code). The test runs once, between day 28 and day 35.
-- **Baseline covariate:** the same test at enrolment, drawn from a disjoint word sample.
-- **Secondary:** input hours by day 28 (exposure rows), day-28 retention (any session on days 21 to 28), card lapse rate over days 0 to 28, realized share (`share_real` on session rows).
+- **Primary:** known words at day 28 from the yes/no test, form B, taken between day 28 and day 35.
+- **Test forms:** two fixed forms per language, A for baseline and B for day 28, built once before launch by `scripts/polingual/build-yesno.sh` and shipped as `learning/app/polingual/yesno/<lang>.json` and `apple/Shared/Corpus/yesno/<lang>.json`. Each form has 50 real words, 10 from each of five frequency bands between ranks 1 and 8,000, and 20 pseudowords. A and B share no word. Every arm sees the same words.
+- **Held out from study:** the 100 real words of both forms are removed from the card queue for every learner who has agreed to take part, in every arm, from the moment of consent. Input passages may still contain them; incidental exposure through input is part of the treatment.
+- **Pseudowords:** generated by the Wuggy method (Keuleers and Brysbaert 2010): each pseudoword keeps the syllable structure of a real reference word from the form and swaps one subsyllabic segment (onset, nucleus or coda) per syllable for another segment seen in the same position among the 8,000 ranked words, keeping every segment transition attested at least twice, the length within one letter and the accent count. A candidate is rejected when it matches any Kaikki word form or Polingual word of Spanish, French, Italian, Portuguese, German, Dutch or English (3.2 million forms), so no pseudoword is a real word in any study language. The build stops if one slips through. Code: `src/lib/academy/yes-no-test.ts`, with Kotlin and Swift ports pinned by `yes-no-vectors.json`.
+- **Form balance:** form B is drawn from successive seeds until it matches form A within 0.3 letters in mean real-word length, 0.03 in mean log10 frequency rank, and 0.5 letters in mean pseudoword length. A unit test checks every shipped language against these margins.
+- **Score:** for each band b, `(hits_b − false alarms) / (1 − false alarms)` clipped to [0, 1], times the band's rank width (1,000, 1,000, 2,000, 2,000, 2,000), summed over bands. The false-alarm rate is shared across bands.
+- **Secondary:** input hours by day 28, day-28 retention, card lapse rate over days 0 to 28. Holm-corrected as one family of six tests (three outcomes by two contrasts). Realized share is reported as a manipulation check, untested.
 
 ## Sample Size
 
-Two contrasts, 50 vs 70 and 90 vs 70, Holm-corrected at family-wise α 0.05. With d = 0.3 and power 0.8 at α 0.025 per contrast, a two-sample t test needs 212 completers per arm. Planning for 40% loss by day 28 gives 354 enrolled per arm, 1,062 in total. `ci14_analysis.py power` reproduces these numbers and simulates power with the covariate model; 100 simulations at 354 per arm gave 0.87 and 0.85.
+Two contrasts, 50 vs 70 and 90 vs 70, Holm-corrected at family-wise α 0.05. With d = 0.3 and power 0.8 at α 0.025 per contrast, a two-sample t test needs 212 completers per arm. Planning for 40% loss by day 28 gives 354 enrolled per arm, 1,062 in total. `python3 scripts/polingual/ci14_analysis.py power` (500 simulations, seed 7) gives simulated power 0.864 and 0.862 with the covariate model.
 
 ## Analysis
 
-- **Population:** every enrolled device, analysed in its assigned arm (intention to treat).
-- **Model:** ordinary least squares on the day-28 score with arm indicators (reference `s70`), stratum, and baseline score. The arm coefficients are the two contrasts; p values are two-sided t tests, then Holm.
-- **Missing outcomes:** the primary model uses observed outcomes. The sensitivity analysis is multiple imputation from the same model (20 imputations, Rubin's rules). A conclusion holds when both agree in sign and in rejection.
+- **Population:** every enrolled unit in its assigned arm, whether or not it took the day-28 test (intention to treat).
+- **Model:** least squares on the day-28 score with arm indicators (reference `s70`), stratum, baseline score, and test day minus 28 (0 to 7). Standard errors are cluster-robust (CR1) by account, with clusters minus one degrees of freedom.
+- **Primary estimate:** multiple imputation of missing day-28 scores from the same model (20 imputations, test day set to 28, Rubin's rules with the Barnard and Rubin degrees of freedom), then Holm over the two contrasts.
+- **Sensitivity:** complete-case analysis of the same model, and a tipping-point analysis that shifts imputed scores in the s50 or s90 arm by 0.1 to 0.5 SD against the hypothesis and reports the smallest shift that changes a conclusion.
 - **Effect size:** the coefficient divided by the residual SD.
 - **Code:** `scripts/polingual/ci14_analysis.py`, tested in `scripts/polingual/test_ci14_analysis.py` on simulated data with known effects and under the null.
 
 ## Stopping Rules
 
-- **Fixed horizon:** enrolment closes at 354 per arm or 120 days after launch, whichever comes first. No interim look at the primary outcome.
-- **Harm check:** once every arm has 150 enrolled devices, compare day-7 retention. If any arm sits 15 points or more below `s70`, stop that arm and report it (`harm_stop`).
-- **Defect stop:** stop if a logged arm disagrees with the hash assignment for any device (`enrolments` raises on it), or if `share_real` in filled sessions misses the arm target by more than 0.1 on median.
+- **Fixed horizon:** enrolment closes at 354 per arm or 120 days after launch, whichever comes first (`enrolment_state`). No interim look at the primary outcome.
+- **Cap before target:** if 120 days pass first, enrolment closes, the day-28 window runs out for everyone enrolled, and the analysis runs unchanged on the units enrolled. The report states the achieved power at d = 0.3 from the observed completers (`achieved_power`). Enrolment is never extended.
+- **Harm check:** once every arm has 150 enrolled units, compare day-7 retention. If any arm sits 15 points or more below `s70`, stop that arm and report it (`harm_stop`).
+- **Defect stop:** stop if a unit's logged arm disagrees with the hash or moves, or if `share_real` in filled sessions misses the arm target by more than 0.1 on median.
 
 ## Deviations
 
@@ -53,6 +68,6 @@ Any change after launch goes in a dated list at the end of this file with its re
 ## Launch Prerequisites
 
 1. Founder approval to launch on real users.
-2. The yes/no test with pseudowords built and shipped on all three clients.
-3. The flag set on all three clients in the same release window.
-4. Review log upload on, so session and exposure rows reach the server.
+2. The `vocab_test` and `experiment_enrolments` migrations applied to the hosted database.
+3. Android and iOS disclosure screens and upload gate, or a web-only launch named as such in a deviation entry.
+4. The flag set on the launching clients in the same release window.

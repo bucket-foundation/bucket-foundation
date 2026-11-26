@@ -40,6 +40,12 @@ enum InputConfig {
         return v.isEmpty ? nil : v
     }
 
+    static let enrolmentKey = "polingual.ci14.enrolment"
+
+    static var consent: InputExperiment.Consent {
+        InputExperiment.Consent(flag: InputExperiment.on(Bundle.main.object(forInfoDictionaryKey: "PolingualInputExperiment") as? String), uploadOpen: false, disclosed: false, optedOut: false)
+    }
+
     static var debug: Bool {
         #if DEBUG
         return true
@@ -68,7 +74,10 @@ enum InputConfig {
             let resolve = InputStage.resolver([lang: InputStage.lemmaCardMap(corpus, lang: lang)])
             let tier = Int(system.placement[lang] ?? 0)
             let freq = InputStage.freqIndex((LangStore.topWords(lang) ?? []).map { ($0.word, Double($0.rank), false) })
-            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, experiment: InputExperiment.on(Bundle.main.object(forInfoDictionaryKey: "PolingualInputExperiment") as? String)) { return p }
+            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, consent: consent, enrolment: InputExperiment.parseEnrolment(UserDefaults.standard.data(forKey: enrolmentKey)), key: InputExperiment.enrolmentKey(account: nil, device: LangStore.deviceId)) {
+                if let e = p.enrolment, let d = try? JSONEncoder().encode(e) { UserDefaults.standard.set(d, forKey: enrolmentKey) }
+                return p
+            }
         }
         return nil
     }

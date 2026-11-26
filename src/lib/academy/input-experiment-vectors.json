@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "hashes": [
   {
    "key": "",
@@ -30,806 +30,503 @@
    "hash": 3964753528
   }
  ],
+ "keysFor": [
+  {
+   "account": null,
+   "device": "d1",
+   "key": "dev:d1"
+  },
+  {
+   "account": "u-9",
+   "device": "d1",
+   "key": "acct:u-9"
+  },
+  {
+   "account": "",
+   "device": "d2",
+   "key": "dev:d2"
+  }
+ ],
  "assign": [
   {
-   "key": "user-0",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-0",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-0",
-   "tier": 7,
+   "key": "acct:user-0",
    "arm": "s90"
   },
   {
-   "key": "user-0",
-   "tier": 12,
+   "key": "acct:user-1",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-2",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-3",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-4",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-5",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-6",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-7",
    "arm": "s90"
   },
   {
-   "key": "user-1",
-   "tier": 0,
+   "key": "acct:user-8",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-9",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-10",
    "arm": "s90"
   },
   {
-   "key": "user-1",
-   "tier": 6,
+   "key": "acct:user-11",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-12",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-13",
    "arm": "s90"
   },
   {
-   "key": "user-1",
-   "tier": 7,
-   "arm": "s70"
+   "key": "acct:user-14",
+   "arm": "s50"
   },
   {
-   "key": "user-1",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-2",
-   "tier": 0,
+   "key": "acct:user-15",
    "arm": "s90"
   },
   {
-   "key": "user-2",
-   "tier": 6,
+   "key": "acct:user-16",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-17",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-18",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-19",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-20",
    "arm": "s90"
   },
   {
-   "key": "user-2",
-   "tier": 7,
+   "key": "acct:user-21",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-22",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-23",
    "arm": "s70"
   },
   {
-   "key": "user-2",
-   "tier": 12,
+   "key": "acct:user-24",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-25",
    "arm": "s70"
   },
   {
-   "key": "user-3",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-3",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-3",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-3",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-4",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-4",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-4",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-4",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-5",
-   "tier": 0,
+   "key": "acct:user-26",
    "arm": "s70"
   },
   {
-   "key": "user-5",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-5",
-   "tier": 7,
+   "key": "acct:user-27",
    "arm": "s90"
   },
   {
-   "key": "user-5",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-6",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-6",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-6",
-   "tier": 7,
-   "arm": "s90"
-  },
-  {
-   "key": "user-6",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-7",
-   "tier": 0,
-   "arm": "s90"
-  },
-  {
-   "key": "user-7",
-   "tier": 6,
-   "arm": "s90"
-  },
-  {
-   "key": "user-7",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-7",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-8",
-   "tier": 0,
+   "key": "acct:user-28",
    "arm": "s50"
   },
   {
-   "key": "user-8",
-   "tier": 6,
+   "key": "acct:user-29",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-30",
    "arm": "s50"
   },
   {
-   "key": "user-8",
-   "tier": 7,
+   "key": "acct:user-31",
    "arm": "s90"
   },
   {
-   "key": "user-8",
-   "tier": 12,
+   "key": "acct:user-32",
    "arm": "s90"
   },
   {
-   "key": "user-9",
-   "tier": 0,
+   "key": "acct:user-33",
    "arm": "s70"
   },
   {
-   "key": "user-9",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-9",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-9",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-10",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-10",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-10",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-10",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-11",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-11",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-11",
-   "tier": 7,
+   "key": "acct:user-34",
    "arm": "s90"
   },
   {
-   "key": "user-11",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-12",
-   "tier": 0,
-   "arm": "s90"
-  },
-  {
-   "key": "user-12",
-   "tier": 6,
-   "arm": "s90"
-  },
-  {
-   "key": "user-12",
-   "tier": 7,
-   "arm": "s90"
-  },
-  {
-   "key": "user-12",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-13",
-   "tier": 0,
+   "key": "acct:user-35",
    "arm": "s70"
   },
   {
-   "key": "user-13",
-   "tier": 6,
+   "key": "acct:user-36",
    "arm": "s70"
   },
   {
-   "key": "user-13",
-   "tier": 7,
+   "key": "acct:user-37",
    "arm": "s50"
   },
   {
-   "key": "user-13",
-   "tier": 12,
+   "key": "acct:user-38",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-39",
    "arm": "s50"
   },
   {
-   "key": "user-14",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-14",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-14",
-   "tier": 7,
+   "key": "acct:user-40",
    "arm": "s90"
   },
   {
-   "key": "user-14",
-   "tier": 12,
+   "key": "acct:user-41",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-42",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-43",
    "arm": "s90"
   },
   {
-   "key": "user-15",
-   "tier": 0,
+   "key": "acct:user-44",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-45",
    "arm": "s90"
   },
   {
-   "key": "user-15",
-   "tier": 6,
+   "key": "acct:user-46",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-47",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-48",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-49",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-50",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-51",
    "arm": "s90"
   },
   {
-   "key": "user-15",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-15",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-16",
-   "tier": 0,
+   "key": "acct:user-52",
    "arm": "s70"
   },
   {
-   "key": "user-16",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-16",
-   "tier": 7,
+   "key": "acct:user-53",
    "arm": "s50"
   },
   {
-   "key": "user-16",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-17",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-17",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-17",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-17",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-18",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-18",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-18",
-   "tier": 7,
+   "key": "acct:user-54",
    "arm": "s90"
   },
   {
-   "key": "user-18",
-   "tier": 12,
+   "key": "acct:user-55",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-56",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-57",
    "arm": "s90"
   },
   {
-   "key": "user-19",
-   "tier": 0,
+   "key": "acct:user-58",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-59",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-60",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-61",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-62",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-63",
    "arm": "s90"
   },
   {
-   "key": "user-19",
-   "tier": 6,
+   "key": "acct:user-64",
    "arm": "s90"
   },
   {
-   "key": "user-19",
-   "tier": 7,
+   "key": "acct:user-65",
    "arm": "s50"
   },
   {
-   "key": "user-19",
-   "tier": 12,
+   "key": "acct:user-66",
    "arm": "s50"
   },
   {
-   "key": "user-20",
-   "tier": 0,
-   "arm": "s50"
+   "key": "acct:user-67",
+   "arm": "s70"
   },
   {
-   "key": "user-20",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-20",
-   "tier": 7,
+   "key": "acct:user-68",
    "arm": "s90"
   },
   {
-   "key": "user-20",
-   "tier": 12,
+   "key": "acct:user-69",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-70",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-71",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-72",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-73",
    "arm": "s90"
   },
   {
-   "key": "user-21",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-21",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-21",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-21",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-22",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-22",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-22",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-22",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-23",
-   "tier": 0,
+   "key": "acct:user-74",
    "arm": "s90"
   },
   {
-   "key": "user-23",
-   "tier": 6,
+   "key": "acct:user-75",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-76",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-77",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-78",
    "arm": "s90"
   },
   {
-   "key": "user-23",
-   "tier": 7,
+   "key": "acct:user-79",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-80",
    "arm": "s90"
   },
   {
-   "key": "user-23",
-   "tier": 12,
+   "key": "acct:user-81",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-82",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-83",
    "arm": "s90"
   },
   {
-   "key": "user-24",
-   "tier": 0,
+   "key": "acct:user-84",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-85",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-86",
    "arm": "s90"
   },
   {
-   "key": "user-24",
-   "tier": 6,
+   "key": "acct:user-87",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-88",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-89",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-90",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-91",
    "arm": "s90"
   },
   {
-   "key": "user-24",
-   "tier": 7,
+   "key": "acct:user-92",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-93",
    "arm": "s50"
   },
   {
-   "key": "user-24",
-   "tier": 12,
+   "key": "acct:user-94",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-95",
    "arm": "s50"
   },
   {
-   "key": "user-25",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-25",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-25",
-   "tier": 7,
+   "key": "acct:user-96",
    "arm": "s90"
   },
   {
-   "key": "user-25",
-   "tier": 12,
+   "key": "acct:user-97",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-98",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-99",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-100",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-101",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-102",
    "arm": "s90"
   },
   {
-   "key": "user-26",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-26",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-26",
-   "tier": 7,
+   "key": "acct:user-103",
    "arm": "s70"
   },
   {
-   "key": "user-26",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-27",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-27",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-27",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-27",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-28",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-28",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-28",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-28",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-29",
-   "tier": 0,
+   "key": "acct:user-104",
    "arm": "s90"
   },
   {
-   "key": "user-29",
-   "tier": 6,
+   "key": "acct:user-105",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-106",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-107",
    "arm": "s90"
   },
   {
-   "key": "user-29",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-29",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-30",
-   "tier": 0,
+   "key": "acct:user-108",
    "arm": "s90"
   },
   {
-   "key": "user-30",
-   "tier": 6,
+   "key": "acct:user-109",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-110",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-111",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-112",
    "arm": "s90"
   },
   {
-   "key": "user-30",
-   "tier": 7,
+   "key": "acct:user-113",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-114",
    "arm": "s70"
   },
   {
-   "key": "user-30",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-31",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-31",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-31",
-   "tier": 7,
+   "key": "acct:user-115",
    "arm": "s90"
   },
   {
-   "key": "user-31",
-   "tier": 12,
+   "key": "acct:user-116",
+   "arm": "s50"
+  },
+  {
+   "key": "acct:user-117",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-118",
+   "arm": "s70"
+  },
+  {
+   "key": "acct:user-119",
    "arm": "s90"
-  },
-  {
-   "key": "user-32",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-32",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-32",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-32",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-33",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-33",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-33",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-33",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-34",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-34",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-34",
-   "tier": 7,
-   "arm": "s90"
-  },
-  {
-   "key": "user-34",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-35",
-   "tier": 0,
-   "arm": "s90"
-  },
-  {
-   "key": "user-35",
-   "tier": 6,
-   "arm": "s90"
-  },
-  {
-   "key": "user-35",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-35",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-36",
-   "tier": 0,
-   "arm": "s90"
-  },
-  {
-   "key": "user-36",
-   "tier": 6,
-   "arm": "s90"
-  },
-  {
-   "key": "user-36",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-36",
-   "tier": 12,
-   "arm": "s70"
-  },
-  {
-   "key": "user-37",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-37",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-37",
-   "tier": 7,
-   "arm": "s90"
-  },
-  {
-   "key": "user-37",
-   "tier": 12,
-   "arm": "s90"
-  },
-  {
-   "key": "user-38",
-   "tier": 0,
-   "arm": "s70"
-  },
-  {
-   "key": "user-38",
-   "tier": 6,
-   "arm": "s70"
-  },
-  {
-   "key": "user-38",
-   "tier": 7,
-   "arm": "s50"
-  },
-  {
-   "key": "user-38",
-   "tier": 12,
-   "arm": "s50"
-  },
-  {
-   "key": "user-39",
-   "tier": 0,
-   "arm": "s50"
-  },
-  {
-   "key": "user-39",
-   "tier": 6,
-   "arm": "s50"
-  },
-  {
-   "key": "user-39",
-   "tier": 7,
-   "arm": "s70"
-  },
-  {
-   "key": "user-39",
-   "tier": 12,
-   "arm": "s70"
   }
  ],
  "fill": [
@@ -872,52 +569,13 @@
  ],
  "mixes": [
   {
-   "on": false,
-   "key": "user-1",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90
-   ],
-   "arm": null,
-   "target": 0.7,
-   "share": 0.7,
-   "units": 3,
-   "positions": [
-    2,
-    5,
-    7
-   ]
-  },
-  {
-   "on": false,
-   "key": "user-1",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    60
-   ],
-   "arm": null,
-   "target": 0.7,
-   "share": 0.333333333,
-   "units": 1,
-   "positions": [
-    5
-   ]
-  },
-  {
-   "on": true,
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
    "key": null,
    "tier": 2,
    "cards": 10,
@@ -935,7 +593,9 @@
     90,
     90
    ],
+   "now": 1000,
    "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.7,
    "units": 3,
@@ -946,14 +606,22 @@
    ]
   },
   {
-   "on": true,
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
    "key": null,
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
+   "now": 1000,
    "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,
@@ -962,8 +630,14 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-1",
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
    "tier": 2,
    "cards": 10,
    "seconds": [
@@ -980,111 +654,15 @@
     90,
     90
    ],
-   "arm": "s90",
-   "target": 0.9,
-   "share": 0.9,
-   "units": 10,
-   "positions": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9
-   ]
-  },
-  {
-   "on": true,
-   "key": "user-1",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    60
-   ],
-   "arm": "s90-x",
-   "target": 0.7,
-   "share": 0.333333333,
-   "units": 1,
-   "positions": [
-    5
-   ]
-  },
-  {
-   "on": true,
-   "key": "user-2",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90
-   ],
-   "arm": "s90",
-   "target": 0.9,
-   "share": 0.9,
-   "units": 10,
-   "positions": [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9
-   ]
-  },
-  {
-   "on": true,
-   "key": "user-2",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    60
-   ],
-   "arm": "s90-x",
-   "target": 0.7,
-   "share": 0.333333333,
-   "units": 1,
-   "positions": [
-    5
-   ]
-  },
-  {
-   "on": true,
-   "key": "user-3",
-   "tier": 2,
-   "cards": 10,
-   "seconds": [
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90,
-    90
-   ],
+   "now": 1000,
    "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "to-a2",
+    "at": 1000
+   },
    "target": 0.5,
    "share": 0.5,
    "units": 1,
@@ -1093,14 +671,22 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-3",
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
-   "arm": "s50-x",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,
@@ -1109,8 +695,14 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-4",
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
    "tier": 2,
    "cards": 10,
    "seconds": [
@@ -1127,7 +719,15 @@
     90,
     90
    ],
+   "now": 1000,
    "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-2",
+    "arm": "s50",
+    "stratum": "to-a2",
+    "at": 1000
+   },
    "target": 0.5,
    "share": 0.5,
    "units": 1,
@@ -1136,14 +736,22 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-4",
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
-   "arm": "s50-x",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,
@@ -1152,8 +760,14 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-5",
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
    "tier": 2,
    "cards": 10,
    "seconds": [
@@ -1170,7 +784,554 @@
     90,
     90
    ],
-   "arm": "s70",
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-4",
+    "arm": "s50",
+    "stratum": "to-a2",
+    "at": 1000
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "dev:user-6",
+    "arm": "s50",
+    "stratum": "to-a2",
+    "at": 1000
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": "s50-x",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": "s50-x",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": "s50-x",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": "s50-x",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": "s50",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.5,
+   "share": 0.5,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": "s50-x",
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.7,
    "units": 3,
@@ -1181,14 +1342,22 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-5",
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
-   "arm": "s70-x",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,
@@ -1197,8 +1366,14 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-6",
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
    "tier": 2,
    "cards": 10,
    "seconds": [
@@ -1215,7 +1390,9 @@
     90,
     90
    ],
-   "arm": "s70",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.7,
    "units": 3,
@@ -1226,14 +1403,22 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-6",
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
-   "arm": "s70-x",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,
@@ -1242,8 +1427,14 @@
    ]
   },
   {
-   "on": true,
-   "key": "user-7",
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
    "tier": 2,
    "cards": 10,
    "seconds": [
@@ -1260,32 +1451,2772 @@
     90,
     90
    ],
-   "arm": "s90",
-   "target": 0.9,
-   "share": 0.9,
-   "units": 10,
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
    "positions": [
-    0,
-    1,
     2,
-    3,
-    4,
     5,
-    6,
-    7,
-    8,
-    9
+    7
    ]
   },
   {
-   "on": true,
-   "key": "user-7",
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
    "tier": 2,
    "cards": 10,
    "seconds": [
     60
    ],
-   "arm": "s90-x",
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": false,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": false,
+    "disclosed": true,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": false,
+    "optedOut": false
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": null,
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": null,
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": null,
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-1",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-2",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "acct:user-4",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.333333333,
+   "units": 1,
+   "positions": [
+    5
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90,
+    90
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "target": 0.7,
+   "share": 0.7,
+   "units": 3,
+   "positions": [
+    2,
+    5,
+    7
+   ]
+  },
+  {
+   "consent": {
+    "flag": true,
+    "uploadOpen": true,
+    "disclosed": true,
+    "optedOut": true
+   },
+   "enrolment": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
+   "key": "dev:user-6",
+   "tier": 2,
+   "cards": 10,
+   "seconds": [
+    60
+   ],
+   "now": 1000,
+   "arm": null,
+   "enrolment_out": {
+    "experiment": "ci14-share-v1",
+    "key": "acct:user-1",
+    "arm": "s50",
+    "stratum": "past-a2",
+    "at": 5
+   },
    "target": 0.7,
    "share": 0.333333333,
    "units": 1,

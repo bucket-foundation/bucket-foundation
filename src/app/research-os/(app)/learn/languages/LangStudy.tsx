@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { heritageLangs, langName, studyHref } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import LangExercise, { ReadingsContext } from "./LangExercise";
 import { useLangSession } from "./useLangSession";
 import { useLangSystem } from "./useLangSystem";
+import ExperimentPanel from "./ExperimentPanel";
 
 export function HeritageLink({ systemId, langs, on }: { systemId: string; langs: string[]; on: boolean }) {
   if (!on && langs.length === 0) return null;
@@ -18,6 +20,7 @@ export function HeritageLink({ systemId, langs, on }: { systemId: string; langs:
 
 export default function LangStudy({ systemId, heritage = false }: { systemId: string; heritage?: boolean }) {
   const h = useLangSystem(systemId);
+  const [panelDone, setPanelDone] = useState(false);
   const { system, corpus, state } = h;
   const { queue, i, entry, ex, unitTitle, links, optionReadings, onDone, match, graded, correct, xpGained, readings, showReadings, skip, restart } = useLangSession(h, heritage);
 
@@ -58,8 +61,10 @@ export default function LangStudy({ systemId, heritage = false }: { systemId: st
     );
   }
 
+  const studyLang = system.targets.find((l) => h.langStatus[l] === "ready");
   return (
     <div className="flex flex-col gap-4 max-w-2xl min-w-0">
+      {studyLang && !panelDone ? <ExperimentPanel h={h} lang={studyLang} onDone={() => setPanelDone(true)} /> : null}
       <div className="flex items-center justify-between gap-3 text-[12px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]">
         <Link href={back} className="underline underline-offset-4">
           {system.name}

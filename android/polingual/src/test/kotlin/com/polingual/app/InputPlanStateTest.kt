@@ -82,10 +82,13 @@ class InputPlanStateTest {
     @Test
     fun theExperimentFlagLogsTheStableArmOnTheSessionRow() {
         var n = 0
-        val s = assertNotNull(InputPlanState.plan(InputModeFlag.Mode.On, "es", bundle, { "gloss" }, resolve, knowsAllBut("mi", "casa"), 20, 2, "sys", "d-0", now, { now }, { "id-${n++}" }, "UTC", experiment = true))
+        val s = assertNotNull(InputPlanState.plan(InputModeFlag.Mode.On, "es", bundle, { "gloss" }, resolve, knowsAllBut("mi", "casa"), 0, 2, "sys", "d-0", now, { now }, { "id-${n++}" }, "UTC", consent = InputExperiment.Consent(true, true, true, false), key = "dev:d-0"))
         val arm = assertNotNull(s.arm)
-        assertTrue(arm == InputExperiment.assignArm("d-0", 2) || arm == InputExperiment.assignArm("d-0", 2) + InputExperiment.NOT_FILLED_SUFFIX)
-        if (!arm.endsWith(InputExperiment.NOT_FILLED_SUFFIX)) assertEquals(InputExperiment.ARM_SHARES.getValue(arm), s.mix.target)
+        assertEquals(InputExperiment.assignArm("dev:d-0"), arm)
+        assertEquals(arm, s.enrolment?.arm)
+        assertEquals(InputExperiment.ARM_SHARES.getValue(arm), s.mix.target)
+        val blocked = assertNotNull(InputPlanState.plan(InputModeFlag.Mode.On, "es", bundle, { "gloss" }, resolve, knowsAllBut("mi", "casa"), 0, 2, "sys", "d-0", now, { now }, { "x" }, "UTC", consent = InputExperiment.Consent(true, false, true, false), key = "dev:d-0"))
+        assertNull(blocked.arm)
         val v = View(20, knowsAllBut("mi", "casa"))
         s.end(v)
         assertEquals(arm, v.log.filterIsInstance<LogRow.Session>().single().arm)

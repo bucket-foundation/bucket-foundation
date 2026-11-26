@@ -42,6 +42,7 @@ class InputPlanState(
     private val tz: String = TimeZone.getDefault().id,
     private val freq: (String) -> FreqPrior? = { null },
     val arm: String? = null,
+    val enrolment: InputExperiment.Enrolment? = null,
 ) {
     private val done = mutableSetOf<Int>()
     private val shown = mutableMapOf<String, Int>()
@@ -87,22 +88,26 @@ class InputPlanState(
 
     companion object {
         private const val SALT_KEY = "polingual.reviewLog.salt"
+        private const val ENROLMENT_KEY = "polingual.ci14.enrolment"
+        private val consent = InputExperiment.Consent(flag = InputExperiment.on(BuildConfig.INPUT_EXPERIMENT), uploadOpen = false, disclosed = false, optedOut = false)
 
         fun plan(
             mode: InputModeFlag.Mode, lang: String, bundle: InputBundle, glossOf: (String) -> String?, resolve: (String, String) -> String?,
             state: StudyState, cards: Int, tier: Int, systemId: String, device: String, now: Long,
             clock: () -> Long = System::currentTimeMillis, ids: () -> String = { UUID.randomUUID().toString() }, tz: String = TimeZone.getDefault().id,
             freq: (String) -> FreqPrior? = { null },
-            experiment: Boolean = false,
+            consent: InputExperiment.Consent? = null,
+            enrolment: InputExperiment.Enrolment? = null,
+            key: String? = null,
         ): InputPlanState? {
             if (mode == InputModeFlag.Mode.Off) return null
             val learner = InputStage.learner(state, lang, resolve, now, tier, InputStage.dueLemmas(bundle, state, lang, resolve, now), emptyMap(), null, freq)
             val demo = mode == InputModeFlag.Mode.Demo
             val eligible = InputStage.eligibleUnitSeconds(bundle, learner).ifEmpty { if (demo) listOfNotNull(InputStage.choose(bundle, learner, true)?.plan?.tokens?.times(1.5)) else emptyList() }
-            val planned = InputExperiment.mix(experiment, device, tier, cards, eligible)
+            val planned = InputExperiment.mix(consent ?: InputExperiment.Consent(false, false, false, false), enrolment, key, tier, cards, eligible, now)
             val mix = planned.mix
             if (mix.units == 0) return null
-            return InputPlanState(lang, bundle, glossOf, resolve, mix, tier, systemId, now, demo, device, clock, ids, tz, freq, planned.arm)
+            return InputPlanState(lang, bundle, glossOf, resolve, mix, tier, systemId, now, demo, device, clock, ids, tz, freq, planned.arm, planned.enrolment)
         }
 
         suspend fun load(graph: Graph, s: StudySession, targets: List<String>, placement: Map<String, Double>, systemId: String): InputPlanState? {
@@ -116,7 +121,10 @@ class InputPlanState(
                 val resolve = InputStage.resolver(mapOf(lang to InputStage.lemmaCardMap(corpus, lang)))
                 val bundle = graph.inputs.bundle(lang, InputStage.bandsFor(InputStage.knownWords(s.state, lang, now))) ?: continue
                 val freq = InputStage.freqIndex(graph.corpus.frequency(listOf(lang)).ranks[lang].orEmpty().map { (w, r) -> Triple(w, r.toDouble(), false) })
-                plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, now, freq = freq, experiment = InputExperiment.on(BuildConfig.INPUT_EXPERIMENT))?.let { return it }
+                plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, now, freq = freq, consent = consent, enrolment = InputExperiment.parseEnrolment(graph.kv.get(ENROLMENT_KEY)), key = InputExperiment.enrolmentKey(null, device))?.let { p ->
+                    p.enrolment?.let { graph.kv.set(ENROLMENT_KEY, InputExperiment.encode(it)) }
+                    return p
+                }
             }
             return null
         }

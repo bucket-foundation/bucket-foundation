@@ -162,7 +162,7 @@ object YesNoTest {
         val taken = (real.map { it.word } + avoid).toMutableSet()
         val pseudo = mutableListOf<TestItem>()
         var i = 0
-        while (pseudo.size < PSEUDOWORDS && i < PSEUDOWORDS * 10) {
+        while (pseudo.size < PSEUDOWORDS && i < PSEUDOWORDS * 40) {
             i++
             val ref = real[pick(rand, real.size)].word
             val p = pseudoword(ref, lex, rand, taken) ?: continue
@@ -190,8 +190,14 @@ object YesNoTest {
         val pseudo = items.filter { !it.real }
         val hits = real.count { it.word in yes }
         val fa = pseudo.count { it.word in yes }
-        return Score(hits, real.size, fa, pseudo.size, known(hits, real.size, fa, pseudo.size))
+        return Score(hits, real.size, fa, pseudo.size, bandWeightedKnown(real, yes, fa, pseudo.size))
     }
+
+    fun bandWeightedKnown(real: List<TestItem>, yes: Set<String>, falseAlarms: Int, pseudowords: Int): Double =
+        RANK_BANDS.withIndex().sumOf { (b, band) ->
+            val inBand = real.filter { it.band == b }
+            known(inBand.count { it.word in yes }, inBand.size, falseAlarms, pseudowords, (band.second - band.first + 1).toDouble())
+        }
 
     fun due(enrolledAt: Long?, now: Long, taken: Taken): String? {
         if (enrolledAt == null || now < enrolledAt) return null

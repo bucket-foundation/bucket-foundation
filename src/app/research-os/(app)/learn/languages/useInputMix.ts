@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { bandsFor, loadBundle } from "@/lib/academy/input-selector";
 import type { InputMix } from "@/lib/academy/input-mix";
-import { experimentMix, experimentOn } from "@/lib/academy/input-experiment";
+import { enrolmentKey, experimentMix, mayTakePart } from "@/lib/academy/input-experiment";
 import { browserMemoryIO } from "@/lib/academy/lang-memory-store";
+import { cacheEnrolment, currentConsent, fetchEnrolment, readEnrolment, readTaken, registerEnrolment } from "@/lib/academy/experiment-store";
+import { useSession } from "@/providers/SessionProvider";
 import { dueLemmas, eligibleUnitSeconds, inputMode, knownWords, learnerFromState } from "@/lib/academy/input-stage";
 import { loadTopWords } from "@/lib/academy/lang-client";
 import { freqIndex } from "@/lib/academy/learner-model";
@@ -33,6 +35,8 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
   const lengthRef = useRef(queueLength);
   lengthRef.current = queueLength;
   const ready = queueLength !== null;
+  const { user, accessToken } = useSession();
+  const account = user?.id ?? null;
 
   useEffect(() => {
     setMix(null);
@@ -45,19 +49,30 @@ export function useInputMix(h: LangSystemHandle, queueLength: number | null, rou
     let live = true;
     const resolve = h.resolve;
     const tier = h.system?.placement[lang] ?? 0;
-    Promise.all([loadBundle(lang, undefined, undefined, bandsFor(knownWords(stateRef.current, lang, Date.now()))), loadTopWords(lang)]).then(([b, top]) => {
+    const consent = currentConsent();
+    const server = mayTakePart(consent) && accessToken ? fetchEnrolment(accessToken) : Promise.resolve({ ok: false as const });
+    Promise.all([loadBundle(lang, undefined, undefined, bandsFor(knownWords(stateRef.current, lang, Date.now()))), loadTopWords(lang), server]).then(async ([b, top, stored]) => {
       if (!live || !b) return;
       const now = Date.now();
       const learner = learnerFromState(stateRef.current, lang, resolve, now, tier, dueLemmas(b, stateRef.current, lang, resolve, now), {}, null, freqIndex((top ?? []).map((w) => [w.word, w.rank] as const)));
-      const on = experimentOn();
-      const planned = experimentMix(on, on ? browserMemoryIO.deviceId() : null, tier, cards, eligibleUnitSeconds(b, learner, mode));
+      const seconds = eligibleUnitSeconds(b, learner, mode);
+      const known = stored.ok ? stored.enrolment : readEnrolment();
+      if (stored.ok && stored.enrolment) cacheEnrolment(stored.enrolment);
+      const key = stored.ok && account && readTaken().baseline ? enrolmentKey(account, browserMemoryIO.deviceId()) : null;
+      let planned = experimentMix(consent, known, key, tier, cards, seconds, now);
+      if (planned.enrolment && !known) {
+        const saved = accessToken ? await registerEnrolment(accessToken, planned.enrolment.stratum) : null;
+        if (saved) cacheEnrolment(saved);
+        planned = experimentMix(saved ? consent : { ...consent, flag: false }, saved, null, tier, cards, seconds, now);
+      }
+      if (!live) return;
       setMix(planned.mix);
       setArm(planned.arm);
     });
     return () => {
       live = false;
     };
-  }, [ready, round, mode, lang, h.resolve, h.logExposures, h.system]);
+  }, [ready, round, mode, lang, h.resolve, h.logExposures, h.system, account, accessToken]);
 
   const due = useCallback((i: number) => !!mix && mix.positions.includes(i) && !done.has(i), [mix, done]);
   const finish = useCallback((i: number, unit: string | null, seconds: number) => {

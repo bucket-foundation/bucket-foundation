@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { loadTopWords, readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
+import { mayTakePart, heldOutWords, withoutHeldOut } from "@/lib/academy/input-experiment";
+import { currentConsent } from "@/lib/academy/experiment-store";
+import { loadTopWords, loadYesNoForms, readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
 import { exerciseMix, FrequencyRank, letterSessionExercise, session as mixSession, SoundTally, tallyKey } from "@/lib/academy/session-mix";
 import { cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, withMeaning, type Exercise, type QueueEntry, type Reading } from "@/lib/academy/lang-systems";
 import { linkForms, targetFirst, type LinkForm } from "@/lib/academy/lang-layout";
@@ -59,13 +61,31 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     };
   }, [targetsKey]);
 
+  const [heldOut, setHeldOut] = useState<Record<string, ReadonlySet<string>> | null>(null);
   useEffect(() => {
-    if (h.status === "ready" && system && corpus && freq && queue === null) {
+    if (!targetsKey) return;
+    if (!mayTakePart(currentConsent())) {
+      setHeldOut({});
+      return;
+    }
+    let live = true;
+    const langs = targetsKey.split(",");
+    Promise.all(langs.map((l) => loadYesNoForms(l).then((f) => [l, heldOutWords(f)] as const))).then((pairs) => {
+      if (live) setHeldOut(Object.fromEntries(pairs.filter(([, s]) => s.size > 0)));
+    });
+    return () => {
+      live = false;
+    };
+  }, [targetsKey]);
+  const studyCorpus = useMemo(() => (corpus && heldOut ? withoutHeldOut(corpus, heldOut) : null), [corpus, heldOut]);
+
+  useEffect(() => {
+    if (h.status === "ready" && system && studyCorpus && freq && queue === null) {
       xpStart.current = state.stats.xp;
       tally.current = new SoundTally();
-      setQueue(mixSession(system, corpus, state, Date.now(), freq, { heritage }));
+      setQueue(mixSession(system, studyCorpus, state, Date.now(), freq, { heritage }));
     }
-  }, [h.status, system, corpus, state, queue, heritage, freq]);
+  }, [h.status, system, studyCorpus, state, queue, heritage, freq]);
 
   const [round, setRound] = useState(0);
   const mixState = useInputMix(h, queue ? queue.length : null, round);
@@ -154,9 +174,9 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
 
   const skip = useCallback(() => setI((x) => x + 1), []);
   const restart = useCallback(() => {
-    if (!system || !corpus || !freq) return;
+    if (!system || !studyCorpus || !freq) return;
     tally.current = new SoundTally();
-    setQueue(mixSession(system, corpus, state, Date.now(), freq, { heritage }));
+    setQueue(mixSession(system, studyCorpus, state, Date.now(), freq, { heritage }));
     started.current = Date.now();
     ended.current = false;
     sessionId.current = "";
@@ -165,7 +185,7 @@ export function useLangSession(h: LangSystemHandle, heritage = false): LangSessi
     setGraded(0);
     setCorrect(0);
     xpStart.current = state.stats.xp;
-  }, [system, corpus, state, heritage, freq]);
+  }, [system, studyCorpus, state, heritage, freq]);
   const showReadings = useCallback((on: boolean) => {
     setReadings(on);
     writeReadingsPref(on);

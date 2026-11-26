@@ -7,9 +7,28 @@ public enum InputExperiment {
     public static let notFilledSuffix = "-x"
     public static let fillShare = 0.9
 
+    public struct Consent: Equatable, Sendable {
+        public var flag: Bool
+        public var uploadOpen: Bool
+        public var disclosed: Bool
+        public var optedOut: Bool
+        public init(flag: Bool, uploadOpen: Bool, disclosed: Bool, optedOut: Bool) {
+            self.flag = flag; self.uploadOpen = uploadOpen; self.disclosed = disclosed; self.optedOut = optedOut
+        }
+    }
+
+    public struct Enrolment: Equatable, Sendable, Codable {
+        public var experiment: String
+        public var key: String
+        public var arm: String
+        public var stratum: String
+        public var at: Double
+    }
+
     public struct ExperimentMix: Equatable, Sendable {
         public var mix: SessionMix.InputMix
         public var arm: String?
+        public var enrolment: Enrolment?
     }
 
     public static func on(_ flag: String?) -> Bool { flag == "1" }
@@ -25,8 +44,13 @@ public enum InputExperiment {
         return h
     }
 
-    public static func assignArm(_ userKey: String, tier: Int) -> String {
-        armIds[Int(fnv1a32("\(experimentId):\(stratum(tier)):\(userKey)") % UInt32(armIds.count))]
+    public static func enrolmentKey(account: String?, device: String) -> String {
+        if let a = account, !a.isEmpty { return "acct:\(a)" }
+        return "dev:\(device)"
+    }
+
+    public static func assignArm(_ key: String) -> String {
+        armIds[Int(fnv1a32("\(experimentId):\(key)") % UInt32(armIds.count))]
     }
 
     public static func canFill(cards: Int, eligibleUnitSeconds: [Double]) -> Bool {
@@ -35,12 +59,29 @@ public enum InputExperiment {
         return eligible > 0 && (cardTime == 0 || eligible / (eligible + cardTime) >= fillShare)
     }
 
-    public static func mix(on: Bool, userKey: String?, tier: Int, cards: Int, eligibleUnitSeconds: [Double]) -> ExperimentMix {
-        guard on, let key = userKey, !key.isEmpty else { return ExperimentMix(mix: SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligibleUnitSeconds), arm: nil) }
-        let arm = assignArm(key, tier: tier)
-        guard canFill(cards: cards, eligibleUnitSeconds: eligibleUnitSeconds) else {
-            return ExperimentMix(mix: SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligibleUnitSeconds), arm: arm + notFilledSuffix)
+    public static func mayTakePart(_ c: Consent) -> Bool { c.flag && c.uploadOpen && c.disclosed && !c.optedOut }
+
+    public static func mix(consent: Consent, enrolment: Enrolment?, key: String?, tier: Int, cards: Int, eligibleUnitSeconds: [Double], now: Double) -> ExperimentMix {
+        let plain = SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligibleUnitSeconds)
+        guard mayTakePart(consent) else { return ExperimentMix(mix: plain, arm: nil, enrolment: enrolment) }
+        let filled = canFill(cards: cards, eligibleUnitSeconds: eligibleUnitSeconds)
+        let e: Enrolment
+        if let existing = enrolment { e = existing } else {
+            guard filled, let k = key, !k.isEmpty else { return ExperimentMix(mix: plain, arm: nil, enrolment: nil) }
+            let s = stratum(tier)
+            e = Enrolment(experiment: experimentId, key: k, arm: assignArm(k), stratum: s, at: now)
         }
-        return ExperimentMix(mix: SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligibleUnitSeconds, targetShare: armShares[arm]), arm: arm)
+        guard filled else { return ExperimentMix(mix: plain, arm: e.arm + notFilledSuffix, enrolment: e) }
+        return ExperimentMix(mix: SessionMix.planInputMix(tier: tier, cards: cards, eligibleUnitSeconds: eligibleUnitSeconds, targetShare: armShares[e.arm]), arm: e.arm, enrolment: e)
+    }
+
+    public static func parseEnrolment(_ data: Data?) -> Enrolment? {
+        guard let data, let e = try? JSONDecoder().decode(Enrolment.self, from: data), e.experiment == experimentId, !e.key.isEmpty,
+              armShares[e.arm] != nil, e.stratum == "to-a2" || e.stratum == "past-a2" else { return nil }
+        return e
+    }
+
+    public static func heldOutWords(_ forms: [String: [YesNoTest.TestItem]]?) -> Set<String> {
+        Set((forms ?? [:]).values.flatMap { $0 }.filter(\.real).map(\.word))
     }
 }

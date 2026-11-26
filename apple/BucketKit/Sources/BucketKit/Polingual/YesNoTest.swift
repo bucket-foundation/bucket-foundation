@@ -186,7 +186,7 @@ public enum YesNoTest {
         var taken = Set(real.map(\.word)).union(avoid)
         var pseudo: [TestItem] = []
         var i = 0
-        while pseudo.count < pseudowords && i < pseudowords * 10 {
+        while pseudo.count < pseudowords && i < pseudowords * 40 {
             i += 1
             let ref = real[pick(rand, real.count)].word
             guard let p = pseudoword(ref, lex: lex, rand: rand, taken: taken) else { continue }
@@ -216,7 +216,16 @@ public enum YesNoTest {
         let pseudo = items.filter { !$0.real }
         let hits = real.filter { yes.contains($0.word) }.count
         let fa = pseudo.filter { yes.contains($0.word) }.count
-        return Score(hits: hits, words: real.count, falseAlarms: fa, pseudowords: pseudo.count, known: known(hits: hits, words: real.count, falseAlarms: fa, pseudowords: pseudo.count))
+        return Score(hits: hits, words: real.count, falseAlarms: fa, pseudowords: pseudo.count, known: bandWeightedKnown(real, yes: yes, falseAlarms: fa, pseudowords: pseudo.count))
+    }
+
+    public static func bandWeightedKnown(_ real: [TestItem], yes: Set<String>, falseAlarms: Int, pseudowords: Int) -> Double {
+        var sum = 0.0
+        for (b, band) in rankBands.enumerated() {
+            let inBand = real.filter { $0.band == b }
+            sum += known(hits: inBand.filter { yes.contains($0.word) }.count, words: inBand.count, falseAlarms: falseAlarms, pseudowords: pseudowords, bank: Double(band.1 - band.0 + 1))
+        }
+        return sum
     }
 
     public static func due(enrolledAt: Double?, now: Double, baseline: Bool, day28: Bool) -> String? {

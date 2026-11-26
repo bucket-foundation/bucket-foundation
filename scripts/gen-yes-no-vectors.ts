@@ -19,6 +19,7 @@ const formA = assembleTest(candidates, new Set(), 1001, lex);
 const formB = assembleTest(candidates, new Set(), 1002, lex, new Set((formA ?? []).map((i) => i.word)));
 const yes = new Set((formA ?? []).filter((_, i) => i % 3 !== 0).map((i) => i.word));
 const score = formA ? scoreTest(formA, yes) : null;
+const scoreBands = formA ? [0, 1, 2, 3, 4].map((b) => ({ hits: formA.filter((i) => i.band === b && yes.has(i.word)).length, words: formA.filter((i) => i.band === b).length })) : [];
 const known = [[40, 50, 0, 20], [40, 50, 10, 20], [10, 50, 20, 20], [0, 0, 0, 0]].map(([h, w, f, p]) => ({ args: [h, w, f, p], known: yesNoKnown(h, w, f, p) }));
 const day = 86_400_000;
 const due = [
@@ -32,5 +33,5 @@ const due = [
 ].map((c) => ({ ...c, due: testDue(c.enrolledAt, c.now, c.taken) }));
 fs.writeFileSync(
   path.join(__dirname, "..", "src/lib/academy/yes-no-vectors.json"),
-  JSON.stringify({ version: 1, words, candidates, rand, syllables, pseudo, reject, pseudoReject, formA, formB, yes: Array.from(yes).sort(), score, known, due }, null, 1) + "\n",
+  JSON.stringify({ version: 1, words, candidates, rand, syllables, pseudo, reject, pseudoReject, formA, formB, yes: Array.from(yes).sort(), score, scoreBands, known, due }, null, 1) + "\n",
 );

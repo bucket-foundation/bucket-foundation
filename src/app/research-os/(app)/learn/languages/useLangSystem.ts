@@ -1,5 +1,6 @@
 "use client";
 
+import type { VocabTestProps } from "@/lib/academy/events";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
@@ -13,7 +14,7 @@ import { sharedMemoryActive } from "@/lib/academy/lang-memory";
 import type { ExposureInput, SessionInput } from "@/lib/academy/learn-log";
 import type { LemmaResolver } from "@/lib/academy/exposure-replay";
 import { lemmaCardMap, resolverFrom } from "@/lib/academy/input-selector";
-import { browserMemoryIO, flushSession, gradeShared, logExposure, logSession, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
+import { browserMemoryIO, flushSession, gradeShared, logExposure, logSession, logVocabTest, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
 
@@ -31,6 +32,7 @@ export interface LangSystemHandle {
   shared?: boolean;
   endSession?: (input: SessionInput) => void;
   logExposures?: (lang: string, rows: ExposureInput[]) => void;
+  logVocabTest?: (lang: string, input: VocabTestProps) => void;
   resolve?: LemmaResolver;
 }
 
@@ -200,6 +202,15 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     void flushSession(browserMemoryIO);
   }, []);
 
+  const recordVocabTest = useCallback((lang: string, input: VocabTestProps) => {
+    const s = ref.current;
+    if (!s || s.langStatus[lang] !== "ready") return;
+    const r = logVocabTest(browserMemoryIO, s, lang, input);
+    ref.current = r.session;
+    setSession(r.session);
+    void flushSession(browserMemoryIO);
+  }, []);
+
   const logExposures = useCallback((lang: string, rows: ExposureInput[]) => {
     let s = ref.current;
     if (!s || s.langStatus[lang] !== "ready") return;
@@ -250,6 +261,7 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     langStatus: session?.langStatus ?? {},
     endSession,
     logExposures,
+    logVocabTest: recordVocabTest,
     resolve: session?.resolve,
   };
 }

@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { assembleTest, buildLexicon, marks, mulberry32, PSEUDOWORDS, pseudoword, REAL_WORDS, scoreTest, syllabify, testDue, yesNoKnown } from "../src/lib/academy/yes-no-test";
+import { assembleTest, buildLexicon, formBalance, FORM_TOLERANCE, parseYesNoForms, RANK_BANDS, marks, mulberry32, PSEUDOWORDS, pseudoword, REAL_WORDS, scoreTest, syllabify, testDue, yesNoKnown } from "../src/lib/academy/yes-no-test";
 
 const v = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "src/lib/academy/yes-no-vectors.json"), "utf8"));
 const lex = buildLexicon(v.words);
@@ -51,4 +51,32 @@ test("non-Latin words and words with no vowel are refused", () => {
 
 test("a pool too small for a band returns no form", () => {
   assert.equal(assembleTest(v.candidates.slice(0, 100), new Set(), 1, lex), null);
+});
+
+const SHIPPED = path.join(__dirname, "..", "learning/app/polingual/yesno");
+
+test("every shipped language has two balanced, disjoint forms with no pseudoword in another form or language", () => {
+  const files = fs.readdirSync(SHIPPED).filter((f) => f.endsWith(".json"));
+  assert.deepEqual(files.sort(), ["de.json", "es.json", "fr.json", "it.json", "nl.json", "pt.json"]);
+  const reals = new Set<string>();
+  const all = files.map((f) => JSON.parse(fs.readFileSync(path.join(SHIPPED, f), "utf8")));
+  for (const d of all) for (const i of [...d.forms.A, ...d.forms.B]) if (i.real) reals.add(i.word);
+  for (const d of all) {
+    const forms = parseYesNoForms(d);
+    assert.ok(forms, d.lang);
+    const b = formBalance(forms!.A, forms!.B, (w) => d.ranks[w] ?? null);
+    assert.ok(b.realLength <= FORM_TOLERANCE.realLength && b.logRank <= FORM_TOLERANCE.logRank && b.pseudoLength <= FORM_TOLERANCE.pseudoLength, `${d.lang} ${JSON.stringify(b)}`);
+    const inA = new Set(forms!.A.map((i) => i.word));
+    assert.ok(forms!.B.every((i) => !inA.has(i.word)), d.lang);
+    for (const i of [...forms!.A, ...forms!.B]) if (!i.real) assert.ok(!reals.has(i.word), `${d.lang} ${i.word}`);
+    assert.equal(fs.readFileSync(path.join(__dirname, "..", "apple/Shared/Corpus/yesno", `${d.lang}.json`), "utf8"), fs.readFileSync(path.join(SHIPPED, `${d.lang}.json`), "utf8"));
+  }
+});
+
+test("the score weights each band by its rank width", () => {
+  const items = v.formA as { word: string; real: boolean; band: number | null }[];
+  const yesSet = new Set<string>(v.yes);
+  const fa = items.filter((i) => !i.real && yesSet.has(i.word)).length;
+  const want = RANK_BANDS.reduce((s, [lo, hi], b) => s + yesNoKnown(v.scoreBands[b].hits, v.scoreBands[b].words, fa, 20, hi - lo + 1), 0);
+  assert.ok(Math.abs(scoreTest(items, yesSet).known - want) < 1e-9);
 });
