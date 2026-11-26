@@ -154,6 +154,20 @@ def robots_ok(url):
     return False
 
 
+MISSING = set()
+
+
+def cached(path, url):
+    if not robots_ok(url):
+        return False
+    if path.exists():
+        return True
+    if url not in MISSING:
+        MISSING.add(url)
+        EXCLUDED["fetch failed"] += 1
+    return False
+
+
 def min_len(text):
     if CJK_CHARS.search(text):
         return SHORT_MIN["cjk"]
@@ -304,7 +318,7 @@ def gv_articles(a):
             continue
         for url in [r["link"] for r in json.loads(lp.read_text())]:
             p = CACHE / "gv/posts" / (slug_key(url) + ".html")
-            if not p.exists() or not robots_ok(url):
+            if not cached(p, url):
                 continue
             g = gv_parse(p)
             if g["licence"] is None:
@@ -321,7 +335,7 @@ def gv_articles(a):
             if g["original"]:
                 b["isTranslation"] = True
                 op = CACHE / "gv/en" / (slug_key(g["original"]) + ".html")
-                if op.exists() and robots_ok(g["original"]):
+                if cached(op, g["original"]):
                     e = english.get(g["original"])
                     if e is None:
                         o = gv_parse(op)
@@ -353,7 +367,7 @@ def voa_articles(a):
         urls = [u for u in locs if re.search(r"/a/[^/]+/\d+\.html$", u)][: LE_ARTICLES if lang == "en" else VOA_PER_LANG]
         for url in urls:
             p = CACHE / "voa/articles" / (slug_key(url) + ".html")
-            if not p.exists() or not robots_ok(url):
+            if not cached(p, url):
                 continue
             v = voa_parse(p)
             if not v or not v["paras"]:

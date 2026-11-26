@@ -95,6 +95,16 @@ class Wire(unittest.TestCase):
         self.assertIsNone(nw.screen_voa(["Капитан пришёл в АПтеку не вовремя, а лузер ушёл."]))
 
 
+class Missing(unittest.TestCase):
+    def test_missing_page_counted_once_as_fetch_failed(self):
+        before = nw.EXCLUDED["fetch failed"]
+        gone = Path(tempfile.mkdtemp()) / "gone.html"
+        self.assertFalse(nw.cached(gone, "https://x.org/gone-once"))
+        self.assertFalse(nw.cached(gone, "https://x.org/gone-once"))
+        self.assertEqual(nw.EXCLUDED["fetch failed"], before + 1)
+        self.assertTrue(nw.cached(write("<p>x</p>"), "https://x.org/here"))
+
+
 class RobotsStatus(unittest.TestCase):
     def setUp(self):
         self.cache = tempfile.mkdtemp()
