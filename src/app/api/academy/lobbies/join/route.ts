@@ -3,10 +3,10 @@ import { json, preflight } from "@/lib/academy/groups-server";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import { hiddenUsers, normalizeDisplayName, uuidOrNull } from "@/lib/academy/groups";
 import { blocksTouching, clientIp, NAME_NOT_ALLOWED } from "@/lib/academy/groups-server";
-import { JOIN_PER_MINUTE, joinLobbyDecision, isRace, nativePlayable, nativePlays, NATIVE_PLAYS_HEADER, normalizeLobbyCode, RACE_CLIENT_HEADER, WEB_CLIENT_HEADER } from "@/lib/academy/lobbies";
+import { JOIN_PER_MINUTE, joinLobbyDecision, isRace, nativePlayable, nativePlays, NATIVE_PLAYS_HEADER, normalizeLobbyCode, RACE_CLIENT_HEADER, WEB_CLIENT_HEADER, wantsScreen } from "@/lib/academy/lobbies";
 import { botsEnabled } from "@/lib/academy/lobby-bots";
 import { service } from "@/lib/academy/groups-server";
-import { addPlayer, PLAYERS, checkLobby, authed, limited, lobbyByCode, lobbyById, lobbyFail, lobbyState, playersOf } from "@/lib/academy/lobbies-server";
+import { addPlayer, addScreen, PLAYERS, checkLobby, authed, limited, lobbyByCode, lobbyById, lobbyFail, lobbyState, playersOf } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,6 +32,10 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (isRace(lobby.game) ? !race : !nativePlayable(lobby, false, nativePlays(req.headers.get(NATIVE_PLAYS_HEADER))) && req.headers.get(WEB_CLIENT_HEADER) !== "web") return json({ error: "update_app" }, 409);
     const [players, blocks] = await Promise.all([playersOf([lobby.id]), blocksTouching(a.uid)]);
     if (hiddenUsers(blocks, a.uid).has(lobby.host_id)) return json({ error: "not_found" }, 404);
+    if (wantsScreen(a.body) && !players.some((p) => p.user_id === a.uid)) {
+      await addScreen(lobby.id, a.uid);
+      return json({ lobby: await lobbyState(lobby, a.uid, Date.now(), blocks) });
+    }
     const bots = botsEnabled();
     const decision = joinLobbyDecision(bots ? lobby : { ...lobby, standing_slot: null }, players, a.uid);
     const bump = decision === "full" && bots && (lobby.standing_slot || lobby.bot_fill) ? players.find((p) => p.is_bot && p.user_id !== lobby.host_id) : undefined;

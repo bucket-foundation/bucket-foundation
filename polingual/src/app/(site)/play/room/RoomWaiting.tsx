@@ -1,7 +1,8 @@
 "use client";
 
 import { secondsUntil, waitingHint } from "@/lib/lobby/room";
-import { Button } from "@/ui";
+import { tvPath } from "@/lib/lobby/tv";
+import { Button, ButtonLink } from "@/ui";
 import app from "../../app/app.module.css";
 import { gameName } from "../langs";
 import styles from "../play.module.css";
@@ -19,6 +20,7 @@ export function RoomWaiting({ g }: { g: LiveRoom }) {
       <RoomToolbar g={g} />
       <div className={app.row}>
         <Button variant="ghost" size="md" onClick={() => void g.share()}>{g.copied ? "Link copied" : "Share link"}</Button>
+        <ButtonLink variant="ghost" size="md" href={tvPath(lobby.code)} target="_blank" rel="noopener" data-testid="show-on-tv">Show on TV</ButtonLink>
         <Button variant="quiet" size="sm" onClick={() => void g.leave()}>Leave</Button>
         {g.state.status === "ready" && g.state.identity.kind === "guest" ? <Button variant="quiet" size="sm" onClick={g.account.openSignIn} data-testid="room-sign-in">Sign in</Button> : null}
       </div>

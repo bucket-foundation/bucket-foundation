@@ -72,6 +72,10 @@ export function tvJoinUrl(origin: string, code: string): string {
   return `${origin.replace(/\/$/, "")}/play/${code}`;
 }
 
+export function tvPath(code: string): string {
+  return `/play/tv/${encodeURIComponent(code)}`;
+}
+
 export const TV_ORIGIN = ["https:", "", "polingual.com"].join("/");
 
 export function tvShortUrl(url: string): string {

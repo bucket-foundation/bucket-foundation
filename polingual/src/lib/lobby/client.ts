@@ -155,7 +155,7 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("", { body: { ...input, reveal: true } })).lobby;
   }
 
-  async join(input: { code?: string; lobbyId?: string; displayName: string }): Promise<WebLobbyState> {
+  async join(input: { code?: string; lobbyId?: string; displayName: string; screen?: boolean }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/join", { body: input })).lobby;
   }
 

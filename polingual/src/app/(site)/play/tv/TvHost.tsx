@@ -34,7 +34,7 @@ export default function TvHost({ code: rawCode }: { code: string }) {
   const code = normalizeLobbyCode(rawCode);
   const { state, api, connect } = usePlay();
   const ready = state.status === "ready";
-  const sync = useRoomSync(api, code, ready ? state.nickname : "", ready);
+  const sync = useRoomSync(api, code, ready ? state.nickname : "", ready, true);
   const now = useNow(TICK_MS) + sync.offset;
   const { stage, mix, setMix, ready: soundReady, unlock } = useStage({ music: true, voice: false, sfx: true });
   const [origin, setOrigin] = useState(TV_ORIGIN);

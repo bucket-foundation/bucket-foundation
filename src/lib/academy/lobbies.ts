@@ -843,3 +843,13 @@ export function messageReportDecision(uid: string, report: MessageReport, messag
   if (!message || message.lobby_id !== report.lobbyId) return "not_found";
   return message.user_id === uid ? "self" : "ok";
 }
+
+export type LobbySeat = "player" | "screen" | null;
+
+export function wantsScreen(body: unknown): boolean {
+  return typeof body === "object" && body !== null && (body as { screen?: unknown }).screen === true;
+}
+
+export function seatAllowed(seat: LobbySeat, screenOk: boolean): boolean {
+  return seat === "player" || (seat === "screen" && screenOk);
+}
