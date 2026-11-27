@@ -10,8 +10,13 @@ const argYt = process.argv.indexOf("--yt");
 const YT = argYt > 0 ? path.resolve(process.argv[argYt + 1]) : path.join(ROOT, "yt");
 const OUT = path.join(ROOT, "src", "data", "yt-starts.json");
 
+if (!fs.existsSync(YT)) {
+  console.error(`${YT} is missing. Run scripts/link-data.sh with a bucket-data clone, or pass --yt <dir>, before rebuilding yt-starts.json.`);
+  process.exit(1);
+}
+
 const folders = new Map<string, string>();
-for (const d of fs.existsSync(YT) ? fs.readdirSync(YT) : []) if (d.length > 12 && d[11] === "-") folders.set(d.slice(0, 11), d);
+for (const d of fs.readdirSync(YT)) if (d.length > 12 && d[11] === "-") folders.set(d.slice(0, 11), d);
 
 const cueCache = new Map<string, Cue[] | null>();
 function cues(id: string): Cue[] | null {
