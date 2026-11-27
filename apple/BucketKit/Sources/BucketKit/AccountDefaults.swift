@@ -38,10 +38,11 @@ public final class AccountDefaults: @unchecked Sendable {
             guard defaults.object(forKey: k) == nil, let v = defaults.object(forKey: base) else { continue }
             defaults.set(v, forKey: k)
         }
-        defaults.set(accountKey, forKey: Self.adoptedKey)
+        if accountKey != AccountFolders.guest { defaults.set(accountKey, forKey: Self.adoptedKey) }
     }
 
     public func remove(_ accountKey: String) {
         for base in Self.perAccount { defaults.removeObject(forKey: Self.scoped(accountKey, base)) }
+        lock.withLock { if prefix == accountKey { prefix = AccountFolders.guest } }
     }
 }
