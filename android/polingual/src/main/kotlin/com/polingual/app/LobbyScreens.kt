@@ -79,7 +79,9 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
     Page("Live rooms", back = back, ground = Ground.Lattice, panel = true, stickers = listOf(Sticker("pebble", Alignment.CenterStart, 60.dp, -12f), Sticker("seal", Alignment.TopEnd, 50.dp, 9f), Sticker("bunting", Alignment.BottomEnd, 90.dp, -4f, dx = (-8).dp))) {
         Text("Play the same round with friends, live. Web and iPhone players join with the same code.", color = PL.InkDim)
         OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, label = { Text(if (signedIn) "Display name" else "Your name") }, modifier = Modifier.fillMaxWidth())
+        FamilyCopy.leftRoom(state.left)?.let { Text(it, color = PL.InkDim) }
         JoinByCode(joinCode, { joinCode = it }, enabled = joinCode.length == LobbyRules.CODE_LENGTH && !state.busy) { act { graph.lobbies.join(joinCode, name.ifEmpty { "Player" }) } }
+        if (joinCode.length == LobbyRules.CODE_LENGTH) PlainLink("Watch from the audience") { act { graph.lobbies.watch(joinCode, name.ifEmpty { "Guest" }) } }
         val system = app?.system
         Card {
             Text("Start a room", style = Type.caps, color = PL.InkDim)
@@ -104,6 +106,7 @@ fun LobbiesScreen(graph: Graph, code: String, preset: String = "", go: (String) 
         error?.let { Text(it, color = PL.Vermilion) }
         OpenRooms(state.open.filter { foundation.bucket.core.model.LobbyGames.playable(it.game) }) { l -> act { graph.lobbies.join(l, name.ifEmpty { "Player" }) } }
         PlainLink("Refresh") { scope.launch { graph.lobbies.refresh() } }
+        if (signedIn) LeagueCard(graph)
         AdBanner(graph)
     }
 }
@@ -135,15 +138,24 @@ fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
                 PlainLink("Keep playing") { confirmLeave = false }
             }
         }
+        val interlude = if (finished) lobby.interlude(now) else null
         when {
-            phase == LobbyPhase.Waiting -> Waiting(graph, lobby) { act(it) }
+            state.audience -> AudienceView(graph, lobby, phase)
+            phase == LobbyPhase.Waiting -> Waiting(graph, lobby, graph.state.value?.nickname.orEmpty()) { act(it) }
             phase is LobbyPhase.Countdown -> {
                 Text("Get ready", style = Type.word, color = PL.Ink)
                 Text("${kotlin.math.ceil((phase as LobbyPhase.Countdown).seconds).toInt()}", style = Type.count, color = PL.Vermilion)
             }
             phase is LobbyPhase.Round -> Round(graph, lobby, phase.index, phase.remaining, reveal = false)
             phase is LobbyPhase.Reveal -> Round(graph, lobby, phase.index, phase.remaining, reveal = true)
-            phase == LobbyPhase.Finished -> Results(graph, lobby, go, again = { exit() })
+            interlude != null -> {
+                lobby.night?.let { Text("Family night, ${it.label} done", style = Type.caps, color = PL.InkDim) }
+                InterludePanel(graph, lobby, interlude, now)
+                NextGamePanel(graph, lobby, now, { exit() }) { act(it) }
+            }
+            phase == LobbyPhase.Finished -> Results(graph, lobby, go) {
+                NextGamePanel(graph, lobby, now, { exit() }) { act(it) }
+            }
         }
         error?.let { Text(it, color = PL.Vermilion) }
         if (phase == LobbyPhase.Waiting || phase == LobbyPhase.Finished) Chat(graph, lobby) { act(it) }
@@ -151,7 +163,7 @@ fun RoomScreen(graph: Graph, go: (String) -> Unit = {}, leave: () -> Unit) {
 }
 
 @Composable
-private fun Waiting(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) {
+private fun Waiting(graph: Graph, lobby: Lobby, nickname: String, act: (suspend () -> Unit) -> Unit) {
     Card(color = PL.Ink) {
         Text("Code", color = PL.Paper.copy(alpha = 0.7f), style = Type.caps)
         Text(lobby.code, style = Type.display.copy(letterSpacing = 6.sp), color = PL.Paper)
@@ -160,12 +172,12 @@ private fun Waiting(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Uni
     Text("${lobby.game.title}, ${lobby.rounds} rounds, ${lobby.roundSeconds} seconds each", color = PL.InkDim)
     Players(lobby)
     val me = lobby.me
-    PrimaryButton(if (me?.ready == true) "Not ready" else "I'm ready", color = if (me?.ready == true) PL.Lapis else PL.Malachite) { act { graph.lobbies.setReady(me?.ready != true) } }
-    if (lobby.isHost) {
-        PrimaryButton("Start game", enabled = lobby.canStart) { act { graph.lobbies.start() } }
-        if (!lobby.canStart) Text("Two ready players start the game.", color = PL.InkDim)
-        if (lobby.botsEnabled && !lobby.botFill) PlainLink("Fill empty seats with bots") { act { graph.lobbies.fillBots() } }
-    }
+    if (me != null) {
+        PrimaryButton(if (me.ready) "Not ready" else "I'm ready", color = if (me.ready) PL.Lapis else PL.Malachite) { act { graph.lobbies.setReady(!me.ready) } }
+        PlayerCardPanel(graph, lobby)
+    } else if (lobby.isHost) Text("You host on this screen. Players join on their phones.", color = PL.InkDim)
+    if (lobby.isHost) HostControls(graph, lobby, nickname, act)
+    else Text(FamilyCopy.waitingOn(lobby), color = PL.InkDim)
 }
 
 @Composable
@@ -199,7 +211,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
         Players(lobby)
         return
     }
-    if (prompt.mode == LobbyPromptMode.Flag) {
+    if (prompt.mode == LobbyPromptMode.Flag || prompt.mode == LobbyPromptMode.Voice) {
         Text("Which language?", color = PL.InkDim)
         WordCard(null, prompt.gloss, tilt = 0f)
     } else if (prompt.mode == LobbyPromptMode.Meaning) {
@@ -213,7 +225,7 @@ private fun Round(graph: Graph, lobby: Lobby, index: Int, remaining: Double, rev
     val mark = state.marks[index]
     prompt.choices.filter { it !in prompt.hide }.forEach { c ->
         val label = when (prompt.mode) {
-            LobbyPromptMode.Flag -> "${Lang.flag(c)}  ${Lang.name(c)}"
+            LobbyPromptMode.Flag, LobbyPromptMode.Voice -> "${Lang.flag(c)}  ${Lang.name(c)}"
             LobbyPromptMode.Mixed -> foundation.bucket.core.model.LobbyTiles.parse(c).let { "${Lang.flag(it.lang)}  ${it.form}" }
             else -> c
         }
@@ -254,11 +266,12 @@ private fun DuelPowers(graph: Graph, lobby: Lobby, next: Int) {
 }
 
 @Composable
-private fun Results(graph: Graph, lobby: Lobby, go: (String) -> Unit, again: () -> Unit) {
+private fun Results(graph: Graph, lobby: Lobby, go: (String) -> Unit, next: @Composable () -> Unit) {
     val stage by graph.account.stage.collectAsState()
     val access by graph.billing.access.collectAsState()
     val cta = ResultsUpsell.of(stage, access)
     Text("Results", style = Type.display, color = PL.Ink)
+    next()
     lobby.standings.forEachIndexed { i, pl ->
         Row(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
             Text("${i + 1}", fontWeight = FontWeight.Bold, color = if (i == 0) PL.Vermilion else PL.Ink, modifier = Modifier.padding(end = 12.dp))
@@ -278,7 +291,6 @@ private fun Results(graph: Graph, lobby: Lobby, go: (String) -> Unit, again: () 
         Text("Lessons turn the words from this game into words you keep.", color = PL.Ink)
         PrimaryButton("Start learning", color = PL.Vermilion, onClick = { go(ResultsUpsell.PAYWALL) })
     }
-    PrimaryButton("Leave room", color = PL.Lapis, onClick = again)
 }
 
 @Composable
@@ -297,7 +309,7 @@ private fun Chat(graph: Graph, lobby: Lobby, act: (suspend () -> Unit) -> Unit) 
 }
 
 fun resultLine(pr: foundation.bucket.core.model.LobbyPrompt): String = when (pr.mode) {
-    LobbyPromptMode.Flag -> "${pr.gloss}: ${pr.answer?.let(Lang::name).orEmpty()}"
+    LobbyPromptMode.Flag, LobbyPromptMode.Voice -> "${pr.gloss}: ${pr.answer?.let(Lang::name).orEmpty()}"
     LobbyPromptMode.Tiles -> "${pr.gloss}: " + pr.answer.orEmpty().split(',').mapNotNull { it.toIntOrNull()?.let(pr.choices::getOrNull) }.joinToString(", ") { foundation.bucket.core.model.LobbyTiles.parse(it).form }
     LobbyPromptMode.Mixed -> "${pr.gloss}: ${pr.answer?.let { foundation.bucket.core.model.LobbyTiles.parse(it).form }.orEmpty()}"
     else -> "${pr.answer.orEmpty()}: ${pr.gloss}"

@@ -27,7 +27,9 @@ fun GameKind.daily(): DailyGame? = when (this) {
     else -> null
 }
 
-fun dayKey(date: java.time.LocalDate = java.time.LocalDate.now()): String = "${date.year}-${date.monthValue}-${date.dayOfMonth}"
+fun dayKey(): String = RaceSession.dayKey ?: dayKey(java.time.LocalDate.now())
+
+fun dayKey(date: java.time.LocalDate): String = "${date.year}-${date.monthValue}-${date.dayOfMonth}"
 
 interface ProgressRemote {
     suspend fun pull(): Map<String, DailyResult>?

@@ -76,8 +76,13 @@ internal fun RaceRoom(graph: Graph, lobby: Lobby, remaining: Double, score: Int?
                 LobbyGame.FlagTiles -> com.polingual.app.play.FlagTilesScreen(graph, leave)
                 LobbyGame.Shift -> com.polingual.app.play.ShiftScreen(graph, leave)
                 LobbyGame.Atlas -> com.polingual.app.play.AtlasScreen(graph, leave)
-                else -> Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("${lobby.game.title} races play on the web and iPhone.", color = PL.Ink)
+                LobbyGame.Polyword -> com.polingual.app.play.PolywordScreen(graph, leave)
+                LobbyGame.Babel -> com.polingual.app.play.BabelScreen(graph, leave)
+                LobbyGame.Snake -> com.polingual.app.play.SnakeScreen(graph, leave)
+                LobbyGame.Forehead -> com.polingual.app.play.ForeheadScreen(graph, leave)
+                LobbyGame.ISpy -> com.polingual.app.play.ISpyScreen(graph, leave)
+                else -> RaceRules.kindFor(lobby.game)?.let { kind -> GameScreen(graph, kind, leave) } ?: Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("${lobby.game.title} races need the newest app.", color = PL.Ink)
                     PlainLink("Leave room") { leave() }
                 }
             }
