@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { stationAudio } from "@/lib/speak";
+import { local } from "@/lib/storage";
 import { streamOf, type RadioStation } from "./radio";
 
 type NowPlaying = { station: RadioStation | null; lang: string | null; playing: boolean; buffering: boolean; error: string | null };
@@ -17,6 +18,32 @@ type Listening = { stationId: string; lang: string; startedAt: number; since: nu
 export function settle(l: Listening | null, now: number): Listening | null {
   if (!l || l.since === null) return l;
   return { ...l, ms: l.ms + Math.max(0, now - l.since), since: null };
+}
+
+export const HEARD_KEY = "polingual.radio.heard";
+const MAX_HEARD = 200;
+
+export function parseHeard(raw: string | null): Heard[] {
+  try {
+    const v = JSON.parse(raw ?? "[]");
+    if (!Array.isArray(v)) return [];
+    return v
+      .filter((h): h is Heard => !!h && typeof h.stationId === "string" && typeof h.lang === "string" && Number.isFinite(h.startedAt) && Number.isFinite(h.ms) && h.ms >= 1000)
+      .slice(-MAX_HEARD);
+  } catch {
+    return [];
+  }
+}
+
+function saveHeard(list: Heard[]) {
+  try {
+    const s = local();
+    if (!s) return;
+    if (list.length) s.setItem(HEARD_KEY, JSON.stringify(list.slice(-MAX_HEARD)));
+    else s.removeItem(HEARD_KEY);
+  } catch {
+    return;
+  }
 }
 
 export function heardOf(l: Listening | null): Heard | null {
@@ -44,6 +71,7 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     const h = heardOf(l);
     if (h) {
       heardList.current = [...heardList.current, h];
+      saveHeard(heardList.current);
       setHeard(heardList.current);
     }
     listening.current = keep && l ? { ...l, startedAt: t, ms: 0, since: null } : null;
@@ -52,9 +80,38 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
   const takeHeard = useCallback((pick: (h: Heard) => boolean) => {
     const out = heardList.current.filter(pick);
     heardList.current = heardList.current.filter((h) => !pick(h));
+    saveHeard(heardList.current);
     setHeard(heardList.current);
     return out;
   }, []);
+
+  useEffect(() => {
+    let stored: string | null = null;
+    try {
+      stored = local()?.getItem(HEARD_KEY) ?? null;
+    } catch {
+      stored = null;
+    }
+    const restored = parseHeard(stored);
+    if (restored.length) {
+      heardList.current = [...restored, ...heardList.current];
+      setHeard(heardList.current);
+    }
+    const hide = () => {
+      const was = listening.current?.since != null;
+      close(true);
+      if (was && listening.current) listening.current = { ...listening.current, since: Date.now() };
+    };
+    const vis = () => {
+      if (document.visibilityState === "hidden") hide();
+    };
+    window.addEventListener("pagehide", hide);
+    document.addEventListener("visibilitychange", vis);
+    return () => {
+      window.removeEventListener("pagehide", hide);
+      document.removeEventListener("visibilitychange", vis);
+    };
+  }, [close]);
 
   useEffect(() => {
     if (!now.playing) return;
