@@ -36,6 +36,8 @@ const SUITES = {
       "scripts/test-download-device.ts",
       "scripts/test-site-chrome.ts",
       "scripts/test-daily-theme.ts",
+      "scripts/test-content-pages.ts",
+      "scripts/test-routes.ts",
     "scripts/test-account-pill.ts",
       "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
