@@ -48,7 +48,7 @@ test("the first right answer in a new language is called once a player already k
 });
 
 test("a trailing player who answers right after the leader missed is called a steal in the final", () => {
-  const playlist = ["daily", "flags", "tiles", "same-word"] as never[];
+  const playlist = ["daily", "tiles", "same-word"] as never[];
   const players = [player({ userId: "lead", name: "Lea", score: 900 }), player({ userId: "low", name: "Lo", score: 400 })];
   const results = [hit(0, "lead", false, 500), hit(0, "low", true, 900, 300)];
   const steals = momentsFor({ players, results, prompts: [prompt(0, "es:x")], playlist, game: "same-word" }, 0, new Map(), name).filter((m) => m.kind === "steal");

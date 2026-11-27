@@ -22,7 +22,7 @@ import Nickname from "../Nickname";
 import { gameName } from "../langs";
 import { usePauseAds } from "../AdsContext";
 import { WaitingBoard } from "../room/WaitingBoard";
-import { nightInterlude, roundTitle } from "@/lib/lobby/waiting";
+import { roomInterlude, roundTitle } from "@/lib/lobby/waiting";
 import { NightInterlude } from "../rounds/NightInterlude";
 import { savedNickname, usePlay } from "../usePlay";
 import { useRoomSync } from "../room/useRoomSync";
@@ -154,11 +154,11 @@ function TvCenter({ lobby, now, token }: { lobby: WebLobbyState; now: number; to
       </>
     );
   }
-  if (phase.kind === "finished" && nightInterlude(lobby)) {
+  if (phase.kind === "finished" && roomInterlude(lobby, now)) {
     const left = secondsUntil(lobby.nextStartAt, now);
     return (
       <>
-        <NightInterlude lobby={lobby} token={token} role="tv" />
+        <NightInterlude lobby={lobby} token={token} role="tv" now={now} />
         {left !== null ? <p className={tv.next} data-testid="tv-next">Next game in <b>{left}s</b></p> : null}
       </>
     );

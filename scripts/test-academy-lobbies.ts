@@ -7,6 +7,11 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  breakMs,
+  NIGHT_BREAK_MS,
+  interludeAt,
+  foreheadHolder,
+  bonusQuestion,
   audienceDecision,
   roomSignal,
   REACTIONS,
@@ -551,13 +556,16 @@ test("a host-screen lobby with no players yet stays listed while its screen is w
   assert.deepEqual(openLobbies([row], [], [], "x", now, false, new Set(["S"])).map((l) => l.id), ["S"]);
 });
 
-test("family night runs Warm Up, Voice Atlas, Picture Race and a final, and only the final doubles", () => {
+test("family night runs Warm Up, Picture Race and a final, and only the final doubles", () => {
   const playlist = FAMILY_NIGHT.map((r) => r.game);
-  assert.deepEqual(FAMILY_NIGHT.map((r) => r.label), ["Warm Up", "Voice Atlas", "Picture Race", "Final"]);
-  assert.deepEqual(nightRound({ playlist, mix: false, game: "daily" }), { index: 0, label: "Warm Up", final: false, total: 4 });
+  assert.deepEqual(FAMILY_NIGHT.map((r) => r.label), ["Warm Up", "Picture Race", "Final"]);
+  assert.deepEqual(nightRound({ playlist, mix: false, game: "daily" }), { index: 0, label: "Warm Up", final: false, total: 3 });
   assert.equal(nightRound({ playlist, mix: false, game: "same-word" })?.final, true);
   assert.equal(nightRound({ playlist, mix: true, game: "same-word" }), null);
   assert.equal(nightRound({ playlist: ["daily", "flags"], mix: false, game: "flags" }), null);
+  assert.equal(breakMs({ playlist, mix: false, game: "daily" }), NIGHT_BREAK_MS);
+  assert.equal(breakMs({ playlist, mix: false, game: "same-word" }), NEXT_GAME_MS);
+  assert.equal(breakMs({ playlist: ["flags"], mix: false, game: "flags" }), NEXT_GAME_MS);
   const env = process.env.POLINGUAL_LOBBY_SETUP;
   process.env.POLINGUAL_LOBBY_SETUP = "on";
   try {
@@ -599,4 +607,36 @@ test("room signals carry one of 8 fixed reactions or a vote, nothing else", () =
   assert.equal(roomSignal({ round: -1, choice: "x" }), null);
   assert.equal(roomSignal({ round: 1, choice: "x".repeat(81) }), null);
   assert.equal(roomSignal(null), null);
+});
+
+test("night breaks run Voice Atlas clips then Family Teach, and Forehead cards then Our Trivia", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  const base = { playlist, mix: false, status: "done", started_at: new Date(T0).toISOString(), rounds: 2, round_seconds: 10, reveal_seconds: 0, ended_at: null };
+  const end = T0 + 20_000;
+  assert.deepEqual(interludeAt({ ...base, game: "daily" }, end + 25_000), { kind: "voice-atlas", clip: 2, endsAt: end + 36_000 });
+  assert.deepEqual(interludeAt({ ...base, game: "daily" }, end + 60_000), { kind: "family-teach" });
+  assert.deepEqual(interludeAt({ ...base, game: "tiles" }, end + 31_000), { kind: "forehead", card: 2, endsAt: end + 45_000 });
+  assert.deepEqual(interludeAt({ ...base, game: "tiles" }, end + 90_000), { kind: "our-trivia" });
+  assert.equal(interludeAt({ ...base, game: "same-word" }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily", status: "playing" }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily", ended_at: new Date(end).toISOString() }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily" }, end - 1), null);
+  assert.equal(nextGameDue({ ...base, game: "daily", status: "done" } as never, end + NEXT_GAME_MS), false);
+  assert.equal(nextGameDue({ ...base, game: "daily", status: "done" } as never, end + NIGHT_BREAK_MS), true);
+});
+
+test("the forehead holder rotates through humans in a fixed order, bots never hold", () => {
+  const seats = [{ user_id: "c" }, { user_id: "a" }, { user_id: "bot", is_bot: true }, { user_id: "b" }];
+  assert.deepEqual([0, 1, 2, 3].map((c) => foreheadHolder(seats, c)), ["a", "b", "c", "a"]);
+  assert.equal(foreheadHolder([{ user_id: "bot", is_bot: true }], 0), null);
+});
+
+test("the audience votes only on the final's last question", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  const final = { status: "playing", playlist, mix: false, game: "same-word", rounds: 6 };
+  assert.equal(bonusQuestion(final, 5), true);
+  assert.equal(bonusQuestion(final, 4), false);
+  assert.equal(bonusQuestion({ ...final, game: "daily" }, 5), false);
+  assert.equal(bonusQuestion({ ...final, status: "done" }, 5), false);
+  assert.equal(bonusQuestion({ ...final, playlist: ["same-word"] }, 5), false);
 });

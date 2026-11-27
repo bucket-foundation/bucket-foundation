@@ -61,6 +61,7 @@ test("only the state route admits screen seats, and only host-only routes admit 
     const hostOnly = (src.match(/memberLobby\(a\.uid, a\.body\??\.lobbyId, false, true\)/g) ?? []).length;
     if (name === "state") assert.match(src, /memberLobby\(a\.uid, params\.get\("lobbyId"\), true, true\)/);
     else if (name === "react") assert.equal((src.match(/memberLobby\(a\.uid, [^,()]+, true, true\)/g) ?? []).length, calls, "react admits every seat in the room");
+    else if (name === "bonus") assert.equal(playerOnly + hostOnly, calls, "bonus admits players, and its host for forehead marks");
     else if (HOST_ONLY.has(name)) assert.equal(hostOnly, calls, `${name} admits players and its host`);
     else assert.equal(playerOnly, calls, `${name} must admit players only`);
   }

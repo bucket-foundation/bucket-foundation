@@ -35,10 +35,44 @@ export const NEXT_GAME_MS = 60_000;
 
 export const FAMILY_NIGHT: readonly { game: LobbyGame; label: string }[] = [
   { game: "daily", label: "Warm Up" },
-  { game: "flags", label: "Voice Atlas" },
   { game: "tiles", label: "Picture Race" },
   { game: "same-word", label: "Final" },
 ];
+
+export const NIGHT_BREAK_MS = 150_000;
+export const ATLAS_CLIPS = 5;
+export const ATLAS_SLOT_MS = 12_000;
+export const FOREHEAD_MS = 90_000;
+
+export const FOREHEAD_CARD_MS = 15_000;
+
+export type Interlude = { kind: "voice-atlas"; clip: number; endsAt: number } | { kind: "family-teach" } | { kind: "forehead"; card: number; endsAt: number } | { kind: "our-trivia" };
+
+export function foreheadHolder(players: readonly Pick<LobbyPlayerRow, "user_id" | "is_bot">[], card: number): string | null {
+  const humans = players.filter((p) => p.is_bot !== true).sort((a, b) => (a.user_id < b.user_id ? -1 : a.user_id > b.user_id ? 1 : 0));
+  return humans.length ? humans[card % humans.length].user_id : null;
+}
+
+export function breakMs(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null }): number {
+  const night = nightRound(lobby);
+  return night && !night.final ? NIGHT_BREAK_MS : NEXT_GAME_MS;
+}
+
+export function interludeAt(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null; status: string; started_at: string | null; rounds: number; round_seconds: number; reveal_seconds?: number | null; ended_at?: string | null }, now: number): Interlude | null {
+  if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return null;
+  const night = nightRound(lobby);
+  if (!night || night.final) return null;
+  const end = gameEndMs({ ...lobby, started_at: lobby.started_at, reveal_seconds: lobby.reveal_seconds ?? undefined });
+  const since = now - end;
+  if (since < 0) return null;
+  if (night.index === 0) {
+    const clip = Math.floor(since / ATLAS_SLOT_MS);
+    return clip < ATLAS_CLIPS ? { kind: "voice-atlas", clip, endsAt: end + (clip + 1) * ATLAS_SLOT_MS } : { kind: "family-teach" };
+  }
+  if (since >= FOREHEAD_MS) return { kind: "our-trivia" };
+  const card = Math.floor(since / FOREHEAD_CARD_MS);
+  return { kind: "forehead", card, endsAt: end + (card + 1) * FOREHEAD_CARD_MS };
+}
 
 export type NightRound = { index: number; label: string; final: boolean; total: number };
 
@@ -50,6 +84,10 @@ export function nightRound(lobby: { playlist?: readonly string[] | null; mix?: b
   return { index, label: FAMILY_NIGHT[index].label, final: index === FAMILY_NIGHT.length - 1, total: FAMILY_NIGHT.length };
 }
 
+export function bonusQuestion(lobby: { status: string; playlist?: readonly string[] | null; mix?: boolean; game: string | null; rounds: number }, round: number): boolean {
+  return lobby.status === "playing" && nightRound(lobby)?.final === true && round === lobby.rounds - 1;
+}
+
 export const STEAL_POINTS = 100;
 
 export function stealBonus(uid: string, players: readonly { user_id: string; score: number }[], answers: readonly { user_id: string; correct: boolean }[]): number {
@@ -58,9 +96,9 @@ export function stealBonus(uid: string, players: readonly { user_id: string; sco
   return answers.some((a) => ahead.has(a.user_id) && !a.correct) ? STEAL_POINTS : 0;
 }
 
-export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at">, now: number, force = false): boolean {
+export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at"> & { playlist?: readonly string[] | null; mix?: boolean; game?: string | null }, now: number, force = false): boolean {
   if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return false;
-  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS;
+  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + breakMs({ playlist: lobby.playlist, mix: lobby.mix, game: lobby.game ?? null });
 }
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
   const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];

@@ -9,12 +9,12 @@ import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
+  breakMs,
   audienceEnabled,
   nightRound,
   stealBonus,
   hostLeaveDecision,
   endEnabled,
-  NEXT_GAME_MS,
   nextGameDue,
   MIN_READY,
   answerDecision,
@@ -258,7 +258,7 @@ export function nextStartOf(lobby: LobbyRow): string | null {
   }
   if (lobby.status === "lobby") return lobby.start_at ?? null;
   if (!setupEnabled() || !lobby.playlist || !lobby.started_at) return null;
-  return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS);
+  return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + breakMs(lobby));
 }
 
 export async function againHosted(lobby: LobbyRow, now: number, force = false): Promise<LobbyRow> {

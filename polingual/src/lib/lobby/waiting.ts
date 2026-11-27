@@ -1,4 +1,4 @@
-import { FAMILY_NIGHT, nightRound } from "@academy/lobbies";
+import { FAMILY_NIGHT, interludeAt, nightRound, type Interlude } from "@academy/lobbies";
 import type { LobbyState } from "./client";
 
 export type SetupMode = "single" | "sequence" | "mix" | "night";
@@ -53,14 +53,19 @@ export function roundTitle(lobby: Pick<LobbyState, "playlist" | "game">): string
   return night.final ? "Final: double points, steals on" : `${night.label}, round ${night.index + 1} of ${night.total}`;
 }
 
-export type Interlude = "family-teach" | "our-trivia";
+export const NIGHT_STEPS = ["Warm Up", "Voice Atlas", "Family Teach", "Picture Race", "Forehead", "Final"] as const;
 
-export const NIGHT_STEPS = ["Warm Up", "Voice Atlas", "Family Teach", "Picture Race", "Our Trivia", "Final"] as const;
+export function roomInterlude(lobby: Pick<LobbyState, "playlist" | "game" | "status" | "startedAt" | "rounds" | "roundSeconds" | "revealSeconds"> & { ended?: boolean }, now: number): Interlude | null {
+  return interludeAt({ playlist: lobby.playlist, game: lobby.game, status: lobby.status, started_at: lobby.startedAt, rounds: lobby.rounds, round_seconds: lobby.roundSeconds, reveal_seconds: lobby.revealSeconds, ended_at: lobby.ended ? "ended" : null }, now);
+}
 
-export function nightInterlude(lobby: Pick<LobbyState, "playlist" | "game" | "status"> & { ended?: boolean }): Interlude | null {
-  if (lobby.status !== "done" || lobby.ended) return null;
+export function nightStep(lobby: Pick<LobbyState, "playlist" | "game" | "status" | "startedAt" | "rounds" | "roundSeconds" | "revealSeconds"> & { ended?: boolean }, now: number): string | null {
   const night = nightRound({ playlist: lobby.playlist, game: lobby.game });
-  if (night?.index === 1) return "family-teach";
-  if (night?.index === 2) return "our-trivia";
-  return null;
+  if (!night) return null;
+  const slot = roomInterlude(lobby, now);
+  if (slot?.kind === "voice-atlas") return "Voice Atlas";
+  if (slot?.kind === "family-teach") return "Family Teach";
+  if (slot?.kind === "forehead") return "Forehead";
+  if (slot?.kind === "our-trivia") return "Our Trivia";
+  return night.label;
 }

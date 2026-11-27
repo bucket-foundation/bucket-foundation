@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import type { WebLobbyState } from "@/lib/lobby/client";
 import { fetchTrivia, type ScreenRole } from "@/lib/family/rounds";
-import { nightInterlude } from "@/lib/lobby/waiting";
+import { roomInterlude } from "@/lib/lobby/waiting";
 import { Button } from "@/ui";
+import { AtlasInterlude } from "./AtlasInterlude";
+import { ForeheadInterlude } from "./ForeheadInterlude";
 import { FAMILY_TEACH, OUR_TRIVIA } from "./index";
 
 export function useTriviaReady(lobbyId: string, token: string | null): boolean {
@@ -22,11 +24,13 @@ export function useTriviaReady(lobbyId: string, token: string | null): boolean {
   return ready;
 }
 
-export function NightInterlude({ lobby, token, role }: { lobby: WebLobbyState; token: string | null; role: ScreenRole }) {
-  const slot = nightInterlude(lobby);
-  const trivia = useTriviaReady(lobby.id, slot === "our-trivia" ? token : null);
-  if (slot === "family-teach") return <FAMILY_TEACH.Round lobby={lobby} token={token} role={role} />;
-  if (slot === "our-trivia" && trivia) return <OUR_TRIVIA.Round lobby={lobby} token={token} role={role} />;
+export function NightInterlude({ lobby, token, role, now }: { lobby: WebLobbyState; token: string | null; role: ScreenRole; now: number }) {
+  const slot = roomInterlude(lobby, now);
+  const trivia = useTriviaReady(lobby.id, slot?.kind === "our-trivia" ? token : null);
+  if (slot?.kind === "voice-atlas") return <AtlasInterlude lobby={lobby} token={token} role={role} now={now} slot={slot} />;
+  if (slot?.kind === "forehead") return <ForeheadInterlude lobby={lobby} token={token} role={role} now={now} slot={slot} />;
+  if (slot?.kind === "family-teach") return <FAMILY_TEACH.Round lobby={lobby} token={token} role={role} />;
+  if (slot?.kind === "our-trivia" && trivia) return <OUR_TRIVIA.Round lobby={lobby} token={token} role={role} />;
   return null;
 }
 

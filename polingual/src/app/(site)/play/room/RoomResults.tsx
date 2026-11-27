@@ -32,7 +32,7 @@ export function RoomResults({ g }: { g: LiveRoom }) {
       </section>
       <Scoreboard lobby={lobby} />
       <NextBar g={g} />
-      <NightInterlude lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} role="phone" />
+      <NightInterlude lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} role="phone" now={g.now + g.offset} />
       <SavePrompt g={g} guest={guest} />
       <ReactionBar api={g.api} lobbyId={lobby.id} />
       <RoomToolbar g={g} />

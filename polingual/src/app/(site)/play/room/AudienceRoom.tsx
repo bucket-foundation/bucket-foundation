@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { normalizeLobbyCode } from "@academy/lobbies";
+import { bonusQuestion, normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { phaseAt, promptFor, standings } from "@/lib/lobby/client";
 import { tvChoice } from "@/lib/lobby/tv";
@@ -19,7 +19,7 @@ export function AudienceOffer({ onPick }: { onPick: (band: "13to17" | "18plus") 
   return (
     <section className={app.stackSm} data-testid="audience-offer">
       <h2 className={app.title}>Watch as audience</h2>
-      <p className={app.muted}>Every seat is taken. The audience votes on each question and sends reactions to the screen.</p>
+      <p className={app.muted}>Every seat is taken. The audience votes on the bonus question and sends reactions to the screen.</p>
       {young ? (
         <p className={app.small} data-testid="audience-young">Players under 13 take a seat in the game. Ask the host to free one.</p>
       ) : (
@@ -43,7 +43,7 @@ export function AudienceRoom({ code: rawCode, band }: { code: string; band: stri
   const lobby = sync.lobby;
   if (!lobby) return <p className={sync.error ? app.error : app.muted} role={sync.error ? "alert" : undefined}>{sync.error ?? "Joining the audience"}</p>;
   const phase = phaseAt(lobby, now);
-  const prompt = phase.kind === "round" ? promptFor(lobby, phase.index) : null;
+  const prompt = phase.kind === "round" && bonusQuestion(lobby, phase.index) ? promptFor(lobby, phase.index) : null;
   const title = roundTitle(lobby) ?? gameName(lobby.game ?? "daily");
   const vote = (choice: string) => {
     if (phase.kind !== "round") return;
@@ -58,7 +58,7 @@ export function AudienceRoom({ code: rawCode, band }: { code: string; band: stri
       </section>
       {prompt && phase.kind === "round" ? (
         <section className={app.stackSm} aria-label="Vote">
-          <p className={app.muted}>Which one means <b>{prompt.gloss}</b>?</p>
+          <p className={app.muted}>Bonus question: which one means <b>{prompt.gloss}</b>?</p>
           <div className={styles.voteGrid}>
             {prompt.choices.map((c) => (
               <Button key={c} variant={voted[phase.index] === c ? "primary" : "ghost"} onClick={() => vote(c)} data-testid="audience-vote">
@@ -68,7 +68,7 @@ export function AudienceRoom({ code: rawCode, band }: { code: string; band: stri
           </div>
         </section>
       ) : (
-        <p className={app.muted} data-testid="audience-wait">{lobby.status === "done" ? "Game over. The next game starts soon." : "Votes open when the next question starts."}</p>
+        <p className={app.muted} data-testid="audience-wait">{lobby.status === "done" ? "Game over. The next game starts soon." : "You vote on the bonus question: the last question of the Final."}</p>
       )}
       <ReactionBar api={api} lobbyId={lobby.id} />
       <ol className={styles.players} data-testid="audience-scores">
