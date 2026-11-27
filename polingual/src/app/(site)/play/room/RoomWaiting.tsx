@@ -11,15 +11,11 @@ import { useJoinUrl } from "../RoomQr";
 import { RoomToolbar } from "./RoomBits";
 import { WaitingBoard } from "./WaitingBoard";
 import wait from "./waiting.module.css";
-import { usePauseAds } from "../AdsContext";
-import { useIsPhone } from "@/lib/hooks/phone";
 import type { LiveRoom } from "./useRoomGame";
 
 export function RoomWaiting({ g }: { g: LiveRoom }) {
   const { lobby, api, act } = g;
   const joinUrl = useJoinUrl(lobby.code);
-  const phone = useIsPhone();
-  usePauseAds(phone);
   return (
     <div className={app.stack} data-testid="room">
       <WaitingBoard lobby={lobby} joinUrl={joinUrl} showJoin={roomControls(lobby).bigScreen} host={{ api, take: g.take }} actions={<RoomActions g={g} />}>

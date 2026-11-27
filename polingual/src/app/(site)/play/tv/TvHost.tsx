@@ -5,7 +5,7 @@ import { normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { phaseAt, type WebLobbyState } from "@/lib/lobby/client";
 import { secondsUntil } from "@/lib/lobby/room";
-import { TV_ORIGIN, tvChoice, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
+import { TV_ORIGIN, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
 import { createPortal } from "react-dom";
 import { ButtonLink, Pill, Tag } from "@/ui";
@@ -95,7 +95,7 @@ function TvView({ code, play, sync, now, origin }: { code: string | null; play: 
 
 function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: string }) {
   const phase = phaseAt(lobby, now);
-  const rows = tvPlayers(lobby);
+  const rows = lobby.ended ? tvTotals(lobby) : tvPlayers(lobby);
   return (
     <div className={tv.board} data-testid="tv-board" data-phase={phase.kind}>
       <section className={tv.join} aria-label="Join">
@@ -120,6 +120,14 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
 function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   const phase = phaseAt(lobby, now);
   const round = tvRound(lobby, phase);
+  if (lobby.ended) {
+    return (
+      <>
+        <Tag>Final scores</Tag>
+        <Podium rows={tvTotals(lobby)} />
+      </>
+    );
+  }
   if (phase.kind === "finished") {
     const left = secondsUntil(lobby.nextStartAt, now);
     return (

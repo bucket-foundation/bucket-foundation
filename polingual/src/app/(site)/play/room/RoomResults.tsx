@@ -12,7 +12,7 @@ import Interstitial from "../Interstitial";
 import styles from "../play.module.css";
 import Reveal from "../Reveal";
 import RoomMissed from "../RoomMissed";
-import { RoomToolbar, Scoreboard } from "./RoomBits";
+import { EndGame, RoomToolbar, Scoreboard } from "./RoomBits";
 import type { LiveRoom } from "./useRoomGame";
 
 export function RoomResults({ g }: { g: LiveRoom }) {
@@ -58,15 +58,17 @@ function NextBar({ g }: { g: LiveRoom }) {
       {auto && can.nextNow ? (
         <Button size="md" disabled={busy} onClick={() => void act(() => api.next(lobby.id))} data-testid="next-now">Next game now</Button>
       ) : null}
+      {can.end ? <EndGame g={g} /> : null}
       <Button variant="quiet" size="sm" onClick={() => void g.leave()} data-testid="results-leave">Leave</Button>
       <ButtonLink variant="ghost" size="md" href={LEARN_HREF} data-testid="results-learn">Start learning</ButtonLink>
     </section>
   );
 }
 
-function SavePrompt({ g, guest }: { g: LiveRoom; guest: boolean }) {
-  const [open, setOpen] = useState(false);
+function SavePrompt({ g, guest, always = false }: { g: LiveRoom; guest: boolean; always?: boolean }) {
+  const [open, setOpen] = useState(always && guest);
   useEffect(() => {
+    if (always) return;
     const store = (() => {
       try {
         return window.localStorage;
@@ -77,16 +79,44 @@ function SavePrompt({ g, guest }: { g: LiveRoom; guest: boolean }) {
     if (!savePromptDue(store, guest)) return;
     setOpen(true);
     markSavePrompt(store);
-  }, [guest]);
+  }, [guest, always]);
   if (!open) return null;
   return (
     <section className={styles.upsell} data-testid="save-progress" aria-label="Save your score">
       <b>Save your score: create an account</b>
-      <p className={app.small}>You scored {myScore(g.lobby)} points. An account keeps your streak, stats and game history. The next game starts on its own.</p>
+      <p className={app.small}>{always ? `You scored ${g.lobby.players.find((p) => p.isMe)?.total ?? myScore(g.lobby)} points tonight.` : `You scored ${myScore(g.lobby)} points.`} An account keeps your streak, stats and game history.{always ? "" : " The next game starts on its own."}</p>
       <div className={app.row}>
         <Button onClick={g.account.openSignIn} data-testid="save-sign-in">Create an account</Button>
         <Button variant="quiet" size="sm" onClick={() => setOpen(false)} data-testid="save-dismiss">Not now</Button>
       </div>
     </section>
+  );
+}
+
+export function RoomFinal({ g }: { g: LiveRoom }) {
+  const { lobby, busy } = g;
+  const board = [...lobby.players].sort((a, b) => (b.total ?? b.score) - (a.total ?? a.score) || a.name.localeCompare(b.name));
+  const guest = g.state.status === "ready" && g.state.identity.kind === "guest";
+  const top = board[0];
+  return (
+    <div className={app.stack} data-testid="final">
+      <section className={app.stackSm}>
+        <p className={app.label}>Final scores</p>
+        <h2 className={app.title}>{top?.isMe ? "🏆 You won the night" : `${top?.name ?? "Nobody"} wins`}</h2>
+      </section>
+      <ol className={styles.players} data-testid="final-scores">
+        {board.map((p, i) => (
+          <li key={p.userId} className={styles.player} data-me={p.isMe}>
+            <span className={styles.playerName}>#{i + 1} {p.name}</span>
+            <span className={styles.score} data-testid="final-total">{p.total ?? p.score}</span>
+          </li>
+        ))}
+      </ol>
+      <SavePrompt g={g} guest={guest} always />
+      <section className={styles.nextBar}>
+        <Button size="md" disabled={busy} onClick={() => void g.newLobby(false)} data-testid="play-again">Play again</Button>
+        <Button variant="ghost" size="md" onClick={() => void g.leave()} data-testid="final-leave">Leave</Button>
+      </section>
+    </div>
   );
 }
