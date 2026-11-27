@@ -19,10 +19,11 @@ function setupLabel(lobby: WebLobbyState): string {
   return "One game";
 }
 
-export function WaitingBoard({ lobby, joinUrl, tv = false, host, children }: { lobby: WebLobbyState; joinUrl: string | null; tv?: boolean; host?: Host; children?: ReactNode }) {
+export function WaitingBoard({ lobby, joinUrl, tv = false, showJoin = true, host, actions, children }: { lobby: WebLobbyState; joinUrl: string | null; tv?: boolean; showJoin?: boolean; host?: Host; actions?: ReactNode; children?: ReactNode }) {
   return (
-    <div className={wait.board} data-tv={tv} data-testid="waiting-board">
-      <JoinCard code={lobby.code} joinUrl={joinUrl} />
+    <div className={wait.board} data-tv={tv} data-join={showJoin} data-testid="waiting-board">
+      {actions ? <div className={wait.actions}>{actions}</div> : null}
+      {showJoin ? <JoinCard code={lobby.code} joinUrl={joinUrl} /> : null}
       <section className={wait.info} aria-label="Lobby">
         <GamesCard lobby={lobby} tv={tv} host={host} />
         <PlayersCard lobby={lobby} tv={tv} />

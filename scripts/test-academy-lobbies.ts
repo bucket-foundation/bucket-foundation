@@ -410,7 +410,34 @@ test("lobby settings: host patch validates games and languages before start", ()
     assert.equal(normalizeLobbySettings(null, lobby), null);
     process.env.POLINGUAL_LOBBY_SETUP = "off";
     assert.deepEqual(normalizeLobbySettings({ game: "tiles" }, lobby), { game: "tiles", targets: ["es"] });
-    assert.equal(normalizeLobbySettings({ setup: "mix" }, lobby), null);
+    assert.deepEqual(normalizeLobbySettings({ setup: "mix", targets: ["es", "fr", "it", "pt"] }, lobby), { game: "flags", targets: ["es", "fr", "it", "pt"] });
+    assert.deepEqual(normalizeLobbySettings({ setup: "sequence", games: ["tiles", "daily"] }, lobby), { game: "tiles", targets: ["es"] });
+    assert.equal(normalizeLobbySettings({ setup: "nope" }, lobby), null);
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("lobby settings: every mode the room sends saves, with setup on and off", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  const romance = ["es", "fr", "it", "pt"];
+  const bodies = [
+    { setup: "single", game: "tiles", targets: romance },
+    { setup: "single", game: "same-word", targets: romance },
+    { setup: "sequence", games: ["flags", "daily", "same-word"], targets: romance },
+    { setup: "mix", targets: romance },
+    { setup: "mix", targets: ["es"] },
+  ];
+  const lobbies = [
+    { game: "flags" as const, root: "en", targets: ["es"], status: "lobby" as const },
+    { game: "duel" as const, root: "en", targets: romance, status: "lobby" as const },
+    { game: null, root: "en", targets: romance, status: "lobby" as const },
+  ];
+  try {
+    for (const flag of ["on", "off"]) {
+      process.env.POLINGUAL_LOBBY_SETUP = flag;
+      for (const lobby of lobbies) for (const body of bodies) assert.ok(normalizeLobbySettings(body, lobby as never), `${flag} ${lobby.game} ${JSON.stringify(body)}`);
+    }
   } finally {
     process.env.POLINGUAL_LOBBY_SETUP = env;
   }

@@ -380,3 +380,7 @@
 .playStage .center{margin-top:6px;min-height:calc(100dvh - var(--play-bar) - 40px);box-sizing:border-box;padding:clamp(12px,1.6vw,24px)}
 .playStage .center:has([data-testid=video-room]){padding:clamp(8px,1vw,14px)}
 @media (max-width:640px){.playStage .center{margin-top:2px;border-radius:18px;min-height:calc(100dvh - var(--play-bar) - 20px)}.playStage .frame,.playStage .frame[data-rails]{padding-left:6px;padding-right:6px}}
+@media (max-width:640px){.playStage .frame,.playStage .frame[data-rails]{padding:0}.playStage .center{margin-top:0;border-width:0;border-radius:0;box-shadow:none;padding:10px 8px 16px}.playStage .center:has([data-testid=game-world]){padding:0}.stickers,.rail,.peek,.hubArt{display:none}}
+.joinBox{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:14px;background:var(--pl-white);border:3px solid var(--ink);border-radius:18px}
+.joinBox input{font-size:18px}
+@media (min-width:700px){.joinBox{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end}}
