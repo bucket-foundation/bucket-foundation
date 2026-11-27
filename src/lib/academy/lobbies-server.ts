@@ -1,4 +1,5 @@
 import { familyPoints } from "./fair-score-server";
+import { seatRows } from "./seat-prompts-server";
 import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
 import { bearer, isGuestToken, liveGuest } from "./lobby-guests";
@@ -186,7 +187,7 @@ export async function startLobby(lobby: LobbyRow, now: number): Promise<StartRes
 export type SubmitResult = AnswerDecision | { ok: false; error: "not_member" | "already_answered" | "out_of_lives" };
 
 export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, choice: string, now: number): Promise<SubmitResult> {
-  const rows = check(await service().from(PROMPTS).select("round,choices,answer,mode").eq("lobby_id", lobby.id).eq("round", round).limit(1), "prompt") as Pick<LobbyPromptRow, "round" | "choices" | "answer" | "mode">[];
+  const rows = await seatRows(lobby, uid, check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,mode,gloss,choices,answer").eq("lobby_id", lobby.id).eq("round", round).limit(1), "prompt") as LobbyPromptRow[]);
   const prompt = rows[0] ?? null;
   const tiles = prompt?.mode === "tiles";
   const prior = tiles ? (check(await service().from(ANSWERS).select("round,correct").eq("lobby_id", lobby.id).eq("user_id", uid), "prior") as { round: number; correct: boolean }[]) : [];
@@ -236,8 +237,12 @@ export async function lobbyState(lobby: LobbyRow, uid: string, now: number, bloc
   ]);
   const msgs = (check(messages, "messages") as LobbyMessageRow[]).reverse();
   const corpus = langCorpus();
-  const describe = (row: LobbyPromptRow): RevealEntry[] => revealEntries(row, lobby.root, corpus?.byId.get(row.item_id) ?? null, corpusLookup);
-  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, prompts, nextStartOf(lobby), describe, powers);
+  const shared = new Map((prompts as LobbyPromptRow[]).map((p) => [p.round, p]));
+  const describe = (seat: LobbyPromptRow): RevealEntry[] => {
+    const row = shared.get(seat.round) ?? seat;
+    return revealEntries(row, lobby.root, corpus?.byId.get(row.item_id) ?? null, corpusLookup);
+  };
+  const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, await seatRows(lobby, uid, prompts), nextStartOf(lobby), describe, powers);
   return { ...state, botsEnabled: botsEnabled() };
 }
 
