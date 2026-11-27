@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { seededRandom } from "@academy/lobbies";
-import { seatBand, cardLevel, fairPoints, FAMILY_WINDOW_CAP_S, homeSpeakersOf, ladderLevel, promptSide, teacherAwards, timeFactor, windowSeconds, type FairCard } from "@academy/fair-score";
+import { seatBand, timingBand, cardLevel, fairPoints, FAMILY_WINDOW_CAP_S, homeSpeakersOf, ladderLevel, promptSide, teacherAwards, timeFactor, windowSeconds, type FairCard } from "@academy/fair-score";
 
 type Kind = "calibrated" | "sandbagger" | "guesser";
 interface Sim { kind: Kind; level: number; band: FairCard["band"] }
@@ -114,4 +114,11 @@ test("teacher award goes to a home speaker at most once per round", () => {
 test("a seat with no card plays on the default 1x window", () => {
   assert.equal(seatBand(null), "adult");
   assert.equal(timeFactor({ band: seatBand(null) }), 1);
+});
+
+test("a kid seat keeps the 2x window from its stored band alone", () => {
+  assert.equal(timingBand(null, "under13"), "under13");
+  assert.equal(timeFactor({ band: timingBand(null, "under13") }), 2);
+  assert.equal(timingBand("teen", "under13"), "teen");
+  assert.equal(timingBand(null, null), "adult");
 });

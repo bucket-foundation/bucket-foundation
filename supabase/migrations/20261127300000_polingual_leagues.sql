@@ -1,3 +1,5 @@
+alter table bucket.lobby_players add column if not exists band text check (band in ('under13', 'teen', 'adult'));
+
 create table if not exists bucket.league_weeks (
   id        text        primary key check (id ~ '^\d{4}-\d{2}-\d{2}$'),
   starts_at timestamptz not null,

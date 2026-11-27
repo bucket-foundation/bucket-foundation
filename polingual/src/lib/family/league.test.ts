@@ -42,6 +42,7 @@ test("claims open only after the game ends with two or more humans", () => {
 test("under-13 accounts cannot join a family group", () => {
   assert.equal(familyJoinAllowed("family", "under13"), false);
   assert.equal(familyJoinAllowed("family", "13to17"), true);
+  assert.equal(familyJoinAllowed("family", null), false);
   assert.equal(familyJoinAllowed("friends", "under13"), true);
 });
 

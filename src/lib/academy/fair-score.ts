@@ -25,6 +25,10 @@ export function seatBand(card: Pick<FairCard, "band"> | null): Band {
   return card?.band ?? "adult";
 }
 
+export function timingBand(cardBand: Band | null | undefined, seat: Band | null | undefined): Band {
+  return cardBand ?? seat ?? "adult";
+}
+
 export function windowSeconds(roundSeconds: number, factor: number): number {
   return Math.min(FAMILY_WINDOW_CAP_S, roundSeconds * Math.max(1, Math.min(MAX_TIME_FACTOR, factor)));
 }

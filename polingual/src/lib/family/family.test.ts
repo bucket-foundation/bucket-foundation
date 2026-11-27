@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "@academy/lobbies";
-import { cardEditable, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
-import { sendCard } from "./cards-api";
+import { seatBandOf, cardEditable, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
+import { sendCard, sendSeatBand } from "./cards-api";
 import { familyQuest } from "@academy/family-quest";
 import { kidSeatFrom, kidSeatHref } from "./kid";
 import { familyHref, familyName, readFamily, rememberFamily } from "./group";
@@ -221,4 +221,13 @@ test("cards lock once a game starts and edits wait for the next waiting room", (
   assert.equal(cardEditable("lobby"), true);
   assert.equal(cardEditable("playing"), false);
   assert.equal(cardEditable("done"), false);
+});
+
+test("a kid seat sends only its age band", async () => {
+  const bodies: string[] = [];
+  const f = (async (_u: string, init?: RequestInit) => { bodies.push(String(init?.body)); return new Response("{}"); }) as unknown as typeof fetch;
+  assert.equal(await sendSeatBand(f, "t", "l", "under13"), true);
+  assert.deepEqual(JSON.parse(bodies[0]), { lobbyId: "l", band: "under13" });
+  assert.equal(seatBandOf("under13"), "under13");
+  assert.equal(seatBandOf("es"), null);
 });

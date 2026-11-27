@@ -55,5 +55,5 @@ export function claimOpen(lobby: Parameters<typeof finished>[0], humans: number,
 }
 
 export function familyJoinAllowed(kind: string, band: string | null): boolean {
-  return kind !== "family" || band !== "under13";
+  return kind !== "family" || band === "13to17" || band === "18plus";
 }

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { langName } from "@academy/lang-systems";
 import type { WebLobbyState } from "@/lib/lobby/client";
 import { flagEmoji, langFlag } from "@/lib/lobby/client";
-import { fetchCards, sendCard, setSharing } from "@/lib/family/cards-api";
+import { fetchCards, sendCard, sendSeatBand, setSharing } from "@/lib/family/cards-api";
 import { roomLanguageMap, suggestedRound, type SeatCard } from "@/lib/family/langmap";
 import { currentCard } from "@/lib/family/session";
 import { keepsData } from "@/lib/family/card";
@@ -99,9 +99,10 @@ export default function FamilyWaiting({ lobby, token }: { lobby: WebLobbyState; 
   useEffect(() => {
     const card = currentCard();
     const round = `${lobby.id}|${lobby.startedAt ?? ""}`;
-    if (!token || !card || !keepsData(card.band) || sent === round || lobby.status !== "lobby") return;
+    if (!token || !card || sent === round || lobby.status !== "lobby") return;
     setSent(round);
-    void sendCard(bound(), token, lobby.id, card);
+    if (keepsData(card.band)) void sendCard(bound(), token, lobby.id, card);
+    else void sendSeatBand(bound(), token, lobby.id, card.band);
   }, [lobby.id, lobby.startedAt, lobby.status, token, sent]);
   return (
     <section className={f.card} aria-label="Room languages" data-testid="family-waiting">

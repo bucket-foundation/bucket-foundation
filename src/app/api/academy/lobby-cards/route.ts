@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight, service } from "@/lib/academy/groups-server";
 import { authed, checkLobby, lobbyFail, LOBBIES, PLAYERS, SCREENS } from "@/lib/academy/lobbies-server";
-import { CARD_TTL_MS, cardEditable, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@/lib/academy/lobby-cards";
+import { CARD_TTL_MS, cardEditable, seatBandOf, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@/lib/academy/lobby-cards";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -60,6 +60,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return json({ ok: true, share: a.body.share });
     }
     if (!s.players.includes(a.uid)) return json({ error: "unauthorized" }, 403);
+    if (a.body?.band !== undefined) {
+      const band = seatBandOf(a.body.band);
+      if (!band) return json({ error: "bad_request" }, 400);
+      if (!cardEditable(s.status)) return json({ error: "card_locked" }, 409);
+      checkLobby(await service().from(PLAYERS).update({ band }).eq("lobby_id", lobbyId).eq("user_id", a.uid), "seat band");
+      return json({ ok: true, band });
+    }
     const card = roomCard(a.body?.card);
     if (!card) return json({ error: "bad_request" }, 400);
     if (!cardStorable(card)) return json({ error: "under13_not_stored" }, 403);
