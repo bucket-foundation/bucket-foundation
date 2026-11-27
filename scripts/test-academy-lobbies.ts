@@ -6,6 +6,8 @@ import {
   joinedRound,
   nextGame,
   normalizeSetup,
+  normalizeLobbySettings,
+  allReady,
   setupOf,
   answerDecision,
   hostedSince,
@@ -92,10 +94,12 @@ test("messages trim and cap at 200", () => {
 
 test("only the host starts, in lobby status, with two ready", () => {
   const ps = [player("h", { ready: true }), player("b")];
-  assert.equal(startDecision(lobby(), ps, "b"), "not_host");
-  assert.equal(startDecision(lobby(), ps, "h"), "need_ready");
-  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true })], "h"), "ok");
-  assert.equal(startDecision(lobby({ status: "playing" }), ps, "h"), "not_lobby");
+  assert.equal(startDecision(lobby(), ps, "b", T0), "not_host");
+  assert.equal(startDecision(lobby(), ps, "h", T0), "need_ready");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true })], "h", T0), "ok");
+  assert.equal(startDecision(lobby({ status: "playing" }), ps, "h", T0), "not_lobby");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true }), player("c", { ready: false })], "h", T0), "need_ready");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: false, is_bot: true })], "h", T0), "ok");
 });
 
 test("join respects cap and status", () => {
@@ -388,4 +392,72 @@ test("joined round: before the start counts from round zero, mid game from the n
   assert.equal(joinedRound(l, new Date(T0 + 1000).toISOString()), 0);
   assert.equal(joinedRound(l, new Date(T0 + 9000).toISOString()), 1);
   assert.equal(joinedRound(l, new Date(T0 + 13000).toISOString()), 1);
+});
+
+test("lobby settings: host patch validates games and languages before start", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on";
+  const lobby = { game: "flags" as const, root: "en", targets: ["es"], status: "lobby" as const };
+  try {
+    assert.deepEqual(normalizeLobbySettings({ setup: "single", game: "tiles" }, lobby), { game: "tiles", targets: ["es"], playlist: ["tiles"], mix: false });
+    assert.deepEqual(normalizeLobbySettings({ setup: "sequence", games: ["daily", "flags"] }, lobby), { game: "daily", targets: ["es"], playlist: ["daily", "flags"], mix: false });
+    assert.equal(normalizeLobbySettings({ setup: "mix" }, lobby)?.mix, true);
+    assert.deepEqual(normalizeLobbySettings({ targets: ["fr", "en", "fr"] }, lobby)?.targets, ["fr"]);
+    assert.equal(normalizeLobbySettings({ targets: ["en"] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ targets: [] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ targets: ["<x>"] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ game: "nope" }, lobby), null);
+    assert.equal(normalizeLobbySettings({ setup: "single", game: "same-word" }, lobby), null);
+    assert.equal(normalizeLobbySettings({ setup: "single", game: "same-word", targets: ["es", "fr"] }, lobby)?.game, "same-word");
+    assert.equal(normalizeLobbySettings({ game: "tiles" }, { ...lobby, status: "playing" }), null);
+    assert.equal(normalizeLobbySettings(null, lobby), null);
+    process.env.POLINGUAL_LOBBY_SETUP = "off";
+    assert.deepEqual(normalizeLobbySettings({ game: "tiles" }, lobby), { game: "tiles", targets: ["es"] });
+    assert.deepEqual(normalizeLobbySettings({ setup: "mix", targets: ["es", "fr", "it", "pt"] }, lobby), { game: "flags", targets: ["es", "fr", "it", "pt"] });
+    assert.deepEqual(normalizeLobbySettings({ setup: "sequence", games: ["tiles", "daily"] }, lobby), { game: "tiles", targets: ["es"] });
+    assert.equal(normalizeLobbySettings({ setup: "nope" }, lobby), null);
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("lobby settings: every mode the room sends saves, with setup on and off", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  const romance = ["es", "fr", "it", "pt"];
+  const bodies = [
+    { setup: "single", game: "tiles", targets: romance },
+    { setup: "single", game: "same-word", targets: romance },
+    { setup: "sequence", games: ["flags", "daily", "same-word"], targets: romance },
+    { setup: "mix", targets: romance },
+    { setup: "mix", targets: ["es"] },
+  ];
+  const lobbies = [
+    { game: "flags" as const, root: "en", targets: ["es"], status: "lobby" as const },
+    { game: "duel" as const, root: "en", targets: romance, status: "lobby" as const },
+    { game: null, root: "en", targets: romance, status: "lobby" as const },
+  ];
+  try {
+    for (const flag of ["on", "off"]) {
+      process.env.POLINGUAL_LOBBY_SETUP = flag;
+      for (const lobby of lobbies) for (const body of bodies) assert.ok(normalizeLobbySettings(body, lobby as never), `${flag} ${lobby.game} ${JSON.stringify(body)}`);
+    }
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("allReady: every human ready, bots count as ready, two seats minimum", () => {
+  assert.equal(allReady([{ ready: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: false }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }]), true);
+  assert.equal(allReady([{ ready: true }, { ready: false, is_bot: true }]), true);
+  assert.equal(allReady([{ ready: false, is_bot: true }, { ready: false, is_bot: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }, { ready: false }]), false);
+  const now = T0 + 600_000;
+  const fresh = new Date(now - 5_000).toISOString();
+  const stale = new Date(now - 120_000).toISOString();
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], now), true);
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: fresh }], now), false);
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], now), false);
+  assert.equal(startDecision({ host_id: "h", status: "lobby" }, [{ ready: true, last_seen: fresh }, { ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], "h", now), "ok");
 });

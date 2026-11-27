@@ -66,6 +66,15 @@ function RoomJoining({ code, error }: { code: string; error: string | null }) {
 function RoomPhase({ g }: { g: LiveRoom }) {
   const phase = phaseAt(g.lobby, g.now + g.offset);
   if (phase.kind === "waiting") return <RoomWaiting g={g} />;
+  if (phase.kind === "finished") return <RoomResults g={g} />;
+  return (
+    <div className={styles.ingame} data-ingame="true">
+      <InGame g={g} phase={phase} />
+    </div>
+  );
+}
+
+function InGame({ g, phase }: { g: LiveRoom; phase: ReturnType<typeof phaseAt> }) {
   if (phase.kind === "countdown") {
     return (
       <div className={app.stack} data-testid="room">
@@ -84,14 +93,14 @@ function RoomPhase({ g }: { g: LiveRoom }) {
   }
   if (phase.kind === "reveal") return <RoomReveal g={g} phase={phase} />;
   if (phase.kind === "round") return <RoomRound g={g} phase={phase} />;
-  return <RoomResults g={g} />;
+  return null;
 }
 
 export default function Room({ code }: { code: string }) {
   const [room, setRoom] = useState<{ game: WorldId; code: string | null }>({ game: "duel", code: null });
   const onGame = useCallback((game: WorldId, c: string) => setRoom((r) => (r.game === game && r.code === c ? r : { game, code: c })), []);
   return (
-    <GameWorld id={room.game} aside={room.code ? <RoomBadge code={room.code} /> : null}>
+    <GameWorld id={room.game} compact aside={room.code ? <RoomBadge code={room.code} /> : null}>
       <RoomGame code={code} onGame={onGame} />
     </GameWorld>
   );

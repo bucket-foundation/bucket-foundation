@@ -344,6 +344,33 @@ export function normalizeLobbyConfig(body: Record<string, unknown> | null): Lobb
   return { name: name || "Polingual lobby", game: setup.game, root, targets, rounds, roundSeconds, revealSeconds, listed: body.listed !== false, playlist: setup.playlist, mix: setup.mix };
 }
 
+export type LobbySettingsPatch = { game: LobbyGame; targets: string[]; playlist?: LobbyGame[]; mix?: boolean };
+
+export function normalizeLobbySettings(body: Record<string, unknown> | null, lobby: Pick<LobbyRow, "game" | "root" | "targets" | "status">): LobbySettingsPatch | null {
+  if (!body || lobby.status !== "lobby" || isRace(lobby.game)) return null;
+  let targets = lobby.targets;
+  if (body.targets !== undefined) {
+    const raw = body.targets;
+    if (!Array.isArray(raw) || raw.length < 1 || raw.length > 8 || !raw.every((t) => typeof t === "string" && LANG.test(t))) return null;
+    targets = (raw as string[]).filter((t, i, all) => t !== lobby.root && all.indexOf(t) === i);
+    if (targets.length === 0) return null;
+  }
+  const offered = setupGames() as readonly unknown[];
+  const current: LobbyGame = offered.includes(lobby.game) ? (lobby.game as LobbyGame) : "daily";
+  const game = body.game === undefined || body.game === null ? current : offered.includes(body.game) ? (body.game as LobbyGame) : null;
+  if (!game) return null;
+  if (!setupEnabled()) {
+    const mode = body.setup ?? "single";
+    if (mode !== "single" && mode !== "sequence" && mode !== "mix") return null;
+    const first = mode === "sequence" && Array.isArray(body.games) && offered.includes(body.games[0]) ? (body.games[0] as LobbyGame) : mode === "mix" ? current : game;
+    const pick = first === "same-word" && targets.length < 2 ? (mode === "single" ? null : "daily") : first;
+    return pick ? { game: pick, targets } : null;
+  }
+  const setup = normalizeSetup(body, game, targets);
+  if (!setup || (setup.game === "same-word" && targets.length < 2)) return null;
+  return { game: setup.game, targets, playlist: setup.playlist ?? [setup.game], mix: setup.mix };
+}
+
 export function normalizeMessage(input: unknown): string | null {
   if (typeof input !== "string") return null;
   const s = input.replace(/\s+/g, " ").trim();
@@ -579,10 +606,17 @@ export function seenDue(lastSeen: string, now: number): boolean {
 
 export type StartDecision = "ok" | "not_host" | "not_lobby" | "need_ready";
 
-export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, players: readonly Pick<LobbyPlayerRow, "ready">[], uid: string): StartDecision {
+type ReadySeat = Pick<LobbyPlayerRow, "ready"> & { is_bot?: boolean; last_seen?: string };
+
+export function allReady(players: readonly ReadySeat[], now: number = Date.now()): boolean {
+  const here = players.filter((p) => p.is_bot === true || !p.last_seen || now - Date.parse(p.last_seen) < STALE_MS);
+  return here.length >= MIN_READY && here.some((p) => !p.is_bot) && here.every((p) => p.ready || p.is_bot === true);
+}
+
+export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, players: readonly ReadySeat[], uid: string, now: number = Date.now()): StartDecision {
   if (lobby.host_id !== uid) return "not_host";
   if (lobby.status !== "lobby") return "not_lobby";
-  return players.filter((p) => p.ready).length >= MIN_READY ? "ok" : "need_ready";
+  return allReady(players, now) ? "ok" : "need_ready";
 }
 
 export type JoinLobbyDecision = "already" | "ok" | "full" | "started";
@@ -842,4 +876,25 @@ export function normalizeMessageReport(body: Record<string, unknown> | null | un
 export function messageReportDecision(uid: string, report: MessageReport, message: Pick<LobbyMessageRow, "lobby_id" | "user_id"> | null): "ok" | "not_found" | "self" {
   if (!message || message.lobby_id !== report.lobbyId) return "not_found";
   return message.user_id === uid ? "self" : "ok";
+}
+
+export type LobbySeat = "player" | "screen" | null;
+
+export function wantsScreen(body: unknown): boolean {
+  return typeof body === "object" && body !== null && (body as { screen?: unknown }).screen === true;
+}
+
+export const SCREEN_CAP = 3;
+
+export type ScreenJoin = "player" | "screen" | "add" | "full" | "closed";
+
+export function screenJoinDecision(lobby: Pick<LobbyRow, "status">, playerIds: string[], screenIds: string[], uid: string): ScreenJoin {
+  if (playerIds.includes(uid)) return "player";
+  if (screenIds.includes(uid)) return "screen";
+  if (lobby.status === "done") return "closed";
+  return screenIds.length >= SCREEN_CAP ? "full" : "add";
+}
+
+export function seatAllowed(seat: LobbySeat, screenOk: boolean): boolean {
+  return seat === "player" || (seat === "screen" && screenOk);
 }

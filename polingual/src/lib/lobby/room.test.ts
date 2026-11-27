@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { choiceState, livesText, pickFor, roundFeedback, roundKeyOf, secondsUntil, tilesFeedback, timerWidth, waitingHint, worldOf } from "./room";
+import { choiceState, livesText, pickFor, roundFeedback, roundKeyOf, secondsUntil, tilesFeedback, timerWidth, everyoneReady, waitingHint, worldOf } from "./room";
 
 test("worldOf maps lobby games onto worlds", () => {
   assert.equal(worldOf(null), "duel");
@@ -30,5 +30,17 @@ test("timers, lives and hints", () => {
   assert.equal(secondsUntil(new Date(2500).toISOString(), 0), 3);
   assert.equal(livesText(1), "♥♡♡");
   assert.equal(timerWidth(5, 10), "50%");
-  assert.equal(waitingHint({ standing: false, isHost: true }, 1), "Starts 15 seconds after two players are ready.");
+  const pl = (ready: boolean, bot = false) => ({ ready, bot }) as never;
+  assert.equal(waitingHint({ standing: false, isHost: true, players: [pl(true), pl(false)] }), "Starts 15 seconds after everyone is ready.");
+  assert.equal(waitingHint({ standing: false, isHost: true, players: [pl(true), pl(true)] }), "Everyone ready? Start now or wait for the countdown.");
+});
+
+test("everyoneReady needs every human ready and counts bots as ready", () => {
+  const pl = (ready: boolean, bot = false) => ({ ready, bot }) as never;
+  assert.equal(everyoneReady({ players: [pl(true)] }), false);
+  assert.equal(everyoneReady({ players: [pl(true), pl(false)] }), false);
+  assert.equal(everyoneReady({ players: [pl(true), pl(false, true)] }), true);
+  assert.equal(everyoneReady({ players: [pl(false, true), pl(false, true)] }), false);
+  assert.equal(everyoneReady({ players: [pl(true), pl(true), pl(true)] }), true);
+  assert.equal(everyoneReady({ players: [pl(true), pl(true), { ready: false, bot: false, online: false } as never] }), true);
 });

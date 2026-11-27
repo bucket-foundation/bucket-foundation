@@ -182,6 +182,14 @@ test("otp with app polingual redirects to polingual.com, other apps keep the def
   assert.deepEqual(seen, ["https://polingual.com/", undefined, undefined]);
 });
 
+test("otp with create false asks for no new account", async () => {
+  const seen: (boolean | undefined)[] = [];
+  const w = world({ sendOtp: async (_e, _r, create) => (seen.push(create), { status: null }) });
+  assert.equal((await w.handle({ action: "otp", email: "a@b.co", app: "polingual", create: false }, "1.1.1.1")).status, 200);
+  assert.equal((await w.handle({ action: "otp", email: "c@b.co" }, "1.1.1.1")).status, 200);
+  assert.deepEqual(seen, [false, undefined]);
+});
+
 test("apple sign-in passes the authorization code on, and an exchange failure still signs in", async () => {
   const linked: string[] = [];
   const tok = appleToken({ aud: "com.polingual.app", nonce: sha("n1") });
