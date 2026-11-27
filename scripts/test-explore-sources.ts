@@ -101,9 +101,10 @@ return loadSourceIndex(tmp).then((p) => {
     check("loader returns empty when no index exists", e.length === 0);
     const built = buildIndex();
     const kinds = new Set(built.items.map((r: unknown[]) => r[0]));
-    check("built index covers all six local sources and the primary papers", ["o", "p", "a", "g", "w", "y", "d"].every((k) => kinds.has(k)), Array.from(kinds).join(","));
+    const privateKinds = ["a", "y"].filter((k) => !fs.existsSync(k === "a" ? "arxiv" : "yt"));
+    check("built index covers every local source that is present and the primary papers", ["o", "p", "a", "g", "w", "y", "d"].filter((k) => !privateKinds.includes(k)).every((k) => kinds.has(k)), Array.from(kinds).join(","));
     const committed = JSON.parse(fs.readFileSync(path.join("src", "data", "explore-sources.json"), "utf8")) as SourceIndex;
-    check("the committed index is the built index", JSON.stringify(committed.items) === JSON.stringify(built.items));
+    check("the committed index is the built index", JSON.stringify(committed.items.filter((r) => !privateKinds.includes(String(r[0])))) === JSON.stringify(built.items));
     const primary = built.items.filter((r) => r[0] === "d") as Row[];
     const st = built.primary;
     check("166 primary paper records are read from 36 files", st.read === 166 && readPrimaryPapers().length === 166, JSON.stringify(st));

@@ -114,7 +114,7 @@ submit_4up_to_chisel(slug, variants)
 
 The 4-up is submitted to `longtail.agfarms.dev/chisel` over the same
 HMAC-authed pattern Bucket already uses for grant-draft reviews
-(`bucket-foundation/scripts/submit-to-longtail.mjs`). Reviewer (Gian)
+(`bucket-ops/scripts/submit-to-longtail.mjs`). Reviewer (Gian)
 sees all 4 side-by-side and rates each on:
 
 **Tier-1 gut axes (5-point or yes/no/unsure):**
