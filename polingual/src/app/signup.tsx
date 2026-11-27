@@ -39,8 +39,8 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
 
   if (state.kind === "done" && compact) {
     return (
-      <p className="font-sans text-[15px] text-[color:var(--ink-2)]">
-        You are on the list. <a href="/research#join" className="underline text-[color:var(--blue)]">Add your languages</a> so we can match you to the first tools.
+      <p className="font-sans text-[15px] text-[color:var(--pl-ink-2)]">
+        You are on the list. <a href="/research#join" className="underline text-[color:var(--pl-lapis)]">Add your languages</a> so we can match you to the first tools.
       </p>
     );
   }
@@ -54,14 +54,14 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
         <Button type="submit" variant="accent" size="md" disabled={state.kind === "sending"}>
           {state.kind === "sending" ? "Sending" : "Get early access"}
         </Button>
-        {state.kind === "error" && <p role="alert" className="font-sans text-sm sm:basis-full text-[color:var(--burgundy)]">{state.message}</p>}
+        {state.kind === "error" && <p role="alert" className="font-sans text-sm sm:basis-full text-[color:var(--pl-tyrian)]">{state.message}</p>}
       </form>
     );
   }
 
   if (state.kind === "done") {
     return (
-      <p className="rounded-xl bg-white px-5 py-4 font-sans text-[15px] border-[1px] border-[var(--hairline)] text-[color:var(--ink-2)]">
+      <p className="rounded-xl bg-white px-5 py-4 font-sans text-[15px] border-[1px] border-[var(--pl-hairline)] text-[color:var(--pl-ink-2)]">
         You are on the list. We will write when the learner tools open.
       </p>
     );
@@ -70,15 +70,15 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
   return (
     <form onSubmit={submit} className="space-y-3">
       <label className="block">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Email</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--pl-ink-dim)]">Email</span>
         <input name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={`${field} mt-1`} />
       </label>
       <label className="block">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Languages you speak, optional</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--pl-ink-dim)]">Languages you speak, optional</span>
         <input name="speaks" maxLength={160} placeholder="English, Spanish" className={`${field} mt-1`} />
       </label>
       <label className="block">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-dim)]">Languages you are learning, optional</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--pl-ink-dim)]">Languages you are learning, optional</span>
         <input name="learning" maxLength={160} placeholder="Japanese" className={`${field} mt-1`} />
       </label>
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
@@ -86,7 +86,7 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
         {state.kind === "sending" ? "Sending" : "Join the learner list"}
       </Button>
       {state.kind === "error" && (
-        <p role="alert" className="font-sans text-sm text-[color:var(--burgundy)]">{state.message}</p>
+        <p role="alert" className="font-sans text-sm text-[color:var(--pl-tyrian)]">{state.message}</p>
       )}
     </form>
   );

@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -78,9 +77,8 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     val combo = remember(seed) { Combo() }
     val view = androidx.compose.ui.platform.LocalView.current
     val scope = rememberCoroutineScope()
-    val p = LocalPalette.current
     tick.let { }
-    if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = p.muted); return }
+    if (round.prompts.isEmpty()) { Text("Learn a few more words first.", color = PL.InkDim); return }
     if (round.finished) {
         LaunchedEffect(round) { graph.markPlayed(kind, c.system, round.results.joinToString("") { if (it) "1" else "0" }) { day, at -> DailyResults.quiz(kind.daily() ?: DailyGame.DailySet, day, round.prompts, round.results, at) } }
         Finished("${round.score} of ${round.prompts.size}", "A finished game keeps your streak. Misses come back in study.", round.results, round.prompts.size, if (kind.daily() != null) null else ({ seed += 1 }))
@@ -91,15 +89,15 @@ fun Quiz(graph: Graph, kind: GameKind, c: GameContext, build: () -> List<GamePro
     ResultDots(round.results, round.prompts.size)
     when (prompt.mode) {
         PromptMode.Form -> {
-            Text("Which is ${Lang.name(prompt.word.lang)} for", color = p.muted)
+            Text("Which is ${Lang.name(prompt.word.lang)} for", color = PL.InkDim)
             WordCard(prompt.word.lang, prompt.word.gloss)
         }
         PromptMode.Flag -> {
-            Text("Which language is this?", color = p.muted)
+            Text("Which language is this?", color = PL.InkDim)
             WordCard(null, prompt.word.form)
         }
         PromptMode.Voice -> {
-            Text("Listen. Which language is it?", color = p.muted)
+            Text("Listen. Which language is it?", color = PL.InkDim)
             LaunchedEffect(prompt) { graph.voice.speak(prompt.word.form, prompt.word.lang, auto = true) }
             PLButton("Play again", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(prompt.word.form, prompt.word.lang) }
         }

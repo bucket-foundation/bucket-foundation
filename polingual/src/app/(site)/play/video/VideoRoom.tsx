@@ -20,9 +20,9 @@ function Line({ text, lang, saved, onWord }: { text: string; lang: string; saved
     <span lang={lang}>
       {words(text, lang).map((w, i) =>
         w.word ? (
-          <button
+          <Button
             key={i}
-            type="button"
+            bare
             className={s.word}
             data-saved={saved.has(`${lang}:${w.text.toLowerCase()}`) || undefined}
             data-testid="cue-word"
@@ -32,7 +32,7 @@ function Line({ text, lang, saved, onWord }: { text: string; lang: string; saved
             }}
           >
             {w.text}
-          </button>
+          </Button>
         ) : (
           <span key={i}>{w.text}</span>
         ),
