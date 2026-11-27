@@ -67,6 +67,38 @@ class Graph(val context: Context) {
     }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radioLog = RadioLog(kv)
+    val studyLog = LogQueue(kv, RadioLog.STUDY_KEY, RadioLog.STUDY_MAX_ROWS)
+    val ci14 = Ci14Prefs(kv)
+
+    fun ci14Consent() = ci14.consent(Ci14.flag, radioLog.gate())
+
+    suspend fun experimentApi(): ExperimentApi? {
+        val token = account.token() ?: return null
+        return object : ExperimentApi {
+            override suspend fun fetch() = api.experiment(token)?.let { ExperimentApi.Fetched(foundation.bucket.core.engine.InputExperiment.parseEnrolment(it.enrolment)) }
+            override suspend fun register(stratum: String) = foundation.bucket.core.engine.InputExperiment.parseEnrolment(api.enrol(token, foundation.bucket.core.engine.InputExperiment.EXPERIMENT_ID, stratum))
+        }
+    }
+
+    suspend fun heldOut(langs: List<String>): Map<String, Set<String>> {
+        if (!foundation.bucket.core.engine.InputExperiment.mayTakePart(ci14Consent())) return emptyMap()
+        return kotlinx.coroutines.withContext(Dispatchers.IO) {
+            langs.associateWith { l -> foundation.bucket.core.engine.InputExperiment.heldOutWords(yesNoForms(l)) }.filterValues { it.isNotEmpty() }
+        }
+    }
+
+    fun yesNoForms(lang: String) = foundation.bucket.core.engine.YesNoTest.parseForms(runCatching { context.assets.open("Corpus/yesno/$lang.json").bufferedReader().use { it.readText() } }.getOrNull())
+
+    fun recordStudy(rows: List<foundation.bucket.core.engine.LogRow>) {
+        if (rows.isEmpty()) return
+        studyLog.append(rows)
+        scope.launch { syncRadio() }
+    }
+
+    fun deviceId(): String {
+        val salt = kv.get("polingual.reviewLog.salt") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.reviewLog.salt", it) }
+        return foundation.bucket.core.engine.ReviewLog.deviceHash(salt, kv.get("polingual.install") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.install", it) })
+    }
     val radio = Radio(context) { h -> logRadio(h) }
 
     private fun logRadio(h: Heard) {
@@ -82,6 +114,7 @@ class Graph(val context: Context) {
     suspend fun syncRadio() = radioLock.withLock {
         val token = account.token() ?: return@withLock
         radioLog.upload { batch -> api.learnEvents(token, batch) }
+        studyLog.upload { batch -> api.learnEvents(token, batch) }
     }
     val billing = Billing(context, this)
     val ads = Ads(context, this)
