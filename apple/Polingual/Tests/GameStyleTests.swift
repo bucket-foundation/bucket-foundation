@@ -24,12 +24,13 @@ struct GameStyleTests {
 
     @Test func polingualSourcesUseOnlyPLTokens() throws {
         let root = LocalizationTests.appleRoot
-        let files = ["Bucket/Sources/Polingual", "Polingual/Sources"].flatMap { dir -> [URL] in
+        let sharedWithClip: Set = ["D8Style.swift", "FlagArt.swift"]
+        let files = ["Bucket/Sources/Polingual", "Polingual/Sources", "Polingual/Widget"].flatMap { dir -> [URL] in
             let all = FileManager.default.enumerator(at: root.appendingPathComponent(dir), includingPropertiesForKeys: nil)?.allObjects as? [URL] ?? []
-            return all.filter { $0.pathExtension == "swift" }
+            return all.filter { $0.pathExtension == "swift" && !sharedWithClip.contains($0.lastPathComponent) }
         }
         #expect(files.count > 50)
-        let banned = ["Palette.", "D8Option", ".system(size", ".serif(", "0x12326A", "0x8C5A1C", "0x5E3B10"]
+        let banned = ["Palette.", "D8Option", "D8.", "Color(hex", "Color(red", ".system(size", ".serif(", "WidgetInk"]
         for url in files {
             let text = try String(contentsOf: url, encoding: .utf8)
             for token in banned {

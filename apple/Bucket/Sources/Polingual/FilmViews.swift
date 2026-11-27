@@ -83,7 +83,7 @@ struct FilmPoster: View {
                 AsyncImage(url: film.poster) { image in
                     image.resizable().scaledToFill()
                 } placeholder: {
-                    Image(systemName: "film").font(PL.script(34, .bold)).foregroundStyle(D8.parchment.opacity(0.6))
+                    Image(systemName: "film").font(PL.script(34, .bold)).foregroundStyle(PL.paper.opacity(0.6))
                 }
             }
             .clipped()
@@ -100,7 +100,7 @@ struct FilmTile: View {
             VStack(alignment: .leading, spacing: 6) {
                 FilmPoster(film: film)
                     .clipShape(.rect(cornerRadius: PL.Radius.md))
-                Text(film.title(langs[0])).font(D8.word(18)).foregroundStyle(PL.ink).lineLimit(2).multilineTextAlignment(.leading)
+                Text(film.title(langs[0])).font(PL.wordFont(18)).foregroundStyle(PL.ink).lineLimit(2).multilineTextAlignment(.leading)
                 HStack(spacing: 4) {
                     Text("\(film.minutes) min").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                     ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 16) }
@@ -158,7 +158,7 @@ struct FilmView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
-                    .tint(D8.lapis)
+                    .tint(PL.lapis)
                 }
                 Text("Subtitles in \(shown.map(langName).joined(separator: ", "))").font(PL.text(15)).foregroundStyle(PL.ink)
                 Text("Subtitles: machine translation of the English original.").font(PL.text(13)).foregroundStyle(PL.inkDim)
@@ -303,7 +303,7 @@ struct FilmPlayer: View {
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 12) {
-                Button("Retry") { clock?.retry() }.buttonStyle(.borderedProminent).tint(D8.lapis)
+                Button("Retry") { clock?.retry() }.buttonStyle(.borderedProminent).tint(PL.lapis)
                 Button("Close") { dismiss() }.buttonStyle(.bordered).tint(.white)
             }
         }

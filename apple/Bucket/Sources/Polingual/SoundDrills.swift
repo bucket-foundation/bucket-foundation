@@ -54,7 +54,7 @@ struct DrillLine: View {
     var body: some View {
         Label(text, systemImage: "arrow.uturn.left")
             .lineLimit(1).minimumScaleFactor(0.7)
-            .font(PL.text(17, .bold)).foregroundStyle(D8.vermilion)
+            .font(PL.text(17, .bold)).foregroundStyle(PL.vermilion)
             .frame(maxWidth: .infinity)
             .opacity(shown ? 1 : 0)
             .accessibilityHidden(!shown)
@@ -253,11 +253,11 @@ struct BlendDrill: View {
         HStack(spacing: 4) {
             ForEach(Array((ex.segments ?? []).enumerated()), id: \.offset) { _, seg in
                 Text(seg)
-                    .font(D8.word(30)).lineLimit(1).minimumScaleFactor(0.4)
+                    .font(PL.wordFont(30)).lineLimit(1).minimumScaleFactor(0.4)
                     .padding(.horizontal, 8).padding(.vertical, 6)
                     .foregroundStyle(seg.lowercased() == taught ? .white : PL.ink)
-                    .background(seg.lowercased() == taught ? D8.vermilion : PL.card, in: .rect(cornerRadius: PL.Radius.sm))
-                    .overlay(RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(D8.keyline))
+                    .background(seg.lowercased() == taught ? PL.vermilion : PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                    .overlay(RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(PL.paper3))
             }
         }
         .frame(maxWidth: .infinity)

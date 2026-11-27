@@ -27,7 +27,7 @@ struct StrengthRadar: View {
     let spokes: [Spoke]
     var compare: [Spoke]? = nil
     var tint: Color = PL.tyrian
-    var compareTint: Color = D8.lapis
+    var compareTint: Color = PL.lapis
 
     var body: some View {
         GeometryReader { g in
@@ -311,7 +311,7 @@ struct GoalBar: View {
                     .font(PL.text(13).monospacedDigit())
                     .foregroundStyle(PL.inkDim)
             }
-            ProgressView(value: goal.progress).tint(goal.progress >= 1 ? D8.malachite : PL.tyrian)
+            ProgressView(value: goal.progress).tint(goal.progress >= 1 ? PL.malachite : PL.tyrian)
         }
         .accessibilityElement(children: .combine)
     }
@@ -513,7 +513,7 @@ struct Avatar: View {
                 .font(PL.script(size * 0.36, .heavy))
                 .foregroundStyle(PL.ink)
             Circle()
-                .stroke(member.studiedToday ? D8.malachite : PL.hairline2, style: StrokeStyle(lineWidth: member.studiedToday ? 4 : 2, dash: member.studiedToday ? [] : [4, 4]))
+                .stroke(member.studiedToday ? PL.malachite : PL.hairline2, style: StrokeStyle(lineWidth: member.studiedToday ? 4 : 2, dash: member.studiedToday ? [] : [4, 4]))
         }
         .frame(width: size, height: size)
     }
@@ -561,7 +561,7 @@ struct TodayStrip: View {
         ForEach(groups.incoming.prefix(3)) { c in
             Label(c.line, systemImage: c.symbol)
                 .font(PL.text(15, .semibold))
-                .foregroundStyle(c.kind == .cheer ? D8.malachite : D8.vermilion)
+                .foregroundStyle(c.kind == .cheer ? PL.malachite : PL.vermilion)
         }
         if !groups.people.isEmpty {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -575,9 +575,9 @@ struct TodayStrip: View {
                                     .lineLimit(1)
                                 Text(sent[p.member.userId].map { $0 == .cheer ? String(localized: "Cheered") : String(localized: "Nudged") }
                                      ?? (p.member.studiedToday ? String(localized: "Cheer") : String(localized: "Nudge")))
-                                    .font(D8.caps(9))
+                                    .font(PL.capsFont(9))
                                     .textCase(.uppercase)
-                                    .foregroundStyle(p.member.studiedToday ? D8.malachite : D8.vermilion)
+                                    .foregroundStyle(p.member.studiedToday ? PL.malachite : PL.vermilion)
                             }
                             .frame(width: 62)
                         }

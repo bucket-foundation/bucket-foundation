@@ -54,8 +54,8 @@ struct Chip: View {
             }
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
-            .background(on ? D8.pickedFace : D8.face, in: .rect(cornerRadius: PL.Radius.md))
-            .overlay(RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(on ? D8.picked : D8.edge, lineWidth: on ? 3 : 2))
+            .background(on ? PL.lapisSoft : PL.card, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay(RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(on ? PL.lapis : PL.paper3, lineWidth: on ? 3 : 2))
         }
         .buttonStyle(TilePress())
         .accessibilityElement(children: .ignore)
@@ -193,9 +193,9 @@ struct PresetCard: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
-            .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
-            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
-            .background(D8.edge, in: .rect(cornerRadius: PL.Radius.md).offset(y: 4))
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.paper3, lineWidth: 2) }
+            .background(PL.paper3, in: .rect(cornerRadius: PL.Radius.md).offset(y: 4))
         }
         .buttonStyle(TilePress())
         .accessibilityLabel("\(name): \(langs.map(langName).joined(separator: ", "))")

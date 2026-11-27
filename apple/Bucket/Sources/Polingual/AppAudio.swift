@@ -265,7 +265,7 @@ struct MiniPlayer: View {
         HStack(spacing: 12) {
             Image(systemName: "dot.radiowaves.left.and.right")
                 .font(PL.script(20, .semibold))
-                .foregroundStyle(D8.vermilion)
+                .foregroundStyle(PL.vermilion)
                 .frame(width: 28)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {

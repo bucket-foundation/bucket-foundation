@@ -159,8 +159,8 @@ struct TranslateCard: View {
                         .foregroundStyle(PL.ink)
                         .padding(.horizontal, 12)
                         .frame(minHeight: 40)
-                        .background(D8.face, in: .capsule)
-                        .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 2) }
+                        .background(PL.card, in: .capsule)
+                        .overlay { Capsule().strokeBorder(PL.paper3, lineWidth: 2) }
                     }
                     .layoutPriority(1)
                     .accessibilityLabel(from.map { String(localized: "Translate from \(Lang.name($0))") } ?? String(localized: "Detect language"))
@@ -170,8 +170,8 @@ struct TranslateCard: View {
                                 .font(PL.text(16, .heavy))
                                 .foregroundStyle(PL.ink)
                                 .frame(width: 44, height: 44)
-                                .background(D8.face, in: .circle)
-                                .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
+                                .background(PL.card, in: .circle)
+                                .overlay { Circle().strokeBorder(PL.paper3, lineWidth: 1.5) }
                         }
                         .buttonStyle(.plain)
                         .accessibilityLabel(Text("Swap languages"))
@@ -205,19 +205,19 @@ struct TranslateCard: View {
                 }
                 .padding(.horizontal, 14)
                 .frame(minHeight: 60)
-                .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
-                .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
+                .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.paper3, lineWidth: 2) }
                 if today {
                     actionRow
                 } else {
                     Button { micTapped() } label: {
                         HStack(spacing: 12) {
                             PLGlyphView(listening ? .stop : .mic, size: 30)
-                            Text(listening ? String(localized: "Stop") : String(localized: "Tap and speak")).font(D8.word(21))
+                            Text(listening ? String(localized: "Stop") : String(localized: "Tap and speak")).font(PL.wordFont(21))
                         }
-                        .foregroundStyle(D8.parchment)
+                        .foregroundStyle(PL.paper)
                         .frame(maxWidth: .infinity, minHeight: 84)
-                        .modifier(GameLip(face: D8.vermilion, lip: D8.vermilionLip))
+                        .modifier(GameLip(face: PL.vermilion, lip: PL.vermilionDeep))
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(listening ? String(localized: "Stop") : String(localized: "Say a word in \(Lang.name(listenLang))"))
@@ -406,14 +406,14 @@ struct TranslateCard: View {
                     .padding(.leading, 10)
                     .padding(.trailing, chosen.count > 1 ? 0 : 10)
                     .frame(minHeight: 36)
-                    .background(D8.face, in: .capsule)
-                    .overlay { Capsule().strokeBorder(D8.edge, lineWidth: 1.5) }
+                    .background(PL.card, in: .capsule)
+                    .overlay { Capsule().strokeBorder(PL.paper3, lineWidth: 1.5) }
                 }
                 Button { picking = true } label: {
                     PLGlyphView(.plus, size: 15).foregroundStyle(PL.ink)
                         .frame(width: 44, height: 44)
-                        .background(D8.face, in: .circle)
-                        .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
+                        .background(PL.card, in: .circle)
+                        .overlay { Circle().strokeBorder(PL.paper3, lineWidth: 1.5) }
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text("Add a language"))
@@ -426,7 +426,7 @@ struct TranslateCard: View {
         ZStack(alignment: .leading) {
             Text(LangListener.shared.live.isEmpty ? String(localized: "Listening in \(Lang.name(listenLang))…") : LangListener.shared.live)
                 .font(PL.text(15, .semibold))
-                .foregroundStyle(LangListener.shared.live.isEmpty ? D8.vermilion : PL.ink)
+                .foregroundStyle(LangListener.shared.live.isEmpty ? PL.vermilion : PL.ink)
                 .truncationMode(.head)
                 .opacity(listening ? 1 : 0)
             Text("Didn't catch that. Tap the mic and try again.")
@@ -439,7 +439,7 @@ struct TranslateCard: View {
                     Link(destination: url) {
                         Text("Open Settings").font(PL.text(15, .bold)).underline()
                     }
-                    .foregroundStyle(D8.vermilion)
+                    .foregroundStyle(PL.vermilion)
                     .accessibilityIdentifier("translate.openSettings")
                 }
             }
@@ -463,7 +463,7 @@ struct TranslateCard: View {
             Button { commit() } label: {
                 Label("Translate", systemImage: "arrow.right")
                     .labelStyle(TrailingIcon())
-                    .font(D8.word(19))
+                    .font(PL.wordFont(19))
                     .frame(minHeight: 52)
             }
             .buttonStyle(D8Primary())
@@ -473,9 +473,9 @@ struct TranslateCard: View {
                 PLGlyphView(listening ? .stop : .mic, size: 26)
                     .foregroundStyle(listening ? PL.paper : PL.vermilion)
                     .frame(width: 60, height: 60)
-                    .background(listening ? D8.vermilion : D8.face, in: .circle)
-                    .overlay { Circle().strokeBorder(listening ? D8.vermilion : D8.edge, lineWidth: 2) }
-                    .background(listening ? D8.vermilionLip : D8.edge, in: .circle.offset(y: 5))
+                    .background(listening ? PL.vermilion : PL.card, in: .circle)
+                    .overlay { Circle().strokeBorder(listening ? PL.vermilion : PL.paper3, lineWidth: 2) }
+                    .background(listening ? PL.vermilionDeep : PL.paper3, in: .circle.offset(y: 5))
                     .padding(.bottom, 5)
             }
             .buttonStyle(.plain)
@@ -488,7 +488,7 @@ struct TranslateCard: View {
         if added.contains(id) {
             Label("Added to your next session", systemImage: "checkmark.circle.fill")
                 .font(PL.text(15, .semibold))
-                .foregroundStyle(D8.malachite)
+                .foregroundStyle(PL.malachite)
         } else {
             Button("Add to my deck") { add(id, corpus) }
                 .buttonStyle(PLOption(align: .center, compact: true))
@@ -547,7 +547,7 @@ struct PhraseActions: View {
             case .added:
                 Label("Added to your next session", systemImage: "checkmark.circle.fill")
                     .font(PL.text(15, .semibold))
-                    .foregroundStyle(D8.malachite)
+                    .foregroundStyle(PL.malachite)
             case .known:
                 Text("These words are already in your deck").font(PL.text(15)).foregroundStyle(PL.inkDim)
             case .none:

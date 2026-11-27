@@ -101,7 +101,7 @@ struct SharedItemsSection: View {
         if !item.mine {
             Button("Report", systemImage: "flag") { reporting = item }.tint(PL.inkDim)
             if let m = group.members.first(where: { $0.userId == item.from }) {
-                Button("Block", systemImage: "hand.raised") { blocking = ModerationTarget(member: m, groupId: group.id) }.tint(D8.vermilion)
+                Button("Block", systemImage: "hand.raised") { blocking = ModerationTarget(member: m, groupId: group.id) }.tint(PL.vermilion)
             }
         }
     }

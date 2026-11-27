@@ -103,7 +103,7 @@ struct SoundGrid: View {
         } label: {
             VStack(spacing: 2) {
                 Text(l.ch).font(PL.text(26, .semibold)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
-                Text(l.sound).font(PL.text(12, .semibold)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.6)
+                Text(l.sound).font(PL.text(12, .semibold)).foregroundStyle(PL.lapis).lineLimit(1).minimumScaleFactor(0.6)
                 Text(l.name ?? " ").font(PL.text(11)).foregroundStyle(PL.inkDim).lineLimit(2, reservesSpace: true).multilineTextAlignment(.center).minimumScaleFactor(0.7)
             }
             .frame(maxWidth: .infinity)
@@ -151,7 +151,7 @@ struct WordFactsView: View {
             Section {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 34)
-                    Text(detail.word).font(D8.word(28)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5)
+                    Text(detail.word).font(PL.wordFont(28)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }

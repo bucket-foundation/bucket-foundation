@@ -122,7 +122,7 @@ struct Paywall: View {
             if nothingToOffer {
                 Text(subs.current == Plan.family ? String(localized: "Polingual Family is open on this Apple Account.") : String(localized: "Polingual is open on this Apple Account."))
                     .font(PL.text(15, .semibold))
-                    .foregroundStyle(D8.parchment)
+                    .foregroundStyle(PL.paper)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(minHeight: 84)
@@ -130,11 +130,11 @@ struct Paywall: View {
             } else if products.isEmpty {
                 VStack(spacing: 10) {
                     if loading {
-                        ProgressView().tint(D8.parchment)
+                        ProgressView().tint(PL.paper)
                     } else {
                         Text("The plans did not load. Check your connection and try again.")
                             .font(PL.text(15, .semibold))
-                            .foregroundStyle(D8.parchment)
+                            .foregroundStyle(PL.paper)
                             .multilineTextAlignment(.center)
                         Button("Try again") { Task { await load() } }.buttonStyle(PLOption(align: .center, compact: true))
                     }
@@ -161,7 +161,7 @@ struct Paywall: View {
             if let lapsedLine, note == nil {
                 Text(lapsedLine)
                     .font(PL.text(13, .semibold))
-                    .foregroundStyle(D8.parchment)
+                    .foregroundStyle(PL.paper)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("lapsedLine")
@@ -169,15 +169,15 @@ struct Paywall: View {
             if freeBeta {
                 Text(FreeBeta.note)
                     .font(PL.text(13))
-                    .foregroundStyle(D8.parchment.opacity(0.85))
+                    .foregroundStyle(PL.paper.opacity(0.85))
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            if let note { Text(note).font(PL.text(15, .semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true) }
+            if let note { Text(note).font(PL.text(15, .semibold)).foregroundStyle(PL.paper).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true) }
             if let product {
                 Text(PaywallCopy.disclosure(trial: !switching && subs.trialEligible && Plan.hasTrial(product.id), days: trialDays, price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
                     .font(PL.text(12))
-                    .foregroundStyle(D8.parchment.opacity(0.85))
+                    .foregroundStyle(PL.paper.opacity(0.85))
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
@@ -188,7 +188,7 @@ struct Paywall: View {
                 Button("Privacy") { openURL(Plan.privacy) }
             }
             .font(PL.text(13, .semibold))
-            .foregroundStyle(D8.parchment.opacity(0.85))
+            .foregroundStyle(PL.paper.opacity(0.85))
             .buttonStyle(LinkPad())
             .confirmationDialog("Other options", isPresented: $otherOptions, titleVisibility: .visible) {
                 Button("Redeem a code") { redeeming = true }
@@ -285,9 +285,9 @@ struct PlanCard: View {
         .buttonStyle(PLOption(selected: selected, align: .center))
         .overlay(alignment: .top) {
             if yearly {
-                Text("BEST VALUE").font(D8.caps(9)).tracking(1).foregroundStyle(.white)
+                Text("BEST VALUE").font(PL.capsFont(9)).tracking(1).foregroundStyle(.white)
                     .padding(.horizontal, 8).padding(.vertical, 3)
-                    .background(D8.ink, in: .capsule)
+                    .background(PL.ink, in: .capsule)
                     .offset(y: -10)
                     .allowsHitTesting(false)
             }
@@ -580,7 +580,7 @@ struct StudentPlan: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text("Student plan").font(PL.script(26, .heavy)).foregroundStyle(D8.ink)
+            Text("Student plan").font(PL.script(26, .heavy)).foregroundStyle(PL.ink)
             Text(price).font(PL.script(20, .bold)).foregroundStyle(PL.tyrian)
             Text("Email us from your school address. We reply with a one-time code for the student price.")
                 .font(PL.text(17)).foregroundStyle(PL.inkDim).fixedSize(horizontal: false, vertical: true)
@@ -589,6 +589,6 @@ struct StudentPlan: View {
         }
         .padding(24)
         .frame(maxHeight: .infinity, alignment: .top)
-        .background(D8.parchment)
+        .background(PL.paper)
     }
 }

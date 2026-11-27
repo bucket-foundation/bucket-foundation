@@ -24,7 +24,7 @@ struct StreakGoalCard: View {
             PLArtView(.streakFlame).frame(height: 34).grayscale(g.lit ? 0 : 1).opacity(g.lit ? 1 : 0.55)
             VStack(alignment: .leading, spacing: 5) {
                 Text(title(g)).font(PL.heading.font(scale: 19 / PL.heading.size)).foregroundStyle(g.pending ? PL.inkDim : PL.ink)
-                ProgressView(value: g.fraction).tint(D8.vermilion)
+                ProgressView(value: g.fraction).tint(PL.vermilion)
                 Text(detail(g)).font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim)
                 if g.day > 0, let line = expectedLine(expected) {
                     Text(line).font(PL.text(12)).foregroundStyle(PL.inkDim)

@@ -268,7 +268,7 @@ struct TodayView: View {
                 if over { dropTarget = item.id } else if dropTarget == item.id { dropTarget = nil }
             }
             .overlay {
-                if dropTarget == item.id { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
+                if dropTarget == item.id { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.lapis, lineWidth: 3).allowsHitTesting(false) }
             }
             .accessibilityIdentifier("today.widget.\(item.id)")
     }
@@ -326,9 +326,9 @@ struct TodayView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         Divider().overlay(PL.hairline2)
                         HStack(spacing: 0) {
-                            Tally(n: due, label: "due now", color: D8.vermilion)
-                            Tally(n: new, label: "new today", color: D8.lapis)
-                            Tally(n: done, label: "done today", color: D8.malachite)
+                            Tally(n: due, label: "due now", color: PL.vermilion)
+                            Tally(n: new, label: "new today", color: PL.lapis)
+                            Tally(n: done, label: "done today", color: PL.malachite)
                         }
                         .padding(.vertical, 4)
                     }
@@ -489,7 +489,7 @@ struct TodaySkeleton: View {
                         }
                     }
                     RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(height: 12).padding(.trailing, 60)
-                    RoundedRectangle(cornerRadius: PL.Radius.md).fill(D8.vermilion.opacity(0.25)).frame(height: 50)
+                    RoundedRectangle(cornerRadius: PL.Radius.md).fill(PL.vermilion.opacity(0.25)).frame(height: 50)
                 }
                 .padding(18)
                 .background(PL.card, in: .rect(cornerRadius: PL.Radius.xl))

@@ -52,7 +52,7 @@ struct TodayHero: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(title).font(PL.script(22, .heavy)).foregroundStyle(urgent ? D8.vermilion : PL.ink)
+                Text(title).font(PL.script(22, .heavy)).foregroundStyle(urgent ? PL.vermilion : PL.ink)
                 Text(detail).font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim)
                 if total > 0 {
                     Text("\(done) of \(total) done").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
@@ -78,18 +78,18 @@ struct TileLook: Equatable {
 
 enum TodayLooks {
     static func game(_ g: GameKind) -> TileLook { .vivid(g.color, g.lip) }
-    static let listen = TileLook.vivid(D8.vermilion, D8.vermilionLip)
-    static let watch = TileLook.vivid(D8.lapis, PL.lapisDeep)
-    static let alphabet = TileLook.vivid(D8.malachite, D8.malachiteLip)
+    static let listen = TileLook.vivid(PL.vermilion, PL.vermilionDeep)
+    static let watch = TileLook.vivid(PL.lapis, PL.lapisDeep)
+    static let alphabet = TileLook.vivid(PL.malachite, PL.malachiteDeep)
     static func branch(_ b: String) -> TileLook { .vivid(BranchTile.face(b)) }
 
     static func lang(_ targets: [String]) -> TileLook {
         for l in targets {
             let flag = D8Flag.of(l)
             let colors = flag.bands.sorted { $0.weight > $1.weight }.map(\.color) + [flag.canton?.color, flag.cross, flag.hoist].compactMap { $0 }
-            if let c = colors.first(where: { deep($0) }) { return .vivid(Color(hex: c)) }
+            if let c = colors.first(where: { deep($0) }) { return .vivid(Color(plHex: c)) }
         }
-        return .vivid(D8.lapis, PL.lapisDeep)
+        return .vivid(PL.lapis, PL.lapisDeep)
     }
 
     static func deep(_ c: UInt32) -> Bool {
@@ -114,9 +114,9 @@ struct TodayTileSkin: ViewModifier {
         } else {
             content
                 .environment(\.colorScheme, .light)
-                .background(D8.face, in: .rect(cornerRadius: radius))
-                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(D8.edge, lineWidth: 2) }
-                .background(D8.edge, in: .rect(cornerRadius: radius).offset(y: 5))
+                .background(PL.card, in: .rect(cornerRadius: radius))
+                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(PL.paper3, lineWidth: 2) }
+                .background(PL.paper3, in: .rect(cornerRadius: radius).offset(y: 5))
                 .padding(.bottom, 5)
         }
     }
@@ -135,15 +135,15 @@ struct TodayWidgetFace: View {
     var badgeRoom: CGFloat = 0
 
     var vivid: Bool { look.face != nil && !done }
-    var ink: Color { vivid ? D8.parchment : PL.ink }
-    var soft: Color { vivid ? D8.parchment.opacity(0.85) : PL.inkDim }
+    var ink: Color { vivid ? PL.paper : PL.ink }
+    var soft: Color { vivid ? PL.paper.opacity(0.85) : PL.inkDim }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
                 ZStack {
-                    Circle().stroke(vivid ? D8.parchment.opacity(0.3) : PL.hairline2, lineWidth: 5)
-                    Circle().trim(from: 0, to: progress).stroke(vivid ? D8.parchment : D8.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
+                    Circle().stroke(vivid ? PL.paper.opacity(0.3) : PL.hairline2, lineWidth: 5)
+                    Circle().trim(from: 0, to: progress).stroke(vivid ? PL.paper : PL.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
                     if done {
                         PLGlyphView(.check, size: 16).foregroundStyle(PL.malachite)
                     } else if let left {
@@ -250,7 +250,7 @@ struct TodayPickTile: View {
                         .padding(.bottom, 5)
                 }
                 .overlay {
-                    if on { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.malachite, lineWidth: 3).padding(.bottom, 5) }
+                    if on { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.malachite, lineWidth: 3).padding(.bottom, 5) }
                 }
         }
         .buttonStyle(.plain)

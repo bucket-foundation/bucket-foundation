@@ -22,9 +22,9 @@ extension CheerReaction {
 
     var face: Color {
         switch self {
-        case .highFive: D8.malachite
-        case .niceStreak: D8.vermilion
-        case .raceYou: D8.lapis
+        case .highFive: PL.malachite
+        case .niceStreak: PL.vermilion
+        case .raceYou: PL.lapis
         case .keepGoing: PL.tyrian
         }
     }
@@ -48,18 +48,18 @@ struct StandingTile: View {
     let standing: GroupStanding
 
     var member: GroupMember { standing.member }
-    var ink: Color { member.isMe ? D8.parchment : PL.ink }
-    var soft: Color { member.isMe ? D8.parchment.opacity(0.85) : PL.inkDim }
+    var ink: Color { member.isMe ? PL.paper : PL.ink }
+    var soft: Color { member.isMe ? PL.paper.opacity(0.85) : PL.inkDim }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
                 Avatar(member: member, size: 40)
                 Spacer(minLength: 0)
-                Text("#\(standing.rank)").font(D8.word(22)).foregroundStyle(ink)
+                Text("#\(standing.rank)").font(PL.wordFont(22)).foregroundStyle(ink)
             }
             Text(member.isMe ? String(localized: "You") : member.name)
-                .font(D8.word(18))
+                .font(PL.wordFont(18))
                 .foregroundStyle(ink)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
@@ -78,7 +78,7 @@ struct StandingTile: View {
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .modifier(GameLip(face: member.isMe ? D8.lapis : D8.face, lip: member.isMe ? PL.lapisDeep : D8.edge))
+        .modifier(GameLip(face: member.isMe ? PL.lapis : PL.card, lip: member.isMe ? PL.lapisDeep : PL.paper3))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(summary))
     }
@@ -197,7 +197,7 @@ struct ReactionRow: View {
                 .lineLimit(2, reservesSpace: true)
                 .minimumScaleFactor(0.8)
         }
-        .foregroundStyle(D8.parchment)
+        .foregroundStyle(PL.paper)
         .padding(.vertical, 8)
         .padding(.horizontal, 4)
         .frame(maxWidth: .infinity)

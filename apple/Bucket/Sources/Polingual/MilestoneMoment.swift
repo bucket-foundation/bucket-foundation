@@ -49,7 +49,7 @@ struct MilestoneMoment: View {
             }
         case .streak:
             Image(systemName: "flame.fill").font(PL.text(84))
-                .foregroundStyle(LinearGradient(colors: [PL.ochre, D8.vermilion], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(LinearGradient(colors: [PL.ochre, PL.vermilion], startPoint: .top, endPoint: .bottom))
         }
     }
 

@@ -252,7 +252,7 @@ struct GroupView: View {
                                 Button("Remove", role: .destructive) { removing = m }
                             }
                             if !m.isMe {
-                                Button("Block") { blocking = ModerationTarget(member: m, groupId: g.id) }.tint(D8.vermilion)
+                                Button("Block") { blocking = ModerationTarget(member: m, groupId: g.id) }.tint(PL.vermilion)
                                 Button("Report") { reporting = ModerationTarget(member: m, groupId: g.id) }.tint(PL.inkDim)
                             }
                         }
@@ -378,7 +378,7 @@ struct MemberRow: View {
                             Image(systemName: "flame.fill")
                             Text(member.streak, format: .number)
                         }
-                        .foregroundStyle(member.streak > 0 ? D8.vermilion : PL.inkDim)
+                        .foregroundStyle(member.streak > 0 ? PL.vermilion : PL.inkDim)
                         .accessibilityLabel(Text(dayStreak(member.streak)))
                         Text("\(member.todayReviews) today")
                             .foregroundStyle(PL.inkDim)
@@ -400,7 +400,7 @@ struct Badge: View {
 
     var body: some View {
         Text(text)
-            .font(D8.caps(10))
+            .font(PL.capsFont(10))
             .textCase(.uppercase)
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
@@ -519,7 +519,7 @@ struct MemberView: View {
             RecentWordsSection(member: member)
             if member.subjects.count >= 3 {
                 Section {
-                    StrengthRadar(spokes: member.subjectSpokes, compare: comparing ? me?.subjectSpokes : nil, tint: D8.lapis, compareTint: D8.vermilion)
+                    StrengthRadar(spokes: member.subjectSpokes, compare: comparing ? me?.subjectSpokes : nil, tint: PL.lapis, compareTint: PL.vermilion)
                         .frame(maxWidth: 340)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
@@ -585,7 +585,7 @@ struct MyStrength: View {
                         .padding(.vertical, 6)
                 }
                 if me.subjects.count >= 3 {
-                    StrengthRadar(spokes: me.subjectSpokes, tint: D8.lapis)
+                    StrengthRadar(spokes: me.subjectSpokes, tint: PL.lapis)
                         .frame(maxWidth: 300)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 6)

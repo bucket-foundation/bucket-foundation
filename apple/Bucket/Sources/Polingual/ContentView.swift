@@ -227,7 +227,7 @@ struct ReadList: View {
             LazyVGrid(columns: learnColumns, spacing: 14) {
                 ForEach(ContentCatalog.topics(in: branch)) { t in
                     LearnTile(title: t.title, detail: branchTitle(t.branch), face: BranchTile.face(t.branch), item: .topic(t), open: { open(t) }) {
-                        Text(BranchTile.glyph(t.branch)).font(PL.script(26, .bold)).foregroundStyle(D8.parchment)
+                        Text(BranchTile.glyph(t.branch)).font(PL.script(26, .bold)).foregroundStyle(PL.paper)
                     }
                 }
             }
@@ -371,12 +371,12 @@ struct ListenList: View {
                 }
                 LazyVGrid(columns: learnColumns, spacing: 14) {
                     ForEach(shown) { s in
-                        LearnTile(title: s.name, detail: radio.failedId == s.id ? String(localized: "This station did not play.") : s.country, face: radio.playing == s.id ? D8.vermilion : BranchTile.face(s.branch), open: { radio.toggle(s) }) {
+                        LearnTile(title: s.name, detail: radio.failedId == s.id ? String(localized: "This station did not play.") : s.country, face: radio.playing == s.id ? PL.vermilion : BranchTile.face(s.branch), open: { radio.toggle(s) }) {
                             LearnSymbol(name: radio.playing == s.id ? "stop.fill" : "play.fill")
                         }
                         .accessibilityLabel(Text(radio.playing == s.id ? "Stop \(s.name)" : "Play \(s.name)"))
                         .overlay(alignment: .topTrailing) {
-                            ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l))).tint(D8.parchment).padding(10)
+                            ShareObjectButton(.content(ShareMoment(title: s.name, source: s.country, branch: s.branch, lang: l))).tint(PL.paper).padding(10)
                         }
                         .contextMenu {
                             Button("Report station", systemImage: "flag", role: .destructive) { report(s) }
@@ -424,7 +424,7 @@ struct WatchList: View {
                             FlagTile(lang: l, size: 30)
                         }
                         .overlay(alignment: .topTrailing) {
-                            ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l, topic: t.title))).tint(D8.parchment).padding(10)
+                            ShareObjectButton(.content(ShareMoment(title: title ?? t.title, source: branchTitle(t.branch), branch: t.branch, lang: l, topic: t.title))).tint(PL.paper).padding(10)
                         }
                     }
                 }

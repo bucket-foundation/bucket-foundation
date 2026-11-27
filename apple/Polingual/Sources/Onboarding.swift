@@ -71,7 +71,7 @@ struct Onboarding: View {
         VStack(alignment: .leading, spacing: 16) {
             PLStickerLayer(Stickers.onboarding).frame(height: 96)
             PoMark()
-            Text(accented("Language learning for **multilingual** learners.", D8.vermilion))
+            Text(accented("Language learning for **multilingual** learners.", PL.vermilion))
                 .font(PL.title.font(scale: 0.94))
                 .foregroundStyle(PL.ink)
                 .minimumScaleFactor(0.6)
@@ -165,7 +165,7 @@ struct Onboarding: View {
                 }
             }
             if let failed {
-                Text(failed).font(PL.text(13)).foregroundStyle(D8.vermilion)
+                Text(failed).font(PL.text(13)).foregroundStyle(PL.vermilion)
                 Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
             }
         }
@@ -175,7 +175,7 @@ struct Onboarding: View {
         VStack(spacing: 12) {
             HStack(spacing: 8) {
                 ForEach(Step.allCases, id: \.self) { s in
-                    Capsule().fill(s == step ? D8.parchment : D8.parchment.opacity(0.35)).frame(width: s == step ? 22 : 8, height: 8)
+                    Capsule().fill(s == step ? PL.paper : PL.paper.opacity(0.35)).frame(width: s == step ? 22 : 8, height: 8)
                 }
             }
             .accessibilityHidden(true)
@@ -238,7 +238,7 @@ struct PoMark: View {
                     .foregroundStyle(PL.paper)
                     .frame(width: 48, height: 48)
                     .background(PL.tyrian, in: .rect(cornerRadius: PL.Radius.md))
-                Circle().fill(D8.vermilion).frame(width: 9, height: 9).padding(6)
+                Circle().fill(PL.vermilion).frame(width: 9, height: 9).padding(6)
             }
             Text("polingual").font(PL.heading.font()).foregroundStyle(PL.ink)
         }
@@ -286,7 +286,7 @@ struct PlayfulTiles: View {
             let side = fit.side
             VStack(spacing: 12) {
                 if !compact {
-                    Text(accented("One word, **night**, in every language", D8.lapis))
+                    Text(accented("One word, **night**, in every language", PL.lapis))
                         .font(PL.heading.font(scale: 0.75))
                         .foregroundStyle(PL.inkDim)
                         .lineLimit(1)
@@ -354,7 +354,7 @@ struct PlanLine: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            Image(systemName: icon).font(PL.text(15, .bold)).foregroundStyle(D8.lapis).frame(width: 22)
+            Image(systemName: icon).font(PL.text(15, .bold)).foregroundStyle(PL.lapis).frame(width: 22)
             Text(text).font(PL.text(15)).foregroundStyle(PL.ink)
         }
     }

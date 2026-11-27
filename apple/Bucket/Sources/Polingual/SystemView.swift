@@ -201,8 +201,8 @@ struct ProgressBar: View {
         GeometryReader { g in
             ZStack(alignment: .leading) {
                 Capsule().fill(PL.inkDim.opacity(0.15))
-                Capsule().fill(D8.lapis.opacity(0.45)).frame(width: g.size.width * started)
-                Capsule().fill(D8.malachite).frame(width: g.size.width * mastered)
+                Capsule().fill(PL.lapis.opacity(0.45)).frame(width: g.size.width * started)
+                Capsule().fill(PL.malachite).frame(width: g.size.width * mastered)
             }
         }
         .frame(height: 8)

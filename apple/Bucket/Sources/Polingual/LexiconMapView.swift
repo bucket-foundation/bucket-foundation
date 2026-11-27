@@ -13,10 +13,10 @@ extension LexiconWordState {
 
     var tint: Color {
         switch self {
-        case .unseen: D8.disabled
-        case .started: D8.pickedFace
-        case .known: D8.lapis
-        case .mastered: D8.malachite
+        case .unseen: PL.paper2
+        case .started: PL.lapisSoft
+        case .known: PL.lapis
+        case .mastered: PL.malachite
         }
     }
 }
@@ -82,7 +82,7 @@ struct LexiconMark: View {
     var body: some View {
         switch state {
         case .unseen: EmptyView()
-        case .started: Circle().fill(D8.ink).frame(width: size * 0.3, height: size * 0.3)
+        case .started: Circle().fill(PL.ink).frame(width: size * 0.3, height: size * 0.3)
         case .known:
             HStack(spacing: size * 0.14) {
                 Circle().fill(PL.paper).frame(width: size * 0.3, height: size * 0.3)
@@ -101,7 +101,7 @@ struct LexiconSwatch: View {
         GeometryReader { g in
             RoundedRectangle(cornerRadius: g.size.width * 0.18)
                 .fill(state.tint)
-                .overlay { RoundedRectangle(cornerRadius: g.size.width * 0.18).strokeBorder(on ? D8.ink : D8.edge, lineWidth: on ? 3 : 1) }
+                .overlay { RoundedRectangle(cornerRadius: g.size.width * 0.18).strokeBorder(on ? PL.ink : PL.paper3, lineWidth: on ? 3 : 1) }
                 .overlay { LexiconMark(state: state, size: g.size.width) }
         }
         .aspectRatio(1, contentMode: .fit)
@@ -123,8 +123,8 @@ struct LexiconRing: View {
             arc(known, .known, width)
             arc(mastered, .mastered, width)
             VStack(spacing: 0) {
-                Text(verbatim: "\(Int((counts.share * 100).rounded()))%").font(D8.word(size * 0.24)).foregroundStyle(PL.ink)
-                Text(verbatim: "\(counts.learned)").font(D8.caps(size * 0.1)).foregroundStyle(PL.inkDim)
+                Text(verbatim: "\(Int((counts.share * 100).rounded()))%").font(PL.wordFont(size * 0.24)).foregroundStyle(PL.ink)
+                Text(verbatim: "\(counts.learned)").font(PL.capsFont(size * 0.1)).foregroundStyle(PL.inkDim)
             }
             .monospacedDigit()
         }
@@ -391,12 +391,12 @@ struct LexiconLanguageView: View {
         VStack(spacing: 8) {
             WideTile(word: w.form, lang: w.lang, reading: w.reading, state: w.state == .mastered ? .right : .plain)
             HStack(spacing: 8) {
-                Text(verbatim: w.meaning).font(PL.text(17, .bold)).foregroundStyle(D8.ink)
+                Text(verbatim: w.meaning).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
                 Spacer()
-                Text(verbatim: w.state.label).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label)
+                Text(verbatim: w.state.label).font(PL.capsFont(11)).tracking(0.9).foregroundStyle(PL.inkDim)
                 Button { picked = nil } label: { PLGlyphView(.close, size: 16).frame(width: 44, height: 44) }
                     .buttonStyle(.borderless)
-                    .tint(D8.ink)
+                    .tint(PL.ink)
                     .accessibilityLabel(Text("Close"))
             }
         }

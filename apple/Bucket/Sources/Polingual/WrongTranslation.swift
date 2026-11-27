@@ -131,7 +131,7 @@ struct WrongTranslationSheet: View {
                         Image(systemName: done.symbol)
                     }
                     .font(PL.text(15, .semibold))
-                    .foregroundStyle(done == .sent ? D8.malachite : done == .rejected ? PL.ink : PL.inkDim)
+                    .foregroundStyle(done == .sent ? PL.malachite : done == .rejected ? PL.ink : PL.inkDim)
                 } else {
                     LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
                         ForEach(TranslationIssue.allCases) { r in
@@ -145,8 +145,8 @@ struct WrongTranslationSheet: View {
                         .font(PL.script(17, .semibold))
                         .padding(.horizontal, 14)
                         .padding(.vertical, 12)
-                        .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
-                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
+                        .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
+                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.paper3, lineWidth: 2) }
                         .autocorrectionDisabled()
                         .langInput(subject.lang)
                         .focused($typing)

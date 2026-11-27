@@ -78,32 +78,32 @@ struct TileFace: View {
         let phrase = word.map(D8Fit.wraps) ?? false
         ZStack {
             FlagFace(flag: D8Flag.of(lang), emblem: false)
-            RoundedRectangle(cornerRadius: max(6, size * 0.03)).fill(D8.panel).padding(inset)
+            RoundedRectangle(cornerRadius: max(6, size * 0.03)).fill(PL.paper.opacity(0.8)).padding(inset)
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
-                    Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(langName(lang).uppercased()).font(PL.capsFont(size * 0.055)).tracking(0.8).foregroundStyle(PL.inkDim).lineLimit(1).minimumScaleFactor(0.6)
                     Spacer(minLength: 0)
-                    if phrase && speaker { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.08)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    if phrase && speaker { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.08)).foregroundStyle(PL.ink.opacity(0.55)) }
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
                 if let word {
                     HStack(spacing: 6) {
                         Text(word)
-                            .font(D8.word(phrase ? D8Fit.tileFont(word, side: size) : size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
+                            .font(PL.wordFont(phrase ? D8Fit.tileFont(word, side: size) : size * (glyph ? 0.42 : D8Fit.long(word) ? 0.15 : 0.21)))
                             .lineLimit(phrase ? 6 : 1)
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(phrase ? 0.8 : 0.4)
-                            .foregroundStyle(D8.ink)
-                        if speaker && !glyph && !phrase { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                            .foregroundStyle(PL.ink)
+                        if speaker && !glyph && !phrase { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.09)).foregroundStyle(PL.ink.opacity(0.55)) }
                     }
                     .layoutPriority(1)
                     .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 } else {
-                    Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
+                    Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.24)).foregroundStyle(PL.ink.opacity(0.6))
                 }
                 Spacer(minLength: 0)
-                Text(word == nil ? " " : reading ?? " ").font(PL.text(size * (phrase ? 0.062 : 0.075))).foregroundStyle(D8.ipa).lineLimit(phrase ? 3 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
+                Text(word == nil ? " " : reading ?? " ").font(PL.text(size * (phrase ? 0.062 : 0.075))).foregroundStyle(PL.inkDim).lineLimit(phrase ? 3 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: phrase)
             }
             .padding(.horizontal, inset * 1.7)
@@ -136,15 +136,15 @@ struct WideTile: View {
             VStack(spacing: 2) {
                 HStack(spacing: 6) {
                     Text(word)
-                        .font(D8.word(D8Fit.wide(word) && !word.contains(" ") ? 18 : 24))
+                        .font(PL.wordFont(D8Fit.wide(word) && !word.contains(" ") ? 18 : 24))
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                        .foregroundStyle(D8.ink)
-                    if canSay { PLGlyphView(.speaker, size: 17).foregroundStyle(D8.ink.opacity(0.55)) }
+                        .foregroundStyle(PL.ink)
+                    if canSay { PLGlyphView(.speaker, size: 17).foregroundStyle(PL.ink.opacity(0.55)) }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(reading) {
-                    Text(r).font(PL.text(13)).foregroundStyle(D8.ipa).lineLimit(2).multilineTextAlignment(.center)
+                    Text(r).font(PL.text(13)).foregroundStyle(PL.inkDim).lineLimit(2).multilineTextAlignment(.center)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -153,24 +153,24 @@ struct WideTile: View {
             .padding(.bottom, 8)
             .overlay(alignment: .topLeading) {
                 if label {
-                    Text(langName(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
+                    Text(langName(lang).uppercased()).font(PL.capsFont(11)).tracking(0.9).foregroundStyle(PL.inkDim).padding(.leading, 10).padding(.top, 7)
                 }
             }
-            .background(D8.panel, in: .rect(cornerRadius: PL.Radius.xs))
+            .background(PL.paper.opacity(0.8), in: .rect(cornerRadius: PL.Radius.xs))
             .padding(10)
             .background { FlagFace(flag: D8Flag.of(lang), emblem: false) }
             .overlay { Shine() }
             .modifier(Glaze(radius: 14, lip: 6))
             .padding(state == .right ? 6 : 0)
             .overlay {
-                if state == .right { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.malachite, lineWidth: 3) }
+                if state == .right { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.malachite, lineWidth: 3) }
             }
             .overlay(alignment: .topTrailing) {
                 if state == .right {
                     PLGlyphView(.check, size: 14)
                         .foregroundStyle(PL.paper)
                         .frame(width: 26, height: 26)
-                        .background(D8.malachite, in: .circle)
+                        .background(PL.malachite, in: .circle)
                         .offset(x: 8, y: -8)
                 }
             }
@@ -207,7 +207,7 @@ struct AnswerRow: View {
                 Text(langName(lang)).plType(PL.label).foregroundStyle(PL.inkDim)
                 HStack(spacing: 6) {
                     Text(tapText(word, lang)).font(PL.heading.font(scale: (state == .right ? 19 : 17) / PL.heading.size))
-                        .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
+                        .strikethrough(state == .wrong, color: PL.vermilion).lineLimit(2).layoutPriority(1)
                     if let tag { Text(tag).font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim) }
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
@@ -223,15 +223,15 @@ struct AnswerRow: View {
             Spacer(minLength: 0)
             if state != .other {
                 PLGlyphView(state == .right ? .check : .close, size: 12).foregroundStyle(PL.paper)
-                    .frame(width: 22, height: 22).background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
+                    .frame(width: 22, height: 22).background(state == .right ? PL.malachite : PL.vermilion, in: .circle)
             }
         }
         .padding(.horizontal, 12)
         .padding(.vertical, state == .right ? 8 : 0)
         .frame(minHeight: FitScale.naturalTarget)
-        .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: PL.Radius.md))
+        .background(state == .right ? PL.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: PL.Radius.md))
         .overlay {
-            if state != .other { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
+            if state != .other { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(state == .right ? PL.malachite : PL.vermilion, lineWidth: 2) }
         }
         .opacity(state != .other ? 1 : tag == nil ? 0.38 : 0.75)
     }
@@ -264,17 +264,17 @@ struct MiniTile: View {
 
     private var face: some View {
         VStack(spacing: 1) {
-            Text(word ?? "?").font(D8.word(18)).lineLimit(1).minimumScaleFactor(0.5).foregroundStyle(word == nil ? D8.disabledText : D8.ink)
-            Text(readingText(reading) ?? " ").font(PL.text(11)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
+            Text(word ?? "?").font(PL.wordFont(18)).lineLimit(1).minimumScaleFactor(0.5).foregroundStyle(word == nil ? PL.inkFaint : PL.ink)
+            Text(readingText(reading) ?? " ").font(PL.text(11)).foregroundStyle(PL.inkDim).lineLimit(1).minimumScaleFactor(0.6)
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 16)
         .padding(.bottom, 6)
         .padding(.horizontal, 4)
         .overlay(alignment: .topLeading) {
-            Text(langName(lang).uppercased()).font(D8.caps(8)).tracking(0.6).foregroundStyle(D8.label).padding(.leading, 6).padding(.top, 5)
+            Text(langName(lang).uppercased()).font(PL.capsFont(8)).tracking(0.6).foregroundStyle(PL.inkDim).padding(.leading, 6).padding(.top, 5)
         }
-        .background(D8.panel, in: .rect(cornerRadius: PL.Radius.xs))
+        .background(PL.paper.opacity(0.8), in: .rect(cornerRadius: PL.Radius.xs))
         .padding(6)
         .background { FlagFace(flag: D8Flag.of(lang)) }
         .modifier(Glaze(radius: 10, lip: 4))
@@ -292,15 +292,15 @@ struct D8Primary: ButtonStyle {
         let pressed = configuration.isPressed && enabled
         configuration.label
             .font(PL.heading.font(scale: 18 / PL.heading.size))
-            .foregroundStyle(enabled ? PL.paper : D8.disabledText)
+            .foregroundStyle(enabled ? PL.paper : PL.inkFaint)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .minimumScaleFactor(0.8)
             .padding(.horizontal, compact ? 18 : 14)
             .padding(.vertical, compact ? 0 : 6)
             .frame(maxWidth: compact ? nil : .infinity, minHeight: FitScale.naturalTarget)
-            .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: PL.Radius.md, style: .continuous))
-            .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: PL.Radius.md, style: .continuous).offset(y: pressed ? 1 : PL.Lip.md))
+            .background(enabled ? PL.vermilion : PL.paper2, in: .rect(cornerRadius: PL.Radius.md, style: .continuous))
+            .background(enabled ? PL.vermilionDeep : PL.paper2.opacity(0.6), in: .rect(cornerRadius: PL.Radius.md, style: .continuous).offset(y: pressed ? 1 : PL.Lip.md))
             .offset(y: pressed ? 3 : 0)
             .padding(.bottom, 4)
     }
@@ -321,7 +321,7 @@ struct BranchTile: View {
         "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"), "la": (0x5B1A4A, "Aa"),
     ]
 
-    static func face(_ branch: String) -> Color { Color(hex: pigments[String(branch.prefix(2))]?.0 ?? 0x5d5650) }
+    static func face(_ branch: String) -> Color { Color(plHex: pigments[String(branch.prefix(2))]?.0 ?? 0x5d5650) }
 
     static func glyph(_ branch: String) -> String { pigments[String(branch.prefix(2))]?.1 ?? String(branch.prefix(1)).uppercased() }
 
@@ -329,9 +329,9 @@ struct BranchTile: View {
         let p = Self.pigments[String(branch.prefix(2))] ?? (0x5d5650, String(branch.prefix(1)).uppercased())
         Text(p.1)
             .font(PL.script(size * 0.48, .bold))
-            .foregroundStyle(D8.parchment)
+            .foregroundStyle(PL.paper)
             .frame(width: size, height: size)
-            .background(Color(hex: p.0))
+            .background(Color(plHex: p.0))
             .overlay { Shine() }
             .modifier(Glaze(radius: size * 0.23))
             .accessibilityHidden(true)

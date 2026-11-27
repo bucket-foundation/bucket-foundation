@@ -43,7 +43,7 @@ struct AlphabetStudy: View {
                     FitPage {
                         VStack(alignment: .leading, spacing: 12) {
                             HStack(spacing: 10) {
-                                ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
+                                ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(PL.malachite)
                                 Text("\(i + 1)/\(queue.count)").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                             }
                             ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)

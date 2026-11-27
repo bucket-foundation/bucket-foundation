@@ -343,7 +343,7 @@ struct StudyView: View {
             let maps = readingMaps(ex, corpus)
             let page = VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 10) {
-                    ProgressView(value: Double(i), total: Double(queue.count)).tint(D8.malachite)
+                    ProgressView(value: Double(i), total: Double(queue.count)).tint(PL.malachite)
                     Text("\(i + 1)/\(queue.count)").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
                 ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done,

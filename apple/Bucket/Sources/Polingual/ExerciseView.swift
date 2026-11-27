@@ -213,13 +213,13 @@ struct ExerciseView: View {
                                 .overlay(alignment: .topTrailing) {
                                     if matchDone {
                                         Image(systemName: ok ? "checkmark" : "xmark").font(PL.text(12, .heavy)).foregroundStyle(.white)
-                                            .frame(width: 24, height: 24).background(ok ? D8.malachite : D8.vermilion, in: .circle).offset(x: 7, y: -7)
+                                            .frame(width: 24, height: 24).background(ok ? PL.malachite : PL.vermilion, in: .circle).offset(x: 7, y: -7)
                                     }
                                 }
                             if flagNamed(l) || matchDone { Text(langName(l)).font(PL.text(12, .bold)).foregroundStyle(PL.inkDim) }
-                            Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
-                                .foregroundStyle(matchDone ? (ok ? D8.rightText : PL.inkDim) : PL.ink).lineLimit(1).minimumScaleFactor(0.6)
-                            if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.rightText).lineLimit(1).minimumScaleFactor(0.6) }
+                            Text(word ?? " ").font(PL.wordFont(16)).strikethrough(matchDone && !ok, color: PL.vermilion)
+                                .foregroundStyle(matchDone ? (ok ? PL.malachite : PL.inkDim) : PL.ink).lineLimit(1).minimumScaleFactor(0.6)
+                            if matchDone && !ok { Text(truth).font(PL.wordFont(16)).foregroundStyle(PL.malachite).lineLimit(1).minimumScaleFactor(0.6) }
                             if matchDone && LangVoice.shared.canSpeak(truth, l) {
                                 Image(systemName: "speaker.wave.2.fill").font(PL.text(13)).foregroundStyle(PL.inkDim)
                             }
@@ -399,8 +399,8 @@ struct ExerciseView: View {
             .foregroundStyle(PL.ink)
             .padding(.horizontal, 16)
             .frame(minHeight: 52)
-            .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
-            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.paper3, lineWidth: 2) }
             .autocorrectionDisabled()
             .langInput(ex.answerLang)
             .focused($focused)
@@ -466,9 +466,9 @@ struct Answered: View {
         let target = ex.answerLang == ex.lang ? shownAnswer(ex) : ex.prompt
         VStack(alignment: .leading, spacing: 12) {
             if verdict == .close {
-                Text("Close. Check the spelling and accents.").font(PL.text(15, .semibold)).foregroundStyle(D8.rightText)
+                Text("Close. Check the spelling and accents.").font(PL.text(15, .semibold)).foregroundStyle(PL.malachite)
             } else if !ok {
-                (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(PL.text(15, .semibold)).foregroundStyle(D8.vermilion)
+                (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(PL.text(15, .semibold)).foregroundStyle(PL.vermilion)
             }
             AnswerRow(word: target, lang: ex.lang, state: .right, reading: reading)
             Notes(ex: ex, showNote: !ok || ex.kind == .conjugate || ex.kind == .gender)
@@ -551,8 +551,8 @@ struct FamilyLine: View {
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 6)
-                        .background(D8.face, in: .rect(cornerRadius: PL.Radius.sm))
-                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(D8.edge, lineWidth: 1.5) }
+                        .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(PL.paper3, lineWidth: 1.5) }
                         .accessibilityElement(children: .combine)
                         .fixedSize()
                     }

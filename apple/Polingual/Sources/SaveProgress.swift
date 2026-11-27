@@ -40,7 +40,7 @@ struct SaveProgressSheet: View {
                     .buttonStyle(PLOption(align: .center))
                     .disabled(account.busy)
                 if let error = account.error {
-                    Text(error).font(PL.text(13)).foregroundStyle(D8.vermilion)
+                    Text(error).font(PL.text(13)).foregroundStyle(PL.vermilion)
                 }
                 if account.busy { ProgressView().frame(maxWidth: .infinity) }
                 Button("Not now") { dismiss() }

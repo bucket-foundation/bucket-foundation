@@ -68,7 +68,7 @@ struct WordCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 30)
-                    Text(detail.word).font(D8.word(26)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
+                    Text(detail.word).font(PL.wordFont(26)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }

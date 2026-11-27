@@ -63,7 +63,7 @@ struct AddToToday: View {
             case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(PL.script(22, .bold))
             }
         }
-        .tint(color ?? (on ? D8.malachite : PL.ink))
+        .tint(color ?? (on ? PL.malachite : PL.ink))
         .buttonStyle(.borderless)
         .accessibilityLabel(title)
         .accessibilityIdentifier("addToToday.\(item.id)")

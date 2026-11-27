@@ -109,7 +109,7 @@ struct LibraryList: View {
         return HStack(alignment: .top, spacing: 14) {
             Image(systemName: "book.closed.fill")
                 .font(PL.text(24, .bold))
-                .foregroundStyle(D8.parchment)
+                .foregroundStyle(PL.paper)
                 .frame(width: 52, height: 52)
                 .background(PL.ochreDeep, in: .rect(cornerRadius: PL.Radius.md))
             VStack(alignment: .leading, spacing: 4) {
@@ -121,7 +121,7 @@ struct LibraryList: View {
                     .environment(\.layoutDirection, Lang.isRTL(first) ? .rightToLeft : .leftToRight)
                 Text(book.author).font(PL.text(15)).foregroundStyle(PL.inkDim)
                 if at > 0 {
-                    ProgressView(value: Double(at + 1), total: Double(max(1, book.sentences))).tint(D8.malachite)
+                    ProgressView(value: Double(at + 1), total: Double(max(1, book.sentences))).tint(PL.malachite)
                     Text("Sentence \(at + 1) of \(book.sentences)").font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
             }
@@ -129,8 +129,8 @@ struct LibraryList: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(D8.face, in: .rect(cornerRadius: PL.Radius.lg))
-        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.edge, lineWidth: 2) }
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.paper3, lineWidth: 2) }
     }
 }
 
@@ -189,7 +189,7 @@ struct LibraryReader: View {
             .scrollPosition(id: $page)
             .scrollIndicators(.hidden)
             VStack(spacing: 8) {
-                ProgressView(value: Double(at + 1), total: Double(max(1, total))).tint(D8.malachite)
+                ProgressView(value: Double(at + 1), total: Double(max(1, total))).tint(PL.malachite)
                 HStack {
                     Button { go(at - 1, total) } label: { Label("Previous", systemImage: "chevron.backward") }
                         .disabled(at == 0)
@@ -255,7 +255,7 @@ struct LibraryReader: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
-        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.edge, lineWidth: 1) }
+        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.paper3, lineWidth: 1) }
     }
 
     func row(_ lang: String, _ text: String) -> some View {
