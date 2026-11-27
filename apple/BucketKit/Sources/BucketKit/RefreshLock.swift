@@ -54,7 +54,7 @@ public final class FileRefreshLock: RefreshLock, @unchecked Sendable {
     }
 
     public static func fileName(userId: String?) -> String {
-        userId.map { "refresh-\($0).lock" } ?? "session-refresh.lock"
+        userId.map { "refresh-\(AccountIndex.key($0)).lock" } ?? "session-refresh.lock"
     }
 
     deinit {

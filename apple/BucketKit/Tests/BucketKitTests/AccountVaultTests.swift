@@ -26,7 +26,7 @@ import Testing
         b.clear()
         #expect(items.accounts == ["session.A"])
         #expect(index.rows.map(\.userId) == ["A"])
-        #expect(index.activeUserId == nil)
+        #expect(index.activeUserId == "A")
     }
 
     @Test func boundStoreRefusesAnotherUsersSession() throws {
@@ -50,14 +50,16 @@ import Testing
     @Test func legacySessionMigratesToUserKey() throws {
         let (items, index) = fresh()
         try items.setSession(session("A"), SessionItem.legacy)
-        let store = SessionVault.store(multiAccount: true, items: items, index: index, label: "a***@example.com")
+        let store = SessionVault.store(multiAccount: true, items: items, index: index, label: "a***@example.com", launch: "1")
         #expect(store.load() == session("A"))
         #expect(items.session(SessionItem.user("A")) == session("A"))
         #expect(items.data(SessionItem.legacy) != nil)
         #expect(index.activeUserId == "A")
         #expect(index.rows.first?.label == "a***@example.com")
         #expect(index.rows.first?.accountKey == AccountIndex.key("A"))
-        _ = SessionVault.store(multiAccount: true, items: items, index: index)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1")
+        #expect(items.data(SessionItem.legacy) != nil)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "2")
         #expect(items.data(SessionItem.legacy) == nil)
         #expect(items.session(SessionItem.user("A")) == session("A"))
     }
@@ -65,10 +67,10 @@ import Testing
     @Test func flagOffWritesReachTheUserItem() throws {
         let (items, index) = fresh()
         try items.setSession(session("A"), SessionItem.legacy)
-        _ = SessionVault.store(multiAccount: true, items: items, index: index)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1")
         let off = SessionVault.store(multiAccount: false, items: items, index: index)
         try off.save(session("A", "r2", expires: 2_000))
-        let on = SessionVault.store(multiAccount: true, items: items, index: index)
+        let on = SessionVault.store(multiAccount: true, items: items, index: index, launch: "2")
         #expect(on.load()?.refreshToken == "r2-A")
         #expect(items.data(SessionItem.legacy) == nil)
     }
@@ -89,8 +91,8 @@ import Testing
     @Test func flagOffAfterSecondLaunchKeepsSession() throws {
         let (items, index) = fresh()
         try items.setSession(session("A"), SessionItem.legacy)
-        _ = SessionVault.store(multiAccount: true, items: items, index: index)
-        _ = SessionVault.store(multiAccount: true, items: items, index: index)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1")
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "2")
         #expect(items.data(SessionItem.legacy) == nil)
         let off = SessionVault.store(multiAccount: false, items: items, index: index)
         #expect(off.load() == session("A"))
@@ -106,7 +108,7 @@ import Testing
     @Test func flagOffPrefersNewerLegacyForSameUser() throws {
         let (items, index) = fresh()
         try items.setSession(session("A"), SessionItem.legacy)
-        _ = SessionVault.store(multiAccount: true, items: items, index: index)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1")
         try items.setSession(session("A", "r3", expires: 3_000), SessionItem.legacy)
         #expect(SessionVault.store(multiAccount: false, items: items, index: index).load()?.refreshToken == "r3-A")
     }
@@ -132,8 +134,62 @@ import Testing
         items.remove(SessionItem.user("B"))
         let store = SessionVault.store(multiAccount: true, items: items, index: index)
         #expect(index.rows.map(\.userId) == ["A"])
-        #expect(index.activeUserId == nil)
-        #expect(store.load() == nil)
+        #expect(index.activeUserId == "A")
+        #expect(store.load() == session("A"))
+    }
+
+    @Test func unreadableKeychainKeepsEveryRow() throws {
+        let (items, index) = fresh()
+        try UserSessionStore(items: items, index: index, userId: nil).save(session("A"))
+        items.lockReads(true)
+        index.prune(items)
+        #expect(index.rows.map(\.userId) == ["A"])
+        #expect(index.activeUserId == "A")
+    }
+
+    @Test func refusedWriteKeepsTheOldTokenAndBindsNothing() throws {
+        let (items, index) = fresh()
+        let a = UserSessionStore(items: items, index: index, userId: nil)
+        try a.save(session("A"))
+        items.refuseWrites(true)
+        #expect(throws: BucketError.self) { try a.save(session("A", "r2", expires: 2_000)) }
+        #expect(a.load() == session("A"))
+        let b = UserSessionStore(items: items, index: index, userId: nil)
+        #expect(throws: BucketError.self) { try b.save(session("B")) }
+        #expect(b.userId == nil)
+        #expect(index.rows.map(\.userId) == ["A"])
+        #expect(index.activeUserId == "A")
+    }
+
+    @Test func extensionRefreshKeepsTheActiveAccount() throws {
+        let (items, index) = fresh()
+        try UserSessionStore(items: items, index: index, userId: nil).save(session("A"))
+        try UserSessionStore(items: items, index: index, userId: nil).save(session("B"))
+        try SessionVault.extensionStore(items: items, index: index).save(session("A", "r2", expires: 2_000))
+        #expect(index.activeUserId == "B")
+        #expect(items.session(SessionItem.user("A"))?.refreshToken == "r2-A")
+    }
+
+    @Test func flagOffSignInOfANewUserWins() throws {
+        let (items, index) = fresh()
+        try items.setSession(session("A"), SessionItem.legacy)
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1")
+        _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "2")
+        let off = SessionVault.store(multiAccount: false, items: items, index: index)
+        off.clear()
+        try off.save(session("B"))
+        #expect(off.load()?.userId == "B")
+        try UserSessionStore(items: items, index: index, userId: nil).save(session("C"))
+        let off2 = SessionVault.store(multiAccount: false, items: items, index: index)
+        try off2.save(session("D"))
+        #expect(off2.load()?.userId == "D")
+    }
+
+    @Test func oneLaunchCountsOnce() throws {
+        let (items, index) = fresh()
+        try items.setSession(session("A"), SessionItem.legacy)
+        for _ in 0..<3 { _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "1") }
+        #expect(items.data(SessionItem.legacy) != nil)
     }
 
     @Test func accountKeyAndMask() {
@@ -146,7 +202,7 @@ import Testing
 
     @Test func refreshLockFileIsPerUser() {
         #expect(FileRefreshLock.fileName(userId: nil) == "session-refresh.lock")
-        #expect(FileRefreshLock.fileName(userId: "A") == "refresh-A.lock")
+        #expect(FileRefreshLock.fileName(userId: "a/b") == "refresh-\(AccountIndex.key("a/b")).lock")
     }
 
     @Test func multiAccountFlagDefaultsOff() {

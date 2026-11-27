@@ -2,7 +2,10 @@ import CryptoKit
 import Foundation
 import Security
 
+public enum ItemState: Sendable, Equatable { case present, missing, unreadable }
+
 public protocol SecretItems: Sendable {
+    func state(_ account: String) -> ItemState
     func data(_ account: String) -> Data?
     func set(_ data: Data, _ account: String) throws
     func remove(_ account: String)
@@ -23,17 +26,32 @@ public struct KeychainItems: SecretItems {
         return q
     }
 
-    public func data(_ account: String) -> Data? {
+    func read(_ account: String) -> (OSStatus, Data?) {
         var q = query(account)
         q[kSecReturnData as String] = true
         q[kSecMatchLimit as String] = kSecMatchLimitOne
         var out: CFTypeRef?
-        guard SecItemCopyMatching(q as CFDictionary, &out) == errSecSuccess else { return nil }
-        return out as? Data
+        let status = SecItemCopyMatching(q as CFDictionary, &out)
+        return (status, out as? Data)
+    }
+
+    public func state(_ account: String) -> ItemState {
+        switch read(account).0 {
+        case errSecSuccess: .present
+        case errSecItemNotFound: .missing
+        default: .unreadable
+        }
+    }
+
+    public func data(_ account: String) -> Data? {
+        let (status, data) = read(account)
+        return status == errSecSuccess ? data : nil
     }
 
     public func set(_ data: Data, _ account: String) throws {
-        remove(account)
+        let update = SecItemUpdate(query(account) as CFDictionary, [kSecValueData as String: data] as CFDictionary)
+        if update == errSecSuccess { return }
+        guard update == errSecItemNotFound else { throw BucketError.server(Int(update), "Keychain refused the session.") }
         var q = query(account)
         q[kSecValueData as String] = data
         q[kSecAttrAccessible as String] = kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
@@ -49,11 +67,26 @@ public struct KeychainItems: SecretItems {
 public final class MemorySecretItems: SecretItems, @unchecked Sendable {
     private let lock = NSLock()
     private var items: [String: Data] = [:]
+    private var locked = false
+    private var refuseWrites = false
 
     public init() {}
 
-    public func data(_ account: String) -> Data? { lock.withLock { items[account] } }
-    public func set(_ data: Data, _ account: String) throws { lock.withLock { items[account] = data } }
+    public func lockReads(_ on: Bool) { lock.withLock { locked = on } }
+    public func refuseWrites(_ on: Bool) { lock.withLock { refuseWrites = on } }
+
+    public func state(_ account: String) -> ItemState {
+        lock.withLock { locked ? .unreadable : items[account] == nil ? .missing : .present }
+    }
+
+    public func data(_ account: String) -> Data? { lock.withLock { locked ? nil : items[account] } }
+
+    public func set(_ data: Data, _ account: String) throws {
+        try lock.withLock {
+            if refuseWrites { throw BucketError.server(-25308, "Keychain refused the session.") }
+            items[account] = data
+        }
+    }
     public func remove(_ account: String) { _ = lock.withLock { items.removeValue(forKey: account) } }
     public var accounts: Set<String> { lock.withLock { Set(items.keys) } }
 }
@@ -87,6 +120,8 @@ public final class AccountIndex: @unchecked Sendable {
     static let rowsKey = "accounts.rows"
     static let activeKey = "accounts.active"
     static let legacyLaunchesKey = "accounts.legacyLaunches"
+    static let legacyLaunchIdKey = "accounts.legacyLaunchId"
+    public static let launchId = UUID().uuidString
 
     let defaults: UserDefaults
     private let lock = NSLock()
@@ -149,18 +184,30 @@ public final class AccountIndex: @unchecked Sendable {
 
     public func remove(_ userId: String) {
         lock.withLock {
-            writeRows(readRows().filter { $0.userId != userId })
-            if defaults.string(forKey: Self.activeKey) == userId { defaults.removeObject(forKey: Self.activeKey) }
+            let rest = readRows().filter { $0.userId != userId }
+            writeRows(rest)
+            if defaults.string(forKey: Self.activeKey) == userId {
+                defaults.set(rest.max { $0.lastActive < $1.lastActive }?.userId, forKey: Self.activeKey)
+            }
         }
     }
 
     public func prune(_ items: SecretItems) {
-        for row in rows where items.data(SessionItem.user(row.userId)) == nil { remove(row.userId) }
+        for row in rows where items.state(SessionItem.user(row.userId)) == .missing { remove(row.userId) }
     }
 
     var legacyLaunches: Int {
         get { lock.withLock { defaults.integer(forKey: Self.legacyLaunchesKey) } }
         set { lock.withLock { defaults.set(newValue, forKey: Self.legacyLaunchesKey) } }
+    }
+
+    func countLegacyLaunch(_ launch: String = AccountIndex.launchId) {
+        let counted = lock.withLock { () -> Bool in
+            if defaults.string(forKey: Self.legacyLaunchIdKey) == launch { return true }
+            defaults.set(launch, forKey: Self.legacyLaunchIdKey)
+            return false
+        }
+        if !counted { legacyLaunches += 1 }
     }
 }
 
@@ -191,20 +238,17 @@ public final class UserSessionStore: SessionStore, @unchecked Sendable {
 
     public func save(_ session: Session) throws {
         guard let u = session.userId else { throw BucketError.server(0, "The session has no user.") }
-        let first: Bool = try lock.withLock {
-            if let b = bound, b != u { throw BucketError.server(0, "The session belongs to another account.") }
-            defer { bound = u }
-            return bound == nil
-        }
+        let current = userId
+        if let b = current, b != u { throw BucketError.server(0, "The session belongs to another account.") }
+        let first = current == nil
         if first, index.rows.contains(where: { $0.userId == u }) == false, index.isFull {
-            lock.withLock { bound = nil }
             throw BucketError.server(0, "This device holds \(AccountIndex.cap) accounts. Sign one out first.")
         }
         try items.setSession(session, SessionItem.user(u))
-        if first {
-            index.upsert(userId: u, label: pendingLabel)
-            index.activate(u)
-        }
+        guard first else { return }
+        lock.withLock { bound = u }
+        index.upsert(userId: u, label: pendingLabel)
+        index.activate(u)
     }
 
     public func clear() {
@@ -238,7 +282,8 @@ public struct ResolvedSessionStore: SessionStore {
         }
         if known, let u = session.userId {
             try items.setSession(session, SessionItem.user(u))
-            index.activate(u)
+        } else if index.activeUserId != nil {
+            index.activate(nil)
         }
     }
 
@@ -255,9 +300,9 @@ public struct ResolvedSessionStore: SessionStore {
 public enum SessionVault {
     public static let sharedGroup = "QQ6D6A2LLS.foundation.bucket.shared"
 
-    public static func store(multiAccount: Bool, items: SecretItems, index: AccountIndex, label: String? = nil) -> SessionStore {
+    public static func store(multiAccount: Bool, items: SecretItems, index: AccountIndex, label: String? = nil, launch: String = AccountIndex.launchId) -> SessionStore {
         guard multiAccount else { return ResolvedSessionStore(items: items, index: index) }
-        migrate(items: items, index: index, label: label)
+        migrate(items: items, index: index, label: label, launch: launch)
         index.prune(items)
         return UserSessionStore(items: items, index: index, userId: index.activeUserId)
     }
@@ -266,7 +311,7 @@ public enum SessionVault {
         ResolvedSessionStore(items: items, index: index)
     }
 
-    static func migrate(items: SecretItems, index: AccountIndex, label: String?) {
+    static func migrate(items: SecretItems, index: AccountIndex, label: String?, launch: String = AccountIndex.launchId) {
         guard let legacy = items.session(SessionItem.legacy), let u = legacy.userId else {
             index.legacyLaunches = 0
             return
@@ -278,7 +323,7 @@ public enum SessionVault {
         }
         guard index.upsert(userId: u, label: label) else { return }
         if index.activeUserId == nil { index.activate(u) }
-        index.legacyLaunches += 1
+        index.countLegacyLaunch(launch)
         if index.legacyLaunches >= 2 {
             items.remove(SessionItem.legacy)
             index.legacyLaunches = 0
