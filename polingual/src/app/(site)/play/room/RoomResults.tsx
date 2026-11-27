@@ -15,6 +15,7 @@ import RoomMissed from "../RoomMissed";
 import AfterGame from "../family/AfterGame";
 import { EndGame, RoomToolbar, Scoreboard } from "./RoomBits";
 import { ReactionBar } from "./ReactionBar";
+import { NightInterlude } from "../rounds/NightInterlude";
 import type { LiveRoom } from "./useRoomGame";
 
 export function RoomResults({ g }: { g: LiveRoom }) {
@@ -31,6 +32,7 @@ export function RoomResults({ g }: { g: LiveRoom }) {
       </section>
       <Scoreboard lobby={lobby} />
       <NextBar g={g} />
+      <NightInterlude lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} role="phone" />
       <SavePrompt g={g} guest={guest} />
       <ReactionBar api={g.api} lobbyId={lobby.id} />
       <RoomToolbar g={g} />

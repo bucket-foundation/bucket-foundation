@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "./client";
-import { draftChanged, draftOf, readyLine, roundTitle, settingsBody, setupGames, waitingRows } from "./waiting";
+import { draftChanged, draftOf, nightInterlude, readyLine, roundTitle, settingsBody, setupGames, waitingRows } from "./waiting";
 
 type Player = LobbyState["players"][number];
 
@@ -51,4 +51,14 @@ test("a family night reads back as night mode and titles each round", () => {
   assert.equal(roundTitle({ playlist, game: "flags" }), "Voice Atlas, round 2 of 4");
   assert.equal(roundTitle({ playlist, game: "same-word" }), "Final: double points, steals on");
   assert.equal(roundTitle({ playlist: ["flags", "tiles"] as never[], game: "flags" }), null);
+});
+
+test("family teach follows Voice Atlas and our trivia follows Picture Race", () => {
+  const playlist = ["daily", "flags", "tiles", "same-word"] as never[];
+  assert.equal(nightInterlude({ playlist, game: "flags", status: "done" }), "family-teach");
+  assert.equal(nightInterlude({ playlist, game: "tiles", status: "done" }), "our-trivia");
+  assert.equal(nightInterlude({ playlist, game: "daily", status: "done" }), null);
+  assert.equal(nightInterlude({ playlist, game: "flags", status: "playing" }), null);
+  assert.equal(nightInterlude({ playlist, game: "flags", status: "done", ended: true }), null);
+  assert.equal(nightInterlude({ playlist: ["flags", "tiles"] as never[], game: "flags", status: "done" }), null);
 });

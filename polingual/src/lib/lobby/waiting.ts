@@ -52,3 +52,15 @@ export function roundTitle(lobby: Pick<LobbyState, "playlist" | "game">): string
   if (!night) return null;
   return night.final ? "Final: double points, steals on" : `${night.label}, round ${night.index + 1} of ${night.total}`;
 }
+
+export type Interlude = "family-teach" | "our-trivia";
+
+export const NIGHT_STEPS = ["Warm Up", "Voice Atlas", "Family Teach", "Picture Race", "Our Trivia", "Final"] as const;
+
+export function nightInterlude(lobby: Pick<LobbyState, "playlist" | "game" | "status"> & { ended?: boolean }): Interlude | null {
+  if (lobby.status !== "done" || lobby.ended) return null;
+  const night = nightRound({ playlist: lobby.playlist, game: lobby.game });
+  if (night?.index === 1) return "family-teach";
+  if (night?.index === 2) return "our-trivia";
+  return null;
+}

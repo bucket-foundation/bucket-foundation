@@ -22,7 +22,8 @@ import Nickname from "../Nickname";
 import { gameName } from "../langs";
 import { usePauseAds } from "../AdsContext";
 import { WaitingBoard } from "../room/WaitingBoard";
-import { roundTitle } from "@/lib/lobby/waiting";
+import { nightInterlude, roundTitle } from "@/lib/lobby/waiting";
+import { NightInterlude } from "../rounds/NightInterlude";
 import { savedNickname, usePlay } from "../usePlay";
 import { useRoomSync } from "../room/useRoomSync";
 
@@ -106,7 +107,7 @@ function TvView({ code, play, sync, now, origin, onPlay, votes }: { code: string
   }
   if (!sync.lobby) return sync.error ? <p className={styles.error} role="alert">{sync.error}</p> : <p className={styles.muted} aria-busy="true">Opening the room</p>;
   const url = tvJoinUrl(origin, code);
-  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} votes={votes} />;
+  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} votes={votes} token={state.status === "ready" ? state.identity.token : null} />;
   if (!sync.lobby.isHost) return board;
   const nickname = state.status === "ready" ? state.nickname : "";
   return (
@@ -117,7 +118,7 @@ function TvView({ code, play, sync, now, origin, onPlay, votes }: { code: string
   );
 }
 
-function TvBoard({ lobby, now, url, votes }: { lobby: WebLobbyState; now: number; url: string; votes: RoomSignals["votes"] }) {
+function TvBoard({ lobby, now, url, votes, token }: { lobby: WebLobbyState; now: number; url: string; votes: RoomSignals["votes"]; token: string | null }) {
   const phase = phaseAt(lobby, now);
   const rows = lobby.ended ? tvTotals(lobby) : tvPlayers(lobby);
   return (
@@ -131,7 +132,7 @@ function TvBoard({ lobby, now, url, votes }: { lobby: WebLobbyState; now: number
         <p className={tv.url} data-testid="tv-url">{tvShortUrl(url)}</p>
       </section>
       <section className={tv.round} aria-label="Round" data-testid="tv-round">
-        <TvCenter lobby={lobby} now={now} />
+        <TvCenter lobby={lobby} now={now} token={token} />
         <TvAudience lobby={lobby} now={now} votes={votes} />
       </section>
       <section className={tv.standings} aria-label="Standings">
@@ -142,7 +143,7 @@ function TvBoard({ lobby, now, url, votes }: { lobby: WebLobbyState; now: number
   );
 }
 
-function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
+function TvCenter({ lobby, now, token }: { lobby: WebLobbyState; now: number; token: string | null }) {
   const phase = phaseAt(lobby, now);
   const round = tvRound(lobby, phase);
   if (lobby.ended) {
@@ -150,6 +151,15 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
       <>
         <Tag>Final scores</Tag>
         <Podium rows={tvTotals(lobby)} />
+      </>
+    );
+  }
+  if (phase.kind === "finished" && nightInterlude(lobby)) {
+    const left = secondsUntil(lobby.nextStartAt, now);
+    return (
+      <>
+        <NightInterlude lobby={lobby} token={token} role="tv" />
+        {left !== null ? <p className={tv.next} data-testid="tv-next">Next game in <b>{left}s</b></p> : null}
       </>
     );
   }

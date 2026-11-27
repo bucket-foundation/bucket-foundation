@@ -80,6 +80,14 @@ test("a host screen runs a family night for two phones and an audience, moves on
   await host.getByTestId("next-now").click();
   await expect(pia.getByTestId("hud")).toBeVisible({ timeout: 20_000 });
   await expect(leo.getByTestId("hud")).toBeVisible({ timeout: 20_000 });
+  await expect(host.getByTestId("tv-night")).toContainText("Voice Atlas", { timeout: 20_000 });
+  await Promise.all([answerUntilResults(pia), answerUntilResults(leo)]);
+  await expect(pia.getByTestId("teach-round")).toBeVisible({ timeout: 10_000 });
+  await expect(host.getByTestId("teach-round")).toBeVisible({ timeout: 10_000 });
+  await host.screenshot({ path: `${OUT}/flow-host-teach.png` });
+  await pia.screenshot({ path: `${OUT}/flow-player-teach.png` });
+  await host.getByTestId("next-now").click();
+  await expect(pia.getByTestId("hud")).toBeVisible({ timeout: 20_000 });
 
   await host.getByTestId("end-game").click();
   await expect(pia.getByTestId("final")).toBeVisible({ timeout: 10_000 });
