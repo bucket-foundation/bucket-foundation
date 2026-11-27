@@ -5,6 +5,23 @@ export type VideoGate = "poster" | "asking" | "playing" | "declined";
 export interface ConsentStore {
   getItem(key: string): string | null;
   setItem(key: string, value: string): void;
+  removeItem(key: string): void;
+}
+
+export function browserStore(): ConsentStore | null {
+  try {
+    return typeof window === "undefined" ? null : window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+export function forgetConsent(store: ConsentStore | null): void {
+  try {
+    store?.removeItem(EMBED_CONSENT_KEY);
+  } catch {
+    return;
+  }
 }
 
 export function storedConsent(store: ConsentStore | null): boolean {

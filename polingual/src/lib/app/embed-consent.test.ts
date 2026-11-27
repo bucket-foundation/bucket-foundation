@@ -1,10 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { EMBED_CONSENT_KEY, onAnswer, onPoster, rememberConsent, storedConsent, type ConsentStore } from "./embed-consent";
+import { EMBED_CONSENT_KEY, forgetConsent, onAnswer, onPoster, rememberConsent, storedConsent, type ConsentStore } from "./embed-consent";
 
 function memory(): ConsentStore & { data: Record<string, string> } {
   const data: Record<string, string> = {};
-  return { data, getItem: (k) => data[k] ?? null, setItem: (k, v) => void (data[k] = v) };
+  return { data, getItem: (k) => data[k] ?? null, setItem: (k, v) => void (data[k] = v), removeItem: (k) => void delete data[k] };
 }
 
 test("the first tap on the poster asks before any YouTube request", () => {
@@ -18,6 +18,8 @@ test("an allow is remembered and later taps play at once", () => {
   rememberConsent(s);
   assert.equal(s.data[EMBED_CONSENT_KEY], "allow");
   assert.equal(onPoster(storedConsent(s)), "playing");
+  forgetConsent(s);
+  assert.equal(onPoster(storedConsent(s)), "asking");
 });
 
 test("a store that throws or holds another value counts as no consent", () => {
@@ -28,7 +30,11 @@ test("a store that throws or holds another value counts as no consent", () => {
     setItem: () => {
       throw new Error("blocked");
     },
+    removeItem: () => {
+      throw new Error("blocked");
+    },
   };
+  assert.doesNotThrow(() => forgetConsent(broken));
   assert.equal(storedConsent(broken), false);
   assert.doesNotThrow(() => rememberConsent(broken));
   assert.equal(storedConsent(null), false);

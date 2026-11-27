@@ -8,6 +8,8 @@ import { FlagSquare } from "../LearnWord";
 import { langName } from "../langs";
 import { useLearnIndex } from "../useLearn";
 import { useYouTube } from "./useYouTube";
+import { browserStore, storedConsent } from "@/lib/app/embed-consent";
+import { StopYouTube, YouTubeConsent } from "../../YouTubeConsent";
 import { useSavedWords, useVideoData, useVideoProgress } from "./useVideoState";
 import s from "./video.module.css";
 
@@ -110,7 +112,10 @@ function Transcript({ video, failed, langs, setLangs, active, seek, saved, onWor
 
 export default function VideoRoom({ id }: { id: string }) {
   const host = useRef<HTMLDivElement>(null);
-  const { time, seek, ready, failed: playerFailed } = useYouTube(host, id);
+  const [allowed, setAllowed] = useState(false);
+  const [asked, setAsked] = useState(false);
+  useEffect(() => setAllowed(storedConsent(browserStore())), []);
+  const { time, seek, ready, failed: playerFailed } = useYouTube(host, id, allowed);
   const { video, failed, langs, setLangs } = useVideoData(id);
   const { active, pct, addWord } = useVideoProgress(id, video, time);
   const { mine, keys, save } = useSavedWords(id, addWord);
@@ -120,8 +125,15 @@ export default function VideoRoom({ id }: { id: string }) {
     <div className={s.room} data-testid="video-room">
       <section className={s.stage}>
         <div className={s.player}>
-          <div ref={host} className={s.frame} data-testid="yt-player" data-ready={ready} />
+          {allowed ? (
+            <div ref={host} className={s.frame} data-testid="yt-player" data-ready={ready} />
+          ) : asked ? (
+            <p className={s.channel} data-testid="yt-declined">The transcript works without the video.</p>
+          ) : (
+            <YouTubeConsent onAnswer={(allow) => (allow ? setAllowed(true) : setAsked(true))} declineText="Read the transcript only" />
+          )}
         </div>
+        {allowed ? <StopYouTube className={s.channel} onStop={() => setAllowed(false)} /> : null}
         <header className={s.meta}>
           <ProgressRing value={pct} size={48} label={`${Math.round(pct * 100)} percent watched`}>{Math.round(pct * 100)}%</ProgressRing>
           <div className={s.metaText}>
