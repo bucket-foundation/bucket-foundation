@@ -355,12 +355,16 @@ export function normalizeLobbySettings(body: Record<string, unknown> | null, lob
     targets = (raw as string[]).filter((t, i, all) => t !== lobby.root && all.indexOf(t) === i);
     if (targets.length === 0) return null;
   }
-  const game = body.game === undefined ? (lobby.game ?? "daily") : (setupGames() as readonly unknown[]).includes(body.game) ? (body.game as LobbyGame) : null;
+  const offered = setupGames() as readonly unknown[];
+  const current: LobbyGame = offered.includes(lobby.game) ? (lobby.game as LobbyGame) : "daily";
+  const game = body.game === undefined || body.game === null ? current : offered.includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game) return null;
   if (!setupEnabled()) {
-    if (body.setup !== undefined && body.setup !== "single") return null;
-    if (game === "same-word" && targets.length < 2) return null;
-    return { game, targets };
+    const mode = body.setup ?? "single";
+    if (mode !== "single" && mode !== "sequence" && mode !== "mix") return null;
+    const first = mode === "sequence" && Array.isArray(body.games) && offered.includes(body.games[0]) ? (body.games[0] as LobbyGame) : mode === "mix" ? current : game;
+    const pick = first === "same-word" && targets.length < 2 ? (mode === "single" ? null : "daily") : first;
+    return pick ? { game: pick, targets } : null;
   }
   const setup = normalizeSetup(body, game, targets);
   if (!setup || (setup.game === "same-word" && targets.length < 2)) return null;

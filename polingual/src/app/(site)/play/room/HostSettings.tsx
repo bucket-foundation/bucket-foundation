@@ -16,7 +16,7 @@ export function HostSettings({ lobby, api, take }: { lobby: WebLobbyState; api: 
   if (open) return <SettingsEditor lobby={lobby} api={api} take={take} close={() => setOpen(false)} />;
   return (
     <Button variant="ghost" size="md" onClick={() => setOpen(true)} data-testid="host-settings">
-      Change games or languages
+      Change games
     </Button>
   );
 }

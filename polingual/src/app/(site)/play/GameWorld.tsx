@@ -70,10 +70,10 @@ export function WorldPreview({ id }: { id: WorldId }) {
   );
 }
 
-export default function GameWorld({ id, title, caption, active = false, aside, children }: { id: WorldId; title?: ReactNode; caption?: ReactNode; active?: boolean; aside?: ReactNode; children: ReactNode }) {
+export default function GameWorld({ id, title, caption, active = false, compact = false, aside, children }: { id: WorldId; title?: ReactNode; caption?: ReactNode; active?: boolean; compact?: boolean; aside?: ReactNode; children: ReactNode }) {
   const w = worldOf(id);
   return (
-    <section className={styles.world} data-world={w.id} data-piece={w.piece} data-active={active} data-testid="game-world" style={{ "--world-accent": w.accent } as CSSProperties}>
+    <section className={styles.world} data-world={w.id} data-piece={w.piece} data-active={active} data-compact={compact} data-testid="game-world" style={{ "--world-accent": w.accent } as CSSProperties}>
       <Ground {...groundOf(w)} className={styles.banner}>
         <Decor world={w} />
         <span className={styles.hero} aria-hidden="true"><Art name={w.hero} size={160} shadow /></span>
