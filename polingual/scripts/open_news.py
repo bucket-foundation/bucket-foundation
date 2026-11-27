@@ -474,6 +474,7 @@ def build(a):
         stats["beta"] = lex is None or stats["tokenShare"] < st.BETA_SHARE
         manifest["langs"][lang] = stats
         log(lang, json.dumps(stats))
+    EXCLUDED["fetch failed"] += 0
     manifest["articlesExcluded"] = dict(sorted(EXCLUDED.items()))
     log("excluded", json.dumps(manifest["articlesExcluded"]))
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
