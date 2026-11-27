@@ -42,10 +42,16 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     var typed by remember { mutableStateOf("") }
     var typedVerdict by remember { mutableStateOf<foundation.bucket.core.engine.Verdict?>(null) }
     val scope = rememberCoroutineScope()
+    var ready by remember { mutableStateOf<Boolean?>(null) }
     LaunchedEffect(Unit) {
+        graph.probeUploadGate()
+        ready = Ci14.step(graph.ci14Consent(), graph.ci14, System.currentTimeMillis()) == null
+    }
+    LaunchedEffect(ready) {
+        if (ready != true) return@LaunchedEffect
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
-        val corpus = graph.corpus.load()
+        val corpus = foundation.bucket.core.engine.InputExperiment.withoutHeldOut(graph.corpus.load(), graph.heldOut(system.targets))
         val heritage = StudyHeritage.of(system.targets, com.polingual.app.play.PlayAssets.alphabets(graph.context).first)
         session = StudySession(corpus, system.root, system.targets, app.study[system.id] ?: StudyState(), today(), System.currentTimeMillis(), SeededRandom(System.nanoTime().toULong()), heritage = heritage, freq = graph.corpus.frequency(system.targets))
     }
@@ -54,7 +60,10 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     var corpus by remember { mutableStateOf<foundation.bucket.core.engine.LangCorpus?>(null) }
     LaunchedEffect(Unit) { corpus = graph.corpus.load() }
     Page("Study", back = done, stickers = listOf(Sticker("torn-label", Alignment.CenterStart, 100.dp, -7f), Sticker("seal", Alignment.TopEnd, 52.dp, 9f), Sticker("pebble", Alignment.BottomEnd, 40.dp, -6f, dx = (-12).dp))) {
+        if (ready == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
+        if (ready == false) { Ci14Panel(graph) { ready = true }; return@Page }
         if (s == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
+        Ci14Leave(graph)
         tick.let { }
         val silentNow by graph.silent.collectAsState()
         LaunchedEffect(silentNow, s) { if (silentNow) s.deferSoundCards() else s.resumeDeferred(); tick += 1 }
@@ -62,9 +71,9 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
             NeedsSound(graph, "The rest of this session")
             return@Page
         }
-        if (input != null && InputStep(input, s) { tick += 1 }) return@Page
+        if (input != null && InputStep(graph, input, s) { tick += 1 }) return@Page
         val ex = s.current
-        if (ex == null) { input?.end(s.view()); SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
+        if (ex == null) { input?.end(s.view()); LaunchedEffect(s) { graph.recordStudy(s.log.toList()) }; SessionDone(s, { if (FirstLesson.counts(s.answered)) { graph.kv.set(FirstLesson.KEY, "1"); graph.track("first_lesson") } }, done); return@Page }
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         ExerciseHeader(ex)
@@ -151,9 +160,9 @@ private fun rememberInputPlan(graph: Graph, s: StudySession?): InputPlanState? {
 }
 
 @Composable
-private fun InputStep(input: InputPlanState, s: StudySession, changed: () -> Unit): Boolean {
+private fun InputStep(graph: Graph, input: InputPlanState, s: StudySession, changed: () -> Unit): Boolean {
     input.prepare(s.view())
     val stage = input.due(s.answered) ?: return false
-    InputStageScreen(stage, input.lang, input.gloss) { rows, seconds -> input.finish(s.view(), rows, seconds); changed() }
+    InputStageScreen(stage, input.lang, input.gloss) { rows, seconds -> input.finish(s.view(), rows, seconds); graph.recordStudy(s.log.toList()); changed() }
     return true
 }

@@ -20,6 +20,27 @@ class BucketApiTest {
     }), base = "https://t.local")
 
     @Test
+    fun experimentReadsTheStoredEnrolment() = runTest {
+        val seen = mutableListOf<String>()
+        val r = api(200, """{"enrolment":{"experiment":"ci14","arm":"s70"}}""", seen).experiment("tok")
+        assertEquals("""{"experiment":"ci14","arm":"s70"}""", r?.enrolment)
+        assertTrue(seen.single().startsWith("GET /api/academy/experiment"))
+        assertEquals(ExperimentReply(null), api(200, """{"enrolment":null}""").experiment("tok"))
+        assertEquals(null, api(503, "{}").experiment("tok"))
+    }
+
+    @Test
+    fun enrolPostsTheStratum() = runTest {
+        val seen = mutableListOf<String>()
+        val r = api(200, """{"enrolment":{"arm":"s90"}}""", seen).enrol("tok", "ci14", "to-a2")
+        assertEquals("""{"arm":"s90"}""", r)
+        assertTrue(seen.single().startsWith("POST /api/academy/experiment"))
+        assertTrue(seen.single().contains("\"stratum\":\"to-a2\""))
+        assertEquals(null, api(500, "{}").enrol("tok", "ci14", "to-a2"))
+        assertEquals(null, api(200, "{}").enrol("tok", "ci14", "to-a2"))
+    }
+
+    @Test
     fun sessionErrorTable() {
         assertEquals(BucketError.BadEmail, sessionError(400, """{"error":"bad_email"}"""))
         assertEquals(BucketError.BadCode, sessionError(400, """{"error":"bad_code"}"""))

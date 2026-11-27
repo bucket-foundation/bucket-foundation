@@ -81,11 +81,12 @@ object ProgressMetric {
         return out
     }
 
-    fun rows(log: List<LogRow>): List<MetricRow> = log.map { r ->
+    fun rows(log: List<LogRow>): List<MetricRow> = log.mapNotNull { r ->
         when (r) {
             is LogRow.Exposure -> MetricRow("exposure", r.lang, r.at.toDouble(), r.tz, r.seconds.toDouble(), r.coveragePred, lemmasSeen = r.lemmasSeen, taps = r.taps)
             is LogRow.Session -> MetricRow("session", r.lang, r.at.toDouble(), r.tz, started = r.started.toDouble(), ended = r.ended.toDouble())
             is LogRow.Review -> MetricRow("review", null, r.at.toDouble(), r.tz)
+            is LogRow.VocabTest -> null
         }
     }
 
