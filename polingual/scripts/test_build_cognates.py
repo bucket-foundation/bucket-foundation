@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 import build_cognates as bc
+import upload_input_bands as up
 
 NODES = [
     (1, "es", "agua", 0), (2, "pt", "água", 0), (3, "la", "aqua", 0), (4, "ine-pro", "*h₂ékʷeh₂", 1),
@@ -52,8 +53,9 @@ class BuildCognates(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         db, ranks = fixture(self.tmp.name)
         out = Path(self.tmp.name) / "out"
-        bc.build(db, ranks, ["es", "pt", "en"], out, 100, "sha")
-        self.files = {l: json.loads((out / f"{l}.json").read_text()) for l in ("es", "pt", "en")}
+        self.summary = bc.build(db, ranks, ["es", "pt", "en"], out, 100, "sha")
+        self.out = out
+        self.files = {l: json.loads((out / self.summary[l]["file"]).read_text()) for l in ("es", "pt", "en")}
 
     def tearDown(self):
         self.tmp.cleanup()
@@ -77,6 +79,26 @@ class BuildCognates(unittest.TestCase):
         self.assertEqual((f["format"], f["lang"], f["graphSha256"]), ("polingual-cognates", "es", "sha"))
         self.assertIn("Proto-Indo-European", f["rule"])
         self.assertIn("CC BY-SA", f["credit"])
+
+
+class Hosting(unittest.TestCase):
+    def test_files_are_content_hashed_and_recorded_in_the_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            db, ranks = fixture(tmp)
+            out = Path(tmp) / "out"
+            summary = bc.build(db, ranks, ["es", "pt", "en"], out, 100, "sha")
+            f = summary["es"]["file"]
+            self.assertRegex(f, r"^cognates\.es\.[0-9a-f]{12}\.json$")
+            self.assertEqual(summary["es"]["bytes"], (out / f).stat().st_size)
+            again = bc.build(db, ranks, ["es", "pt", "en"], Path(tmp) / "again", 100, "sha")
+            self.assertEqual(again["es"]["file"], f)
+            manifest = Path(tmp) / "manifest.json"
+            manifest.write_text(json.dumps({"format": "polingual-input", "langs": {}, "cognates": {"fr": {"file": "x"}}}))
+            bc.record(manifest, summary)
+            m = json.loads(manifest.read_text())
+            self.assertEqual(sorted(m["cognates"]), ["en", "es", "fr", "pt"])
+            self.assertEqual(m["langs"], {})
+            self.assertIn(("bands", f), list(up.band_files(m)))
 
 
 if __name__ == "__main__":

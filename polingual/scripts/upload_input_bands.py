@@ -36,6 +36,8 @@ def band_files(manifest):
         for parts in entry.get("graded", {}).get("files", {}).values():
             for p in parts:
                 yield "bands", p["file"]
+    for entry in manifest.get("cognates", {}).values():
+        yield "bands", entry["file"]
 
 
 def exists(api, key, name):

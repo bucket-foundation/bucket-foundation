@@ -205,10 +205,11 @@ export function mergeBands(bundle: InputBundle, bands: readonly unknown[]): Inpu
 const TAG = "[a-z]{2,3}(?:-[A-Za-z]{2,8})?";
 const BUNDLE_FILE = new RegExp(`^${TAG}\\.[0-9a-f]{8,64}\\.json$`);
 const BAND_FILE = new RegExp(`^${TAG}\\.b\\d{1,5}\\.p\\d{1,3}\\.[0-9a-f]{8,64}\\.json$`);
-const LOOPBACK = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3}|\[::1\]|0\.0\.0\.0)(?::\d+)?(?:\/|$)/i;
+export const LOOPBACK = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3}|\[::1\]|0\.0\.0\.0)(?::\d+)?(?:\/|$)/i;
 
 export interface InputManifestLite {
   bandBase?: string | null;
+  cognates?: Record<string, { file?: string }>;
   langs?: Record<string, { file?: string; graded?: { files?: Record<string, { file?: string }[]> } }>;
 }
 

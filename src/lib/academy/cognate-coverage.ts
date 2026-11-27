@@ -1,5 +1,5 @@
 import { KNOWN_R, known, type FrequencyPriors, type LemmaEvidence, UNSTUDIED_PRIORS, EXPOSURE_LAMBDA } from "./learner-model";
-import type { Learner } from "./input-selector";
+import { LOOPBACK, type InputManifestLite, type Learner } from "./input-selector";
 
 export const UNSTUDIED_COGNATE_WEIGHT = 0.5;
 
@@ -92,9 +92,26 @@ export function heldFromCards(cards: Readonly<Record<string, HeldCard>>, now: nu
   return heldFrom((lang, lemma) => cards[`${lang}:${lemma}`], now);
 }
 
-export async function loadCognates(lang: string, base = "/input/cognates", fetcher: typeof fetch = fetch): Promise<CognateIndex | null> {
+const COGNATE_FILE = /^cognates\.[a-z]{2,3}(?:-[A-Za-z]{2,4})?\.[0-9a-f]{12}\.json$/;
+
+export function cognateFileUrl(manifest: InputManifestLite, lang: string, base: string | null | undefined, production: boolean): string | null {
+  const file = manifest.cognates?.[lang]?.file;
+  if (!file || !COGNATE_FILE.test(file) || !base || !/^https?:\/\//.test(base) || (production && LOOPBACK.test(base))) return null;
+  return `${base.replace(/\/$/, "")}/${file}`;
+}
+
+export async function loadCognates(
+  lang: string,
+  base = "/input",
+  fetcher: typeof fetch = fetch,
+  cognateBase: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_INPUT_BASE,
+  production: boolean = process.env.NODE_ENV === "production",
+): Promise<CognateIndex | null> {
   try {
-    const r = await fetcher(`${base}/${encodeURIComponent(lang)}.json`);
+    const manifest = (await (await fetcher(`${base}/manifest.json`)).json()) as InputManifestLite;
+    const url = cognateFileUrl(manifest, lang, cognateBase || manifest.bandBase, production);
+    if (!url) return null;
+    const r = await fetcher(url);
     return r.ok ? parseCognates(await r.json(), lang) : null;
   } catch {
     return null;
