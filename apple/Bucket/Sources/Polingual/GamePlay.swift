@@ -341,6 +341,21 @@ struct PromptCard: View {
         .padding(18)
         .frame(maxWidth: .infinity, minHeight: sideways ? 120 : 230)
         .modifier(GameLip(face: PL.card, lip: PL.paper3))
+        .overlay(alignment: .topTrailing) {
+            if answered && prompt.mode == .form && LangVoice.shared.canSpeak(prompt.word.form, prompt.word.lang) {
+                Button { LangVoice.shared.speak(prompt.word.form, prompt.word.lang) } label: {
+                    Image(systemName: "speaker.wave.2.fill")
+                        .font(PL.icon(20))
+                        .foregroundStyle(PL.vermilion)
+                        .frame(width: 44, height: 44)
+                        .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .padding(6)
+                .accessibilityLabel("Hear \(prompt.word.form)")
+                .accessibilityIdentifier("game-hear")
+            }
+        }
         .wrongTranslation(ReportSubject(lang: prompt.word.lang, root: prompt.word.root, itemId: prompt.word.itemId, text: prompt.word.form, shown: prompt.word.gloss, context: "game:quiz"),
                           visible: answered, alignment: .bottomTrailing, inset: 6)
     }
@@ -552,7 +567,7 @@ struct SpeedMatchGame: View {
                 if vertical == .compact, let ends { GameClock(ends: ends, total: Self.clock) }
                 Text("\(b.points)").font(PL.word.font(scale: vertical == .compact ? 0.5 : 0.7)).foregroundStyle(PL.paper).monospacedDigit().contentTransition(.numericText())
                 if vertical != .compact { Spacer() }
-                ComboChip(streak: b.streak, multiplier: false)
+                ComboSlot(streak: b.streak, multiplier: false)
             }
             HStack(alignment: .top, spacing: 12) {
                 VStack(spacing: vertical == .compact ? 4 : 10) {

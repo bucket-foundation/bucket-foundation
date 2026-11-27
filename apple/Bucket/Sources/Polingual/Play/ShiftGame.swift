@@ -50,7 +50,7 @@ struct ShiftGame: View {
             HStack {
                 PlayLabel(text: b.langs.map(Lang.name).joined(separator: " · "))
                 Spacer(minLength: 0)
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
             }
             HStack(spacing: PL.Space.s2) {
                 ForEach(0..<b.length, id: \.self) { i in

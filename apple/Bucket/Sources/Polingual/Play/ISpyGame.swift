@@ -44,7 +44,7 @@ struct ISpyGame: View {
             HStack {
                 PlayLabel(text: "\(scene?.name ?? "") · round \(index + 1) of \(rounds.count) · \(me.score)")
                 Spacer(minLength: 0)
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
             }
             HStack(spacing: PL.Space.s2) {
                 PlayLabel(text: Lang.name(r.lang))

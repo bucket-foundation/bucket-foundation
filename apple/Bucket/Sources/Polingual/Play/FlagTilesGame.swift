@@ -71,7 +71,7 @@ struct FlagTilesGame: View {
         VStack(spacing: PL.Space.s3) {
             HStack {
                 PlayLabel(text: "Score \(run.score)")
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
                 Spacer()
                 PlayLabel(text: "Word \(run.index + 1)")
             }

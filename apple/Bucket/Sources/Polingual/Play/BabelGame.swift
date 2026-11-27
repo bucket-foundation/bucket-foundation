@@ -67,7 +67,7 @@ struct BabelGame: View {
     var status: some View {
         HStack {
             PlayLabel(text: "Cleared \(cleared.count) of \(level.goal)")
-            ComboChip(streak: feel.streak, multiplier: false)
+            ComboSlot(streak: feel.streak, multiplier: false)
             Spacer()
             PlayLabel(text: "\(moves) moves")
         }
