@@ -16,7 +16,6 @@ public final class Account {
     let api: BucketAPI
     let store: SessionStore
     let locks: @Sendable (String?) -> RefreshLock?
-    @ObservationIgnored private var openLocks: [String: RefreshLock] = [:]
 
     public convenience init(api: BucketAPI, store: SessionStore, lock: RefreshLock? = nil) {
         self.init(api: api, store: store, locks: { _ in lock })
@@ -81,7 +80,7 @@ public final class Account {
         guard let s = session else { return nil }
         if !s.expires(within: Self.refreshMargin, now: now()) { return s.accessToken }
         if let inFlight = refreshing, refreshingUser == s.userId { return await inFlight.value }
-        let lock = lock(for: s.userId)
+        let lock = locks(s.userId)
         let task = Task { () -> String? in
             defer { if self.refreshingUser == s.userId { self.refreshing = nil } }
             await lock?.acquire()
@@ -114,14 +113,6 @@ public final class Account {
         refreshing = task
         refreshingUser = s.userId
         return await task.value
-    }
-
-    func lock(for userId: String?) -> RefreshLock? {
-        let name = userId ?? ""
-        if let open = openLocks[name] { return open }
-        let made = locks(userId)
-        if let made { openLocks[name] = made }
-        return made
     }
 
     public func userToken() async -> UserToken? {

@@ -37,13 +37,15 @@ public struct AccountLaunch: Sendable {
 
     public var migrationError: String? { folders.lastError }
 
-    func lockUser(_ userId: String?) -> String? {
+    func lockUser(_ userId: String?) -> String? { Self.lockUser(userId, index) }
+
+    static func lockUser(_ userId: String?, _ index: AccountIndex) -> String? {
         userId.flatMap { u in index.rows.contains { $0.userId == u } ? u : nil }
     }
 
     public func locks(appGroup: String) -> @Sendable (String?) -> RefreshLock? {
         let index = index
-        return { user in FileRefreshLock(appGroup: appGroup, userId: user.flatMap { u in index.rows.contains { $0.userId == u } ? u : nil }) }
+        return { user in FileRefreshLock(appGroup: appGroup, userId: Self.lockUser(user, index)) }
     }
 
     @MainActor
