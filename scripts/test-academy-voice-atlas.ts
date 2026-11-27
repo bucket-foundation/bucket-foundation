@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome } from "../src/lib/academy/voice-atlas";
+import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome, publicPlayback } from "../src/lib/academy/voice-atlas";
 
 const langs = Object.keys(ATLAS_HOMES);
 const items = Array.from({ length: 80 }, (_, n) => {
@@ -30,4 +30,11 @@ test("ghosts are fixed per day and sorted", () => {
   const g = atlasGhosts("2026-11-13");
   assert.deepEqual(atlasGhosts("2026-11-13"), g);
   assert.ok(g.every((x, i) => i === 0 || g[i - 1].score >= x.score));
+});
+
+test("every atlas clip carries a licence, and only public licences may play on a room TV", () => {
+  for (const r of atlasRounds(items, "2026-11-27")) assert.equal(r.licence, "device-tts");
+  for (const l of ["device-tts", "cc0", "cc-by", "cc-by-sa"] as const) assert.ok(publicPlayback(l));
+  for (const l of ["personal", "unknown", "family-room"] as const) assert.ok(!publicPlayback(l));
+  assert.ok(!publicPlayback(undefined));
 });
