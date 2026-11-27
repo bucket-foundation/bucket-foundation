@@ -20,10 +20,11 @@ struct BucketApp: App {
     init() {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
-        let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"), lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
+        let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
+        let account = Account(api: BucketAPI(), store: launch.sessions, lock: launch.lock(appGroup: WidgetSnapshot.group))
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
-        let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
+        let langs = LangStore(api: BucketAPI(), disk: launch.disk("polingual"), token: launch.token(account))
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
         Beta.shared.account = account
@@ -33,7 +34,7 @@ struct BucketApp: App {
         #else
         let shift = 0.0
         #endif
-        let science = ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift })
+        let science = ScienceStore(api: BucketAPI(), disk: launch.disk("academy"), token: launch.token(account), now: { Date().timeIntervalSince1970 * 1000 + shift })
         _science = State(initialValue: science)
         NetworkWatch.shared.onReconnect { await langs.resync() }
         NetworkWatch.shared.onReconnect { await science.resync() }

@@ -24,16 +24,17 @@ struct PolingualApp: App {
         #else
         let api = BucketAPI()
         #endif
+        let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
         #if DEBUG
         let fresh = Launch.flag("-freshGuest")
-        let sessions: SessionStore = fresh ? MemorySessionStore() : KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
-        let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : FileLangDisk()
+        let sessions: SessionStore = fresh ? MemorySessionStore() : launch.sessions
+        let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : launch.disk("polingual")
         #else
-        let sessions: SessionStore = KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
-        let disk = FileLangDisk()
+        let sessions: SessionStore = launch.sessions
+        let disk = launch.disk("polingual")
         #endif
-        let account = Account(api: api, store: sessions, lock: FileRefreshLock(appGroup: WidgetSnapshot.group))
-        let store = LangStore(api: api, disk: disk, token: { await account.freshToken() })
+        let account = Account(api: api, store: sessions, lock: launch.lock(appGroup: WidgetSnapshot.group))
+        let store = LangStore(api: api, disk: disk, token: launch.token(account))
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
