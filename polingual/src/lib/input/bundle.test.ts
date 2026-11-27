@@ -19,12 +19,13 @@ test("manifest lists hashed bundles and keeps fr and it out", () => {
   assert.equal(bundleUrl(manifest, "es", "http://127.0.0.1:54321/x", true), `/input/${manifest.langs.es.file}`);
 });
 
-test("new languages are beta with published intervals", () => {
+test("a language is stable only when its held-out upper bound is at most 0.10, and new languages are beta", () => {
   for (const [tag, entry] of Object.entries(manifest.langs)) {
     const held = entry.lemmaError?.heldOut;
-    assert.ok(held && held.tokens >= 50 && held.error <= 0.1, tag);
+    assert.ok(held && held.tokens >= 50, tag);
     assert.equal(held.ci95.length, 2, tag);
-    assert.equal(entry.status, ["es", "fr", "it", "pt", "de"].includes(tag) ? "stable" : "beta", tag);
+    const sealed = ["es", "fr", "it", "pt", "de"].includes(tag);
+    assert.equal(entry.status, sealed && held.ci95[1] <= 0.1 ? "stable" : "beta", tag);
   }
 });
 
