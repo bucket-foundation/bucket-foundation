@@ -22,10 +22,10 @@ extension CheerReaction {
 
     var face: Color {
         switch self {
-        case .highFive: D8.malachite
-        case .niceStreak: D8.vermilion
-        case .raceYou: D8.lapis
-        case .keepGoing: Color(hex: 0x5B1A4A)
+        case .highFive: PL.malachite
+        case .niceStreak: PL.vermilion
+        case .raceYou: PL.lapis
+        case .keepGoing: PL.tyrian
         }
     }
 }
@@ -48,18 +48,18 @@ struct StandingTile: View {
     let standing: GroupStanding
 
     var member: GroupMember { standing.member }
-    var ink: Color { member.isMe ? D8.parchment : Palette.ink }
-    var soft: Color { member.isMe ? D8.parchment.opacity(0.85) : Palette.muted }
+    var ink: Color { member.isMe ? PL.paper : PL.ink }
+    var soft: Color { member.isMe ? PL.paper.opacity(0.85) : PL.inkDim }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
                 Avatar(member: member, size: 40)
                 Spacer(minLength: 0)
-                Text("#\(standing.rank)").font(D8.word(22)).foregroundStyle(ink)
+                Text("#\(standing.rank)").font(PL.wordFont(22)).foregroundStyle(ink)
             }
             Text(member.isMe ? String(localized: "You") : member.name)
-                .font(D8.word(18))
+                .font(PL.wordFont(18))
                 .foregroundStyle(ink)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
@@ -71,14 +71,14 @@ struct StandingTile: View {
             HStack(spacing: 3) {
                 ForEach(member.languages.prefix(4)) { FlagTile(lang: $0.lang, size: 22) }
                 if member.languages.count > 4 {
-                    Text(verbatim: "+\(member.languages.count - 4)").font(.caption2.weight(.bold)).foregroundStyle(soft)
+                    Text(verbatim: "+\(member.languages.count - 4)").font(PL.text(11, .bold)).foregroundStyle(soft)
                 }
             }
             .frame(height: 24)
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .modifier(GameLip(face: member.isMe ? D8.lapis : D8.face, lip: member.isMe ? Color(hex: 0x12326A) : D8.edge))
+        .modifier(GameLip(face: member.isMe ? PL.lapis : PL.card, lip: member.isMe ? PL.lapisDeep : PL.paper3))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(summary))
     }
@@ -88,7 +88,7 @@ struct StandingTile: View {
             Image(systemName: symbol).frame(width: 14)
             Text(text).lineLimit(1).minimumScaleFactor(0.7)
         }
-        .font(.caption.weight(.semibold))
+        .font(PL.text(12, .semibold))
         .foregroundStyle(soft)
     }
 
@@ -183,21 +183,21 @@ struct ReactionRow: View {
                         .accessibilityIdentifier("reaction-\(r.rawValue)")
                 }
             }
-            if let note { Text(note).font(.footnote).foregroundStyle(Palette.muted) }
+            if let note { Text(note).font(PL.text(13)).foregroundStyle(PL.inkDim) }
         }
         .padding(.vertical, 4)
     }
 
     func face(_ r: CheerReaction) -> some View {
         VStack(spacing: 4) {
-            Image(systemName: sent == r ? "checkmark" : r.symbol).font(.title3.weight(.bold))
+            Image(systemName: sent == r ? "checkmark" : r.symbol).font(PL.script(20, .bold))
             Text(r.label)
-                .font(.caption2.weight(.bold))
+                .font(PL.text(11, .bold))
                 .multilineTextAlignment(.center)
                 .lineLimit(2, reservesSpace: true)
                 .minimumScaleFactor(0.8)
         }
-        .foregroundStyle(D8.parchment)
+        .foregroundStyle(PL.paper)
         .padding(.vertical, 8)
         .padding(.horizontal, 4)
         .frame(maxWidth: .infinity)

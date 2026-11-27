@@ -48,7 +48,7 @@ struct ProgressChoiceSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     Text("This phone has \(ask.device) words you studied before signing in. Your account has \(ask.account).")
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                     option("Keep both", detail: "Combine them into one.", keep: .both, id: "keepBoth")
                     option("Keep this phone's", detail: "Your account takes this phone's progress in the languages both have.", keep: .device, id: "keepDevice")
                     option("Keep the account's", detail: "This phone's progress from before sign-in is removed.", keep: .account, id: "keepAccount")
@@ -66,12 +66,12 @@ struct ProgressChoiceSheet: View {
     func option(_ title: LocalizedStringKey, detail: LocalizedStringKey, keep: ProgressKeep, id: String) -> some View {
         Button { pick(keep) } label: {
             VStack(alignment: .leading, spacing: 4) {
-                Text(title).font(.headline)
-                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
+                Text(title).font(PL.text(17, .bold))
+                Text(detail).font(PL.text(13)).foregroundStyle(PL.inkDim)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .buttonStyle(D8Option(align: .leading))
+        .buttonStyle(PLOption(align: .leading))
         .accessibilityIdentifier(id)
     }
 }

@@ -63,7 +63,7 @@ struct LibraryTile: View {
     var names: String { langs.libraryLangs.prefix(3).map(langName).joined(separator: ", ") }
 
     var body: some View {
-        LearnTile(title: String(localized: "Library"), detail: String(localized: "Fables in \(names)"), face: Color(hex: 0x8C5A1C), lip: Color(hex: 0x5E3B10), open: open) {
+        LearnTile(title: String(localized: "Library"), detail: String(localized: "Fables in \(names)"), face: PL.ochreDeep, lip: PL.ochreInk, open: open) {
             LearnSymbol(name: "books.vertical")
         }
     }
@@ -88,10 +88,10 @@ struct LibraryList: View {
                 .listRowBackground(Color.clear)
             } else if store.indexFailed {
                 Section {
-                    Text("The library did not load. Check your connection.").foregroundStyle(Palette.muted)
+                    Text("The library did not load. Check your connection.").foregroundStyle(PL.inkDim)
                     Button("Retry") { Task { await store.loadIndex() } }
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             } else {
                 Section { ProgressView().frame(maxWidth: .infinity) }
                     .listRowBackground(Color.clear)
@@ -108,29 +108,29 @@ struct LibraryList: View {
         let at = store.progress.sentence(book.id)
         return HStack(alignment: .top, spacing: 14) {
             Image(systemName: "book.closed.fill")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(D8.parchment)
+                .font(PL.text(24, .bold))
+                .foregroundStyle(PL.paper)
                 .frame(width: 52, height: 52)
-                .background(Color(hex: 0x8C5A1C), in: .rect(cornerRadius: 12))
+                .background(PL.ochreDeep, in: .rect(cornerRadius: PL.Radius.md))
             VStack(alignment: .leading, spacing: 4) {
                 Text(book.title(in: [first]))
-                    .font(.serif(.title3, weight: .semibold))
-                    .foregroundStyle(Palette.ink)
+                    .font(PL.script(20, .semibold))
+                    .foregroundStyle(PL.ink)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .environment(\.layoutDirection, Lang.isRTL(first) ? .rightToLeft : .leftToRight)
-                Text(book.author).font(.subheadline).foregroundStyle(Palette.muted)
+                Text(book.author).font(PL.text(15)).foregroundStyle(PL.inkDim)
                 if at > 0 {
-                    ProgressView(value: Double(at + 1), total: Double(max(1, book.sentences))).tint(D8.malachite)
-                    Text("Sentence \(at + 1) of \(book.sentences)").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    ProgressView(value: Double(at + 1), total: Double(max(1, book.sentences))).tint(PL.malachite)
+                    Text("Sentence \(at + 1) of \(book.sentences)").font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
             }
             Spacer(minLength: 0)
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(D8.face, in: .rect(cornerRadius: 18))
-        .overlay { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.edge, lineWidth: 2) }
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.paper3, lineWidth: 2) }
     }
 }
 
@@ -148,7 +148,7 @@ struct LibraryReader: View {
                 reader(book)
             } else if store.failed.contains(id) {
                 VStack(spacing: 12) {
-                    Text("This book did not load. Check your connection.").foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                    Text("This book did not load. Check your connection.").foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
                     Button("Retry") { Task { await store.load(id) } }.buttonStyle(D8Primary(compact: true))
                 }
                 .padding(24)
@@ -189,12 +189,12 @@ struct LibraryReader: View {
             .scrollPosition(id: $page)
             .scrollIndicators(.hidden)
             VStack(spacing: 8) {
-                ProgressView(value: Double(at + 1), total: Double(max(1, total))).tint(D8.malachite)
+                ProgressView(value: Double(at + 1), total: Double(max(1, total))).tint(PL.malachite)
                 HStack {
                     Button { go(at - 1, total) } label: { Label("Previous", systemImage: "chevron.backward") }
                         .disabled(at == 0)
                     Spacer()
-                    Text("Sentence \(at + 1) of \(total)").font(.footnote).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("Sentence \(at + 1) of \(total)").font(PL.text(13)).foregroundStyle(PL.inkDim).monospacedDigit()
                     Spacer()
                     if at + 1 < total {
                         Button { go(at + 1, total) } label: { Label("Next", systemImage: "chevron.forward") }
@@ -203,9 +203,9 @@ struct LibraryReader: View {
                     }
                 }
                 .labelStyle(.iconOnly)
-                .font(.title3.weight(.semibold))
+                .font(PL.script(20, .semibold))
                 .buttonStyle(.borderless)
-                .tint(Palette.green)
+                .tint(PL.tyrian)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 12)
@@ -222,20 +222,20 @@ struct LibraryReader: View {
 
     func header(_ book: LibraryBook) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(book.author).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+            Text(book.author).font(PL.text(15, .semibold)).foregroundStyle(PL.ink)
             if let illustrator = book.illustrator {
                 Label { Text(verbatim: illustrator) } icon: { Image(systemName: "paintbrush") }
-                    .font(.caption).foregroundStyle(Palette.muted)
+                    .font(PL.text(12)).foregroundStyle(PL.inkDim)
             }
             if book.machine(in: shown) {
-                Label("Machine translation", systemImage: "globe").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                Label("Machine translation", systemImage: "globe").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim)
             }
-            Text(book.license).font(.caption).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
+            Text(book.license).font(PL.text(12)).foregroundStyle(PL.inkDim).fixedSize(horizontal: false, vertical: true)
             ForEach(book.credits(shown), id: \.lang) { c in
-                Text(verbatim: "\(c.lang.uppercased()) · \(c.name)").font(.caption).foregroundStyle(Palette.muted)
+                Text(verbatim: "\(c.lang.uppercased()) · \(c.name)").font(PL.text(12)).foregroundStyle(PL.inkDim)
             }
             if let url = book.sourceURL {
-                Link(destination: url) { Text("Source") }.font(.caption.weight(.semibold)).tint(Palette.green)
+                Link(destination: url) { Text("Source") }.font(PL.text(12, .semibold)).tint(PL.tyrian)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -254,21 +254,21 @@ struct LibraryReader: View {
             .frame(maxWidth: .infinity, alignment: .topLeading)
         }
         .scrollBounceBehavior(.basedOnSize)
-        .background(Palette.card, in: .rect(cornerRadius: 18))
-        .overlay { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.edge, lineWidth: 1) }
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+        .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.paper3, lineWidth: 1) }
     }
 
     func row(_ lang: String, _ text: String) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             FlagTile(lang: lang, size: 22).alignmentGuide(.firstTextBaseline) { $0[.bottom] - 4 }
             Text(tapText(text, lang))
-                .font(.serif(.title3))
+                .font(PL.script(20, .regular))
                 .lineSpacing(4)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .fixedSize(horizontal: false, vertical: true)
             PlayButton(text: text, lang: lang, label: String(localized: "Play \(langName(lang))"))
-                .font(.title3)
+                .font(PL.script(20, .semibold))
         }
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
     }

@@ -94,9 +94,9 @@ struct PlacementView: View {
         FitPage {
             VStack(alignment: .leading, spacing: 14) {
                 Eyebrow(text: String(localized: "Placement"))
-                Text("Which of these do you already know?").font(.serif(.title2, weight: .semibold))
+                Text("Which of these do you already know?").font(PL.script(22, .semibold))
                 Text("Pick the languages you can read or speak. Each one gets a level test. The rest start from the first words.")
-                    .foregroundStyle(Palette.muted)
+                    .foregroundStyle(PL.inkDim)
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: sideways ? 3 : 1), spacing: 10) {
                     ForEach(system.targets, id: \.self) { l in
                         let on = known.contains(l)
@@ -105,12 +105,12 @@ struct PlacementView: View {
                         } label: {
                             HStack(spacing: 12) {
                                 FlagTile(lang: l, size: 32)
-                                Text(langName(l)).font(.headline)
+                                Text(langName(l)).font(PL.text(17, .bold))
                                 Spacer()
-                                Image(systemName: on ? "checkmark.circle.fill" : "circle").font(.title3)
+                                Image(systemName: on ? "checkmark.circle.fill" : "circle").font(PL.script(20, .semibold))
                             }
                         }
-                        .buttonStyle(D8Option(selected: on))
+                        .buttonStyle(PLOption(selected: on))
                         .accessibilityAddTraits(on ? .isSelected : [])
                     }
                 }
@@ -169,17 +169,17 @@ struct PlacementView: View {
                 columns {
                     VStack(alignment: .leading, spacing: 8) {
                         Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
-                        Text("Level \(Cefr.levelLabel(result))").font(.serif(.title, weight: .semibold))
-                        Text(summary(result)).foregroundStyle(Palette.muted)
+                        Text("Level \(Cefr.levelLabel(result))").font(PL.script(28, .semibold))
+                        Text(summary(result)).foregroundStyle(PL.inkDim)
                         if let u = result.unknownFrom {
-                            Text("\(u.rawValue) and above: not enough material in this language to test").font(.footnote).foregroundStyle(Palette.muted)
+                            Text("\(u.rawValue) and above: not enough material in this language to test").font(PL.text(13)).foregroundStyle(PL.inkDim)
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     VStack(alignment: .leading, spacing: 8) {
                         ForEach(result.bands, id: \.band) { b in
                             Text(b.passed ? "\(b.band.rawValue): \(b.right) of \(b.asked) right, passed" : "\(b.band.rawValue): \(b.right) of \(b.asked) right, not passed")
-                                .font(.footnote).foregroundStyle(Palette.ink).monospacedDigit()
+                                .font(PL.text(13)).foregroundStyle(PL.ink).monospacedDigit()
                         }
                         SaveNotice(state: store.saveState)
                         if let nextLang {
@@ -198,7 +198,7 @@ struct PlacementView: View {
                         Button("Progress") {
                             path.replaceTop(with: LangRoute.system(system.id))
                         }
-                        .buttonStyle(D8Option(align: .center))
+                        .buttonStyle(PLOption(align: .center))
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -213,13 +213,13 @@ struct PlacementView: View {
                 VStack(alignment: .leading, spacing: sideways ? 8 : 16) {
                     Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
                     if !sideways {
-                        Text("\(langName(system.root)) to \(langName(lang))").font(.serif(.title2, weight: .semibold))
+                        Text("\(langName(system.root)) to \(langName(lang))").font(PL.script(22, .semibold))
                         if asked == 1 {
                             Text("Each level mixes typing, listening, gap fills, grammar and short reading. A level passes on 6 right before 3 misses. The test stops at the first level you do not pass.")
-                                .foregroundStyle(Palette.muted)
+                                .foregroundStyle(PL.inkDim)
                         }
                     }
-                    Text("Question \(asked) · level \(q.band.rawValue)").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("Question \(asked) · level \(q.band.rawValue)").font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
                     ExerciseView(ex: q.ex, readings: readings, reading: { form, l in maps[l]?[form] }, onDone: { results in
                         answer(results.contains { $0.rating > 1 })
                     })
