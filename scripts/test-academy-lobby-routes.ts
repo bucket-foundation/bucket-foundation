@@ -71,7 +71,7 @@ test("join: a dropped phone rejoins its seat mid-game and keeps its score; a str
   assert.equal((await body(late)).error, "lobby_started");
 });
 
-test("state: members poll the lobby, unchanged versions short-circuit, outsiders get no lobby", async () => {
+test("state: members poll the lobby, unchanged versions short-circuit, outsiders get 404", async () => {
   setup(room(), [seat("h"), seat("p")]);
   const { GET } = await import("../src/app/api/academy/lobbies/state/route");
   const fresh = await body(await GET(state("p")));
@@ -81,6 +81,6 @@ test("state: members poll the lobby, unchanged versions short-circuit, outsiders
   assert.equal(same.changed, false);
   assert.equal(same.version, 3);
   const outsider = await GET(state("x"));
-  assert.notEqual(outsider.status, 200);
-  assert.equal((await body(outsider)).lobby, undefined);
+  assert.equal(outsider.status, 404);
+  assert.deepEqual(await body(outsider), { error: "not_found" });
 });

@@ -389,7 +389,8 @@ export async function authed(req: NextRequest, withBody = true): Promise<{ uid: 
 }
 
 export function lobbyFail(err: unknown, where: string): NextResponse {
-  if (err instanceof GroupsError) return json({ error: err.code }, err.status);
+  const g = err as Partial<GroupsError> | null;
+  if (err instanceof GroupsError || (typeof g?.code === "string" && typeof g?.status === "number")) return json({ error: (g as GroupsError).code }, (g as GroupsError).status);
   console.error(`[academy/lobbies] ${where}:`, err instanceof Error ? err.message : err);
   return json({ error: "sync_unavailable" }, 503);
 }

@@ -5,7 +5,8 @@ import { normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { LobbyError, lobbyError, phaseAt, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
 import { everyoneReady, roomControls, secondsUntil } from "@/lib/lobby/room";
-import { TV_ORIGIN, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
+import { TV_ORIGIN, tvAtlasClip, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat, type TvClip } from "@/lib/lobby/tv";
+import { play as speak } from "@/lib/speak";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
 import { createPortal } from "react-dom";
 import { Button, ButtonLink, Pill, Tag } from "@/ui";
@@ -131,6 +132,21 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
   );
 }
 
+function TvAtlas({ clip }: { clip: TvClip | null }) {
+  const key = clip ? `${clip.kind}:${clip.lang}:${clip.text}` : "";
+  useEffect(() => {
+    if (clip?.kind === "audio") void speak({ id: `tv-atlas:${clip.text}`, text: clip.text, lang: clip.lang });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  if (!clip) return null;
+  return (
+    <>
+      <h2 className={tv.word} data-testid="tv-prompt" lang={clip.lang ?? undefined}>{clip.text}</h2>
+      {clip.kind === "text" ? <p className={tv.next} data-testid="tv-atlas-text">This clip is not cleared to play on a shared screen. Read the word instead.</p> : null}
+    </>
+  );
+}
+
 function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   const phase = phaseAt(lobby, now);
   const round = tvRound(lobby, phase);
@@ -156,7 +172,8 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
     <>
       <span className={tv.roundTag}><Tag>{round.label}</Tag></span>
       {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
-      {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
+      {lobby.game === "atlas" && phase.kind === "round" ? <TvAtlas clip={tvAtlasClip(lobby.prompts.find((p) => p.round === phase.index) ?? null)} /> : null}
+      {round.gloss && lobby.game !== "atlas" ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
       {round.choices.length ? (
         <div className={tv.choices} role="list">
           {round.choices.map((c) => (

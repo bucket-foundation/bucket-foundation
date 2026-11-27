@@ -1,3 +1,4 @@
+import type { ClipLicence } from "./voice-atlas";
 import { CROCKFORD, hiddenUsers, normalizeReportReason, uuidOrNull, type BlockRow, type ReportReason } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
 import { spyRounds } from "./ispy";
@@ -168,6 +169,7 @@ export interface LobbyPrompt {
   round: number;
   mode: PromptMode;
   lang: string | null;
+  licence?: ClipLicence;
   gloss: string;
   choices: string[];
   answer: string | null;
