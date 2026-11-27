@@ -71,7 +71,7 @@ const ERRORS: Record<string, string> = {
   not_found: "No lobby with that code.",
   lobby_full: "That lobby is full.",
   lobby_started: "That game already started.",
-  need_ready: "Two players need to be ready.",
+  need_ready: "Everyone needs to be ready.",
   not_host: "Only the host can start.",
   already_answered: "You already answered this round.",
   already_continued: "You already used your continue this game.",

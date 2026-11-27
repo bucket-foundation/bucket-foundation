@@ -1,6 +1,6 @@
 "use client";
 
-import { secondsUntil, waitingHint } from "@/lib/lobby/room";
+import { everyoneReady, secondsUntil, waitingHint } from "@/lib/lobby/room";
 import { tvPath } from "@/lib/lobby/tv";
 import { Button, ButtonLink } from "@/ui";
 import app from "../../app/app.module.css";
@@ -34,7 +34,7 @@ export function RoomWaiting({ g }: { g: LiveRoom }) {
 function RoomActions({ g }: { g: LiveRoom }) {
   const { lobby, api, act } = g;
   const me = lobby.players.find((p) => p.isMe);
-  const readyCount = lobby.players.filter((p) => p.ready).length;
+  const all = everyoneReady(lobby);
   return (
     <section className={wait.actionCard} aria-label="Ready">
       <div className={wait.actionRow}>
@@ -42,12 +42,12 @@ function RoomActions({ g }: { g: LiveRoom }) {
           {me?.ready ? "Not ready" : "Ready"}
         </Button>
         {lobby.isHost ? (
-          <Button size="lg" disabled={readyCount < 2} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
+          <Button size="lg" disabled={!all} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
             Start game
           </Button>
         ) : null}
       </div>
-      <StartsIn g={g} readyCount={readyCount} />
+      <StartsIn g={g} />
       <div className={app.row}>
         {lobby.isHost && lobby.botsEnabled && !lobby.botFill ? (
           <Button variant="ghost" size="md" onClick={() => void act(() => api.fillBots(lobby.id))} data-testid="fill-bots">
@@ -79,7 +79,7 @@ function RoomLinks({ g }: { g: LiveRoom }) {
   );
 }
 
-function StartsIn({ g, readyCount }: { g: LiveRoom; readyCount: number }) {
+function StartsIn({ g }: { g: LiveRoom }) {
   const startsIn = secondsUntil(g.lobby.nextStartAt, g.now + g.offset);
   return (
     <div className={styles.startsIn} data-testid="next-start">
@@ -89,7 +89,7 @@ function StartsIn({ g, readyCount }: { g: LiveRoom; readyCount: number }) {
           <b data-testid="next-start-count">{startsIn}s</b>
         </>
       ) : (
-        <span>{waitingHint(g.lobby, readyCount)}</span>
+        <span>{waitingHint(g.lobby)}</span>
       )}
     </div>
   );

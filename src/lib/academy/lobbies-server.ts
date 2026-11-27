@@ -8,6 +8,7 @@ import { corpusLookup } from "./lang-lookup";
 import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
+  allReady,
   answerDecision,
   assembleLobby,
   tileAnswerDecision,
@@ -259,9 +260,8 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
   return rows[0];
 }
 
-export async function armAutoStart(lobby: LobbyRow, readyCount: number, now: number): Promise<LobbyRow> {
+export async function armAutoStart(lobby: LobbyRow, want: boolean, now: number): Promise<LobbyRow> {
   if (!setupEnabled() || lobby.standing_slot || lobby.status !== "lobby") return lobby;
-  const want = readyCount >= 2;
   if (want === !!lobby.start_at) return lobby;
   const rows = check(await service().from(LOBBIES).update({ start_at: want ? new Date(now + AUTO_START_MS).toISOString() : null }).eq("id", lobby.id).eq("status", "lobby").select(LOBBY_COLS), "auto start") as LobbyRow[];
   return rows[0] ?? lobby;
@@ -278,8 +278,7 @@ export async function autoStart(lobby: LobbyRow, now: number): Promise<LobbyRow>
 export async function pace(lobby: LobbyRow, now: number): Promise<LobbyRow> {
   if (lobby.status === "done") lobby = await againHosted(lobby, now);
   if (!setupEnabled() || lobby.standing_slot || lobby.status !== "lobby") return lobby;
-  const ready = (await playersOf([lobby.id])).filter((p) => p.ready).length;
-  return autoStart(await armAutoStart(lobby, ready, now), now);
+  return autoStart(await armAutoStart(lobby, allReady(await playersOf([lobby.id])), now), now);
 }
 
 export async function memberLobby(uid: string, lobbyId: unknown, screenOk = false): Promise<LobbyRow> {

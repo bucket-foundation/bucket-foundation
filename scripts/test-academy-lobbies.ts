@@ -7,6 +7,7 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  allReady,
   setupOf,
   answerDecision,
   hostedSince,
@@ -97,6 +98,8 @@ test("only the host starts, in lobby status, with two ready", () => {
   assert.equal(startDecision(lobby(), ps, "h"), "need_ready");
   assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true })], "h"), "ok");
   assert.equal(startDecision(lobby({ status: "playing" }), ps, "h"), "not_lobby");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true }), player("c", { ready: false })], "h"), "need_ready");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: false, is_bot: true })], "h"), "ok");
 });
 
 test("join respects cap and status", () => {
@@ -441,4 +444,13 @@ test("lobby settings: every mode the room sends saves, with setup on and off", (
   } finally {
     process.env.POLINGUAL_LOBBY_SETUP = env;
   }
+});
+
+test("allReady: every human ready, bots count as ready, two seats minimum", () => {
+  assert.equal(allReady([{ ready: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: false }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }]), true);
+  assert.equal(allReady([{ ready: true }, { ready: false, is_bot: true }]), true);
+  assert.equal(allReady([{ ready: false, is_bot: true }, { ready: false, is_bot: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }, { ready: false }]), false);
 });

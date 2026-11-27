@@ -40,9 +40,13 @@ export function roundFeedback(mine: Picked): string {
   return mine.correct ? "Right." : "Not this time.";
 }
 
-export function waitingHint(lobby: Pick<LobbyState, "standing" | "isHost">, readyCount: number): string {
+export function everyoneReady(lobby: Pick<LobbyState, "players">): boolean {
+  return lobby.players.length >= 2 && lobby.players.some((p) => !p.bot) && lobby.players.every((p) => p.ready || p.bot);
+}
+
+export function waitingHint(lobby: Pick<LobbyState, "standing" | "isHost" | "players">): string {
   if (lobby.standing) return "The next game starts soon.";
-  if (readyCount < 2) return "Starts 15 seconds after two players are ready.";
+  if (!everyoneReady(lobby)) return "Starts 15 seconds after everyone is ready.";
   return lobby.isHost ? "Everyone ready? Start now or wait for the countdown." : "The host can start now.";
 }
 
