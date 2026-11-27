@@ -180,8 +180,12 @@ class BucketApi(
     suspend fun atlas(token: String, lobbyId: String): List<foundation.bucket.core.model.AtlasClip> =
         decode<foundation.bucket.core.model.AtlasReply>(call("api/academy/lobbies/atlas", token, query = mapOf("lobbyId" to lobbyId))).rounds
 
-    suspend fun forehead(langs: List<String>, seed: String): List<foundation.bucket.core.model.ForeheadCard> =
-        decode<foundation.bucket.core.model.ForeheadReply>(call("api/academy/forehead", null, query = mapOf("langs" to langs.joinToString(","), "seed" to seed))).cards
+    suspend fun forehead(langs: List<String>, seed: String, root: String): List<foundation.bucket.core.model.ForeheadCard> =
+        decode<foundation.bucket.core.model.ForeheadReply>(call("api/academy/forehead", null, query = mapOf("langs" to langs.joinToString(","), "seed" to seed, "root" to root))).cards
+
+    suspend fun foreheadMark(token: String, lobbyId: String, card: Int, got: Boolean) {
+        call("api/academy/lobbies/bonus", token, buildJsonObject { put("kind", "forehead"); put("lobbyId", lobbyId); put("card", card); put("got", got) })
+    }
 
     suspend fun league(token: String): foundation.bucket.core.model.LeagueBoard = decode(call("api/academy/league", token))
 

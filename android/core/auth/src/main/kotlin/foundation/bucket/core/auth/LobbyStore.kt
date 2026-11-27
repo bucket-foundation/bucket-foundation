@@ -33,6 +33,7 @@ data class LobbyState(
     val audience: Boolean = false,
     val votes: Map<Int, String> = emptyMap(),
     val left: foundation.bucket.core.model.LeaveResult? = null,
+    val card: foundation.bucket.core.model.PlayerCard? = null,
 )
 
 class LobbyStore(
@@ -125,6 +126,18 @@ class LobbyStore(
     suspend fun saveCard(card: foundation.bucket.core.model.PlayerCard) {
         val id = _state.value.current?.id ?: return
         run { api.saveCard(it, id, card) }
+        _state.update { it.copy(card = card) }
+    }
+
+    suspend fun <T> room(block: suspend BucketApi.(token: String, lobbyId: String) -> T): T {
+        val id = _state.value.current?.id ?: throw BucketError.NotFound
+        val t = anyToken() ?: throw BucketError.Revoked
+        return api.block(t, id)
+    }
+
+    suspend fun league(): foundation.bucket.core.model.LeagueBoard {
+        val t = userToken() ?: throw BucketError.Revoked
+        return api.league(t)
     }
 
     private fun hosted(): String? = _state.value.current?.takeIf { it.isHost }?.id

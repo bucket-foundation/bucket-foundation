@@ -148,3 +148,35 @@ data class LeagueBoard(val week: kotlinx.serialization.json.JsonElement? = null,
 enum class LeaveResult(val wire: String) { Left("left"), Handoff("handoff"), Closed("closed"), Moved("moved");
     companion object { fun of(wire: String?): LeaveResult = entries.firstOrNull { it.wire == wire } ?: Left }
 }
+
+object FamilyRules {
+    const val TEACH_CLIP_MS = 6_000L
+    const val TEACH_CLIP_MAX_CHARS = 280_000
+    const val TRIVIA_MAX = 10
+
+    fun foreheadSeed(seed: String, startedAt: String?): String = seed + (startedAt.orEmpty().filter(Char::isDigit).takeLast(6))
+
+    fun teacherHomes(card: PlayerCard?): List<String> = if (card?.band == SeatBand.Adult) card.speaks.filter { it.level == 4 }.map { it.lang } else emptyList()
+
+    data class TeachRecord(val choices: List<String>, val answer: Int)
+
+    private fun tidy(text: String) = text.trim().replace(Regex("\\s+"), " ")
+
+    fun teachRecord(clip: String?, fields: List<String>, answer: Int): TeachRecord? {
+        if (clip.isNullOrEmpty() || clip.length > TEACH_CLIP_MAX_CHARS) return null
+        val right = tidy(fields.getOrNull(answer).orEmpty())
+        if (right.isEmpty()) return null
+        val filled = fields.map(::tidy).filter { it.isNotEmpty() }
+        if (filled.size < 2 || filled.map { it.lowercase() }.toSet().size != filled.size) return null
+        return TeachRecord(filled, filled.indexOf(right))
+    }
+
+    fun triviaReady(questions: List<TriviaQuestion>): Boolean = questions.size in 1..TRIVIA_MAX && questions.all { q ->
+        val c = q.choices.map(::tidy)
+        q.prompt.isNotBlank() && c.size in 2..4 && c.all { it.isNotEmpty() } && c.map { it.lowercase() }.toSet().size == c.size && q.answer in c.indices
+    }
+
+    fun clipDataUrl(bytes: ByteArray, mime: String = "audio/mp4"): String = "data:$mime;base64," + java.util.Base64.getEncoder().encodeToString(bytes)
+
+    fun clipBytes(dataUrl: String): ByteArray? = dataUrl.substringAfter(";base64,", "").takeIf { it.isNotEmpty() }?.let { runCatching { java.util.Base64.getDecoder().decode(it) }.getOrNull() }
+}
