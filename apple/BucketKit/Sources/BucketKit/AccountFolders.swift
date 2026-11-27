@@ -42,7 +42,16 @@ public struct AccountFolders: Sendable {
     public var phase: Phase? { marker?.phase }
 
     public func activeKey(userId: String?) -> String? {
-        migrated ? Self.key(userId: userId) : nil
+        FileManager.default.fileExists(atPath: markerURL.path) ? Self.key(userId: userId) : nil
+    }
+
+    var errorURL: URL { base.appending(path: "account-migration-error.txt") }
+
+    public var lastError: String? { (try? Data(contentsOf: errorURL)).map { String(decoding: $0, as: UTF8.self) } }
+
+    func record(_ error: Error?) {
+        guard let error else { try? FileManager.default.removeItem(at: errorURL); return }
+        try? Data("\(ISO8601DateFormatter().string(from: .now)) \(error.localizedDescription)".utf8).write(to: errorURL, options: .atomic)
     }
 
     @discardableResult

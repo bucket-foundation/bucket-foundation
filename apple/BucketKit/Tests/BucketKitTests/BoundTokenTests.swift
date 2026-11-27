@@ -49,3 +49,19 @@ import Testing
         #expect(EngineState(js: server.branches.value[d.branch]).cards.has(first.id))
     }
 }
+
+@MainActor
+@Test func refreshTakesTheLockOfTheRefreshingUser() async {
+    let asked = LockedBox<[String?]>([])
+    let expired = Session(accessToken: "old", refreshToken: "r", expiresAt: 0, userId: "user-1")
+    let api = BucketAPI(transport: ThrowingTransport(error: URLError(.notConnectedToInternet)))
+    let a = Account(api: api, store: MemorySessionStore(expired), locks: { user in asked.mutate { $0.append(user) }; return nil })
+    _ = await a.freshToken()
+    #expect(asked.value == ["user-1"])
+}
+
+@MainActor
+@Test func userTokenNamesTheUserWhoseSessionWasUsed() async {
+    let a = Account(api: BucketAPI(transport: StubTransport { _ in (500, Data()) }), store: MemorySessionStore(liveSession))
+    #expect(await a.userToken() == UserToken(userId: "user-1", token: "bearer-1"))
+}

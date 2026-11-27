@@ -21,7 +21,7 @@ struct BucketApp: App {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
-        let account = Account(api: BucketAPI(), store: launch.sessions, lock: launch.lock(appGroup: WidgetSnapshot.group))
+        let account = Account(api: BucketAPI(), store: launch.sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         let langs = LangStore(api: BucketAPI(), disk: launch.disk("polingual"), token: launch.token(account))

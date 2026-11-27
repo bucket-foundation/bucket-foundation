@@ -6,7 +6,7 @@ public struct AccountLaunch: Sendable {
     public let folderKey: String?
     public let multiAccount: Bool
     let folders: AccountFolders
-    let lockUser: String?
+    let index: AccountIndex
 
     public static func make(multiAccount: Bool, appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil, folders: AccountFolders = AccountFolders()) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
@@ -18,25 +18,33 @@ public struct AccountLaunch: Sendable {
             do {
                 try folders.migrate(userId: userId)
                 if entering == .verified { try folders.finishAfterLoad() }
+                folders.record(nil)
             } catch {
-                print("AccountLaunch: account folders stay on the root stores: \(error.localizedDescription)")
+                folders.record(error)
             }
         }
-        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folders.activeKey(userId: userId), multiAccount: multiAccount, folders: folders, lockUser: multiAccount ? userId : nil)
+        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folders.activeKey(userId: userId), multiAccount: multiAccount, folders: folders, index: index)
     }
 
     public static func forExtension(appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
         let index = index ?? AccountIndex(appGroup: appGroup) ?? AccountIndex(defaults: .standard)
         let sessions = SessionVault.extensionStore(items: items, index: index)
-        let userId = sessions.load()?.userId
-        let known = userId.map { u in index.rows.contains { $0.userId == u } } ?? false
-        return AccountLaunch(sessions: sessions, userId: userId, folderKey: nil, multiAccount: false, folders: AccountFolders(), lockUser: known ? userId : nil)
+        return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, folders: AccountFolders(), index: index)
     }
 
     public func disk(_ store: String) -> FileLangDisk { folders.disk(store, key: folderKey) }
 
-    public func lock(appGroup: String) -> RefreshLock? { FileRefreshLock(appGroup: appGroup, userId: lockUser) }
+    public var migrationError: String? { folders.lastError }
+
+    func lockUser(_ userId: String?) -> String? {
+        userId.flatMap { u in index.rows.contains { $0.userId == u } ? u : nil }
+    }
+
+    public func locks(appGroup: String) -> @Sendable (String?) -> RefreshLock? {
+        let index = index
+        return { user in FileRefreshLock(appGroup: appGroup, userId: user.flatMap { u in index.rows.contains { $0.userId == u } ? u : nil }) }
+    }
 
     @MainActor
     public func token(_ account: Account) -> @MainActor () async -> String? {

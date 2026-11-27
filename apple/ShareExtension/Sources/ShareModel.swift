@@ -43,7 +43,7 @@ final class ShareModel {
         self.context = context
         let api = BucketAPI()
         let launch = AccountLaunch.forExtension(appGroup: ShareBrand.appGroup, keychainGroup: ShareBrand.keychainGroup)
-        let account = Account(api: api, store: launch.sessions, lock: launch.lock(appGroup: ShareBrand.appGroup))
+        let account = Account(api: api, store: launch.sessions, locks: launch.locks(appGroup: ShareBrand.appGroup))
         self.account = account
         groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: ShareBrand.appGroup)

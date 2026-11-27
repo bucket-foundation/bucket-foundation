@@ -15,12 +15,17 @@ public final class Account {
 
     let api: BucketAPI
     let store: SessionStore
-    let lock: RefreshLock?
+    let locks: @Sendable (String?) -> RefreshLock?
+    @ObservationIgnored private var openLocks: [String: RefreshLock] = [:]
 
-    public init(api: BucketAPI, store: SessionStore, lock: RefreshLock? = nil) {
+    public convenience init(api: BucketAPI, store: SessionStore, lock: RefreshLock? = nil) {
+        self.init(api: api, store: store, locks: { _ in lock })
+    }
+
+    public init(api: BucketAPI, store: SessionStore, locks: @escaping @Sendable (String?) -> RefreshLock?) {
         self.api = api
         self.store = store
-        self.lock = lock
+        self.locks = locks
         let saved = store.load()
         session = saved
         stage = saved == nil ? .signedOut : .signedIn
@@ -69,16 +74,18 @@ public final class Account {
     }
 
     @ObservationIgnored private var refreshing: Task<String?, Never>?
+    @ObservationIgnored private var refreshingUser: String?
     @ObservationIgnored public private(set) var lastRefreshFailure: AccountTokenFailure?
 
     public func freshToken(now: @escaping @Sendable () -> Date = { .now }) async -> String? {
         guard let s = session else { return nil }
         if !s.expires(within: Self.refreshMargin, now: now()) { return s.accessToken }
-        if let inFlight = refreshing { return await inFlight.value }
+        if let inFlight = refreshing, refreshingUser == s.userId { return await inFlight.value }
+        let lock = lock(for: s.userId)
         let task = Task { () -> String? in
-            defer { self.refreshing = nil }
-            await self.lock?.acquire()
-            defer { self.lock?.release() }
+            defer { if self.refreshingUser == s.userId { self.refreshing = nil } }
+            await lock?.acquire()
+            defer { lock?.release() }
             var s = s
             if let stored = self.newer(than: s) {
                 self.session = stored
@@ -105,7 +112,22 @@ public final class Account {
             }
         }
         refreshing = task
+        refreshingUser = s.userId
         return await task.value
+    }
+
+    func lock(for userId: String?) -> RefreshLock? {
+        let name = userId ?? ""
+        if let open = openLocks[name] { return open }
+        let made = locks(userId)
+        if let made { openLocks[name] = made }
+        return made
+    }
+
+    public func userToken() async -> UserToken? {
+        let user = session?.userId
+        guard let t = await freshToken() else { return nil }
+        return UserToken(userId: user, token: t)
     }
 
     func newer(than s: Session) -> Session? {

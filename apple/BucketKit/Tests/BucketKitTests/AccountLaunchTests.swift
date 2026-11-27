@@ -21,7 +21,7 @@ import Testing
         #expect(l.folderKey == nil)
         #expect(folders.migrated == false)
         #expect(l.disk("polingual").read("systems.json") == Data("S".utf8))
-        #expect(l.lockUser == nil)
+        #expect(l.lockUser("A") == nil)
     }
 
     @Test func flagOnMovesIntoTheAccountFolderAndFinishesOnTheThirdLaunch() throws {
@@ -29,7 +29,8 @@ import Testing
         let first = AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: folders)
         #expect(first.folderKey == AccountIndex.key("A"))
         #expect(first.disk("polingual").read("systems.json") == Data("S".utf8))
-        #expect(first.lockUser == "A")
+        #expect(first.lockUser("A") == "A")
+        #expect(first.lockUser("B") == nil)
         _ = AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: folders)
         #expect(FileManager.default.fileExists(atPath: base.appending(path: "polingual/systems.json").path))
         _ = AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: folders)
@@ -42,10 +43,21 @@ import Testing
 
     @Test func extensionLocksPerUserOnlyForIndexedAccounts() throws {
         let (items, index, _, _) = try setup()
-        #expect(AccountLaunch.forExtension(appGroup: "none", items: items, index: index).lockUser == nil)
+        #expect(AccountLaunch.forExtension(appGroup: "none", items: items, index: index).lockUser("A") == nil)
         _ = SessionVault.store(multiAccount: true, items: items, index: index, launch: "x")
         let ext = AccountLaunch.forExtension(appGroup: "none", items: items, index: index)
         #expect(ext.userId == "A")
-        #expect(ext.lockUser == "A")
+        #expect(ext.lockUser("A") == "A")
+        #expect(ext.lockUser(ext.userId) == AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: AccountFolders(base: FileManager.default.temporaryDirectory.appending(path: "l-\(UUID().uuidString)"))).lockUser("A"))
+    }
+
+    @Test func aFailedMigrationLeavesARecordAndAnUnreadableMarkerStillRoutesToTheFolder() throws {
+        let (items, index, folders, _) = try setup()
+        _ = AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: folders)
+        try Data("{".utf8).write(to: folders.markerURL)
+        let l = AccountLaunch.make(multiAccount: true, appGroup: "none", items: items, index: index, folders: folders)
+        #expect(l.migrationError != nil)
+        #expect(l.folderKey == AccountIndex.key("A"))
+        #expect(l.disk("polingual").read("systems.json") == Data("S".utf8))
     }
 }

@@ -18,10 +18,3 @@ public enum BoundToken {
         }
     }
 }
-
-extension Account {
-    public func userToken() async -> UserToken? {
-        guard let t = await freshToken() else { return nil }
-        return UserToken(userId: session?.userId, token: t)
-    }
-}

@@ -33,7 +33,7 @@ struct PolingualApp: App {
         let sessions: SessionStore = launch.sessions
         let disk = launch.disk("polingual")
         #endif
-        let account = Account(api: api, store: sessions, lock: launch.lock(appGroup: WidgetSnapshot.group))
+        let account = Account(api: api, store: sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
         let store = LangStore(api: api, disk: disk, token: launch.token(account))
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
