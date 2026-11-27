@@ -134,4 +134,11 @@ public enum ProgressMetric {
         let known = LearnerModel.knownCount(lemmaEvidence(lang: lang, cards: cards, rows: rows), now: now, tier: tier)
         return LangMetrics(inputSeconds: secs, inputHours: (secs / 360).rounded(.down) / 10, knownWords: Int(known.rounded()))
     }
+
+    public static func ranked(_ langs: [String], cards: [String: MetricCard], rows: [MetricRow], now: Double) -> [(lang: String, metrics: LangMetrics)] {
+        langs.enumerated()
+            .map { (i: $0.offset, lang: $0.element, metrics: langMetrics(lang: $0.element, cards: cards, rows: rows, now: now)) }
+            .sorted { $0.metrics.knownWords != $1.metrics.knownWords ? $0.metrics.knownWords > $1.metrics.knownWords : $0.i < $1.i }
+            .map { (lang: $0.lang, metrics: $0.metrics) }
+    }
 }
