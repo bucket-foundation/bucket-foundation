@@ -245,3 +245,12 @@ test("commits that came in through a PR stay under that PR", () => {
   const e = commitEntries([{ sha: "fffffff666", subject: "feat(x): inside a PR", date: "2026-11-26T10:00:00Z", author: "g" }], new Set(["fffffff666"]));
   assert.equal(e.length, 0);
 });
+
+test("commits scoped to the closed Polingual product stay out", () => {
+  const e = commitEntries([
+    { sha: "1111111aaa", subject: "fix(polingual): lobby radii", date: "2026-11-26T10:00:00Z", author: "g" },
+    { sha: "2222222bbb", subject: "feat(polingual-ios): games", date: "2026-11-26T10:00:00Z", author: "g" },
+    { sha: "3333333ccc", subject: "feat(learn): path map", date: "2026-11-26T10:00:00Z", author: "g" },
+  ]);
+  assert.deepEqual(e.map((x) => x.id), ["commit-3333333"]);
+});

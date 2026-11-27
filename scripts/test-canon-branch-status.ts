@@ -34,7 +34,7 @@ test("rendered 2b pages carry no Story, Walrus or IP NFT claims", () => {
   for (const f of ["src/app/contribute/page.tsx", "src/app/protocol/page.tsx", "src/app/feed.xml/route.ts", "docs/foundation/PROTOCOL.md"]) {
     assert.doesNotMatch(read(f), /Story Protocol|IP NFT|Walrus/, f);
   }
-  const about = read("src/app/about/page.tsx");
+  const about = read("content/pages/about.md");
   assert.equal((about.match(/Story Protocol/g) || []).length, 1);
   assert.doesNotMatch(about, /IP NFT/);
 });

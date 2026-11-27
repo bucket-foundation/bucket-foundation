@@ -11,6 +11,7 @@ export const REPO_SLUG = "bucket-foundation/bucket-foundation";
 const BATCH_HEADS = new Set(["dev", "hte/integration", "ops/integration"]);
 const BOT_AUTHOR = /\[bot\]|bucket-bot|github-actions|dependabot/i;
 const SKIP_SUBJECT = /\[skip ci\]|^(?:bd|feed|whats-new|backup)\b[:(]|^(?:ops|gate|measure)(?:\([^)]*\))?!?:|^\w+\((?:ops|beads?|bd|backup)\)!?:|beads? backup/i;
+const CLOSED_SCOPE = /^\w+\([^)]*polingual[^)]*\)/i;
 const TYPE_WORD = {
   feat: "New",
   fix: "Fix",
@@ -223,6 +224,7 @@ export function commitEntries(commits, inPr = new Set()) {
   for (const c of commits) {
     if (inPr.has(c.sha) || isSkipped(c) || parsePrCommit(c) || /^Merge /.test(c.subject)) continue;
     if (!/^(?:feat|fix|perf)(?:\([^)]*\))?!?:/.test(c.subject)) continue;
+    if (CLOSED_SCOPE.test(c.subject)) continue;
     const id = `commit-${c.sha.slice(0, 7)}`;
     if (seen.has(id)) continue;
     seen.add(id);
