@@ -48,9 +48,13 @@ public final class FileRefreshLock: RefreshLock, @unchecked Sendable {
         self.suspension = suspension
     }
 
-    public convenience init?(appGroup: String) {
+    public convenience init?(appGroup: String, userId: String? = nil) {
         guard let dir = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else { return nil }
-        self.init(path: dir.appending(path: "session-refresh.lock"))
+        self.init(path: dir.appending(path: Self.fileName(userId: userId)))
+    }
+
+    public static func fileName(userId: String?) -> String {
+        userId.map { "refresh-\($0).lock" } ?? "session-refresh.lock"
     }
 
     deinit {

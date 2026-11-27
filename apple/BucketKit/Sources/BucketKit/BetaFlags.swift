@@ -1,7 +1,7 @@
 import Foundation
 
 public struct BetaFlags: Sendable, Equatable {
-    public static let fallback: [String: String] = ["option_language": "cross", "new_words": "4", "practice_order": "blocked", "cognate_hints": "off", "daily_new_words": "12", "daily_cards": "60"]
+    public static let fallback: [String: String] = ["option_language": "cross", "new_words": "4", "practice_order": "blocked", "cognate_hints": "off", "daily_new_words": "12", "daily_cards": "60", "multi_account": "off"]
     public static let cacheKey = "beta.flags"
 
     public let values: [String: String]
@@ -14,6 +14,7 @@ public struct BetaFlags: Sendable, Equatable {
     public var newWords: Int { Int(value("new_words")) ?? 4 }
     public var mixedPractice: Bool { value("practice_order") == "mixed" }
     public var cognateHints: Bool { value("cognate_hints") == "on" }
+    public var multiAccount: Bool { value("multi_account") == "on" }
     public var dailyNewWords: Int { count("daily_new_words") }
     public var dailyCards: Int { count("daily_cards") }
 
