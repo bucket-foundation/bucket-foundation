@@ -84,3 +84,15 @@ test("state: members poll the lobby, unchanged versions short-circuit, outsiders
   assert.equal(outsider.status, 404);
   assert.deepEqual(await body(outsider), { error: "not_found" });
 });
+
+test("starting an atlas lobby stores voice prompts with their clip licence", async () => {
+  const tables = setup(room({ game: "atlas", rounds: 3 }), [seat("h")]);
+  const words = Array.from({ length: 40 }, (_, n) => ({ id: `w${n}`, kind: "word", category: "food", gloss: `en${n}`, forms: { en: `en${n}`, es: `es${n}`, fr: `fr${n}`, de: `de${n}`, it: `it${n}`, ja: `ja${n}` } }));
+  (groups as unknown as Record<string, unknown>).langCorpus = () => ({ items: words });
+  const server = await import("../src/lib/academy/lobbies-server");
+  const started = await server.startLobby(room({ game: "atlas", rounds: 3 }) as never, Date.now());
+  assert.equal(started.ok, true);
+  const rows = tables.lobby_prompts;
+  assert.equal(rows.length, 3);
+  assert.ok(rows.every((r) => r.mode === "voice" && r.licence === "device-tts"));
+});

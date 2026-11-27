@@ -29,3 +29,7 @@ alter table bucket.lobby_teach enable row level security;
 alter table bucket.lobby_trivia enable row level security;
 revoke all on bucket.lobby_teach from anon, authenticated;
 revoke all on bucket.lobby_trivia from anon, authenticated;
+
+alter table bucket.lobby_prompts add column if not exists licence text check (licence is null or licence in ('device-tts', 'cc0', 'cc-by', 'cc-by-sa', 'family-room', 'personal', 'unknown'));
+alter table bucket.lobby_prompts drop constraint if exists lobby_prompts_mode_check;
+alter table bucket.lobby_prompts add constraint lobby_prompts_mode_check check (mode in ('form', 'flag', 'tiles', 'mixed', 'meaning', 'spy', 'voice'));

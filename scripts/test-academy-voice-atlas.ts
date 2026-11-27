@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome, publicPlayback } from "../src/lib/academy/voice-atlas";
+import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome, publicPlayback, atlasPrompts } from "../src/lib/academy/voice-atlas";
+import { visiblePrompts } from "../src/lib/academy/lobbies";
 
 const langs = Object.keys(ATLAS_HOMES);
 const items = Array.from({ length: 80 }, (_, n) => {
@@ -37,4 +38,22 @@ test("every atlas clip carries a licence, and only public licences may play on a
   for (const l of ["device-tts", "cc0", "cc-by", "cc-by-sa"] as const) assert.ok(publicPlayback(l));
   for (const l of ["personal", "unknown", "family-room"] as const) assert.ok(!publicPlayback(l));
   assert.ok(!publicPlayback(undefined));
+});
+
+test("lobby atlas prompts carry each clip's licence through to what the TV reads", () => {
+  const rows = atlasPrompts(items, { id: "L", seed: "42", root: "en", rounds: 4 });
+  assert.equal(rows.length, 4);
+  for (const r of rows) {
+    assert.equal(r.mode, "voice");
+    assert.equal(r.licence, "device-tts");
+    assert.ok(r.choices.includes(r.answer));
+    assert.equal(r.answer, r.lang);
+  }
+  const shown = visiblePrompts(rows, 0, false)[0];
+  assert.equal(shown.licence, "device-tts");
+  assert.equal(shown.lang, rows[0].lang);
+  assert.ok(publicPlayback(shown.licence));
+  const bare = visiblePrompts([{ ...rows[0], licence: null }], 0, false)[0];
+  assert.equal(bare.licence, undefined);
+  assert.ok(!publicPlayback(bare.licence));
 });
