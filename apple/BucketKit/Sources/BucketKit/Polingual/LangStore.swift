@@ -80,6 +80,7 @@ public final class LangStore {
     let seed: @Sendable (String) -> Data?
     let token: @MainActor () async -> String?
     let now: @MainActor () -> Double
+    @ObservationIgnored public let study: StudyUploader
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
     @ObservationIgnored private var generation: [String: Int] = [:]
@@ -91,13 +92,14 @@ public final class LangStore {
     @ObservationIgnored private var reloadAfter = false
     @ObservationIgnored private(set) var replacing: Set<String> = [] { didSet { if replacing != oldValue { saveReplacing() } } }
 
-    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
+    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }, studyPrefs: StudyPrefs = StudyPrefs()) {
         self.api = api
         self.disk = disk
         self.cache = cache ?? FileLangDisk(root: BucketAPI.offlineDirectory("polingual-corpus") ?? FileManager.default.temporaryDirectory.appending(path: "polingual-corpus", directoryHint: .isDirectory))
         self.seed = seed
         self.token = token
         self.now = now
+        self.study = StudyUploader(api: api, disk: disk, prefs: studyPrefs, token: token, now: now)
         self.pending = Self.readPending(disk)
         self.replacing = Self.readReplacing(disk)
     }
@@ -491,7 +493,12 @@ public final class LangStore {
         commit(s, next)
     }
 
-    public func log(_ rows: [LogRow]) { reviewLog.append(contentsOf: rows) }
+    public func log(_ rows: [LogRow]) {
+        reviewLog.append(contentsOf: rows)
+        study.add(rows)
+    }
+
+    public func flushStudy() async -> StudyFlush { await study.flush() }
 
     public static var deviceId: String { installDevice }
 
