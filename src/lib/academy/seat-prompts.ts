@@ -14,7 +14,7 @@ export function answerLangFor(card: FairCard | null, wordLang: string, root: str
 }
 
 function seedOf(s: string): string {
-  let h = BigInt(1469598103934665603);
+  let h = BigInt("1469598103934665728");
   for (const c of s) h = BigInt.asUintN(64, (h ^ BigInt(c.charCodeAt(0))) * BigInt(1099511628211));
   return h.toString();
 }
