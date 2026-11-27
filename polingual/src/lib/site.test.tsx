@@ -90,7 +90,7 @@ test("the header and footer navs carry distinct labels in the page language", ()
 
 test("the guides index lists every guide and has its own canonical", () => {
   const html = renderToStaticMarkup(<LearnPage />);
-  assert.match(html, /<h1>Guides<\/h1>/);
+  assert.match(html, /<h1[^>]*>Guides<\/h1>/);
   for (const g of GUIDES) {
     assert.ok(html.includes(`href="/learn/${g.slug}"`), g.slug);
     assert.ok(html.includes(g.title), g.title);
