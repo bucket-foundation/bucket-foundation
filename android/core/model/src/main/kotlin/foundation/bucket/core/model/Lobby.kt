@@ -3,10 +3,12 @@ package foundation.bucket.core.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-enum class LobbyStatus { @SerialName("lobby") Lobby, @SerialName("playing") Playing, @SerialName("done") Done }
+@Serializable(with = LobbyStatusSerializer::class)
+enum class LobbyStatus(val wire: String) { Lobby("lobby"), Playing("playing"), Done("done") }
 
-@Serializable
+object LobbyStatusSerializer : LenientEnumSerializer<LobbyStatus>("LobbyStatus", LobbyStatus.entries, LobbyStatus::wire, LobbyStatus.Done)
+
+@Serializable(with = LobbyGameSerializer::class)
 enum class LobbyGame(val wire: String, val title: String) {
     @SerialName("daily") Daily("daily", "Daily Set"),
     @SerialName("same-word") SameWord("same-word", "Same Word"),
@@ -28,16 +30,23 @@ enum class LobbyGame(val wire: String, val title: String) {
     @SerialName("atlas") Atlas("atlas", "Voice Atlas"),
     @SerialName("forehead") Forehead("forehead", "Forehead"),
     @SerialName("ispy") ISpy("ispy", "I Spy Race"),
-    @SerialName("flag-duel") FlagDuel("flag-duel", "Flag Duel Race");
+    @SerialName("flag-duel") FlagDuel("flag-duel", "Flag Duel Race"),
+    Unknown("unknown", "New game");
 
     val isRace: Boolean get() = this in LobbyGames.race
 }
 
-@Serializable
-enum class LobbyPromptMode { @SerialName("form") Form, @SerialName("flag") Flag, @SerialName("tiles") Tiles, @SerialName("mixed") Mixed, @SerialName("meaning") Meaning, @SerialName("spy") Spy }
+object LobbyGameSerializer : LenientEnumSerializer<LobbyGame>("LobbyGame", LobbyGame.entries, LobbyGame::wire, LobbyGame.Unknown)
 
-@Serializable
-enum class PowerKind(val cost: Int) { @SerialName("double") Double(2), @SerialName("fifty") Fifty(1) }
+@Serializable(with = LobbyPromptModeSerializer::class)
+enum class LobbyPromptMode(val wire: String) { Form("form"), Flag("flag"), Tiles("tiles"), Mixed("mixed"), Meaning("meaning"), Spy("spy"), Voice("voice"), Unknown("unknown") }
+
+object LobbyPromptModeSerializer : LenientEnumSerializer<LobbyPromptMode>("LobbyPromptMode", LobbyPromptMode.entries, LobbyPromptMode::wire, LobbyPromptMode.Unknown)
+
+@Serializable(with = PowerKindSerializer::class)
+enum class PowerKind(val wire: String, val cost: Int) { Double("double", 2), Fifty("fifty", 1), Unknown("unknown", 0) }
+
+object PowerKindSerializer : LenientEnumSerializer<PowerKind>("PowerKind", PowerKind.entries, PowerKind::wire, PowerKind.Unknown)
 
 @Serializable
 data class LobbyPower(val round: Int, val kind: PowerKind)
@@ -56,6 +65,9 @@ data class LobbyPlayer(
     val bot: Boolean = false,
     val skill: String? = null,
     val flag: String? = null,
+    val total: Int? = null,
+    val firstRound: Int = 0,
+    val continues: Int = 0,
 )
 
 @Serializable
@@ -75,6 +87,7 @@ data class LobbyPrompt(
     val gloss: String,
     val choices: List<String>,
     val answer: String? = null,
+    val licence: String? = null,
     val reveal: List<RevealEntry> = emptyList(),
     val hide: List<String> = emptyList(),
 )
@@ -97,6 +110,8 @@ data class LobbySummary(
     val bots: Int = 0,
     val standing: Boolean = false,
     val hostHandle: String? = null,
+    val setup: String = "single",
+    val playlist: List<String> = emptyList(),
 )
 
 @Serializable
@@ -128,10 +143,23 @@ data class Lobby(
     val nextStartAt: String? = null,
     val coins: Int = 0,
     val powers: List<LobbyPower> = emptyList(),
+    val ended: Boolean = false,
+    val canEnd: Boolean = false,
+    val setup: String = "single",
+    val playlist: List<String> = emptyList(),
+    val guestsWatch: Boolean? = null,
+    val bonusVotes: List<BonusTally> = emptyList(),
 ) {
     val me: LobbyPlayer? get() = players.firstOrNull { it.isMe }
+    val seated: Boolean get() = me != null
     val readyCount: Int get() = players.count { it.ready }
-    val canStart: Boolean get() = isHost && status == LobbyStatus.Lobby && readyCount >= LobbyRules.MIN_READY
+    val canStart: Boolean get() = isHost && status == LobbyStatus.Lobby && LobbyRules.allReady(players)
+    val waitingOn: List<LobbyPlayer> get() = players.filter { !it.bot && it.online && !it.ready }
+    val night: NightRound? get() = FamilyNight.round(playlist, game.wire, setup == "mix")
+    fun interlude(nowMs: Long): Interlude? = FamilyNight.interlude(this, nowMs)
+    fun nextGameSeconds(nowMs: Long): Int? = if (ended || status != LobbyStatus.Done) null else nextStartAt?.let(::parseInstantMs)?.let { maxOf(0, ((it - nowMs + 999) / 1000).toInt()) }
+    fun gameEndMs(): Long? = startedAt?.let(::parseInstantMs)?.let { it + rounds * roundSeconds * 1000L + maxOf(0, rounds - 1) * revealSeconds * 1000L }
+    fun bonus(round: Int): BonusTally? = bonusVotes.firstOrNull { it.round == round }
     val standings: List<LobbyPlayer> get() {
         if (!game.isRace) return players.sortedWith(compareByDescending<LobbyPlayer> { it.score }.thenBy { it.name })
         val ms = results.groupBy { it.userId }.mapValues { (_, r) -> r.first().ms }
@@ -162,7 +190,7 @@ object LobbyGames {
         return prompt.filter { it.wire in allowed } + race.filter { it.wire in racing }
     }
 
-    fun playable(game: LobbyGame): Boolean = !game.isRace || game in raceOnAndroid
+    fun playable(game: LobbyGame): Boolean = game != LobbyGame.Unknown && (!game.isRace || game in raceOnAndroid)
 }
 
 object LobbyRace {
@@ -190,6 +218,11 @@ object LobbyRules {
     const val CAP = 8
     const val POLL_MS = 1000L
     const val CODE_LENGTH = 6
+
+    fun allReady(players: List<LobbyPlayer>): Boolean {
+        val here = players.filter { it.bot || it.online }
+        return here.size >= MIN_READY && here.any { !it.bot } && here.all { it.ready || it.bot }
+    }
 }
 
 sealed interface LobbyPhase {

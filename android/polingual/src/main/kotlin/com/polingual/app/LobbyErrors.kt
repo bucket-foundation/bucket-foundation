@@ -7,8 +7,8 @@ object LobbyErrors {
         "not_found" to "No lobby with that code.",
         "lobby_full" to "That lobby is full.",
         "lobby_started" to "That game already started.",
-        "need_ready" to "Two players need to be ready.",
-        "not_host" to "Only the host can start.",
+        "need_ready" to "Everyone in the room needs to be ready.",
+        "not_host" to "Only the host can do that.",
         "already_answered" to "You already answered this round.",
         "already_continued" to "You already used your continue this game.",
         "has_lives" to "You still have lives left.",
@@ -29,6 +29,16 @@ object LobbyErrors {
         "sync_unavailable" to "Lobbies are offline right now. Try again soon.",
         "offline" to "No connection. Check your network.",
         "update_app" to "This game needs the newest app. Open it on polingual.com.",
+        "end_off" to "Closing rooms is not on yet.",
+        "audience_age" to "Watching needs an account for 13 and over.",
+        "audience_signin" to "Sign in to watch this room.",
+        "seat_open" to "A seat is free. Join as a player.",
+        "card_locked" to "The game started. Your card is set.",
+        "not_audience" to "Only the audience votes on the bonus.",
+        "already_voted" to "You already voted.",
+        "not_allowed" to "That step is not open right now.",
+        "not_eligible" to "The league opens at 13 and over.",
+        "bots_off" to "Bots are off for this room.",
     )
 
     fun text(e: BucketError): String = (e as? BucketError.Server)?.text?.let { copy[it] } ?: e.message

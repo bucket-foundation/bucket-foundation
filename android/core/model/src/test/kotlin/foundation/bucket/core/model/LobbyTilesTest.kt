@@ -100,7 +100,7 @@ class LobbyRaceTest {
     fun everyServerGameHasAnAndroidEntry() {
         val all = listOf("daily", "same-word", "flags", "live", "tiles", "duel", "spy") + server
         assertEquals(21, all.size)
-        assertEquals(all.toSet(), LobbyGame.entries.map { it.wire }.toSet())
+        assertEquals(all.toSet(), LobbyGame.entries.filter { it != LobbyGame.Unknown }.map { it.wire }.toSet())
         assertEquals(server, LobbyGames.race.map { it.wire })
     }
 

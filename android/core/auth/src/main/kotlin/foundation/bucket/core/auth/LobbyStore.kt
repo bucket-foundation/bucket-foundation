@@ -30,6 +30,9 @@ data class LobbyState(
     val busy: Boolean = false,
     val error: BucketError? = null,
     val offsetMs: Long = 0,
+    val audience: Boolean = false,
+    val votes: Map<Int, String> = emptyMap(),
+    val left: foundation.bucket.core.model.LeaveResult? = null,
 )
 
 class LobbyStore(
@@ -72,11 +75,59 @@ class LobbyStore(
     suspend fun join(summary: LobbySummary, displayName: String): Lobby =
         enter(run { api.joinLobby(it, lobbyId = summary.id, displayName = displayName) })
 
-    suspend fun leave() {
-        val id = _state.value.current?.id ?: return
-        _state.update { s -> s.copy(current = null, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false, open = s.open.filterNot { it.id == id }) }
-        anyToken()?.let { t -> runCatching { api.leaveLobby(t, id) } }
+    suspend fun watch(code: String, displayName: String): Lobby {
+        val lobby = enter(run { api.joinLobby(it, code = normalizeCode(code), displayName = displayName, audience = true) })
+        _state.update { it.copy(audience = lobby.me == null && !lobby.isHost) }
+        return lobby
     }
+
+    suspend fun leave(): foundation.bucket.core.model.LeaveResult? {
+        val id = _state.value.current?.id ?: return null
+        _state.update { s -> s.copy(current = null, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false, audience = false, votes = emptyMap(), open = s.open.filterNot { it.id == id }) }
+        val result = anyToken()?.let { t -> runCatching { api.leaveLobby(t, id) }.getOrNull() }
+        _state.update { it.copy(left = result) }
+        return result
+    }
+
+    suspend fun nextGame() {
+        val id = hosted() ?: return
+        apply(run { api.nextGame(it, id) })
+    }
+
+    suspend fun close() {
+        val id = hosted() ?: return
+        apply(run { api.closeLobby(it, id) })
+    }
+
+    suspend fun settings(game: LobbyGame? = null, setup: String? = null, games: List<String> = emptyList(), guestsWatch: Boolean? = null) {
+        val id = hosted() ?: return
+        apply(run { api.lobbySettings(it, id, game, setup, games, guestsWatch) })
+    }
+
+    suspend fun hostMode(screen: Boolean, displayName: String?) {
+        val id = hosted() ?: return
+        apply(run { api.hostMode(it, id, screen, displayName) })
+    }
+
+    suspend fun vote(round: Int, choice: String): Boolean {
+        val id = _state.value.current?.id ?: return false
+        if (_state.value.votes.containsKey(round)) return false
+        _state.update { it.copy(votes = it.votes + (round to choice)) }
+        return try {
+            run { api.bonusVote(it, id, round, choice) }
+            true
+        } catch (e: BucketError) {
+            if (e != BucketError.Server(409, "already_voted")) _state.update { it.copy(votes = it.votes - round) }
+            false
+        }
+    }
+
+    suspend fun saveCard(card: foundation.bucket.core.model.PlayerCard) {
+        val id = _state.value.current?.id ?: return
+        run { api.saveCard(it, id, card) }
+    }
+
+    private fun hosted(): String? = _state.value.current?.takeIf { it.isHost }?.id
 
     suspend fun setReady(ready: Boolean) {
         val id = _state.value.current?.id ?: return
@@ -172,13 +223,18 @@ class LobbyStore(
     }
 
     private fun enter(lobby: Lobby): Lobby {
-        _state.update { it.copy(current = lobby, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false) }
+        _state.update { it.copy(current = lobby, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false, audience = false, votes = emptyMap(), left = null) }
         parseInstantMs(lobby.now)?.let(::sync)
         return lobby
     }
 
     private fun apply(lobby: Lobby) {
-        _state.update { if (it.current?.id == lobby.id) it.copy(current = lobby) else it }
+        _state.update { s ->
+            val prior = s.current
+            if (prior?.id != lobby.id) s
+            else if (prior.startedAt != lobby.startedAt) s.copy(current = lobby, picks = emptyMap(), marks = emptyMap(), raceScore = null, raceScoreSent = false, votes = emptyMap())
+            else s.copy(current = lobby)
+        }
     }
 
     private suspend fun <T> run(block: suspend (String) -> T): T {
