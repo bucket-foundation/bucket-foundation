@@ -4,13 +4,13 @@ import { createExperimentHandlers, rowToEnrolment } from "../src/lib/academy/exp
 import { assignArm, type Enrolment } from "../src/lib/academy/input-experiment";
 import { fetchEnrolment, registerEnrolment } from "../src/lib/academy/experiment-store";
 
-function harness(opts: { user?: string | null; adult?: boolean | null; configured?: boolean; loadFails?: boolean } = {}) {
+function harness(opts: { user?: string | null; gate?: "ok" | "under_age" | "no_consent" | "no_profile" | null; configured?: boolean; loadFails?: boolean } = {}) {
   const rows = new Map<string, Enrolment>();
   let inserts = 0;
   const h = createExperimentHandlers({
     configured: () => opts.configured ?? true,
     verifyUser: async () => (opts.user === undefined ? "u1" : opts.user),
-    adult: async () => (opts.adult === undefined ? true : opts.adult),
+    gate: async () => (opts.gate === undefined ? "ok" : opts.gate),
     load: async (u) => (opts.loadFails ? undefined : rows.get(u) ?? null),
     insertFirst: async (u, e) => {
       inserts++;
@@ -38,14 +38,20 @@ test("the server assigns the arm from the account and keeps the first enrolment"
   assert.deepEqual((await (await h.GET(get())).json()).enrolment, e);
 });
 
-test("the server refuses minors, strangers, bad bodies and an unconfigured store", async () => {
-  assert.equal((await harness({ adult: false }).h.POST(post({ experiment: "ci14-share-v1", stratum: "to-a2" }))).status, 403);
+test("the server refuses minors, learners without upload consent or a profile, strangers, bad bodies and an unconfigured store", async () => {
+  for (const gate of ["under_age", "no_consent", "no_profile"] as const) {
+    const { h, rows } = harness({ gate });
+    const r = await h.POST(post({ experiment: "ci14-share-v1", stratum: "to-a2" }));
+    assert.equal(r.status, 403, gate);
+    assert.deepEqual(await r.json(), { error: gate });
+    assert.equal(rows.size, 0);
+  }
   assert.equal((await harness({ user: null }).h.GET(get())).status, 401);
   assert.equal((await harness().h.POST(post({ experiment: "other", stratum: "to-a2" }))).status, 400);
   assert.equal((await harness().h.POST(post({ experiment: "ci14-share-v1", stratum: "b1" }))).status, 400);
   assert.equal((await harness({ configured: false }).h.GET(get())).status, 503);
   assert.equal((await harness({ loadFails: true }).h.GET(get())).status, 502);
-  assert.equal((await harness({ adult: null }).h.POST(post({ experiment: "ci14-share-v1", stratum: "to-a2" }))).status, 502);
+  assert.equal((await harness({ gate: null }).h.POST(post({ experiment: "ci14-share-v1", stratum: "to-a2" }))).status, 502);
 });
 
 test("stored rows map back to enrolments and reject unknown arms", () => {
