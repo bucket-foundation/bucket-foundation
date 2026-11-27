@@ -127,6 +127,16 @@ import Testing
         #expect(names == ["guest", "migration.json"])
     }
 
+    @Test func aCorruptRecordStopsMigrationAndKeepsEveryFolder() throws {
+        let b = base()
+        try seed(b)
+        let folders = AccountFolders(base: b)
+        let key = try folders.migrate(userId: "A")
+        try Data("{".utf8).write(to: folders.markerURL)
+        #expect(throws: BucketError.self) { try folders.migrate(userId: "A") }
+        #expect(text(folders.folder(key).appending(path: "polingual/systems.json")) == "S")
+    }
+
     @Test func heldBlobRestoresThroughTheStoreAtSignIn() async throws {
         let disk = MemoryLangDisk()
         disk.write("held-index.json", JSON.data(.array([.string("B")])))

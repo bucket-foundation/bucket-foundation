@@ -52,6 +52,7 @@ public struct AccountFolders: Sendable {
             if m.phase == .copied { m.phase = .verified; try writeMarker(m) }
             return m.key
         }
+        if fm.fileExists(atPath: markerURL.path) { throw BucketError.server(0, "The account folder record is unreadable.") }
         let key = Self.key(userId: userId)
         if fm.fileExists(atPath: accounts.path) { try fm.removeItem(at: accounts) }
         try fm.createDirectory(at: tmp(key), withIntermediateDirectories: true)
