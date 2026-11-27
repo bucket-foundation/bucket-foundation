@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { heardOf, settle } from "./player";
+import { heardOf, parseHeard, settle } from "./player";
 
 const base = { stationId: "st", lang: "es", startedAt: 1_000, since: null as number | null, ms: 0 };
 
@@ -20,4 +20,13 @@ test("a clock that runs backwards adds nothing", () => {
 test("under a second of listening is not reported", () => {
   assert.equal(heardOf({ ...base, ms: 999 }), null);
   assert.deepEqual(heardOf({ ...base, ms: 1_000 }), { stationId: "st", lang: "es", startedAt: 1_000, ms: 1_000 });
+});
+
+test("stored spans survive a reload and bad rows are dropped", () => {
+  const good = { stationId: "st", lang: "es", startedAt: 5, ms: 61_000 };
+  assert.deepEqual(parseHeard(JSON.stringify([good, { stationId: 1 }, { ...good, ms: 10 }, null])), [good]);
+  assert.deepEqual(parseHeard("not json"), []);
+  assert.deepEqual(parseHeard(null), []);
+  assert.deepEqual(parseHeard(JSON.stringify({ a: 1 })), []);
+  assert.equal(parseHeard(JSON.stringify(Array.from({ length: 250 }, (_, i) => ({ ...good, startedAt: i })))).length, 200);
 });

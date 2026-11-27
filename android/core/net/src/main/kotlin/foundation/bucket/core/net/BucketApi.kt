@@ -64,6 +64,10 @@ class BucketApi(
         return json.decodeFromJsonElement(Profile.serializer(), json.parseToJsonElement(text).jsonObject.getValue("profile"))
     }
 
+    suspend fun learnEvents(token: String, batch: JsonObject): String? = runCatching {
+        (json.parseToJsonElement(call("api/academy/event", token, batch, mapper = ::groupError)).jsonObject["outcome"] as? kotlinx.serialization.json.JsonPrimitive)?.content
+    }.getOrNull()
+
     suspend fun progressPull(token: String): JsonObject? = runCatching {
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()

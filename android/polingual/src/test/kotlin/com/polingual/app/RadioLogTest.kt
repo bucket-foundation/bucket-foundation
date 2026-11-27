@@ -6,6 +6,10 @@ import foundation.bucket.core.engine.MetricRow
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonArray
+import foundation.bucket.core.engine.UploadGate
 
 class RadioLogTest {
     private class MemKv : KeyValue {
@@ -41,5 +45,41 @@ class RadioLogTest {
         assertEquals(10, Listening("st", "es", 0, since = 9_000, ms = 10).settle(8_000).ms)
         assertNull(Listening("st", "es", 0, null, 999).heard())
         assertEquals(Heard("st", "es", 0, 1_000), Listening("st", "es", 0, null, 1_000).heard())
+    }
+
+    @Test fun aCheckpointReportsTheSpanAndKeepsListening() {
+        val (h, next) = Listening("st", "es", 0, since = 1_000, ms = 500).checkpoint(301_000)
+        assertEquals(Heard("st", "es", 0, 300_500), h)
+        assertEquals(Listening("st", "es", 301_000, since = 301_000, ms = 0), next)
+        val (none, paused) = Listening("st", "es", 0, since = null, ms = 200).checkpoint(9_000)
+        assertNull(none)
+        assertNull(paused.since)
+    }
+
+    @Test fun uploadProbesTheGateSendsRowsAndClearsThem() = runBlocking {
+        val kv = MemKv()
+        val log = RadioLog(kv)
+        log.log(Heard("st", "es", 0, 120_000), "sys", "dev", "UTC", 1_000, ids)
+        val posts = mutableListOf<JsonObject>()
+        assertEquals(1, log.upload { b -> posts += b; "recorded" })
+        assertEquals(0, posts[0]["events"]!!.jsonArray.size)
+        assertEquals(1, posts[1]["events"]!!.jsonArray.size)
+        assertEquals(UploadGate.Open, log.gate())
+        assertEquals(emptyList(), log.rows())
+    }
+
+    @Test fun aFailedPostKeepsRowsAndAClosedGateDropsThem() = runBlocking {
+        val kv = MemKv()
+        val log = RadioLog(kv)
+        kv.set(RadioLog.GATE_KEY, UploadGate.Open.name)
+        log.log(Heard("st", "es", 0, 120_000), "sys", "dev", "UTC", 1_000, ids)
+        assertEquals(0, log.upload { null })
+        assertEquals(1, log.rows().size)
+        assertEquals(0, log.upload { "no_consent" })
+        assertEquals(UploadGate.Closed, log.gate())
+        assertEquals(emptyList(), log.rows())
+        log.log(Heard("st", "es", 0, 120_000), "sys", "dev", "UTC", 1_000, ids)
+        assertEquals(0, log.upload { error("must not post") })
+        assertEquals(emptyList(), log.rows())
     }
 }

@@ -74,6 +74,12 @@ class Graph(val context: Context) {
         val salt = kv.get("polingual.reviewLog.salt") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.reviewLog.salt", it) }
         val device = foundation.bucket.core.engine.ReviewLog.deviceHash(salt, kv.get("polingual.install") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.install", it) })
         radioLog.log(h, system.id, device, java.util.TimeZone.getDefault().id, System.currentTimeMillis()) { java.util.UUID.randomUUID().toString() }
+        scope.launch { syncRadio() }
+    }
+
+    suspend fun syncRadio() {
+        val token = account.token() ?: return
+        radioLog.upload { batch -> api.learnEvents(token, batch) }
     }
     val billing = Billing(context, this)
     val ads = Ads(context, this)
@@ -112,7 +118,7 @@ class Graph(val context: Context) {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily() }
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily(); syncRadio() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {
