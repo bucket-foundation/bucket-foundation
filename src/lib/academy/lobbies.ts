@@ -1,3 +1,4 @@
+import type { ClipLicence } from "./voice-atlas";
 import { CROCKFORD, hiddenUsers, normalizeReportReason, uuidOrNull, type BlockRow, type ReportReason } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
 import { spyRounds } from "./ispy";
@@ -25,7 +26,7 @@ export function raceEnabled(env: Record<string, string | undefined> = process.en
 export function raceGames(env: Record<string, string | undefined> = process.env): RaceGame[] {
   return raceEnabled(env) ? [...RACE_GAMES] : [];
 }
-export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy";
+export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy" | "voice";
 export type PowerKind = "double" | "fifty";
 export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
@@ -33,9 +34,72 @@ export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
 export const NEXT_GAME_MS = 60_000;
 
-export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at">, now: number, force = false): boolean {
+export const FAMILY_NIGHT: readonly { game: LobbyGame; label: string }[] = [
+  { game: "daily", label: "Warm Up" },
+  { game: "tiles", label: "Picture Race" },
+  { game: "same-word", label: "Final" },
+];
+
+export const NIGHT_BREAK_MS = 150_000;
+export const ATLAS_CLIPS = 5;
+export const ATLAS_SLOT_MS = 12_000;
+export const FOREHEAD_MS = 90_000;
+
+export const FOREHEAD_CARD_MS = 15_000;
+
+export type Interlude = { kind: "voice-atlas"; clip: number; endsAt: number } | { kind: "family-teach" } | { kind: "forehead"; card: number; endsAt: number } | { kind: "our-trivia" };
+
+export function foreheadHolder(players: readonly Pick<LobbyPlayerRow, "user_id" | "is_bot">[], card: number): string | null {
+  const humans = players.filter((p) => p.is_bot !== true).sort((a, b) => (a.user_id < b.user_id ? -1 : a.user_id > b.user_id ? 1 : 0));
+  return humans.length ? humans[card % humans.length].user_id : null;
+}
+
+export function breakMs(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null }): number {
+  const night = nightRound(lobby);
+  return night && !night.final ? NIGHT_BREAK_MS : NEXT_GAME_MS;
+}
+
+export function interludeAt(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null; status: string; started_at: string | null; rounds: number; round_seconds: number; reveal_seconds?: number | null; ended_at?: string | null }, now: number): Interlude | null {
+  if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return null;
+  const night = nightRound(lobby);
+  if (!night || night.final) return null;
+  const end = gameEndMs({ ...lobby, started_at: lobby.started_at, reveal_seconds: lobby.reveal_seconds ?? undefined });
+  const since = now - end;
+  if (since < 0) return null;
+  if (night.index === 0) {
+    const clip = Math.floor(since / ATLAS_SLOT_MS);
+    return clip < ATLAS_CLIPS ? { kind: "voice-atlas", clip, endsAt: end + (clip + 1) * ATLAS_SLOT_MS } : { kind: "family-teach" };
+  }
+  if (since >= FOREHEAD_MS) return { kind: "our-trivia" };
+  const card = Math.floor(since / FOREHEAD_CARD_MS);
+  return { kind: "forehead", card, endsAt: end + (card + 1) * FOREHEAD_CARD_MS };
+}
+
+export type NightRound = { index: number; label: string; final: boolean; total: number };
+
+export function nightRound(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null }): NightRound | null {
+  const list = lobby.playlist ?? [];
+  if (lobby.mix || list.length !== FAMILY_NIGHT.length || list.some((g, i) => g !== FAMILY_NIGHT[i].game)) return null;
+  const index = list.indexOf(lobby.game ?? "");
+  if (index < 0) return null;
+  return { index, label: FAMILY_NIGHT[index].label, final: index === FAMILY_NIGHT.length - 1, total: FAMILY_NIGHT.length };
+}
+
+export function bonusQuestion(lobby: { status: string; playlist?: readonly string[] | null; mix?: boolean; game: string | null; rounds: number }, round: number): boolean {
+  return lobby.status === "playing" && nightRound(lobby)?.final === true && round === lobby.rounds - 1;
+}
+
+export const STEAL_POINTS = 100;
+
+export function stealBonus(uid: string, players: readonly { user_id: string; score: number }[], answers: readonly { user_id: string; correct: boolean }[]): number {
+  const mine = players.find((p) => p.user_id === uid)?.score ?? 0;
+  const ahead = new Set(players.filter((p) => p.user_id !== uid && p.score > mine).map((p) => p.user_id));
+  return answers.some((a) => ahead.has(a.user_id) && !a.correct) ? STEAL_POINTS : 0;
+}
+
+export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at"> & { playlist?: readonly string[] | null; mix?: boolean; game?: string | null }, now: number, force = false): boolean {
   if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return false;
-  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS;
+  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + breakMs({ playlist: lobby.playlist, mix: lobby.mix, game: lobby.game ?? null });
 }
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
   const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];
@@ -103,6 +167,7 @@ export interface LobbyRow {
   created_at: string;
   standing_slot?: string | null;
   bot_fill?: boolean;
+  guests_watch?: boolean;
   playlist?: LobbyGame[] | null;
   mix?: boolean;
   start_at?: string | null;
@@ -152,6 +217,7 @@ export interface LobbyPromptRow {
   gloss: string;
   choices: string[];
   answer: string;
+  licence?: ClipLicence | null;
 }
 
 export interface RevealEntry {
@@ -168,6 +234,7 @@ export interface LobbyPrompt {
   round: number;
   mode: PromptMode;
   lang: string | null;
+  licence?: ClipLicence;
   gloss: string;
   choices: string[];
   answer: string | null;
@@ -266,6 +333,8 @@ export interface LobbyState {
   playlist: LobbyGame[];
   coins: number;
   powers: { round: number; kind: PowerKind }[];
+  guestsWatch?: boolean;
+  bonusVotes?: BonusTally[];
 }
 
 export function generateLobbyCode(random: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
@@ -405,7 +474,7 @@ export function seededRandom(seed: string): () => number {
   };
 }
 
-function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
+export function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
   const out = xs.slice();
   for (let i = out.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
@@ -607,7 +676,7 @@ export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number 
     .sort((a, b) => a.round - b.round)
     .map((r) => {
       const open = done || (current !== null && (r.round < current || (closed && r.round === current)));
-      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" || r.mode === "meaning" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" || r.mode === "meaning" || r.mode === "voice" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null, ...(r.licence ? { licence: r.licence } : {}) };
       return open && describe ? { ...base, reveal: describe(r) } : base;
     });
 }
@@ -816,6 +885,7 @@ export function assembleLobby(
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
     standing: !!lobby.standing_slot,
     botFill: lobby.bot_fill === true,
+    ...(lobby.guests_watch === undefined ? {} : { guestsWatch: lobby.guests_watch === true }),
     botsEnabled: false,
     nextStartAt: lobby.ended_at ? null : nextStartAt,
     ended: !!lobby.ended_at,
@@ -922,6 +992,59 @@ export function wantsScreen(body: unknown): boolean {
 }
 
 export const SCREEN_CAP = 3;
+export const AUDIENCE_CAP = 40;
+export const REACTIONS = ["👏", "😂", "😮", "❤️", "🔥", "🎉", "🤔", "👀"] as const;
+export type Reaction = (typeof REACTIONS)[number];
+export const AGE_BANDS = ["under13", "13to17", "18plus"] as const;
+export type AgeBand = (typeof AGE_BANDS)[number];
+
+export function audienceEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return flagOn(env.POLINGUAL_LOBBY_AUDIENCE);
+}
+
+export type AudienceJoin = "player" | "audience" | "seat_open" | "under13" | "guests_off" | "closed";
+
+export type AudienceViewer = { guest: true } | { guest: false; band: string | null };
+
+export function audienceDecision(lobby: Pick<LobbyRow, "status" | "standing_slot" | "guests_watch">, playerIds: readonly string[], uid: string, viewer: AudienceViewer): AudienceJoin {
+  if (playerIds.includes(uid)) return "player";
+  if (lobby.status === "done" || lobby.standing_slot) return "closed";
+  if (viewer.guest) {
+    if (lobby.guests_watch !== true) return "guests_off";
+  } else if (viewer.band !== "13to17" && viewer.band !== "18plus") return "under13";
+  if (lobby.status === "lobby" && playerIds.length < LOBBY_CAP) return "seat_open";
+  return "audience";
+}
+
+export type BonusTally = { round: number; choices: { choice: string; votes: number }[]; total: number };
+
+export function bonusTallies(rows: readonly { round: number; user_id: string; choice: string }[]): BonusTally[] {
+  const byRound = new Map<number, Map<string, string>>();
+  for (const r of rows) {
+    const voters = byRound.get(r.round) ?? new Map<string, string>();
+    if (!voters.has(r.user_id)) voters.set(r.user_id, r.choice);
+    byRound.set(r.round, voters);
+  }
+  return Array.from(byRound, ([round, voters]) => {
+    const counts = new Map<string, number>();
+    for (const c of Array.from(voters.values())) counts.set(c, (counts.get(c) ?? 0) + 1);
+    const choices = Array.from(counts, ([choice, votes]) => ({ choice, votes })).sort((a, b) => b.votes - a.votes || a.choice.localeCompare(b.choice));
+    return { round, choices, total: voters.size };
+  }).sort((a, b) => a.round - b.round);
+}
+
+export function answerMultiplier(final: boolean, doubled: boolean): number {
+  return final || doubled ? 2 : 1;
+}
+
+export type RoomSignal = { kind: "react"; emoji: Reaction } | { kind: "vote"; round: number; choice: string };
+
+export function roomSignal(body: Record<string, unknown> | null): RoomSignal | null {
+  if (!body) return null;
+  if (typeof body.emoji === "string" && (REACTIONS as readonly string[]).includes(body.emoji)) return { kind: "react", emoji: body.emoji as Reaction };
+  if (Number.isInteger(body.round) && (body.round as number) >= 0 && typeof body.choice === "string" && body.choice.length > 0 && body.choice.length <= 80) return { kind: "vote", round: body.round as number, choice: body.choice };
+  return null;
+}
 
 export type ScreenJoin = "player" | "screen" | "add" | "full" | "closed";
 

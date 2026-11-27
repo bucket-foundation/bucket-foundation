@@ -1,8 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "@academy/lobbies";
-import { cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
-import { sendCard } from "./cards-api";
+import { seatBandOf, cardEditable, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
+import { sendCard, sendSeatBand } from "./cards-api";
+import { familyQuest } from "@academy/family-quest";
+import { kidSeatFrom, kidSeatHref } from "./kid";
+import { familyHref, familyName, readFamily, rememberFamily } from "./group";
 import { bandFromAnswers, blankCard, cardReady, normalizeCard, readCard, setLevel, setReads, setSurprise, toggleLearn, toggleSpeak, writeCard } from "./card";
 import { roomLanguageMap, suggestedRound } from "./langmap";
 import { adoptGuestRooms, mergeRooms, readRooms, recordRoom, roomDays, ROOM_BRANCH, type RoomRecord, type SyncDeps } from "./results";
@@ -155,10 +158,11 @@ test("podium skips bots and word of the night is the most missed", () => {
 });
 
 test("challenge links carry seed and score with no player id", () => {
-  const href = challengeHref({ seed: "123", root: "en", targets: ["es", "fr"], rounds: 8, score: 120 });
-  assert.equal(href, "/play/challenge?s=123&r=en&t=es.fr&n=8&b=120");
+  const href = challengeHref({ game: "flags", seed: "123", root: "en", targets: ["es", "fr"], rounds: 8, score: 120 });
+  assert.equal(href, "/play/challenge?g=flags&s=123&r=en&t=es.fr&n=8&b=120");
   const back = parseChallenge(new URLSearchParams(href.split("?")[1]));
-  assert.deepEqual(back, { seed: "123", root: "en", targets: ["es", "fr"], rounds: 8, score: 120 });
+  assert.deepEqual(back, { game: "flags", seed: "123", root: "en", targets: ["es", "fr"], rounds: 8, score: 120 });
+  assert.equal(parseChallenge(new URLSearchParams("g=snake&s=1&r=en&t=es&n=8"))?.game, "daily");
   assert.equal(parseChallenge(new URLSearchParams("s=abc&r=en&t=es&n=8")), null);
   assert.match(cardSvg({ podium: [{ name: "<b>", score: 1 }], langs: ["Spanish"], word: null }, { bg: "white", ink: "black", accent: "red" }), /&#60;b&#62;/);
 });
@@ -187,4 +191,43 @@ test("under-13 cards never leave the phone and the server refuses them", async (
 test("cards stay hidden when the host turns sharing off", () => {
   assert.deepEqual(sharedCards([1, 2], false), []);
   assert.deepEqual(sharedCards([1, 2], true), [1, 2]);
+});
+
+test("family quest counts games two members played together this week", () => {
+  const now = Date.parse("2026-11-27T12:00:00Z");
+  const room = (key: string, day: string, xp = 50) => ({ key, day, xp });
+  const quest = familyQuest([
+    { user_id: "mom", data: { rooms: { a: room("g1|t", "2026-11-26"), b: room("g2|t", "2026-11-27"), c: room("old|t", "2026-11-20") } } },
+    { user_id: "teen", data: { rooms: { a: room("g1|t", "2026-11-26", 80), d: room("old|t", "2026-11-20") } } },
+  ], now);
+  assert.equal(quest.weekStart, "2026-11-23");
+  assert.equal(quest.done, 1);
+  assert.equal(quest.goal, 5);
+  assert.deepEqual(quest.xp, { mom: 100, teen: 80 });
+});
+
+test("kid seats are flagged by link and the family is remembered on the device", () => {
+  assert.equal(kidSeatFrom("?seat=kid"), true);
+  assert.equal(kidSeatFrom("?seat=adult"), false);
+  assert.equal(kidSeatHref("ABC234"), "/play/ABC234?seat=kid");
+  assert.equal(familyHref("XYZ", "https://polingual.com"), "https://polingual.com/play/family/XYZ");
+  const s = memory();
+  rememberFamily(s, { id: "g", name: "Rossi family", code: "XYZ" });
+  assert.deepEqual(readFamily(s), { id: "g", name: "Rossi family", code: "XYZ" });
+  assert.equal(familyName("Blue Fox"), "Blue family");
+});
+
+test("cards lock once a game starts and edits wait for the next waiting room", () => {
+  assert.equal(cardEditable("lobby"), true);
+  assert.equal(cardEditable("playing"), false);
+  assert.equal(cardEditable("done"), false);
+});
+
+test("a kid seat sends only its age band", async () => {
+  const bodies: string[] = [];
+  const f = (async (_u: string, init?: RequestInit) => { bodies.push(String(init?.body)); return new Response("{}"); }) as unknown as typeof fetch;
+  assert.equal(await sendSeatBand(f, "t", "l", "under13"), true);
+  assert.deepEqual(JSON.parse(bodies[0]), { lobbyId: "l", band: "under13" });
+  assert.equal(seatBandOf("under13"), "under13");
+  assert.equal(seatBandOf("es"), null);
 });

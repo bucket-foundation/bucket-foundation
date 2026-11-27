@@ -8,6 +8,7 @@ import { nicknameChoices } from "@/lib/stoa/nicknames";
 import { displayNickname } from "@/lib/stoa/client";
 import { AGE_BANDS, LEVELS, bandFromAnswers, blankCard, cardReady, setLevel, setReads, setSurprise, surprisePick, toggleLearn, toggleSpeak, type PlayerCard as Card } from "@/lib/family/card";
 import { lastCard, setCurrentCard } from "@/lib/family/session";
+import { kidSeat } from "@/lib/family/kid";
 import { Button } from "@/ui";
 import f from "./family.module.css";
 
@@ -32,7 +33,7 @@ export default function PlayerCard({ onJoin }: { onJoin: (nickname: string) => v
   useEffect(() => {
     const n = names();
     setChoices(n);
-    setCard((c) => (c.nickname ? c : { ...c, nickname: n[0] }));
+    setCard((c) => ({ ...c, nickname: c.nickname || n[0], band: kidSeat() ? "under13" : c.band }));
   }, []);
   const finish = (c: Card) => {
     const final = { ...c, learn: surprisePick(c, LEARN_POOL, Math.random) };
@@ -69,13 +70,13 @@ function Who({ card, setCard, choices, reroll, next }: { card: Card; setCard: (c
     <>
       <p className={f.step}>Step 1 of 4</p>
       <h2 className={f.title}>Who is playing?</h2>
-      <div className={f.grid} role="group" aria-label="Age">
+      {card.band === "under13" && kidSeat() ? null : <div className={f.grid} role="group" aria-label="Age">
         {AGE_BANDS.map((b) => (
           <button key={b.band} type="button" className={f.tap} aria-pressed={card.band === b.band} onClick={() => setCard({ ...card, band: b.band })} data-testid={`band-${b.band}`}>
             {b.label}
           </button>
         ))}
-      </div>
+      </div>}
       <div className={f.grid} role="group" aria-label="Nickname">
         {choices.map((n) => (
           <button key={n} type="button" className={f.tap} aria-pressed={card.nickname === n} onClick={() => setCard({ ...card, nickname: n })}>

@@ -70,6 +70,9 @@ export function tokenFresh(g: Guest | null, now: number): boolean {
 const ERRORS: Record<string, string> = {
   not_found: "No lobby with that code.",
   lobby_full: "That lobby is full.",
+  audience_age: "Players under 13 take a seat in the game. Ask the host to free one.",
+  audience_signin: "Sign in to watch, or ask the host to let guests watch.",
+  seat_open: "A seat is open. Join the game instead.",
   lobby_started: "That game already started.",
   setup_off: "Game sets and random mix are off right now. Pick one game.",
   need_ready: "Everyone needs to be ready.",
@@ -156,7 +159,10 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("", { body: { ...input, reveal: true } })).lobby;
   }
 
-  async join(input: { code?: string; lobbyId?: string; displayName: string; screen?: boolean }): Promise<WebLobbyState> {
+  roomRealtime = async (lobbyId: string) => (await this.call<{ realtime: { url: string; key: string; topic: string } }>("/react", { query: { lobbyId } })).realtime;
+  signal = async (lobbyId: string, body: { emoji: string } | { round: number; choice: string }) => void (await this.call("/react", { body: { lobbyId, ...body } }));
+
+  async join(input: { code?: string; lobbyId?: string; displayName: string; screen?: boolean; audience?: boolean; ageBand?: string }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/join", { body: input })).lobby;
   }
 
@@ -168,7 +174,7 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/ready", { body: { lobbyId, ready } })).lobby;
   }
 
-  async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[] }): Promise<WebLobbyState> {
+  async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[]; guestsWatch?: boolean }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/settings", { body: { lobbyId, ...input } })).lobby;
   }
 

@@ -94,8 +94,9 @@ public enum ProgressMetric {
     }
 
     public static func rows(_ log: [LogRow]) -> [MetricRow] {
-        log.map { r in
+        log.compactMap { r in
             switch r {
+            case .vocabTest: nil
             case .exposure(let e): MetricRow(kind: "exposure", lang: e.lang, reviewedAt: e.meta.at, tz: e.meta.tz, seconds: Double(e.seconds), coveragePred: e.coveragePred, lemmasSeen: e.lemmasSeen, taps: e.taps)
             case .session(let s): MetricRow(kind: "session", lang: s.lang, reviewedAt: s.meta.at, tz: s.meta.tz, started: s.started, ended: s.ended)
             case .review(let v): MetricRow(kind: "review", reviewedAt: v.meta.at, tz: v.meta.tz)

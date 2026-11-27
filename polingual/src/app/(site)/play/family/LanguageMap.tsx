@@ -4,11 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { langName } from "@academy/lang-systems";
 import type { WebLobbyState } from "@/lib/lobby/client";
 import { flagEmoji, langFlag } from "@/lib/lobby/client";
-import { fetchCards, sendCard, setSharing } from "@/lib/family/cards-api";
+import { fetchCards, sendCard, sendSeatBand, setSharing } from "@/lib/family/cards-api";
 import { roomLanguageMap, suggestedRound, type SeatCard } from "@/lib/family/langmap";
 import { currentCard } from "@/lib/family/session";
 import { keepsData } from "@/lib/family/card";
-import { Button } from "@/ui";
+import { Button, ButtonLink } from "@/ui";
+import { kidSeat, kidSeatHref } from "@/lib/family/kid";
+import { readFamily, type SavedFamily } from "@/lib/family/group";
+import { local } from "@/lib/storage";
 import f from "./family.module.css";
 
 const POLL_MS = 4000;
@@ -95,14 +98,18 @@ export default function FamilyWaiting({ lobby, token }: { lobby: WebLobbyState; 
   const [sent, setSent] = useState<string | null>(null);
   useEffect(() => {
     const card = currentCard();
-    if (!token || !card || !keepsData(card.band) || sent === lobby.id) return;
-    setSent(lobby.id);
-    void sendCard(bound(), token, lobby.id, card);
-  }, [lobby.id, token, sent]);
+    const round = `${lobby.id}|${lobby.startedAt ?? ""}`;
+    if (!token || !card || sent === round || lobby.status !== "lobby") return;
+    setSent(round);
+    if (keepsData(card.band)) void sendCard(bound(), token, lobby.id, card);
+    else void sendSeatBand(bound(), token, lobby.id, card.band);
+  }, [lobby.id, lobby.startedAt, lobby.status, token, sent]);
   return (
     <section className={f.card} aria-label="Room languages" data-testid="family-waiting">
       <p className={f.step}>Room languages</p>
       <RoomLanguageMap seats={seats} />
+      <RememberedFamily />
+      {kidSeat() ? null : <ButtonLink variant="ghost" size="md" href={kidSeatHref(lobby.code)} target="_blank" rel="noopener" data-testid="add-kid">Add a kid seat on this phone</ButtonLink>}
       {lobby.isHost ? (
         <Button variant="quiet" size="sm" onClick={() => setShare(!share)} aria-pressed={!share} data-testid="share-toggle">
           {share ? "Sharing on: tap to turn off" : "Sharing off: tap to turn on"}
@@ -110,4 +117,10 @@ export default function FamilyWaiting({ lobby, token }: { lobby: WebLobbyState; 
       ) : null}
     </section>
   );
+}
+
+function RememberedFamily() {
+  const [family, setFamily] = useState<SavedFamily | null>(null);
+  useEffect(() => setFamily(readFamily(local())), []);
+  return family ? <p className={f.muted} data-testid="family-welcome">Welcome back, {family.name}.</p> : null;
 }

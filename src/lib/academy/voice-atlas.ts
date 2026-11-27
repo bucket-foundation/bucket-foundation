@@ -1,6 +1,6 @@
 import type { LangItem } from "./lang-systems";
 import { BOTS, unit } from "./lobby-bots";
-import { seededRandom } from "./lobbies";
+import { seededRandom, shuffled, type LobbyPromptRow } from "./lobbies";
 
 export const ATLAS_ROUNDS = 5;
 export const ATLAS_MAX = 5000;
@@ -26,11 +26,20 @@ export const ATLAS_HOMES: Record<string, LatLon[]> = {
   tr: [[41.0, 29.0], [39.9, 32.9]],
 };
 
+export type ClipLicence = "device-tts" | "cc0" | "cc-by" | "cc-by-sa" | "family-room" | "personal" | "unknown";
+
+export const PUBLIC_LICENCES: readonly ClipLicence[] = ["device-tts", "cc0", "cc-by", "cc-by-sa"];
+
+export function publicPlayback(licence: ClipLicence | undefined): boolean {
+  return !!licence && PUBLIC_LICENCES.includes(licence);
+}
+
 export interface AtlasRound {
   lang: string;
   form: string;
   meaning: string;
   itemId: string;
+  licence: ClipLicence;
 }
 
 export interface AtlasGhost {
@@ -60,7 +69,7 @@ export function atlasRounds(items: readonly LangItem[], date: string, count = AT
     }
     const item = pool[Math.floor(rand() * Math.min(pool.length, 800))];
     usedLangs.add(lang);
-    out.push({ lang, form: item.forms[lang], meaning: item.forms[root], itemId: item.id });
+    out.push({ lang, form: item.forms[lang], meaning: item.forms[root], itemId: item.id, licence: "device-tts" });
   }
   return out;
 }
@@ -94,4 +103,28 @@ export function atlasGhosts(date: string, count = 5): AtlasGhost[] {
       return { name: b.name, flag: b.flag, skill: b.skill, score: lo + Math.floor(unit(`atlas-score:${date}:${b.userId}`) * (hi - lo)) };
     })
     .sort((a, b) => b.score - a.score);
+}
+
+export function atlasPrompts(items: readonly LangItem[], lobby: { id: string; seed: string; root: string; rounds: number }): LobbyPromptRow[] {
+  const langs = Object.keys(ATLAS_HOMES).filter((l) => l !== lobby.root);
+  return atlasRounds(items, `lobby:${lobby.seed}`, lobby.rounds, lobby.root).map((r, round) => {
+    const rand = seededRandom(`${lobby.seed}:atlas:${round}`);
+    const others = shuffled(langs.filter((l) => l !== r.lang), rand).slice(0, 3);
+    return { lobby_id: lobby.id, round, lang: r.lang, item_id: r.itemId, mode: "voice", gloss: r.form, choices: shuffled([r.lang, ...others], rand), answer: r.lang, licence: r.licence };
+  });
+}
+
+export function nightAtlasKey(lobby: { id: string; started_at: string | null }): string {
+  return `night:${lobby.id}:${lobby.started_at ?? ""}`;
+}
+
+export type NightAtlasRound = { clip: number; form: string; licence: ClipLicence; lang?: string; meaning?: string };
+
+export function atlasRevealedBefore(slot: { kind: string; clip?: number } | null): number {
+  if (slot?.kind === "voice-atlas") return slot.clip ?? 0;
+  return slot ? Number.MAX_SAFE_INTEGER : 0;
+}
+
+export function nightAtlasRounds(rounds: readonly AtlasRound[], revealedBefore: number, screen: boolean): NightAtlasRound[] {
+  return rounds.map((r, clip) => (screen || clip < revealedBefore ? { clip, form: r.form, licence: r.licence, lang: r.lang, meaning: r.meaning } : { clip, form: r.form, licence: r.licence }));
 }

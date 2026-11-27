@@ -7,6 +7,20 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  breakMs,
+  NIGHT_BREAK_MS,
+  interludeAt,
+  foreheadHolder,
+  bonusQuestion,
+  audienceDecision,
+  bonusTallies,
+  answerMultiplier,
+  roomSignal,
+  REACTIONS,
+  nightRound,
+  stealBonus,
+  FAMILY_NIGHT,
+  STEAL_POINTS,
   hostLeaveDecision,
   abandonedLobby,
   nextGameDue,
@@ -542,4 +556,115 @@ test("a host-screen lobby with no players yet stays listed while its screen is w
   const row = { ...lobby({ id: "S", host_id: "h", created_at: new Date(now - 30_000).toISOString() }) } as LobbyRow;
   assert.deepEqual(openLobbies([row], [], [], "x", now).map((l) => l.id), []);
   assert.deepEqual(openLobbies([row], [], [], "x", now, false, new Set(["S"])).map((l) => l.id), ["S"]);
+});
+
+test("family night runs Warm Up, Picture Race and a final, and only the final doubles", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  assert.deepEqual(FAMILY_NIGHT.map((r) => r.label), ["Warm Up", "Picture Race", "Final"]);
+  assert.deepEqual(nightRound({ playlist, mix: false, game: "daily" }), { index: 0, label: "Warm Up", final: false, total: 3 });
+  assert.equal(nightRound({ playlist, mix: false, game: "same-word" })?.final, true);
+  assert.equal(nightRound({ playlist, mix: true, game: "same-word" }), null);
+  assert.equal(nightRound({ playlist: ["daily", "flags"], mix: false, game: "flags" }), null);
+  assert.equal(breakMs({ playlist, mix: false, game: "daily" }), NIGHT_BREAK_MS);
+  assert.equal(breakMs({ playlist, mix: false, game: "same-word" }), NEXT_GAME_MS);
+  assert.equal(breakMs({ playlist: ["flags"], mix: false, game: "flags" }), NEXT_GAME_MS);
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on";
+  try {
+    const patch = normalizeLobbySettings({ setup: "sequence", games: playlist, targets: ["es", "fr"] }, { game: "flags", root: "en", targets: ["es"], status: "lobby" });
+    assert.deepEqual(patch?.playlist, playlist);
+    assert.equal(nextGame({ game: "tiles", playlist, mix: false, seed: "1", targets: ["es", "fr"] }), "same-word");
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("a trailing player steals when someone ahead already missed the final question", () => {
+  const players = [{ user_id: "lead", score: 900 }, { user_id: "mid", score: 500 }, { user_id: "low", score: 100 }];
+  assert.equal(stealBonus("low", players, [{ user_id: "lead", correct: false }]), STEAL_POINTS);
+  assert.equal(stealBonus("low", players, [{ user_id: "lead", correct: true }]), 0);
+  assert.equal(stealBonus("lead", players, [{ user_id: "low", correct: false }]), 0);
+  assert.equal(stealBonus("mid", players, [{ user_id: "low", correct: false }]), 0);
+  assert.equal(stealBonus("mid", players, []), 0);
+});
+
+test("the audience opens past the player cap or once a game started, never to an under-13 or unknown account, and to guests only when the host allows it", () => {
+  const full = Array.from({ length: LOBBY_CAP }, (_, i) => `p${i}`);
+  const adult = { guest: false as const, band: "18plus" };
+  const off = { status: "playing" as const, standing_slot: null };
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, full, "x", adult), "audience");
+  assert.equal(audienceDecision(off, ["a", "b"], "x", { guest: false, band: "13to17" }), "audience");
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, ["a"], "x", adult), "seat_open");
+  assert.equal(audienceDecision(off, ["a"], "x", { guest: false, band: "under13" }), "under13");
+  assert.equal(audienceDecision(off, ["a"], "x", { guest: false, band: null }), "under13");
+  assert.equal(audienceDecision(off, ["a", "x"], "x", adult), "player");
+  assert.equal(audienceDecision({ status: "done", standing_slot: null }, ["a"], "x", adult), "closed");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: "daily-romance" }, ["a"], "x", adult), "closed");
+  assert.equal(audienceDecision(off, ["a"], "g", { guest: true }), "guests_off");
+  assert.equal(audienceDecision({ ...off, guests_watch: false }, ["a"], "g", { guest: true }), "guests_off");
+  assert.equal(audienceDecision({ ...off, guests_watch: true }, ["a"], "g", { guest: true }), "audience");
+});
+
+test("bonus tallies count one stored vote per voter per round", () => {
+  const t = bonusTallies([
+    { round: 4, user_id: "a", choice: "es:gato" },
+    { round: 4, user_id: "b", choice: "fr:chat" },
+    { round: 4, user_id: "c", choice: "es:gato" },
+    { round: 4, user_id: "a", choice: "fr:chat" },
+    { round: 2, user_id: "a", choice: "x" },
+  ]);
+  assert.deepEqual(t, [
+    { round: 2, choices: [{ choice: "x", votes: 1 }], total: 1 },
+    { round: 4, choices: [{ choice: "es:gato", votes: 2 }, { choice: "fr:chat", votes: 1 }], total: 3 },
+  ]);
+});
+
+test("the final caps the answer multiplier at x2, with or without a double power", () => {
+  assert.equal(answerMultiplier(true, true), 2);
+  assert.equal(answerMultiplier(true, false), 2);
+  assert.equal(answerMultiplier(false, true), 2);
+  assert.equal(answerMultiplier(false, false), 1);
+});
+
+test("room signals carry one of 8 fixed reactions or a vote, nothing else", () => {
+  assert.equal(REACTIONS.length, 8);
+  for (const emoji of REACTIONS) assert.deepEqual(roomSignal({ emoji }), { kind: "react", emoji });
+  assert.equal(roomSignal({ emoji: "💩" }), null);
+  assert.equal(roomSignal({ emoji: "<b>hi</b>" }), null);
+  assert.deepEqual(roomSignal({ round: 2, choice: "es:gato" }), { kind: "vote", round: 2, choice: "es:gato" });
+  assert.equal(roomSignal({ round: -1, choice: "x" }), null);
+  assert.equal(roomSignal({ round: 1, choice: "x".repeat(81) }), null);
+  assert.equal(roomSignal(null), null);
+});
+
+test("night breaks run Voice Atlas clips then Family Teach, and Forehead cards then Our Trivia", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  const base = { playlist, mix: false, status: "done", started_at: new Date(T0).toISOString(), rounds: 2, round_seconds: 10, reveal_seconds: 0, ended_at: null };
+  const end = T0 + 20_000;
+  assert.deepEqual(interludeAt({ ...base, game: "daily" }, end + 25_000), { kind: "voice-atlas", clip: 2, endsAt: end + 36_000 });
+  assert.deepEqual(interludeAt({ ...base, game: "daily" }, end + 60_000), { kind: "family-teach" });
+  assert.deepEqual(interludeAt({ ...base, game: "tiles" }, end + 31_000), { kind: "forehead", card: 2, endsAt: end + 45_000 });
+  assert.deepEqual(interludeAt({ ...base, game: "tiles" }, end + 90_000), { kind: "our-trivia" });
+  assert.equal(interludeAt({ ...base, game: "same-word" }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily", status: "playing" }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily", ended_at: new Date(end).toISOString() }, end + 1000), null);
+  assert.equal(interludeAt({ ...base, game: "daily" }, end - 1), null);
+  assert.equal(nextGameDue({ ...base, game: "daily", status: "done" } as never, end + NEXT_GAME_MS), false);
+  assert.equal(nextGameDue({ ...base, game: "daily", status: "done" } as never, end + NIGHT_BREAK_MS), true);
+});
+
+test("the forehead holder rotates through humans in a fixed order, bots never hold", () => {
+  const seats = [{ user_id: "c" }, { user_id: "a" }, { user_id: "bot", is_bot: true }, { user_id: "b" }];
+  assert.deepEqual([0, 1, 2, 3].map((c) => foreheadHolder(seats, c)), ["a", "b", "c", "a"]);
+  assert.equal(foreheadHolder([{ user_id: "bot", is_bot: true }], 0), null);
+});
+
+test("the audience votes only on the final's last question", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  const final = { status: "playing", playlist, mix: false, game: "same-word", rounds: 6 };
+  assert.equal(bonusQuestion(final, 5), true);
+  assert.equal(bonusQuestion(final, 4), false);
+  assert.equal(bonusQuestion({ ...final, game: "daily" }, 5), false);
+  assert.equal(bonusQuestion({ ...final, status: "done" }, 5), false);
+  assert.equal(bonusQuestion({ ...final, playlist: ["same-word"] }, 5), false);
 });

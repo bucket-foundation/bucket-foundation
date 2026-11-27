@@ -29,6 +29,11 @@ sealed interface LogRow {
         override val id: String, override val at: Long, override val device: String, override val tz: String, override val systemId: String,
         val lang: String, val sessionId: String, val started: Long, val ended: Long, val shareTarget: Double?, val shareReal: Double?, val arm: String?, val units: Int?, val cards: Int,
     ) : LogRow
+
+    data class VocabTest(
+        override val id: String, override val at: Long, override val device: String, override val tz: String, override val systemId: String,
+        val lang: String, val phase: String, val form: String, val arm: String?, val hits: Int, val words: Int, val falseAlarms: Int, val pseudowords: Int, val known: Double, val day: Int, val seconds: Int,
+    ) : LogRow
 }
 
 data class CardSummary(val reps: Int, val lapses: Int, val stability: Double?, val difficulty: Double?, val lastReview: Long)
@@ -109,8 +114,41 @@ object ReviewLog {
                 val cards = o.nat("cards", MAX_SESSION_ITEMS) ?: return null
                 LogRow.Session(id, at, device, tz, system, lang, sid, started.toLong(), ended.toLong(), target.value, real.value, arm.value, units.value, cards)
             }
+            "vocab_test" -> {
+                val phase = o.str("phase")?.takeIf { it == "baseline" || it == "day28" } ?: return null
+                val form = o.str("form")?.takeIf { it == "A" || it == "B" } ?: return null
+                val arm = o.orNull("arm") { str("arm", 32)?.takeIf { ARM.matches(it) } } ?: return null
+                val words = o.nat("words", 100) ?: return null
+                val pseudo = o.nat("pseudowords", 100) ?: return null
+                val hits = o.nat("hits", words) ?: return null
+                val fa = o.nat("false_alarms", pseudo) ?: return null
+                val known = o.num("known")?.takeIf { it in 0.0..100_000.0 } ?: return null
+                val day = o.nat("day", 3650) ?: return null
+                val seconds = o.nat("seconds", 3600) ?: return null
+                LogRow.VocabTest(id, at, device, tz, system, lang, phase, form, arm.value, hits, words, fa, pseudo, known, day, seconds)
+            }
             else -> null
         }
+    }
+
+    private fun base(r: LogRow, kind: String): Map<String, JsonElement> = mapOf(
+        "kind" to JsonPrimitive(kind), "review_id" to JsonPrimitive(r.id), "reviewed_at" to JsonPrimitive(r.at),
+        "device_id" to JsonPrimitive(r.device), "tz" to JsonPrimitive(r.tz), "system_id" to JsonPrimitive(r.systemId),
+    )
+
+    fun encodeRow(r: LogRow): JsonObject? = when (r) {
+        is LogRow.Exposure -> encode(r)
+        is LogRow.Session -> JsonObject(base(r, "session") + mapOf(
+            "lang" to JsonPrimitive(r.lang), "id" to JsonPrimitive(r.sessionId), "started" to JsonPrimitive(r.started), "ended" to JsonPrimitive(r.ended),
+            "share_target" to JsonPrimitive(r.shareTarget), "share_real" to JsonPrimitive(r.shareReal), "arm" to JsonPrimitive(r.arm),
+            "units" to JsonPrimitive(r.units), "cards" to JsonPrimitive(r.cards),
+        ))
+        is LogRow.VocabTest -> JsonObject(base(r, "vocab_test") + mapOf(
+            "lang" to JsonPrimitive(r.lang), "phase" to JsonPrimitive(r.phase), "form" to JsonPrimitive(r.form), "arm" to JsonPrimitive(r.arm),
+            "hits" to JsonPrimitive(r.hits), "words" to JsonPrimitive(r.words), "false_alarms" to JsonPrimitive(r.falseAlarms),
+            "pseudowords" to JsonPrimitive(r.pseudowords), "known" to JsonPrimitive(r.known), "day" to JsonPrimitive(r.day), "seconds" to JsonPrimitive(r.seconds),
+        ))
+        is LogRow.Review -> null
     }
 
     fun encode(r: LogRow.Exposure): JsonObject = JsonObject(buildMap {
@@ -162,14 +200,17 @@ object ReviewLog {
 
     const val EXPOSURE_CAP = 300
     const val SESSION_MIX_CAP = 60
+    const val VOCAB_TEST_CAP = 4
 
     fun take(rows: List<LogRow>): List<LogRow> {
         var e = EXPOSURE_CAP
         var s = SESSION_MIX_CAP
+        var v = VOCAB_TEST_CAP
         return order(rows).filter { r ->
             when (r) {
                 is LogRow.Exposure -> (e-- > 0)
                 is LogRow.Session -> (s-- > 0)
+                is LogRow.VocabTest -> (v-- > 0)
                 is LogRow.Review -> false
             }
         }

@@ -5,6 +5,7 @@ struct StudyView: View {
     @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
+    @Environment(Account.self) private var account
     @Environment(\.verticalSizeClass) private var vertical
     @Binding var path: NavigationPath
     let systemId: String
@@ -25,6 +26,7 @@ struct StudyView: View {
     @State private var limited = false
     @State private var input: InputPlanState?
     @State private var inputTick = 0
+    @State private var studyStep: StudyPrefs.Step?
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
@@ -35,6 +37,17 @@ struct StudyView: View {
                 StateMessage(title: "The session did not load", detail: "The language corpus files did not arrive.") { Task { await store.load(force: true) } }
             } else if store.status != .ready || (store.system(systemId) != nil && queue == nil) {
                 ProgressView("Building your session")
+            } else if let step = studyStep, let system = store.system(systemId), let lang = system.targets.first {
+                ScrollView {
+                    StudyPanel(step: step, lang: lang, onTest: { phase, items, yes, seconds in
+                        let at = Date().timeIntervalSince1970 * 1000
+                        let meta = LogRow.Meta(id: UUID().uuidString.lowercased(), at: at, device: LangStore.deviceId, tz: TimeZone.current.identifier, systemId: system.id)
+                        store.log([YesNoTest.row(phase: phase, lang: lang, items: items, yes: yes, seconds: seconds, enrolment: StudyPrefs().enrolment, meta: meta)])
+                        StudyPrefs().markTaken(phase)
+                        finishStudyStep(system)
+                    }, onDone: { finishStudyStep(system) })
+                    .padding(PL.Space.s4).frame(maxWidth: 640).frame(maxWidth: .infinity)
+                }
             } else if let system = store.system(systemId), let corpus = store.corpus, let queue {
                 content(system, corpus, queue)
             } else {
@@ -89,18 +102,27 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
+        queue = budgeted(InputExperiment.withoutHeldOut(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), corpus: corpus, sets: StudyConfig.heldOut(system.targets)), state, now: now)
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+        StudyPrefs.signedIn = account.session?.userId
+        studyStep = StudyPrefs().step(flag: StudyConfig.flag, now: now)
+        if studyStep == nil { loadInput(system) }
+        Task { _ = await store.flushStudy() }
+    }
+
+    func finishStudyStep(_ system: LangSystem) {
+        studyStep = nil
         loadInput(system)
+        Task { _ = await store.flushStudy() }
     }
 
     func loadInput(_ system: LangSystem) {
         input = nil
         let cards = queue?.count ?? 0
         Task {
-            let plan = await InputConfig.load(store: store, system: system, cards: cards)
+            let plan = await InputConfig.load(store: store, system: system, cards: cards, account: account.session?.userId, token: await account.freshToken())
             input = plan
             prepareInput()
         }
@@ -113,8 +135,8 @@ struct StudyView: View {
     }
 
     func endInput() {
-        guard let input, let row = input.end(answered: graded) else { return }
-        store.log([row])
+        if let input, let row = input.end(answered: graded) { store.log([row]) }
+        Task { _ = await store.flushStudy() }
     }
 
     func budgeted(_ planned: [QueueEntry], _ state: EngineState, now: Double) -> [QueueEntry] {
@@ -288,6 +310,7 @@ struct StudyView: View {
                         SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))
                             .foregroundStyle(Palette.muted)
                             .monospacedDigit()
+                        StudyLeaveLink()
                         if vertical == .compact {
                             FeedbackLink()
                             ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)

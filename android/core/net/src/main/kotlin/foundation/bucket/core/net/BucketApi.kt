@@ -68,6 +68,14 @@ class BucketApi(
         (json.parseToJsonElement(call("api/academy/event", token, batch, mapper = ::groupError)).jsonObject["outcome"] as? kotlinx.serialization.json.JsonPrimitive)?.content
     }.getOrNull()
 
+    suspend fun experiment(token: String): ExperimentReply? = runCatching {
+        ExperimentReply(json.parseToJsonElement(call("api/academy/experiment", token, mapper = ::groupError)).jsonObject["enrolment"]?.takeIf { it is JsonObject }?.toString())
+    }.getOrNull()
+
+    suspend fun enrol(token: String, experiment: String, stratum: String): String? = runCatching {
+        json.parseToJsonElement(call("api/academy/experiment", token, buildJsonObject { put("experiment", experiment); put("stratum", stratum) }, mapper = ::groupError)).jsonObject["enrolment"]?.takeIf { it is JsonObject }?.toString()
+    }.getOrNull()
+
     suspend fun progressPull(token: String): JsonObject? = runCatching {
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
@@ -278,3 +286,5 @@ enum class PushResult {
 
     val settled: Boolean get() = this == Written || this == Refused
 }
+
+data class ExperimentReply(val enrolment: String?)

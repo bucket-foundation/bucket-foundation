@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "./client";
-import { TV_ORIGIN, tvAnswer, tvChoice, tvShortUrl, tvJoinUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack } from "./tv";
+import { TV_ORIGIN, tvAtlasClip, tvAnswer, tvChoice, tvShortUrl, tvJoinUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack } from "./tv";
 
 type Player = LobbyState["players"][number];
 
@@ -15,6 +15,7 @@ test("tvTrack maps phases onto Stoa music", () => {
   assert.equal(tvTrack({ kind: "round", index: 0, remaining: 9 }), "question");
   assert.equal(tvTrack({ kind: "reveal", index: 0, remaining: 2 }), "reveal");
   assert.equal(tvTrack({ kind: "finished" }), "finale");
+  assert.equal(tvTrack({ kind: "round", index: 0, remaining: 9 }, true), "finale");
 });
 
 test("tvKey splits countdown seconds and the last round seconds", () => {
@@ -82,4 +83,12 @@ test("tvChoice drops the language prefix of mixed choices", () => {
   assert.equal(tvChoice("zh-Hans:猫"), "猫");
   assert.equal(tvChoice("agua"), "agua");
   assert.equal(tvChoice("de"), "de");
+});
+
+test("the TV speaks an atlas clip only under a public licence and shows text otherwise", () => {
+  assert.equal(tvAtlasClip(null), null);
+  assert.deepEqual(tvAtlasClip({ gloss: "hola", lang: "es", licence: "device-tts" }), { kind: "audio", text: "hola", lang: "es" });
+  assert.deepEqual(tvAtlasClip({ gloss: "hola", lang: "es", licence: "personal" }), { kind: "text", text: "hola", lang: "es" });
+  assert.deepEqual(tvAtlasClip({ gloss: "hola", lang: "es" }), { kind: "text", text: "hola", lang: "es" });
+  assert.equal(tvAtlasClip({ gloss: "hola", lang: "es", licence: "family-room" })?.kind, "text");
 });
