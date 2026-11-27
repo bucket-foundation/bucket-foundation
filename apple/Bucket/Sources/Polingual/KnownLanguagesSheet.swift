@@ -34,11 +34,15 @@ struct KnownLanguagesSheet: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     if picks.bases.count > 1 {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Base language").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                            Text("Learn from").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                            Text("Meanings and hints show in this language.")
+                                .font(.caption)
+                                .foregroundStyle(Palette.muted)
+                                .fixedSize(horizontal: false, vertical: true)
                             FlowLayout(spacing: 8) {
                                 ForEach(picks.bases, id: \.self) { l in
                                     Chip(title: langName(l), langs: [l], on: l == picks.root) { picks.choose(base: l) }
-                                        .accessibilityLabel(Text("Base language") + Text(verbatim: ", \(langName(l))"))
+                                        .accessibilityLabel(Text("Learn from") + Text(verbatim: ", \(langName(l))"))
                                 }
                             }
                         }

@@ -23,4 +23,10 @@ struct GamesSetStartTests {
             }
         }
     }
+
+    @Test func onboardingOffersEveryLanguageGroup() {
+        let shown = KnownPicks(device: "en").presets(LanguageSections.presets).map(\.name)
+        #expect(shown.count > Lang.presets.count)
+        #expect(["Slavic", "Middle Eastern", "South Asian", "Classical"].allSatisfy(shown.contains))
+    }
 }

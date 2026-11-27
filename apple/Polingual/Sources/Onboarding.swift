@@ -105,12 +105,16 @@ struct Onboarding: View {
             }
             if picks.bases.count > 1 {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Base language").font(.caption.weight(.bold)).foregroundStyle(PL.inkDim)
+                    Text("Learn from").font(.caption.weight(.bold)).foregroundStyle(PL.inkDim)
+                    Text("Meanings and hints show in this language.")
+                        .font(.caption)
+                        .foregroundStyle(PL.inkDim)
+                        .fixedSize(horizontal: false, vertical: true)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             ForEach(picks.bases, id: \.self) { l in
                                 Chip(title: langName(l), langs: [l], on: l == root) { picks.choose(base: l) }
-                                    .accessibilityLabel(Text("Base language") + Text(verbatim: ", \(langName(l))"))
+                                    .accessibilityLabel(Text("Learn from") + Text(verbatim: ", \(langName(l))"))
                             }
                         }
                         .padding(.vertical, 2)
@@ -123,8 +127,16 @@ struct Onboarding: View {
     }
 
     var languages: some View {
+        ViewThatFits(in: .vertical) {
+            languagesPage(stickers: true)
+            languagesPage(stickers: false)
+            ScrollView { languagesPage(stickers: false) }
+        }
+    }
+
+    func languagesPage(stickers: Bool) -> some View {
         VStack(alignment: .leading, spacing: 18) {
-            PLStickerLayer(Array(Stickers.onboarding.prefix(3))).frame(height: 96)
+            if stickers { PLStickerLayer(Array(Stickers.onboarding.prefix(3))).frame(height: 96) }
             Text("Which languages?")
                 .font(PL.title.font(scale: 0.94))
                 .foregroundStyle(PL.ink)
@@ -148,7 +160,7 @@ struct Onboarding: View {
             .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
             .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.hairline2, lineWidth: 2) }
             FlowLayout(spacing: 8) {
-                ForEach(picks.presets(Lang.presets), id: \.name) { p in
+                ForEach(picks.presets(LanguageSections.presets), id: \.name) { p in
                     Chip(title: p.name, langs: p.targets, on: Set(p.targets) == Set(targets)) { picks.pick(p.targets) }
                 }
             }
