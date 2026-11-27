@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllDetectedBridges, getDetectedBridge } from "@/lib/canon-detected-bridges";
 import { RawDetails } from "@/components/ui";
+import Sources from "@/components/Sources";
 
 export const dynamic = "force-static";
 
@@ -175,16 +176,13 @@ export default function Page({ params }: { params: { slug: string } }) {
         </section>
       )}
 
-      <footer
-        className="mt-20 border-t border-[color:var(--hairline)] pt-8 text-sm"
-        style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
-      >
+      <Sources>
         <p>
           Method: claim-card embeddings (nomic-embed-text, 768d) → UMAP +
           HDBSCAN → multi-branch clusters → LLM-named via local llama3.2:3b.
           See <code>_intake/TRUTH-EXTRACTION-DESIGN.md</code> for the full pipeline.
         </p>
-      </footer>
+      </Sources>
     </main>
   );
 }

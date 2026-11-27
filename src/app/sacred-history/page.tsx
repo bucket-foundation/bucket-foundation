@@ -8,6 +8,7 @@ import {
   type SHEvent,
   type SHFigure,
 } from "@/lib/sacred-history";
+import Sources from "@/components/Sources";
 
 export const metadata: Metadata = {
   title: "Sacred history · bucket.foundation",
@@ -164,7 +165,7 @@ export default function SacredHistoryPage() {
         </div>
       </section>
 
-      <footer className="mt-20 border-t border-[color:var(--hairline)] pt-8">
+      <Sources>
         <p className="text-xs" style={{ ...MONO, color: "var(--parchment-dim)" }}>
           Sibling corpus to the foundations canon — peer of the longevity canon,
           not an eighth canon branch. Generated {sh.generatedAt.slice(0, 10)} ·
@@ -173,7 +174,7 @@ export default function SacredHistoryPage() {
             see the canon →
           </Link>
         </p>
-      </footer>
+      </Sources>
     </main>
   );
 }

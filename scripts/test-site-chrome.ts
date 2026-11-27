@@ -8,7 +8,7 @@ import { CANON_BRANCHES } from "../src/lib/contribute";
 const root = path.join(__dirname, "..");
 const read = (p: string) => fs.readFileSync(path.join(root, p), "utf8");
 const HEADER = read("src/components/HeaderV3.tsx");
-const FOOTER = read("src/components/FooterV3.tsx");
+const FOOTER = read("src/components/SiteFooter.tsx");
 const ROUTES = read("src/lib/routes.ts");
 const LAYOUT = read("src/app/layout.tsx");
 const PRESENTATION = read("src/components/Presentation.tsx");
@@ -36,7 +36,7 @@ test("footer links Polingual and drops the dead links", () => {
 
 test("the layout uses the V3 chrome and one branch count", () => {
   assert.match(LAYOUT, /components\/HeaderV3/);
-  assert.match(LAYOUT, /components\/FooterV3/);
+  assert.match(LAYOUT, /components\/SiteFooter/);
   assert.match(LAYOUT, /String\(CANON_BRANCHES\.length\)/);
   assert.doesNotMatch(LAYOUT, /story protocol|IP NFT|Eight branches/i);
   assert.equal(CANON_BRANCHES.length, 7);

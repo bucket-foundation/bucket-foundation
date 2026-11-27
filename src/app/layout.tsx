@@ -8,7 +8,6 @@ import BrandPreview from "@/components/BrandPreview";
 import DailyTheme from "@/components/DailyTheme";
 import { applyScript } from "@/lib/daily-theme";
 import { FONTS_HREF, LOGO, THEME_COLOR } from "@/lib/brand";
-import Footer from "@/components/FooterV3";
 import { CANON_BRANCHES } from "@/lib/contribute";
 import { SessionProvider } from "@/providers/SessionProvider";
 import { AccountGateProvider } from "@/components/auth/AccountGate";
@@ -259,9 +258,7 @@ export default function RootLayout({
           <DailyTheme />
           <Header launchList={!signInOpen()} />
           {children}
-          <SiteFooter>
-            <Footer launchList={!signInOpen()} signInClosed={signInClosed()} />
-          </SiteFooter>
+          <SiteFooter launchList={!signInOpen()} signInClosed={signInClosed()} />
           <Analytics />
           <SpeedInsights />
           </AccountGateProvider>
