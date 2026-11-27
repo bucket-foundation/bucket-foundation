@@ -8,10 +8,9 @@ import type { WorldId } from "@/ui/art/play";
 import { ButtonLink } from "@/ui";
 import app from "../app/app.module.css";
 import GameWorld, { WorldStage } from "./GameWorld";
-import Nickname from "./Nickname";
+import PlayerCard from "./family/PlayerCard";
 import RoomQr, { useJoinUrl } from "./RoomQr";
 import { RoomHeader } from "./RoomParts";
-import { savedNickname } from "./usePlay";
 import world from "./world.module.css";
 import styles from "./play.module.css";
 import { gameName } from "./langs";
@@ -43,9 +42,9 @@ function RoomGate({ g, code }: { g: RoomGameState; code: string }) {
   return (
     <div className={app.stack} data-testid="room-gate">
       <p className={app.label}>Lobby {code}</p>
-      <h2 className={app.title}>Pick a nickname to join</h2>
+      <h2 className={app.title}>Fill your player card</h2>
       {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
-      {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <Nickname initial={savedNickname()} onSubmit={(n) => void g.connect(n)} />}
+      {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <PlayerCard onJoin={(n) => void g.connect(n)} />}
     </div>
   );
 }

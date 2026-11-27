@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { webProgressStore } from "@academy/progress-store";
 import { streakCard, type StreakCard as StreakData } from "@/lib/app/streak";
 import { langProgress, type LangProgress } from "@/lib/app/lang-progress";
+import { bookFromBranch, mergeRooms, readRooms, roomDays, ROOM_BRANCH } from "@/lib/family/results";
+import { local } from "@/lib/storage";
 import { loadCognates } from "@academy/cognate-coverage";
 import { langBranch, memoryState, mergeMemory, normalizeMemory } from "@academy/lang-memory";
 import { browserMemoryIO } from "@academy/lang-memory-store";
@@ -30,7 +32,7 @@ function useStreakCard(systems: LangSystem[] | null) {
       const indexes = langs.length > 1 ? await Promise.all(langs.map((l) => loadCognates(l))) : [];
       const cognates = Object.fromEntries(indexes.flatMap((x, i) => (x ? [[langs[i], x]] : [])));
       const progress = langProgress(memories, now, cognates);
-      if (live) setCard({ streak: streakCard([...states, ...memories.map(memoryState)], now, progress.inputDays), langs: progress.langs });
+      if (live) setCard({ streak: streakCard([...states, ...memories.map((m) => memoryState(m))], now, [...progress.inputDays, ...roomDays(mergeRooms(readRooms(local()), bookFromBranch(server?.[ROOM_BRANCH]?.data)))]), langs: progress.langs });
     });
     return () => {
       live = false;
