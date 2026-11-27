@@ -1,0 +1,31 @@
+{
+ "id": "ISVFhvECvzc",
+ "title": "Intraday Implied Volatility: What Python + Options Data Reveal",
+ "channel": "QuantInsti Quantitative Learning",
+ "channel_id": "UC8kXgHG13XdgsigIPRmrIyA",
+ "uploader": "QuantInsti Quantitative Learning",
+ "upload_date": "20260121",
+ "duration": 1471,
+ "view_count": 2643,
+ "like_count": 83,
+ "webpage_url": "https://www.youtube.com/watch?v=ISVFhvECvzc",
+ "description": "Most traders discuss Greeks and Implied Volatility without seeing how they actually emerge from raw market data. This video focuses on building that foundation by working directly with intraday options data using Python. We move beyond charts to show how minute-level Bank Nifty data is structured, cleaned, and prepared for analysis, including handling timestamps, strike alignment, and basic data sanity checks.\n\nWe then implement the Black-Scholes model in Python to extract implied volatility from market prices and explain how IV functions as a mathematical input rather than a forecast. The session concludes with visualizing the volatility smile and IV skew, comparing normal market conditions with sharp declines to show how downside risk is priced. The goal is to develop a data-driven view of options markets, similar to how professional quants approach analysis.\n\n➡️ Download the codes from the link below:\nhttps://bit.ly/4wbppsH\n\nLearn to Build Core Python and Trading Skills\n👉 Start with Python for Trading: https://bit.ly/4pUqWli\nLearn to Apply Volatility & Options Trading Strategies\n👉 Learn Volatility Trading Strategies for Beginners: https://bit.ly/4ckGMzY\n👉 Explore Options Volatility Strategies with Greeks, GARCH & Python Backtesting: https://bit.ly/4wIvUEz\n👉 Practice Options Trading Strategies in Python (Basic): https://bit.ly/4fQmFed\n\nLearn to apply AI and ML in trading in a practical hands-on manner \nEPAT syllabus on Machine learning & AI: https://bit.ly/458CGHm\nFree self-paced course for beginners: https://bit.ly/4fMMQCo\nApply AI in trading strategies: https://bit.ly/3Uer7vS\nAI in portfolio management: https://bit.ly/4fSO1Ae\n\n🎯 What You’ll Learn:\nHow to handle and organize raw intraday options data in Python.\nThe step-by-step process of computing Implied Volatility (IV) using the Black-Scholes model.\nHow to calculate Time to Expiry (T) as a fraction of a year for model accuracy.\nVisualizing the Volatility Smile and understanding IV Skew.\nAnalyzing how IV behaves during market uptrends vs. sudden crashes.\n\n⏰ Timestamps:\n0:00 - The Uncomfortable Truth about Options Trading\n0:37 - Introduction to the Quant Lens\n1:23 - Python Libraries for Options Analysis\n1:44 - Loading & Structure of Intraday Options Data\n3:06 - Why Data Organization is Critical\n4:10 - Visualizing Spot Price Movements\n5:15 - What is Implied Volatility (IV) Really?\n6:30 - Calculating Time to Expiry (T) in Python\n8:40 - Preparing Data for Black-Scholes Symbols\n9:46 - Running a Data Sanity Check\n10:30 - Creating the IV Helper Function\n11:40 - Analyzing ATM Call & Put Behavior\n13:32 - Visualizing IV vs. Underlying Price\n15:09 - Understanding the Volatility Smile & Skew\n18:20 - Case Study: Analyzing a Market Crash Scenario\n23:54 - Conclusion: Building Your Quant Lens\n\n🎓 About the Speaker:\nMohak Pachisia is a Senior Quantitative Researcher at QuantInsti, specializing in trading strategy development, financial modeling, and quantitative research. Before joining QuantInsti, he worked in the Risk and Quant Solutions division at Evalueserve, where he also led the learning and development function for the Quant team.\n\n💡 Key Takeaways\nData Organization is King: If your timestamps, expiry dates, or strike prices aren't aligned, your quant models will break downstream.\nIV is Not a Forecast: It is simply the \"plug\" number that aligns model prices with current market reality.\nThe Volatility Smile: Learn why OTM (Out-of-the-Money) options often command higher IV and how to plot this in Python using Plotly.\nSanity Checks: Always filter your data for zeros or inconsistencies before running Black-Scholes calculations.\n\nPerfect For:\nAspiring Quants looking to build a portfolio of data handling skills.\nSerious Options Traders who want to understand the \"Why\" behind price movements.\nResearch Analysts needing to automate IV calculations across thousands of rows.\nPython Developers transitioning into the financial markets.\n\nKeywords:\nOptions Trading Python, Implied Volatility Calculation, Quant Finance Tutorial, Black Scholes Python, Volatility Smile Explained, Data Science in Trading, Python for Finance, Intraday Options Data\n\nHashtags:\n#OptionsTrading #QuantFinance #PythonForFinance #Volatility #DataScience #TradingStrategy #AlgorithmicTrading",
+ "tags": [
+  "Options Trading",
+  "Python for Finance",
+  "Implied Volatility",
+  "Black Scholes Model",
+  "Quant Trading",
+  "Data Analysis",
+  "Volatility Smile",
+  "Greeks",
+  "Trading Strategy",
+  "Financial Engineering",
+  "Algorithmic Trading",
+  "Pandas Finance",
+  "Plotly Trading."
+ ],
+ "categories": [
+  "Education"
+ ]
+}

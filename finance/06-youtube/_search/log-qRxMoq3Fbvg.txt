@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/gian/bin/agf-yt", line 306, in <module>
+    main()
+    ~~~~^^
+  File "/home/gian/bin/agf-yt", line 303, in main
+    args.fn(args)
+    ~~~~~~~^^^^^^
+  File "/home/gian/bin/agf-yt", line 195, in cmd_pull
+    m = get_meta(args.url)
+  File "/home/gian/bin/agf-yt", line 42, in get_meta
+    raise RuntimeError(f"yt-dlp meta failed: {cp.stderr.strip()[:300]}")
+RuntimeError: yt-dlp meta failed: /usr/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.3.0) or chardet (7.4.3)/charset_normalizer (3.5.1) doesn't match a supported version!
+  warnings.warn(
+WARNING: Your yt-dlp version (2026.08.19) is older than 90 days!
+         It is strongly recommende

@@ -1,0 +1,9 @@
+[Unit]
+Description=Finance brief weekdays 07:30 New York
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* 07:30:00 America/New_York
+Persistent=true
+
+[Install]
+WantedBy=timers.target

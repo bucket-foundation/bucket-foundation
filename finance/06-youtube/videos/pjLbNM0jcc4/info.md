@@ -1,0 +1,63 @@
+<!-- voice-ignore-file -->
+# Ed Thorp - "If You Bet Too Much, You'll Almost Certainly Be Ruined"
+
+- **Video ID**: `pjLbNM0jcc4`
+- **URL**: https://www.youtube.com/watch?v=pjLbNM0jcc4
+- **Channel**: The Meb Faber Show — https://www.youtube.com/channel/UCKvWzzrVUA_DSCoKXL6GU2w
+- **Uploaded**: 20170306
+- **Duration**: 58:56 (3536s)
+- **Views**: 22801  ·  **Likes**: 307
+- **Captured**: 2026-11-27T09:20:34
+
+## Description
+
+To see links or read the transcript of the episode, visit us at:
+
+http://mebfaber.com/2017/02/08/10017/
+
+In Episode 39, we welcome the legendary Ed Thorp. Ed is a self-made man after having been a child of The Depression. He’s a professor, a renowned mathematician, a fund manager who’s posted one of the lengthiest and best investment track records in all of finance, a best-selling author (his most recent book is A Man for All Markets), the creator of the first wearable computer, and finally, the individual responsible for “counting cards.” 
+
+Meb begins the episode in the same place as does Ed in his new book, the Depression. Meb asks how that experience shaped Ed’s world view. Ed tells us about being very poor, and how it forced him to think for himself, as well as teach himself. In fact, Ed even taught himself how to make his own gunpowder and nitroglycerine. 
+
+This dovetails into the various pranks that Ed played as a mischievous youth. Ed tells us the story of dying a public pool blood-red, resulting in a general panic.
+It’s not long before we talk about Ed’s first Las Vegas gambling experience. He had heard of a blackjack system developed by some quants, that was supposed to give the player a slight mathematical advantage. So Ed hit the tables with a strategy-card based on that system. At first, his decisions caused other players at the table to ridicule him. But when Ed’s strategy ended up causing him to hit “21” after drawing 7 cards, the players’ opinions instantly changed from ridicule to respect. 
+
+This was the basis from which Ed would create his own counting cards system. Meb asks for a summary of how it works. Ed gives us the highlights, which involve a number count that helps a player identify when to bet big or small.
+
+Meb then asks why Ed decided to publish his system in academic journals instead of keeping it hush-hush and making himself a fortune. Ed tells us that he was academically-oriented, and the spirit of science is to share. 
+
+The conversation turns toward the behavioral side of gambling (and investing). Once we move from theory to practice, the impact of emotions plays a huge role. There’s a psychic burden on morale when you’re losing. Meb asks how Ed handled this.
+
+Ed tells us that his early days spent gambling in the casinos were a great training ground for later, when he would be “gambling” with tens of millions of dollars in the stock market. He said his strategy was to start small, so he could handle the emotions of losing. As he became more comfortable with his level of risk, he would scale his bets to the next level, grow comfortable, then move up again from there. In essence, don’t bet too much too fast. 
+
+This dovetails into the topic of how to manage money using the Kelly Criterion, which is a system for deciding the amount to bet in a favorable situation. Ed explains that if you bet too small, won’t make much money, even if you win. However, “if you bet too much, you’ll almost certainly be ruined.” The Kelly Criterion helps you determine the appropriate middle ground for position sizing using probabilities. 
+It turns out that Ed was so successful with his methods, that Vegas changed the rules and eventually banned Ed from their casinos. To continue playing, Ed turned to disguises, and tells a fun story about growing a beard and using contact lenses to avoid identification. 
+
+Meb tells us about one of his own card-counting experiences, which was foiled by his partner’s excessive Bloody Mary consumption.
+
+Next, we move to Wall Street. Meb brings up Ed’s performance record, which boasts one of the highest risk-adjusted returns of all time – in 230 months of investing, Ed had just 3 down months, and all were 1% or less. Annualized, his performance was over 19%. 
+
+Ed achieved this remarkable record by hedging securities that were mispriced – using convertible bond and options from the same company. There was also some index arbitraging. Overall, Ed’s strategy was to hedge away as much risk as possible, then let a diversified portfolio of smaller bets play out.
+
+Meb asks, when you have a system that has an edge, yet its returns begin to erode, how do you know when it’s time to give up the strategy, versus when to invest more (banking on mean reversion of the strategy). Ed tells us that he asks himself, “Did the system work in the past, is it working now, and do I believe it will it in the future?” Also “What is the mechanism that’s driving it?” You need to understand whether the less-than-desired current returns are outside the range of usual fluctuation. If you don’t know this, then you won’t know whether you’re experiencing bad luck (yet within statistical reason) or if something has truly changed and your “bad luck” is actually abnormal and concerning.
+
+## Chapters
+
+- `0s` — <Untitled Chapter 1>
+- `990s` — Point Count
+- `1357s` — The Kelly Criterion for Deciding How Much To Bet in Favorable Situations
+- `1380s` — The Kelly Capital Growth Investment Criterion
+- `1431s` — Risk and Return in the Kelly Criterion
+- `2093s` — Sports Betting
+- `2168s` — Gambling Is Investing Simplified
+- `2904s` — Warren Buffett
+- `3109s` — Writing Routine
+
+## Files
+
+- `metadata.json` — full yt-dlp dump
+- `transcript.txt` — plain text
+- `transcript.vtt` — original captions
+- `transcript.json` — timestamped chunks
+- `chapters.json` — chapter markers
+- `thumbnail.jpg`

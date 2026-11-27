@@ -1,0 +1,39 @@
+{
+ "id": "ZVMTeDBmSrI",
+ "title": "I Re-Created A Quant Trading Strategy With Claude Code (Insanely Cool)",
+ "channel": "Lewis Jackson",
+ "channel_id": "UCmrU1HFPpy5DfUySK6okqEA",
+ "uploader": "Lewis Jackson",
+ "upload_date": "20260519",
+ "duration": 1635,
+ "view_count": 488392,
+ "like_count": 16323,
+ "webpage_url": "https://www.youtube.com/watch?v=ZVMTeDBmSrI",
+ "description": "▸ Build and test your own strategies — Part-Time Quant Academy, $29/month: https://www.skool.com/part-time-quant-academy\n\n📌 Useful links:\n▸ Track my progress on the 10x Challenge → https://10x-app-production.up.railway.app/dca\n\n📱 Follow me:\n📧 The Lewsletter (free twice weekly breakdown): https://www.workwithlewis.com/lewsletter\n🐦 X/Twitter: https://x.com/WhatSayLew\n📸 Instagram: https://www.instagram.com/lewis.w.jackson\n🎵 TikTok: https://tiktok.com/@lewisjacksontiktok\n💼 LinkedIn: https://www.linkedin.com/in/lewisjacksonli/\n\nThe hedge fund method is how quants actually trade — and it has nothing to do with trend lines, indicators, or vibes. It's a Markov regime model that quantifies the market into three states: bull, bear, and sideways. And once you see it, you can't unsee it.\n\nHere's the core. You label every day in an asset's history based on the trailing 20-day return — 5% or more is a bull state, -5% or worse is a bear state, everything else is sideways. Then you count every transition between states and turn those counts into a 3x3 transition matrix of probabilities. That matrix tells you the odds of tomorrow's regime based only on today.\n\nThis is the opposite of how retail trades. You're not guessing. You're calculating. The Markov property says the past doesn't matter — only the current state determines what comes next, and the stickiness of each regime tells you how to size the trade.\n\nI'll walk you through squaring the matrix for multi-day forecasts, the stationary distribution that explains why 28-day predictions collapse, signal generation by subtracting bear probability from bull probability, and the walk-forward backtest that stops your strategy from cheating with future data. Then the hidden Markov model removes the subjective labels entirely.\n\nYou'll get a free Claude Code skill and a Pine Script overlay for TradingView — copy, paste, done. This is real quant Markov regime trading.\n\n⚠️ DISCLAIMER: This video is for educational and informational purposes only and does not constitute financial, investment, trading, or tax advice. The strategies, models, and tools discussed — including the Markov regime method, AI prompts, and Pine Script indicator — are shared to explain a concept, not to recommend any trade or asset. Trading stocks, cryptocurrencies like Bitcoin, and other speculative assets carries substantial risk, including the loss of your entire capital. Past performance and backtested results do not guarantee future returns. Always do your own research and consult a qualified financial professional before making any investment decision.\n\n⏱️ CHAPTERS\n0:00 How Quants Actually Trade\n2:08 Defining Market States\n4:57 The Markov Property\n6:59 The Transition Matrix\n8:04 Stickiness And Persistence\n9:53 Squaring The Matrix\n12:12 Stationary Distribution\n13:50 Generating Trade Signals\n16:31 Walk Forward Backtesting\n18:54 Hidden Markov Model\n21:05 Installing The Claude Skill\n24:53 PineScript On TradingView",
+ "tags": [
+  "agentic ai",
+  "agents to income",
+  "ai agent",
+  "ai agents",
+  "ai automation",
+  "ai business",
+  "ai for beginners",
+  "ai investing",
+  "ai side hustle",
+  "ai tools",
+  "ai trading",
+  "ai workflow",
+  "build with ai",
+  "claude",
+  "claude code",
+  "investing with ai",
+  "lewis jackson",
+  "make money with ai",
+  "prompt engineering",
+  "tradingview",
+  "zero one"
+ ],
+ "categories": [
+  "Science & Technology"
+ ]
+}
