@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { POLINGUAL_URL } from "@/lib/brand";
+import NavItem from "./NavItem";
+import { EXPLORE_LINKS, INVOLVED_LINKS, LAUNCH_LIST_LABEL, LEGAL_LINKS, OPEN_SOURCE_LINKS, POLINGUAL_LINK, SIGN_IN_LINK } from "@/lib/routes";
 import Logo from "./Logo";
 import FooterVersion from "./FooterVersion";
 import { CANON_BRANCHES } from "@/lib/contribute";
@@ -41,52 +42,28 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Explore</div>
           <ul className="space-y-2 text-sm">
-            <li><a href={POLINGUAL_URL} className="hover:text-[color:var(--bone)] transition">Polingual</a></li>
-            <li><Link href="/research-os" className="hover:text-[color:var(--bone)] transition">Research OS</Link></li>
-            <li><Link href="/canon" className="hover:text-[color:var(--bone)] transition">Canon</Link></li>
-            <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What&rsquo;s new</Link></li>
-            <li><Link href="/about" className="hover:text-[color:var(--bone)] transition">About</Link></li>
-            <li><Link href="/canon/search" className="hover:text-[color:var(--bone)] transition">Search canon</Link></li>
-            <li><Link href="/canon/bridges" className="hover:text-[color:var(--bone)] transition">Bridges</Link></li>
-            <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
-            <li><Link href="/earth" className="hover:text-[color:var(--bone)] transition">Earth data globe</Link></li>
-            <li><Link href="/excerpts" className="hover:text-[color:var(--bone)] transition">Source excerpts</Link></li>
-            <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
-            <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>
-            <li><Link href="/protocol" className="hover:text-[color:var(--bone)] transition">Protocol, feed402/x402</Link></li>
-            <li><Link href="/build" className="hover:text-[color:var(--bone)] transition">Build on the API</Link></li>
-            <li><Link href="/learn" className="hover:text-[color:var(--bone)] transition">Learn with Claude</Link></li>
+            {EXPLORE_LINKS.map((l) => (
+              <li key={l.href}><NavItem link={l} className="hover:text-[color:var(--bone)] transition" /></li>
+            ))}
           </ul>
         </div>
 
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Get involved</div>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/mission" className="hover:text-[color:var(--bone)] transition">Mission · reform education</Link></li>
-            <li><Link href="/contribute" className="hover:text-[color:var(--bone)] transition">Contribute</Link></li>
-            <li><Link href="/support" className="hover:text-[color:var(--bone)] transition">Support / fund</Link></li>
-            <li><Link href="/research" className="hover:text-[color:var(--bone)] transition">Research</Link></li>
-            <li><Link href="/research/papers" className="hover:text-[color:var(--bone)] transition">Atlas papers</Link></li>
-            <li><Link href="/research/education" className="hover:text-[color:var(--bone)] transition">Education research</Link></li>
-            <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>
-            <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
-            <li><Link href="/research/figures" className="hover:text-[color:var(--bone)] transition">Figures</Link></li>
-            <li><Link href={signInClosed ? POLINGUAL_URL : "/sign-in"} className="hover:text-[color:var(--bone)] transition">{signInClosed ? "Polingual" : launchList ? "Launch list" : "Sign in"}</Link></li>
+            {INVOLVED_LINKS.map((l) => (
+              <li key={l.href}><NavItem link={l} className="hover:text-[color:var(--bone)] transition" /></li>
+            ))}
+            <li><NavItem link={signInClosed ? POLINGUAL_LINK : launchList ? { ...SIGN_IN_LINK, label: LAUNCH_LIST_LABEL } : SIGN_IN_LINK} className="hover:text-[color:var(--bone)] transition" /></li>
           </ul>
         </div>
 
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open source</div>
           <ul className="space-y-2 text-sm">
-            <li><a href="https://github.com/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-foundation</a></li>
-            <li><a href="https://github.com/bucket-foundation/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
-            <li><a href="https://github.com/bucket-foundation/research-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">research-atlas</a></li>
-            <li><a href="https://github.com/bucket-foundation/education-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">education-atlas</a></li>
-            <li><a href="https://github.com/bucket-foundation/education-atlas/blob/master/docs/THE-KNOWLEDGE-ACCESS-GRADIENT.md" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">knowledge-access gradient</a></li>
-            <li><a href="/feed.xml" className="hover:text-[color:var(--bone)] transition">RSS feed</a></li>
-            <li><Link href="/manifesto" className="hover:text-[color:var(--bone)] transition">Manifesto</Link></li>
-            <li><Link href="/governance" className="hover:text-[color:var(--bone)] transition">Governance</Link></li>
+            {OPEN_SOURCE_LINKS.map((l) => (
+              <li key={l.href}><NavItem link={l} className="hover:text-[color:var(--bone)] transition" /></li>
+            ))}
           </ul>
         </div>
       </div>
@@ -95,8 +72,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-5 flex flex-wrap gap-4 justify-between text-[10px] small-caps text-[color:var(--bone-3)]">
           <div>bucket foundation · nonprofit · MIT code · CC0 intent · <FooterVersion /></div>
           <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-[color:var(--bone)] transition">Privacy</Link>
-            <Link href="/terms" className="hover:text-[color:var(--bone)] transition">Terms</Link>
+            {LEGAL_LINKS.map((l) => <NavItem key={l.href} link={l} className="hover:text-[color:var(--bone)] transition" />)}
           </div>
           <div className="text-[color:var(--gold)]">carved in stone · mmxxii</div>
         </div>
