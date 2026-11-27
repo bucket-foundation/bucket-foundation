@@ -11,6 +11,7 @@ import {
   summarizeTitle,
   prEntry,
   prsFromCommits,
+  commitEntries,
   mergeEntries,
 } from "./build-whats-new-entry.mjs";
 
@@ -225,4 +226,22 @@ test("production validation rejects long discussions and missing images", () => 
   assert.match(validateProduction(missing, { publicDir: dir }).join("\n"), /missing/);
   const noLinks = { ...base, links: [] };
   assert.match(validateProduction(noLinks, { publicDir: dir }).join("\n"), /links/);
+});
+
+test("product commits merged without a PR become entries and chores stay out", () => {
+  const e = commitEntries([
+    { sha: "aaaaaaa111", subject: "feat(brand): site theme rotates daily", date: "2026-11-26T10:00:00Z", author: "gianyrox" },
+    { sha: "bbbbbbb222", subject: "chore: bump deps", date: "2026-11-26T10:00:00Z", author: "gianyrox" },
+    { sha: "ccccccc333", subject: "bd: backup 2026-11-26", date: "2026-11-26T10:00:00Z", author: "gianyrox" },
+    { sha: "ddddddd444", subject: "Merge branch 'feat/x' into dev", date: "2026-11-26T10:00:00Z", author: "gianyrox" },
+    { sha: "eeeeeee555", subject: "fix(home): lander fits one screen", date: "2026-11-27T10:00:00Z", author: "gianyrox" },
+  ]);
+  assert.deepEqual(e.map((x) => x.id), ["commit-aaaaaaa", "commit-eeeeeee"]);
+  assert.equal(e[0].summary, "New in brand: site theme rotates daily.");
+  assert.equal(e[1].url, "https://github.com/bucket-foundation/bucket-foundation/commit/eeeeeee555");
+});
+
+test("commits that came in through a PR stay under that PR", () => {
+  const e = commitEntries([{ sha: "fffffff666", subject: "feat(x): inside a PR", date: "2026-11-26T10:00:00Z", author: "g" }], new Set(["fffffff666"]));
+  assert.equal(e.length, 0);
 });

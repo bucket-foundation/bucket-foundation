@@ -33,6 +33,7 @@ export const CATEGORY_LABEL: Record<string, string> = {
   "site-feature": "site feature",
   "claim-added": "claim added",
   "pr-merged": "merged",
+  commit: "shipped",
   generation: "generation",
   production: "production",
 };

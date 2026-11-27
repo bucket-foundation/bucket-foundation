@@ -217,6 +217,31 @@ export function prsFromCommits(commits) {
   return prs;
 }
 
+export function commitEntries(commits, inPr = new Set()) {
+  const seen = new Set();
+  const out = [];
+  for (const c of commits) {
+    if (inPr.has(c.sha) || isSkipped(c) || parsePrCommit(c) || /^Merge /.test(c.subject)) continue;
+    if (!/^(?:feat|fix|perf)(?:\([^)]*\))?!?:/.test(c.subject)) continue;
+    const id = `commit-${c.sha.slice(0, 7)}`;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const { headline, summary } = summarizeTitle(c.subject);
+    out.push({
+      id,
+      date: c.date.slice(0, 10),
+      category: "commit",
+      branch: null,
+      title: headline.slice(0, 140),
+      summary: summary.slice(0, 280),
+      commit: c.sha.slice(0, 7),
+      pr: null,
+      url: `https://github.com/${REPO_SLUG}/commit/${c.sha}`,
+    });
+  }
+  return out;
+}
+
 function commitsInRange(from, to) {
   const out = git(["log", "--format=%H%x1f%s%x1f%b%x1f%aI%x1f%an%x1e", `${from}..${to}`]);
   return out
@@ -291,13 +316,18 @@ function main() {
   const date = git(["show", "-s", "--format=%aI", to]).slice(0, 10);
   const entries = canonEntries(diffLines, sha, date);
 
-  const prs = prsFromCommits(commitsInRange(from, to))
+  const commits = commitsInRange(from, to);
+  const prs = prsFromCommits(commits)
     .map(enrichFromGh)
     .filter((pr) => pr && !isSkipped({ subject: pr.title, author: pr.author, headRef: pr.headRef }));
   entries.push(...prs.map(prEntry));
+  const inPr = new Set(
+    prs.filter((pr) => pr.headRef).flatMap((pr) => git(["rev-list", `${pr.sha}^1..${pr.sha}^2`]).split("\n").filter(Boolean)),
+  );
+  entries.push(...commitEntries(commits, inPr));
 
   if (entries.length === 0) {
-    console.log("No merged PRs or canon changes; nothing to append.");
+    console.log("No merged PRs, product commits or canon changes; nothing to append.");
     return;
   }
 
