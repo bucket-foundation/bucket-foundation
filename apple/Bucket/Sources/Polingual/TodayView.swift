@@ -541,7 +541,7 @@ struct LangProgressCard: View {
                         VStack(alignment: .leading, spacing: 0) {
                             Text(Locale.current.localizedString(forLanguageCode: row.lang) ?? row.lang.uppercased())
                                 .font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).lineLimit(1)
-                            Text("\(row.metrics.knownWords) words").font(PL.text(17, .bold)).foregroundStyle(PL.ink).monospacedDigit()
+                            Text(row.metrics.knownWords, format: .number).font(PL.text(17, .bold)).foregroundStyle(PL.ink).monospacedDigit()
                             if row.metrics.inputSeconds > 0 {
                                 Text("\(row.metrics.inputHours, specifier: "%.1f") h input").font(PL.text(11)).foregroundStyle(PL.lapis)
                             }
