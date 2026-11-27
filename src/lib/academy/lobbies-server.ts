@@ -1,3 +1,4 @@
+import { familyPoints } from "./fair-score-server";
 import type { NextRequest, NextResponse } from "next/server";
 import { blocksTouching, configured, GroupsError, json, readBody, requestUser, service } from "./groups-server";
 import { bearer, isGuestToken, liveGuest } from "./lobby-guests";
@@ -192,6 +193,7 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   const me = tiles ? (check(await service().from(PLAYERS).select(PLAYER_COLS).eq("lobby_id", lobby.id).eq("user_id", uid).limit(1), "joined") as LobbyPlayerRow[])[0] : null;
   const decision = tiles ? tileAnswerDecision(lobby, prompt, round, choice, now, prior, joinedRound(lobby, me?.joined_at), me?.continues ?? 0) : answerDecision(lobby, prompt, round, choice, now);
   if (!decision.ok) return decision;
+  if (!tiles) decision.points = await familyPoints(lobby.id, uid, round, lobby.round_seconds, decision);
   if (lobby.game === "duel" && decision.points > 0) {
     const boost = check(await service().from(POWERS).select("kind").eq("lobby_id", lobby.id).eq("user_id", uid).eq("round", round).eq("kind", "double").limit(1), "boost") as unknown[];
     if (boost.length) decision.points *= 2;

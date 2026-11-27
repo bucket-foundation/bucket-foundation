@@ -9,9 +9,11 @@ import { syncDeps } from "@/lib/daily/browser-sync";
 import { podium, roomRecord, wordOfNight } from "@/lib/family/after";
 import { recordRoom, type SaveState } from "@/lib/family/results";
 import { currentCard } from "@/lib/family/session";
-import { cardSvg, challengeHref, shareMessage } from "@/lib/family/share";
+import { cardSvg, challengeGame, challengeHref, shareMessage } from "@/lib/family/share";
 import { Button, ButtonLink } from "@/ui";
 import { useRoomCards } from "./LanguageMap";
+import FamilyNight from "./FamilyNight";
+import { homeSpeakersOf, teacherAwards } from "@academy/fair-score";
 import f from "./family.module.css";
 
 const SAVE_TEXT: Record<SaveState, string> = {
@@ -36,9 +38,23 @@ export default function AfterGame({ lobby, token, onSignIn }: { lobby: WebLobbyS
     <section className={f.card} aria-label="After the game" data-testid="after-game">
       {saved ? <p className={f.muted} data-testid="room-saved">{SAVE_TEXT[saved]}</p> : null}
       {saved === "device" && onSignIn ? <Button variant="ghost" size="md" onClick={onSignIn} data-testid="after-sign-in">Save to an account</Button> : null}
+      <Teachers lobby={lobby} token={token} />
       <Review words={rec?.missed ?? []} />
       <ShareCard lobby={lobby} token={token} />
+      <FamilyNight nickname={card?.band === "under13" ? "" : card?.nickname ?? ""} host={lobby.isHost && card?.band !== "under13"} />
     </section>
+  );
+}
+
+function Teachers({ lobby, token }: { lobby: WebLobbyState; token: string | null }) {
+  const { seats } = useRoomCards(lobby, token);
+  const langs = new Map(lobby.prompts.flatMap((p) => (p.lang ? [[p.round, p.lang] as [number, string]] : [])));
+  const awards = teacherAwards(langs, lobby.results, homeSpeakersOf(seats));
+  if (!awards.size) return null;
+  return (
+    <ul className={f.chips} data-testid="teacher-awards">
+      {[...awards].map(([id, n]) => <li key={id}>🎓 {seats.find((s) => s.userId === id)?.name ?? "Teacher"} taught {n}</li>)}
+    </ul>
   );
 }
 
@@ -90,7 +106,7 @@ function ShareCard({ lobby, token }: { lobby: WebLobbyState; token: string | nul
     setSrc(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(out)}`);
   }, [svg]);
   if (!share) return <p className={f.muted} data-testid="share-off">The host turned sharing off for this room.</p>;
-  const url = challengeHref({ seed: lobby.seed, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, score: top[0]?.score ?? 0 }, window.location.origin);
+  const url = challengeHref({ game: challengeGame(lobby.game), seed: lobby.seed, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, score: top[0]?.score ?? 0, mixed: lobby.playlist.length > 0 }, window.location.origin);
   const send = async () => {
     const png = src ? await pngFrom(src) : null;
     const text = shareMessage(word?.word ?? null, top[0]?.score ?? 0, url);
