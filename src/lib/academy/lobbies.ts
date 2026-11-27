@@ -19,7 +19,7 @@ export function isRace(game: LobbyGame | null | undefined): game is RaceGame {
 }
 
 export function raceEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_RACE === "on";
+  return flagOn(env.POLINGUAL_LOBBY_RACE);
 }
 
 export function raceGames(env: Record<string, string | undefined> = process.env): RaceGame[] {
@@ -31,9 +31,19 @@ export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
 export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
+export const NEXT_GAME_MS = 8_000;
+
+export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at">, now: number, force = false): boolean {
+  if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return false;
+  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS;
+}
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
   const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];
   return duelEnabled(env) ? [...base, "duel"] : base;
+}
+
+export function flagOn(value: string | undefined): boolean {
+  return (value ?? "").trim().toLowerCase() === "on";
 }
 
 export const LOBBY_CODE_LENGTH = 6;
@@ -48,15 +58,19 @@ export const WEB_CLIENT_HEADER = "x-polingual-client";
 export const NATIVE_PLAYS_HEADER = "x-polingual-plays";
 
 export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_REVEAL === "on";
+  return flagOn(env.POLINGUAL_LOBBY_REVEAL);
 }
 
 export function duelEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_DUEL === "on";
+  return flagOn(env.POLINGUAL_LOBBY_DUEL);
+}
+
+export function endEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return flagOn(env.POLINGUAL_LOBBY_END);
 }
 
 export function setupEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_SETUP === "on";
+  return flagOn(env.POLINGUAL_LOBBY_SETUP);
 }
 export const MESSAGE_LIMIT = 50;
 export const MESSAGE_MAX = 200;
@@ -92,6 +106,7 @@ export interface LobbyRow {
   playlist?: LobbyGame[] | null;
   mix?: boolean;
   start_at?: string | null;
+  ended_at?: string | null;
 }
 
 export interface LobbyPlayerRow {
@@ -107,6 +122,7 @@ export interface LobbyPlayerRow {
   skill?: string | null;
   flag?: string | null;
   continues?: number;
+  total?: number;
 }
 
 export interface LobbyMessageRow {
@@ -165,6 +181,7 @@ export interface LobbyPlayer {
   handle: string | null;
   ready: boolean;
   score: number;
+  total?: number;
   isHost: boolean;
   isMe: boolean;
   online: boolean;
@@ -243,6 +260,8 @@ export interface LobbyState {
   botFill: boolean;
   botsEnabled: boolean;
   nextStartAt: string | null;
+  ended?: boolean;
+  canEnd?: boolean;
   setup: LobbySetup;
   playlist: LobbyGame[];
   coins: number;
@@ -360,11 +379,8 @@ export function normalizeLobbySettings(body: Record<string, unknown> | null, lob
   const game = body.game === undefined || body.game === null ? current : offered.includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game) return null;
   if (!setupEnabled()) {
-    const mode = body.setup ?? "single";
-    if (mode !== "single" && mode !== "sequence" && mode !== "mix") return null;
-    const first = mode === "sequence" && Array.isArray(body.games) && offered.includes(body.games[0]) ? (body.games[0] as LobbyGame) : mode === "mix" ? current : game;
-    const pick = first === "same-word" && targets.length < 2 ? (mode === "single" ? null : "daily") : first;
-    return pick ? { game: pick, targets } : null;
+    if ((body.setup ?? "single") !== "single") return null;
+    return game === "same-word" && targets.length < 2 ? null : { game, targets };
   }
   const setup = normalizeSetup(body, game, targets);
   if (!setup || (setup.game === "same-word" && targets.length < 2)) return null;
@@ -774,6 +790,7 @@ export function assembleLobby(
         handle: p.handle ?? null,
         ready: p.ready,
         score: p.score,
+        total: (p.total ?? 0) + p.score,
         isHost: p.user_id === lobby.host_id,
         isMe: p.user_id === uid,
         online: p.is_bot === true || now - Date.parse(p.last_seen) < STALE_MS,
@@ -800,7 +817,9 @@ export function assembleLobby(
     standing: !!lobby.standing_slot,
     botFill: lobby.bot_fill === true,
     botsEnabled: false,
-    nextStartAt,
+    nextStartAt: lobby.ended_at ? null : nextStartAt,
+    ended: !!lobby.ended_at,
+    canEnd: endEnabled() && setupEnabled() && !lobby.standing_slot,
     setup: setupOf(lobby),
     playlist: lobby.playlist ?? [lobby.game ?? "daily"],
   };
@@ -826,6 +845,14 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
   };
 }
 
+export const ABANDONED_PLAYING_MS = 5 * 60_000;
+
+export function abandonedLobby(lobby: Pick<LobbyRow, "id" | "status" | "standing_slot">, players: readonly Pick<LobbyPlayerRow, "lobby_id" | "last_seen" | "is_bot">[], now: number): boolean {
+  if (lobby.standing_slot || lobby.status === "done") return false;
+  const window = lobby.status === "playing" ? ABANDONED_PLAYING_MS : STALE_MS;
+  return !players.some((p) => p.lobby_id === lobby.id && p.is_bot !== true && now - Date.parse(p.last_seen) < window);
+}
+
 export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false): LobbySummary[] {
   const hidden = hiddenUsers(blocks, uid);
   const blockedLobbies = new Set(blocks.filter((b) => b.blocker_id === uid && b.target_group_id).map((b) => b.target_group_id as string));
@@ -836,6 +863,7 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
       const ps = byLobby.get(l.id) ?? [];
       const mine = ps.some((p) => p.user_id === uid);
       if (l.standing_slot) return bots && (mine || ps.length < LOBBY_CAP);
+      if (l.ended_at || abandonedLobby(l, ps, now)) return false;
       if (mine) return l.status !== "done";
       return l.listed && l.status === "lobby" && !hidden.has(l.host_id) && !blockedLobbies.has(l.id) && ps.length > 0 && ps.length < LOBBY_CAP && now - Date.parse(l.created_at) < OPEN_WINDOW_MS;
     })

@@ -1,9 +1,9 @@
 "use client";
 
 import { botLabel, flagEmoji, gameProgress, livesLeft, myScore, ranked, standings, streakOf, type Phase } from "@/lib/lobby/client";
-import { livesText } from "@/lib/lobby/room";
+import { livesText, roomControls } from "@/lib/lobby/room";
 import { Avatar } from "@/ui/avatar";
-import { Pill } from "@/ui";
+import { Button, Pill } from "@/ui";
 import LiveBoard from "../LiveBoard";
 import { CoinArt } from "../Pieces";
 import styles from "../play.module.css";
@@ -68,6 +68,7 @@ export function RoomHud({ g, phase }: { g: LiveRoom; phase: Phase }) {
         <span className={styles.flames} data-testid="streak" data-on={streak >= 2}>{streak >= 2 ? `🔥 ${streak}` : ""}</span>
         {lobby.game === "duel" ? <span className={styles.coins} data-testid="coins" aria-label={`${lobby.coins} coins`}><CoinArt size={26} /> {lobby.coins}</span> : null}
         {lives !== null ? <span className={styles.lives} data-testid="lives" aria-label={`${lives} lives left`}>{livesText(lives)}</span> : null}
+        {roomControls(lobby).end ? <EndGame g={g} /> : null}
         <Pill size="sm" onClick={g.toggleMute} aria-pressed={g.muted} aria-label={g.muted ? "Sound off" : "Sound on"} data-testid="mute">
           {g.muted ? "🔇" : "🔊"}
         </Pill>
@@ -84,5 +85,13 @@ export function RoomSide({ g, phase }: { g: LiveRoom; phase: Phase }) {
     <aside className={styles.side}>
       <LiveBoard players={g.lobby.players} live={phase.kind === "round"} />
     </aside>
+  );
+}
+
+export function EndGame({ g }: { g: LiveRoom }) {
+  return (
+    <Button variant="quiet" size="sm" disabled={g.busy} onClick={() => void g.act(() => g.api.end(g.lobby.id))} data-testid="end-game">
+      End game
+    </Button>
   );
 }

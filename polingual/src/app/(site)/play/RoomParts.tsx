@@ -54,7 +54,7 @@ export function RoomChat({ lobby, api, chat, setChat, onSend }: { lobby: WebLobb
 
 export function RoomHeader({ lobby }: { lobby: WebLobbyState }) {
   return (
-    <section className={`${app.stackSm} ${world.joinCard}`}>
+    <section className={`${app.stackSm} ${world.joinCard}`} data-testid="room-header">
       <div className={app.stackSm}>
         <p className={app.label}>{gameName(lobby.game)}</p>
         <p className={styles.langRow} data-testid="room-langs">
