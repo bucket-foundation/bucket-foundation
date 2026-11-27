@@ -73,7 +73,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
         if (round == 0) return@LaunchedEffect
         val items = graph.corpus.load().items
         val seed = DealSeeds.ensure(dealSeed).also { dealSeed = it }
-        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, langs, seed) }
+        cards = com.polingual.app.offMain { ForeheadDeck.deck(items, com.polingual.app.RaceDeal.langs(langs), seed) }
         index = 0; results = emptyList(); left = ForeheadDeck.SECONDS; count = 3; phase = FhPhase.Count
         while (count > 0) { delay(1000); count -= 1 }
         phase = FhPhase.Play
@@ -96,6 +96,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             }
             FhPhase.Done -> {
                 val got = results.count { it.got }
+                androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Forehead, hits = got) }
                 Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     ForeheadWords(graph, results.map { it.card to it.got }, RevealRules.forehead(cards.size - index, left))
                 }

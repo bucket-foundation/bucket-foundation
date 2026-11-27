@@ -100,13 +100,13 @@ struct FlagTilesGame: View {
                                 .accessibilityIdentifier("flagLane-\(i)")
                             }
                         }
-                        .clipShape(.rect(cornerRadius: 12))
+                        .clipShape(.rect(cornerRadius: PL.Radius.md))
                         ForEach(rows, id: \.index) { row in
                             Text(deck.tiles[row.index].form)
                                 .font(PL.heading.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                                 .padding(.horizontal, PL.Space.s3)
                                 .frame(width: min(geo.size.width * 0.72, 280), height: FlagBoard.tile)
-                                .background(PL.card, in: .rect(cornerRadius: 10))
+                                .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
                                 .opacity(row.index == run.index ? 1 : 0.55)
                                 .position(x: geo.size.width / 2, y: FlagBoard.tileY(row.progress, height: geo.size.height))
                                 .allowsHitTesting(false)

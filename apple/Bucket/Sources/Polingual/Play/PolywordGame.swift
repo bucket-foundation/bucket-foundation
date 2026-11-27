@@ -94,7 +94,7 @@ struct PolywordGame: View {
                             .foregroundStyle(i < score.count ? PL.paper : PL.ink)
                             .lineLimit(1).minimumScaleFactor(0.5)
                             .frame(maxWidth: .infinity, minHeight: 44)
-                            .background(i < score.count ? color(score[i]) : PL.card, in: .rect(cornerRadius: 8))
+                            .background(i < score.count ? color(score[i]) : PL.card, in: .rect(cornerRadius: PL.Radius.sm))
                     }
                 }
                 .modifier(row == guesses.count ? AnyShake(trigger: shake) : AnyShake(trigger: 0))

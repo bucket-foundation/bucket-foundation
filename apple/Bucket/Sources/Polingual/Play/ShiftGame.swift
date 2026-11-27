@@ -63,7 +63,7 @@ struct ShiftGame: View {
                         Text(Shift.centerWord([b.columns[i]], [offsets[i]]).uppercased())
                             .font(PL.title.font()).foregroundStyle(PL.ink)
                             .frame(maxWidth: .infinity, minHeight: 64)
-                            .background(PL.card, in: .rect(cornerRadius: 10))
+                            .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
                         Button { offsets = Shift.rotate(offsets, column: i, by: 1) } label: {
                             PLGlyphView(.chevronDown, size: 22).foregroundStyle(PL.paper).frame(width: 44, height: 44)
                         }

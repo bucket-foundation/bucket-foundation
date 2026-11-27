@@ -42,12 +42,12 @@ export default function CodeBlock({
   const rows = code.replace(/\n$/, "").split("\n");
 
   return (
-    <div className="group relative mt-4 bg-[#1F1C16] rounded-sm overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.04)]">
+    <div className="group relative mt-4 bg-[var(--basalt)] rounded-sm overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.04)]">
       <div className="flex items-center justify-between px-4 py-2 border-b border-[color:rgba(239,232,212,0.08)] bg-[rgba(0,0,0,0.2)]">
         <div className="flex items-center gap-3 min-w-0">
           <span className="flex gap-[5px] shrink-0" aria-hidden>
             <span className="w-[9px] h-[9px] rounded-full bg-[#E06C4C]/70" />
-            <span className="w-[9px] h-[9px] rounded-full bg-[#D9A43A]/70" />
+            <span className="w-[9px] h-[9px] rounded-full bg-[var(--gold-bright)]/70" />
             <span className="w-[9px] h-[9px] rounded-full bg-[#6EA87C]/70" />
           </span>
           {title && (

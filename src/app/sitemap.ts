@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BRANCHES } from "@/lib/canon";
+import { internalPaths } from "@/lib/routes";
 import { TOOLS } from "@/lib/tools";
 import { listPapers } from "@/lib/papers";
 import { listDatasets, datasetSlug } from "@/lib/research-atlas";
@@ -9,7 +10,7 @@ const BASE = "https://www.bucket.foundation";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const top = [
+  const topSeed = [
     { p: "",                    pri: 1.0,  freq: "weekly"  as const },
     { p: "/canon",              pri: 0.95, freq: "weekly"  as const },
     { p: "/canon/search",       pri: 0.9,  freq: "daily"   as const },
@@ -40,6 +41,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/contribute",         pri: 0.75, freq: "monthly" as const },
     { p: "/research-os/learn",  pri: 0.7,  freq: "weekly"  as const },
     { p: "/whats-new",          pri: 0.6,  freq: "daily"   as const },
+  ];
+  const listed = new Set(topSeed.map((t) => t.p));
+  const top = [
+    ...topSeed,
+    ...internalPaths().filter((p) => !listed.has(p)).map((p) => ({ p, pri: 0.6, freq: "monthly" as const })),
   ].map(({ p, pri, freq }) => ({
     url: `${BASE}${p}`,
     lastModified: now,

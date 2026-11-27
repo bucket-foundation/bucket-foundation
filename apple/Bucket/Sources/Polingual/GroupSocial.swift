@@ -26,8 +26,8 @@ struct RadarShape: Shape {
 struct StrengthRadar: View {
     let spokes: [Spoke]
     var compare: [Spoke]? = nil
-    var tint: Color = Palette.green
-    var compareTint: Color = D8.lapis
+    var tint: Color = PL.tyrian
+    var compareTint: Color = PL.lapis
 
     var body: some View {
         GeometryReader { g in
@@ -38,7 +38,7 @@ struct StrengthRadar: View {
             ZStack {
                 ForEach([0.25, 0.5, 0.75, 1.0], id: \.self) { f in
                     Circle()
-                        .stroke(Palette.rule, lineWidth: f == 1 ? 1.5 : 0.75)
+                        .stroke(PL.hairline2, lineWidth: f == 1 ? 1.5 : 0.75)
                         .frame(width: radius * 2 * f, height: radius * 2 * f)
                         .position(c)
                 }
@@ -49,7 +49,7 @@ struct StrengthRadar: View {
                         p.addLine(to: CGPoint(x: c.x + radius * cos(a), y: c.y + radius * sin(a)))
                     }
                 }
-                .stroke(Palette.rule, lineWidth: 0.75)
+                .stroke(PL.hairline2, lineWidth: 0.75)
                 if let compare {
                     let values = spokes.map { s in compare.first { $0.id == s.id }?.strength ?? 0 }
                     RadarShape(values: values).path(in: rect).fill(compareTint.opacity(0.15))
@@ -90,8 +90,8 @@ struct StrengthBar: View {
     var body: some View {
         GeometryReader { g in
             ZStack(alignment: .leading) {
-                Capsule().fill(Palette.rule)
-                Capsule().fill(Palette.green).frame(width: g.size.width * min(1, max(0, value)))
+                Capsule().fill(PL.hairline2)
+                Capsule().fill(PL.tyrian).frame(width: g.size.width * min(1, max(0, value)))
             }
         }
         .frame(height: 6)
@@ -114,15 +114,15 @@ struct StrengthGraph: View {
                 var p = Path()
                 p.move(to: a)
                 p.addLine(to: b)
-                ctx.stroke(p, with: .color(Palette.rule), lineWidth: 1)
+                ctx.stroke(p, with: .color(PL.hairline2), lineWidth: 1)
             }
             let r: CGFloat = graph.nodes.count > 40 ? 7 : 10
             for n in graph.nodes {
                 guard let c = at(n.id) else { continue }
                 let dot = Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2))
-                ctx.fill(dot, with: .color(Palette.paper))
-                ctx.fill(dot, with: .color(Palette.green.opacity(0.12 + 0.88 * min(1, max(0, n.strength)))))
-                ctx.stroke(dot, with: .color(Palette.green.opacity(0.6)), lineWidth: 1)
+                ctx.fill(dot, with: .color(PL.paper))
+                ctx.fill(dot, with: .color(PL.tyrian.opacity(0.12 + 0.88 * min(1, max(0, n.strength)))))
+                ctx.stroke(dot, with: .color(PL.tyrian.opacity(0.6)), lineWidth: 1)
             }
         }
         .frame(height: graph.nodes.count > 30 ? 300 : 220)
@@ -155,13 +155,13 @@ struct StrengthGraphSection: View {
                     let strongest = graph.nodes.sorted { $0.strength > $1.strength }.prefix(3).map(\.title)
                     if !strongest.isEmpty {
                         Text("Strongest: \(strongest.joined(separator: ", "))")
-                            .font(.footnote)
-                            .foregroundStyle(Palette.muted)
+                            .font(PL.text(13))
+                            .foregroundStyle(PL.inkDim)
                     }
                 } else if loading {
                     ProgressView()
                 } else {
-                    Text("Nothing to draw yet.").foregroundStyle(Palette.muted)
+                    Text("Nothing to draw yet.").foregroundStyle(PL.inkDim)
                 }
             } header: {
                 Eyebrow(text: "Strength graph")
@@ -203,8 +203,8 @@ struct RecentWordsSection: View {
                             _ = LangVoice.shared.speak(w.form, w.lang)
                         } label: {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(w.form).font(.headline)
-                                Text(w.gloss).font(.footnote).foregroundStyle(Palette.muted)
+                                Text(w.form).font(PL.text(17, .bold))
+                                Text(w.gloss).font(PL.text(13)).foregroundStyle(PL.inkDim)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(.rect)
@@ -218,7 +218,7 @@ struct RecentWordsSection: View {
                                 haptic(true)
                             } label: {
                                 Image(systemName: added.contains(w.id) ? "checkmark.circle.fill" : "plus.circle")
-                                    .font(.title3)
+                                    .font(PL.script(20, .semibold))
                             }
                             .buttonStyle(.borderless)
                             .disabled(added.contains(w.id))
@@ -257,9 +257,9 @@ struct LearnTogetherSheet: View {
             Form {
                 Section {
                     HStack(spacing: 6) { ForEach(set.targets, id: \.self) { FlagTile(lang: $0, size: 36) } }
-                    Text(set.name).font(.serif(.title2, weight: .semibold))
+                    Text(set.name).font(PL.script(22, .semibold))
                     Text("From \(langName(set.root)): \(set.targets.map(langName).joined(separator: ", "))")
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                 } footer: {
                     Text("You get the same languages as \(memberName) and keep your own progress.")
                 }
@@ -272,7 +272,7 @@ struct LearnTogetherSheet: View {
                 }
                 if failed { Section { Text("That set could not be made. Try again.").foregroundStyle(.red) } }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle("Learn together")
             .inlineTitle()
@@ -305,13 +305,13 @@ struct GoalBar: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text(name).font(.subheadline.weight(.semibold))
+                Text(name).font(PL.text(15, .semibold))
                 Spacer()
                 Text("\(goal.done) of \(goal.weekly) cards this week")
-                    .font(.footnote.monospacedDigit())
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(13).monospacedDigit())
+                    .foregroundStyle(PL.inkDim)
             }
-            ProgressView(value: goal.progress).tint(goal.progress >= 1 ? D8.malachite : Palette.green)
+            ProgressView(value: goal.progress).tint(goal.progress >= 1 ? PL.malachite : PL.tyrian)
         }
         .accessibilityElement(children: .combine)
     }
@@ -465,9 +465,9 @@ struct BlockedList: View {
                 ForEach(groups.blocks) { b in
                     HStack(spacing: 12) {
                         Image(systemName: b.kind == .group ? "person.2" : "person")
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                             .frame(width: 28)
-                        Text(b.name).font(.headline)
+                        Text(b.name).font(PL.text(17, .bold))
                         Spacer(minLength: 8)
                         Button("Unblock") { Task { await unblock(b) } }
                             .buttonStyle(.borderless)
@@ -479,7 +479,7 @@ struct BlockedList: View {
             }
             if let failure { Section { Text(failure).foregroundStyle(.red) } }
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
         .scrollContentBackground(.hidden)
         .paper()
         .navigationTitle("Blocked")
@@ -508,12 +508,12 @@ struct Avatar: View {
 
     var body: some View {
         ZStack {
-            Circle().fill(Palette.card)
+            Circle().fill(PL.card)
             Text(member.initials.isEmpty ? "?" : member.initials)
-                .font(.system(size: size * 0.36, weight: .heavy, design: .rounded))
-                .foregroundStyle(Palette.ink)
+                .font(PL.script(size * 0.36, .heavy))
+                .foregroundStyle(PL.ink)
             Circle()
-                .stroke(member.studiedToday ? D8.malachite : Palette.rule, style: StrokeStyle(lineWidth: member.studiedToday ? 4 : 2, dash: member.studiedToday ? [] : [4, 4]))
+                .stroke(member.studiedToday ? PL.malachite : PL.hairline2, style: StrokeStyle(lineWidth: member.studiedToday ? 4 : 2, dash: member.studiedToday ? [] : [4, 4]))
         }
         .frame(width: size, height: size)
     }
@@ -541,7 +541,7 @@ struct TodayStrip: View {
                     } header: {
                         Eyebrow(text: "Family and friends")
                     }
-                    .listRowBackground(Palette.card)
+                    .listRowBackground(PL.card)
                 }
             }
             .task(id: groups.incoming.map(\.id)) {
@@ -560,8 +560,8 @@ struct TodayStrip: View {
     @ViewBuilder var rows: some View {
         ForEach(groups.incoming.prefix(3)) { c in
             Label(c.line, systemImage: c.symbol)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(c.kind == .cheer ? D8.malachite : D8.vermilion)
+                .font(PL.text(15, .semibold))
+                .foregroundStyle(c.kind == .cheer ? PL.malachite : PL.vermilion)
         }
         if !groups.people.isEmpty {
             ScrollView(.horizontal, showsIndicators: false) {
@@ -571,13 +571,13 @@ struct TodayStrip: View {
                             VStack(spacing: 4) {
                                 Avatar(member: p.member)
                                 Text(p.member.name.split(separator: " ").first.map(String.init) ?? p.member.name)
-                                    .font(.caption.weight(.semibold))
+                                    .font(PL.text(12, .semibold))
                                     .lineLimit(1)
                                 Text(sent[p.member.userId].map { $0 == .cheer ? String(localized: "Cheered") : String(localized: "Nudged") }
                                      ?? (p.member.studiedToday ? String(localized: "Cheer") : String(localized: "Nudge")))
-                                    .font(D8.caps(9))
+                                    .font(PL.capsFont(9))
                                     .textCase(.uppercase)
-                                    .foregroundStyle(p.member.studiedToday ? D8.malachite : D8.vermilion)
+                                    .foregroundStyle(p.member.studiedToday ? PL.malachite : PL.vermilion)
                             }
                             .frame(width: 62)
                         }
@@ -590,7 +590,7 @@ struct TodayStrip: View {
             }
         }
         ForEach(groups.goals, id: \.group.id) { GoalBar(name: $0.group.name, goal: $0.goal) }
-        if let note { Text(note).font(.footnote).foregroundStyle(Palette.muted) }
+        if let note { Text(note).font(PL.text(13)).foregroundStyle(PL.inkDim) }
     }
 
     func send(_ m: GroupMember, _ groupId: String) async {

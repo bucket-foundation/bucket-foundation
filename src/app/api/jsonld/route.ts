@@ -1,3 +1,4 @@
+import { LOGO } from "@/lib/brand";
 import { NextResponse } from "next/server";
 import { BRANCHES } from "@/lib/canon";
 
@@ -12,7 +13,7 @@ export async function GET() {
       "@id": `${BASE}#org`,
       name: "bucket.foundation",
       url: BASE,
-      logo: `${BASE}/icon.png`,
+      logo: `${BASE}${LOGO.png512}`,
       nonprofitStatus: "Nonprofit501c3",
       license: `${BASE}/cite-forever/v0.1`,
     },

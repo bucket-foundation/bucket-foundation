@@ -30,7 +30,7 @@ struct TranslateLanguageSheet: View {
                     }
                 }
                 if sections.isEmpty {
-                    Text("No language matches").foregroundStyle(Palette.muted)
+                    Text("No language matches").foregroundStyle(PL.inkDim)
                 }
             }
             .paper()
@@ -55,10 +55,10 @@ struct TranslateLanguageSheet: View {
                 FlagTile(lang: code, size: 28)
                 VStack(alignment: .leading, spacing: 1) {
                     Text(LangPicker.nativeName(code))
-                        .font(.system(size: 18, weight: .bold, design: .rounded))
-                        .foregroundStyle(Palette.ink)
+                        .font(PL.script(18, .bold))
+                        .foregroundStyle(PL.ink)
                     if langName(code) != LangPicker.nativeName(code) {
-                        Text(langName(code)).font(.subheadline).foregroundStyle(Palette.muted)
+                        Text(langName(code)).font(PL.text(15)).foregroundStyle(PL.inkDim)
                     }
                 }
                 Spacer(minLength: 8)
