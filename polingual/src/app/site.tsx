@@ -41,10 +41,8 @@ function SiteHeader({ loc = EN_SITE }: { loc?: SiteLocale }) {
     <header className={styles.hd}>
       <nav className={styles.nav} aria-label={loc.labels.nav}>
         <a className={styles.brand} href={home(loc.code)} aria-label="Polingual">
-          <span className={styles.mark}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/d8/mark-pl.svg" alt="" width={38} height={38} />
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/kit/mark.svg" alt="" width={32} height={32} />
           <span className={styles.wordmark}>polingual</span>
         </a>
         <Link className={styles.link} href={wordsHref(loc.code)}>{loc.words}</Link>

@@ -68,3 +68,4 @@
 @media (max-width:900px){.world:has([data-ingame=true]){height:100dvh;min-height:0}.world:has([data-ingame=true]) .banner{display:none}.world:has([data-ingame=true]) .sheet{flex:1;min-height:0;padding:0;gap:0;display:flex;flex-direction:column}[data-ingame=true] .stage{padding:8px;border-width:2px;box-shadow:none;flex:1;min-height:0;display:flex;flex-direction:column}[data-ingame=true] .stageBody{flex:1;min-height:0;display:flex;flex-direction:column}}
 @media (max-width:900px){.world[data-compact=true]{min-height:100dvh}.world[data-compact=true] .banner{display:none}.world[data-compact=true] .sheet{padding:10px 8px calc(16px + env(safe-area-inset-bottom))}}
 @media (max-width:900px){.world[data-compact=true]{height:100dvh;min-height:0;overflow:hidden}.world[data-compact=true] .sheet{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}.world[data-compact=true]:has([data-ingame=true]) .sheet{overflow:hidden;padding:0}}
+.qr path{fill:var(--pl-ink)}
