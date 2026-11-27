@@ -156,8 +156,8 @@ struct ContentHub: View {
             if langs.systems.isEmpty {
                 Section {
                     Text("Showing Spanish and French. Start a language set in Learn to see your own languages.")
-                        .font(.footnote)
-                        .foregroundStyle(Palette.muted)
+                        .font(PL.text(13))
+                        .foregroundStyle(PL.inkDim)
                 }
                 .listRowBackground(Color.clear)
             }
@@ -212,7 +212,7 @@ struct ContentTags: View {
     var body: some View {
         HStack(spacing: 4) {
             BranchTile(branch: branch, size: 18)
-            Text(branchTitle(branch)).font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
+            Text(branchTitle(branch)).font(PL.text(11, .semibold)).foregroundStyle(PL.inkDim)
             ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 16) }
         }
     }
@@ -227,7 +227,7 @@ struct ReadList: View {
             LazyVGrid(columns: learnColumns, spacing: 14) {
                 ForEach(ContentCatalog.topics(in: branch)) { t in
                     LearnTile(title: t.title, detail: branchTitle(t.branch), face: BranchTile.face(t.branch), item: .topic(t), open: { open(t) }) {
-                        Text(BranchTile.glyph(t.branch)).font(.system(size: 26, weight: .bold, design: .serif)).foregroundStyle(D8.parchment)
+                        Text(BranchTile.glyph(t.branch)).font(PL.script(26, .bold)).foregroundStyle(D8.parchment)
                     }
                 }
             }
@@ -284,11 +284,11 @@ struct ReadView: View {
         .overlay {
             if failed {
                 VStack(spacing: 12) {
-                    Text("Wikipedia did not answer. Check your connection.").foregroundStyle(Palette.muted).multilineTextAlignment(.center)
+                    Text("Wikipedia did not answer. Check your connection.").foregroundStyle(PL.inkDim).multilineTextAlignment(.center)
                     Button("Retry") { Task { await load() } }.buttonStyle(D8Primary(compact: true))
                 }
                 .padding(24)
-                .background(Palette.card, in: .rect(cornerRadius: 16))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
             }
         }
         .task { await load() }
@@ -303,7 +303,7 @@ struct ReadView: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
                 FlagTile(lang: l, size: 26)
-                Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(.serif(.title3, weight: .semibold))
+                Text(texts[l]?.title ?? titles[l] ?? langName(l)).font(PL.script(20, .semibold))
                 if let s = texts[l] {
                     Spacer(minLength: 0)
                     ShareObjectButton(.content(ShareMoment(title: s.title, source: String(localized: "\(langName(l)) Wikipedia"), branch: topic.branch, lang: l, quote: s.extract, topic: topic.title)))
@@ -311,21 +311,21 @@ struct ReadView: View {
             }
             if let s = texts[l] {
                 Text(tapText(s.extract, l))
-                    .font(.serif(.body))
+                    .font(PL.script(17, .regular))
                     .lineSpacing(4)
                     .environment(\.layoutDirection, Lang.info[l]?.rtl == true ? .rightToLeft : .leftToRight)
             } else if loading {
                 ProgressView()
             } else if let t = titles[l], ContentStore.shared.failed.contains("\(l):\(t)") {
-                Text("This article did not load.").foregroundStyle(Palette.muted)
+                Text("This article did not load.").foregroundStyle(PL.inkDim)
                 Button("Retry") { Task { await load() } }
             } else {
-                Text("No \(langName(l)) article on this topic yet.").foregroundStyle(Palette.muted)
+                Text("No \(langName(l)) article on this topic yet.").foregroundStyle(PL.inkDim)
             }
         }
         .padding(16)
         .frame(width: 320, alignment: .topLeading)
-        .background(Palette.card, in: .rect(cornerRadius: 16))
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
     }
 
     func load() async {
@@ -367,7 +367,7 @@ struct ListenList: View {
                 } else if store.stations[l] == nil {
                     ProgressView()
                 } else if shown.isEmpty {
-                    Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(Palette.muted)
+                    Text(all.isEmpty ? String(localized: "No stations found.") : String(localized: "No stations in this branch.")).foregroundStyle(PL.inkDim)
                 }
                 LazyVGrid(columns: learnColumns, spacing: 14) {
                     ForEach(shown) { s in

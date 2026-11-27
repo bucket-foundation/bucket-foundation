@@ -23,11 +23,11 @@ struct StreakGoalCard: View {
         HStack(spacing: 12) {
             PLArtView(.streakFlame).frame(height: 34).grayscale(g.lit ? 0 : 1).opacity(g.lit ? 1 : 0.55)
             VStack(alignment: .leading, spacing: 5) {
-                Text(title(g)).font(PL.heading.font(scale: 19 / PL.heading.size)).foregroundStyle(g.pending ? Palette.muted : PL.ink)
+                Text(title(g)).font(PL.heading.font(scale: 19 / PL.heading.size)).foregroundStyle(g.pending ? PL.inkDim : PL.ink)
                 ProgressView(value: g.fraction).tint(D8.vermilion)
-                Text(detail(g)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text(detail(g)).font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim)
                 if g.day > 0, let line = expectedLine(expected) {
-                    Text(line).font(.caption).foregroundStyle(Palette.muted)
+                    Text(line).font(PL.text(12)).foregroundStyle(PL.inkDim)
                 }
             }
         }

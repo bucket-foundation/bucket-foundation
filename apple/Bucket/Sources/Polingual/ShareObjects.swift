@@ -130,8 +130,8 @@ struct ShareChoice: Identifiable {
     let objects: [ShareObject]
 }
 
-private let plum = Color(hex: 0x5B1A4A)
-private let stone = Color(hex: 0x5d5650)
+private let plum = PL.tyrian
+private let stone = PL.inkDim
 
 struct ShareCardView: View {
     static let size = CGSize(width: 540, height: 675)
@@ -204,7 +204,7 @@ struct CardFoot: View {
             ShareBrand(mark: 36, color: color)
             Spacer(minLength: 8)
             Text(trailing ?? (Feedback.isPolingual ? String(localized: "polingual.com") : String(localized: "bucket.foundation")))
-                .font(trailing == nil ? D8.caps(15) : .system(size: 22, weight: .heavy, design: .rounded))
+                .font(trailing == nil ? D8.caps(15) : PL.script(22, .heavy))
                 .foregroundStyle(color)
         }
     }
@@ -228,8 +228,8 @@ struct FlameCard: View {
     var body: some View {
         VStack(spacing: 0) {
             Spacer(minLength: 0)
-            Image(systemName: "flame.fill").font(.system(size: 92)).foregroundStyle(D8.parchment)
-            Text("\(days)").font(.system(size: 180, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Image(systemName: "flame.fill").font(PL.text(92)).foregroundStyle(D8.parchment)
+            Text("\(days)").font(PL.script(180, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
             Text("DAY STREAK").font(D8.caps(26)).tracking(4).foregroundStyle(D8.parchment)
             Spacer(minLength: 0)
             CardFlags(langs: langs).padding(.bottom, 28)
@@ -237,7 +237,7 @@ struct FlameCard: View {
         }
         .padding(40)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion, D8.vermilionLip], startPoint: .top, endPoint: .bottom))
+        .background(LinearGradient(colors: [PL.ochre, D8.vermilion, D8.vermilionLip], startPoint: .top, endPoint: .bottom))
     }
 }
 
@@ -248,7 +248,7 @@ struct HundredCard: View {
         let g = StreakGoal(streak: Double(days))
         VStack(alignment: .leading, spacing: 22) {
             Text(g.reached ? String(localized: "Day \(g.day)") : String(localized: "Day \(g.day) of 100"))
-                .font(.system(size: 48, weight: .heavy, design: .rounded)).foregroundStyle(D8.parchment)
+                .font(PL.script(48, .heavy)).foregroundStyle(D8.parchment)
             Grid(horizontalSpacing: 10, verticalSpacing: 10) {
                 ForEach(0..<10, id: \.self) { row in
                     GridRow {
@@ -277,11 +277,11 @@ struct TreeCard: View {
         let shown = Array(targets.prefix(8))
         let row = min(108, 372 / CGFloat(max(1, shown.count)))
         VStack(alignment: .leading, spacing: 0) {
-            Text(name).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+            Text(name).font(PL.script(38, .heavy)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
             Text(shown.count == 1 ? String(localized: "One root, one language") : String(localized: "One root, \(shown.count) languages")).font(D8.caps(16)).tracking(1.2).foregroundStyle(stone).padding(.top, 4).padding(.bottom, 20)
             HStack(spacing: 14) {
                 FlagTile(lang: root, size: 64)
-                Text(langName(root)).font(.system(size: 28, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+                Text(langName(root)).font(PL.script(28, .heavy)).foregroundStyle(D8.ink)
             }
             ForEach(Array(shown.enumerated()), id: \.element) { i, l in
                 HStack(spacing: 12) {
@@ -292,7 +292,7 @@ struct TreeCard: View {
                     .frame(width: 34, height: row, alignment: .topLeading)
                     .padding(.leading, 30)
                     FlagTile(lang: l, size: row - 12)
-                    Text(langName(l)).font(.system(size: min(26, row * 0.5), weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                    Text(langName(l)).font(PL.script(min(26, row * 0.5), .bold)).foregroundStyle(D8.ink)
                 }
             }
             Spacer(minLength: 0)
@@ -318,7 +318,7 @@ struct FlagWallCard: View {
                 ForEach(shown, id: \.self) { FlagTile(lang: $0, size: size) }
             }
             Spacer(minLength: 0)
-            Text(name).font(.system(size: 34, weight: .heavy, design: .rounded)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.5)
+            Text(name).font(PL.script(34, .heavy)).foregroundStyle(D8.parchment).lineLimit(1).minimumScaleFactor(0.5)
             CardFoot(color: D8.parchment)
         }
         .padding(40)
@@ -344,8 +344,8 @@ struct FlagBannerCard: View {
                 } else {
                     Text(langName(lang)).font(D8.word(64)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
                 }
-                if let reading { Text(reading).font(.system(size: 22)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6) }
-                if let line { Text(line).font(.system(size: 24, weight: .bold, design: .rounded)).foregroundStyle(stone).lineLimit(2) }
+                if let reading { Text(reading).font(PL.text(22)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6) }
+                if let line { Text(line).font(PL.script(24, .bold)).foregroundStyle(stone).lineLimit(2) }
                 CardFoot().padding(.top, 10)
             }
             .padding(32)
@@ -386,7 +386,7 @@ struct TileCard: View {
                 .frame(width: 420, height: 420)
                 .modifier(Glaze(radius: 30, lip: 10))
             if gloss != form.form {
-                Text(gloss).font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(stone).lineLimit(1).minimumScaleFactor(0.5)
+                Text(gloss).font(PL.script(30, .bold)).foregroundStyle(stone).lineLimit(1).minimumScaleFactor(0.5)
             }
             Spacer(minLength: 0)
             CardFoot()
@@ -432,11 +432,11 @@ struct MasteredCard: View {
         VStack(alignment: .leading, spacing: 0) {
             FlagTile(lang: lang, size: 96)
             Spacer(minLength: 0)
-            Text("\(count)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
-            Text(count == 1 ? String(localized: "word mastered") : String(localized: "words mastered")).font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
-            Text(langName(lang)).font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+            Text("\(count)").font(PL.script(170, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Text(count == 1 ? String(localized: "word mastered") : String(localized: "words mastered")).font(PL.script(34, .bold)).foregroundStyle(D8.parchment)
+            Text(langName(lang)).font(PL.script(30, .bold)).foregroundStyle(D8.parchment.opacity(0.8))
             if let named = MasteredWord.named(words, count: count) {
-                Text(named).font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.5).padding(.top, 14)
+                Text(named).font(PL.script(30, .heavy)).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.5).padding(.top, 14)
             }
             Spacer(minLength: 0)
             CardFoot(color: .white)
@@ -461,8 +461,8 @@ struct MasteredListCard: View {
                 FlagTile(lang: lang, size: 56)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title ?? (count == 1 ? String(localized: "First word mastered") : String(localized: "\(count) words mastered")))
-                        .font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
-                    Text(langName(lang)).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8))
+                        .font(PL.script(30, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(langName(lang)).font(PL.script(22, .bold)).foregroundStyle(D8.parchment.opacity(0.8))
                 }
             }
             .padding(.bottom, 20)
@@ -489,8 +489,8 @@ struct MasteredListCard: View {
         VStack(alignment: .leading, spacing: 22) {
             ForEach(Array(words.enumerated()), id: \.offset) { _, w in
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(w.form).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(words.count == 1 ? 4 : 2).minimumScaleFactor(0.6)
-                    Text(w.meaning).font(.system(size: 22, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(words.count == 1 ? 3 : 1).minimumScaleFactor(0.6)
+                    Text(w.form).font(PL.script(38, .heavy)).foregroundStyle(.white).lineLimit(words.count == 1 ? 4 : 2).minimumScaleFactor(0.6)
+                    Text(w.meaning).font(PL.script(22, .semibold)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(words.count == 1 ? 3 : 1).minimumScaleFactor(0.6)
                 }
             }
         }
@@ -500,13 +500,13 @@ struct MasteredListCard: View {
         VStack(alignment: .leading, spacing: big ? 18 : 7) {
             ForEach(Array(words.prefix(Self.shown).enumerated()), id: \.offset) { _, w in
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
-                    Text(w.form).font(.system(size: big ? 48 : 24, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(w.form).font(PL.script(big ? 48 : 24, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
                     Spacer(minLength: 8)
-                    Text(w.meaning).font(.system(size: big ? 28 : 18, weight: .semibold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(w.meaning).font(PL.script(big ? 28 : 18, .semibold)).foregroundStyle(D8.parchment.opacity(0.85)).lineLimit(1).minimumScaleFactor(0.6)
                 }
             }
             if count > words.count {
-                Text(verbatim: "+\(count - words.count)").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+                Text(verbatim: "+\(count - words.count)").font(PL.script(18, .bold)).foregroundStyle(D8.parchment.opacity(0.7))
             }
         }
     }
@@ -542,12 +542,12 @@ struct MasteredWordFlow: View {
                 FlowLayout(spacing: size * 0.55) {
                     if flags { FlagTile(lang: set.lang, size: size * 1.4) }
                     ForEach(Array(set.words.enumerated()), id: \.offset) { _, w in
-                        Text(w.form).font(.system(size: size, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1)
+                        Text(w.form).font(PL.script(size, .heavy)).foregroundStyle(.white).lineLimit(1)
                     }
                 }
             }
             if hidden > 0 {
-                Text(verbatim: "+\(hidden)").font(.system(size: max(size, 16), weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7))
+                Text(verbatim: "+\(hidden)").font(PL.script(max(size, 16), .bold)).foregroundStyle(D8.parchment.opacity(0.7))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -569,8 +569,8 @@ struct MasteredAllCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("\(sets.total) words mastered").font(.system(size: 34, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
-            Text(sets.langs.map(langName).joined(separator: ", ")).font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
+            Text("\(sets.total) words mastered").font(PL.script(34, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+            Text(sets.langs.map(langName).joined(separator: ", ")).font(PL.script(22, .bold)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
                 .padding(.bottom, 20)
             MasteredWordFlow(sets: sets)
                 .frame(maxHeight: .infinity, alignment: .topLeading)
@@ -589,9 +589,9 @@ struct MasteredTotalCard: View {
         VStack(alignment: .leading, spacing: 0) {
             CardFlags(langs: sets.langs, size: 72)
             Spacer(minLength: 0)
-            Text("\(sets.total)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
-            Text("words mastered").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
-            Text(sets.langs.map(langName).joined(separator: ", ")).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
+            Text("\(sets.total)").font(PL.script(170, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Text("words mastered").font(PL.script(34, .bold)).foregroundStyle(D8.parchment)
+            Text(sets.langs.map(langName).joined(separator: ", ")).font(PL.script(26, .bold)).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(2).minimumScaleFactor(0.6)
             Spacer(minLength: 0)
             CardFoot(color: .white)
         }
@@ -609,10 +609,10 @@ struct NumberCard: View {
             Text(score.source.uppercased()).font(D8.caps(22)).tracking(2.5).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.5)
             Spacer(minLength: 0)
             HStack(alignment: .lastTextBaseline, spacing: 6) {
-                Text("\(score.right)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
-                Text("/\(score.total)").font(.system(size: 64, weight: .heavy, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.5)
+                Text("\(score.right)").font(PL.script(170, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+                Text("/\(score.total)").font(PL.script(64, .heavy)).foregroundStyle(D8.parchment.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.5)
             }
-            Text("\(score.right) of \(score.total) right").font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
+            Text("\(score.right) of \(score.total) right").font(PL.script(30, .bold)).foregroundStyle(D8.parchment)
             Spacer(minLength: 0)
             CardFlags(langs: score.langs).padding(.bottom, 26)
             CardFoot(color: .white)
@@ -628,16 +628,16 @@ struct RingCard: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Text(score.source).font(.system(size: 34, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+            Text(score.source).font(PL.script(34, .heavy)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
             Spacer(minLength: 0)
             ZStack {
                 Circle().stroke(D8.keyline, lineWidth: 30)
                 Circle().trim(from: 0, to: Double(score.percent) / 100).stroke(D8.malachite, style: StrokeStyle(lineWidth: 30, lineCap: .round)).rotationEffect(.degrees(-90))
-                Text("\(score.percent)%").font(.system(size: 92, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+                Text("\(score.percent)%").font(PL.script(92, .heavy)).foregroundStyle(D8.ink)
             }
             .frame(width: 300, height: 300)
             Spacer(minLength: 0)
-            Text("\(score.right) of \(score.total) right").font(.system(size: 28, weight: .bold, design: .rounded)).foregroundStyle(stone)
+            Text("\(score.right) of \(score.total) right").font(PL.script(28, .bold)).foregroundStyle(stone)
             if score.streak > 1 { Text("\(score.streak) day streak").font(D8.caps(18)).tracking(1.5).foregroundStyle(D8.vermilion) }
             CardFoot()
         }
@@ -663,8 +663,8 @@ struct MomentHeader: View {
         HStack(spacing: 14) {
             MomentArt(moment: moment)
             VStack(alignment: .leading, spacing: 2) {
-                Text(moment.title).font(.system(size: 26, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
-                Text(moment.source).font(.system(size: 21, weight: .semibold, design: .rounded)).foregroundStyle(.white.opacity(0.75)).lineLimit(1)
+                Text(moment.title).font(PL.script(26, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                Text(moment.source).font(PL.script(21, .semibold)).foregroundStyle(.white.opacity(0.75)).lineLimit(1)
             }
         }
     }
@@ -682,7 +682,7 @@ struct QuoteCard: View {
             MomentHeader(moment: moment)
             Spacer(minLength: 0)
             Text(moment.quote ?? moment.title)
-                .font(.system(size: 42, weight: .heavy, design: .rounded))
+                .font(PL.script(42, .heavy))
                 .foregroundStyle(.white)
                 .minimumScaleFactor(0.5)
                 .lineSpacing(2)
@@ -695,8 +695,8 @@ struct QuoteCard: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
         .background {
             ZStack(alignment: .topLeading) {
-                Color(hex: 0x6B1414)
-                Text(verbatim: "\u{201C}").font(.system(size: 460, weight: .black, design: .serif)).foregroundStyle(.white.opacity(0.1)).offset(x: 20, y: 40)
+                PL.vermilionDeep
+                Text(verbatim: "\u{201C}").font(PL.script(460, .black)).foregroundStyle(.white.opacity(0.1)).offset(x: 20, y: 40)
             }
         }
     }
@@ -709,8 +709,8 @@ struct CoverCard: View {
         VStack(alignment: .leading, spacing: 14) {
             Spacer(minLength: 0)
             MomentArt(moment: moment, size: 220)
-            Text(moment.title).font(.system(size: 52, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(3).minimumScaleFactor(0.5).padding(.top, 14)
-            Text(moment.source).font(.system(size: 26, weight: .semibold, design: .rounded)).foregroundStyle(stone).lineLimit(2)
+            Text(moment.title).font(PL.script(52, .heavy)).foregroundStyle(D8.ink).lineLimit(3).minimumScaleFactor(0.5).padding(.top, 14)
+            Text(moment.source).font(PL.script(26, .semibold)).foregroundStyle(stone).lineLimit(2)
             Spacer(minLength: 0)
             CardFoot(trailing: moment.playLine)
         }
@@ -728,7 +728,7 @@ struct MomentCard: View {
             MomentHeader(moment: moment)
             Spacer(minLength: 0)
             Text("Play from").font(D8.caps(24)).tracking(3).foregroundStyle(.white.opacity(0.8))
-            Text(moment.clock ?? "").font(.system(size: 130, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+            Text(moment.clock ?? "").font(PL.script(130, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
             Spacer(minLength: 0)
             CardFoot(color: .white)
         }
@@ -743,7 +743,7 @@ struct StandingsCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(standings.group).font(.system(size: 38, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+            Text(standings.group).font(PL.script(38, .heavy)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
             Text("THIS WEEK").font(D8.caps(16)).tracking(1.2).foregroundStyle(stone).padding(.top, 4).padding(.bottom, 16)
             VStack(spacing: 8) {
                 ForEach(standings.rows, id: \.self) { StandingCardRow(row: $0) }
@@ -763,25 +763,25 @@ struct StandingCardRow: View {
     var body: some View {
         let ink = row.isMe ? Color.white : D8.ink
         HStack(spacing: 12) {
-            Text("\(row.rank)").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(ink).frame(width: 40)
+            Text("\(row.rank)").font(PL.script(30, .heavy)).foregroundStyle(ink).frame(width: 40)
             VStack(alignment: .leading, spacing: 2) {
-                Text(row.name).font(.system(size: 24, weight: .heavy, design: .rounded)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.6)
+                Text(row.name).font(PL.script(24, .heavy)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.6)
                 HStack(spacing: 4) {
                     Image(systemName: "flame.fill")
                     Text("\(row.streak) · \(row.mastered) mastered").lineLimit(1).minimumScaleFactor(0.7)
                 }
-                .font(.system(size: 15, weight: .semibold, design: .rounded))
+                .font(PL.script(15, .semibold))
                 .foregroundStyle(row.isMe ? D8.parchment : stone)
             }
             Spacer(minLength: 4)
             HStack(spacing: 3) {
                 ForEach(row.langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 28) }
             }
-            Text("\(row.weekly)").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.5).frame(width: 74, alignment: .trailing)
+            Text("\(row.weekly)").font(PL.script(30, .heavy)).foregroundStyle(ink).lineLimit(1).minimumScaleFactor(0.5).frame(width: 74, alignment: .trailing)
         }
         .padding(.horizontal, 12)
         .frame(height: 62)
-        .modifier(GameLip(face: row.isMe ? D8.lapis : .white, lip: row.isMe ? Color(hex: 0x12326A) : D8.keyline, radius: 14))
+        .modifier(GameLip(face: row.isMe ? D8.lapis : .white, lip: row.isMe ? PL.lapisDeep : D8.keyline, radius: 14))
     }
 }
 
@@ -794,10 +794,10 @@ struct StandingRankCard: View {
             Text(standings.group.uppercased()).font(D8.caps(22)).tracking(2.5).foregroundStyle(D8.parchment.opacity(0.8)).lineLimit(1).minimumScaleFactor(0.5)
             Spacer(minLength: 0)
             HStack(alignment: .lastTextBaseline, spacing: 6) {
-                Text("#\(mine?.rank ?? 1)").font(.system(size: 170, weight: .heavy, design: .rounded)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
-                Text("/\(standings.members)").font(.system(size: 64, weight: .heavy, design: .rounded)).foregroundStyle(D8.parchment.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.5)
+                Text("#\(mine?.rank ?? 1)").font(PL.script(170, .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.5)
+                Text("/\(standings.members)").font(PL.script(64, .heavy)).foregroundStyle(D8.parchment.opacity(0.7)).lineLimit(1).minimumScaleFactor(0.5)
             }
-            Text("\(mine?.weekly ?? 0) cards this week").font(.system(size: 30, weight: .bold, design: .rounded)).foregroundStyle(D8.parchment)
+            Text("\(mine?.weekly ?? 0) cards this week").font(PL.script(30, .bold)).foregroundStyle(D8.parchment)
             if let mine, mine.streak > 1 { Text("\(mine.streak) day streak").font(D8.caps(18)).tracking(1.5).foregroundStyle(D8.parchment).padding(.top, 6) }
             Spacer(minLength: 0)
             CardFlags(langs: mine?.langs ?? []).padding(.bottom, 26)
@@ -822,8 +822,8 @@ struct ObjectShareSheet: View {
                     HStack(spacing: 8) {
                         ForEach(objects) { o in
                             Button { picked = o.id } label: {
-                                Text(o.chip).font(.subheadline.weight(.bold)).lineLimit(1)
-                                    .foregroundStyle(o.id == object.id ? D8.parchment : Palette.ink)
+                                Text(o.chip).font(PL.text(15, .bold)).lineLimit(1)
+                                    .foregroundStyle(o.id == object.id ? D8.parchment : PL.ink)
                                     .padding(.horizontal, 14).padding(.vertical, 9)
                                     .background(o.id == object.id ? D8.vermilion : D8.face, in: .capsule)
                                     .overlay { Capsule().strokeBorder(o.id == object.id ? D8.vermilion : D8.edge, lineWidth: 2) }
@@ -837,7 +837,7 @@ struct ObjectShareSheet: View {
             }
             ObjectShareCards(object: object).id(object.id)
         }
-        .background(Palette.paper.ignoresSafeArea())
+        .background(PL.paper.ignoresSafeArea())
         .presentationDetents([.large])
         .presentationDragIndicator(.visible)
     }
@@ -854,14 +854,14 @@ struct ObjectShareCards: View {
         GeometryReader { g in
             let width = min(g.size.width - 72, (g.size.height - 190) * 0.8, 420)
             VStack(spacing: 14) {
-                Text(object.sheetTitle).font(.headline).foregroundStyle(Palette.ink).padding(.top, 22)
+                Text(object.sheetTitle).font(PL.text(17, .bold)).foregroundStyle(PL.ink).padding(.top, 22)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 14) {
                         ForEach(object.styles) { s in
                             ShareCardView(object: object, style: s)
                                 .scaleEffect(width / ShareCardView.size.width, anchor: .topLeading)
                                 .frame(width: width, height: width * 1.25, alignment: .topLeading)
-                                .clipShape(.rect(cornerRadius: 18))
+                                .clipShape(.rect(cornerRadius: PL.Radius.lg))
                                 .accessibilityElement()
                                 .accessibilityLabel(Text("\(object.sheetTitle), card \((object.styles.firstIndex(of: s) ?? 0) + 1)"))
                                 .id(s)
@@ -875,7 +875,7 @@ struct ObjectShareCards: View {
                 .frame(height: width * 1.25)
                 HStack(spacing: 8) {
                     ForEach(object.styles) { s in
-                        Circle().fill(s == style ? D8.vermilion : Palette.muted.opacity(0.3)).frame(width: 8, height: 8)
+                        Circle().fill(s == style ? D8.vermilion : PL.inkDim.opacity(0.3)).frame(width: 8, height: 8)
                     }
                 }
                 .accessibilityHidden(true)
@@ -888,7 +888,7 @@ struct ObjectShareCards: View {
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
                     }
-                    .buttonStyle(D8Option(align: .center))
+                    .buttonStyle(PLOption(align: .center))
                     send
                 }
                 .padding(.horizontal, 20)
@@ -973,7 +973,7 @@ struct ShareObjectButton: View {
             Button { open = ShareChoice(objects: options.map(\.object)) } label: {
                 Label(first.title, systemImage: "square.and.arrow.up")
             }
-            .buttonStyle(D8Option(align: .center))
+            .buttonStyle(PLOption(align: .center))
         } else if let first = options.first {
             Button { open = ShareChoice(objects: options.map(\.object)) } label: { icon }
                 .buttonStyle(.borderless)
@@ -1027,7 +1027,7 @@ struct ScreenShareButton: View {
     var body: some View {
         #if os(iOS)
         Button { ScreenShare.shared.offer(store.shareables) } label: { PLGlyphView(.share, size: 20) }
-            .tint(Palette.ink)
+            .tint(PL.ink)
             .accessibilityLabel(Text("Share"))
             .accessibilityIdentifier("screenShare")
         #endif

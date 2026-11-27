@@ -75,7 +75,7 @@ struct TranslateCard: View {
 
     var active: String { today ? committed : query }
 
-    var soft: Color { Palette.muted }
+    var soft: Color { PL.inkDim }
 
     static var settingsURL: URL? {
         #if os(iOS)
@@ -156,7 +156,7 @@ struct TranslateCard: View {
                                 .fixedSize()
                             PLGlyphView(.chevronDown, size: 13)
                         }
-                        .foregroundStyle(Palette.ink)
+                        .foregroundStyle(PL.ink)
                         .padding(.horizontal, 12)
                         .frame(minHeight: 40)
                         .background(D8.face, in: .capsule)
@@ -167,8 +167,8 @@ struct TranslateCard: View {
                     if LangPicker.swap(from: from, detected: detected, targets: chosen) != nil {
                         Button { swapLanguages(detected: detected) } label: {
                             Image(systemName: "arrow.left.arrow.right")
-                                .font(.system(size: 16, weight: .heavy))
-                                .foregroundStyle(Palette.ink)
+                                .font(PL.text(16, .heavy))
+                                .foregroundStyle(PL.ink)
                                 .frame(width: 44, height: 44)
                                 .background(D8.face, in: .circle)
                                 .overlay { Circle().strokeBorder(D8.edge, lineWidth: 1.5) }
@@ -179,7 +179,7 @@ struct TranslateCard: View {
                     }
                     if let detected {
                         Text("Detected: \(Lang.name(detected))")
-                            .font(.system(size: 15, weight: .semibold, design: .rounded))
+                            .font(PL.script(15, .semibold))
                             .foregroundStyle(soft)
                             .lineLimit(1)
                             .minimumScaleFactor(0.7)
@@ -205,8 +205,8 @@ struct TranslateCard: View {
                 }
                 .padding(.horizontal, 14)
                 .frame(minHeight: 60)
-                .background(D8.face, in: .rect(cornerRadius: 14))
-                .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
+                .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
+                .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
                 if today {
                     actionRow
                 } else {
@@ -242,9 +242,9 @@ struct TranslateCard: View {
                                     FlagTile(lang: l, size: 26)
                                     VStack(alignment: .leading, spacing: 2) {
                                         if item.form(l) == nil, answer?.glossed.contains(l) == true {
-                                            Text("Word by word").font(.caption.weight(.semibold)).foregroundStyle(soft)
+                                            Text("Word by word").font(PL.text(12, .semibold)).foregroundStyle(soft)
                                         }
-                                        Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                                        Text(f).font(PL.script(18, .bold)).foregroundStyle(PL.ink)
                                             .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                                     }
                                     Spacer(minLength: 4)
@@ -281,7 +281,7 @@ struct TranslateCard: View {
                         let seen = Set(shown.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !seen.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }
                         if !similar.isEmpty {
-                            Text("Similar").font(.caption.weight(.semibold)).foregroundStyle(soft)
+                            Text("Similar").font(PL.text(12, .semibold)).foregroundStyle(soft)
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 8) {
                                     ForEach(similar, id: \.itemId) { h in
@@ -294,7 +294,7 @@ struct TranslateCard: View {
                         }
                     } else {
                         Text("Not in your languages yet. Try the word in another language you know.")
-                            .font(.subheadline)
+                            .font(PL.text(15))
                             .foregroundStyle(soft)
                     }
                 }
@@ -386,11 +386,11 @@ struct TranslateCard: View {
     var targetRow: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                Text("Into").font(.subheadline.weight(.bold)).foregroundStyle(soft)
+                Text("Into").font(PL.text(15, .bold)).foregroundStyle(soft)
                 ForEach(chosen, id: \.self) { l in
                     HStack(spacing: 2) {
                         FlagTile(lang: l, size: 20)
-                        Text(Lang.name(l)).font(.system(size: 15, weight: .bold, design: .rounded)).padding(.leading, 4)
+                        Text(Lang.name(l)).font(PL.script(15, .bold)).padding(.leading, 4)
                         if chosen.count > 1 {
                             Button { toggleTarget(l) } label: {
                                 PLGlyphView(.close, size: 11).foregroundStyle(soft)
@@ -402,7 +402,7 @@ struct TranslateCard: View {
                             .accessibilityHint(Text("Stops translating into this language"))
                         }
                     }
-                    .foregroundStyle(Palette.ink)
+                    .foregroundStyle(PL.ink)
                     .padding(.leading, 10)
                     .padding(.trailing, chosen.count > 1 ? 0 : 10)
                     .frame(minHeight: 36)
@@ -425,19 +425,19 @@ struct TranslateCard: View {
     var statusLine: some View {
         ZStack(alignment: .leading) {
             Text(LangListener.shared.live.isEmpty ? String(localized: "Listening in \(Lang.name(listenLang))…") : LangListener.shared.live)
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(LangListener.shared.live.isEmpty ? D8.vermilion : Palette.ink)
+                .font(PL.text(15, .semibold))
+                .foregroundStyle(LangListener.shared.live.isEmpty ? D8.vermilion : PL.ink)
                 .truncationMode(.head)
                 .opacity(listening ? 1 : 0)
             Text("Didn't catch that. Tap the mic and try again.")
-                .font(.subheadline)
+                .font(PL.text(15))
                 .foregroundStyle(soft)
                 .opacity(missedVoice && !listening ? 1 : 0)
             HStack(spacing: 6) {
-                Text("Turn on speech in Settings").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                Text("Turn on speech in Settings").font(PL.text(15, .semibold)).foregroundStyle(PL.ink)
                 if let url = Self.settingsURL {
                     Link(destination: url) {
-                        Text("Open Settings").font(.subheadline.weight(.bold)).underline()
+                        Text("Open Settings").font(PL.text(15, .bold)).underline()
                     }
                     .foregroundStyle(D8.vermilion)
                     .accessibilityIdentifier("translate.openSettings")
@@ -446,7 +446,7 @@ struct TranslateCard: View {
             .opacity(speechDenied && !listening ? 1 : 0)
             .allowsHitTesting(speechDenied && !listening)
             Text("Loading dictionary…")
-                .font(.subheadline)
+                .font(PL.text(15))
                 .foregroundStyle(soft)
                 .opacity(loadingLexicon && !listening && !missedVoice && !speechDenied ? 1 : 0)
                 .accessibilityHidden(!loadingLexicon)
@@ -487,11 +487,11 @@ struct TranslateCard: View {
     @ViewBuilder func deckControl(_ id: String, _ corpus: LangCorpus) -> some View {
         if added.contains(id) {
             Label("Added to your next session", systemImage: "checkmark.circle.fill")
-                .font(.subheadline.weight(.semibold))
+                .font(PL.text(15, .semibold))
                 .foregroundStyle(D8.malachite)
         } else {
             Button("Add to my deck") { add(id, corpus) }
-                .buttonStyle(D8Option(align: .center, compact: true))
+                .buttonStyle(PLOption(align: .center, compact: true))
         }
     }
 
@@ -541,17 +541,17 @@ struct PhraseActions: View {
             switch deck {
             case .open:
                 Button("Add its words to my deck", action: add)
-                    .buttonStyle(D8Option(align: .center, compact: true))
+                    .buttonStyle(PLOption(align: .center, compact: true))
                     .fixedSize()
                     .accessibilityIdentifier("translate.addWords")
             case .added:
                 Label("Added to your next session", systemImage: "checkmark.circle.fill")
-                    .font(.subheadline.weight(.semibold))
+                    .font(PL.text(15, .semibold))
                     .foregroundStyle(D8.malachite)
             case .known:
-                Text("These words are already in your deck").font(.subheadline).foregroundStyle(Palette.muted)
+                Text("These words are already in your deck").font(PL.text(15)).foregroundStyle(PL.inkDim)
             case .none:
-                Text("No deck words in this phrase yet").font(.subheadline).foregroundStyle(Palette.muted)
+                Text("No deck words in this phrase yet").font(PL.text(15)).foregroundStyle(PL.inkDim)
             }
             if forms.count > 1 {
                 ShareObjectButton(.word(id: ShareRoute.clip(text, 80), gloss: text, forms: forms))
@@ -575,7 +575,7 @@ struct LexiconAnswerView: View {
     let answer: TranslateAnswer
     let shown: [String]
     var withSource = true
-    var soft = Palette.muted
+    var soft = PL.inkDim
 
     var note: String? {
         switch answer.layer {
@@ -589,13 +589,13 @@ struct LexiconAnswerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             if let note {
-                Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(soft)
+                Text(note).font(PL.text(15, .semibold)).foregroundStyle(soft)
             }
             ForEach((withSource ? [answer.source] : []) + shown.filter { $0 != answer.source }, id: \.self) { l in
                 if let f = l == answer.source ? answer.headword : answer.rows[l] {
                     HStack(spacing: 10) {
                         FlagTile(lang: l, size: 26)
-                        Text(f).font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                        Text(f).font(PL.script(18, .bold)).foregroundStyle(PL.ink)
                             .environment(\.layoutDirection, Lang.isRTL(l) ? .rightToLeft : .leftToRight)
                             .textSelection(.enabled)
                         Spacer(minLength: 4)
@@ -610,9 +610,9 @@ struct LexiconAnswerView: View {
 }
 
 struct TranslateCredit: View {
-    var soft = Palette.muted
+    var soft = PL.inkDim
 
     var body: some View {
-        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY 2.0 FR.").font(.caption2).foregroundStyle(soft)
+        Text("Dictionary: Wiktionary, CC BY-SA. Sentences: Tatoeba, CC BY 2.0 FR.").font(PL.text(11)).foregroundStyle(soft)
     }
 }

@@ -83,7 +83,7 @@ struct FilmPoster: View {
                 AsyncImage(url: film.poster) { image in
                     image.resizable().scaledToFill()
                 } placeholder: {
-                    Image(systemName: "film").font(.largeTitle).foregroundStyle(D8.parchment.opacity(0.6))
+                    Image(systemName: "film").font(PL.script(34, .bold)).foregroundStyle(D8.parchment.opacity(0.6))
                 }
             }
             .clipped()
@@ -99,10 +99,10 @@ struct FilmTile: View {
         Button(action: open) {
             VStack(alignment: .leading, spacing: 6) {
                 FilmPoster(film: film)
-                    .clipShape(.rect(cornerRadius: 12))
-                Text(film.title(langs[0])).font(D8.word(18)).foregroundStyle(Palette.ink).lineLimit(2).multilineTextAlignment(.leading)
+                    .clipShape(.rect(cornerRadius: PL.Radius.md))
+                Text(film.title(langs[0])).font(D8.word(18)).foregroundStyle(PL.ink).lineLimit(2).multilineTextAlignment(.leading)
                 HStack(spacing: 4) {
-                    Text("\(film.minutes) min").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("\(film.minutes) min").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                     ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 16) }
                 }
             }
@@ -118,12 +118,12 @@ struct FilmCredit: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Link(destination: film.source) {
-                Text(verbatim: film.credit).font(.footnote.weight(.semibold))
+                Text(verbatim: film.credit).font(PL.text(13, .semibold))
             }
             if let deed = film.licenseUrl {
-                Link(destination: deed) { Text(verbatim: film.license).font(.caption) }
+                Link(destination: deed) { Text(verbatim: film.license).font(PL.text(12)) }
             } else {
-                Text(verbatim: film.license).font(.caption).foregroundStyle(Palette.muted)
+                Text(verbatim: film.license).font(PL.text(12)).foregroundStyle(PL.inkDim)
             }
         }
     }
@@ -139,15 +139,15 @@ struct FilmView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
-                FilmPoster(film: film).clipShape(.rect(cornerRadius: 16))
+                FilmPoster(film: film).clipShape(.rect(cornerRadius: PL.Radius.md))
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(film.title(shown[0])).font(.serif(.title, weight: .semibold)).foregroundStyle(Palette.ink)
+                    Text(film.title(shown[0])).font(PL.script(28, .semibold)).foregroundStyle(PL.ink)
                     if film.title(shown[0]) != film.title("en") {
-                        Text(verbatim: film.title("en")).font(.subheadline).foregroundStyle(Palette.muted)
+                        Text(verbatim: film.title("en")).font(PL.text(15)).foregroundStyle(PL.inkDim)
                     }
                 }
                 HStack(spacing: 6) {
-                    Text("\(film.minutes) min").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("\(film.minutes) min").font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                     ForEach(shown, id: \.self) { FlagTile(lang: $0, size: 20) }
                 }
                 if film.video != nil {
@@ -160,8 +160,8 @@ struct FilmView: View {
                     .controlSize(.large)
                     .tint(D8.lapis)
                 }
-                Text("Subtitles in \(shown.map(langName).joined(separator: ", "))").font(.subheadline).foregroundStyle(Palette.ink)
-                Text("Subtitles: machine translation of the English original.").font(.footnote).foregroundStyle(Palette.muted)
+                Text("Subtitles in \(shown.map(langName).joined(separator: ", "))").font(PL.text(15)).foregroundStyle(PL.ink)
+                Text("Subtitles: machine translation of the English original.").font(PL.text(13)).foregroundStyle(PL.inkDim)
                 FilmCredit(film: film)
             }
             .padding()
@@ -298,7 +298,7 @@ struct FilmPlayer: View {
     var failure: some View {
         VStack(spacing: 12) {
             Text("This film did not play. Check the connection and try again.")
-                .font(.subheadline)
+                .font(PL.text(15))
                 .foregroundStyle(.white)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -315,10 +315,10 @@ struct FilmPlayer: View {
     var bar: some View {
         HStack(spacing: 10) {
             Button { dismiss() } label: {
-                Image(systemName: "xmark").font(.headline).frame(width: 44, height: 44)
+                Image(systemName: "xmark").font(PL.text(17, .bold)).frame(width: 44, height: 44)
             }
             .accessibilityLabel(Text("Done"))
-            Text(film.title(langs[0])).font(.headline).foregroundStyle(.white).lineLimit(1)
+            Text(film.title(langs[0])).font(PL.text(17, .bold)).foregroundStyle(.white).lineLimit(1)
             Spacer(minLength: 0)
         }
         .tint(.white)
@@ -345,7 +345,7 @@ struct FilmCues: View {
                     HStack(alignment: .top, spacing: 10) {
                         FlagTile(lang: lang, size: 22)
                         Text(tapText(text, lang, color: .white))
-                            .font(.system(size: 19, weight: .semibold, design: .rounded))
+                            .font(PL.script(19, .semibold))
                             .foregroundStyle(.white)
                             .multilineTextAlignment(.leading)
                             .fixedSize(horizontal: false, vertical: true)
@@ -354,7 +354,7 @@ struct FilmCues: View {
                     }
                     .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 }
-                Text("Tap a word to look it up. Pause first to read it.").font(.caption).foregroundStyle(.white.opacity(0.6))
+                Text("Tap a word to look it up. Pause first to read it.").font(PL.text(12)).foregroundStyle(.white.opacity(0.6))
                 FilmCredit(film: film).tint(.white)
             }
             .padding(16)

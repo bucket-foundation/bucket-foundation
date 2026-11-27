@@ -59,8 +59,8 @@ struct WrongTranslationLink: View {
                 Image(systemName: "flag")
                 Text("Wrong translation?", tableName: "WrongTranslation")
             }
-            .font(.caption2.weight(.medium))
-            .foregroundStyle(Palette.muted.opacity(0.75))
+            .font(PL.text(11, .medium))
+            .foregroundStyle(PL.inkDim.opacity(0.75))
             .padding(.vertical, 3)
             .padding(.horizontal, 6)
             .frame(minWidth: 44)
@@ -78,7 +78,7 @@ struct WrongTranslationLink: View {
             if let subject {
                 WrongTranslationSheet(subject: subject)
                     .presentationDetents([.medium, .large])
-                    .presentationBackground(Palette.card)
+                    .presentationBackground(PL.card)
             }
         }
     }
@@ -106,18 +106,18 @@ struct WrongTranslationSheet: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack {
                     Text("What is wrong?", tableName: "WrongTranslation")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                        .foregroundStyle(Palette.ink)
+                        .font(PL.script(22, .bold))
+                        .foregroundStyle(PL.ink)
                     Spacer(minLength: 8)
-                    Button { dismiss() } label: { Image(systemName: "xmark").font(.system(size: 15, weight: .bold)).foregroundStyle(Palette.muted).frame(width: 36, height: 36) }
+                    Button { dismiss() } label: { Image(systemName: "xmark").font(PL.text(15, .bold)).foregroundStyle(PL.inkDim).frame(width: 36, height: 36) }
                         .buttonStyle(.plain)
                         .accessibilityLabel(Text("Cancel", tableName: "WrongTranslation"))
                 }
                 HStack(spacing: 8) {
                     FlagTile(lang: subject.lang, size: 22)
                     Text([subject.text, subject.shown].compactMap { $0 }.joined(separator: "  →  "))
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(Palette.muted)
+                        .font(PL.text(15, .semibold))
+                        .foregroundStyle(PL.inkDim)
                         .lineLimit(2)
                 }
                 if let done {
@@ -130,23 +130,23 @@ struct WrongTranslationSheet: View {
                     } icon: {
                         Image(systemName: done.symbol)
                     }
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(done == .sent ? D8.malachite : done == .rejected ? Palette.ink : Palette.muted)
+                    .font(PL.text(15, .semibold))
+                    .foregroundStyle(done == .sent ? D8.malachite : done == .rejected ? PL.ink : PL.inkDim)
                 } else {
                     LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
                         ForEach(TranslationIssue.allCases) { r in
                             Button(r.title) { reason = r; tap() }
-                                .buttonStyle(D8Option(selected: reason == r, align: .center, compact: true))
+                                .buttonStyle(PLOption(selected: reason == r, align: .center, compact: true))
                                 .accessibilityAddTraits(reason == r ? .isSelected : [])
                         }
                     }
                     TextField(String(localized: "Your fix, if you know it", table: "WrongTranslation"), text: $fix, axis: .vertical)
                         .lineLimit(1...3)
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .font(PL.script(17, .semibold))
                         .padding(.horizontal, 14)
                         .padding(.vertical, 12)
-                        .background(D8.face, in: .rect(cornerRadius: 12))
-                        .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.edge, lineWidth: 2) }
+                        .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
+                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
                         .autocorrectionDisabled()
                         .langInput(subject.lang)
                         .focused($typing)

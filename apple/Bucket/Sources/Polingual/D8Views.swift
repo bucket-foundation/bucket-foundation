@@ -23,7 +23,7 @@ struct CardHeader: View {
     var body: some View {
         HStack(spacing: 10) {
             if let lang { FlagTile(lang: lang, size: flagSize) }
-            Text(text).font(.subheadline).foregroundStyle(Palette.muted)
+            Text(text).font(PL.text(15)).foregroundStyle(PL.inkDim)
         }
     }
 }
@@ -83,7 +83,7 @@ struct TileFace: View {
                 HStack(spacing: 4) {
                     Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label).lineLimit(1).minimumScaleFactor(0.6)
                     Spacer(minLength: 0)
-                    if phrase && speaker { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.08)).foregroundStyle(D8.ink.opacity(0.55)) }
+                    if phrase && speaker { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.08)).foregroundStyle(D8.ink.opacity(0.55)) }
                 }
                 .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
@@ -95,15 +95,15 @@ struct TileFace: View {
                             .multilineTextAlignment(.center)
                             .minimumScaleFactor(phrase ? 0.8 : 0.4)
                             .foregroundStyle(D8.ink)
-                        if speaker && !glyph && !phrase { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                        if speaker && !glyph && !phrase { Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
                     }
                     .layoutPriority(1)
                     .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 } else {
-                    Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
+                    Image(systemName: "speaker.wave.2.fill").font(PL.text(size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
                 }
                 Spacer(minLength: 0)
-                Text(word == nil ? " " : reading ?? " ").font(.system(size: size * (phrase ? 0.062 : 0.075))).foregroundStyle(D8.ipa).lineLimit(phrase ? 3 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
+                Text(word == nil ? " " : reading ?? " ").font(PL.text(size * (phrase ? 0.062 : 0.075))).foregroundStyle(D8.ipa).lineLimit(phrase ? 3 : 1).minimumScaleFactor(0.6).multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: phrase)
             }
             .padding(.horizontal, inset * 1.7)
@@ -144,7 +144,7 @@ struct WideTile: View {
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 if let r = readingText(reading) {
-                    Text(r).font(.footnote).foregroundStyle(D8.ipa).lineLimit(2).multilineTextAlignment(.center)
+                    Text(r).font(PL.text(13)).foregroundStyle(D8.ipa).lineLimit(2).multilineTextAlignment(.center)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -156,14 +156,14 @@ struct WideTile: View {
                     Text(langName(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
                 }
             }
-            .background(D8.panel, in: .rect(cornerRadius: 6))
+            .background(D8.panel, in: .rect(cornerRadius: PL.Radius.xs))
             .padding(10)
             .background { FlagFace(flag: D8Flag.of(lang), emblem: false) }
             .overlay { Shine() }
             .modifier(Glaze(radius: 14, lip: 6))
             .padding(state == .right ? 6 : 0)
             .overlay {
-                if state == .right { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.malachite, lineWidth: 3) }
+                if state == .right { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(D8.malachite, lineWidth: 3) }
             }
             .overlay(alignment: .topTrailing) {
                 if state == .right {
@@ -208,7 +208,7 @@ struct AnswerRow: View {
                 HStack(spacing: 6) {
                     Text(tapText(word, lang)).font(PL.heading.font(scale: (state == .right ? 19 : 17) / PL.heading.size))
                         .strikethrough(state == .wrong, color: D8.vermilion).lineLimit(2).layoutPriority(1)
-                    if let tag { Text(tag).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted) }
+                    if let tag { Text(tag).font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim) }
                     if canSay {
                         Button { LangVoice.shared.speak(spoken, lang) } label: {
                             PLGlyphView(.speaker, size: 15).foregroundStyle(PL.inkDim).frame(minWidth: FitScale.naturalTarget, minHeight: FitScale.naturalTarget).contentShape(.rect).padding(.vertical, -9)
@@ -218,7 +218,7 @@ struct AnswerRow: View {
                     }
                 }
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-                if state == .right, let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
+                if state == .right, let r = readingText(reading) { Text(r).font(PL.text(12)).foregroundStyle(PL.inkDim) }
             }
             Spacer(minLength: 0)
             if state != .other {
@@ -229,9 +229,9 @@ struct AnswerRow: View {
         .padding(.horizontal, 12)
         .padding(.vertical, state == .right ? 8 : 0)
         .frame(minHeight: FitScale.naturalTarget)
-        .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: 12))
+        .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: PL.Radius.md))
         .overlay {
-            if state != .other { RoundedRectangle(cornerRadius: 12).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
+            if state != .other { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
         }
         .opacity(state != .other ? 1 : tag == nil ? 0.38 : 0.75)
     }
@@ -265,7 +265,7 @@ struct MiniTile: View {
     private var face: some View {
         VStack(spacing: 1) {
             Text(word ?? "?").font(D8.word(18)).lineLimit(1).minimumScaleFactor(0.5).foregroundStyle(word == nil ? D8.disabledText : D8.ink)
-            Text(readingText(reading) ?? " ").font(.caption2).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
+            Text(readingText(reading) ?? " ").font(PL.text(11)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 16)
@@ -274,12 +274,12 @@ struct MiniTile: View {
         .overlay(alignment: .topLeading) {
             Text(langName(lang).uppercased()).font(D8.caps(8)).tracking(0.6).foregroundStyle(D8.label).padding(.leading, 6).padding(.top, 5)
         }
-        .background(D8.panel, in: .rect(cornerRadius: 5))
+        .background(D8.panel, in: .rect(cornerRadius: PL.Radius.xs))
         .padding(6)
         .background { FlagFace(flag: D8Flag.of(lang)) }
         .modifier(Glaze(radius: 10, lip: 4))
         .overlay {
-            if word == nil || dashed { RoundedRectangle(cornerRadius: 13).strokeBorder(Palette.muted, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
+            if word == nil || dashed { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.inkDim, style: StrokeStyle(lineWidth: 2, dash: [5, 4])).padding(-3) }
         }
     }
 }
@@ -308,7 +308,7 @@ struct D8Primary: ButtonStyle {
 
 struct PlainLink: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: FitScale.naturalTarget).contentShape(.rect).opacity(configuration.isPressed ? 0.6 : 1)
+        configuration.label.font(PL.text(15, .bold)).underline().foregroundStyle(PL.inkDim).frame(maxWidth: .infinity, minHeight: FitScale.naturalTarget).contentShape(.rect).opacity(configuration.isPressed ? 0.6 : 1)
     }
 }
 
@@ -328,7 +328,7 @@ struct BranchTile: View {
     var body: some View {
         let p = Self.pigments[String(branch.prefix(2))] ?? (0x5d5650, String(branch.prefix(1)).uppercased())
         Text(p.1)
-            .font(.system(size: size * 0.48, weight: .bold, design: .serif))
+            .font(PL.script(size * 0.48, .bold))
             .foregroundStyle(D8.parchment)
             .frame(width: size, height: size)
             .background(Color(hex: p.0))

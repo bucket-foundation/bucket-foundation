@@ -119,15 +119,16 @@ public enum PL {
     public static let hero = type["hero"]!
     public static let title = type["title"]!
     public static let heading = type["heading"]!
+    public static let subhead = type["subhead"]!
     public static let body = type["body"]!
     public static let small = type["small"]!
     public static let label = type["label"]!
     public static let word = type["word"]!
-    public static let subhead = type["subhead"]!
     public static let count = type["count"]!
 
     public enum Radius {
-        public static let all: [String: CGFloat] = ["sm": 10, "md": 14, "lg": 20, "xl": 24, "pill": 999]
+        public static let all: [String: CGFloat] = ["xs": 6, "sm": 10, "md": 14, "lg": 20, "xl": 24, "pill": 999]
+        public static let xs: CGFloat = 6
         public static let sm: CGFloat = 10
         public static let md: CGFloat = 14
         public static let lg: CGFloat = 20

@@ -24,7 +24,7 @@ struct SaveNotice: View {
             Text("Saved on this device. The server kept its copy because this one was empty; it retries after your next study.").noticeStyle()
         case .needsProfile:
             Button("Saved on this device. Choose your age range to sync.") { NotificationCenter.default.post(name: .askAgeRange, object: nil) }
-                .font(.footnote)
+                .font(PL.text(13))
         default:
             EmptyView()
         }
@@ -32,7 +32,7 @@ struct SaveNotice: View {
 }
 
 extension Text {
-    func noticeStyle() -> some View { font(.footnote).foregroundStyle(Palette.muted) }
+    func noticeStyle() -> some View { font(.footnote).foregroundStyle(PL.inkDim) }
 }
 
 struct Chip: View {
@@ -50,12 +50,12 @@ struct Chip: View {
                 if !langs.isEmpty {
                     HStack(spacing: 3) { ForEach(langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 20) } }
                 }
-                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(LocalizedStringKey(title)).font(PL.script(15, .bold)).foregroundStyle(PL.ink)
             }
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
-            .background(on ? D8.pickedFace : D8.face, in: .rect(cornerRadius: 12))
-            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.picked : D8.edge, lineWidth: on ? 3 : 2))
+            .background(on ? D8.pickedFace : D8.face, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay(RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(on ? D8.picked : D8.edge, lineWidth: on ? 3 : 2))
         }
         .buttonStyle(TilePress())
         .accessibilityElement(children: .ignore)
@@ -86,7 +86,7 @@ struct LanguageFooter: View {
             } else {
                 SaveNotice(state: store.saveState)
             }
-            Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
+            Text(corpus.attribution).font(PL.text(11)).foregroundStyle(PL.inkDim)
         }
         .listRowBackground(Color.clear)
     }
@@ -125,7 +125,7 @@ struct LanguageSections: View {
                     Text(KnownPrompt.summary(store.known, device: InterfaceLanguage.deviceRoot, name: langName))
                 }
             }
-            .tint(Palette.ink)
+            .tint(PL.ink)
             .onChange(of: store.known, initial: true) { _, known in
                 root = KnownPrompt.root(current: root, known: known, device: InterfaceLanguage.deviceRoot)
             }
@@ -140,7 +140,7 @@ struct LanguageSections: View {
         } header: {
             Eyebrow(text: "Or build your own")
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
     }
 
     var chips: some View {
@@ -188,14 +188,14 @@ struct PresetCard: View {
         } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) { ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
-                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
-                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted).lineLimit(2)
+                Text(LocalizedStringKey(name)).font(PL.script(17, .heavy)).foregroundStyle(PL.ink)
+                Text(langs.map(langName).joined(separator: " · ")).font(PL.text(12)).foregroundStyle(PL.inkDim).lineLimit(2)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .padding(12)
-            .background(D8.face, in: .rect(cornerRadius: 14))
-            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.edge, lineWidth: 2) }
-            .background(D8.edge, in: .rect(cornerRadius: 14).offset(y: 4))
+            .background(D8.face, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(D8.edge, in: .rect(cornerRadius: PL.Radius.md).offset(y: 4))
         }
         .buttonStyle(TilePress())
         .accessibilityLabel("\(name): \(langs.map(langName).joined(separator: ", "))")

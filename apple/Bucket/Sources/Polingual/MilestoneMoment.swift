@@ -48,8 +48,8 @@ struct MilestoneMoment: View {
                 ForEach(langs.prefix(5), id: \.self) { FlagTile(lang: $0, size: 72) }
             }
         case .streak:
-            Image(systemName: "flame.fill").font(.system(size: 84))
-                .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+            Image(systemName: "flame.fill").font(PL.text(84))
+                .foregroundStyle(LinearGradient(colors: [PL.ochre, D8.vermilion], startPoint: .top, endPoint: .bottom))
         }
     }
 
@@ -58,10 +58,10 @@ struct MilestoneMoment: View {
             mark
                 .scaleEffect(shown ? 1 : 0.6)
                 .rotationEffect(.degrees(shown ? 0 : -8))
-            Text(title).font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink).multilineTextAlignment(.center)
-            Text(detail).font(.headline).foregroundStyle(Palette.muted).multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.7)
+            Text(title).font(PL.script(30, .heavy)).foregroundStyle(PL.ink).multilineTextAlignment(.center)
+            Text(detail).font(PL.text(17, .bold)).foregroundStyle(PL.inkDim).multilineTextAlignment(.center).lineLimit(3).minimumScaleFactor(0.7)
             ShareObjectButton(objects: objects, wide: true).padding(.top, 6)
-            Button("Keep going") { dismiss() }.buttonStyle(.borderless).font(.headline).tint(Palette.ink)
+            Button("Keep going") { dismiss() }.buttonStyle(.borderless).font(PL.text(17, .bold)).tint(PL.ink)
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

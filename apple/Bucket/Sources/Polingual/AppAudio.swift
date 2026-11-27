@@ -264,13 +264,13 @@ struct MiniPlayer: View {
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "dot.radiowaves.left.and.right")
-                .font(.title3)
+                .font(PL.script(20, .semibold))
                 .foregroundStyle(D8.vermilion)
                 .frame(width: 28)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 1) {
-                Text(audio.title).font(.subheadline.weight(.semibold)).lineLimit(1)
-                Text(audio.detail).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                Text(audio.title).font(PL.text(15, .semibold)).lineLimit(1)
+                Text(audio.detail).font(PL.text(12)).foregroundStyle(.secondary).lineLimit(1)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
@@ -282,7 +282,7 @@ struct MiniPlayer: View {
             }
         }
         .buttonStyle(.borderless)
-        .font(.body)
+        .font(PL.text(17))
         .padding(.horizontal, 16)
         .accessibilityIdentifier("miniPlayer")
     }

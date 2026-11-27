@@ -60,10 +60,10 @@ struct AddToToday: View {
         } label: {
             switch look {
             case .label: Label(title, systemImage: on ? "checkmark.circle.fill" : "plus.circle")
-            case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(.title2)
+            case .icon: Image(systemName: on ? "checkmark.circle.fill" : "plus.circle").font(PL.script(22, .bold))
             }
         }
-        .tint(color ?? (on ? D8.malachite : Palette.ink))
+        .tint(color ?? (on ? D8.malachite : PL.ink))
         .buttonStyle(.borderless)
         .accessibilityLabel(title)
         .accessibilityIdentifier("addToToday.\(item.id)")

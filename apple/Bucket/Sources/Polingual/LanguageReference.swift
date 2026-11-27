@@ -69,16 +69,16 @@ struct LanguageReference: View {
             ForEach(shown) { w in
                 NavigationLink(value: w) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(w.word).font(.headline).foregroundStyle(Palette.ink)
-                        if let g = w.gloss { Text(g).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1) }
+                        Text(w.word).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
+                        if let g = w.gloss { Text(g).font(PL.text(15)).foregroundStyle(PL.inkDim).lineLimit(1) }
                     }
                 }
             }
-            if shown.isEmpty, !words.isEmpty { Text("No words match.").foregroundStyle(Palette.muted) }
+            if shown.isEmpty, !words.isEmpty { Text("No words match.").foregroundStyle(PL.inkDim) }
         } header: {
             Eyebrow(text: String(localized: "Words · \(shown.count)"))
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
     }
 }
 
@@ -94,7 +94,7 @@ struct SoundGrid: View {
         } header: {
             Eyebrow(text: referenceText(section.title))
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
     }
 
     func cell(_ l: Letter) -> some View {
@@ -102,9 +102,9 @@ struct SoundGrid: View {
             if let text = LangReference.speakable(l) { LangVoice.shared.speak(text, lang) }
         } label: {
             VStack(spacing: 2) {
-                Text(l.ch).font(.system(size: 26, weight: .semibold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
-                Text(l.sound).font(.caption.weight(.semibold)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.6)
-                Text(l.name ?? " ").font(.caption2).foregroundStyle(Palette.muted).lineLimit(2, reservesSpace: true).multilineTextAlignment(.center).minimumScaleFactor(0.7)
+                Text(l.ch).font(PL.text(26, .semibold)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
+                Text(l.sound).font(PL.text(12, .semibold)).foregroundStyle(D8.lapis).lineLimit(1).minimumScaleFactor(0.6)
+                Text(l.name ?? " ").font(PL.text(11)).foregroundStyle(PL.inkDim).lineLimit(2, reservesSpace: true).multilineTextAlignment(.center).minimumScaleFactor(0.7)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 6)
@@ -125,14 +125,14 @@ struct WritingRows: View {
     var body: some View {
         let w = LangReference.writing(lang)
         Section {
-            Text(referenceText(w.title)).font(.serif(.title3, weight: .semibold))
-            Text("\(w.letterCount) letters").foregroundStyle(Palette.muted)
-            Text(w.rightToLeft ? String(localized: "Written right to left") : String(localized: "Written left to right")).foregroundStyle(Palette.muted)
-            ForEach(w.facts, id: \.self) { Text(referenceText($0)).font(.serif(.body)) }
+            Text(referenceText(w.title)).font(PL.script(20, .semibold))
+            Text("\(w.letterCount) letters").foregroundStyle(PL.inkDim)
+            Text(w.rightToLeft ? String(localized: "Written right to left") : String(localized: "Written left to right")).foregroundStyle(PL.inkDim)
+            ForEach(w.facts, id: \.self) { Text(referenceText($0)).font(PL.script(17, .regular)) }
         } header: {
             Eyebrow(text: "Writing system")
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
         if let unit = LangReference.characters(lang) {
             SoundGrid(section: SoundSection(title: unit.title, letters: unit.letters), lang: lang)
         }
@@ -151,32 +151,32 @@ struct WordFactsView: View {
             Section {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 34)
-                    Text(detail.word).font(D8.word(28)).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.5)
+                    Text(detail.word).font(D8.word(28)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
-                if let r = readingText(detail.reading) { Text(r).foregroundStyle(Palette.muted) }
+                if let r = readingText(detail.reading) { Text(r).foregroundStyle(PL.inkDim) }
                 if let g = detail.gloss {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted)
-                        Text(g).font(.serif(.body))
+                        Text(langName(detail.rootLang).uppercased()).font(PL.text(11).monospaced()).foregroundStyle(PL.inkDim)
+                        Text(g).font(PL.script(17, .regular))
                     }
                 }
                 let tags = [detail.pos, detail.band].compactMap { $0 }
-                if !tags.isEmpty { Text(tags.joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted) }
+                if !tags.isEmpty { Text(tags.joined(separator: " · ")).font(PL.text(12)).foregroundStyle(PL.inkDim) }
                 if let a = f.withArticle { line("With its article", a) }
                 if let r = f.root { line("Root", r) }
-                if let n = f.note { Text(n).font(.subheadline).foregroundStyle(Palette.muted) }
+                if let n = f.note { Text(n).font(PL.text(15)).foregroundStyle(PL.inkDim) }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             if let ff = f.falseFriend {
                 Section {
-                    Text("Means \(ff.means), looks like English \(ff.looksLike)").font(.subheadline)
+                    Text("Means \(ff.means), looks like English \(ff.looksLike)").font(PL.text(15))
                 } header: {
                     Eyebrow(text: "False friend")
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
             forms("Present tense", f.present)
             forms("Past tense", f.past)
@@ -184,7 +184,7 @@ struct WordFactsView: View {
                 Section {
                     ForEach([f.example].compactMap { $0 } + f.sentences, id: \.self) { s in
                         HStack {
-                            Text(tapText(s, detail.lang)).font(.serif(.body))
+                            Text(tapText(s, detail.lang)).font(PL.script(17, .regular))
                             Spacer(minLength: 0)
                             PlayButton(text: s, lang: detail.lang)
                         }
@@ -193,7 +193,7 @@ struct WordFactsView: View {
                 } header: {
                     Eyebrow(text: "In a sentence")
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
             if !web.forms.isEmpty {
                 Section {
@@ -209,10 +209,10 @@ struct WordFactsView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             ForEach(Self.legend.filter { web.bonds.contains($0.bond) }, id: \.bond) { Text($0.line) }
                         }
-                        .font(.caption).foregroundStyle(Palette.muted)
+                        .font(PL.text(12)).foregroundStyle(PL.inkDim)
                     }
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
             if !web.kin.isEmpty {
                 Section {
@@ -220,9 +220,9 @@ struct WordFactsView: View {
                         Button { next = k.detail } label: {
                             HStack(spacing: 10) {
                                 FlagTile(lang: k.detail.lang, size: 24)
-                                Text(k.word).foregroundStyle(Palette.ink)
+                                Text(k.word).foregroundStyle(PL.ink)
                                 Spacer(minLength: 8)
-                                Text(k.gloss).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1)
+                                Text(k.gloss).font(PL.text(15)).foregroundStyle(PL.inkDim).lineLimit(1)
                             }
                             .contentShape(Rectangle())
                         }
@@ -231,7 +231,7 @@ struct WordFactsView: View {
                 } header: {
                     Eyebrow(text: web.root.map { "Same root \($0)" } ?? "Same root")
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
         }
         .paper()
@@ -264,15 +264,15 @@ struct WordFactsView: View {
         HStack(spacing: 10) {
             FlagTile(lang: form.lang, size: 24)
             VStack(alignment: .leading, spacing: 1) {
-                Text(form.word).foregroundStyle(Palette.ink)
+                Text(form.word).foregroundStyle(PL.ink)
                 Text([readingText(form.reading), "\(Lang.name(form.lang)) · \(form.script)"].compactMap { $0 }.joined(separator: "  "))
-                    .font(.caption).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+                    .font(PL.text(12)).foregroundStyle(PL.inkDim).lineLimit(1).minimumScaleFactor(0.7)
             }
             Spacer(minLength: 6)
             if let bond = form.bond {
-                Text(Self.bondTitle(bond)).font(.caption2.weight(.bold)).foregroundStyle(Palette.green)
+                Text(Self.bondTitle(bond)).font(PL.text(11, .bold)).foregroundStyle(PL.tyrian)
                     .padding(.horizontal, 6).padding(.vertical, 2)
-                    .background(Palette.green.opacity(0.12), in: Capsule())
+                    .background(PL.tyrian.opacity(0.12), in: Capsule())
             }
             PlayButton(text: form.word, lang: form.lang)
         }
@@ -296,11 +296,11 @@ struct WordFactsView: View {
 
     func line(_ label: LocalizedStringKey, _ value: String) -> some View {
         HStack {
-            Text(label).foregroundStyle(Palette.muted)
+            Text(label).foregroundStyle(PL.inkDim)
             Spacer()
-            Text(value).foregroundStyle(Palette.ink)
+            Text(value).foregroundStyle(PL.ink)
         }
-        .font(.subheadline)
+        .font(PL.text(15))
     }
 
     @ViewBuilder func forms(_ title: String, _ rows: [WordFacts.PersonForm]) -> some View {
@@ -310,7 +310,7 @@ struct WordFactsView: View {
             } header: {
                 Eyebrow(text: title)
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
         }
     }
 }

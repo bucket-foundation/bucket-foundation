@@ -21,4 +21,21 @@ struct GameStyleTests {
             }
         }
     }
+
+    @Test func polingualSourcesUseOnlyPLTokens() throws {
+        let root = LocalizationTests.appleRoot
+        let files = ["Bucket/Sources/Polingual", "Polingual/Sources"].flatMap { dir -> [URL] in
+            let all = FileManager.default.enumerator(at: root.appendingPathComponent(dir), includingPropertiesForKeys: nil)?.allObjects as? [URL] ?? []
+            return all.filter { $0.pathExtension == "swift" }
+        }
+        #expect(files.count > 50)
+        let banned = ["Palette.", "D8Option", ".system(size", ".serif(", "0x12326A", "0x8C5A1C", "0x5E3B10"]
+        for url in files {
+            let text = try String(contentsOf: url, encoding: .utf8)
+            for token in banned {
+                #expect(!text.contains(token), "\(url.lastPathComponent) uses \(token)")
+            }
+            #expect(text.range(of: #"cornerRadius: \d"#, options: .regularExpression) == nil, "\(url.lastPathComponent) hand-types a corner radius")
+        }
+    }
 }

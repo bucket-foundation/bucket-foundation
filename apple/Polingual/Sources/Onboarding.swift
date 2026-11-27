@@ -105,9 +105,9 @@ struct Onboarding: View {
             }
             if picks.bases.count > 1 {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Learn from").font(.caption.weight(.bold)).foregroundStyle(PL.inkDim)
+                    Text("Learn from").font(PL.text(12, .bold)).foregroundStyle(PL.inkDim)
                     Text("Meanings and hints show in this language.")
-                        .font(.caption)
+                        .font(PL.text(12))
                         .foregroundStyle(PL.inkDim)
                         .fixedSize(horizontal: false, vertical: true)
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -147,12 +147,12 @@ struct Onboarding: View {
                 ForEach(targets, id: \.self) { l in
                     VStack(spacing: 6) {
                         FlagTile(lang: l, size: 56)
-                        Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                        Text(langName(l)).font(PL.text(12, .bold)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: 72)
                     .transition(.scale.combined(with: .opacity))
                 }
-                if targets.isEmpty { Text("Pick at least one.").font(.subheadline).foregroundStyle(Palette.muted).frame(height: 76) }
+                if targets.isEmpty { Text("Pick at least one.").font(PL.text(15)).foregroundStyle(PL.inkDim).frame(height: 76) }
             }
             .animation(.spring(duration: 0.35, bounce: 0.4), value: targets)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -165,7 +165,7 @@ struct Onboarding: View {
                 }
             }
             if let failed {
-                Text(failed).font(.footnote).foregroundStyle(D8.vermilion)
+                Text(failed).font(PL.text(13)).foregroundStyle(D8.vermilion)
                 Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
             }
         }
@@ -237,7 +237,7 @@ struct PoMark: View {
                     .font(PL.heading.font(scale: 22 / PL.heading.size))
                     .foregroundStyle(PL.paper)
                     .frame(width: 48, height: 48)
-                    .background(PL.tyrian, in: .rect(cornerRadius: 12))
+                    .background(PL.tyrian, in: .rect(cornerRadius: PL.Radius.md))
                 Circle().fill(D8.vermilion).frame(width: 9, height: 9).padding(6)
             }
             Text("polingual").font(PL.heading.font()).foregroundStyle(PL.ink)
@@ -255,13 +255,13 @@ struct Dots: View {
             while y < size.height {
                 var x: CGFloat = step / 2
                 while x < size.width {
-                    ctx.fill(Path(ellipseIn: CGRect(x: x - 1.2, y: y - 1.2, width: 2.4, height: 2.4)), with: .color(Color(light: 0xE2D4B4, dark: 0x3A352C)))
+                    ctx.fill(Path(ellipseIn: CGRect(x: x - 1.2, y: y - 1.2, width: 2.4, height: 2.4)), with: .color(PL.paper3))
                     x += step
                 }
                 y += step
             }
         }
-        .background(Palette.paper)
+        .background(PL.paper)
         .accessibilityHidden(true)
     }
 }
@@ -354,8 +354,8 @@ struct PlanLine: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            Image(systemName: icon).font(.system(size: 15, weight: .bold)).foregroundStyle(D8.lapis).frame(width: 22)
-            Text(text).font(.subheadline).foregroundStyle(Palette.ink)
+            Image(systemName: icon).font(PL.text(15, .bold)).foregroundStyle(D8.lapis).frame(width: 22)
+            Text(text).font(PL.text(15)).foregroundStyle(PL.ink)
         }
     }
 }

@@ -22,8 +22,8 @@ struct SharedItemsSection: View {
         Section {
             if list.isEmpty {
                 Text("Tap Share in any app and pick \(group.name) to send a link, a photo or a note here.")
-                    .font(.callout)
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(16))
+                    .foregroundStyle(PL.inkDim)
             }
             ForEach(shown) { item in
                 Button { viewing = item } label: { SharedItemRow(item: item, to: recipient(item)) }
@@ -37,7 +37,7 @@ struct SharedItemsSection: View {
             }
             if shown.count < list.count {
                 NavigationLink { SharedItemsList(groupId: group.id) } label: {
-                    Text("See all \(list.count) shared items").font(.callout.weight(.semibold))
+                    Text("See all \(list.count) shared items").font(PL.text(16, .semibold))
                 }
             }
         } header: {
@@ -99,7 +99,7 @@ struct SharedItemsSection: View {
             Button("Remove", systemImage: "trash", role: .destructive) { removing = item }
         }
         if !item.mine {
-            Button("Report", systemImage: "flag") { reporting = item }.tint(Palette.muted)
+            Button("Report", systemImage: "flag") { reporting = item }.tint(PL.inkDim)
             if let m = group.members.first(where: { $0.userId == item.from }) {
                 Button("Block", systemImage: "hand.raised") { blocking = ModerationTarget(member: m, groupId: group.id) }.tint(D8.vermilion)
             }
@@ -140,35 +140,35 @@ struct SharedItemRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 6) {
-                Text(item.mine ? String(localized: "You") : item.fromName).font(.subheadline.weight(.semibold))
+                Text(item.mine ? String(localized: "You") : item.fromName).font(PL.text(15, .semibold))
                 if let to {
-                    Image(systemName: "arrow.right").font(.caption2).foregroundStyle(Palette.muted)
-                    Text(to).font(.subheadline).foregroundStyle(Palette.muted)
+                    Image(systemName: "arrow.right").font(PL.text(11)).foregroundStyle(PL.inkDim)
+                    Text(to).font(PL.text(15)).foregroundStyle(PL.inkDim)
                 }
                 Spacer(minLength: 8)
-                if let at = item.sentAt { Text(at, style: .relative).font(.caption).foregroundStyle(Palette.muted) }
+                if let at = item.sentAt { Text(at, style: .relative).font(PL.text(12)).foregroundStyle(PL.inkDim) }
             }
             switch item.kind {
             case .url:
                 if let link = item.link {
                     Label(link.host() ?? link.absoluteString, systemImage: "link")
-                        .font(.callout.weight(.semibold))
+                        .font(PL.text(16, .semibold))
                         .foregroundStyle(.tint)
                         .lineLimit(1)
-                    Text(link.absoluteString).font(.caption.monospaced()).foregroundStyle(Palette.muted).lineLimit(2)
+                    Text(link.absoluteString).font(PL.text(12).monospaced()).foregroundStyle(PL.inkDim).lineLimit(2)
                 }
-                if let text = item.text { Text(text).font(.callout) }
+                if let text = item.text { Text(text).font(PL.text(16)) }
             case .text:
-                Text(item.text ?? "").font(.callout)
+                Text(item.text ?? "").font(PL.text(16))
             case .image:
                 AsyncImage(url: item.image) { image in
                     image.resizable().scaledToFit()
                 } placeholder: {
-                    RoundedRectangle(cornerRadius: 8).fill(Palette.card).frame(height: 120)
+                    RoundedRectangle(cornerRadius: PL.Radius.sm).fill(PL.card).frame(height: 120)
                 }
                 .frame(maxHeight: 220)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                if let text = item.text { Text(text).font(.callout) }
+                .clipShape(RoundedRectangle(cornerRadius: PL.Radius.sm))
+                if let text = item.text { Text(text).font(PL.text(16)) }
             }
         }
         .padding(.vertical, 2)
@@ -212,7 +212,7 @@ struct SharedItemsList: View {
                 List {
                     SharedItemsSection(group: g, blocking: $blocking, limit: nil)
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
                 .scrollContentBackground(.hidden)
                 .navigationTitle(g.name)
                 .inlineTitle()
@@ -240,20 +240,20 @@ struct SharedItemView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 6) {
                         if let to {
-                            Image(systemName: "arrow.right").font(.caption2).foregroundStyle(Palette.muted)
-                            Text(to).font(.subheadline).foregroundStyle(Palette.muted)
+                            Image(systemName: "arrow.right").font(PL.text(11)).foregroundStyle(PL.inkDim)
+                            Text(to).font(PL.text(15)).foregroundStyle(PL.inkDim)
                         }
                         Spacer(minLength: 8)
-                        if let at = item.sentAt { Text(at, style: .relative).font(.caption).foregroundStyle(Palette.muted) }
+                        if let at = item.sentAt { Text(at, style: .relative).font(PL.text(12)).foregroundStyle(PL.inkDim) }
                     }
                     if item.kind == .image { picture }
                     if let link = item.link {
                         Button { openURL(link) } label: {
-                            Label(link.host() ?? link.absoluteString, systemImage: "safari").font(.headline)
+                            Label(link.host() ?? link.absoluteString, systemImage: "safari").font(PL.text(17, .bold))
                         }
-                        Text(link.absoluteString).font(.callout.monospaced()).foregroundStyle(Palette.muted).textSelection(.enabled)
+                        Text(link.absoluteString).font(PL.text(16).monospaced()).foregroundStyle(PL.inkDim).textSelection(.enabled)
                     }
-                    if let text = item.text { Text(text).font(.body).textSelection(.enabled) }
+                    if let text = item.text { Text(text).font(PL.text(17)).textSelection(.enabled) }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -271,9 +271,9 @@ struct SharedItemView: View {
 
     @ViewBuilder var picture: some View {
         if let photo {
-            photo.resizable().scaledToFit().clipShape(RoundedRectangle(cornerRadius: 8))
+            photo.resizable().scaledToFit().clipShape(RoundedRectangle(cornerRadius: PL.Radius.sm))
         } else if failed {
-            Image(systemName: "photo").font(.largeTitle).foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: 200)
+            Image(systemName: "photo").font(PL.script(34, .bold)).foregroundStyle(PL.inkDim).frame(maxWidth: .infinity, minHeight: 200)
         } else {
             ProgressView().frame(maxWidth: .infinity, minHeight: 200)
         }

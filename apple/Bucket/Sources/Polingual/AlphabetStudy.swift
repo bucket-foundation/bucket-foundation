@@ -44,7 +44,7 @@ struct AlphabetStudy: View {
                         VStack(alignment: .leading, spacing: 12) {
                             HStack(spacing: 10) {
                                 ProgressView(value: Double(i), total: Double(max(queue.count, 1))).tint(D8.malachite)
-                                Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                                Text("\(i + 1)/\(queue.count)").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                             }
                             ExerciseView(ex: current, readings: false, reading: { _, _ in nil }, onDone: done)
                                 .id("\(i)-\(current.kind.rawValue)-\(current.answer)")
@@ -53,16 +53,16 @@ struct AlphabetStudy: View {
                     }
                 } else {
                     VStack(spacing: 14) {
-                        Text(queue.isEmpty ? String(localized: "No letters due") : String(localized: "Letters done")).font(.system(size: 28, weight: .bold, design: .rounded))
+                        Text(queue.isEmpty ? String(localized: "No letters due") : String(localized: "Letters done")).font(PL.script(28, .bold))
                         Text(ScriptCourse.done(store.state(systemId), unit) ? String(localized: "You know most of the \(unit.title). Heritage cards now ask you to spell words.") : String(localized: "\(right) of \(queue.count) right. New letters come in fives."))
                             .multilineTextAlignment(.center)
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                     }
                     .padding(24)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
-                Text("This language uses the Latin alphabet.").foregroundStyle(Palette.muted)
+                Text("This language uses the Latin alphabet.").foregroundStyle(PL.inkDim)
             }
         }
         .paper()
