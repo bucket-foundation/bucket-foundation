@@ -13,6 +13,19 @@ import Testing
         #expect(await BoundToken.make(owner: nil) { UserToken(userId: nil, token: "t") }() == nil)
     }
 
+    @Test func anOwnerBoundInSessionKeepsItsFirstUser() async {
+        let who = LockedBox<String?>("A")
+        let owner = AccountOwner(nil)
+        let bound = BoundToken.make(owner: owner) { UserToken(userId: who.value, token: "t-\(who.value ?? "")") }
+        #expect(await bound() == nil)
+        #expect(owner.bind("A"))
+        #expect(await bound() == "t-A")
+        #expect(owner.bind("B") == false)
+        who.mutate { $0 = "B" }
+        #expect(await bound() == nil)
+        #expect(owner.userId == "A")
+    }
+
     @Test func sendRefusesTokenForAnotherUser() async {
         let server = LangStoreSyncTests().seeded()
         let who = LockedBox<String?>("A")

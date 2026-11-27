@@ -5,10 +5,11 @@ public struct AccountLaunch: Sendable {
     public let userId: String?
     public let folderKey: String?
     public let multiAccount: Bool
+    public let owner: AccountOwner
     let folders: AccountFolders
     let index: AccountIndex
 
-    public static func make(multiAccount: Bool, appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil, folders: AccountFolders = AccountFolders()) -> AccountLaunch {
+    public static func make(multiAccount: Bool, appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil, folders: AccountFolders = AccountFolders(), defaults: AccountDefaults = .shared) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
         let index = index ?? AccountIndex(appGroup: appGroup) ?? AccountIndex(defaults: .standard)
         let sessions = SessionVault.store(multiAccount: multiAccount, items: items, index: index)
@@ -23,14 +24,31 @@ public struct AccountLaunch: Sendable {
                 folders.record(error)
             }
         }
-        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folders.activeKey(userId: userId), multiAccount: multiAccount, folders: folders, index: index)
+        var folderKey = folders.activeKey(userId: userId)
+        var ownerId = userId
+        if multiAccount, let k = folderKey, let p = folders.promotion {
+            do {
+                if p.state == .retire || (k != AccountFolders.guest && p.key != k) {
+                    defaults.remove(AccountFolders.guest)
+                    try folders.setGuestAside()
+                } else if k == AccountFolders.guest {
+                    ownerId = p.userId
+                } else if try !folders.promoteGuest(into: k, carry: { defaults.carry(from: AccountFolders.guest, to: k) }) {
+                    folderKey = AccountFolders.guest
+                }
+            } catch {
+                folders.record(error)
+                if k == AccountFolders.guest { ownerId = p.userId } else if p.state == .promote, p.key == k { folderKey = AccountFolders.guest }
+            }
+        }
+        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folderKey, multiAccount: multiAccount, owner: AccountOwner(ownerId), folders: folders, index: index)
     }
 
     public static func forExtension(appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
         let index = index ?? AccountIndex(appGroup: appGroup) ?? AccountIndex(defaults: .standard)
         let sessions = SessionVault.extensionStore(items: items, index: index)
-        return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, folders: AccountFolders(), index: index)
+        return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, owner: AccountOwner(sessions.load()?.userId), folders: AccountFolders(), index: index)
     }
 
     public func defaults(_ shared: AccountDefaults = .shared) {
@@ -40,8 +58,15 @@ public struct AccountLaunch: Sendable {
     @MainActor
     public func attach(_ account: Account, defaults: AccountDefaults = .shared) {
         guard multiAccount else { return }
+        let owner = owner, folders = folders, inGuest = folderKey == AccountFolders.guest
+        account.onStart = { user in
+            guard inGuest, owner.bind(user) else { return }
+            folders.record(.init(userId: user, state: .promote))
+        }
         account.onEnd = { how, user in
-            guard how != .expired, let user else { return }
+            guard let user else { return }
+            if inGuest, how != .expired, owner.userId == user { folders.record(.init(userId: user, state: .retire)) }
+            guard how != .expired else { return }
             defaults.remove(AccountIndex.key(user))
         }
     }
@@ -64,6 +89,6 @@ public struct AccountLaunch: Sendable {
     @MainActor
     public func token(_ account: Account) -> @MainActor () async -> String? {
         guard multiAccount else { return { await account.freshToken() } }
-        return BoundToken.make(owner: userId) { await account.userToken() }
+        return BoundToken.make(owner: owner) { await account.userToken() }
     }
 }

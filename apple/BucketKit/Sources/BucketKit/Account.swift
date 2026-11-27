@@ -13,6 +13,7 @@ public final class Account {
     public var error: String?
     public private(set) var busy = false
     @ObservationIgnored public var onEnd: ((Ending, String?) -> Void)?
+    @ObservationIgnored public var onStart: ((String) -> Void)?
 
     let api: BucketAPI
     let store: SessionStore
@@ -44,6 +45,7 @@ public final class Account {
         let code = code.filter(\.isNumber)
         await run {
             let s = try await self.api.verify(email: email, code: code)
+            if let u = s.userId { self.onStart?(u) }
             try self.store.save(s)
             self.session = s
             self.ending = nil
@@ -54,6 +56,7 @@ public final class Account {
     public func signInWithApple(idToken: String, nonce: String, authorizationCode: String? = nil) async {
         await run {
             let s = try await self.api.signInWithApple(idToken: idToken, nonce: nonce, authorizationCode: authorizationCode)
+            if let u = s.userId { self.onStart?(u) }
             try self.store.save(s)
             self.session = s
             self.ending = nil

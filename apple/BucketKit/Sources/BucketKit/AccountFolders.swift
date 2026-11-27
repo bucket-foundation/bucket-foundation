@@ -84,6 +84,58 @@ public struct AccountFolders: Sendable {
         return key
     }
 
+    public struct Promotion: Codable, Sendable, Equatable {
+        public enum State: String, Codable, Sendable { case promote, retire }
+        public let userId: String
+        public let state: State
+        public var key: String { AccountIndex.key(userId) }
+    }
+
+    var promoteURL: URL { accounts.appending(path: "promote.json") }
+
+    public var promotion: Promotion? {
+        (try? Data(contentsOf: promoteURL)).flatMap { try? JSONDecoder().decode(Promotion.self, from: $0) }
+    }
+
+    public func record(_ p: Promotion) {
+        try? FileManager.default.createDirectory(at: accounts, withIntermediateDirectories: true)
+        try? JSONEncoder().encode(p).write(to: promoteURL, options: .atomic)
+    }
+
+    func clearPromotion() throws {
+        if FileManager.default.fileExists(atPath: promoteURL.path) { try FileManager.default.removeItem(at: promoteURL) }
+    }
+
+    func guestHasPending() -> Bool {
+        let file = folder(Self.guest).appending(path: "polingual/pending.json")
+        guard let d = try? Data(contentsOf: file) else { return false }
+        guard let o = (try? JSON.parse(d))?.object else { return true }
+        return !o.entries.isEmpty
+    }
+
+    public func setGuestAside(now: Date = .now, clear: Bool = true) throws {
+        let fm = FileManager.default
+        let guest = folder(Self.guest)
+        if fm.fileExists(atPath: guest.path) {
+            var dst = accounts.appending(path: "guest.aside-\(Int(now.timeIntervalSince1970))", directoryHint: .isDirectory)
+            if fm.fileExists(atPath: dst.path) { dst = accounts.appending(path: "guest.aside-\(UUID().uuidString)", directoryHint: .isDirectory) }
+            try fm.moveItem(at: guest, to: dst)
+        }
+        if clear { try clearPromotion() }
+    }
+
+    public func promoteGuest(into key: String, carry: () -> Void) throws -> Bool {
+        guard let p = promotion, p.state == .promote, p.key == key, key != Self.guest else { return false }
+        if guestHasPending() { return false }
+        let fm = FileManager.default
+        if fm.fileExists(atPath: folder(Self.guest).path) {
+            if fm.fileExists(atPath: folder(key).path) { try setGuestAside(clear: false) } else { try fm.moveItem(at: folder(Self.guest), to: folder(key)) }
+        }
+        carry()
+        try? clearPromotion()
+        return true
+    }
+
     public func finishAfterLoad() throws {
         guard var m = marker, m.phase == .verified else { return }
         let fm = FileManager.default

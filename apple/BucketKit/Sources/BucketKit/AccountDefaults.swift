@@ -41,6 +41,16 @@ public final class AccountDefaults: @unchecked Sendable {
         if accountKey != AccountFolders.guest { defaults.set(accountKey, forKey: Self.adoptedKey) }
     }
 
+    public func carry(from source: String, to target: String) {
+        guard source != target else { return }
+        for base in Self.perAccount {
+            let from = Self.scoped(source, base)
+            guard let v = defaults.object(forKey: from) else { continue }
+            if defaults.object(forKey: Self.scoped(target, base)) == nil { defaults.set(v, forKey: Self.scoped(target, base)) }
+            defaults.removeObject(forKey: from)
+        }
+    }
+
     public func remove(_ accountKey: String) {
         for base in Self.perAccount { defaults.removeObject(forKey: Self.scoped(accountKey, base)) }
         lock.withLock { if prefix == accountKey { prefix = AccountFolders.guest } }

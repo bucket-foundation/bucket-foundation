@@ -63,7 +63,7 @@ import Testing
         let store = UserSessionStore(items: MemorySecretItems(), index: index, userId: nil)
         try? store.save(Session(accessToken: "a", refreshToken: "r", expiresAt: 9_999_999_999, userId: "A"))
         let account = Account(api: BucketAPI(), store: store)
-        AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, folders: AccountFolders(), index: index).attach(account, defaults: d)
+        AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, owner: AccountOwner("A"), folders: AccountFolders(), index: index).attach(account, defaults: d)
         account.end(.deleted)
         #expect(ud.object(forKey: key) == nil)
     }
@@ -87,7 +87,7 @@ import Testing
         let store = UserSessionStore(items: items, index: index, userId: nil)
         try? store.save(Session(accessToken: "a", refreshToken: "r", expiresAt: 9_999_999_999, userId: "A"))
         let account = Account(api: BucketAPI(), store: store)
-        let launch = AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, folders: AccountFolders(), index: index)
+        let launch = AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, owner: AccountOwner("A"), folders: AccountFolders(), index: index)
         launch.attach(account, defaults: d)
         account.signOut()
         #expect(ud.object(forKey: "\(AccountIndex.key("A")).groups.displayName") == nil)
@@ -104,7 +104,7 @@ import Testing
         let store = UserSessionStore(items: MemorySecretItems(), index: index, userId: nil)
         try? store.save(Session(accessToken: "a", refreshToken: "r", expiresAt: 9_999_999_999, userId: "A"))
         let account = Account(api: BucketAPI(), store: store)
-        AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, folders: AccountFolders(), index: index).attach(account, defaults: d)
+        AccountLaunch(sessions: store, userId: "A", folderKey: AccountIndex.key("A"), multiAccount: true, owner: AccountOwner("A"), folders: AccountFolders(), index: index).attach(account, defaults: d)
         account.end(.expired)
         #expect(ud.bool(forKey: key))
     }
@@ -116,8 +116,22 @@ import Testing
         let store = MemorySessionStore()
         try? store.save(Session(accessToken: "a", refreshToken: "r", expiresAt: 9_999_999_999, userId: "A"))
         let account = Account(api: BucketAPI(), store: store)
-        AccountLaunch(sessions: store, userId: "A", folderKey: nil, multiAccount: false, folders: AccountFolders(), index: AccountIndex(defaults: suite())).attach(account, defaults: d)
+        AccountLaunch(sessions: store, userId: "A", folderKey: nil, multiAccount: false, owner: AccountOwner("A"), folders: AccountFolders(), index: AccountIndex(defaults: suite())).attach(account, defaults: d)
         account.signOut()
         #expect(ud.bool(forKey: "polingual.onboarded"))
+    }
+
+    @Test func guestValuesCarryToThePromotedAccountWithoutOverwritingIt() {
+        let ud = suite()
+        ud.set(true, forKey: "guest.polingual.onboarded")
+        ud.set("Guest", forKey: "guest.groups.displayName")
+        ud.set("Kept", forKey: "k1.groups.displayName")
+        let d = AccountDefaults(defaults: ud)
+        d.carry(from: AccountFolders.guest, to: "k1")
+        d.activate("k1")
+        #expect(ud.bool(forKey: "k1.polingual.onboarded"))
+        #expect(ud.string(forKey: "k1.groups.displayName") == "Kept")
+        #expect(ud.object(forKey: "guest.polingual.onboarded") == nil)
+        #expect(ud.object(forKey: "guest.groups.displayName") == nil)
     }
 }
