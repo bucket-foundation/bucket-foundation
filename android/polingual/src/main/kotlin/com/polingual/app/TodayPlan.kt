@@ -1,5 +1,7 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +24,6 @@ import foundation.bucket.core.model.Lang
 import foundation.bucket.core.model.LangSystem
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.serialization.SerialName
 import androidx.compose.foundation.layout.Box
@@ -182,7 +183,6 @@ class TodayPlanStore(private val kv: KeyValue) {
 @Composable
 fun TodayPlanCard(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
-    val p = LocalPalette.current
     val systems = app?.systems.orEmpty()
     var plan by remember(systems) { mutableStateOf(graph.todayPlan.load().adopt(TodayPlanStore.defaults(systems))) }
     val day = today()
@@ -203,7 +203,7 @@ fun TodayPlanCard(graph: Graph, nav: NavHostController) {
     }
     Card {
         Text(statusTitle(status), style = Type.title, color = if (status is TodayStatus.AtRisk) PL.Vermilion else PL.Tyrian)
-        Text(statusDetail(status), color = p.muted)
+        Text(statusDetail(status), color = PL.InkDim)
         if (plan.items.isNotEmpty()) Text(stringResource(R.string.today_progress, plan.items.size - left, plan.items.size), style = Type.caps, color = PL.Vermilion)
         if (plan.items.isNotEmpty()) PlanMeter((plan.items.size - left).toFloat() / plan.items.size)
         plan.items.forEach { item ->

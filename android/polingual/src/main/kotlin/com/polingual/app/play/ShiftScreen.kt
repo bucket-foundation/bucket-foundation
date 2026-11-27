@@ -83,7 +83,7 @@ fun ShiftScreen(graph: Graph, back: () -> Unit) {
         SectionTitle("Clues")
         b.targets.forEach { t ->
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FlagSwatch(t.lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(3.dp)))
+                FlagSwatch(t.lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(PLRadius.xs)))
                 Text(t.meaning, style = Type.body, color = PL.Ink, modifier = Modifier.weight(1f))
                 Text(if (t.form in found) t.form else Shift.hintFor(t.form, hints[t.form] ?: 0), style = Type.caps, color = if (t.form in found) PL.Malachite else PL.InkDim)
             }

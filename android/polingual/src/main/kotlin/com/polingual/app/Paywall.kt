@@ -30,7 +30,6 @@ import androidx.compose.ui.semantics.Role
 import androidx.core.net.toUri
 import com.android.billingclient.api.ProductDetails
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.Pill
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
@@ -52,7 +51,6 @@ object FakePlans {
 
 @Composable
 fun PaywallScreen(graph: Graph, back: () -> Unit) {
-    val p = LocalPalette.current
     val details by graph.billing.products.collectAsState()
     val products = FakePlans.offers(details, BuildConfig.DEBUG && BuildConfig.FAKE_PLANS)
     val access by graph.billing.access.collectAsState()
@@ -84,12 +82,12 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
                     .clickable(role = Role.RadioButton) { chosen = product.productId }.padding(16.dp),
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text(Plan.title(product.productId), style = Type.subhead, color = p.ink)
+                    Text(Plan.title(product.productId), style = Type.subhead, color = PL.Ink)
                     if (product.productId == Plan.YEARLY) Pill("Best value", PL.Malachite)
                 }
-                Text(product.price, style = Type.title, color = p.ink)
-                Text("per ${Plan.period(product.productId)}", color = p.muted)
-                if (product.productId == Plan.YEARLY) Text(Plan.perWeek(Plan.YEARLY_USD), color = p.muted)
+                Text(product.price, style = Type.title, color = PL.Ink)
+                Text("per ${Plan.period(product.productId)}", color = PL.InkDim)
+                if (product.productId == Plan.YEARLY) Text(Plan.perWeek(Plan.YEARLY_USD), color = PL.InkDim)
             }
         }
         if (!all && ids.size < products.size) PlainLink("See all plans", onDark = true) { all = true }
@@ -114,15 +112,14 @@ fun PaywallScreen(graph: Graph, back: () -> Unit) {
 
 @Composable
 private fun PlanOffers(graph: Graph, products: List<PlanOffer>) {
-    val p = LocalPalette.current
     val context = LocalContext.current
     val upsell by graph.billing.upsell.collectAsState()
     if (upsell) Card {
-        Text("Your trial has started", style = Type.title, color = p.ink)
-        Text("Learning with others at home, or keeping Polingual for good?", color = p.ink)
+        Text("Your trial has started", style = Type.title, color = PL.Ink)
+        Text("Learning with others at home, or keeping Polingual for good?", color = PL.Ink)
         products.filter { it.productId in Offers.upsell }.forEach { o ->
             PrimaryButton("${Plan.title(o.productId)}, ${o.price}") { val d = o.details; if (d != null) (context as? Activity)?.let { graph.billing.buy(it, d) } }
-            if (o.productId == Plan.LIFETIME) Text("After buying Lifetime, cancel the yearly trial in Google Play and you pay nothing for it.", style = Type.small, color = p.muted)
+            if (o.productId == Plan.LIFETIME) Text("After buying Lifetime, cancel the yearly trial in Google Play and you pay nothing for it.", style = Type.small, color = PL.InkDim)
         }
         PlainLink("Keep yearly") { graph.billing.dismissUpsell() }
     }
