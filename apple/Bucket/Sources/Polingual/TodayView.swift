@@ -316,9 +316,6 @@ struct TodayView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     PLScreenTop(title: "Today", stickers: Stickers.today)
                     goalCard(done: done, later: later).todayCard()
-                    if !langs.systems.isEmpty {
-                        LangProgressCard(langs: Array(Set(langs.systems.flatMap(\.targets))).sorted(), states: langs.systems.map { langs.state($0.id) }, log: langs.reviewLog, now: now).todayCard()
-                    }
                     VStack(spacing: 12) {
                         TimelineView(.periodic(from: .now, by: 60)) { context in
                             hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
@@ -344,6 +341,9 @@ struct TodayView: View {
                             ForEach(finished) { widget($0, done: true, now: now) }
                             TodayAddWidget { picking = true }
                         }
+                    }
+                    if !langs.systems.isEmpty {
+                        LangProgressCard(langs: Array(Set(langs.systems.flatMap(\.targets))).sorted(), states: langs.systems.map { langs.state($0.id) }, log: langs.reviewLog, now: now).todayCard()
                     }
                     if later {
                         TodayStrip(card: true)
@@ -529,19 +529,30 @@ struct LangProgressCard: View {
     let now: Double
 
     var body: some View {
-        let cards = ProgressMetric.cards(states)
-        let rows = ProgressMetric.rows(log)
-        VStack(alignment: .leading, spacing: 10) {
-            ForEach(langs, id: \.self) { lang in
-                let m = ProgressMetric.langMetrics(lang: lang, cards: cards, rows: rows, now: now)
-                HStack(spacing: 8) {
-                    PLBadge(lang.uppercased(), tone: .ink)
-                    PLBadge(String(localized: "\(m.inputHours, specifier: "%.1f") h input"), tone: .lapis)
-                    PLBadge(String(localized: "\(m.knownWords) known words"), tone: .paper)
+        VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Eyebrow(text: "Your languages")
+                Text("Words you know in each language").font(PL.text(12)).foregroundStyle(PL.inkDim)
+            }
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 10, alignment: .leading)], alignment: .leading, spacing: 10) {
+                ForEach(ProgressMetric.ranked(langs, cards: ProgressMetric.cards(states), rows: ProgressMetric.rows(log), now: now), id: \.lang) { row in
+                    HStack(spacing: 10) {
+                        PLBadge(row.lang.uppercased(), tone: .ink)
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(Locale.current.localizedString(forLanguageCode: row.lang) ?? row.lang.uppercased())
+                                .font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).lineLimit(1)
+                            Text("\(row.metrics.knownWords) words").font(PL.text(17, .bold)).foregroundStyle(PL.ink).monospacedDigit()
+                            if row.metrics.inputSeconds > 0 {
+                                Text("\(row.metrics.inputHours, specifier: "%.1f") h input").font(PL.text(11)).foregroundStyle(PL.lapis)
+                            }
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityElement(children: .combine)
                 }
-                .accessibilityElement(children: .combine)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityIdentifier("today-lang-progress")
     }
 }

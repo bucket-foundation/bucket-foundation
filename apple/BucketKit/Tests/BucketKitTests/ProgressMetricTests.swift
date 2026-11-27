@@ -49,3 +49,15 @@ private func rows(_ c: [String: Any]) -> [MetricRow] {
     #expect(ProgressMetric.epochDay("1970-1-1") == 0)
     #expect(ProgressMetric.epochDay("2028-3-1") - ProgressMetric.epochDay("2028-2-28") == 2)
 }
+
+@Test func rankedPutsMostKnownFirstAndKeepsOrderOnTies() {
+    let now = 1_800_000_000_000.0
+    let day = 86_400_000.0
+    var cards: [String: MetricCard] = [:]
+    for i in 0..<3 { cards["fr:w\(i)"] = MetricCard(stability: 400, lastReview: now - day) }
+    cards["de:w0"] = MetricCard(stability: 400, lastReview: now - day)
+    let got = ProgressMetric.ranked(["de", "es", "fr", "it"], cards: cards, rows: [], now: now)
+    #expect(got.map(\.lang) == ["fr", "de", "es", "it"])
+    #expect(got[0].metrics.knownWords > got[1].metrics.knownWords)
+    #expect(got[2].metrics.knownWords == 0 && got[3].metrics.knownWords == 0)
+}
