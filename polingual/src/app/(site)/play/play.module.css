@@ -384,3 +384,19 @@
 .joinBox{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:14px;background:var(--pl-white);border:3px solid var(--ink);border-radius:18px}
 .joinBox input{font-size:18px}
 @media (min-width:700px){.joinBox{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;align-items:end}}
+.ingame{display:contents}
+@media (max-width:900px){
+.playStage:has([data-ingame=true]){height:100dvh;min-height:0;overflow:hidden;background:var(--pl-paper)}
+.playStage:has([data-ingame=true])>header,.playStage:has([data-ingame=true])>.bannerStrip,.playStage:has([data-ingame=true]) .stickers,.playStage:has([data-ingame=true]) .peek,.playStage:has([data-ingame=true]) .rail{display:none}
+.playStage:has([data-ingame=true]) .frame,.playStage:has([data-ingame=true]) .frame[data-rails]{display:flex;padding:0;max-width:none;height:100dvh;min-height:0}
+.playStage:has([data-ingame=true]) .center{flex:1;margin:0;border:0;border-radius:0;box-shadow:none;padding:0;min-height:0;height:100dvh;overflow:hidden}
+.ingame{display:flex;flex-direction:column;flex:1;min-height:0;height:100%}
+.ingame>[data-testid=room]{flex:1;min-height:0;display:flex;flex-direction:column;gap:6px;padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+.ingame .hud{position:static;padding:0}
+.ingame .side,.ingame .ad,.ingame .adFixed,.ingame [data-testid=room-header]{display:none}
+.ingame .stage{flex:1;min-height:0;display:flex;flex-direction:column}
+.ingame .arena{flex:1;min-height:0;padding:8px;gap:8px;overflow:hidden}
+.ingame .choices{flex:1;min-height:0;grid-auto-rows:minmax(0,1fr)}
+.ingame .choice{min-height:0;height:100%;box-shadow:0 3px 0 var(--pl-ink)}
+}
+@media (max-width:900px){.ingame .prompt{padding:4px 0}.ingame .choiceTiles{flex:1;min-height:0;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr)}.ingame .choiceTiles li{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:2px}.ingame .choiceTiles .choiceTile{flex:1;min-height:0;height:auto;aspect-ratio:auto;padding:4px 0!important}}

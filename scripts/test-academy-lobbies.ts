@@ -7,6 +7,7 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  allReady,
   setupOf,
   answerDecision,
   hostedSince,
@@ -93,10 +94,12 @@ test("messages trim and cap at 200", () => {
 
 test("only the host starts, in lobby status, with two ready", () => {
   const ps = [player("h", { ready: true }), player("b")];
-  assert.equal(startDecision(lobby(), ps, "b"), "not_host");
-  assert.equal(startDecision(lobby(), ps, "h"), "need_ready");
-  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true })], "h"), "ok");
-  assert.equal(startDecision(lobby({ status: "playing" }), ps, "h"), "not_lobby");
+  assert.equal(startDecision(lobby(), ps, "b", T0), "not_host");
+  assert.equal(startDecision(lobby(), ps, "h", T0), "need_ready");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true })], "h", T0), "ok");
+  assert.equal(startDecision(lobby({ status: "playing" }), ps, "h", T0), "not_lobby");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: true }), player("c", { ready: false })], "h", T0), "need_ready");
+  assert.equal(startDecision(lobby(), [ps[0], player("b", { ready: false, is_bot: true })], "h", T0), "ok");
 });
 
 test("join respects cap and status", () => {
@@ -441,4 +444,20 @@ test("lobby settings: every mode the room sends saves, with setup on and off", (
   } finally {
     process.env.POLINGUAL_LOBBY_SETUP = env;
   }
+});
+
+test("allReady: every human ready, bots count as ready, two seats minimum", () => {
+  assert.equal(allReady([{ ready: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: false }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }]), true);
+  assert.equal(allReady([{ ready: true }, { ready: false, is_bot: true }]), true);
+  assert.equal(allReady([{ ready: false, is_bot: true }, { ready: false, is_bot: true }]), false);
+  assert.equal(allReady([{ ready: true }, { ready: true }, { ready: false }]), false);
+  const now = T0 + 600_000;
+  const fresh = new Date(now - 5_000).toISOString();
+  const stale = new Date(now - 120_000).toISOString();
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], now), true);
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: fresh }], now), false);
+  assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], now), false);
+  assert.equal(startDecision({ host_id: "h", status: "lobby" }, [{ ready: true, last_seen: fresh }, { ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], "h", now), "ok");
 });

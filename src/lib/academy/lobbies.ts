@@ -606,10 +606,17 @@ export function seenDue(lastSeen: string, now: number): boolean {
 
 export type StartDecision = "ok" | "not_host" | "not_lobby" | "need_ready";
 
-export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, players: readonly Pick<LobbyPlayerRow, "ready">[], uid: string): StartDecision {
+type ReadySeat = Pick<LobbyPlayerRow, "ready"> & { is_bot?: boolean; last_seen?: string };
+
+export function allReady(players: readonly ReadySeat[], now: number = Date.now()): boolean {
+  const here = players.filter((p) => p.is_bot === true || !p.last_seen || now - Date.parse(p.last_seen) < STALE_MS);
+  return here.length >= MIN_READY && here.some((p) => !p.is_bot) && here.every((p) => p.ready || p.is_bot === true);
+}
+
+export function startDecision(lobby: Pick<LobbyRow, "host_id" | "status">, players: readonly ReadySeat[], uid: string, now: number = Date.now()): StartDecision {
   if (lobby.host_id !== uid) return "not_host";
   if (lobby.status !== "lobby") return "not_lobby";
-  return players.filter((p) => p.ready).length >= MIN_READY ? "ok" : "need_ready";
+  return allReady(players, now) ? "ok" : "need_ready";
 }
 
 export type JoinLobbyDecision = "already" | "ok" | "full" | "started";

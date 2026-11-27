@@ -65,3 +65,4 @@
 @media (max-width:1799px){.caption{font-size:12px}}
 @media (max-width:400px){.sheet{padding-left:10px;padding-right:10px}.stage{padding-left:4px;padding-right:4px}}
 @media (max-width:640px){.world[data-compact=true] .banner{display:none}.world .decorLayer,.world .stickerLayer{display:none}.world[data-compact=true] .sheet{padding:10px 8px 20px}}
+@media (max-width:900px){.world:has([data-ingame=true]){height:100dvh;min-height:0}.world:has([data-ingame=true]) .banner{display:none}.world:has([data-ingame=true]) .sheet{flex:1;min-height:0;padding:0;gap:0;display:flex;flex-direction:column}[data-ingame=true] .stage{padding:8px;border-width:2px;box-shadow:none;flex:1;min-height:0;display:flex;flex-direction:column}[data-ingame=true] .stageBody{flex:1;min-height:0;display:flex;flex-direction:column}}
