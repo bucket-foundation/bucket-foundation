@@ -122,12 +122,12 @@ test("the growth handler stores revenue with the snapshot and reports it", async
   assert.equal(carried.revenue.activeSubscriptions, 17);
 });
 
-test("polingual.com/admin and admin.polingual.com redirect to the growth report", async () => {
+test("polingual.com/admin redirects to the growth report and admin.polingual.com serves the ops dashboard", async () => {
   const config = require("../polingual/next.config.js");
-  const redirects: { source: string; destination: string; permanent: boolean; has?: { type: string; value: string }[] }[] = await config.redirects();
+  const redirects: { source: string; destination: string; permanent: boolean; missing?: { type: string; value: string }[] }[] = await config.redirects();
   const admin = redirects.find((r) => r.source === "/admin");
-  assert.deepEqual(admin, { source: "/admin", destination: "https://www.bucket.foundation/admin/growth", permanent: false });
-  const host = redirects.find((r) => r.has?.some((h) => h.type === "host" && h.value === "admin.polingual.com"));
-  assert.equal(host?.destination, "https://www.bucket.foundation/admin/growth");
-  assert.equal(host?.permanent, false);
+  assert.deepEqual(admin, { source: "/admin", missing: [{ type: "host", value: "admin.polingual.com" }], destination: "https://www.bucket.foundation/admin/growth", permanent: false });
+  const rewrites: { beforeFiles: { source: string; destination: string; has?: { type: string; value: string }[] }[] } = await config.rewrites();
+  const home = rewrites.beforeFiles.find((r) => r.source === "/" && r.has?.some((h) => h.type === "host" && h.value === "admin.polingual.com"));
+  assert.equal(home?.destination, "/ops");
 });
