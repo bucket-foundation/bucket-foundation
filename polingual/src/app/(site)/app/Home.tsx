@@ -30,7 +30,7 @@ function useStreakCard(systems: LangSystem[] | null) {
       const indexes = langs.length > 1 ? await Promise.all(langs.map((l) => loadCognates(l))) : [];
       const cognates = Object.fromEntries(indexes.flatMap((x, i) => (x ? [[langs[i], x]] : [])));
       const progress = langProgress(memories, now, cognates);
-      if (live) setCard({ streak: streakCard([...states, ...memories.map(memoryState)], now, progress.inputDays), langs: progress.langs });
+      if (live) setCard({ streak: streakCard([...states, ...memories.map((m) => memoryState(m))], now, progress.inputDays), langs: progress.langs });
     });
     return () => {
       live = false;

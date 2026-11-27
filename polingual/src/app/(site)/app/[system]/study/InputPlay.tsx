@@ -58,7 +58,9 @@ function useViewing(active: React.MutableRefObject<() => boolean>): { v: Viewing
     observer.current = new IntersectionObserver((entries) => {
       for (const e of entries) {
         const id = (e.target as HTMLElement).dataset.item;
-        if (id) e.isIntersecting ? visible.current.add(id) : visible.current.delete(id);
+        if (!id) continue;
+        if (e.isIntersecting) visible.current.add(id);
+        else visible.current.delete(id);
       }
     }, { threshold: 0.6 });
     const timer = window.setInterval(() => {

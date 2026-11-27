@@ -4,8 +4,7 @@ import app from "../app/app.module.css";
 import { useAccount } from "./Account";
 import GameHub from "./GameHub";
 import { Art } from "@/ui/art";
-import styles from "./play.module.css";
-import { Button } from "@/ui";
+import { Button, Header } from "@/ui";
 import { LobbySetup } from "./lobbies/LobbySetup";
 import { OpenLobbies } from "./lobbies/OpenLobbies";
 import { JoinBox } from "./lobbies/JoinBox";
@@ -17,17 +16,15 @@ export default function Lobbies({ ispyReady = false }: { ispyReady?: boolean }) 
   return (
     <div className={app.stack} data-testid="lobbies">
       <JoinBox s={s} />
-      <section className={styles.hubHead}>
-        <div className={app.stackSm}>
-          <p className={app.label}>Free to play</p>
-          <h1 className={app.title}>Play with friends</h1>
-          <p className={app.muted}>Start a lobby, share the code, and play together from the app or a browser. No account needed.</p>
-        </div>
-        <div className={styles.hubArt} aria-hidden="true">
+      <Header
+        eyebrow="Free to play"
+        title="Play with friends"
+        lede="Start a lobby, share the code, and play together from the app or a browser. No account needed."
+        art={<>
           <span style={{ rotate: "-6deg" }}><Art name="ticket" size={130} shadow /></span>
           <span style={{ rotate: "8deg" }}><Art name="seal" size={74} shadow /></span>
-        </div>
-      </section>
+        </>}
+      />
 
       <GameHub open={s.open} ispyReady={ispyReady} offered={s.offered} onPick={s.pick} />
 

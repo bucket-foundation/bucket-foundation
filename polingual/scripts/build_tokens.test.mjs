@@ -15,6 +15,11 @@ test("every color token is a hex or rgba value", () => {
   for (const v of Object.values(readTokens().color)) assert.match(v, /^(#[0-9A-F]{6}|rgba\([\d.,]+\))$/);
 });
 
+test("every shadow token builds from color tokens", () => {
+  const t = readTokens();
+  for (const v of Object.values(t.shadow)) for (const m of v.matchAll(/var\(--pl-([\w-]+)\)/g)) assert.ok(m[1] in t.color, m[1]);
+});
+
 test("every type style names a declared font", () => {
   const t = readTokens();
   for (const v of Object.values(t.type)) assert.ok(v.font in t.font);
