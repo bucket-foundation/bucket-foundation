@@ -44,6 +44,13 @@ export function tvPlayers(lobby: Pick<LobbyState, "players">): Standing[] {
     .map((p) => ({ player_id: p.userId, nickname: p.name, points: p.score }));
 }
 
+export function tvTotals(lobby: Pick<LobbyState, "players">): Standing[] {
+  return [...lobby.players]
+    .filter((p) => !p.isMe)
+    .sort((a, b) => (b.total ?? b.score) - (a.total ?? a.score) || a.name.localeCompare(b.name))
+    .map((p) => ({ player_id: p.userId, nickname: p.name, points: p.total ?? p.score }));
+}
+
 export type TvRound = { label: string; gloss: string | null; choices: string[]; answer: string | null; seconds: number | null };
 
 export function tvAnswer(prompt: Pick<LobbyState["prompts"][number], "mode" | "answer">): string | null {
@@ -80,4 +87,9 @@ export const TV_ORIGIN = ["https:", "", "polingual.com"].join("/");
 
 export function tvShortUrl(url: string): string {
   return url.replace(/^https?:[/][/]/, "");
+}
+
+export function tvChoice(choice: string): string {
+  const m = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})?:(.+)$/.exec(choice);
+  return m ? m[2] : choice;
 }

@@ -7,6 +7,10 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  abandonedLobby,
+  nextGameDue,
+  NEXT_GAME_MS,
+  setupEnabled,
   allReady,
   setupOf,
   answerDecision,
@@ -413,8 +417,8 @@ test("lobby settings: host patch validates games and languages before start", ()
     assert.equal(normalizeLobbySettings(null, lobby), null);
     process.env.POLINGUAL_LOBBY_SETUP = "off";
     assert.deepEqual(normalizeLobbySettings({ game: "tiles" }, lobby), { game: "tiles", targets: ["es"] });
-    assert.deepEqual(normalizeLobbySettings({ setup: "mix", targets: ["es", "fr", "it", "pt"] }, lobby), { game: "flags", targets: ["es", "fr", "it", "pt"] });
-    assert.deepEqual(normalizeLobbySettings({ setup: "sequence", games: ["tiles", "daily"] }, lobby), { game: "tiles", targets: ["es"] });
+    assert.equal(normalizeLobbySettings({ setup: "mix", targets: ["es", "fr", "it", "pt"] }, lobby), null);
+    assert.equal(normalizeLobbySettings({ setup: "sequence", games: ["tiles", "daily"] }, lobby), null);
     assert.equal(normalizeLobbySettings({ setup: "nope" }, lobby), null);
   } finally {
     process.env.POLINGUAL_LOBBY_SETUP = env;
@@ -437,7 +441,7 @@ test("lobby settings: every mode the room sends saves, with setup on and off", (
     { game: null, root: "en", targets: romance, status: "lobby" as const },
   ];
   try {
-    for (const flag of ["on", "off"]) {
+    for (const flag of ["on", "on\n", " ON "]) {
       process.env.POLINGUAL_LOBBY_SETUP = flag;
       for (const lobby of lobbies) for (const body of bodies) assert.ok(normalizeLobbySettings(body, lobby as never), `${flag} ${lobby.game} ${JSON.stringify(body)}`);
     }
@@ -460,4 +464,64 @@ test("allReady: every human ready, bots count as ready, two seats minimum", () =
   assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: fresh }], now), false);
   assert.equal(allReady([{ ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], now), false);
   assert.equal(startDecision({ host_id: "h", status: "lobby" }, [{ ready: true, last_seen: fresh }, { ready: true, last_seen: fresh }, { ready: false, last_seen: stale }], "h", now), "ok");
+});
+
+test("lobby flags read on with stray whitespace or case from the host env", () => {
+  assert.equal(setupEnabled({ POLINGUAL_LOBBY_SETUP: "on\n" }), true);
+  assert.equal(setupEnabled({ POLINGUAL_LOBBY_SETUP: " On " }), true);
+  assert.equal(setupEnabled({ POLINGUAL_LOBBY_SETUP: "off" }), false);
+  assert.equal(setupEnabled({}), false);
+  assert.equal(revealEnabled({ POLINGUAL_LOBBY_REVEAL: "on\r\n" }), true);
+});
+
+test("lobby settings: mix and game set persist as mix and sequence", () => {
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on\n";
+  const lobby = { game: "flags" as const, root: "en", targets: ["es"], status: "lobby" as const };
+  try {
+    const mix = normalizeLobbySettings({ setup: "mix", targets: ["es", "fr", "it", "pt"] }, lobby);
+    assert.equal(setupOf({ playlist: mix!.playlist!, mix: mix!.mix! }), "mix");
+    const set = normalizeLobbySettings({ setup: "sequence", games: ["tiles", "daily"] }, lobby);
+    assert.equal(setupOf({ playlist: set!.playlist!, mix: set!.mix! }), "sequence");
+    const one = normalizeLobbySettings({ setup: "single", game: "tiles" }, lobby);
+    assert.equal(setupOf({ playlist: one!.playlist!, mix: one!.mix! }), "single");
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("next game is due 8 seconds after the game ends, or at once when the host skips", () => {
+  const done = { status: "done" as const, started_at: new Date(T0).toISOString(), rounds: 2, round_seconds: 10, reveal_seconds: 0 };
+  const end = T0 + 20_000;
+  assert.equal(nextGameDue(done, end + 7_000), false);
+  assert.equal(nextGameDue(done, end + 8_000), true);
+  assert.equal(nextGameDue(done, end, true), true);
+  assert.equal(nextGameDue({ ...done, status: "playing" }, end + 60_000, true), false);
+  assert.equal(NEXT_GAME_MS, 8_000);
+});
+
+test("host-only lobby routes reject everyone but the host", () => {
+  for (const name of ["bots", "start", "settings", "next", "end"]) {
+    const src = readFileSync(join(__dirname, "../src/app/api/academy/lobbies", name, "route.ts"), "utf8");
+    assert.ok(/host_id !== a\.uid\) return json\(\{ error: "not_host" \}, 403\)|decision === "not_host"\) return json\(\{ error: "not_host" \}, 403\)/.test(src), `${name} must reject non-hosts`);
+  }
+});
+
+test("a lobby with no human seen recently is abandoned and drops off the open list", () => {
+  const now = T0 + 600_000;
+  const fresh = new Date(now - 5_000).toISOString();
+  const stale = new Date(now - 120_000).toISOString();
+  const base = { id: "L1", status: "lobby" as const, standing_slot: null };
+  assert.equal(abandonedLobby(base, [{ lobby_id: "L1", last_seen: fresh, is_bot: false }], now), false);
+  assert.equal(abandonedLobby(base, [{ lobby_id: "L1", last_seen: stale, is_bot: false }, { lobby_id: "L1", last_seen: fresh, is_bot: true }], now), true);
+  assert.equal(abandonedLobby(base, [], now), true);
+  assert.equal(abandonedLobby({ ...base, status: "playing" }, [{ lobby_id: "L1", last_seen: stale }], now), false);
+  assert.equal(abandonedLobby({ ...base, status: "playing" }, [{ lobby_id: "L1", last_seen: new Date(now - 6 * 60_000).toISOString() }], now), true);
+  assert.equal(abandonedLobby({ ...base, status: "done" }, [], now), false);
+  assert.equal(abandonedLobby({ ...base, standing_slot: "daily-romance" }, [], now), false);
+  const row = (id: string, over: Partial<LobbyRow> = {}) => ({ ...lobby({ id, created_at: new Date(now - 60_000).toISOString() }), ...over }) as LobbyRow;
+  const seat = (lobby_id: string, user_id: string, seen: string) => ({ ...player(user_id, { last_seen: seen }), lobby_id });
+  const rows = [row("A", { host_id: "me" }), row("B", { host_id: "x" }), row("C", { host_id: "y" }), row("D", { host_id: "z", status: "playing" }), row("E", { host_id: "me", ended_at: new Date(now).toISOString(), status: "done" })];
+  const seats = [seat("A", "me", stale), seat("B", "x", fresh), seat("C", "y", stale), seat("D", "z", fresh), seat("E", "me", fresh)];
+  assert.deepEqual(openLobbies(rows, seats, [], "me", now).map((l) => l.id), ["B"]);
 });

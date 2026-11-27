@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useIsPhone } from "@/lib/hooks/phone";
+import { usePauseAds } from "./AdsContext";
 import { phaseAt } from "@/lib/lobby/client";
 import type { WorldId } from "@/ui/art/play";
 import { ButtonLink } from "@/ui";
@@ -14,7 +16,7 @@ import world from "./world.module.css";
 import styles from "./play.module.css";
 import { gameName } from "./langs";
 import { RoomSide } from "./room/RoomBits";
-import { RoomResults } from "./room/RoomResults";
+import { RoomFinal, RoomResults } from "./room/RoomResults";
 import { RoomReveal } from "./room/RoomReveal";
 import { RoomRound } from "./room/RoomRound";
 import { RoomWaiting } from "./room/RoomWaiting";
@@ -22,6 +24,7 @@ import { useRoomGame, type LiveRoom, type RoomGameState } from "./room/useRoomGa
 
 function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId, code: string) => void }) {
   const g = useRoomGame(rawCode, onGame);
+  usePauseAds(useIsPhone());
   if (!g.code) {
     return (
       <div className={app.stack}>
@@ -66,6 +69,7 @@ function RoomJoining({ code, error }: { code: string; error: string | null }) {
 function RoomPhase({ g }: { g: LiveRoom }) {
   const phase = phaseAt(g.lobby, g.now + g.offset);
   if (phase.kind === "waiting") return <RoomWaiting g={g} />;
+  if (g.lobby.ended) return <RoomFinal g={g} />;
   if (phase.kind === "finished") return <RoomResults g={g} />;
   return (
     <div className={styles.ingame} data-ingame="true">

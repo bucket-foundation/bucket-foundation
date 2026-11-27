@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const PHONE_QUERY = "(max-width: 640px)";
+export const PHONE_QUERY = "(max-width: 900px)";
 
 export function useIsPhone(): boolean {
   const [phone, setPhone] = useState(false);

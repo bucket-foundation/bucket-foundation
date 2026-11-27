@@ -51,6 +51,21 @@ export function waitingHint(lobby: Pick<LobbyState, "standing" | "isHost" | "pla
   return lobby.isHost ? "Everyone ready? Start now or wait for the countdown." : "The host can start now.";
 }
 
+export type RoomControls = { start: boolean; fillBots: boolean; bigScreen: boolean; settings: boolean; nextNow: boolean; end: boolean; invite: boolean };
+
+export function roomControls(lobby: Pick<LobbyState, "isHost" | "status" | "botsEnabled" | "botFill" | "standing"> & { canEnd?: boolean; ended?: boolean }): RoomControls {
+  const host = lobby.isHost && !lobby.standing && !lobby.ended;
+  return {
+    start: host && lobby.status === "lobby",
+    fillBots: host && lobby.status === "lobby" && lobby.botsEnabled && !lobby.botFill,
+    bigScreen: host,
+    settings: host && lobby.status === "lobby",
+    nextNow: host && lobby.status === "done",
+    end: host && lobby.canEnd === true && lobby.status !== "lobby",
+    invite: !lobby.isHost || !!lobby.standing,
+  };
+}
+
 export function livesText(lives: number): string {
   return `${"♥".repeat(lives)}${"♡".repeat(Math.max(0, 3 - lives))}`;
 }

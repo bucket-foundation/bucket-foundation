@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "./client";
-import { TV_ORIGIN, tvAnswer, tvShortUrl, tvJoinUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack } from "./tv";
+import { TV_ORIGIN, tvAnswer, tvChoice, tvShortUrl, tvJoinUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack } from "./tv";
 
 type Player = LobbyState["players"][number];
 
@@ -75,4 +75,11 @@ test("tvJoinUrl points phones at the lobby room", () => {
 
 test("tvShortUrl drops the scheme for the screen", () => {
   assert.equal(tvShortUrl(tvJoinUrl(TV_ORIGIN, "ABC123")), "polingual.com/play/ABC123");
+});
+
+test("tvChoice drops the language prefix of mixed choices", () => {
+  assert.equal(tvChoice("es:gato"), "gato");
+  assert.equal(tvChoice("zh-Hans:猫"), "猫");
+  assert.equal(tvChoice("agua"), "agua");
+  assert.equal(tvChoice("de"), "de");
 });
