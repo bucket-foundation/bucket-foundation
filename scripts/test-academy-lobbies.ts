@@ -515,7 +515,8 @@ test("a lobby with no human seen recently is abandoned and drops off the open li
   assert.equal(abandonedLobby(base, [{ lobby_id: "L1", last_seen: fresh, is_bot: false }], now), false);
   assert.equal(abandonedLobby(base, [{ lobby_id: "L1", last_seen: stale, is_bot: false }, { lobby_id: "L1", last_seen: fresh, is_bot: true }], now), true);
   assert.equal(abandonedLobby(base, [], now), true);
-  assert.equal(abandonedLobby({ ...base, status: "playing" }, [{ lobby_id: "L1", last_seen: stale }], now), true);
+  assert.equal(abandonedLobby({ ...base, status: "playing" }, [{ lobby_id: "L1", last_seen: stale }], now), false);
+  assert.equal(abandonedLobby({ ...base, status: "playing" }, [{ lobby_id: "L1", last_seen: new Date(now - 6 * 60_000).toISOString() }], now), true);
   assert.equal(abandonedLobby({ ...base, status: "done" }, [], now), false);
   assert.equal(abandonedLobby({ ...base, standing_slot: "daily-romance" }, [], now), false);
   const row = (id: string, over: Partial<LobbyRow> = {}) => ({ ...lobby({ id, created_at: new Date(now - 60_000).toISOString() }), ...over }) as LobbyRow;

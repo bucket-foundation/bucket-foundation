@@ -251,28 +251,32 @@ export function nextStartOf(lobby: LobbyRow): string | null {
 }
 
 export async function againHosted(lobby: LobbyRow, now: number, force = false): Promise<LobbyRow> {
-  if (!setupEnabled() || lobby.standing_slot || !lobby.playlist || !nextGameDue(lobby, now, force)) return lobby;
-  const players = await playersOf([lobby.id]);
-  const here = players.filter((p) => p.is_bot || now - Date.parse(p.last_seen) < STALE_MS).map((p) => p.user_id);
+  if (!setupEnabled() || lobby.standing_slot || !lobby.playlist || !lobby.started_at || !nextGameDue(lobby, now, force)) return lobby;
   const game = nextGame(lobby);
   const t = gameTiming(game);
+  const seed = generateSeed();
+  const claimed = check(
+    await service()
+      .from(LOBBIES)
+      .update({ status: "lobby", started_at: null, seed, game, rounds: t.rounds, round_seconds: t.roundSeconds, start_at: null })
+      .eq("id", lobby.id)
+      .eq("status", "done")
+      .eq("started_at", lobby.started_at)
+      .select(LOBBY_COLS),
+    "again claim",
+  ) as LobbyRow[];
+  if (!claimed[0]) return (await lobbyById(lobby.id)) ?? lobby;
+  const players = await playersOf([lobby.id]);
+  const here = players.filter((p) => p.is_bot || now - Date.parse(p.last_seen) < STALE_MS).map((p) => p.user_id);
   check(await service().from(ANSWERS).delete().eq("lobby_id", lobby.id), "again answers");
   check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "again prompts");
   if (duelEnabled()) check(await service().from(POWERS).delete().eq("lobby_id", lobby.id), "again powers");
   if (endEnabled()) for (const p of players) if (p.score) check(await service().from(PLAYERS).update({ total: (p.total ?? 0) + p.score }).eq("lobby_id", lobby.id).eq("user_id", p.user_id), "again totals");
   check(await service().from(PLAYERS).update({ score: 0, ready: false, continues: 0 }).eq("lobby_id", lobby.id), "again scores");
   if (here.length) check(await service().from(PLAYERS).update({ ready: true }).eq("lobby_id", lobby.id).in("user_id", here), "again ready");
-  const rows = check(
-    await service()
-      .from(LOBBIES)
-      .update({ status: "lobby", started_at: null, seed: generateSeed(), game, rounds: t.rounds, round_seconds: t.roundSeconds, start_at: here.length >= MIN_READY ? new Date(now).toISOString() : null })
-      .eq("id", lobby.id)
-      .eq("status", "done")
-      .select(LOBBY_COLS),
-    "again",
-  ) as LobbyRow[];
-  if (!rows[0]) return (await lobbyById(lobby.id)) ?? lobby;
-  return rows[0];
+  if (here.length < MIN_READY) return claimed[0];
+  const armed = check(await service().from(LOBBIES).update({ start_at: new Date(now).toISOString() }).eq("id", lobby.id).eq("status", "lobby").eq("seed", seed).select(LOBBY_COLS), "again arm") as LobbyRow[];
+  return armed[0] ?? claimed[0];
 }
 
 export async function armAutoStart(lobby: LobbyRow, want: boolean, now: number): Promise<LobbyRow> {

@@ -845,9 +845,12 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
   };
 }
 
+export const ABANDONED_PLAYING_MS = 5 * 60_000;
+
 export function abandonedLobby(lobby: Pick<LobbyRow, "id" | "status" | "standing_slot">, players: readonly Pick<LobbyPlayerRow, "lobby_id" | "last_seen" | "is_bot">[], now: number): boolean {
   if (lobby.standing_slot || lobby.status === "done") return false;
-  return !players.some((p) => p.lobby_id === lobby.id && p.is_bot !== true && now - Date.parse(p.last_seen) < STALE_MS);
+  const window = lobby.status === "playing" ? ABANDONED_PLAYING_MS : STALE_MS;
+  return !players.some((p) => p.lobby_id === lobby.id && p.is_bot !== true && now - Date.parse(p.last_seen) < window);
 }
 
 export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false): LobbySummary[] {
