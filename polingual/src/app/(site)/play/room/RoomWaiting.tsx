@@ -1,8 +1,7 @@
 "use client";
 
 import { everyoneReady, roomControls, secondsUntil, waitingHint } from "@/lib/lobby/room";
-import { tvPath } from "@/lib/lobby/tv";
-import { Button, ButtonLink } from "@/ui";
+import { Button } from "@/ui";
 import app from "../../app/app.module.css";
 import { gameName } from "../langs";
 import styles from "../play.module.css";
@@ -63,16 +62,16 @@ function RoomLinks({ g }: { g: LiveRoom }) {
   return (
     <section className={app.stackSm}>
       <div className={app.row}>
-        {can.bigScreen ? <ButtonLink variant="ghost" size="md" href={tvPath(lobby.code)} target="_blank" rel="noopener" data-testid="big-screen">Big screen</ButtonLink> : null}
+        {can.settings ? <Button variant="ghost" size="md" onClick={() => void g.act(() => g.api.hostMode(lobby.id, true))} data-testid="mode-screen">Host on this screen</Button> : null}
         {!can.invite ? (
           <Button variant="ghost" size="md" onClick={() => void g.share()}>{g.copied ? "Link copied" : "Share link"}</Button>
         ) : (
           <Button variant="quiet" size="sm" onClick={() => void g.share()} data-testid="invite">{g.copied ? "Link copied" : "Invite"}</Button>
         )}
-        <Button variant="quiet" size="sm" onClick={() => void g.leave()}>Leave</Button>
+        <Button variant="quiet" size="sm" onClick={() => void g.leave()} data-testid="leave-game">Leave game</Button>
         {g.state.status === "ready" && g.state.identity.kind === "guest" ? <Button variant="quiet" size="sm" onClick={g.account.openSignIn} data-testid="room-sign-in">Sign in</Button> : null}
       </div>
-      {can.bigScreen ? <p className={app.small} data-testid="big-screen-hint">Open this on the TV or a laptop on HDMI. Phones join with the code.</p> : null}
+      {can.settings ? <p className={app.small} data-testid="host-screen-hint">Host on this screen turns this device into the room display. You stop playing; phones join with the code.</p> : null}
     </section>
   );
 }

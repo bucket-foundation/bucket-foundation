@@ -44,6 +44,7 @@ export function useLobbies() {
   const [rounds, setRounds] = useState(6);
   const [busy, setBusy] = useState(false);
   const [fill, setFill] = useState(true);
+  const [hostScreen, setHostScreen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const ready = state.status === "ready";
   const listing = useListing(api, ready, setError);
@@ -59,7 +60,7 @@ export function useLobbies() {
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds: roundsFor(first, rounds), roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: listing.botsOn && fill, setup: mode, ...(mode === "sequence" ? { games } : {}) });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds: roundsFor(first, rounds), roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: listing.botsOn && fill, hostScreen, setup: mode, ...(mode === "sequence" ? { games } : {}) });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
@@ -83,7 +84,7 @@ export function useLobbies() {
     router.push(`/play/${c}`);
   };
 
-  return { router, state, connect, ready, ...listing, code, setCode, game, setGame, mode, setMode, games, setGames, langs, setLangs, rounds, setRounds, busy, fill, setFill, error, create, pick, join };
+  return { router, state, connect, ready, ...listing, code, setCode, game, setGame, mode, setMode, games, setGames, langs, setLangs, rounds, setRounds, busy, fill, setFill, hostScreen, setHostScreen, error, create, pick, join };
 }
 
 export type LobbiesState = ReturnType<typeof useLobbies>;

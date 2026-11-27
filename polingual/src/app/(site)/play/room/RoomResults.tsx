@@ -56,10 +56,10 @@ function NextBar({ g }: { g: LiveRoom }) {
         <ButtonLink size="md" href={`/play/${next.code}`} data-testid="next-game">Next game: {next.name}</ButtonLink>
       ) : null}
       {auto && can.nextNow ? (
-        <Button size="md" disabled={busy} onClick={() => void act(() => api.next(lobby.id))} data-testid="next-now">Next game now</Button>
+        <Button size="md" disabled={busy} onClick={() => void act(() => api.next(lobby.id))} data-testid="next-now">Next game</Button>
       ) : null}
       {can.end ? <EndGame g={g} /> : null}
-      <Button variant="quiet" size="sm" onClick={() => void g.leave()} data-testid="results-leave">Leave</Button>
+      <Button variant="quiet" size="sm" onClick={() => void g.leave()} data-testid="results-leave">Leave game</Button>
       <ButtonLink variant="ghost" size="md" href={LEARN_HREF} data-testid="results-learn">Start learning</ButtonLink>
     </section>
   );
@@ -115,7 +115,7 @@ export function RoomFinal({ g }: { g: LiveRoom }) {
       <SavePrompt g={g} guest={guest} always />
       <section className={styles.nextBar}>
         <Button size="md" disabled={busy} onClick={() => void g.newLobby(false)} data-testid="play-again">Play again</Button>
-        <Button variant="ghost" size="md" onClick={() => void g.leave()} data-testid="final-leave">Leave</Button>
+        <Button variant="ghost" size="md" onClick={() => void g.leave()} data-testid="final-leave">Leave game</Button>
       </section>
     </div>
   );

@@ -1,6 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { hostOnScreen } from "@/lib/lobby/room";
+import TvHost from "./tv/TvHost";
 import { useIsPhone } from "@/lib/hooks/phone";
 import { usePauseAds } from "./AdsContext";
 import { phaseAt } from "@/lib/lobby/client";
@@ -22,9 +24,13 @@ import { RoomRound } from "./room/RoomRound";
 import { RoomWaiting } from "./room/RoomWaiting";
 import { useRoomGame, type LiveRoom, type RoomGameState } from "./room/useRoomGame";
 
-function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId, code: string) => void }) {
+function RoomGame({ code: rawCode, onGame, onScreen }: { code: string; onGame: (g: WorldId, code: string) => void; onScreen: () => void }) {
   const g = useRoomGame(rawCode, onGame);
   usePauseAds(useIsPhone());
+  const screen = !!g.lobby && hostOnScreen(g.lobby);
+  useEffect(() => {
+    if (screen) onScreen();
+  }, [screen, onScreen]);
   if (!g.code) {
     return (
       <div className={app.stack}>
@@ -102,10 +108,13 @@ function InGame({ g, phase }: { g: LiveRoom; phase: ReturnType<typeof phaseAt> }
 
 export default function Room({ code }: { code: string }) {
   const [room, setRoom] = useState<{ game: WorldId; code: string | null }>({ game: "duel", code: null });
+  const [screen, setScreen] = useState(false);
   const onGame = useCallback((game: WorldId, c: string) => setRoom((r) => (r.game === game && r.code === c ? r : { game, code: c })), []);
+  const onScreen = useCallback(() => setScreen(true), []);
+  if (screen) return <TvHost code={code} onPlay={() => setScreen(false)} />;
   return (
     <GameWorld id={room.game} compact aside={room.code ? <RoomBadge code={room.code} /> : null}>
-      <RoomGame code={code} onGame={onGame} />
+      <RoomGame code={code} onGame={onGame} onScreen={onScreen} />
     </GameWorld>
   );
 }

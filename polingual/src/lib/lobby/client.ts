@@ -152,7 +152,7 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/continue", { body: { lobbyId } })).lobby;
   }
 
-  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean; setup?: string; games?: string[] }): Promise<WebLobbyState> {
+  async create(input: { name: string; root: string; targets: string[]; rounds: number; roundSeconds: number; listed: boolean; displayName: string; game: string; fillBots?: boolean; setup?: string; games?: string[]; hostScreen?: boolean }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("", { body: { ...input, reveal: true } })).lobby;
   }
 
@@ -170,6 +170,10 @@ export class LobbyApi {
 
   async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[] }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/settings", { body: { lobbyId, ...input } })).lobby;
+  }
+
+  async hostMode(lobbyId: string, screen: boolean, displayName?: string): Promise<WebLobbyState> {
+    return (await this.call<{ lobby: WebLobbyState }>("/hostmode", { body: { lobbyId, screen, ...(displayName ? { displayName } : {}) } })).lobby;
   }
 
   async end(lobbyId: string): Promise<WebLobbyState> {

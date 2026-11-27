@@ -304,6 +304,7 @@ export async function memberLobby(uid: string, lobbyId: unknown, screenOk = fals
   const id = lobbyIdOf(lobbyId);
   const lobby = await lobbyById(id);
   if (!lobby) throw new GroupsError("not_found", 404);
+  if (lobby.host_id === uid) return lobby;
   if (!seatAllowed(await seatOf(id, uid, screenOk), screenOk)) throw new GroupsError("not_found", 404);
   return lobby;
 }
@@ -314,6 +315,12 @@ async function seatOf(lobbyId: string, uid: string, screenOk: boolean): Promise<
   if (!screenOk) return null;
   const screens = check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "screen") as unknown[];
   return screens.length ? "screen" : null;
+}
+
+export async function freshScreens(lobbyIds: string[], now: number): Promise<Set<string>> {
+  if (!lobbyIds.length) return new Set();
+  const rows = check(await service().from(SCREENS).select("lobby_id,last_seen").in("lobby_id", lobbyIds), "screens seen") as { lobby_id: string; last_seen: string }[];
+  return new Set(rows.filter((r) => now - Date.parse(r.last_seen) < STALE_MS).map((r) => r.lobby_id));
 }
 
 export async function screensOf(lobbyId: string): Promise<string[]> {
