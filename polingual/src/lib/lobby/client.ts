@@ -71,6 +71,7 @@ const ERRORS: Record<string, string> = {
   not_found: "No lobby with that code.",
   lobby_full: "That lobby is full.",
   audience_age: "Players under 13 take a seat in the game. Ask the host to free one.",
+  audience_signin: "Sign in to watch, or ask the host to let guests watch.",
   seat_open: "A seat is open. Join the game instead.",
   lobby_started: "That game already started.",
   setup_off: "Game sets and random mix are off right now. Pick one game.",
@@ -173,7 +174,7 @@ export class LobbyApi {
     return (await this.call<{ lobby: WebLobbyState }>("/ready", { body: { lobbyId, ready } })).lobby;
   }
 
-  async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[] }): Promise<WebLobbyState> {
+  async settings(lobbyId: string, input: { setup?: string; game?: string; games?: string[]; targets?: string[]; guestsWatch?: boolean }): Promise<WebLobbyState> {
     return (await this.call<{ lobby: WebLobbyState }>("/settings", { body: { lobbyId, ...input } })).lobby;
   }
 

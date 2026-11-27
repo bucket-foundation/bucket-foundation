@@ -36,7 +36,7 @@ test("the last delete_lobby_user erases every lobby and league table that holds 
   const all = migrations();
   const tables = userTables(all);
   const erase = lastErase(all);
-  assert.equal(erase.name, "20261127400000_polingual_delete_lobby_user_final.sql");
+  assert.equal(erase.name, "20261127420000_polingual_delete_lobby_user_bonus.sql");
   assert.ok(tables.size >= 12, `found ${tables.size} user tables`);
   const missing: string[] = [];
   for (const [table, cols] of Array.from(tables)) {
@@ -52,4 +52,16 @@ test("the last delete_lobby_user erases every lobby and league table that holds 
 test("delete_lobby_user stays closed to public roles", () => {
   const erase = lastErase(migrations());
   assert.match(erase.body, /revoke execute on function bucket\.delete_lobby_user\(uuid\) from public, anon, authenticated;/);
+});
+
+test("bonus claims and votes are erased, RLS-locked and closed to public roles", () => {
+  const all = migrations();
+  const tables = userTables(all);
+  assert.ok(tables.has("lobby_bonus_claims") && tables.has("lobby_bonus_votes"));
+  const sql = all.find((m) => m.name === "20261127410000_polingual_lobby_bonus_once.sql")?.sql ?? "";
+  for (const t of ["lobby_bonus_claims", "lobby_bonus_votes"]) {
+    assert.match(sql, new RegExp(`alter table bucket\\.${t} enable row level security;`));
+    assert.match(sql, new RegExp(`revoke all on bucket\\.${t} from anon, authenticated;`));
+  }
+  assert.match(sql, /add column if not exists guests_watch boolean not null default false/);
 });

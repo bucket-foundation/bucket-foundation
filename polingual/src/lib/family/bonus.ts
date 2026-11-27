@@ -2,7 +2,7 @@ export const BONUS_PATH = "/api/academy/lobbies/bonus";
 
 export type AtlasBonus = { kind: "atlas"; lobbyId: string; clip: number; lat: number; lon: number };
 export type ForeheadBonus = { kind: "forehead"; lobbyId: string; card: number; got: boolean };
-export type BonusResult = { ok: true; points?: number; km?: number; lang?: string; got?: boolean } | { ok: false; error: string };
+export type BonusResult = { ok: true; points?: number; km?: number; got?: boolean } | { ok: false; error: string };
 
 export async function postBonus(f: typeof fetch, token: string, body: AtlasBonus | ForeheadBonus): Promise<BonusResult> {
   try {

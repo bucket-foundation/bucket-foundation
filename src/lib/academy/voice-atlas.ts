@@ -113,3 +113,18 @@ export function atlasPrompts(items: readonly LangItem[], lobby: { id: string; se
     return { lobby_id: lobby.id, round, lang: r.lang, item_id: r.itemId, mode: "voice", gloss: r.form, choices: shuffled([r.lang, ...others], rand), answer: r.lang, licence: r.licence };
   });
 }
+
+export function nightAtlasKey(lobby: { id: string; started_at: string | null }): string {
+  return `night:${lobby.id}:${lobby.started_at ?? ""}`;
+}
+
+export type NightAtlasRound = { clip: number; form: string; licence: ClipLicence; lang?: string; meaning?: string };
+
+export function atlasRevealedBefore(slot: { kind: string; clip?: number } | null): number {
+  if (slot?.kind === "voice-atlas") return slot.clip ?? 0;
+  return slot ? Number.MAX_SAFE_INTEGER : 0;
+}
+
+export function nightAtlasRounds(rounds: readonly AtlasRound[], revealedBefore: number, screen: boolean): NightAtlasRound[] {
+  return rounds.map((r, clip) => (screen || clip < revealedBefore ? { clip, form: r.form, licence: r.licence, lang: r.lang, meaning: r.meaning } : { clip, form: r.form, licence: r.licence }));
+}

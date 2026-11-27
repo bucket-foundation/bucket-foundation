@@ -48,7 +48,7 @@ test("a screen seat reads state and nothing else", () => {
 
 const HOST_ONLY = new Set(["start", "settings", "next", "end", "bots", "hostmode"]);
 
-test("only the state route admits screen seats, and only host-only routes admit a seatless host", () => {
+test("screen seats reach only the screen-facing routes, and only host-only routes admit a seatless host", () => {
   for (const name of readdirSync(ROUTES, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)) {
     let src: string;
     try {
@@ -60,6 +60,7 @@ test("only the state route admits screen seats, and only host-only routes admit 
     const playerOnly = (src.match(/memberLobby\(a\.uid, a\.body\??\.lobbyId\)/g) ?? []).length;
     const hostOnly = (src.match(/memberLobby\(a\.uid, a\.body\??\.lobbyId, false, true\)/g) ?? []).length;
     if (name === "state") assert.match(src, /memberLobby\(a\.uid, params\.get\("lobbyId"\), true, true\)/);
+    else if (name === "atlas") assert.match(src, /memberLobby\(a\.uid, new URL\(req\.url\)\.searchParams\.get\("lobbyId"\), true, true\)/);
     else if (name === "react") assert.equal((src.match(/memberLobby\(a\.uid, [^,()]+, true, true\)/g) ?? []).length, calls, "react admits every seat in the room");
     else if (name === "bonus") assert.equal(playerOnly + hostOnly, calls, "bonus admits players, and its host for forehead marks");
     else if (HOST_ONLY.has(name)) assert.equal(hostOnly, calls, `${name} admits players and its host`);

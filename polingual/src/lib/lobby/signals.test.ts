@@ -1,11 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { addFloat, FLOAT_MAX, FLOAT_MS, readSignal, tally } from "./signals";
+import { addFloat, audienceTally, FLOAT_MAX, FLOAT_MS, readSignal } from "./signals";
 
-test("readSignal keeps only the fixed reactions and well-formed votes", () => {
+test("readSignal keeps only the fixed reactions and drops broadcast votes", () => {
   assert.deepEqual(readSignal({ kind: "react", emoji: "🔥", from: "a" }), { kind: "react", emoji: "🔥", from: "a" });
   assert.equal(readSignal({ kind: "react", emoji: "💩" }), null);
-  assert.deepEqual(readSignal({ kind: "vote", round: 1, choice: "es:gato", from: "a" }), { kind: "vote", round: 1, choice: "es:gato", from: "a" });
+  assert.equal(readSignal({ kind: "vote", round: 1, choice: "es:gato", from: "a" }), null);
   assert.equal(readSignal({ kind: "vote", round: 1, choice: "x" }), null);
   assert.equal(readSignal("nope"), null);
 });
@@ -19,9 +19,9 @@ test("floats expire and stay capped", () => {
   assert.equal(f.length, FLOAT_MAX);
 });
 
-test("tally counts one vote per voter, the last one wins", () => {
-  const votes = new Map([["a", "es:gato"], ["b", "fr:chat"], ["c", "es:gato"]]);
-  assert.deepEqual(tally(votes), [{ choice: "es:gato", votes: 2 }, { choice: "fr:chat", votes: 1 }]);
-  votes.set("b", "es:gato");
-  assert.deepEqual(tally(votes), [{ choice: "es:gato", votes: 3 }]);
+test("the TV reads the audience tally the server reported for the round", () => {
+  const tallies = [{ round: 4, choices: [{ choice: "es:gato", votes: 2 }], total: 2 }, { round: 3, choices: [], total: 0 }];
+  assert.deepEqual(audienceTally(tallies, 4)?.choices[0], { choice: "es:gato", votes: 2 });
+  assert.equal(audienceTally(tallies, 3), null);
+  assert.equal(audienceTally(undefined, 4), null);
 });

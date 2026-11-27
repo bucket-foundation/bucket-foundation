@@ -3,8 +3,10 @@ import { json, preflight } from "@/lib/academy/groups-server";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import { hiddenUsers, normalizeDisplayName, uuidOrNull } from "@/lib/academy/groups";
 import { blocksTouching, clientIp, NAME_NOT_ALLOWED } from "@/lib/academy/groups-server";
-import { audienceDecision, audienceEnabled, JOIN_PER_MINUTE, joinLobbyDecision, isRace, nativePlayable, nativePlays, NATIVE_PLAYS_HEADER, normalizeLobbyCode, RACE_CLIENT_HEADER, WEB_CLIENT_HEADER, screenJoinDecision, wantsScreen } from "@/lib/academy/lobbies";
+import { audienceDecision, audienceEnabled, type AudienceViewer, JOIN_PER_MINUTE, joinLobbyDecision, isRace, nativePlayable, nativePlays, NATIVE_PLAYS_HEADER, normalizeLobbyCode, RACE_CLIENT_HEADER, WEB_CLIENT_HEADER, screenJoinDecision, wantsScreen } from "@/lib/academy/lobbies";
 import { botsEnabled } from "@/lib/academy/lobby-bots";
+import { bearer, isGuestToken } from "@/lib/academy/lobby-guests";
+import { readAgeBand } from "@/lib/research-os/learn-gate";
 import { service } from "@/lib/academy/groups-server";
 import { addAudience, addPlayer, addScreen, screensOf, PLAYERS, checkLobby, authed, limited, lobbyByCode, lobbyById, lobbyFail, lobbyState, playersOf } from "@/lib/academy/lobbies-server";
 
@@ -13,6 +15,13 @@ export const dynamic = "force-dynamic";
 
 export function OPTIONS(): NextResponse {
   return preflight();
+}
+
+async function audienceViewer(req: NextRequest, uid: string): Promise<AudienceViewer | null> {
+  const token = bearer(req.headers.get("authorization"));
+  if (token && isGuestToken(token)) return { guest: true };
+  const band = await readAgeBand(uid).catch(() => ({ ok: false as const }));
+  return band.ok ? { guest: false, band: band.band } : null;
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
@@ -33,9 +42,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const [players, blocks] = await Promise.all([playersOf([lobby.id]), blocksTouching(a.uid)]);
     if (hiddenUsers(blocks, a.uid).has(lobby.host_id)) return json({ error: "not_found" }, 404);
     if (a.body?.audience === true && audienceEnabled()) {
-      const seat = audienceDecision(lobby, players.map((p) => p.user_id), a.uid, a.body.ageBand);
+      const viewer = await audienceViewer(req, a.uid);
+      if (!viewer) return json({ error: "consent_unavailable" }, 503);
+      const seat = audienceDecision(lobby, players.map((p) => p.user_id), a.uid, viewer);
       if (seat === "closed") return json({ error: "not_found" }, 404);
       if (seat === "under13") return json({ error: "audience_age" }, 409);
+      if (seat === "guests_off") return json({ error: "audience_signin" }, 409);
       if (seat === "seat_open") return json({ error: "seat_open" }, 409);
       if (seat === "audience") await addAudience(lobby.id, a.uid);
       return json({ lobby: await lobbyState(lobby, a.uid, Date.now(), blocks) });

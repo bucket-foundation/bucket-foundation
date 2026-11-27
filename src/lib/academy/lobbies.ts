@@ -167,6 +167,7 @@ export interface LobbyRow {
   created_at: string;
   standing_slot?: string | null;
   bot_fill?: boolean;
+  guests_watch?: boolean;
   playlist?: LobbyGame[] | null;
   mix?: boolean;
   start_at?: string | null;
@@ -332,6 +333,8 @@ export interface LobbyState {
   playlist: LobbyGame[];
   coins: number;
   powers: { round: number; kind: PowerKind }[];
+  guestsWatch?: boolean;
+  bonusVotes?: BonusTally[];
 }
 
 export function generateLobbyCode(random: (n: number) => Uint8Array = (n) => crypto.getRandomValues(new Uint8Array(n))): string {
@@ -882,6 +885,7 @@ export function assembleLobby(
     results: revealed.map((a) => ({ round: a.round, userId: a.user_id, correct: a.correct, ms: a.ms, points: a.points })),
     standing: !!lobby.standing_slot,
     botFill: lobby.bot_fill === true,
+    ...(lobby.guests_watch === undefined ? {} : { guestsWatch: lobby.guests_watch === true }),
     botsEnabled: false,
     nextStartAt: lobby.ended_at ? null : nextStartAt,
     ended: !!lobby.ended_at,
@@ -998,14 +1002,39 @@ export function audienceEnabled(env: Record<string, string | undefined> = proces
   return flagOn(env.POLINGUAL_LOBBY_AUDIENCE);
 }
 
-export type AudienceJoin = "player" | "audience" | "seat_open" | "under13" | "closed";
+export type AudienceJoin = "player" | "audience" | "seat_open" | "under13" | "guests_off" | "closed";
 
-export function audienceDecision(lobby: Pick<LobbyRow, "status" | "standing_slot">, playerIds: readonly string[], uid: string, ageBand: unknown): AudienceJoin {
+export type AudienceViewer = { guest: true } | { guest: false; band: string | null };
+
+export function audienceDecision(lobby: Pick<LobbyRow, "status" | "standing_slot" | "guests_watch">, playerIds: readonly string[], uid: string, viewer: AudienceViewer): AudienceJoin {
   if (playerIds.includes(uid)) return "player";
   if (lobby.status === "done" || lobby.standing_slot) return "closed";
-  if (ageBand !== "13to17" && ageBand !== "18plus") return "under13";
+  if (viewer.guest) {
+    if (lobby.guests_watch !== true) return "guests_off";
+  } else if (viewer.band !== "13to17" && viewer.band !== "18plus") return "under13";
   if (lobby.status === "lobby" && playerIds.length < LOBBY_CAP) return "seat_open";
   return "audience";
+}
+
+export type BonusTally = { round: number; choices: { choice: string; votes: number }[]; total: number };
+
+export function bonusTallies(rows: readonly { round: number; user_id: string; choice: string }[]): BonusTally[] {
+  const byRound = new Map<number, Map<string, string>>();
+  for (const r of rows) {
+    const voters = byRound.get(r.round) ?? new Map<string, string>();
+    if (!voters.has(r.user_id)) voters.set(r.user_id, r.choice);
+    byRound.set(r.round, voters);
+  }
+  return Array.from(byRound, ([round, voters]) => {
+    const counts = new Map<string, number>();
+    for (const c of Array.from(voters.values())) counts.set(c, (counts.get(c) ?? 0) + 1);
+    const choices = Array.from(counts, ([choice, votes]) => ({ choice, votes })).sort((a, b) => b.votes - a.votes || a.choice.localeCompare(b.choice));
+    return { round, choices, total: voters.size };
+  }).sort((a, b) => a.round - b.round);
+}
+
+export function answerMultiplier(final: boolean, doubled: boolean): number {
+  return final || doubled ? 2 : 1;
 }
 
 export type RoomSignal = { kind: "react"; emoji: Reaction } | { kind: "vote"; round: number; choice: string };

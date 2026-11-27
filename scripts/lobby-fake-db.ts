@@ -7,6 +7,8 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
     let op: "select" | "update" | "delete" | "upsert" | "insert" = "select";
     let patch: Row = {};
     let single = false;
+    let ignore = false;
+    let returning = false;
     let order: { col: string; asc: boolean } | null = null;
     let lim = Infinity;
     const filters: Filter[] = [];
@@ -23,10 +25,11 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
         const k = keys[table] ?? [];
         const hit = k.length ? rows.find((r) => k.every((c) => r[c] === patch[c])) : undefined;
         if (hit && op === "insert") return { data: null, error: { code: "23505", message: "duplicate key" } };
+        if (hit && op === "upsert" && ignore) return { data: returning ? [] : null, error: null };
         if (hit && op === "upsert") Object.assign(hit, patch);
         else rows.push({ ...patch });
         log.push(`${op} ${table}`);
-        return { data: null, error: null };
+        return { data: returning ? [{ ...patch }] : null, error: null };
       }
       let hit = rows.filter((r) => filters.every((f) => f(r)));
       if (op === "update") for (const r of hit) Object.assign(r, patch);
@@ -41,9 +44,9 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
       return { data: single ? data[0] ?? null : data, error: null };
     };
     const chain = {
-      select: () => chain,
+      select: () => ((returning = op !== "select"), chain),
       update: (p: Row) => ((op = "update"), (patch = p), chain),
-      upsert: (p: Row) => ((op = "upsert"), (patch = p), chain),
+      upsert: (p: Row, o?: { ignoreDuplicates?: boolean }) => ((op = "upsert"), (patch = p), (ignore = o?.ignoreDuplicates === true), chain),
       insert: (p: Row | Row[]) => ((op = "insert"), (patch = p as Row), chain),
       delete: () => ((op = "delete"), chain),
       eq: (c: string, v: unknown) => (filters.push((r) => r[c] === v), chain),

@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight } from "@/lib/academy/groups-server";
 import { bonusQuestion, roomSignal } from "@/lib/academy/lobbies";
-import { authed, broadcastRoom, limited, lobbyFail, memberLobby, playersOf, roomRealtime } from "@/lib/academy/lobbies-server";
+import { audienceSeat, authed, broadcastRoom, limited, lobbyFail, memberLobby, promptsOf, recordVote, roomRealtime } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,8 +34,14 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const lobby = await memberLobby(a.uid, a.body?.lobbyId, true, true);
     if (lobby.status === "done") return json({ error: "lobby_started" }, 409);
-    if (signal.kind === "vote" && (!bonusQuestion(lobby, signal.round) || (await playersOf([lobby.id])).some((p) => p.user_id === a.uid))) return json({ error: "not_audience" }, 403);
     if (await limited(`react:${lobby.id}:${a.uid}`, SIGNALS_PER_MINUTE)) return json({ error: "rate_limited" }, 429);
+    if (signal.kind === "vote") {
+      if (!bonusQuestion(lobby, signal.round) || !lobby.started_at || !(await audienceSeat(lobby.id, a.uid))) return json({ error: "not_audience" }, 403);
+      const prompt = (await promptsOf(lobby.id)).find((p) => p.round === signal.round);
+      if (!prompt?.choices.includes(signal.choice)) return json({ error: "bad_request" }, 400);
+      if (!(await recordVote(lobby.id, lobby.started_at, signal.round, a.uid, signal.choice))) return json({ error: "already_voted" }, 409);
+      return json({ ok: true });
+    }
     const from = createHash("sha256").update(`${lobby.id}:${a.uid}`).digest("hex").slice(0, 12);
     const sent = await broadcastRoom(lobby.id, { ...signal, from });
     return json({ ok: sent });

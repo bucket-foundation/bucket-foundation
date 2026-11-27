@@ -16,6 +16,8 @@ import {
   audienceEnabled,
   nightRound,
   stealBonus,
+  answerMultiplier,
+  bonusTallies,
   hostLeaveDecision,
   endEnabled,
   nextGameDue,
@@ -37,6 +39,7 @@ import {
   type LobbyPromptRow,
   type LobbyRow,
   type LobbyState,
+  type BonusTally,
   type PowerRow,
   revealEnabled,
   setupEnabled,
@@ -68,7 +71,7 @@ export async function powersOf(lobby: Pick<LobbyRow, "id" | "game">): Promise<Po
   return check(await service().from(POWERS).select("lobby_id,user_id,round,kind").eq("lobby_id", lobby.id), "powers") as PowerRow[];
 }
 const LOBBY_BASE_COLS = "id,code,host_id,name,game,root,targets,seed,status,listed,rounds,round_seconds,started_at,version,created_at,standing_slot,bot_fill";
-export const LOBBY_COLS = `${LOBBY_BASE_COLS}${revealEnabled() ? ",reveal_seconds" : ""}${setupEnabled() ? ",playlist,mix,start_at" : ""}${endEnabled() ? ",ended_at" : ""}` as typeof LOBBY_BASE_COLS;
+export const LOBBY_COLS = `${LOBBY_BASE_COLS}${revealEnabled() ? ",reveal_seconds" : ""}${setupEnabled() ? ",playlist,mix,start_at" : ""}${endEnabled() ? ",ended_at" : ""}${audienceEnabled() ? ",guests_watch" : ""}` as typeof LOBBY_BASE_COLS;
 const PLAYER_BASE_COLS = "lobby_id,user_id,display_name,ready,score,last_seen,joined_at,is_bot,skill,flag";
 export const PLAYER_COLS = `${PLAYER_BASE_COLS}${setupEnabled() ? ",continues" : ""}${endEnabled() ? ",total" : ""}` as typeof PLAYER_BASE_COLS;
 
@@ -76,6 +79,36 @@ export async function limited(key: string, max: number): Promise<boolean> {
   const res = await service().rpc("lobby_take", { p_key: key, p_limit: max });
   if (res.error) throw new Error(`limit: ${res.error.message}`);
   return res.data !== true;
+}
+
+export const BONUS_CLAIMS = "lobby_bonus_claims";
+export const BONUS_VOTES = "lobby_bonus_votes";
+
+export async function claimOnce(table: string, row: Record<string, unknown>, keys: string): Promise<boolean> {
+  const rows = check(await service().from(table).upsert(row, { onConflict: keys, ignoreDuplicates: true }).select("lobby_id"), "claim") as unknown[] | null;
+  return (rows ?? []).length > 0;
+}
+
+export async function claimBonus(lobbyId: string, startedAt: string, slot: string, uid: string): Promise<boolean> {
+  return claimOnce(BONUS_CLAIMS, { lobby_id: lobbyId, started_at: startedAt, slot, user_id: uid }, "lobby_id,started_at,slot,user_id");
+}
+
+export async function recordVote(lobbyId: string, startedAt: string, round: number, uid: string, choice: string): Promise<boolean> {
+  return claimOnce(BONUS_VOTES, { lobby_id: lobbyId, started_at: startedAt, round, user_id: uid, choice }, "lobby_id,started_at,round,user_id");
+}
+
+export async function bonusVotesOf(lobby: Pick<LobbyRow, "id" | "started_at">): Promise<BonusTally[]> {
+  if (!audienceEnabled() || !lobby.started_at) return [];
+  return bonusTallies(check(await service().from(BONUS_VOTES).select("round,user_id,choice").eq("lobby_id", lobby.id).eq("started_at", lobby.started_at), "votes") as { round: number; user_id: string; choice: string }[]);
+}
+
+export async function tvSeat(lobbyId: string, uid: string): Promise<boolean> {
+  const q = service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid);
+  return (check(await (audienceEnabled() ? q.eq("role", "screen") : q).limit(1), "tv seat") as unknown[]).length > 0;
+}
+
+export async function audienceSeat(lobbyId: string, uid: string): Promise<boolean> {
+  return (check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).eq("role", "audience").limit(1), "audience seat") as unknown[]).length > 0;
 }
 
 export async function promptsOf(lobbyId: string): Promise<LobbyPromptRow[]> {
@@ -204,16 +237,15 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   const decision = tiles ? tileAnswerDecision(lobby, prompt, round, choice, now, prior, joinedRound(lobby, me?.joined_at), me?.continues ?? 0) : answerDecision(lobby, prompt, round, choice, now);
   if (!decision.ok) return decision;
   if (!tiles) decision.points = await familyPoints(lobby.id, uid, round, lobby.round_seconds, decision);
-  if (lobby.game === "duel" && decision.points > 0) {
-    const boost = check(await service().from(POWERS).select("kind").eq("lobby_id", lobby.id).eq("user_id", uid).eq("round", round).eq("kind", "double").limit(1), "boost") as unknown[];
-    if (boost.length) decision.points *= 2;
-  }
-  if (decision.correct && nightRound(lobby)?.final) {
+  const final = decision.correct && nightRound(lobby)?.final === true;
+  const doubled = lobby.game === "duel" && decision.points > 0 && (check(await service().from(POWERS).select("kind").eq("lobby_id", lobby.id).eq("user_id", uid).eq("round", round).eq("kind", "double").limit(1), "boost") as unknown[]).length > 0;
+  decision.points *= answerMultiplier(final, doubled);
+  if (final) {
     const [answers, seats] = await Promise.all([
       check(await service().from(ANSWERS).select("user_id,correct").eq("lobby_id", lobby.id).eq("round", round), "final answers") as { user_id: string; correct: boolean }[],
       check(await service().from(PLAYERS).select("user_id,score").eq("lobby_id", lobby.id), "final scores") as { user_id: string; score: number }[],
     ]);
-    decision.points = decision.points * 2 + stealBonus(uid, seats, answers);
+    decision.points += stealBonus(uid, seats, answers);
   }
   const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
   if (res.error) throw new Error(res.error.message);
@@ -258,8 +290,9 @@ export async function lobbyState(lobby: LobbyRow, uid: string, now: number, bloc
     const row = shared.get(seat.round) ?? seat;
     return revealEntries(row, lobby.root, corpus?.byId.get(row.item_id) ?? null, corpusLookup);
   };
+  const bonusVotes = nightRound(lobby)?.final ? await bonusVotesOf(lobby) : [];
   const state = assembleLobby(lobby, players, msgs, check(answers, "answers") as LobbyAnswerRow[], b, uid, now, await seatRows(lobby, uid, prompts), nextStartOf(lobby), describe, powers);
-  return { ...state, botsEnabled: botsEnabled() };
+  return { ...state, botsEnabled: botsEnabled(), ...(bonusVotes.length ? { bonusVotes } : {}) };
 }
 
 export function nextStartOf(lobby: LobbyRow): string | null {

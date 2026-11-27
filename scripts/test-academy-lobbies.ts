@@ -13,6 +13,8 @@ import {
   foreheadHolder,
   bonusQuestion,
   audienceDecision,
+  bonusTallies,
+  answerMultiplier,
   roomSignal,
   REACTIONS,
   nightRound,
@@ -586,16 +588,42 @@ test("a trailing player steals when someone ahead already missed the final quest
   assert.equal(stealBonus("mid", players, []), 0);
 });
 
-test("the audience opens past the player cap or once a game started, and never to an under-13 seat", () => {
+test("the audience opens past the player cap or once a game started, never to an under-13 or unknown account, and to guests only when the host allows it", () => {
   const full = Array.from({ length: LOBBY_CAP }, (_, i) => `p${i}`);
-  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, full, "x", "18plus"), "audience");
-  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a", "b"], "x", "13to17"), "audience");
-  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, ["a"], "x", "18plus"), "seat_open");
-  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a"], "x", "under13"), "under13");
-  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a"], "x", undefined), "under13");
-  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a", "x"], "x", "18plus"), "player");
-  assert.equal(audienceDecision({ status: "done", standing_slot: null }, ["a"], "x", "18plus"), "closed");
-  assert.equal(audienceDecision({ status: "playing", standing_slot: "daily-romance" }, ["a"], "x", "18plus"), "closed");
+  const adult = { guest: false as const, band: "18plus" };
+  const off = { status: "playing" as const, standing_slot: null };
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, full, "x", adult), "audience");
+  assert.equal(audienceDecision(off, ["a", "b"], "x", { guest: false, band: "13to17" }), "audience");
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, ["a"], "x", adult), "seat_open");
+  assert.equal(audienceDecision(off, ["a"], "x", { guest: false, band: "under13" }), "under13");
+  assert.equal(audienceDecision(off, ["a"], "x", { guest: false, band: null }), "under13");
+  assert.equal(audienceDecision(off, ["a", "x"], "x", adult), "player");
+  assert.equal(audienceDecision({ status: "done", standing_slot: null }, ["a"], "x", adult), "closed");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: "daily-romance" }, ["a"], "x", adult), "closed");
+  assert.equal(audienceDecision(off, ["a"], "g", { guest: true }), "guests_off");
+  assert.equal(audienceDecision({ ...off, guests_watch: false }, ["a"], "g", { guest: true }), "guests_off");
+  assert.equal(audienceDecision({ ...off, guests_watch: true }, ["a"], "g", { guest: true }), "audience");
+});
+
+test("bonus tallies count one stored vote per voter per round", () => {
+  const t = bonusTallies([
+    { round: 4, user_id: "a", choice: "es:gato" },
+    { round: 4, user_id: "b", choice: "fr:chat" },
+    { round: 4, user_id: "c", choice: "es:gato" },
+    { round: 4, user_id: "a", choice: "fr:chat" },
+    { round: 2, user_id: "a", choice: "x" },
+  ]);
+  assert.deepEqual(t, [
+    { round: 2, choices: [{ choice: "x", votes: 1 }], total: 1 },
+    { round: 4, choices: [{ choice: "es:gato", votes: 2 }, { choice: "fr:chat", votes: 1 }], total: 3 },
+  ]);
+});
+
+test("the final caps the answer multiplier at x2, with or without a double power", () => {
+  assert.equal(answerMultiplier(true, true), 2);
+  assert.equal(answerMultiplier(true, false), 2);
+  assert.equal(answerMultiplier(false, true), 2);
+  assert.equal(answerMultiplier(false, false), 1);
 });
 
 test("room signals carry one of 8 fixed reactions or a vote, nothing else", () => {

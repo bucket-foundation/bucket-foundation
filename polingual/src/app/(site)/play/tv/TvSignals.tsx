@@ -3,9 +3,8 @@
 import type { CSSProperties } from "react";
 import { bonusQuestion } from "@academy/lobbies";
 import { phaseAt, type WebLobbyState } from "@/lib/lobby/client";
-import { FLOAT_MS, tally, type Float } from "@/lib/lobby/signals";
+import { audienceTally, FLOAT_MS, type Float } from "@/lib/lobby/signals";
 import { tvChoice } from "@/lib/lobby/tv";
-import type { RoomSignals } from "./useRoomSignals";
 import tv from "./tv.module.css";
 
 export function TvFloats({ floats }: { floats: Float[] }) {
@@ -21,16 +20,16 @@ export function TvFloats({ floats }: { floats: Float[] }) {
   );
 }
 
-export function TvAudience({ lobby, now, votes }: { lobby: WebLobbyState; now: number; votes: RoomSignals["votes"] }) {
+export function TvAudience({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   const phase = phaseAt(lobby, now);
   if (phase.kind !== "round" && phase.kind !== "reveal") return null;
   if (!bonusQuestion(lobby, phase.index)) return null;
-  const round = votes.get(phase.index);
-  if (!round?.size) return null;
-  const top = tally(round)[0];
+  const round = audienceTally(lobby.bonusVotes, phase.index);
+  if (!round) return null;
+  const top = round.choices[0];
   return (
     <p className={tv.audience} data-testid="tv-audience">
-      Bonus question, audience ({round.size}): {phase.kind === "reveal" ? `picked ${tvChoice(top.choice)}` : "voting"}
+      Bonus question, audience ({round.total}): {phase.kind === "reveal" ? `picked ${tvChoice(top.choice)}` : "voting"}
     </p>
   );
 }

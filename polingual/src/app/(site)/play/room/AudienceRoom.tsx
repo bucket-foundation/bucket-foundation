@@ -46,7 +46,7 @@ export function AudienceRoom({ code: rawCode, band }: { code: string; band: stri
   const prompt = phase.kind === "round" && bonusQuestion(lobby, phase.index) ? promptFor(lobby, phase.index) : null;
   const title = roundTitle(lobby) ?? gameName(lobby.game ?? "daily");
   const vote = (choice: string) => {
-    if (phase.kind !== "round") return;
+    if (phase.kind !== "round" || voted[phase.index]) return;
     setVoted((v) => ({ ...v, [phase.index]: choice }));
     void api.signal(lobby.id, { round: phase.index, choice }).catch(() => undefined);
   };

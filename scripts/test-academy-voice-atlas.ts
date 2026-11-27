@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome, publicPlayback, atlasPrompts } from "../src/lib/academy/voice-atlas";
+import { ATLAS_HOMES, ATLAS_MAX, atlasGhosts, atlasPoints, atlasRounds, distanceKm, nearestHome, publicPlayback, atlasPrompts, atlasRevealedBefore, nightAtlasKey, nightAtlasRounds } from "../src/lib/academy/voice-atlas";
 import { visiblePrompts } from "../src/lib/academy/lobbies";
 
 const langs = Object.keys(ATLAS_HOMES);
@@ -56,4 +56,18 @@ test("lobby atlas prompts carry each clip's licence through to what the TV reads
   const bare = visiblePrompts([{ ...rows[0], licence: null }], 0, false)[0];
   assert.equal(bare.licence, undefined);
   assert.ok(!publicPlayback(bare.licence));
+});
+
+test("night atlas rounds are keyed to the lobby game and hide each language until its clip closes", () => {
+  const key = nightAtlasKey({ id: "L", started_at: "2026-11-27T20:00:00.000Z" });
+  assert.notEqual(key, nightAtlasKey({ id: "L", started_at: "2026-11-27T21:00:00.000Z" }));
+  assert.doesNotMatch(key, /^\d{4}-\d{2}-\d{2}$/);
+  const rounds = atlasRounds(items, key);
+  assert.equal(atlasRevealedBefore(null), 0);
+  assert.equal(atlasRevealedBefore({ kind: "voice-atlas", clip: 2 }), 2);
+  assert.ok(atlasRevealedBefore({ kind: "family-teach" }) >= rounds.length);
+  const phone = nightAtlasRounds(rounds, 2, false);
+  assert.deepEqual(phone.map((r) => r.lang), [rounds[0].lang, rounds[1].lang, undefined, undefined, undefined, undefined]);
+  assert.ok(phone.every((r, i) => r.form === rounds[i].form && r.clip === i));
+  assert.ok(nightAtlasRounds(rounds, 0, true).every((r, i) => r.lang === rounds[i].lang));
 });

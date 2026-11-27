@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { Sfx } from "@/lib/stoa/script";
 import { TvMoments, useTvMoments } from "./TvMoments";
 import { TvAudience, TvFloats } from "./TvSignals";
-import { useRoomSignals, type RoomSignals } from "./useRoomSignals";
+import { useRoomSignals } from "./useRoomSignals";
 import { nightRound, normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { LobbyError, lobbyError, phaseAt, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
@@ -78,7 +78,7 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
         <TvMoments moments={moments} />
         <TvFloats floats={signals.floats} />
         <main className={tv.main}>
-          <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} onPlay={onPlay} votes={signals.votes} />
+          <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} onPlay={onPlay} />
         </main>
       </div>
     </div>
@@ -86,7 +86,7 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
   return host ? createPortal(screen, host) : null;
 }
 
-function TvView({ code, play, sync, now, origin, onPlay, votes }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect" | "api">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string; onPlay?: () => void; votes: RoomSignals["votes"] }) {
+function TvView({ code, play, sync, now, origin, onPlay }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect" | "api">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string; onPlay?: () => void }) {
   const { state, connect } = play;
   const ready = state.status === "ready";
   if (!code) {
@@ -108,7 +108,7 @@ function TvView({ code, play, sync, now, origin, onPlay, votes }: { code: string
   }
   if (!sync.lobby) return sync.error ? <p className={styles.error} role="alert">{sync.error}</p> : <p className={styles.muted} aria-busy="true">Opening the room</p>;
   const url = tvJoinUrl(origin, code);
-  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} votes={votes} token={state.status === "ready" ? state.identity.token : null} />;
+  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} token={state.status === "ready" ? state.identity.token : null} />;
   if (!sync.lobby.isHost) return board;
   const nickname = state.status === "ready" ? state.nickname : "";
   return (
@@ -119,7 +119,7 @@ function TvView({ code, play, sync, now, origin, onPlay, votes }: { code: string
   );
 }
 
-function TvBoard({ lobby, now, url, votes, token }: { lobby: WebLobbyState; now: number; url: string; votes: RoomSignals["votes"]; token: string | null }) {
+function TvBoard({ lobby, now, url, token }: { lobby: WebLobbyState; now: number; url: string; token: string | null }) {
   const phase = phaseAt(lobby, now);
   const rows = lobby.ended ? tvTotals(lobby) : tvPlayers(lobby);
   return (
@@ -134,7 +134,7 @@ function TvBoard({ lobby, now, url, votes, token }: { lobby: WebLobbyState; now:
       </section>
       <section className={tv.round} aria-label="Round" data-testid="tv-round">
         <TvCenter lobby={lobby} now={now} token={token} />
-        <TvAudience lobby={lobby} now={now} votes={votes} />
+        <TvAudience lobby={lobby} now={now} />
       </section>
       <section className={tv.standings} aria-label="Standings">
         <p className={tv.label}>Standings</p>

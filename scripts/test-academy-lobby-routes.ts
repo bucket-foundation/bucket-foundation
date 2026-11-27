@@ -3,6 +3,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 import * as groups from "../src/lib/academy/groups-server";
+import * as gate from "../src/lib/research-os/learn-gate";
+import { ATLAS_HOMES } from "../src/lib/academy/voice-atlas";
 import { fakeDb, type Row } from "./lobby-fake-db";
 
 const ID = "00000000-0000-4000-8000-0000000000c3";
@@ -17,7 +19,7 @@ function seat(uid: string, score = 0): Row {
 }
 
 function setup(lobby: Row, players: Row[]) {
-  const { db, tables } = fakeDb({ lobbies: [lobby], lobby_players: players, lobby_screens: [], lobby_messages: [], lobby_prompts: [], lobby_answers: [], group_blocks: [], lobby_message_reports: [] }, { lobby_players: ["lobby_id", "user_id"] });
+  const { db, tables } = fakeDb({ lobbies: [lobby], lobby_players: players, lobby_screens: [], lobby_messages: [], lobby_prompts: [], lobby_answers: [], group_blocks: [], lobby_message_reports: [] }, { lobby_players: ["lobby_id", "user_id"], lobby_bonus_claims: ["lobby_id", "started_at", "slot", "user_id"], lobby_bonus_votes: ["lobby_id", "started_at", "round", "user_id"] });
   const g = groups as unknown as Record<string, unknown>;
   g.service = () => db;
   g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
@@ -112,4 +114,99 @@ test("starting an atlas lobby stores voice prompts with their clip licence", asy
   const rows = tables.lobby_prompts;
   assert.equal(rows.length, 3);
   assert.ok(rows.every((r) => r.mode === "voice" && r.licence === "device-tts"));
+});
+
+const NIGHT = ["daily", "tiles", "same-word"];
+
+function post(path: string, uid: string, payload: Row) {
+  return new NextRequest(`http://x/api/academy/lobbies/${path}`, { method: "POST", headers: { "x-test-user": uid, "content-type": "application/json", "x-polingual-client": "web" }, body: JSON.stringify({ lobbyId: ID, ...payload }) });
+}
+
+function atlasCorpus() {
+  const langs = Object.keys(ATLAS_HOMES);
+  const words = Array.from({ length: 60 }, (_, n) => {
+    const forms: Record<string, string> = { en: `en${n}` };
+    for (const l of langs) forms[l] = `${l}${n}`;
+    return { id: `w${n}`, kind: "word", category: "food", gloss: `en${n}`, forms };
+  });
+  (groups as unknown as Record<string, unknown>).langCorpus = () => ({ items: words });
+}
+
+test("atlas bonus pays once per clip from a stored claim, even when the slot spans a minute, and keeps the language hidden", async () => {
+  atlasCorpus();
+  const started = new Date(Date.now() - 21_000).toISOString();
+  const tables = setup(room({ status: "done", game: "daily", playlist: NIGHT, started_at: started }), [seat("h"), seat("p")]);
+  const { POST } = await import("../src/app/api/academy/lobbies/bonus/route");
+  const first = await POST(post("bonus", "p", { kind: "atlas", clip: 0, lat: 40, lon: -3 }));
+  assert.equal(first.status, 200);
+  const paid = await body(first);
+  assert.equal("lang" in paid, false);
+  const again = await POST(post("bonus", "p", { kind: "atlas", clip: 0, lat: 40, lon: -3 }));
+  assert.equal(again.status, 409);
+  assert.equal(tables.lobby_players.find((x) => x.user_id === "p")?.score, paid.points);
+  assert.equal(tables.lobby_bonus_claims.length, 1);
+});
+
+test("night atlas rounds hide the language from phones until the clip closes; the TV seat hears it", async () => {
+  atlasCorpus();
+  const started = new Date(Date.now() - 21_000 - 12_500).toISOString();
+  const tables = setup(room({ status: "done", game: "daily", playlist: NIGHT, started_at: started }), [seat("h"), seat("p")]);
+  tables.lobby_screens.push({ lobby_id: ID, user_id: "tv", role: "screen", last_seen: new Date().toISOString() });
+  process.env.POLINGUAL_LOBBY_AUDIENCE = "on";
+  const { GET } = await import("../src/app/api/academy/lobbies/atlas/route");
+  const get = (uid: string) => new NextRequest(`http://x/api/academy/lobbies/atlas?lobbyId=${ID}`, { headers: { "x-test-user": uid } });
+  const phone = (await body(await GET(get("p")))).rounds as { clip: number; lang?: string }[];
+  assert.ok(phone[0].lang);
+  assert.ok(phone.slice(1).every((r) => r.lang === undefined));
+  const tv = (await body(await GET(get("tv")))).rounds as { lang?: string }[];
+  assert.ok(tv.every((r) => typeof r.lang === "string"));
+  delete process.env.POLINGUAL_LOBBY_AUDIENCE;
+});
+
+test("forehead bonus pays the holder once per card", async () => {
+  const started = new Date(Date.now() - 21_000).toISOString();
+  const tables = setup(room({ status: "done", game: "tiles", playlist: NIGHT, started_at: started }), [seat("h"), seat("p")]);
+  const { POST } = await import("../src/app/api/academy/lobbies/bonus/route");
+  const ok = await POST(post("bonus", "h", { kind: "forehead", card: 0, got: true }));
+  assert.equal(ok.status, 200);
+  const holder = (await body(ok)).holder as string;
+  assert.equal((await POST(post("bonus", "h", { kind: "forehead", card: 0, got: true }))).status, 409);
+  assert.equal(tables.lobby_players.find((x) => x.user_id === holder)?.score, 100);
+});
+
+test("audience join reads the age band from the account and ignores the one in the body", async () => {
+  process.env.POLINGUAL_LOBBY_AUDIENCE = "on";
+  const bands: Record<string, string | null> = { kid: "under13", unknown: null, adult: "18plus" };
+  (gate as unknown as Record<string, unknown>).readAgeBand = async (uid: string) => ({ ok: true, band: bands[uid] ?? null });
+  const tables = setup(room({ status: "playing", started_at: new Date().toISOString() }), [seat("h"), seat("p")]);
+  const { POST } = await import("../src/app/api/academy/lobbies/join/route");
+  for (const uid of ["kid", "unknown"]) {
+    const r = await POST(join(uid, { code: "ABC234", displayName: "Kid", audience: true, ageBand: "18plus" }));
+    assert.equal(r.status, 409);
+    assert.equal((await body(r)).error, "audience_age");
+  }
+  assert.equal((await POST(join("adult", { code: "ABC234", displayName: "Ada", audience: true }))).status, 200);
+  assert.deepEqual(tables.lobby_screens.map((r) => [r.user_id, r.role]), [["adult", "audience"]]);
+  (gate as unknown as Record<string, unknown>).readAgeBand = async () => ({ ok: false });
+  assert.equal((await POST(join("adult2", { code: "ABC234", displayName: "Ada", audience: true }))).status, 503);
+  delete process.env.POLINGUAL_LOBBY_AUDIENCE;
+});
+
+test("bonus votes are stored once per audience member, screens cannot vote, and the state route reports the tally", async () => {
+  process.env.POLINGUAL_LOBBY_AUDIENCE = "on";
+  const started = new Date(Date.now() - 15_000).toISOString();
+  const tables = setup(room({ status: "playing", game: "same-word", playlist: NIGHT, started_at: started }), [seat("h"), seat("p")]);
+  tables.lobby_prompts.push({ lobby_id: ID, round: 1, lang: "es", item_id: "w1", mode: "choice", gloss: "cat", choices: ["es:gato", "es:perro"], answer: "es:gato" });
+  tables.lobby_screens.push({ lobby_id: ID, user_id: "v", role: "audience", last_seen: new Date().toISOString() }, { lobby_id: ID, user_id: "tv", role: "screen", last_seen: new Date().toISOString() });
+  const { POST } = await import("../src/app/api/academy/lobbies/react/route");
+  assert.equal((await POST(post("react", "v", { round: 1, choice: "es:gato" }))).status, 200);
+  assert.equal((await POST(post("react", "v", { round: 1, choice: "es:perro" }))).status, 409);
+  assert.equal((await POST(post("react", "v", { round: 1, choice: "es:nada" }))).status, 400);
+  assert.equal((await POST(post("react", "tv", { round: 1, choice: "es:gato" }))).status, 403);
+  assert.equal((await POST(post("react", "p", { round: 1, choice: "es:gato" }))).status, 403);
+  assert.deepEqual(tables.lobby_bonus_votes.map((r) => [r.user_id, r.choice]), [["v", "es:gato"]]);
+  const { GET } = await import("../src/app/api/academy/lobbies/state/route");
+  const lobby = (await body(await GET(state("h")))).lobby as { bonusVotes?: unknown };
+  assert.deepEqual(lobby.bonusVotes, [{ round: 1, choices: [{ choice: "es:gato", votes: 1 }], total: 1 }]);
+  delete process.env.POLINGUAL_LOBBY_AUDIENCE;
 });
