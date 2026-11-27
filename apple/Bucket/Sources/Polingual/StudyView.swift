@@ -106,6 +106,7 @@ struct StudyView: View {
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+        StudyPrefs.signedIn = account.session?.userId
         studyStep = StudyPrefs().step(flag: StudyConfig.flag, now: now)
         if studyStep == nil { loadInput(system) }
         Task { _ = await store.flushStudy() }

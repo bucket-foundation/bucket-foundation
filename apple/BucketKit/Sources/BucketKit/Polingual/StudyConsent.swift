@@ -11,42 +11,50 @@ public struct StudyGate: Equatable, Sendable {
 
 public struct StudyPrefs: @unchecked Sendable {
     public static let base = "polingual.ci14"
-    public static let enrolmentKey = "\(base).enrolment"
-    static let disclosedKey = "\(base).disclosed"
-    static let optedOutKey = "\(base).optedOut"
-    static let takenKey = "\(base).taken"
+    nonisolated(unsafe) public static var signedIn: String?
     static let gateKey = "polingual.reviewLog.gate"
     let d: UserDefaults
+    public let account: String?
 
-    public init(_ defaults: UserDefaults = .standard) { d = defaults }
+    public init(_ defaults: UserDefaults = .standard, account: String? = StudyPrefs.signedIn) {
+        d = defaults
+        self.account = account.flatMap { $0.isEmpty ? nil : $0 }
+    }
 
-    public var disclosed: Bool { d.string(forKey: Self.disclosedKey) == "1" }
-    public var optedOut: Bool { d.string(forKey: Self.optedOutKey) == "1" }
+    func key(_ name: String) -> String? { account.map { "\(Self.base).\($0).\(name)" } }
+    func string(_ name: String) -> String? { key(name).flatMap { d.string(forKey: $0) } }
+    func put(_ v: Any?, _ name: String) {
+        guard let k = key(name) else { return }
+        if let v { d.set(v, forKey: k) } else { d.removeObject(forKey: k) }
+    }
+
+    public var disclosed: Bool { string("disclosed") == "1" }
+    public var optedOut: Bool { string("optedOut") == "1" }
 
     public func join() {
-        d.set("1", forKey: Self.disclosedKey)
-        d.removeObject(forKey: Self.optedOutKey)
+        put("1", "disclosed")
+        put(nil, "optedOut")
     }
 
     public func leave() {
-        d.set("1", forKey: Self.disclosedKey)
-        d.set("1", forKey: Self.optedOutKey)
+        put("1", "disclosed")
+        put("1", "optedOut")
     }
 
     public var taken: (baseline: Bool, day28: Bool) {
-        let t = d.string(forKey: Self.takenKey) ?? ""
+        let t = string("taken") ?? ""
         return (t.contains("baseline"), t.contains("day28"))
     }
 
     public func markTaken(_ phase: String) {
         let t = taken
-        d.set([t.baseline || phase == "baseline" ? "baseline" : "", t.day28 || phase == "day28" ? "day28" : ""].filter { !$0.isEmpty }.joined(separator: ","), forKey: Self.takenKey)
+        put([t.baseline || phase == "baseline" ? "baseline" : "", t.day28 || phase == "day28" ? "day28" : ""].filter { !$0.isEmpty }.joined(separator: ","), "taken")
     }
 
-    public var enrolment: InputExperiment.Enrolment? { InputExperiment.parseEnrolment(d.data(forKey: Self.enrolmentKey)) }
+    public var enrolment: InputExperiment.Enrolment? { InputExperiment.parseEnrolment(key("enrolment").flatMap { d.data(forKey: $0) }) }
 
     public func cache(_ e: InputExperiment.Enrolment) {
-        if let data = try? JSONEncoder().encode(e) { d.set(data, forKey: Self.enrolmentKey) }
+        if let data = try? JSONEncoder().encode(e) { put(data, "enrolment") }
     }
 
     public var gate: StudyGate {
@@ -71,14 +79,14 @@ public struct StudyPrefs: @unchecked Sendable {
 
     public func step(flag: Bool, now: Double) -> Step? {
         let c = consent(flag: flag)
-        if !c.flag || !c.uploadOpen || c.optedOut { return nil }
+        if account == nil || !c.flag || !c.uploadOpen || c.optedOut { return nil }
         if !c.disclosed { return .disclose }
         let t = taken
         if !t.baseline { return .test("baseline") }
         return YesNoTest.due(enrolledAt: enrolment?.at, now: now, baseline: t.baseline, day28: t.day28) == "day28" ? .test("day28") : nil
     }
 
-    public func showsLeave(flag: Bool) -> Bool { flag && disclosed && !optedOut }
+    public func showsLeave(flag: Bool) -> Bool { account != nil && flag && disclosed && !optedOut }
 }
 
 public enum ServerEnrolment: Equatable, Sendable {
@@ -138,23 +146,16 @@ public enum StudyEnrolment {
     public static func plan<T>(consent: InputExperiment.Consent, account: String?, device: String, prefs: StudyPrefs, token: String?,
                                fetch: (String) async -> ServerEnrolment, register: (String, String) async -> InputExperiment.Enrolment?,
                                compute: (InputExperiment.Consent, InputExperiment.Enrolment?, String?) -> T?, enrolment: (T) -> InputExperiment.Enrolment?) async -> T? {
-        let server: ServerEnrolment = InputExperiment.mayTakePart(consent) && token != nil ? await fetch(token!) : .failed
-        var known: InputExperiment.Enrolment?
-        var reached = false
-        switch server {
-        case .failed: known = prefs.enrolment
-        case .known(let e):
-            reached = true
-            known = e
-            if let e { prefs.cache(e) }
-        }
-        let key = reached && account.map { !$0.isEmpty } == true && prefs.taken.baseline ? InputExperiment.enrolmentKey(account: account, device: device) : nil
-        guard let planned = compute(consent, known, key) else { return nil }
-        guard let fresh = enrolment(planned), known == nil else { return planned }
-        let saved: InputExperiment.Enrolment? = if let token { await register(token, fresh.stratum) } else { nil }
-        if let saved { prefs.cache(saved) }
+        guard InputExperiment.mayTakePart(consent) else { return compute(consent, nil, nil) }
         var off = consent
         off.flag = false
+        guard let token, case .known(let known) = await fetch(token) else { return compute(off, nil, nil) }
+        if let known { prefs.cache(known) }
+        let key = account.map { !$0.isEmpty } == true && prefs.taken.baseline ? InputExperiment.enrolmentKey(account: account, device: device) : nil
+        guard let planned = compute(consent, known, key) else { return nil }
+        guard let fresh = enrolment(planned), known == nil else { return planned }
+        let saved = await register(token, fresh.stratum)
+        if let saved { prefs.cache(saved) }
         return compute(saved == nil ? off : consent, saved, nil)
     }
 }

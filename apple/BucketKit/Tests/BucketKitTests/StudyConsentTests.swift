@@ -2,7 +2,7 @@ import Foundation
 import Testing
 @testable import BucketKit
 
-private func prefs() -> StudyPrefs { StudyPrefs(UserDefaults(suiteName: "ci14-\(UUID().uuidString)")!) }
+private func prefs(_ account: String? = "u1", _ d: UserDefaults = UserDefaults(suiteName: "ci14-\(UUID().uuidString)")!) -> StudyPrefs { StudyPrefs(d, account: account) }
 
 private func meta(_ id: String = UUID().uuidString.lowercased(), at: Double = 1_000) -> LogRow.Meta {
     LogRow.Meta(id: id, at: at, device: "d-1", tz: "UTC", systemId: "sys")
@@ -191,4 +191,89 @@ private func compute(_ c: InputExperiment.Consent, _ e: InputExperiment.Enrolmen
     let kept = InputExperiment.withoutHeldOut(queue, corpus: corpus, sets: ["es": [YesNoTest.normalizeWord(word.forms["es"]!)]])
     #expect(kept.map(\.itemId) == [other.id])
     #expect(InputExperiment.withoutHeldOut(queue, corpus: corpus, sets: [:]) == queue)
+}
+
+@Test func prefsBelongToOneAccount() {
+    let d = UserDefaults(suiteName: "ci14-\(UUID().uuidString)")!
+    let a = prefs("u1", d)
+    a.setGate(StudyGate(state: .open, at: 1))
+    a.join()
+    a.markTaken("baseline")
+    a.cache(enrolled)
+    let b = prefs("u2", d)
+    #expect(!b.disclosed && !b.optedOut)
+    #expect(b.taken == (false, false))
+    #expect(b.enrolment == nil)
+    #expect(b.step(flag: true, now: 0) == .disclose)
+    b.leave()
+    #expect(a.step(flag: true, now: 10) == nil)
+    #expect(!a.optedOut)
+    let none = prefs(nil, d)
+    none.join()
+    #expect(none.step(flag: true, now: 0) == nil)
+    #expect(!none.showsLeave(flag: true))
+    #expect(prefs("", d).account == nil)
+}
+
+@Test func consentGateNeedsEveryCondition() {
+    for (flag, open, joined, left) in [(false, true, true, false), (true, false, true, false), (true, true, true, true)] {
+        let p = prefs()
+        if open { p.setGate(StudyGate(state: .open, at: 1)) }
+        if joined { p.join() }
+        if left { p.leave() }
+        #expect(p.step(flag: flag, now: 0) == nil)
+    }
+    let closed = prefs()
+    closed.setGate(StudyGate(state: .closed, at: 1))
+    closed.join()
+    #expect(closed.step(flag: true, now: 0) == nil)
+    let fresh = prefs()
+    fresh.setGate(StudyGate(state: .open, at: 1))
+    #expect(fresh.step(flag: true, now: 0) == .disclose)
+}
+
+@MainActor
+@Test func aFailedFetchIgnoresTheCachedArm() async {
+    let p = prefs()
+    p.markTaken("baseline")
+    p.cache(enrolled)
+    let got = await StudyEnrolment.plan(consent: open, account: "u1", device: "d", prefs: p, token: "tok",
+                                        fetch: { _ in .failed }, register: { _, _ in Issue.record("posted"); return nil }, compute: compute, enrolment: \.enrolment)
+    #expect(got?.arm == nil)
+    #expect(got?.enrolment == nil)
+}
+
+@MainActor
+@Test func noTokenOrNoConsentSkipsTheServer() async {
+    let p = prefs()
+    p.markTaken("baseline")
+    p.cache(enrolled)
+    var fetched = 0
+    let noToken = await StudyEnrolment.plan(consent: open, account: "u1", device: "d", prefs: p, token: nil,
+                                            fetch: { _ in fetched += 1; return .known(enrolled) }, register: { _, _ in nil }, compute: compute, enrolment: \.enrolment)
+    #expect(noToken?.arm == nil)
+    var out = open
+    out.optedOut = true
+    let optedOut = await StudyEnrolment.plan(consent: out, account: "u1", device: "d", prefs: p, token: "tok",
+                                             fetch: { _ in fetched += 1; return .known(enrolled) }, register: { _, _ in nil }, compute: compute, enrolment: \.enrolment)
+    #expect(optedOut?.arm == nil)
+    #expect(fetched == 0)
+}
+
+@MainActor
+@Test func beforeBaselineThePlanHasNoKeyAndRegistersNothing() async {
+    let p = prefs()
+    var posted = 0
+    let got = await StudyEnrolment.plan(consent: open, account: "u1", device: "d", prefs: p, token: "tok",
+                                        fetch: { _ in .known(nil) }, register: { _, _ in posted += 1; return enrolled }, compute: compute, enrolment: \.enrolment)
+    #expect(got?.arm == nil)
+    #expect(posted == 0)
+}
+
+@Test func theBaselineRowCarriesNoArmLikeTheWeb() {
+    let items = [YesNoTest.TestItem(word: "casa", real: true, band: 0)]
+    guard case .vocabTest(let v) = YesNoTest.row(phase: "baseline", lang: "es", items: items, yes: ["casa"], seconds: 60, enrolment: prefs().enrolment, meta: meta()) else { Issue.record("no row"); return }
+    #expect(v.arm == nil)
+    #expect(v.form == "A")
+    #expect(v.day == 0)
 }

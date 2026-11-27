@@ -71,7 +71,7 @@ enum InputConfig {
             let tier = Int(system.placement[lang] ?? 0)
             let freq = InputStage.freqIndex((LangStore.topWords(lang) ?? []).map { ($0.word, Double($0.rank), false) })
             let api = BucketAPI()
-            let planned = await StudyEnrolment.plan(consent: consent, account: account, device: LangStore.deviceId, prefs: StudyPrefs(), token: token,
+            let planned = await StudyEnrolment.plan(consent: consent, account: account, device: LangStore.deviceId, prefs: StudyPrefs(account: account), token: token,
                                                     fetch: { await api.fetchEnrolment(token: $0) }, register: { await api.registerEnrolment(token: $0, stratum: $1) },
                                                     compute: { c, e, k in InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, consent: c, enrolment: e, key: k) },
                                                     enrolment: \.enrolment)
