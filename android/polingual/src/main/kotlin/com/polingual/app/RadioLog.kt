@@ -12,37 +12,50 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.jsonArray
 
-class RadioLog(private val kv: KeyValue, private val cap: Int = MAX_ROWS) {
-    fun rows(): List<LogRow.Exposure> = runCatching { Json.parseToJsonElement(kv.get(KEY) ?: "[]").jsonArray }.getOrNull()
-        ?.mapNotNull { ReviewLog.parse(it) as? LogRow.Exposure }.orEmpty()
+class LogQueue(private val kv: KeyValue, private val key: String, private val cap: Int) {
+    fun rows(): List<LogRow> = runCatching { Json.parseToJsonElement(kv.get(key) ?: "[]").jsonArray }.getOrNull()
+        ?.mapNotNull { ReviewLog.parse(it)?.takeIf { r -> r !is LogRow.Review } }.orEmpty()
 
-    fun append(add: List<LogRow.Exposure>) {
-        if (add.isEmpty()) return
-        val all = (rows() + add).takeLast(cap)
-        kv.set(KEY, JsonArray(all.map(ReviewLog::encode)).toString())
+    fun append(add: List<LogRow>) {
+        val have = rows()
+        val ids = have.map { it.id }.toSet()
+        val fresh = add.filter { it !is LogRow.Review && it.id !in ids }.distinctBy { it.id }
+        if (fresh.isEmpty()) return
+        write((have + fresh).takeLast(cap))
     }
 
-    fun gate(): UploadGate = runCatching { UploadGate.valueOf(kv.get(GATE_KEY) ?: "") }.getOrDefault(UploadGate.Unknown)
+    private fun write(rows: List<LogRow>) = kv.set(key, if (rows.isEmpty()) null else JsonArray(rows.mapNotNull(ReviewLog::encodeRow)).toString())
+
+    fun gate(): UploadGate = runCatching { UploadGate.valueOf(kv.get(RadioLog.GATE_KEY) ?: "") }.getOrDefault(UploadGate.Unknown)
 
     suspend fun upload(post: suspend (JsonObject) -> String?): Int {
         var gate = gate()
         if (gate == UploadGate.Unknown) {
             gate = StudySync.gateAfter(post(JsonObject(mapOf("events" to JsonArray(emptyList())))), gate)
-            kv.set(GATE_KEY, gate.name)
+            kv.set(RadioLog.GATE_KEY, gate.name)
         }
         if (gate != UploadGate.Open) return 0
-        val rows = rows()
-        val sent = ReviewLog.take(rows).filterIsInstance<LogRow.Exposure>()
+        val sent = ReviewLog.take(rows())
         val batch = StudySync.batch(sent, gate) ?: return 0
         val outcome = post(batch)
-        val next = StudySync.gateAfter(outcome, gate)
-        kv.set(GATE_KEY, next.name)
+        kv.set(RadioLog.GATE_KEY, StudySync.gateAfter(outcome, gate).name)
         if (outcome != "recorded") return 0
         val ids = sent.map { it.id }.toSet()
-        val left = rows().filter { it.id !in ids }
-        kv.set(KEY, if (left.isEmpty()) null else JsonArray(left.map(ReviewLog::encode)).toString())
+        write(rows().filter { it.id !in ids })
         return sent.size
     }
+}
+
+class RadioLog(kv: KeyValue, cap: Int = MAX_ROWS) {
+    private val queue = LogQueue(kv, KEY, cap)
+
+    fun rows(): List<LogRow.Exposure> = queue.rows().filterIsInstance<LogRow.Exposure>()
+
+    fun append(add: List<LogRow.Exposure>) = queue.append(add)
+
+    fun gate(): UploadGate = queue.gate()
+
+    suspend fun upload(post: suspend (JsonObject) -> String?): Int = queue.upload(post)
 
     fun log(h: Heard, systemId: String, device: String, tz: String, now: Long, ids: () -> String) {
         val rows = ListenInput.radioExposures(h.stationId, h.startedAt, h.ms.toDouble(), { 0.0 })
@@ -53,5 +66,7 @@ class RadioLog(private val kv: KeyValue, private val cap: Int = MAX_ROWS) {
         const val KEY = "polingual.radioLog"
         const val MAX_ROWS = 2000
         const val GATE_KEY = "polingual.radioLog.gate"
+        const val STUDY_KEY = "polingual.studyLog"
+        const val STUDY_MAX_ROWS = 400
     }
 }

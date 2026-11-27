@@ -4,6 +4,7 @@ public enum LogRow: Equatable, Sendable {
     case review(Review)
     case exposure(Exposure)
     case session(Session)
+    case vocabTest(VocabTest)
 
     public struct Meta: Equatable, Sendable {
         public var id: String
@@ -11,6 +12,9 @@ public enum LogRow: Equatable, Sendable {
         public var device: String
         public var tz: String
         public var systemId: String
+        public init(id: String, at: Double, device: String, tz: String, systemId: String) {
+            self.id = id; self.at = at; self.device = device; self.tz = tz; self.systemId = systemId
+        }
     }
 
     public struct Review: Equatable, Sendable {
@@ -50,11 +54,31 @@ public enum LogRow: Equatable, Sendable {
         public var cards: Int
     }
 
+    public struct VocabTest: Equatable, Sendable {
+        public var meta: Meta
+        public var lang: String
+        public var phase: String
+        public var form: String
+        public var arm: String?
+        public var hits: Int
+        public var words: Int
+        public var falseAlarms: Int
+        public var pseudowords: Int
+        public var known: Double
+        public var day: Int
+        public var seconds: Int
+        public init(meta: Meta, lang: String, phase: String, form: String, arm: String?, hits: Int, words: Int, falseAlarms: Int, pseudowords: Int, known: Double, day: Int, seconds: Int) {
+            self.meta = meta; self.lang = lang; self.phase = phase; self.form = form; self.arm = arm; self.hits = hits; self.words = words
+            self.falseAlarms = falseAlarms; self.pseudowords = pseudowords; self.known = known; self.day = day; self.seconds = seconds
+        }
+    }
+
     public var meta: Meta {
         switch self {
         case .review(let r): r.meta
         case .exposure(let e): e.meta
         case .session(let s): s.meta
+        case .vocabTest(let v): v.meta
         }
     }
 
@@ -164,6 +188,15 @@ public enum ReviewLog {
                   let arm = orNull(o, "arm", { o, k in str(o, k, 32).flatMap { matches($0, "^[a-z0-9_-]{1,32}$") ? $0 : nil } }),
                   let units = orNull(o, "units", { nat($0, $1, maxSessionItems) }), let cards = nat(o, "cards", maxSessionItems) else { return nil }
             return .session(.init(meta: meta, lang: lang, sessionId: sid, started: started, ended: ended, shareTarget: target, shareReal: real, arm: arm, units: units, cards: cards))
+        case "vocab_test":
+            guard let phase = o["phase"] as? String, phase == "baseline" || phase == "day28",
+                  let form = o["form"] as? String, form == "A" || form == "B",
+                  let arm = orNull(o, "arm", { o, k in str(o, k, 32).flatMap { matches($0, "^[a-z0-9_-]{1,32}$") ? $0 : nil } }),
+                  let words = nat(o, "words", 100), let pseudo = nat(o, "pseudowords", 100),
+                  let hits = nat(o, "hits", words), let fa = nat(o, "false_alarms", pseudo),
+                  let known = num(o, "known"), known >= 0, known <= 100_000,
+                  let day = nat(o, "day", 3650), let seconds = nat(o, "seconds", 3600) else { return nil }
+            return .vocabTest(.init(meta: meta, lang: lang, phase: phase, form: form, arm: arm, hits: hits, words: words, falseAlarms: fa, pseudowords: pseudo, known: known, day: day, seconds: seconds))
         default:
             return nil
         }
@@ -204,12 +237,15 @@ public enum ReviewLog {
 
     public static let exposureCap = 300
     public static let sessionMixCap = 60
+    public static let vocabTestCap = 4
 
     public static func take(_ rows: [LogRow]) -> [LogRow] {
         var e = exposureCap
         var m = sessionMixCap
+        var v = vocabTestCap
         return order(rows).filter { r in
             switch r {
+            case .vocabTest: v -= 1; return v >= 0
             case .exposure: e -= 1; return e >= 0
             case .session: m -= 1; return m >= 0
             case .review: return false
@@ -237,11 +273,37 @@ public enum ReviewLog {
                 if let r = e.revealed { props["revealed"] = r }
                 if let p = e.playback { props["playback"] = p }
                 return ["id": e.meta.id, "name": "exposure", "props": props]
+            case .vocabTest(let v):
+                return ["id": v.meta.id, "name": "vocab_test", "props": vocabProps(v)]
             case .session(let s):
                 return ["id": s.meta.id, "name": "session_mix", "props": ["session": s.sessionId, "share_target": s.shareTarget as Any? ?? NSNull(), "share_real": s.shareReal as Any? ?? NSNull(), "arm": s.arm as Any? ?? NSNull(), "units": s.units as Any? ?? NSNull(), "cards": s.cards, "seconds": min(86_400, Int(((s.ended - s.started) / 1000).rounded()))] as [String: Any]]
             }
         }
         return events.isEmpty ? nil : events
+    }
+
+    static func vocabProps(_ v: LogRow.VocabTest) -> [String: Any] {
+        ["phase": v.phase, "form": v.form, "arm": v.arm as Any? ?? NSNull(), "hits": v.hits, "words": v.words, "false_alarms": v.falseAlarms, "pseudowords": v.pseudowords, "known": v.known, "day": v.day, "seconds": v.seconds]
+    }
+
+    public static func encode(_ row: LogRow) -> [String: Any]? {
+        let m = row.meta
+        var o: [String: Any] = ["review_id": m.id, "reviewed_at": m.at, "device_id": m.device, "tz": m.tz, "system_id": m.systemId]
+        switch row {
+        case .review:
+            return nil
+        case .exposure(let e):
+            o.merge(["kind": "exposure", "lang": e.lang, "item": e.item, "unit": e.unit, "lemmas_seen": e.lemmasSeen, "taps": e.taps, "seconds": e.seconds, "coverage_pred": e.coveragePred, "completed": e.completed]) { $1 }
+            if let r = e.revealed { o["revealed"] = r }
+            if let p = e.playback { o["playback"] = p }
+        case .session(let s):
+            o.merge(["kind": "session", "lang": s.lang, "id": s.sessionId, "started": s.started, "ended": s.ended, "share_target": s.shareTarget as Any? ?? NSNull(), "share_real": s.shareReal as Any? ?? NSNull(), "arm": s.arm as Any? ?? NSNull(), "units": s.units as Any? ?? NSNull(), "cards": s.cards]) { $1 }
+        case .vocabTest(let v):
+            o.merge(vocabProps(v)) { $1 }
+            o["kind"] = "vocab_test"
+            o["lang"] = v.lang
+        }
+        return o
     }
 
     public static func gate(after outcome: String?, from gate: UploadGate) -> UploadGate {

@@ -1,7 +1,8 @@
 import type { NextRequest } from "next/server";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
-import { readAgeBand } from "@/lib/research-os/learn-gate";
+import { readLearnerProfile } from "@/lib/research-os/consent";
+import { learnEventGate } from "@/lib/academy/events-server";
 import { bucketService } from "@/lib/academy/review-log-store";
 import { createExperimentHandlers, rowToEnrolment } from "@/lib/academy/experiment-server";
 
@@ -20,9 +21,13 @@ const service = () => (svc ??= bucketService(SUPABASE_URL as string, SERVICE_ROL
 const handlers = createExperimentHandlers({
   configured: () => Boolean(SUPABASE_URL && ANON_KEY && SERVICE_ROLE_KEY),
   verifyUser: async (req) => (await verifyRequestUser(req as NextRequest))?.id ?? null,
-  adult: async (id) => {
-    const r = await readAgeBand(id);
-    return r.ok ? r.band === "18plus" : null;
+  gate: async (id) => {
+    try {
+      const g = learnEventGate(await readLearnerProfile(id));
+      return g.record ? "ok" : g.reason;
+    } catch {
+      return null;
+    }
   },
   load: async (id, experiment) => {
     const { data, error } = await service().from(TABLE).select(COLUMNS).eq("user_id", id).eq("experiment", experiment).maybeSingle();

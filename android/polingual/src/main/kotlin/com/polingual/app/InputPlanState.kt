@@ -88,8 +88,6 @@ class InputPlanState(
 
     companion object {
         private const val SALT_KEY = "polingual.reviewLog.salt"
-        private const val ENROLMENT_KEY = "polingual.ci14.enrolment"
-        private val consent = InputExperiment.Consent(flag = InputExperiment.on(BuildConfig.INPUT_EXPERIMENT), uploadOpen = false, disclosed = false, optedOut = false)
 
         fun plan(
             mode: InputModeFlag.Mode, lang: String, bundle: InputBundle, glossOf: (String) -> String?, resolve: (String, String) -> String?,
@@ -116,15 +114,16 @@ class InputPlanState(
             val salt = graph.kv.get(SALT_KEY) ?: UUID.randomUUID().toString().also { graph.kv.set(SALT_KEY, it) }
             val device = ReviewLog.deviceHash(salt, graph.kv.get("polingual.install") ?: UUID.randomUUID().toString().also { graph.kv.set("polingual.install", it) })
             val corpus = graph.corpus.load()
+            val consent = graph.ci14Consent()
+            val api = graph.experimentApi()
             for (lang in targets) {
                 val now = System.currentTimeMillis()
                 val resolve = InputStage.resolver(mapOf(lang to InputStage.lemmaCardMap(corpus, lang)))
                 val bundle = graph.inputs.bundle(lang, InputStage.bandsFor(InputStage.knownWords(s.state, lang, now))) ?: continue
                 val freq = InputStage.freqIndex(graph.corpus.frequency(listOf(lang)).ranks[lang].orEmpty().map { (w, r) -> Triple(w, r.toDouble(), false) })
-                plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, now, freq = freq, consent = consent, enrolment = InputExperiment.parseEnrolment(graph.kv.get(ENROLMENT_KEY)), key = InputExperiment.enrolmentKey(null, device))?.let { p ->
-                    p.enrolment?.let { graph.kv.set(ENROLMENT_KEY, InputExperiment.encode(it)) }
-                    return p
-                }
+                Ci14.choose(consent, graph.ci14, api, graph.account.userId, device, { c, e, k ->
+                    plan(mode, lang, bundle, { corpus.byId[it]?.gloss }, resolve, s.state, s.total, (placement[lang] ?: 0.0).toInt(), systemId, device, now, freq = freq, consent = c, enrolment = e, key = k)
+                }, { it.enrolment })?.let { return it }
             }
             return null
         }
