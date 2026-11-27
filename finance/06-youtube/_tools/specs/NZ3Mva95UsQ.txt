@@ -1,0 +1,8 @@
+Teaches: Vasily Strela on interest and bond mathematics for MIT 18.S096: compounding to e, discounting by no-arbitrage, coupon bond pricing, yield, the yield curve and inversion, duration and convexity.
+Claim: Continuous compounding is the limit of splitting the year into m periods, and the speaker credits Bernoulli's 1683 paper on interest with the discovery of e. || that's how e was discovered and defined
+Claim: A claim on $1 in one year is worth 1/(1+r) today because any other price lets someone borrow and lock in a sure profit; this is discounting. || So for no arbitrage
+Claim: A bond is priced by discounting all coupon and notional cash flows; yield is the single flat rate that reproduces the market price, found numerically for coupon bonds. || So you back out one flat interest rate, which will give you the price of the bond
+Claim: Price and yield move inversely because the rate sits in the denominator of the discount factor. || the yield and price are in inverse relationship
+Claim: An inverted US yield curve preceded recessions in 2007 and 2019, and the lecturer treats it as generally predictive. || The year before the recession
+Claim: Bond prices are nonlinear in yield; duration is the first derivative scaled by price and convexity is the second derivative. || they're called durations because they're usually scaled by price
+Architecture: none (introductory fixed-income lecture).

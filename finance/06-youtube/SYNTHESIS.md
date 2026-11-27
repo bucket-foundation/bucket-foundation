@@ -182,3 +182,28 @@ Sixteen QuantInsti lecture and webinar videos, 7.98 hours, from the lecture wave
 - Generative models estimate P of X as well as P of Y given X, so they can flag inputs the model has not seen and simulate regime-conditioned scenarios that a backtest cannot supply (ofdGQmxhl1I @ 0:04:12, ofdGQmxhl1I @ 0:09:20)
 - Implied volatility is the number that matches model price to market price, and the same at-the-money put showed implied volatility rising as it moved out of the money (ISVFhvECvzc @ 0:05:08, ISVFhvECvzc @ 0:14:19)
 - ChatGPT can summarize a paper, draw a flow diagram and write the code, but the overnight-return test covered only 2020 to 2024 and the volatility bands were invisible until rescaled (_KajD3SbRRw @ 0:10:09, _KajD3SbRRw @ 0:22:27)
+
+## Resume Run 2026-11-27
+
+81 videos and 66.6 hours added: 43 lectures (35.6 h), 26 practitioner interviews (27.5 h), 12 builder videos (3.5 h). Four videos had no captions and were dropped. Claims come from sampled spans for long lectures; each cited video DIGEST.md holds the timestamps. Profit figures are self-reported.
+
+### Lectures
+
+- MIT 15.401 (Lo) builds one chain: discounting, bonds and duration, dividend discount value, mean-variance portfolios, the tangency portfolio becoming the market portfolio in equilibrium, CAPM discount rates for capital budgeting, then the adaptive markets hypothesis as the correction to efficient markets (cny-1yDbQno, z2oQe6B1Qa4, JE80wLNIhjE, P03PfYgNjmw)
+- Leverage, collateral and correlated defaults explain the 2008 crisis in three lectures: a 10 percent price fall wipes half of a 20 percent equity stake, and perfectly correlated bonds make a AAA tranche as risky as the pool (hyc8h5T76BE, ZWKnK9LIETA, vTs2IQ8OefQ)
+- Forward and futures prices follow cost of carry with storage and convenience yield, and arbitrage opens when the quote leaves that band (IwA7nVEwqto, QKHnXnYaUL8, 2C5iRNWGUJw)
+- Lopez de Prado chapter summaries (bars, bet sizing, CPCV) and his Sharpe talk agree that one historical path and a naive variance formula overstate evidence (I0vCTh0Sv9o, L_yiruBuuvI, iSJpuN2iQdQ)
+
+### Practitioners
+
+- Chan, Wong, Schultz and Bergstrom each state the same overfitting guard set: few parameters, walk-forward, small-parameter-change tests and Monte Carlo reshuffles (DTU_cgfCnqU, qz6a27tFmAM, HrfSO_sREAI, HSuE19H1-K0)
+- Chan uses machine learning to filter and size a base strategy instead of predicting price, and reports no pure ML alpha success (mMrkbszl9Xo, RjGlOUGFkak)
+- Lopez de Prado shows the Sharpe estimator error reaches 400 to 500 percent in variance under autocorrelation and fat tails, and the deflated Sharpe corrects for trial count (iSJpuN2iQdQ, QxhxLwNbMMg)
+- Diversification across uncorrelated strategies and many markets is described as the free lunch by trend, commodity and fixed-income quants (Zi5_WrGMpVk, IJSg-SrMj18, ipDgfPIFuSM)
+- Griffin names GPU depreciation, uneven corporate AI gains and gold as a dollar substitute as the risks, and says tokenization does not cut trading cost (QWzQo74cA7U, PYYHgadyi6c)
+
+### Builders
+
+- Platform tours and bot builds converge on the same stack: paper account first, Telegram or dashboard monitoring against backtest expectations, and one live node holding many strategies (Gg2YGq6rQsY, J50jeLA9SRg, QVaeMBsRMLk)
+- A 94 percent win rate is read as a warning when exits refuse to realize losses (17hnn9SehfE); another builder stresses survivorship-free token universes and walk-forward validation (ePOj_1zTmUg)
+- Agent factories incubate strategies forward before trading because the creator says 99 percent fail live (2WRl3_yFlEs)

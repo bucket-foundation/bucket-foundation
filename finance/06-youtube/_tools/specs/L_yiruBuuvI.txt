@@ -1,0 +1,6 @@
+Teaches: Student summary of chapter 12 of Advances in Financial Machine Learning: walk-forward, ordinary cross-validation and combinatorial purged cross-validation (CPCV) as backtesting schemes, and why a single historical path misleads.
+Claim: Walk-forward backtesting has a clear historical reading and little leakage between training and test sets, but it tests one scenario and is prone to overfit it. || you're still testing a single scenario
+Claim: Cross-validation drops the time ordering, so test sets near training data can leak information and overfit the model. || leakage can occur
+Claim: Combinatorial purged cross-validation splits the data into many train and test combinations so one strategy yields many backtest paths and a distribution of forecasts. || combinatorial burst cross validation method
+Claim: Because CPCV uses more observations and many paths, it lowers variance, reduces overfitting and exposes Sharpe ratios that look high only because of leakage. || there could be high sharp ratios due to these problems of leakage
+Architecture: none (book chapter summary).
