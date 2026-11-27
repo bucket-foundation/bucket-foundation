@@ -12,6 +12,7 @@ import Interstitial from "../Interstitial";
 import styles from "../play.module.css";
 import Reveal from "../Reveal";
 import RoomMissed from "../RoomMissed";
+import AfterGame from "../family/AfterGame";
 import { EndGame, RoomToolbar, Scoreboard } from "./RoomBits";
 import type { LiveRoom } from "./useRoomGame";
 
@@ -36,6 +37,7 @@ export function RoomResults({ g }: { g: LiveRoom }) {
         {lobby.prompts.map((p) => (p.reveal?.length ? <Reveal key={p.round} prompt={p} rootLang={lobby.root} answersOnly /> : null))}
       </section>
       <RoomMissed lobby={lobby} at={g.now + g.offset} />
+      <AfterGame lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} onSignIn={guest ? g.account.openSignIn : undefined} />
       {breaks.games >= 2 ? <Ad placement="results" /> : null}
     </div>
   );
