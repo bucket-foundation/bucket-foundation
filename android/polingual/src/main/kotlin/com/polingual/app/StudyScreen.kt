@@ -27,7 +27,6 @@ import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.Pill
 import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.coroutines.delay
@@ -35,7 +34,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun StudyScreen(graph: Graph, done: () -> Unit) {
-    val p = LocalPalette.current
     var session by remember { mutableStateOf<StudySession?>(null) }
     var tick by remember { mutableIntStateOf(0) }
     var picked by remember { mutableStateOf<String?>(null) }
@@ -77,7 +75,7 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
         SilentSwitch(graph, compact = true)
         LinearProgressIndicator(progress = { s.answered.toFloat() / maxOf(1, s.answered + s.remaining) }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
         ExerciseHeader(ex)
-        Text(StudyCopy.instruction(ex.kind, Lang.name(ex.word.lang)), color = p.muted)
+        Text(StudyCopy.instruction(ex.kind, Lang.name(ex.word.lang)), color = PL.InkDim)
         ExercisePrompt(graph, ex, corpus, revealed = picked != null || typedVerdict != null)
         if (ex.kind == ExerciseKind.TypeHeard || ex.kind == ExerciseKind.SpellHeard) TypedAnswer(ex, typed, typedVerdict, { typed = it }, { typedVerdict = it })
         ex.options.forEach { o ->

@@ -73,12 +73,14 @@ object PL {
 }
 
 object PLRadius {
+    val xs = 6.dp
     val sm = 10.dp
     val md = 14.dp
+    val card = 16.dp
     val lg = 20.dp
     val xl = 24.dp
     val pill = 999.dp
-    val values: Map<String, Int> = mapOf("sm" to 10, "md" to 14, "lg" to 20, "xl" to 24, "pill" to 999)
+    val values: Map<String, Int> = mapOf("xs" to 6, "sm" to 10, "md" to 14, "card" to 16, "lg" to 20, "xl" to 24, "pill" to 999)
 }
 
 object PLSpace {

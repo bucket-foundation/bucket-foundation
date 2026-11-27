@@ -43,7 +43,7 @@ function files(dir: string): string[] {
 
 test("the shared shell renders the Po logo, the App Store CTA and the flag footer", () => {
   const html = renderToStaticMarkup(<Site><p>body</p></Site>);
-  assert.match(html, /<img src="\/d8\/mark-pl\.svg"/);
+  assert.match(html, /<img src="\/brand\/kit\/mark\.svg"/);
   assert.match(html, />polingual</);
   assert.ok(html.includes(`href="${APP_STORE_URL}"`), "App Store CTA");
   assert.match(html, />Get the app</);
@@ -129,7 +129,7 @@ test("unmatched urls get the branded global 404", async () => {
   const html = renderToStaticMarkup(<GlobalNotFound />);
   assert.match(html, /<html lang="en">/);
   assert.match(html, /Page not found/);
-  assert.match(html, /mark-pl\.svg/);
+  assert.match(html, /brand\/kit\/mark\.svg/);
   const config = readFileSync(join(__dirname, "../../next.config.js"), "utf8");
   assert.match(config, /globalNotFound: true/);
 });

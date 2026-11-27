@@ -113,10 +113,10 @@ private fun PolyKeyboard(keys: Map<Char, Mark>, onKey: (Char) -> Unit) {
                     row.forEach { c ->
                         val m = keys[c]
                         Box(
-                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), 8.dp)
+                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), PLRadius.xs)
                                 .clickable(role = Role.Button) { onKey(c) },
                             contentAlignment = Alignment.Center,
-                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }
+                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, style = Type.small) }
                     }
                 }
             }

@@ -26,12 +26,10 @@ import foundation.bucket.core.net.RadioApi
 import foundation.bucket.core.net.RadioStation
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import kotlinx.coroutines.launch
 
 @Composable
 fun ListenScreen(graph: Graph, back: () -> Unit) {
-    val p = LocalPalette.current
     val app by graph.state.collectAsState()
     val now by graph.radio.now.collectAsState()
     val langs = app?.system?.targets.orEmpty().filter { RadioApi.radioName(it) != null }.ifEmpty { listOf("es", "fr") }
@@ -68,8 +66,8 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
                 Card(onClick = { scope.launch { graph.radio.play(s, lang) } }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
-                            Text(s.name, color = p.ink, style = Type.small)
-                            Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = p.muted)
+                            Text(s.name, color = PL.Ink, style = Type.small)
+                            Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = PL.InkDim)
                         }
                         Glyph(if (active && now.playing) "pause" else "play", if (active && now.playing) "Pause ${s.name}" else "Play ${s.name}", PL.Vermilion, Modifier.size(28.dp))
                     }

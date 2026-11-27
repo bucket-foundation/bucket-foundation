@@ -3,41 +3,19 @@
 @source "../../../src/app/research-os/(app)/learn/languages/LangExercise.tsx";
 @source "../../../src/components/ui/index.tsx";
 
-:root {
-  --sky:        var(--pl-paper);
-  --sky-2:      var(--pl-paper-2);
-  --sky-3:      var(--pl-paper-3);
-  --hairline:   rgba(35, 31, 32, 0.12);
-  --hairline-2: rgba(35, 31, 32, 0.22);
-
-  --ink:        var(--pl-ink);
-  --ink-2:      var(--pl-ink-2);
-  --ink-dim:    var(--pl-ink-dim);
-  --ink-faint:  var(--pl-ink-faint);
-
-  --blue:       var(--pl-lapis);
-  --blue-deep:  var(--pl-lapis-deep);
-  --blue-soft:  var(--pl-lapis-soft);
-  --gold:       var(--pl-ochre);
-  --burgundy:   var(--pl-tyrian);
-  --purple:     var(--pl-tyrian);
-  --cta:        var(--pl-vermilion);
-  --teal:       var(--pl-maya);
-}
-
 html, body {
-  background: var(--sky);
-  color: var(--ink);
-  font-family: Nunito, "Noto Sans", system-ui, sans-serif;
+  background: var(--pl-paper);
+  color: var(--pl-ink);
+  font-family: var(--pl-font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * { box-sizing: border-box; }
 
-.font-mono   { font-family: "Space Mono", ui-monospace, monospace; }
-.font-sans   { font-family: Nunito, "Noto Sans", system-ui, sans-serif; }
-.font-script { font-family: Fredoka, Nunito, sans-serif; }
+.font-mono   { font-family: var(--pl-font-mono); }
+.font-sans   { font-family: var(--pl-font-body); }
+.font-script { font-family: var(--pl-font-display); }
 
 @media (prefers-reduced-motion: no-preference) {
   .fade-in { animation: fadeIn 200ms ease-out; }
@@ -72,6 +50,6 @@ html, body {
 @font-face { font-family: "Latin Modern"; src: url("/fonts/LM-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face { font-family: "Latin Modern"; src: url("/fonts/LM-bold-italic.woff2") format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
 
-h1, h2 { font-family: Fredoka, Nunito, sans-serif; font-weight: 700; color: var(--purple); }
+h1, h2 { font-family: var(--pl-font-display); font-weight: 700; color: var(--pl-tyrian); }
 h1 { letter-spacing: 0 !important; }
 p.text-center, .text-center p { text-align: center; }

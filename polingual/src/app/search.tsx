@@ -45,7 +45,7 @@ function SearchBox({ q, setQ, clear, inputRef }: { q: string; setQ: (q: string) 
         <svg
           width="20" height="20" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" strokeWidth="2"
-          strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--blue)]"
+          strokeLinecap="round" strokeLinejoin="round" className="text-[color:var(--pl-lapis)]"
           aria-hidden
         >
           <circle cx="11" cy="11" r="7" />
@@ -64,7 +64,7 @@ function SearchBox({ q, setQ, clear, inputRef }: { q: string; setQ: (q: string) 
           <Button
             bare
             onClick={clear}
-            className="text-xl leading-none hover:scale-110 transition px-2 text-[color:var(--ink-faint)]"
+            className="text-xl leading-none hover:scale-110 transition px-2 text-[color:var(--pl-ink-faint)]"
             aria-label="clear"
             title="clear"
           >
@@ -86,7 +86,7 @@ function Examples({ q, setQ }: { q: string; setQ: (q: string) => void }) {
   return (
     <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
       <span
-        className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1 text-[color:var(--ink-faint)]"
+        className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1 text-[color:var(--pl-ink-faint)]"
       >
         try
       </span>
@@ -99,7 +99,7 @@ function Examples({ q, setQ }: { q: string; setQ: (q: string) => void }) {
         >
           {ex.q}
           <span
-            className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
+            className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[color:var(--pl-ink-faint)]"
           >
             {ex.hint}
           </span>
@@ -118,13 +118,13 @@ function PhotonCard({ p }: { p: Photon }) {
       <div className="flex items-baseline justify-between gap-4">
         <div className="flex items-baseline gap-3 min-w-0">
           <span
-            className="text-2xl md:text-[28px] truncate text-[color:var(--ink)]"
+            className="text-2xl md:text-[28px] truncate text-[color:var(--pl-ink)]"
           >
             {p.surface}
           </span>
           {p.ipa && (
             <span
-              className="font-mono text-xs whitespace-nowrap text-[color:var(--ink-faint)]"
+              className="font-mono text-xs whitespace-nowrap text-[color:var(--pl-ink-faint)]"
             >
               {p.ipa}
             </span>
@@ -135,14 +135,14 @@ function PhotonCard({ p }: { p: Photon }) {
         </div>
         {p.pos && (
           <span
-            className="font-mono text-[10px] italic whitespace-nowrap text-[color:var(--ink-dim)]"
+            className="font-mono text-[10px] italic whitespace-nowrap text-[color:var(--pl-ink-dim)]"
           >
             {p.pos}
           </span>
         )}
       </div>
       <p
-        className="mt-2 text-[15px] leading-relaxed line-clamp-2 text-[color:var(--ink-2)]"
+        className="mt-2 text-[15px] leading-relaxed line-clamp-2 text-[color:var(--pl-ink-2)]"
       >
         {p.meaning_en}
       </p>
@@ -155,17 +155,17 @@ function LangGroup({ lang, items }: { lang: string; items: Photon[] }) {
     <div key={lang} className="mb-8 fade-in">
       <div className="flex items-baseline justify-between mb-3">
         <h2
-          className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--blue)]"
+          className="font-mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--pl-lapis)]"
         >
           {LANG_LABEL[lang] || lang}
           <span
-            className="ml-2 font-mono text-[10px] text-[color:var(--ink-faint)]"
+            className="ml-2 font-mono text-[10px] text-[color:var(--pl-ink-faint)]"
           >
             · {lang}
           </span>
         </h2>
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--ink-faint)]"
+          className="font-mono text-[10px] uppercase tracking-[0.18em] text-[color:var(--pl-ink-faint)]"
         >
           {items.length}
         </span>
@@ -263,7 +263,7 @@ export default function Search() {
         <Examples q={q} setQ={setQ} />
 
         <p
-          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--ink-faint)]"
+          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--pl-ink-faint)]"
         >
           {q
             ? loading

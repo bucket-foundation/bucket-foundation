@@ -41,7 +41,6 @@ import androidx.compose.ui.unit.sp
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.coroutines.launch
@@ -58,7 +57,6 @@ fun Onboarding(graph: Graph) {
     var targets by remember { mutableStateOf(listOf("fr", "es", "it", "de").filter { it != root }.take(3)) }
     var busy by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
-    val p = LocalPalette.current
     LaunchedEffect(step) { graph.track("onboarding_view", Funnel.SCREENS[step]) }
     fun next() { step += 1 }
     GroundBox(Ground.Diagonal, Modifier.fillMaxSize()) { Column(Modifier.fillMaxSize()) { Box(Modifier.weight(1f).fillMaxWidth().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
@@ -74,7 +72,7 @@ fun Onboarding(graph: Graph) {
             }
             Row(Modifier.fillMaxWidth().padding(vertical = 12.dp), horizontalArrangement = Arrangement.Center) {
                 repeat(3) { i ->
-                    Box(Modifier.padding(4.dp).size(if (i == step) 22.dp else 8.dp, 8.dp).plSurface(if (i == step) PL.Vermilion else p.rule, foundation.bucket.core.ui.pl.PLRadius.pill))
+                    Box(Modifier.padding(4.dp).size(if (i == step) 22.dp else 8.dp, 8.dp).plSurface(if (i == step) PL.Vermilion else PL.Hairline2, foundation.bucket.core.ui.pl.PLRadius.pill))
                 }
             }
             PrimaryButton(
@@ -102,10 +100,9 @@ private fun HeardAbout(answer: (String) -> Unit) {
 
 @Composable
 private fun Welcome() {
-    val p = LocalPalette.current
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-        Art("seal", Modifier.size(44.dp), description = "Polingual")
-        Text("polingual", style = Type.title, color = p.ink)
+        androidx.compose.foundation.Image(androidx.compose.ui.res.painterResource(R.drawable.pl_mark), contentDescription = "Polingual", modifier = Modifier.size(44.dp))
+        Text("polingual", style = Type.title, color = PL.Ink)
     }
     Text(
         buildAnnotatedString {
@@ -113,7 +110,7 @@ private fun Welcome() {
             withStyle(SpanStyle(color = PL.Vermilion)) { append("multilingual") }
             append(" learners.")
         },
-        style = Type.display, color = p.ink,
+        style = Type.display, color = PL.Ink,
     )
     Stage(
         listOf(
@@ -132,15 +129,14 @@ private fun Welcome() {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> Unit) {
-    val p = LocalPalette.current
-    Text("Which languages?", style = Type.display, color = p.ink)
-    Text("Each word comes back in every language you pick.", color = p.muted)
+    Text("Which languages?", style = Type.display, color = PL.Ink)
+    Text("Each word comes back in every language you pick.", color = PL.InkDim)
     Row(Modifier.fillMaxWidth().plSurface(PL.Card, PLRadius.lg).border(2.dp, PL.Hairline, RoundedCornerShape(PLRadius.lg)).padding(PLSpace.s3), horizontalArrangement = Arrangement.spacedBy(PLSpace.s3)) {
-        if (targets.isEmpty()) Text("Pick at least one.", color = p.muted, modifier = Modifier.height(76.dp))
+        if (targets.isEmpty()) Text("Pick at least one.", color = PL.InkDim, modifier = Modifier.height(76.dp))
         targets.forEach { l ->
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 FlagTile(l)
-                Text(Lang.name(l), style = Type.caps, color = p.ink)
+                Text(Lang.name(l), style = Type.caps, color = PL.Ink)
             }
         }
     }
@@ -151,7 +147,7 @@ fun Languages(root: String, targets: List<String>, onChange: (List<String>) -> U
         }
     }
     Spacer(Modifier.height(4.dp))
-    Text("Or pick your own, up to ${Lang.MAX_TARGETS}", style = Type.caps, color = p.muted)
+    Text("Or pick your own, up to ${Lang.MAX_TARGETS}", style = Type.caps, color = PL.InkDim)
     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Lang.codes.filter { it != root && it in setOf("es", "fr", "it", "pt", "de", "nl", "sv", "ru", "ja", "ar", "el", "fi", "hi", "ko", "pl") }.forEach { l ->
             val on = l in targets
