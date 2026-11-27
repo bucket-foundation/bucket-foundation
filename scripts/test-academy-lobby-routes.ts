@@ -71,7 +71,7 @@ test("join: a dropped phone rejoins its seat mid-game and keeps its score; a str
   assert.equal((await body(late)).error, "lobby_started");
 });
 
-test("state: members poll the lobby, unchanged versions short-circuit, outsiders get no lobby", async () => {
+test("state: members poll the lobby, unchanged versions short-circuit, outsiders get 404", async () => {
   setup(room(), [seat("h"), seat("p")]);
   const { GET } = await import("../src/app/api/academy/lobbies/state/route");
   const fresh = await body(await GET(state("p")));
@@ -81,6 +81,35 @@ test("state: members poll the lobby, unchanged versions short-circuit, outsiders
   assert.equal(same.changed, false);
   assert.equal(same.version, 3);
   const outsider = await GET(state("x"));
-  assert.notEqual(outsider.status, 200);
-  assert.equal((await body(outsider)).lobby, undefined);
+  assert.equal(outsider.status, 404);
+  assert.deepEqual(await body(outsider), { error: "not_found" });
+});
+
+test("state reads purge day-old teach and trivia rows; ending a lobby drops its clips", async () => {
+  const tables = setup(room(), [seat("h"), seat("p")]);
+  const old = new Date(Date.now() - 25 * 3600_000).toISOString();
+  const fresh = new Date().toISOString();
+  tables.lobby_teach = [{ lobby_id: "other", round: 0, clip: "x", created_at: old }, { lobby_id: ID, round: 0, clip: "y", created_at: fresh }];
+  tables.lobby_trivia = [{ lobby_id: "other", created_at: old }];
+  const { GET } = await import("../src/app/api/academy/lobbies/state/route");
+  await GET(state("p"));
+  assert.deepEqual(tables.lobby_teach.map((r) => r.lobby_id), [ID]);
+  assert.equal(tables.lobby_trivia.length, 0);
+  process.env.POLINGUAL_LOBBY_END = "on";
+  const { POST } = await import("../src/app/api/academy/lobbies/end/route");
+  const res = await POST(new NextRequest("http://x/api/academy/lobbies/end", { method: "POST", headers: { "x-test-user": "h", "content-type": "application/json" }, body: JSON.stringify({ lobbyId: ID }) }));
+  assert.equal(res.status, 200);
+  assert.equal(tables.lobby_teach[0].clip, null);
+});
+
+test("starting an atlas lobby stores voice prompts with their clip licence", async () => {
+  const tables = setup(room({ game: "atlas", rounds: 3 }), [seat("h")]);
+  const words = Array.from({ length: 40 }, (_, n) => ({ id: `w${n}`, kind: "word", category: "food", gloss: `en${n}`, forms: { en: `en${n}`, es: `es${n}`, fr: `fr${n}`, de: `de${n}`, it: `it${n}`, ja: `ja${n}` } }));
+  (groups as unknown as Record<string, unknown>).langCorpus = () => ({ items: words });
+  const server = await import("../src/lib/academy/lobbies-server");
+  const started = await server.startLobby(room({ game: "atlas", rounds: 3 }) as never, Date.now());
+  assert.equal(started.ok, true);
+  const rows = tables.lobby_prompts;
+  assert.equal(rows.length, 3);
+  assert.ok(rows.every((r) => r.mode === "voice" && r.licence === "device-tts"));
 });

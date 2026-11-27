@@ -3,7 +3,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 import * as groups from "../src/lib/academy/groups-server";
-import { recordRefusal, teachAllowed, teachChoices, teachClip, teachScores, teachView, type TeachRow } from "../src/lib/academy/lobby-teach";
+import * as gate from "../src/lib/research-os/learn-gate";
+import { accountRefusal, recordRefusal, teachAllowed, teachChoices, teachClip, teachScores, teachView, type TeachRow } from "../src/lib/academy/lobby-teach";
 import { fakeDb } from "./lobby-fake-db";
 
 const CLIP = `data:audio/webm;codecs=opus;base64,${"A".repeat(400)}`;
@@ -17,6 +18,18 @@ test("only an approved adult home-language speaker may record", () => {
   assert.equal(recordRefusal({ ...adult, speaks: [{ lang: "es", level: 3 }] }, "es", "approved"), "not_home_language");
   assert.equal(recordRefusal(adult, "es", "asked"), "not_approved");
   assert.equal(recordRefusal(adult, "es", "approved"), null);
+});
+
+function ages(bands: Record<string, string | null>) {
+  (gate as unknown as Record<string, unknown>).readAgeBand = async (uid: string) => ({ ok: true, band: bands[uid] ?? null });
+}
+
+test("guests record on host approval alone; signed-in speakers also need an 18 and over account", () => {
+  assert.equal(accountRefusal(true, null), null);
+  assert.equal(accountRefusal(false, { ok: true, band: "18plus" }), null);
+  assert.equal(accountRefusal(false, { ok: true, band: "13to17" }), "not_adult_account");
+  assert.equal(accountRefusal(false, { ok: true, band: null }), "not_adult_account");
+  assert.equal(accountRefusal(false, { ok: false }), "age_unavailable");
 });
 
 test("clips and choices are checked before storage", () => {
@@ -75,11 +88,12 @@ test("route: a full Family Teach round scores guessers, awards the teacher and d
       lobby_cards: [{ lobby_id: LOBBY, user_id: "s", card: adult, created_at: now }],
       lobby_teach: [],
     },
-    { lobby_teach: ["lobby_id", "round"] },
+    { lobby_teach: ["lobby_id", "round"], lobby_teach_guesses: ["lobby_id", "round", "user_id"] },
   );
   const g = groups as unknown as Record<string, unknown>;
   g.service = () => db;
   g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
+  ages({ s: "18plus" });
   const route = await import("../src/app/api/academy/lobby-teach/route");
   const post = async (uid: string, body: Record<string, unknown>) => {
     const r = await route.POST(req(uid, { lobbyId: LOBBY, ...body }));
@@ -92,13 +106,15 @@ test("route: a full Family Teach round scores guessers, awards the teacher and d
   assert.equal((await post("k", { action: "record", clip: CLIP, choices: ["dog", "cat"], answer: 0 })).status, 403);
   assert.equal((await post("s", { action: "record", clip: CLIP, choices: ["dog", "cat"], answer: 0 })).status, 200);
   assert.equal((await post("h", { action: "play" })).status, 200);
-  assert.equal((await post("p", { action: "guess", guess: 0 })).status, 200);
+  const both = await Promise.all([post("p", { action: "guess", guess: 0 }), post("k", { action: "guess", guess: 1 })]);
+  assert.deepEqual(both.map((x) => x.status), [200, 200]);
+  assert.equal(tables.lobby_teach_guesses.length, 2);
   assert.equal((await post("p", { action: "guess", guess: 1 })).status, 409);
-  assert.equal((await post("k", { action: "guess", guess: 1 })).status, 200);
   const view = (await (await route.GET(req("p"))).json()) as { teach: { clip: unknown; answer: unknown } };
   assert.equal(view.teach.clip, null);
-  const done = await post("h", { action: "reveal" });
-  assert.equal(done.body.teacherAward, true);
+  const [done, again] = await Promise.all([post("h", { action: "reveal" }), post("h", { action: "reveal" })]);
+  assert.equal([done, again].filter((x) => x.status === 200).length, 1);
+  assert.equal((done.status === 200 ? done : again).body.teacherAward, true);
   assert.deepEqual(tables.lobby_players.map((r) => r.score), [0, 0, 100, 0]);
   assert.equal(tables.lobby_teach[0].clip, null);
 });
@@ -113,11 +129,12 @@ test("route: an under-13 seat with no stored card cannot record, and the host ca
       lobby_cards: [{ lobby_id: LOBBY, user_id: "s", card: adult, created_at: now }],
       lobby_teach: [],
     },
-    { lobby_teach: ["lobby_id", "round"] },
+    { lobby_teach: ["lobby_id", "round"], lobby_teach_guesses: ["lobby_id", "round", "user_id"] },
   );
   const g = groups as unknown as Record<string, unknown>;
   g.service = () => db;
   g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
+  ages({ s: "18plus" });
   const route = await import("../src/app/api/academy/lobby-teach/route");
   const post = async (uid: string, body: Record<string, unknown>) => (await route.POST(req(uid, { lobbyId: LOBBY, ...body }))).json() as Promise<Record<string, unknown>>;
   await post("h", { action: "ask", speakerId: "kid", lang: "es" });
@@ -139,8 +156,26 @@ test("route: teach rows older than 24 hours are purged", async () => {
   const g = groups as unknown as Record<string, unknown>;
   g.service = () => db;
   g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
+  ages({ s: "18plus" });
   const route = await import("../src/app/api/academy/lobby-teach/route");
   const res = (await (await route.GET(req("h"))).json()) as { teach: unknown };
   assert.equal(res.teach, null);
   assert.equal(tables.lobby_teach.length, 0);
+});
+
+test("route: a signed-in speaker whose account is under 18 cannot record even after host approval", async () => {
+  const now = new Date().toISOString();
+  const { db } = fakeDb(
+    { lobbies: [{ id: LOBBY, host_id: "h" }], lobby_players: [{ lobby_id: LOBBY, user_id: "h", score: 0 }, { lobby_id: LOBBY, user_id: "s", score: 0 }], lobby_screens: [], lobby_cards: [{ lobby_id: LOBBY, user_id: "s", card: adult, created_at: now }], lobby_teach: [] },
+    { lobby_teach: ["lobby_id", "round"], lobby_teach_guesses: ["lobby_id", "round", "user_id"] },
+  );
+  const g = groups as unknown as Record<string, unknown>;
+  g.service = () => db;
+  g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
+  ages({ s: "13to17" });
+  const route = await import("../src/app/api/academy/lobby-teach/route");
+  const post = async (uid: string, body: Record<string, unknown>) => (await route.POST(req(uid, { lobbyId: LOBBY, ...body }))).json() as Promise<Record<string, unknown>>;
+  await post("h", { action: "ask", speakerId: "s", lang: "es" });
+  await post("h", { action: "approve" });
+  assert.equal((await post("s", { action: "record", clip: CLIP, choices: ["dog", "cat"], answer: 0 })).error, "not_adult_account");
 });

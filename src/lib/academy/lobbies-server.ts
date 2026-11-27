@@ -6,6 +6,7 @@ import { botsEnabled, gameTiming, STANDING_LOBBY_MS, STANDING_RESULTS_MS } from 
 import { revealEntries } from "./lobby-reveal";
 import { corpusLookup } from "./lang-lookup";
 import { langCorpus } from "./groups-server";
+import { atlasPrompts } from "./voice-atlas";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
@@ -76,7 +77,7 @@ export async function limited(key: string, max: number): Promise<boolean> {
 }
 
 export async function promptsOf(lobbyId: string): Promise<LobbyPromptRow[]> {
-  return check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,mode,gloss,choices,answer").eq("lobby_id", lobbyId), "prompts") as LobbyPromptRow[];
+  return check(await service().from(PROMPTS).select("lobby_id,round,lang,item_id,mode,gloss,choices,answer,licence").eq("lobby_id", lobbyId), "prompts") as LobbyPromptRow[];
 }
 
 export function lobbyIdOf(input: unknown): string {
@@ -173,6 +174,11 @@ export type StartResult = { ok: true; lobby: LobbyRow } | { ok: false; error: "n
 
 export async function startLobby(lobby: LobbyRow, now: number): Promise<StartResult> {
   if (isRace(lobby.game)) {
+    if (lobby.game === "atlas") {
+      check(await service().from(PROMPTS).delete().eq("lobby_id", lobby.id), "atlas prompts clear");
+      const atlas = atlasPrompts(langCorpus()?.items ?? [], lobby);
+      if (atlas.length) check(await service().from(PROMPTS).insert(atlas), "atlas prompts");
+    }
     const raced = check(await service().from(LOBBIES).update({ status: "playing", started_at: new Date(now + LEAD_MS).toISOString(), ...(setupEnabled() ? { start_at: null } : {}) }).eq("id", lobby.id).eq("status", "lobby").select(LOBBY_COLS), "start race") as LobbyRow[];
     return raced[0] ? { ok: true, lobby: raced[0] } : { ok: false, error: "lobby_started" };
   }

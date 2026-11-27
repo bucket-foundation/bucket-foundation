@@ -97,6 +97,7 @@ function Shared({ view, players, act, room, controls }: { view: TeachView | null
       {view.status === "asked" && controls ? (
         <>
           <p className={s.prompt}>Is an adult holding {speaker?.name ?? "that"}&apos;s phone?</p>
+          <p className={s.note} data-testid="teach-vouch">You are the host. Tapping yes means you vouch that this speaker is an adult. Signed-in speakers also need an 18 and over account.</p>
           <div className={s.row}>
             <Button variant="success" size="lg" onClick={() => act("approve")} data-testid="teach-approve">Yes, an adult</Button>
             <Button variant="secondary" size="lg" onClick={() => act("skip")}>Pick someone else</Button>

@@ -44,7 +44,7 @@ test("players see the answer only after reveal, and open picks do not score yet"
 const LOBBY = "00000000-0000-4000-8000-0000000000b2";
 
 test("route: host writes, opens and reveals; players answer once and score", async () => {
-  const { db, tables } = fakeDb({ lobbies: [{ id: LOBBY, host_id: "h" }], lobby_players: [{ lobby_id: LOBBY, user_id: "h", score: 0 }, { lobby_id: LOBBY, user_id: "p", score: 0 }, { lobby_id: LOBBY, user_id: "q", score: 0 }], lobby_screens: [], lobby_trivia: [] }, { lobby_trivia: ["lobby_id"] });
+  const { db, tables } = fakeDb({ lobbies: [{ id: LOBBY, host_id: "h" }], lobby_players: [{ lobby_id: LOBBY, user_id: "h", score: 0 }, { lobby_id: LOBBY, user_id: "p", score: 0 }, { lobby_id: LOBBY, user_id: "q", score: 0 }], lobby_screens: [], lobby_trivia: [], lobby_trivia_answers: [] }, { lobby_trivia: ["lobby_id"], lobby_trivia_answers: ["lobby_id", "question", "user_id"] });
   const g = groups as unknown as Record<string, unknown>;
   g.service = () => db;
   g.requestUser = async (r: NextRequest) => r.headers.get("x-test-user");
@@ -58,10 +58,11 @@ test("route: host writes, opens and reveals; players answer once and score", asy
   assert.equal(await post("h", { action: "save", questions: [Q, Q] }), 200);
   assert.equal(await post("p", { action: "answer", pick: 2 }), 403);
   assert.equal(await post("h", { action: "open", index: 0 }), 200);
-  assert.equal(await post("p", { action: "answer", pick: 2 }), 200);
+  assert.deepEqual(await Promise.all([post("p", { action: "answer", pick: 2 }), post("q", { action: "answer", pick: 0 })]), [200, 200]);
+  assert.equal(tables.lobby_trivia_answers.length, 2);
   assert.equal(await post("p", { action: "answer", pick: 1 }), 409);
-  assert.equal(await post("q", { action: "answer", pick: 0 }), 200);
-  assert.equal(await post("h", { action: "reveal" }), 200);
+  const reveals = await Promise.all([post("h", { action: "reveal" }), post("h", { action: "reveal" })]);
+  assert.equal(reveals.filter((x) => x === 200).length, 1);
   assert.deepEqual(tables.lobby_players.map((r) => r.score), [0, 100, 0]);
   assert.equal(await post("h", { action: "save", questions: [Q] }), 403);
 });

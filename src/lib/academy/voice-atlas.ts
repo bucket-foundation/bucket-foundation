@@ -1,6 +1,6 @@
 import type { LangItem } from "./lang-systems";
 import { BOTS, unit } from "./lobby-bots";
-import { seededRandom } from "./lobbies";
+import { seededRandom, shuffled, type LobbyPromptRow } from "./lobbies";
 
 export const ATLAS_ROUNDS = 5;
 export const ATLAS_MAX = 5000;
@@ -103,4 +103,13 @@ export function atlasGhosts(date: string, count = 5): AtlasGhost[] {
       return { name: b.name, flag: b.flag, skill: b.skill, score: lo + Math.floor(unit(`atlas-score:${date}:${b.userId}`) * (hi - lo)) };
     })
     .sort((a, b) => b.score - a.score);
+}
+
+export function atlasPrompts(items: readonly LangItem[], lobby: { id: string; seed: string; root: string; rounds: number }): LobbyPromptRow[] {
+  const langs = Object.keys(ATLAS_HOMES).filter((l) => l !== lobby.root);
+  return atlasRounds(items, `lobby:${lobby.seed}`, lobby.rounds, lobby.root).map((r, round) => {
+    const rand = seededRandom(`${lobby.seed}:atlas:${round}`);
+    const others = shuffled(langs.filter((l) => l !== r.lang), rand).slice(0, 3);
+    return { lobby_id: lobby.id, round, lang: r.lang, item_id: r.itemId, mode: "voice", gloss: r.form, choices: shuffled([r.lang, ...others], rand), answer: r.lang, licence: r.licence };
+  });
 }

@@ -56,6 +56,8 @@ export const TEACH_ERRORS: Record<string, string> = {
   not_adult: "Recording is for adults. Pass the phone to a grown-up.",
   not_home_language: "Pick a language you marked as a home language.",
   not_approved: "The host approves the speaker on the TV first.",
+  not_adult_account: "This account is not set as 18 and over, so it cannot record.",
+  age_unavailable: "We could not check this account's age. Try again in a moment.",
   not_allowed: "That step is not open right now.",
   offline: "You are offline. Check the connection and try again.",
 };

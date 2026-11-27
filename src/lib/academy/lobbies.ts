@@ -1,3 +1,4 @@
+import type { ClipLicence } from "./voice-atlas";
 import { CROCKFORD, hiddenUsers, normalizeReportReason, uuidOrNull, type BlockRow, type ReportReason } from "./groups";
 import type { LangItem, Reading } from "./lang-systems";
 import { spyRounds } from "./ispy";
@@ -25,7 +26,7 @@ export function raceEnabled(env: Record<string, string | undefined> = process.en
 export function raceGames(env: Record<string, string | undefined> = process.env): RaceGame[] {
   return raceEnabled(env) ? [...RACE_GAMES] : [];
 }
-export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy";
+export type PromptMode = "form" | "flag" | "tiles" | "mixed" | "meaning" | "spy" | "voice";
 export type PowerKind = "double" | "fifty";
 export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
@@ -215,6 +216,7 @@ export interface LobbyPromptRow {
   gloss: string;
   choices: string[];
   answer: string;
+  licence?: ClipLicence | null;
 }
 
 export interface RevealEntry {
@@ -231,6 +233,7 @@ export interface LobbyPrompt {
   round: number;
   mode: PromptMode;
   lang: string | null;
+  licence?: ClipLicence;
   gloss: string;
   choices: string[];
   answer: string | null;
@@ -468,7 +471,7 @@ export function seededRandom(seed: string): () => number {
   };
 }
 
-function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
+export function shuffled<T>(xs: readonly T[], rand: () => number): T[] {
   const out = xs.slice();
   for (let i = out.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
@@ -670,7 +673,7 @@ export function visiblePrompts(rows: readonly LobbyPromptRow[], current: number 
     .sort((a, b) => a.round - b.round)
     .map((r) => {
       const open = done || (current !== null && (r.round < current || (closed && r.round === current)));
-      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" || r.mode === "meaning" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null };
+      const base: LobbyPrompt = { round: r.round, mode: r.mode ?? "form", lang: open || r.mode === "form" || r.mode === "meaning" || r.mode === "voice" ? r.lang : null, gloss: r.gloss, choices: r.choices, answer: open ? r.answer : null, ...(r.licence ? { licence: r.licence } : {}) };
       return open && describe ? { ...base, reveal: describe(r) } : base;
     });
 }

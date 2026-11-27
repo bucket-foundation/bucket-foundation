@@ -14,9 +14,15 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
       await Promise.resolve();
       tables[table] ??= [];
       const rows = tables[table];
+      if (op === "insert" && Array.isArray(patch)) {
+        rows.push(...(patch as Row[]).map((r) => ({ ...r })));
+        log.push(`insert ${table}`);
+        return { data: null, error: null };
+      }
       if (op === "upsert" || op === "insert") {
         const k = keys[table] ?? [];
         const hit = k.length ? rows.find((r) => k.every((c) => r[c] === patch[c])) : undefined;
+        if (hit && op === "insert") return { data: null, error: { code: "23505", message: "duplicate key" } };
         if (hit && op === "upsert") Object.assign(hit, patch);
         else rows.push({ ...patch });
         log.push(`${op} ${table}`);
@@ -38,7 +44,7 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
       select: () => chain,
       update: (p: Row) => ((op = "update"), (patch = p), chain),
       upsert: (p: Row) => ((op = "upsert"), (patch = p), chain),
-      insert: (p: Row) => ((op = "insert"), (patch = p), chain),
+      insert: (p: Row | Row[]) => ((op = "insert"), (patch = p as Row), chain),
       delete: () => ((op = "delete"), chain),
       eq: (c: string, v: unknown) => (filters.push((r) => r[c] === v), chain),
       neq: (c: string, v: unknown) => (filters.push((r) => r[c] !== v), chain),
