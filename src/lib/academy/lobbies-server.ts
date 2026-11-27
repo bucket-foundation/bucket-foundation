@@ -278,7 +278,7 @@ export async function autoStart(lobby: LobbyRow, now: number): Promise<LobbyRow>
 export async function pace(lobby: LobbyRow, now: number): Promise<LobbyRow> {
   if (lobby.status === "done") lobby = await againHosted(lobby, now);
   if (!setupEnabled() || lobby.standing_slot || lobby.status !== "lobby") return lobby;
-  return autoStart(await armAutoStart(lobby, allReady(await playersOf([lobby.id])), now), now);
+  return autoStart(await armAutoStart(lobby, allReady(await playersOf([lobby.id]), now), now), now);
 }
 
 export async function memberLobby(uid: string, lobbyId: unknown, screenOk = false): Promise<LobbyRow> {

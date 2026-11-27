@@ -42,4 +42,5 @@ test("everyoneReady needs every human ready and counts bots as ready", () => {
   assert.equal(everyoneReady({ players: [pl(true), pl(false, true)] }), true);
   assert.equal(everyoneReady({ players: [pl(false, true), pl(false, true)] }), false);
   assert.equal(everyoneReady({ players: [pl(true), pl(true), pl(true)] }), true);
+  assert.equal(everyoneReady({ players: [pl(true), pl(true), { ready: false, bot: false, online: false } as never] }), true);
 });

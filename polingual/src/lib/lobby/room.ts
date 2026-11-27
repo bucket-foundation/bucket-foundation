@@ -41,7 +41,8 @@ export function roundFeedback(mine: Picked): string {
 }
 
 export function everyoneReady(lobby: Pick<LobbyState, "players">): boolean {
-  return lobby.players.length >= 2 && lobby.players.some((p) => !p.bot) && lobby.players.every((p) => p.ready || p.bot);
+  const here = lobby.players.filter((p) => p.bot || p.online !== false);
+  return here.length >= 2 && here.some((p) => !p.bot) && here.every((p) => p.ready || p.bot);
 }
 
 export function waitingHint(lobby: Pick<LobbyState, "standing" | "isHost" | "players">): string {
