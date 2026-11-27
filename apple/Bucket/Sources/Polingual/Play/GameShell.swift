@@ -176,7 +176,7 @@ struct ComboSlot: View {
 
     var body: some View {
         ZStack {
-            ComboChipFace(count: 0).hidden().frame(width: 0).accessibilityHidden(true)
+            ComboChipFace(count: 0).lineLimit(1).fixedSize().hidden().frame(width: 0).accessibilityHidden(true)
             ComboChip(streak: streak, multiplier: multiplier)
         }
     }
