@@ -3,6 +3,40 @@ import Observation
 
 public enum LobbyStatus: String, Codable, Sendable {
     case lobby, playing, done
+
+    public init(from decoder: Decoder) throws {
+        self = LobbyStatus(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .done
+    }
+}
+
+public enum LobbySetup: String, Codable, Sendable, CaseIterable {
+    case single, sequence, mix, other
+
+    public init(from decoder: Decoder) throws {
+        self = LobbySetup(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
+    }
+}
+
+public enum ClipLicence: String, Codable, Sendable {
+    case deviceTTS = "device-tts", cc0, ccBy = "cc-by", ccBySA = "cc-by-sa", familyRoom = "family-room", personal, unknown
+
+    public init(from decoder: Decoder) throws {
+        self = ClipLicence(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .unknown
+    }
+
+    public var publicPlayback: Bool { self == .deviceTTS || self == .cc0 || self == .ccBy || self == .ccBySA }
+
+    public func playable(room: Bool) -> Bool { self == .familyRoom ? room : publicPlayback }
+}
+
+public struct BonusTally: Codable, Equatable, Sendable {
+    public struct Choice: Codable, Equatable, Sendable {
+        public var choice: String
+        public var votes: Int
+    }
+    public var round: Int
+    public var choices: [Choice]
+    public var total: Int
 }
 
 public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
@@ -21,9 +55,9 @@ public enum LobbyGame: String, Codable, Sendable, CaseIterable, Identifiable {
 }
 
 public enum LobbyPromptMode: String, Codable, Sendable {
-    case form, flag, tiles, mixed, meaning, spy, other
+    case form, flag, tiles, mixed, meaning, spy, voice, other
 
-    public var choosesText: Bool { self == .form || self == .mixed || self == .meaning }
+    public var choosesText: Bool { self == .form || self == .mixed || self == .meaning || self == .voice }
 
     public init(from decoder: Decoder) throws {
         self = LobbyPromptMode(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
@@ -40,7 +74,12 @@ public struct LobbyPlayer: Codable, Equatable, Sendable, Identifiable {
     public var online: Bool
     public var answered: Bool
     public var bot: Bool? = nil
+    public var handle: String? = nil
+    public var total: Int? = nil
+    public var flag: String? = nil
+    public var continues: Int? = nil
     public var id: String { userId }
+    public var isBot: Bool { bot == true }
 }
 
 public struct LobbyMessage: Codable, Equatable, Sendable, Identifiable {
@@ -62,10 +101,12 @@ public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
     public var round: Int
     public var mode: LobbyPromptMode
     public var lang: String?
+    public var licence: ClipLicence? = nil
     public var gloss: String
     public var choices: [String]
     public var answer: String?
     public var reveal: [LobbyRevealEntry]?
+    public var hide: [String]? = nil
     public var id: Int { round }
 
     public var revealOrdered: [LobbyRevealEntry] {
@@ -76,7 +117,7 @@ public struct LobbyPrompt: Codable, Equatable, Sendable, Identifiable {
     public func label(_ choice: String) -> LobbyChoiceLabel {
         switch mode {
         case .flag: return LobbyChoiceLabel(word: nil, lang: choice)
-        case .meaning, .spy: return LobbyChoiceLabel(word: choice, lang: nil)
+        case .meaning, .spy, .voice: return LobbyChoiceLabel(word: choice, lang: nil)
         case .mixed:
             let t = LobbyTile(key: choice)
             return LobbyChoiceLabel(word: t.form, lang: t.lang.isEmpty ? nil : t.lang)
@@ -116,7 +157,12 @@ public struct LobbySummary: Codable, Equatable, Sendable, Identifiable {
     public var targets: [String]
     public var status: LobbyStatus
     public var players: Int
+    public var bots: Int? = nil
+    public var standing: Bool? = nil
+    public var setup: LobbySetup? = nil
+    public var playlist: [LobbyGame]? = nil
     public var host: String
+    public var hostHandle: String? = nil
     public var isMember: Bool
 }
 
@@ -142,10 +188,32 @@ public struct Lobby: Codable, Equatable, Sendable, Identifiable {
     public var round: LobbyRound?
     public var prompts: [LobbyPrompt]
     public var results: [LobbyResult]
+    public var standing: Bool? = nil
+    public var botFill: Bool? = nil
+    public var botsEnabled: Bool? = nil
+    public var nextStartAt: String? = nil
+    public var ended: Bool? = nil
+    public var canEnd: Bool? = nil
+    public var setup: LobbySetup? = nil
+    public var playlist: [LobbyGame]? = nil
+    public var coins: Int? = nil
+    public var guestsWatch: Bool? = nil
+    public var bonusVotes: [BonusTally]? = nil
 
     public var me: LobbyPlayer? { players.first { $0.isMe } }
     public var readyCount: Int { players.filter(\.ready).count }
-    public var canStart: Bool { isHost && status == .lobby && readyCount >= LobbyRules.minReady }
+    public var present: [LobbyPlayer] { players.filter { $0.isBot || $0.online } }
+    public var allReady: Bool {
+        let here = present
+        return here.count >= LobbyRules.minReady && here.contains { !$0.isBot } && here.allSatisfy { $0.ready || $0.isBot }
+    }
+    public var waitingOn: [LobbyPlayer] { present.filter { !$0.isBot && !$0.ready } }
+    public var canStart: Bool { isHost && status == .lobby && allReady }
+    public var seated: Bool { me != nil }
+    public var watching: Bool { !isHost && me == nil }
+    public var isClosed: Bool { ended == true }
+    public var nextStart: Date? { nextStartAt.flatMap(parseInstant) }
+    public var hostName: String? { players.first(where: \.isHost)?.name }
     public var seedValue: UInt64 { UInt64(seed) ?? GameSeed.hash(seed) }
     public var start: Date? { startedAt.flatMap(parseInstant) }
     public var standings: [LobbyPlayer] {
@@ -171,6 +239,9 @@ public enum LobbyRules {
     public static let cap = 8
     public static let pollSeconds = 1.0
     public static let raceHeader = ["x-polingual-race": "1"]
+    public static let plays = "tiles,reveal"
+    public static let clientHeaders = ["x-polingual-race": "1", "x-polingual-plays": plays]
+    public static let nextGameSeconds = 60.0
     public static let raceScoreMax = 100_000
 
     public static let retryableRefusals: Set<Int> = [408, 425, 429]
@@ -389,6 +460,14 @@ struct ScoreReply: Decodable {
     let score: Int
     let lobby: Lobby
 }
+public enum LobbyLeave: String, Decodable, Sendable {
+    case left, moved, closed, handoff, close, other
+
+    public init(from decoder: Decoder) throws {
+        self = LobbyLeave(rawValue: try decoder.singleValueContainer().decode(String.self)) ?? .other
+    }
+}
+struct LeaveReply: Decodable { let result: LobbyLeave? }
 struct LobbyPoll: Decodable {
     let changed: Bool
     let lobby: Lobby?
@@ -410,7 +489,7 @@ extension BucketAPI {
     }
 
     func lobbyList(token: String) async throws -> LobbiesReply {
-        try await groupCall("api/academy/lobbies", token: token, headers: LobbyRules.raceHeader)
+        try await groupCall("api/academy/lobbies", token: token, headers: LobbyRules.clientHeaders)
     }
 
     public func raceScore(token: String, lobbyId: String, score: Int) async throws -> Lobby {
@@ -422,7 +501,7 @@ extension BucketAPI {
         let r: LobbyReply = try await groupCall("api/academy/lobbies", token: token, body: [
             "name": .text(name), "game": .text(game.rawValue), "root": .text(root), "targets": .list(targets), "rounds": .number(rounds),
             "roundSeconds": .number(roundSeconds), "listed": .flag(listed), "displayName": .text(displayName),
-        ], headers: LobbyRules.raceHeader)
+        ], headers: LobbyRules.clientHeaders)
         return r.lobby
     }
 
@@ -430,12 +509,14 @@ extension BucketAPI {
         var body: [String: Field] = ["displayName": .text(displayName)]
         if let code { body["code"] = .text(code) }
         if let lobbyId { body["lobbyId"] = .text(lobbyId) }
-        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body, headers: LobbyRules.raceHeader)
+        let r: LobbyReply = try await groupCall("api/academy/lobbies/join", token: token, body: body, headers: LobbyRules.clientHeaders)
         return r.lobby
     }
 
-    public func leaveLobby(token: String, lobbyId: String) async throws {
-        let _: Ignored = try await groupCall("api/academy/lobbies/leave", token: token, body: ["lobbyId": .text(lobbyId)])
+    @discardableResult
+    public func leaveLobby(token: String, lobbyId: String) async throws -> LobbyLeave {
+        let r: LeaveReply = try await groupCall("api/academy/lobbies/leave", token: token, body: ["lobbyId": .text(lobbyId)])
+        return r.result ?? .left
     }
 
     public func setReady(token: String, lobbyId: String, ready: Bool) async throws -> Lobby {
@@ -463,7 +544,7 @@ extension BucketAPI {
     func lobbyState(token: String, lobbyId: String, since: Int?) async throws -> LobbyPoll {
         var q = ["lobbyId": lobbyId]
         if let since { q["since"] = String(since) }
-        return try await groupCall("api/academy/lobbies/state", query: q, token: token)
+        return try await groupCall("api/academy/lobbies/state", query: q, token: token, headers: LobbyRules.clientHeaders)
     }
 }
 
