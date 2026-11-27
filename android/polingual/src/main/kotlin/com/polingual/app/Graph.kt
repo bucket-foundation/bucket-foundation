@@ -68,7 +68,11 @@ class Graph(val context: Context) {
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
     val radioLog = RadioLog(kv)
     val studyLog = LogQueue(kv, RadioLog.STUDY_KEY, RadioLog.STUDY_MAX_ROWS)
-    val ci14 = Ci14Prefs(kv)
+    val ci14 = Ci14Prefs(kv) { account.userId }
+
+    suspend fun probeUploadGate() {
+        if (Ci14.flag && radioLog.gate() == foundation.bucket.core.engine.UploadGate.Unknown) syncRadio()
+    }
 
     fun ci14Consent() = ci14.consent(Ci14.flag, radioLog.gate())
 

@@ -6,33 +6,35 @@ import foundation.bucket.core.engine.LogRow
 import foundation.bucket.core.engine.UploadGate
 import foundation.bucket.core.engine.YesNoTest
 
-class Ci14Prefs(private val kv: KeyValue) {
-    val disclosed: Boolean get() = kv.get(DISCLOSED) == "1"
-    val optedOut: Boolean get() = kv.get(OPTED_OUT) == "1"
+class Ci14Prefs(private val kv: KeyValue, private val account: () -> String?) {
+    private val scope: String get() = "$BASE.${account()?.takeIf { it.isNotEmpty() } ?: "anon"}"
+    private val disclosedKey get() = "$scope.disclosed"
+    private val optedOutKey get() = "$scope.optedOut"
+    private val enrolmentKey get() = "$scope.enrolment"
+    private val takenKey get() = "$scope.taken"
 
-    fun join() { kv.set(DISCLOSED, "1"); kv.set(OPTED_OUT, null) }
+    val disclosed: Boolean get() = kv.get(disclosedKey) == "1"
+    val optedOut: Boolean get() = kv.get(optedOutKey) == "1"
 
-    fun leave() { kv.set(DISCLOSED, "1"); kv.set(OPTED_OUT, "1") }
+    fun join() { kv.set(disclosedKey, "1"); kv.set(optedOutKey, null) }
+
+    fun leave() { kv.set(disclosedKey, "1"); kv.set(optedOutKey, "1") }
 
     fun consent(flag: Boolean, gate: UploadGate) = InputExperiment.Consent(flag, gate == UploadGate.Open, disclosed, optedOut)
 
-    fun enrolment(): InputExperiment.Enrolment? = InputExperiment.parseEnrolment(kv.get(ENROLMENT))
+    fun enrolment(): InputExperiment.Enrolment? = InputExperiment.parseEnrolment(kv.get(enrolmentKey))
 
-    fun cache(e: InputExperiment.Enrolment) = kv.set(ENROLMENT, InputExperiment.encode(e))
+    fun cache(e: InputExperiment.Enrolment) = kv.set(enrolmentKey, InputExperiment.encode(e))
 
-    fun taken(): YesNoTest.Taken = (kv.get(TAKEN) ?: "").let { YesNoTest.Taken("baseline" in it, "day28" in it) }
+    fun taken(): YesNoTest.Taken = (kv.get(takenKey) ?: "").let { YesNoTest.Taken("baseline" in it, "day28" in it) }
 
     fun markTaken(phase: String) {
         val t = taken()
-        kv.set(TAKEN, listOfNotNull("baseline".takeIf { t.baseline || phase == "baseline" }, "day28".takeIf { t.day28 || phase == "day28" }).joinToString(","))
+        kv.set(takenKey, listOfNotNull("baseline".takeIf { t.baseline || phase == "baseline" }, "day28".takeIf { t.day28 || phase == "day28" }).joinToString(","))
     }
 
     companion object {
-        private const val BASE = "polingual.ci14"
-        const val DISCLOSED = "$BASE.disclosed"
-        const val OPTED_OUT = "$BASE.optedOut"
-        const val ENROLMENT = "$BASE.enrolment"
-        const val TAKEN = "$BASE.taken"
+        const val BASE = "polingual.ci14"
     }
 }
 
@@ -82,10 +84,11 @@ object Ci14 {
         consent: InputExperiment.Consent, prefs: Ci14Prefs, api: ExperimentApi?, accountId: String?, device: String,
         attempt: (InputExperiment.Consent, InputExperiment.Enrolment?, String?) -> T?, enrolmentOf: (T) -> InputExperiment.Enrolment?,
     ): T? {
-        val stored = if (InputExperiment.mayTakePart(consent) && api != null) api.fetch() else null
-        val known = if (stored != null) stored.enrolment else prefs.enrolment()
-        stored?.enrolment?.let(prefs::cache)
-        val key = if (stored != null && !accountId.isNullOrEmpty() && prefs.taken().baseline) InputExperiment.enrolmentKey(accountId, device) else null
+        val stored = (if (InputExperiment.mayTakePart(consent) && api != null) api.fetch() else null)
+            ?: return attempt(consent.copy(flag = false), null, null)
+        val known = stored.enrolment
+        known?.let(prefs::cache)
+        val key = if (!accountId.isNullOrEmpty() && prefs.taken().baseline) InputExperiment.enrolmentKey(accountId, device) else null
         val planned = attempt(consent, known, key) ?: return null
         val fresh = enrolmentOf(planned)
         if (fresh == null || known != null) return planned

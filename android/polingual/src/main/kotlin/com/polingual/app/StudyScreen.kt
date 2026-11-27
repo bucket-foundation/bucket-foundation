@@ -42,9 +42,13 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     var typed by remember { mutableStateOf("") }
     var typedVerdict by remember { mutableStateOf<foundation.bucket.core.engine.Verdict?>(null) }
     val scope = rememberCoroutineScope()
-    var ready by remember { mutableStateOf(Ci14.step(graph.ci14Consent(), graph.ci14, System.currentTimeMillis()) == null) }
+    var ready by remember { mutableStateOf<Boolean?>(null) }
+    LaunchedEffect(Unit) {
+        graph.probeUploadGate()
+        ready = Ci14.step(graph.ci14Consent(), graph.ci14, System.currentTimeMillis()) == null
+    }
     LaunchedEffect(ready) {
-        if (!ready) return@LaunchedEffect
+        if (ready != true) return@LaunchedEffect
         val app = graph.store.current()
         val system = app.system ?: return@LaunchedEffect
         val corpus = foundation.bucket.core.engine.InputExperiment.withoutHeldOut(graph.corpus.load(), graph.heldOut(system.targets))
@@ -56,7 +60,8 @@ fun StudyScreen(graph: Graph, done: () -> Unit) {
     var corpus by remember { mutableStateOf<foundation.bucket.core.engine.LangCorpus?>(null) }
     LaunchedEffect(Unit) { corpus = graph.corpus.load() }
     Page("Study", back = done, stickers = listOf(Sticker("torn-label", Alignment.CenterStart, 100.dp, -7f), Sticker("seal", Alignment.TopEnd, 52.dp, 9f), Sticker("pebble", Alignment.BottomEnd, 40.dp, -6f, dx = (-12).dp))) {
-        if (!ready) { Ci14Panel(graph) { ready = true }; return@Page }
+        if (ready == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
+        if (ready == false) { Ci14Panel(graph) { ready = true }; return@Page }
         if (s == null) { EmptyState("ink-dot", "Loading your session."); return@Page }
         Ci14Leave(graph)
         tick.let { }

@@ -36,7 +36,7 @@ class Ci14Test {
     }
 
     @Test fun prefsJoinLeaveAndTaken() {
-        val p = Ci14Prefs(MemKv())
+        val p = Ci14Prefs(MemKv()) { "u1" }
         assertFalse(p.disclosed)
         p.join()
         assertTrue(p.disclosed)
@@ -54,7 +54,7 @@ class Ci14Test {
     }
 
     @Test fun stepsFollowConsentAndTests() {
-        val p = Ci14Prefs(MemKv())
+        val p = Ci14Prefs(MemKv()) { "u1" }
         assertNull(Ci14.step(p.consent(true, UploadGate.Closed), p, 0L))
         assertEquals(Ci14Step.Disclose, Ci14.step(p.consent(true, UploadGate.Open), p, 0L))
         p.join()
@@ -66,7 +66,7 @@ class Ci14Test {
     }
 
     @Test fun serverArmWins() = runBlocking {
-        val p = Ci14Prefs(MemKv()).apply { join(); markTaken("baseline"); cache(enrolment("s50")) }
+        val p = Ci14Prefs(MemKv()) { "u1" }.apply { join(); markTaken("baseline"); cache(enrolment("s50")) }
         val api = FakeApi(ExperimentApi.Fetched(enrolment("s90")), null)
         val out = Ci14.choose(open, p, api, "u1", "d-0", attempt) { it.enrolment }!!
         assertEquals("s90", out.arm)
@@ -75,7 +75,7 @@ class Ci14Test {
     }
 
     @Test fun newEnrolmentTakesTheServerReply() = runBlocking {
-        val p = Ci14Prefs(MemKv()).apply { join(); markTaken("baseline") }
+        val p = Ci14Prefs(MemKv()) { "u1" }.apply { join(); markTaken("baseline") }
         val api = FakeApi(ExperimentApi.Fetched(null), enrolment("s70"))
         val out = Ci14.choose(open, p, api, "u1", "d-0", attempt) { it.enrolment }!!
         assertEquals(listOf("to-a2"), api.registered)
@@ -84,15 +84,60 @@ class Ci14Test {
     }
 
     @Test fun noServerReplyMeansNoArm() = runBlocking {
-        val p = Ci14Prefs(MemKv()).apply { join(); markTaken("baseline") }
+        val p = Ci14Prefs(MemKv()) { "u1" }.apply { join(); markTaken("baseline") }
         val failed = Ci14.choose(open, p, FakeApi(ExperimentApi.Fetched(null), null), "u1", "d-0", attempt) { it.enrolment }!!
         assertNull(failed.arm)
         assertNull(failed.enrolment)
         assertNull(p.enrolment())
         val offline = Ci14.choose(open, p, FakeApi(null, enrolment("s70")), "u1", "d-0", attempt) { it.enrolment }!!
         assertNull(offline.arm)
-        val noBaseline = Ci14Prefs(MemKv()).apply { join() }
+        val noBaseline = Ci14Prefs(MemKv()) { "u1" }.apply { join() }
         assertNull(Ci14.choose(open, noBaseline, FakeApi(ExperimentApi.Fetched(null), enrolment("s70")), "u1", "d-0", attempt) { it.enrolment }!!.arm)
+    }
+
+    @Test fun prefsBelongToTheAccount() {
+        val kv = MemKv()
+        var who: String? = "u1"
+        val p = Ci14Prefs(kv) { who }
+        p.join(); p.markTaken("baseline"); p.cache(enrolment("s90"))
+        who = "u2"
+        assertFalse(p.disclosed)
+        assertFalse(p.taken().baseline)
+        assertNull(p.enrolment())
+        p.leave()
+        assertTrue(p.optedOut)
+        who = "u1"
+        assertFalse(p.optedOut)
+        assertTrue(p.disclosed)
+        assertEquals("s90", p.enrolment()?.arm)
+    }
+
+    @Test fun cachedArmIsIgnoredWithoutAServerReply() = runBlocking {
+        val p = Ci14Prefs(MemKv()) { "u1" }.apply { join(); markTaken("baseline"); cache(enrolment("s90")) }
+        val out = Ci14.choose(open, p, FakeApi(null, enrolment("s90")), "u1", "d-0", attempt) { it.enrolment }!!
+        assertNull(out.arm)
+        assertNull(out.enrolment)
+        assertNull(Ci14.choose(open, p, null, "u1", "d-0", attempt) { it.enrolment }!!.arm)
+    }
+
+    @Test fun consentGateKeepsTheServerOut() = runBlocking {
+        val p = Ci14Prefs(MemKv()) { "u1" }.apply { join(); markTaken("baseline") }
+        for (c in listOf(open.copy(flag = false), open.copy(uploadOpen = false), open.copy(disclosed = false), open.copy(optedOut = true))) {
+            val api = FakeApi(ExperimentApi.Fetched(enrolment("s90")), enrolment("s90"))
+            val out = Ci14.choose(c, p, api, "u1", "d-0", attempt) { it.enrolment }!!
+            assertNull(out.arm)
+            assertEquals(emptyList(), api.registered)
+        }
+        assertNull(Ci14.step(open.copy(uploadOpen = false), p, 0L))
+        assertFalse(Ci14.showsLeave(open.copy(flag = false)))
+    }
+
+    @Test fun baselineRowCarriesNoArm() {
+        val items = listOf(YesNoTest.TestItem("casa", true, 0))
+        val r = Ci14.vocabRow("baseline", items, setOf("casa"), 30.0, null, "id", 9L, "d", "UTC", "sys", "es")
+        assertEquals("A", r.form)
+        assertNull(r.arm)
+        assertEquals(0, r.day)
     }
 
     @Test fun vocabRowScoresAndDays() {
