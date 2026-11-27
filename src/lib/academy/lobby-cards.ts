@@ -34,3 +34,11 @@ export function cardReadAllowed(uid: string, players: readonly string[], screens
 export function freshCard(createdAt: string, now: number): boolean {
   return now - Date.parse(createdAt) < CARD_TTL_MS;
 }
+
+export function cardStorable(card: RoomCard): boolean {
+  return card.band !== "under13";
+}
+
+export function sharedCards<T>(cards: readonly T[], share: boolean): T[] {
+  return share ? cards.slice() : [];
+}

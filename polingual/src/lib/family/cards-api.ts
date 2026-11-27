@@ -1,4 +1,4 @@
-import type { PlayerCard } from "./card";
+import { keepsData, type PlayerCard } from "./card";
 import type { SeatCard } from "./langmap";
 
 const PATH = "/api/academy/lobby-cards";
@@ -9,6 +9,7 @@ function headers(token: string): Record<string, string> {
 }
 
 export async function sendCard(f: Fetch, token: string, lobbyId: string, card: PlayerCard): Promise<boolean> {
+  if (!keepsData(card.band)) return false;
   try {
     const body = { lobbyId, card: { band: card.band, speaks: card.speaks, learn: card.learn, surprise: card.surprise } };
     return (await f(PATH, { method: "POST", headers: headers(token), body: JSON.stringify(body) })).ok;

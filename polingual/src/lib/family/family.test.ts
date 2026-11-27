@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "@academy/lobbies";
-import { cardReadAllowed, freshCard, roomCard } from "@academy/lobby-cards";
+import { cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
+import { sendCard } from "./cards-api";
 import { bandFromAnswers, blankCard, cardReady, normalizeCard, readCard, setLevel, setReads, setSurprise, toggleLearn, toggleSpeak, writeCard } from "./card";
 import { roomLanguageMap, suggestedRound } from "./langmap";
 import { adoptGuestRooms, mergeRooms, readRooms, recordRoom, roomDays, ROOM_BRANCH, type RoomRecord, type SyncDeps } from "./results";
@@ -169,4 +170,21 @@ test("server card rules: shape, access and 24 hour expiry", () => {
   assert.equal(cardReadAllowed("z", ["a"], ["s"], "h"), false);
   assert.equal(freshCard(new Date(now - 1000).toISOString(), now), true);
   assert.equal(freshCard(new Date(now - 25 * 3600 * 1000).toISOString(), now), false);
+});
+
+test("under-13 cards never leave the phone and the server refuses them", async () => {
+  let calls = 0;
+  const f = (async () => { calls++; return new Response("{}"); }) as unknown as typeof fetch;
+  const kid = { ...toggleSpeak(blankCard("Red Owl"), "es"), band: "under13" as const };
+  assert.equal(await sendCard(f, "t", "l", kid), false);
+  assert.equal(calls, 0);
+  assert.equal(await sendCard(f, "t", "l", { ...kid, band: "teen" }), true);
+  assert.equal(calls, 1);
+  assert.equal(cardStorable(roomCard({ band: "under13", speaks: [{ lang: "es", level: 2 }] })!), false);
+  assert.equal(cardStorable(roomCard({ band: "adult", speaks: [{ lang: "es", level: 2 }] })!), true);
+});
+
+test("cards stay hidden when the host turns sharing off", () => {
+  assert.deepEqual(sharedCards([1, 2], false), []);
+  assert.deepEqual(sharedCards([1, 2], true), [1, 2]);
 });

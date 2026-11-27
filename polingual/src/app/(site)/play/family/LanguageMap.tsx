@@ -7,6 +7,7 @@ import { flagEmoji, langFlag } from "@/lib/lobby/client";
 import { fetchCards, sendCard, setSharing } from "@/lib/family/cards-api";
 import { roomLanguageMap, suggestedRound, type SeatCard } from "@/lib/family/langmap";
 import { currentCard } from "@/lib/family/session";
+import { keepsData } from "@/lib/family/card";
 import { Button } from "@/ui";
 import f from "./family.module.css";
 
@@ -94,7 +95,7 @@ export default function FamilyWaiting({ lobby, token }: { lobby: WebLobbyState; 
   const [sent, setSent] = useState<string | null>(null);
   useEffect(() => {
     const card = currentCard();
-    if (!token || !card || sent === lobby.id) return;
+    if (!token || !card || !keepsData(card.band) || sent === lobby.id) return;
     setSent(lobby.id);
     void sendCard(bound(), token, lobby.id, card);
   }, [lobby.id, token, sent]);
