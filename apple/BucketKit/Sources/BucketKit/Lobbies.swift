@@ -239,7 +239,7 @@ public enum LobbyRules {
     public static let cap = 8
     public static let pollSeconds = 1.0
     public static let raceHeader = ["x-polingual-race": "1"]
-    public static let plays = "tiles,reveal"
+    public static let plays = "tiles,reveal,playlist,night"
     public static let clientHeaders = ["x-polingual-race": "1", "x-polingual-plays": plays]
     public static let nextGameSeconds = 60.0
     public static let raceScoreMax = 100_000

@@ -142,7 +142,7 @@ private func night(game: String, status: String = "done", startedAt: String = "2
         #expect(b.nearMe().map(\.rank) == [5, 6, 7, 8, 9])
         #expect(LeagueBoard.eligible(.teen, signedIn: true) && !LeagueBoard.eligible(.under13, signedIn: true))
         #expect(ClipLicence.familyRoom.playable(room: true) && !ClipLicence.personal.playable(room: true))
-        #expect(LobbyRules.clientHeaders["x-polingual-plays"] == "tiles,reveal")
+        #expect(LobbyRules.clientHeaders["x-polingual-plays"] == "tiles,reveal,playlist,night")
     }
 }
 
@@ -195,5 +195,60 @@ private func night(game: String, status: String = "done", startedAt: String = "2
         #expect(LobbyRules.pollProblem(.server(403, "unauthorized")))
         #expect(!LobbyRules.pollProblem(.server(429, nil)))
         #expect(!LobbyRules.pollProblem(.server(503, "sync_unavailable")))
+    }
+}
+
+@Suite struct FamilyGateTests {
+    @Test func clientHeaderDeclaresEverythingTheAppRenders() {
+        #expect(LobbyRules.clientHeaders["x-polingual-plays"] == "tiles,reveal,playlist,night")
+        #expect(LobbyRules.clientHeaders["x-polingual-race"] == "1")
+    }
+
+    @Test func atlasRefusalsBranchOnTheCode() {
+        #expect(BonusRefusal(.server(409, "already_answered")) == .alreadyAnswered)
+        #expect(BonusRefusal(.server(409, "wrong_round")) == .closed)
+        #expect(BonusRefusal(.server(503, "sync_unavailable")) == .retry)
+        #expect(BonusRefusal(.server(400, "bad_request")) == .other)
+    }
+
+    @Test func onlyAdultsRecordInAHomeLanguage() {
+        var c = FamilyCard(band: .under13, nickname: "Mo", speaks: [SpokenLang(lang: "es", level: 4, reads: true)])
+        #expect(c.recordRefusal(lang: "es") == "not_adult" && c.homeLanguages.isEmpty)
+        c.band = .teen
+        #expect(c.recordRefusal(lang: "es") == "not_adult")
+        c.band = .adult
+        #expect(c.recordRefusal(lang: "es") == nil && c.recordRefusal(lang: "fr") == "not_home_language" && c.homeLanguages == ["es"])
+    }
+
+    @Test func underThirteenRecordRefusalReachesTheApp() async {
+        let api = BucketAPI(transport: StubTransport { _ in (403, json(["error": "not_adult"])) }, cacheDir: nil)
+        do {
+            try await api.teachAct(token: "t", lobbyId: "L", action: .record, lang: "es", clip: "data:audio/mp4;base64,AA", choices: ["a", "b"], answer: 0)
+            Issue.record("record should be refused")
+        } catch {
+            #expect((error as? BucketError) == .server(403, "not_adult"))
+        }
+    }
+
+    @Test func bonusVoteBodyCarriesRoundAndChoice() async throws {
+        let body = LockedBox<[String: Any]>([:])
+        let api = BucketAPI(transport: StubTransport { r in
+            body.mutate { $0 = (try? JSONSerialization.jsonObject(with: r.httpBody ?? Data()) as? [String: Any]) ?? [:] }
+            return (200, json(["ok": true]))
+        }, cacheDir: nil)
+        try await api.bonusVote(token: "t", lobbyId: "L", round: 5, choice: "gato")
+        #expect(body.value["lobbyId"] as? String == "L" && body.value["round"] as? Int == 5 && body.value["choice"] as? String == "gato" && body.value.count == 3)
+    }
+
+    @Test func triviaAnswersNeedASeatAndTheHostWritesTheQuestions() throws {
+        let player = try JSONDecoder().decode(Lobby.self, from: json(lobbyJSON(isHost: false)))
+        #expect(player.canAnswerTrivia)
+        let host = try JSONDecoder().decode(Lobby.self, from: json(lobbyJSON(isHost: true)))
+        #expect(!host.canAnswerTrivia)
+        var raw = lobbyJSON(isHost: false)
+        var ps = raw["players"] as! [[String: Any]]
+        ps[0]["isMe"] = false
+        raw["players"] = ps
+        #expect(try !JSONDecoder().decode(Lobby.self, from: json(raw)).canAnswerTrivia)
     }
 }

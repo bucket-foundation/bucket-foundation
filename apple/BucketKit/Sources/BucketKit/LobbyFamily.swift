@@ -80,6 +80,8 @@ public extension Lobby {
         return humans.isEmpty ? nil : humans[card % humans.count]
     }
 
+    var canAnswerTrivia: Bool { seated && !isHost }
+
     func bonusTally(_ round: Int) -> BonusTally? { bonusVotes?.first { $0.round == round } }
 
     var foreheadSeed: String { seed + String((startedAt ?? "").filter(\.isNumber).suffix(6)) }
@@ -181,6 +183,13 @@ public struct FamilyCard: Codable, Equatable, Sendable {
             "surprise": .flag(surprise),
         ])
     }
+
+    public func recordRefusal(lang: String) -> String? {
+        guard band == .adult else { return "not_adult" }
+        return speaks.contains { $0.lang == lang && $0.level == 4 } ? nil : "not_home_language"
+    }
+
+    public var homeLanguages: [String] { band == .adult ? speaks.filter { $0.level == 4 }.map(\.lang) : [] }
 
     func body(lobbyId: String) -> [String: Field] {
         band.keepsData ? ["lobbyId": .text(lobbyId), "card": cardField] : ["lobbyId": .text(lobbyId), "band": .text(band.rawValue)]
@@ -295,6 +304,19 @@ public struct ForeheadWord: Codable, Equatable, Sendable {
     public var lang: String
     public var form: String
     public var meaning: String
+}
+
+public enum BonusRefusal: Equatable, Sendable {
+    case alreadyAnswered, closed, retry, other
+
+    public init(_ e: BucketError) {
+        switch e {
+        case .server(409, "already_answered"): self = .alreadyAnswered
+        case .server(409, "wrong_round"), .server(404, _): self = .closed
+        case .server(503, _), .server(0, _), .server(408, _), .server(429, _): self = .retry
+        default: self = .other
+        }
+    }
 }
 
 public struct AtlasBonus: Decodable, Equatable, Sendable {

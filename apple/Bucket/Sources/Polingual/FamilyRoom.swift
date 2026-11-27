@@ -351,11 +351,16 @@ struct AtlasInterlude: View {
         guard let pin else { return }
         let id = lobby.id, n = clip
         Task {
-            do {
+            do throws(BucketError) {
                 let r = try await lobbies.withToken { api, t in try await api.atlasGuess(token: t, lobbyId: id, clip: n, lat: pin.latitude, lon: pin.longitude) }
                 result[n] = String(localized: "\(r.km) km away. +\(r.points)")
             } catch {
-                result[n] = String(localized: "Too late for that clip.")
+                switch BonusRefusal(error) {
+                case .alreadyAnswered: result[n] = String(localized: "Your guess for this clip is already in.")
+                case .closed: result[n] = String(localized: "Too late for that clip.")
+                case .retry: loadProblem = String(localized: "The map did not answer. Try again.")
+                case .other: loadProblem = String(localized: "That guess did not count: \(lobbyProblem(error))")
+                }
             }
         }
     }
@@ -468,7 +473,7 @@ struct TeachRound: View {
 
     var speaker: LobbyPlayer? { view.flatMap { v in lobby.players.first { $0.userId == v.speakerId } } }
     var isSpeaker: Bool { view?.speakerId != nil && view?.speakerId == lobby.me?.userId }
-    var homeLangs: [String] { (SavedCard.load()?.speaks ?? []).filter { $0.level == 4 }.map(\.lang) }
+    var homeLangs: [String] { SavedCard.load()?.homeLanguages ?? [] }
 
     var body: some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
@@ -629,7 +634,7 @@ struct TriviaRound: View {
             Text(prompt).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
             ForEach(Array(v.choices.enumerated()), id: \.offset) { i, c in
                 let tone: PLButtonVariant = v.answer == i ? .success : (v.myPick == i ? .accent : .ghost)
-                Button(c) { act(.answer, index: v.current, pick: i) }.buttonStyle(.pl(tone, size: .md)).disabled(lobby.isHost || v.myPick != nil || !v.open)
+                Button(c) { act(.answer, index: v.current, pick: i) }.buttonStyle(.pl(tone, size: .md)).disabled(!lobby.canAnswerTrivia || v.myPick != nil || !v.open)
             }
             Text("\(v.picked) answered").font(PL.small.font()).foregroundStyle(PL.inkDim)
         } else {
