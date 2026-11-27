@@ -1,6 +1,7 @@
 import { LANGS } from "@academy/lang-systems";
 import { SPY_ROUND_SECONDS } from "@academy/ispy";
 import { TILE_ROUND_SECONDS } from "@academy/lobby-tiles";
+import { FAMILY_NIGHT } from "@academy/lobbies";
 
 export interface LangSet {
   id: string;
@@ -52,9 +53,12 @@ export function roundsFor(game: string, chosen: number): number {
 
 export const LANG_CHOICES = ["es", "fr", "it", "pt", "de", "nl", "sv", "ja", "zh", "ko", "ru", "el", "ar", "hi", "tr"] as const;
 
-export type SetupMode = "single" | "sequence" | "mix";
+export type SetupMode = "single" | "sequence" | "mix" | "night";
+
+export const NIGHT_GAMES = FAMILY_NIGHT.map((r) => r.game) as GameId[];
 
 export const SETUP_MODES: { id: SetupMode; name: string; blurb: string }[] = [
+  { id: "night", name: "Family night", blurb: "Warm Up, Voice Atlas, Picture Race, then a double-points Final." },
   { id: "single", name: "One game", blurb: "Play one game again and again." },
   { id: "sequence", name: "Game set", blurb: "Pick games. They play in order." },
   { id: "mix", name: "Random mix", blurb: "A random game each time." },
@@ -63,6 +67,7 @@ export const SETUP_MODES: { id: SetupMode; name: string; blurb: string }[] = [
 export function setupValid(mode: SetupMode, games: readonly string[], langs: readonly string[]): string | null {
   if (langs.length < 1) return "Pick at least one language.";
   if (mode === "sequence" && games.length < 2) return "Pick at least two games for a set.";
+  if (mode === "night" && langs.length < 2) return "Family night needs two languages or more.";
   if ((mode === "single" ? games.slice(0, 1) : mode === "sequence" ? games : []).includes("same-word") && langs.length < 2) return "Same word needs two languages or more.";
   return null;
 }

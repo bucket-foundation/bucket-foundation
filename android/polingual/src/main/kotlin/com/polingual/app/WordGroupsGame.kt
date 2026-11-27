@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -72,22 +71,21 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun Groups(graph: Graph, c: GameContext) {
-    val p = LocalPalette.current
     val puzzle = remember { WordGroupsPuzzle.daily(c.puzzleWords, dayKey(), c.system.root, c.system.targets, theme = { c.corpus.byId[it.itemId]?.category }, sameForm = GameWordPool.sameForm(c.corpus)) }
-    if (puzzle == null) { Text("Learn a few more words to unlock today's board.", color = p.muted); return }
+    if (puzzle == null) { Text("Learn a few more words to unlock today's board.", color = PL.InkDim); return }
     val round = remember { WordGroupsRound(puzzle) }
     var tick by remember { mutableIntStateOf(0) }
     var note by remember { mutableStateOf("") }
     tick.let { }
     val colors = listOf(PL.Lapis, PL.Malachite, PL.Vermilion, PL.Ink)
     round.solved.forEachIndexed { i, g ->
-        Column(Modifier.fillMaxWidth().plSurface(colors[i % 4], 14.dp).padding(12.dp)) {
+        Column(Modifier.fillMaxWidth().plSurface(colors[i % 4], PLRadius.md).padding(12.dp)) {
             Text(groupTitle(g.link), style = Type.caps, color = PL.Paper)
             Text(g.words.joinToString(", ") { it.form }, color = PL.Paper, fontWeight = FontWeight.Bold)
         }
     }
     if (round.finished) {
-        if (!round.won) round.unsolved.forEach { g -> Text("${groupTitle(g.link)}: ${g.words.joinToString(", ") { it.form }}", color = p.muted) }
+        if (!round.won) round.unsolved.forEach { g -> Text("${groupTitle(g.link)}: ${g.words.joinToString(", ") { it.form }}", color = PL.InkDim) }
         LaunchedEffect(Unit) { val pattern = round.results.joinToString("") { if (it) "1" else "0" }; graph.markPlayed(GameKind.WordGroups, c.system, pattern) { day, at -> DailyResults.groups(day, puzzle.groups, round.solved, pattern, at) } }
         Finished(if (round.won) "Solved" else "Out of tries", "${round.mistakes} mistakes. New board tomorrow.", round.results, round.results.size, null)
         puzzle.groups.forEach { g ->
@@ -107,7 +105,7 @@ fun Groups(graph: Graph, c: GameContext) {
             }
         }
     }
-    Text("Mistakes left: ${"●".repeat(round.mistakesLeft)}", color = p.muted)
+    Text("Mistakes left: ${"●".repeat(round.mistakesLeft)}", color = PL.InkDim)
     if (note.isNotEmpty()) Text(note, color = PL.Vermilion)
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         PlainLink("Shuffle") { round.shuffle(SeededRandom(System.nanoTime().toULong())); tick += 1 }

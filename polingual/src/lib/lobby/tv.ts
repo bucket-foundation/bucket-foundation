@@ -2,13 +2,22 @@ import type { Sfx, Track } from "../stoa/script";
 import type { Standing } from "../stoa/client";
 import type { LobbyState } from "./client";
 import type { Phase } from "./phase";
+import { tvPlayable } from "../family/rounds";
+
+export type TvClip = { kind: "audio"; text: string; lang: string } | { kind: "text"; text: string; lang: string | null };
+
+export function tvAtlasClip(prompt: Pick<LobbyState["prompts"][number], "gloss" | "lang" | "licence"> | null): TvClip | null {
+  if (!prompt) return null;
+  if (prompt.lang && tvPlayable({ licence: prompt.licence }, false)) return { kind: "audio", text: prompt.gloss, lang: prompt.lang };
+  return { kind: "text", text: prompt.gloss, lang: prompt.lang };
+}
 
 export type TvBeat = { key: string; players: number };
 
 const TICK_FROM = 3;
 
-export function tvTrack(phase: Phase): Track {
-  if (phase.kind === "round") return "question";
+export function tvTrack(phase: Phase, final = false): Track {
+  if (phase.kind === "round") return final ? "finale" : "question";
   if (phase.kind === "reveal") return "reveal";
   if (phase.kind === "finished") return "finale";
   return "lobby";

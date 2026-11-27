@@ -27,7 +27,7 @@ export default async function PlayLayout({ children }: { children: React.ReactNo
     <header className={`${styles.bar} ${play.playBar}`}>
       <a href="/play" className={styles.brand} aria-label="Polingual games">
         <img src="/brand/kit/mark-on-dark.svg" alt="" width={32} height={32} />
-        <span className={play.brandText}>polingual play</span>
+        <span className={play.brandText}>polingual</span>
       </a>
       <span className={play.headTools}>
         <SilentSwitch onDark compact />

@@ -36,7 +36,6 @@ import foundation.bucket.core.engine.translateSources
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.Pill
 import foundation.bucket.core.ui.pl.SectionTitle
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +44,6 @@ import kotlinx.coroutines.withContext
 
 @Composable
 fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
-    val p = LocalPalette.current
     val app by graph.state.collectAsState()
     var item by remember { mutableStateOf<LangItem?>(null) }
     var corpus by remember { mutableStateOf<LangCorpus?>(null) }
@@ -54,8 +52,8 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         val i = item ?: return@Page
         val system = app?.system
         val langs = (system?.targets.orEmpty() + listOfNotNull(system?.root)).ifEmpty { listOf("en") }
-        Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = p.ink)
-        Text(i.gloss, color = p.muted)
+        Text(i.form(system?.root ?: "en") ?: i.gloss, style = Type.display, color = PL.Ink)
+        Text(i.gloss, color = PL.InkDim)
         if (i.root != null) Pill("Shared root: ${i.root}", PL.Malachite)
         langs.forEach { l ->
             val f = i.form(l) ?: return@forEach
@@ -63,9 +61,9 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(Lang.flag(l))
                     Column(Modifier.weight(1f).padding(start = 12.dp)) {
-                        Text(Lang.name(l), style = Type.caps, color = p.muted)
-                        Text(f, style = Type.word, color = p.ink)
-                        i.readings[l]?.let { r -> listOfNotNull(r.roman, r.kana, r.ipa?.let { "/$it/".replace("//", "/") }).joinToString("  ").takeIf { it.isNotEmpty() }?.let { Text(it, color = p.muted) } }
+                        Text(Lang.name(l), style = Type.caps, color = PL.InkDim)
+                        Text(f, style = Type.word, color = PL.Ink)
+                        i.readings[l]?.let { r -> listOfNotNull(r.roman, r.kana, r.ipa?.let { "/$it/".replace("//", "/") }).joinToString("  ").takeIf { it.isNotEmpty() }?.let { Text(it, color = PL.InkDim) } }
                     }
                     IconButton(onClick = { graph.voice.speak(f, l) }) { Glyph("speaker", "Speak ${Lang.name(l)}", PL.Lapis, Modifier.size(24.dp)) }
                 }
@@ -74,16 +72,15 @@ fun WordDetailScreen(graph: Graph, itemId: String, back: () -> Unit) {
         val others = i.forms.keys.filter { it !in langs && it in Lang.info }
         if (others.isNotEmpty()) {
             SectionTitle("In other languages")
-            others.forEach { l -> Text("${Lang.flag(l)}  ${i.form(l)}", color = p.ink) }
+            others.forEach { l -> Text("${Lang.flag(l)}  ${i.form(l)}", color = PL.Ink) }
         }
-        i.note?.let { Text(it, color = p.muted) }
-        Text(corpus?.attribution.orEmpty(), style = Type.caps, color = p.muted)
+        i.note?.let { Text(it, color = PL.InkDim) }
+        Text(corpus?.attribution.orEmpty(), style = Type.caps, color = PL.InkDim)
     }
 }
 
 @Composable
 fun LearnedWords(graph: Graph, nav: NavHostController) {
-    val p = LocalPalette.current
     val app by graph.state.collectAsState()
     var corpus by remember { mutableStateOf<LangCorpus?>(null) }
     LaunchedEffect(Unit) { corpus = graph.corpus.load() }
@@ -91,18 +88,17 @@ fun LearnedWords(graph: Graph, nav: NavHostController) {
     val ids = app?.study?.get(system.id)?.cards?.keys.orEmpty().map { it.substringAfter(':') }.distinct()
     val c = corpus ?: return
     SectionTitle("Words you study")
-    if (ids.isEmpty()) Text("Words show up here after your first session.", color = p.muted)
+    if (ids.isEmpty()) Text("Words show up here after your first session.", color = PL.InkDim)
     ids.take(60).mapNotNull { c.byId[it] }.forEach { item ->
         Row(Modifier.fillMaxWidth().clickable { nav.navigate("word/${item.id}") }.padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(item.form(system.root) ?: item.gloss, color = p.ink, modifier = Modifier.weight(1f))
-            Text(system.targets.mapNotNull { item.form(it) }.joinToString(" · "), color = p.muted)
+            Text(item.form(system.root) ?: item.gloss, color = PL.Ink, modifier = Modifier.weight(1f))
+            Text(system.targets.mapNotNull { item.form(it) }.joinToString(" · "), color = PL.InkDim)
         }
     }
 }
 
 @Composable
 fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
-    val p = LocalPalette.current
     val app by graph.state.collectAsState()
     val scope = rememberCoroutineScope()
     var text by remember { mutableStateOf(initial) }
@@ -140,11 +136,11 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
         foundation.bucket.core.ui.pl.PrimaryButton("Translate", enabled = text.isNotBlank()) { run(text) }
         val a = answer
         if (a != null) TranslationRows(a.source, a.headword, a.rows) { f, l -> graph.voice.speak(f, l) }
-        else if (searched) Text("No translation found. Try one word, or pick the source language.", color = p.muted)
+        else if (searched) Text("No translation found. Try one word, or pick the source language.", color = PL.InkDim)
         val recents = app?.recents.orEmpty()
         if (recents.isNotEmpty()) {
             SectionTitle("Recent")
-            recents.forEach { r -> Text(r, color = p.ink, modifier = Modifier.fillMaxWidth().clickable { text = r; run(r) }.padding(vertical = 6.dp)) }
+            recents.forEach { r -> Text(r, color = PL.Ink, modifier = Modifier.fillMaxWidth().clickable { text = r; run(r) }.padding(vertical = 6.dp)) }
         }
     }
     picking?.let { side ->
@@ -162,7 +158,6 @@ fun TranslateScreen(graph: Graph, initial: String, back: () -> Unit) {
 @Composable
 fun LanguagePicker(options: List<String>, recent: List<String> = emptyList(), recents: List<String>, allowAny: Boolean, anyLabel: String, dismiss: () -> Unit, pick: (String?) -> Unit) {
     var query by remember { mutableStateOf("") }
-    val p = LocalPalette.current
     PLDialog("Language", dismiss) {
             PLField(query, { query = it }, "Search")
             Column(Modifier.heightIn(max = 420.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -176,14 +171,14 @@ fun LanguagePicker(options: List<String>, recent: List<String> = emptyList(), re
                     SectionTitle("All")
                 }
                 options.filter { l -> query.isBlank() || Lang.name(l).contains(query, true) || l.startsWith(query.lowercase()) }.forEach { l -> PickerRow(l) { pick(l) } }
-                if (options.none { Lang.name(it).contains(query, true) }) Text("No match", color = p.muted)
+                if (options.none { Lang.name(it).contains(query, true) }) Text("No match", color = PL.InkDim)
             }
     }
 }
 
 @Composable
 private fun PickerRow(lang: String, onClick: () -> Unit) {
-    Text("${Lang.flag(lang)}  ${Lang.name(lang)}", color = LocalPalette.current.ink, modifier = Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 10.dp))
+    Text("${Lang.flag(lang)}  ${Lang.name(lang)}", color = PL.Ink, modifier = Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 10.dp))
 }
 
 @Composable

@@ -14,6 +14,8 @@ import Reveal from "../Reveal";
 import RoomMissed from "../RoomMissed";
 import AfterGame from "../family/AfterGame";
 import { EndGame, RoomToolbar, Scoreboard } from "./RoomBits";
+import { ReactionBar } from "./ReactionBar";
+import { NightInterlude } from "../rounds/NightInterlude";
 import type { LiveRoom } from "./useRoomGame";
 
 export function RoomResults({ g }: { g: LiveRoom }) {
@@ -30,7 +32,9 @@ export function RoomResults({ g }: { g: LiveRoom }) {
       </section>
       <Scoreboard lobby={lobby} />
       <NextBar g={g} />
+      <NightInterlude lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} role="phone" now={g.now + g.offset} />
       <SavePrompt g={g} guest={guest} />
+      <ReactionBar api={g.api} lobbyId={lobby.id} />
       <RoomToolbar g={g} />
       <section className={app.stackSm} data-testid="reveal-all">
         <h2 className={app.fieldLabel}>Every word in this game</h2>

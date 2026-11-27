@@ -16,8 +16,31 @@ export function HostSettings({ lobby, api, take }: { lobby: WebLobbyState; api: 
   if (!roomControls(lobby).settings) return null;
   if (open) return <SettingsEditor lobby={lobby} api={api} take={take} close={() => setOpen(false)} />;
   return (
-    <Button variant="ghost" size="md" onClick={() => setOpen(true)} data-testid="host-settings">
-      Change games
+    <>
+      <Button variant="ghost" size="md" onClick={() => setOpen(true)} data-testid="host-settings">
+        Change games
+      </Button>
+      {lobby.guestsWatch === undefined ? null : <GuestsWatch lobby={lobby} api={api} take={take} />}
+    </>
+  );
+}
+
+function GuestsWatch({ lobby, api, take }: { lobby: WebLobbyState; api: LobbyApi; take: Take }) {
+  const [busy, setBusy] = useState(false);
+  const flip = async () => {
+    setBusy(true);
+    try {
+      const sentAt = Date.now();
+      take(await api.settings(lobby.id, { guestsWatch: !lobby.guestsWatch }), sentAt);
+    } catch {
+      return;
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <Button variant="quiet" size="sm" onClick={() => void flip()} disabled={busy} aria-pressed={lobby.guestsWatch === true} data-testid="host-guests-watch">
+      {lobby.guestsWatch ? "Guests may watch: on" : "Guests may watch: off"}
     </Button>
   );
 }

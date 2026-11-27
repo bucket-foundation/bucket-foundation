@@ -35,3 +35,11 @@ export async function fetchCards(f: Fetch, token: string, lobbyId: string): Prom
     return null;
   }
 }
+
+export async function sendSeatBand(f: Fetch, token: string, lobbyId: string, band: PlayerCard["band"]): Promise<boolean> {
+  try {
+    return (await f(PATH, { method: "POST", headers: headers(token), body: JSON.stringify({ lobbyId, band }) })).ok;
+  } catch {
+    return false;
+  }
+}

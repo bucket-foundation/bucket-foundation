@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { LobbyError, lobbyError, type LobbySummary } from "@/lib/lobby/client";
-import { LANG_SETS, roundsFor, roundSecondsFor, setupValid, type GameId, type SetupMode } from "../langs";
+import { LANG_SETS, NIGHT_GAMES, roundsFor, roundSecondsFor, setupValid, type GameId, type SetupMode } from "../langs";
 import { usePlay } from "../usePlay";
 
 const LIST_MS = 5000;
@@ -56,11 +56,11 @@ export function useLobbies() {
       setError(invalid);
       return;
     }
-    const first = mode === "sequence" ? games[0] : mode === "mix" ? "daily" : game;
+    const first = mode === "night" ? NIGHT_GAMES[0] : mode === "sequence" ? games[0] : mode === "mix" ? "daily" : game;
     setBusy(true);
     setError(null);
     try {
-      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds: roundsFor(first, rounds), roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: listing.botsOn && fill, hostScreen, setup: mode, ...(mode === "sequence" ? { games } : {}) });
+      const lobby = await api.create({ name: `${state.nickname}'s lobby`, root: "en", targets: langs, rounds: roundsFor(first, rounds), roundSeconds: roundSecondsFor(first), listed: true, displayName: state.nickname, game: first, fillBots: listing.botsOn && fill, hostScreen, setup: mode === "night" ? "sequence" : mode, ...(mode === "sequence" ? { games } : mode === "night" ? { games: NIGHT_GAMES } : {}) });
       router.push(`/play/${lobby.code}`);
     } catch (err) {
       setError(lobbyError(err instanceof LobbyError ? err.code : undefined));

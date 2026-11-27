@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { normalizeLobbyCode } from "@academy/lobbies";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { Sfx } from "@/lib/stoa/script";
+import { TvMoments, useTvMoments } from "./TvMoments";
+import { TvAudience, TvFloats } from "./TvSignals";
+import { useRoomSignals } from "./useRoomSignals";
+import { nightRound, normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { LobbyError, lobbyError, phaseAt, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
 import { everyoneReady, roomControls, secondsUntil } from "@/lib/lobby/room";
-import { TV_ORIGIN, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
+import { TV_ORIGIN, tvAtlasClip, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat, type TvClip } from "@/lib/lobby/tv";
+import { play as speak } from "@/lib/speak";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
 import { createPortal } from "react-dom";
 import { Button, ButtonLink, Pill, Tag } from "@/ui";
@@ -18,6 +23,8 @@ import Nickname from "../Nickname";
 import { gameName } from "../langs";
 import { usePauseAds } from "../AdsContext";
 import { WaitingBoard } from "../room/WaitingBoard";
+import { roomInterlude, roundTitle } from "@/lib/lobby/waiting";
+import { NightInterlude } from "../rounds/NightInterlude";
 import { savedNickname, usePlay } from "../usePlay";
 import { useRoomSync } from "../room/useRoomSync";
 
@@ -29,7 +36,7 @@ function useTvSound(lobby: WebLobbyState | null, now: number, stage: AudioStage)
     if (!lobby) return;
     const phase = phaseAt(lobby, now);
     const next = { key: tvKey(lobby.startedAt, phase), players: tvPlayers(lobby).length };
-    stage.play(tvTrack(phase));
+    stage.play(tvTrack(phase, nightRound(lobby)?.final === true));
     for (const s of tvSfx(beat.current, next)) stage.sfx(s);
     beat.current = next;
   }, [lobby, now, stage]);
@@ -56,6 +63,9 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
     };
   }, []);
   useTvSound(sync.lobby, now, stage);
+  const playSfx = useCallback((s: Sfx) => stage.sfx(s), [stage]);
+  const moments = useTvMoments(sync.lobby, playSfx);
+  const signals = useRoomSignals(api, sync.lobby?.id, sync.lobby?.startedAt);
   usePauseAds(true);
 
   const screen = (
@@ -65,6 +75,8 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
           <Brand link={false} />
           <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} />
         </header>
+        <TvMoments moments={moments} />
+        <TvFloats floats={signals.floats} />
         <main className={tv.main}>
           <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} onPlay={onPlay} />
         </main>
@@ -96,7 +108,7 @@ function TvView({ code, play, sync, now, origin, onPlay }: { code: string | null
   }
   if (!sync.lobby) return sync.error ? <p className={styles.error} role="alert">{sync.error}</p> : <p className={styles.muted} aria-busy="true">Opening the room</p>;
   const url = tvJoinUrl(origin, code);
-  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} />;
+  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} token={state.status === "ready" ? state.identity.token : null} />;
   if (!sync.lobby.isHost) return board;
   const nickname = state.status === "ready" ? state.nickname : "";
   return (
@@ -107,7 +119,7 @@ function TvView({ code, play, sync, now, origin, onPlay }: { code: string | null
   );
 }
 
-function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: string }) {
+function TvBoard({ lobby, now, url, token }: { lobby: WebLobbyState; now: number; url: string; token: string | null }) {
   const phase = phaseAt(lobby, now);
   const rows = lobby.ended ? tvTotals(lobby) : tvPlayers(lobby);
   return (
@@ -121,7 +133,8 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
         <p className={tv.url} data-testid="tv-url">{tvShortUrl(url)}</p>
       </section>
       <section className={tv.round} aria-label="Round" data-testid="tv-round">
-        <TvCenter lobby={lobby} now={now} />
+        <TvCenter lobby={lobby} now={now} token={token} />
+        <TvAudience lobby={lobby} now={now} />
       </section>
       <section className={tv.standings} aria-label="Standings">
         <p className={tv.label}>Standings</p>
@@ -131,7 +144,22 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
   );
 }
 
-function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
+function TvAtlas({ clip }: { clip: TvClip | null }) {
+  const key = clip ? `${clip.kind}:${clip.lang}:${clip.text}` : "";
+  useEffect(() => {
+    if (clip?.kind === "audio") void speak({ id: `tv-atlas:${clip.text}`, text: clip.text, lang: clip.lang });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  if (!clip) return null;
+  return (
+    <>
+      <h2 className={tv.word} data-testid="tv-prompt" lang={clip.lang ?? undefined}>{clip.text}</h2>
+      {clip.kind === "text" ? <p className={tv.next} data-testid="tv-atlas-text">This clip is not cleared to play on a shared screen. Read the word instead.</p> : null}
+    </>
+  );
+}
+
+function TvCenter({ lobby, now, token }: { lobby: WebLobbyState; now: number; token: string | null }) {
   const phase = phaseAt(lobby, now);
   const round = tvRound(lobby, phase);
   if (lobby.ended) {
@@ -139,6 +167,15 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
       <>
         <Tag>Final scores</Tag>
         <Podium rows={tvTotals(lobby)} />
+      </>
+    );
+  }
+  if (phase.kind === "finished" && roomInterlude(lobby, now)) {
+    const left = secondsUntil(lobby.nextStartAt, now);
+    return (
+      <>
+        <NightInterlude lobby={lobby} token={token} role="tv" now={now} />
+        {left !== null ? <p className={tv.next} data-testid="tv-next">Next game in <b>{left}s</b></p> : null}
       </>
     );
   }
@@ -155,8 +192,10 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   return (
     <>
       <span className={tv.roundTag}><Tag>{round.label}</Tag></span>
+      {roundTitle(lobby) ? <p className={tv.night} data-testid="tv-night">{roundTitle(lobby)}</p> : null}
       {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
-      {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
+      {lobby.game === "atlas" && phase.kind === "round" ? <TvAtlas clip={tvAtlasClip(lobby.prompts.find((p) => p.round === phase.index) ?? null)} /> : null}
+      {round.gloss && lobby.game !== "atlas" ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
       {round.choices.length ? (
         <div className={tv.choices} role="list">
           {round.choices.map((c) => (

@@ -12,7 +12,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.SectionTitle
@@ -42,7 +41,6 @@ fun NavGraphBuilder.extraRoutes(graph: Graph, nav: NavHostController) {
 @Composable
 fun TodayExtras(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
-    val p = LocalPalette.current
     val system = app?.system
     if (system == null) { TodayMore(graph, nav); return }
     val due = app?.study?.get(system.id)?.cards?.values?.count { it.due <= System.currentTimeMillis() } ?: 0

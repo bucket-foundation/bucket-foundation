@@ -1,5 +1,7 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import com.polingual.app.WordCard
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -70,7 +72,7 @@ fun AtlasScreen(graph: Graph, back: () -> Unit) {
         if (peek || guessed != null) WordCard(null, round.form, tilt = 0f) else PLButton("Show the word, half points", variant = ButtonVariant.Quiet, block = false) { peek = true }
         Text("Where is this language spoken? Tap the map, then lock in.", style = Type.small, color = PL.InkDim)
         SceneFrame(Scenes.atlas, inset = 40.dp) { Canvas(
-            Modifier.fillMaxWidth().aspectRatio(2f).clip(RoundedCornerShape(12.dp)).pointerInput(guessed) {
+            Modifier.fillMaxWidth().aspectRatio(2f).clip(RoundedCornerShape(PLRadius.sm)).pointerInput(guessed) {
                 detectTapGestures { o -> if (guessed == null) pin = Atlas.unproject(o.x / size.width * Atlas.MAP_W, o.y / size.height * Atlas.MAP_H) }
             },
         ) {

@@ -1,5 +1,7 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -38,10 +40,10 @@ enum class GameKind(val route: String, val title: String, val blurb: String, val
 @Composable
 fun GameBanner(kind: GameKind) {
     val onDark = kind.band != PL.Paper2 && kind.band != PL.Ochre
-    androidx.compose.foundation.layout.Column(Modifier.fillMaxWidth().plSurface(kind.band, 16.dp)) {
+    androidx.compose.foundation.layout.Column(Modifier.fillMaxWidth().plSurface(kind.band, PLRadius.card)) {
         Row(Modifier.fillMaxWidth().padding(12.dp), verticalAlignment = Alignment.CenterVertically) {
             androidx.compose.foundation.layout.Column(
-                Modifier.weight(1f).rotate(-1.5f).plSurface(PL.Card, 10.dp).padding(horizontal = 12.dp, vertical = 8.dp),
+                Modifier.weight(1f).rotate(-1.5f).plSurface(PL.Card, PLRadius.sm).padding(horizontal = 12.dp, vertical = 8.dp),
             ) {
                 Text(kind.tag.uppercase(), style = Type.caps, color = if (onDark) kind.band else PL.OchreDeep)
                 Text(kind.title, style = Type.title, color = PL.TyrianDeep)

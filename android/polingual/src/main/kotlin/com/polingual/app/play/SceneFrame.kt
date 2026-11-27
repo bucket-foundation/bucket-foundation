@@ -1,5 +1,7 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -33,7 +35,7 @@ object Scenes {
 
 @Composable
 fun SceneFrame(props: List<Prop>, modifier: Modifier = Modifier, inset: Dp = 34.dp, content: @Composable BoxScope.() -> Unit) {
-    Box(modifier.fillMaxWidth().clip(RoundedCornerShape(20.dp)).starLattice()) {
+    Box(modifier.fillMaxWidth().clip(RoundedCornerShape(PLRadius.lg)).starLattice()) {
         Box(Modifier.matchParentSize().drawBehind {
             drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep.copy(alpha = 0.55f))
         })

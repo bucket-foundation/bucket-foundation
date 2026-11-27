@@ -9,10 +9,14 @@ import { syncDeps } from "@/lib/daily/browser-sync";
 import { podium, roomRecord, wordOfNight } from "@/lib/family/after";
 import { recordRoom, type SaveState } from "@/lib/family/results";
 import { currentCard } from "@/lib/family/session";
-import { cardSvg, challengeHref, shareMessage } from "@/lib/family/share";
+import { cardSvg, challengeGame, challengeHref, shareMessage } from "@/lib/family/share";
 import { Button, ButtonLink } from "@/ui";
 import { useRoomCards } from "./LanguageMap";
+import FamilyNight from "./FamilyNight";
+import { homeSpeakersOf, teacherAwards } from "@academy/fair-score";
 import f from "./family.module.css";
+import { appAuth } from "@/lib/app/auth";
+import { fetchLeague, leagueEligible, nearMe, postLeague, type LeagueBoard } from "@/lib/family/league";
 
 const SAVE_TEXT: Record<SaveState, string> = {
   account: "Saved to your account. Today counts toward your streak.",
@@ -36,9 +40,50 @@ export default function AfterGame({ lobby, token, onSignIn }: { lobby: WebLobbyS
     <section className={f.card} aria-label="After the game" data-testid="after-game">
       {saved ? <p className={f.muted} data-testid="room-saved">{SAVE_TEXT[saved]}</p> : null}
       {saved === "device" && onSignIn ? <Button variant="ghost" size="md" onClick={onSignIn} data-testid="after-sign-in">Save to an account</Button> : null}
+      {saved === "account" && leagueEligible(card?.band, true) ? <League lobbyId={lobby.id} gameKey={rec?.key ?? ""} /> : null}
+      <Teachers lobby={lobby} token={token} />
       <Review words={rec?.missed ?? []} />
       <ShareCard lobby={lobby} token={token} />
+      <FamilyNight nickname={card?.band === "under13" ? "" : card?.nickname ?? ""} host={lobby.isHost && card?.band !== "under13"} />
     </section>
+  );
+}
+
+function League({ lobbyId, gameKey }: { lobbyId: string; gameKey: string }) {
+  const [state, setState] = useState<{ added: number | null; board: LeagueBoard | null } | null>(null);
+  useEffect(() => {
+    let live = true;
+    void (async () => {
+      const t = await appAuth().mobile.accessToken().catch(() => null);
+      if (!t) return;
+      const added = await postLeague(window.fetch.bind(window), t, lobbyId);
+      const board = await fetchLeague(window.fetch.bind(window), t);
+      if (live) setState({ added, board });
+    })();
+    return () => {
+      live = false;
+    };
+  }, [lobbyId, gameKey]);
+  if (!state?.board) return null;
+  return (
+    <div className={f.map} data-testid="league">
+      <p className={f.step}>{state.board.tierName} league{state.added ? ` · +${state.added}` : ""}</p>
+      <ol className={f.people}>
+        {nearMe(state.board.board).map((r) => <li key={r.rank} data-me={r.me}><span className={f.who}>#{r.rank} {r.name}</span> {r.points}</li>)}
+      </ol>
+    </div>
+  );
+}
+
+function Teachers({ lobby, token }: { lobby: WebLobbyState; token: string | null }) {
+  const { seats } = useRoomCards(lobby, token);
+  const langs = new Map(lobby.prompts.flatMap((p) => (p.lang ? [[p.round, p.lang] as [number, string]] : [])));
+  const awards = teacherAwards(langs, lobby.results, homeSpeakersOf(seats));
+  if (!awards.size) return null;
+  return (
+    <ul className={f.chips} data-testid="teacher-awards">
+      {[...awards].map(([id, n]) => <li key={id}>🎓 {seats.find((s) => s.userId === id)?.name ?? "Teacher"} taught {n}</li>)}
+    </ul>
   );
 }
 
@@ -90,7 +135,7 @@ function ShareCard({ lobby, token }: { lobby: WebLobbyState; token: string | nul
     setSrc(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(out)}`);
   }, [svg]);
   if (!share) return <p className={f.muted} data-testid="share-off">The host turned sharing off for this room.</p>;
-  const url = challengeHref({ seed: lobby.seed, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, score: top[0]?.score ?? 0 }, window.location.origin);
+  const url = challengeHref({ game: challengeGame(lobby.game), seed: lobby.seed, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, score: top[0]?.score ?? 0, mixed: lobby.playlist.length > 0 }, window.location.origin);
   const send = async () => {
     const png = src ? await pngFrom(src) : null;
     const text = shareMessage(word?.word ?? null, top[0]?.score ?? 0, url);

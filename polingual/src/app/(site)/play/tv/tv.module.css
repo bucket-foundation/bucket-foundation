@@ -48,3 +48,17 @@ div.screen{position:fixed;inset:0;z-index:1000;overflow:auto;min-height:100dvh;b
 @media (max-height:800px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,1.7fr) minmax(0,10.3fr)}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{padding:.1em .15em}}
 @media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1}}
 @media (max-height:800px){.hostBar{position:fixed;top:8px;left:50%;transform:translateX(-50%);padding:0;z-index:2;flex-wrap:nowrap}.hostBar button{min-height:40px;padding-block:4px;font-size:16px}.hostBar .hint{display:none}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.08}}
+.night{margin:0;font-family:var(--pl-font-display);font-size:clamp(20px,2vw,40px);color:var(--pl-vermilion)}
+@media (max-height:800px){.night{font-size:20px}}
+.moments{position:fixed;top:12%;left:50%;transform:translateX(-50%);z-index:5;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none}
+.moments li{font-family:var(--pl-font-display);font-weight:700;font-size:clamp(32px,3.4vw,64px);color:var(--pl-ink);background:var(--pl-ochre);border:4px solid var(--pl-ink);border-radius:999px;padding:.2em .8em;box-shadow:0 6px 0 var(--pl-ink);white-space:nowrap}
+.moments li[data-kind=steal]{background:var(--pl-vermilion);color:var(--pl-white)}
+.moments li[data-kind=perfect]{background:var(--pl-malachite);color:var(--pl-white)}
+@media (prefers-reduced-motion:no-preference){.moments li{animation:momentIn .45s cubic-bezier(.2,.9,.3,1.2) both}}
+@keyframes momentIn{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.floats{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.float{position:absolute;bottom:-10vh;left:var(--x);font-size:clamp(48px,5vw,96px);line-height:1}
+@media (prefers-reduced-motion:no-preference){.float{animation:floatUp 3.2s ease-out forwards}}
+@media (prefers-reduced-motion:reduce){.float{bottom:10vh}}
+@keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-90vh);opacity:0}}
+.audience{margin:0;font-family:var(--pl-font-display);font-size:clamp(20px,1.8vw,36px);color:var(--pl-lapis)}
