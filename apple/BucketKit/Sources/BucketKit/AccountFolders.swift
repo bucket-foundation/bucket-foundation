@@ -53,18 +53,18 @@ public struct AccountFolders: Sendable {
             return m.key
         }
         let key = Self.key(userId: userId)
-        try fm.createDirectory(at: accounts, withIntermediateDirectories: true)
-        try? fm.removeItem(at: tmp(key))
-        try? fm.removeItem(at: folder(key))
+        if fm.fileExists(atPath: accounts.path) { try fm.removeItem(at: accounts) }
         try fm.createDirectory(at: tmp(key), withIntermediateDirectories: true)
         for store in Self.stores {
             let src = root(store)
             let dst = tmp(key).appending(path: store, directoryHint: .isDirectory)
             try fm.createDirectory(at: dst, withIntermediateDirectories: true)
             for name in mainFiles(src) { try copy(src.appending(path: name), dst.appending(path: name)) }
-            for name in mainFiles(src) {
-                guard let a = try? Data(contentsOf: src.appending(path: name)), let b = try? Data(contentsOf: dst.appending(path: name)), a == b else {
-                    throw BucketError.server(0, "Moving \(store)/\(name) did not verify.")
+            let want = Self.files(under: src, top: Set(mainFiles(src)))
+            guard Self.files(under: dst) == want else { throw BucketError.server(0, "Moving \(store) did not verify.") }
+            for rel in want {
+                guard let a = try? Data(contentsOf: src.appending(path: rel)), let b = try? Data(contentsOf: dst.appending(path: rel)), a == b else {
+                    throw BucketError.server(0, "Moving \(store)/\(rel) did not verify.")
                 }
             }
         }
@@ -74,15 +74,34 @@ public struct AccountFolders: Sendable {
         return key
     }
 
-    public func finishAfterLoad() {
+    public func finishAfterLoad() throws {
         guard var m = marker, m.phase == .verified else { return }
         let fm = FileManager.default
+        let held = heldOwners().map { "held-\($0).json" } + [Self.heldIndex]
         for store in Self.stores {
             let src = root(store)
-            for name in (try? fm.contentsOfDirectory(atPath: src.path)) ?? [] { try? fm.removeItem(at: src.appending(path: name)) }
+            for name in mainFiles(src) + (store == "polingual" ? held : []) where fm.fileExists(atPath: src.appending(path: name).path) {
+                try fm.removeItem(at: src.appending(path: name))
+            }
         }
         m.phase = .done
-        try? writeMarker(m)
+        try writeMarker(m)
+    }
+
+    static func files(under dir: URL, top: Set<String>? = nil) -> Set<String> {
+        let base = dir.standardizedFileURL.path + "/"
+        guard let e = FileManager.default.enumerator(at: dir, includingPropertiesForKeys: [.isRegularFileKey]) else { return [] }
+        var out = Set<String>()
+        for case let url as URL in e where (try? url.resourceValues(forKeys: [.isRegularFileKey]).isRegularFile) == true {
+            let rel = String(url.standardizedFileURL.path.dropFirst(base.count))
+            if let top, let head = rel.split(separator: "/").first, !top.contains(String(head)) { continue }
+            out.insert(rel)
+        }
+        return out
+    }
+
+    func heldOwners() -> [String] {
+        (try? Data(contentsOf: root("polingual").appending(path: Self.heldIndex))).flatMap { try? JSON.parse($0) }?.stringArray ?? []
     }
 
     func mainFiles(_ dir: URL) -> [String] {
@@ -94,8 +113,7 @@ public struct AccountFolders: Sendable {
     func placeHeld() throws {
         let fm = FileManager.default
         let src = root("polingual")
-        let owners = (try? Data(contentsOf: src.appending(path: Self.heldIndex))).flatMap { try? JSON.parse($0) }?.stringArray ?? []
-        for owner in owners {
+        for owner in heldOwners() {
             let name = "held-\(owner).json"
             guard let blob = try? Data(contentsOf: src.appending(path: name)) else { continue }
             let dst = folder(Self.key(userId: owner)).appending(path: "polingual", directoryHint: .isDirectory)

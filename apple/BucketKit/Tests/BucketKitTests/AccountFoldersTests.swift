@@ -59,12 +59,12 @@ import Testing
         try seed(b)
         let folders = AccountFolders(base: b)
         try folders.migrate(userId: "A")
-        folders.finishAfterLoad()
+        try folders.finishAfterLoad()
         #expect(text(b.appending(path: "polingual/systems.json")) == "S")
         try folders.migrate(userId: "A")
         #expect(folders.phase == .verified)
         #expect(text(b.appending(path: "polingual/systems.json")) == "S")
-        folders.finishAfterLoad()
+        try folders.finishAfterLoad()
         #expect(folders.phase == .done)
         #expect(FileManager.default.fileExists(atPath: b.appending(path: "polingual/systems.json").path) == false)
         #expect(FileManager.default.fileExists(atPath: b.appending(path: "academy/branch-physics.json").path) == false)
@@ -87,6 +87,44 @@ import Testing
         #expect(FileManager.default.fileExists(atPath: a.appending(path: "held-B.json").path) == false)
         #expect(FileManager.default.fileExists(atPath: a.appending(path: "owner.json").path) == false)
         #expect(text(a.appending(path: "systems.json")) == "S")
+    }
+
+    @Test func nestedFoldersMigrateAndOnlyMovedFilesLeaveTheRoots() throws {
+        let b = base()
+        try seed(b)
+        try put(b, "academy/science", "branch-02.json", "NEST")
+        try put(b, "polingual", "held-index.json", #"["A"]"#)
+        try put(b, "polingual", "held-A.json", "HA")
+        try put(b, "polingual", "held-Z.json", "HZ")
+        let folders = AccountFolders(base: b)
+        try folders.migrate(userId: "A")
+        let key = AccountIndex.key("A")
+        #expect(text(folders.folder(key).appending(path: "academy/science/branch-02.json")) == "NEST")
+        try folders.migrate(userId: "A")
+        try folders.finishAfterLoad()
+        let fm = FileManager.default
+        #expect(fm.fileExists(atPath: b.appending(path: "academy/science").path) == false)
+        #expect(fm.fileExists(atPath: b.appending(path: "polingual/held-A.json").path) == false)
+        #expect(fm.fileExists(atPath: b.appending(path: "polingual/held-index.json").path) == false)
+        #expect(text(b.appending(path: "polingual/held-Z.json")) == "HZ")
+        #expect(text(b.appending(path: "polingual/owner.json")) == "A")
+        #expect(folders.disk("polingual", key: folders.activeKey(userId: "A")).read("systems.json") == Data("S".utf8))
+    }
+
+    @Test func aHalfBuiltMigrationForAnotherUserLeavesNoOrphan() throws {
+        let b = base()
+        try seed(b)
+        let calls = LockedBox(0)
+        let flaky = AccountFolders(base: b) { from, to in
+            calls.mutate { $0 += 1 }
+            if calls.value == 4 { throw Interrupted() }
+            try FileManager.default.copyItem(at: from, to: to)
+        }
+        #expect(throws: Interrupted.self) { try flaky.migrate(userId: "A") }
+        let folders = AccountFolders(base: b)
+        try folders.migrate(userId: nil)
+        let names = try FileManager.default.contentsOfDirectory(atPath: b.appending(path: "accounts").path).sorted()
+        #expect(names == ["guest", "migration.json"])
     }
 
     @Test func heldBlobRestoresThroughTheStoreAtSignIn() async throws {
