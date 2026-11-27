@@ -310,6 +310,7 @@ struct AtlasInterlude: View {
     @State private var clips: [AtlasClip] = []
     @State private var pin: CLLocationCoordinate2D?
     @State private var result: [Int: String] = [:]
+    @State private var loadProblem: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: PL.Space.s3) {
@@ -328,6 +329,7 @@ struct AtlasInterlude: View {
             .frame(minHeight: 260)
             .clipShape(.rect(cornerRadius: PL.Radius.md))
             .accessibilityIdentifier("atlasMap")
+            if let loadProblem { Text(loadProblem).font(PL.small.font()).foregroundStyle(PL.vermilion) }
             if let r = result[clip] {
                 Text(r).font(PL.body.font()).foregroundStyle(PL.malachite).accessibilityIdentifier("atlasResult")
             } else {
@@ -337,7 +339,11 @@ struct AtlasInterlude: View {
         .task(id: clip) {
             pin = nil
             let id = lobby.id
-            if let c = try? await lobbies.withToken({ api, t in try await api.atlasClips(token: t, lobbyId: id) }) { clips = c }
+            do throws(BucketError) {
+                clips = try await lobbies.withToken { api, t in try await api.atlasClips(token: t, lobbyId: id) }
+            } catch {
+                if LobbyRules.pollProblem(error) { loadProblem = String(localized: "Voice Atlas did not load: \(lobbyProblem(error))") }
+            }
         }
     }
 
@@ -542,7 +548,11 @@ struct TeachRound: View {
 
     func load() async {
         let id = lobby.id
-        if let v = try? await lobbies.withToken({ api, t in try await api.teach(token: t, lobbyId: id) }) { view = v }
+        do throws(BucketError) {
+            view = try await lobbies.withToken { api, t in try await api.teach(token: t, lobbyId: id) }
+        } catch {
+            if LobbyRules.pollProblem(error) { problem = String(localized: "Family Teach did not load: \(lobbyProblem(error))") }
+        }
     }
 
     func act(_ a: TeachAction, speakerId: String? = nil, lang: String? = nil, clip: String? = nil, choices: [String]? = nil, answer: Int? = nil, guess: Int? = nil) {
@@ -577,7 +587,11 @@ struct TriviaRound: View {
         .task {
             while !Task.isCancelled {
                 let id = lobby.id
-                if let v = try? await lobbies.withToken({ api, t in try await api.trivia(token: t, lobbyId: id) }) { view = v }
+                do throws(BucketError) {
+                    view = try await lobbies.withToken { api, t in try await api.trivia(token: t, lobbyId: id) }
+                } catch {
+                    if LobbyRules.pollProblem(error) { problem = String(localized: "Our Trivia did not load: \(lobbyProblem(error))") }
+                }
                 try? await Task.sleep(for: .seconds(2))
             }
         }

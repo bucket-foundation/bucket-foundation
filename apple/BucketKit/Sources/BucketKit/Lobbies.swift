@@ -246,6 +246,11 @@ public enum LobbyRules {
 
     public static let retryableRefusals: Set<Int> = [408, 425, 429]
 
+    public static func pollProblem(_ e: BucketError) -> Bool {
+        if case .server(let status, _) = e { return scoreRefusalIsFinal(status) }
+        return false
+    }
+
     public static func scoreRefusalIsFinal(_ status: Int) -> Bool {
         (400..<500).contains(status) && !retryableRefusals.contains(status)
     }

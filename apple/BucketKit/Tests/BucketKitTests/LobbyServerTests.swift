@@ -145,3 +145,55 @@ private func night(game: String, status: String = "done", startedAt: String = "2
         #expect(LobbyRules.clientHeaders["x-polingual-plays"] == "tiles,reveal")
     }
 }
+
+@Suite struct LobbyRouteParamTests {
+    @Test func everyFamilyRouteSendsTheServerNames() async throws {
+        let seen = LockedBox<[String]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            let body = r.httpBody.flatMap { try? JSONSerialization.jsonObject(with: $0) as? [String: Any] }.map { $0.keys.sorted().joined(separator: ",") } ?? ""
+            let query = (URLComponents(url: r.url!, resolvingAgainstBaseURL: false)?.queryItems ?? []).map(\.name).sorted().joined(separator: ",")
+            seen.mutate { $0.append("\(r.httpMethod ?? "GET") \(r.url!.path) q=\(query) b=\(body)") }
+            switch r.url!.path {
+            case "/api/academy/lobby-teach": return (200, json(r.httpMethod == "POST" ? ["ok": true] : ["teach": NSNull()]))
+            case "/api/academy/lobby-trivia": return (200, json(r.httpMethod == "POST" ? ["ok": true] : ["trivia": NSNull()]))
+            case "/api/academy/lobby-cards": return (200, json(r.httpMethod == "POST" ? ["ok": true] : ["cards": [], "share": true]))
+            case "/api/academy/lobbies/atlas": return (200, json(["rounds": []]))
+            case "/api/academy/forehead": return (200, json(["cards": []]))
+            case "/api/academy/lobbies/bonus": return (200, json(["points": 50, "km": 120, "ok": true]))
+            default: return (200, json(["ok": true]))
+            }
+        }, cacheDir: nil)
+        _ = try await api.teach(token: "t", lobbyId: "L")
+        try await api.teachAct(token: "t", lobbyId: "L", action: .guess, guess: 1)
+        _ = try await api.trivia(token: "t", lobbyId: "L")
+        try await api.triviaAct(token: "t", lobbyId: "L", action: .answer, index: 0, pick: 1)
+        _ = try await api.seatCards(token: "t", lobbyId: "L")
+        try await api.sendCard(token: "t", lobbyId: "L", card: FamilyCard(band: .under13, nickname: "Mo"))
+        _ = try await api.atlasClips(token: "t", lobbyId: "L")
+        let hit = try await api.atlasGuess(token: "t", lobbyId: "L", clip: 0, lat: 1.5, lon: 2.5)
+        try await api.foreheadMark(token: "t", lobbyId: "L", card: 0, got: true)
+        _ = try await api.foreheadDeck(langs: ["es"], seed: "1", root: "en")
+        try await api.bonusVote(token: "t", lobbyId: "L", round: 2, choice: "gato")
+        #expect(hit.km == 120)
+        #expect(seen.value == [
+            "GET /api/academy/lobby-teach q=lobby b=",
+            "POST /api/academy/lobby-teach q= b=action,guess,lobbyId",
+            "GET /api/academy/lobby-trivia q=lobby b=",
+            "POST /api/academy/lobby-trivia q= b=action,index,lobbyId,pick",
+            "GET /api/academy/lobby-cards q=lobby b=",
+            "POST /api/academy/lobby-cards q= b=band,lobbyId",
+            "GET /api/academy/lobbies/atlas q=lobbyId b=",
+            "POST /api/academy/lobbies/bonus q= b=clip,kind,lat,lobbyId,lon",
+            "POST /api/academy/lobbies/bonus q= b=card,got,kind,lobbyId",
+            "GET /api/academy/forehead q=langs,root,seed b=",
+            "POST /api/academy/lobbies/react q= b=choice,lobbyId,round",
+        ])
+    }
+
+    @Test func pollingErrorsSplitTransientFromFinal() {
+        #expect(LobbyRules.pollProblem(.server(400, "bad_request")))
+        #expect(LobbyRules.pollProblem(.server(403, "unauthorized")))
+        #expect(!LobbyRules.pollProblem(.server(429, nil)))
+        #expect(!LobbyRules.pollProblem(.server(503, "sync_unavailable")))
+    }
+}
