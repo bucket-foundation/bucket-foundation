@@ -203,9 +203,9 @@ struct EntitlementTests {
         #expect(family.contains("24 hours") && family.contains("Family Sharing"))
     }
 
-    @Test func trialReminderOnlyForAnIntroOfferOnYearlyOrMonthly() {
+    @Test func trialReminderOnlyForAnIntroOfferOnYearly() {
         #expect(TrialReminder.action(productID: Plan.yearly, introductory: true) == .schedule)
-        #expect(TrialReminder.action(productID: Plan.monthly, introductory: true) == .schedule)
+        #expect(TrialReminder.action(productID: Plan.monthly, introductory: true) == .cancel)
         #expect(TrialReminder.action(productID: Plan.yearly, introductory: false) == .cancel)
     }
 

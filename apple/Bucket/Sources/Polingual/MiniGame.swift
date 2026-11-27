@@ -87,7 +87,7 @@ struct MiniGame: View {
                 TimelineView(.periodic(from: started, by: 1)) { c in
                     Text(MiniRecord.clock(Int(c.date.timeIntervalSince(started)))).font(PL.heading.font()).foregroundStyle(PL.paper).monospacedDigit()
                 }
-                ComboChip(streak: streak, multiplier: false)
+                ComboSlot(streak: streak, multiplier: false)
                 Spacer(minLength: 0)
                 Button("Show answers") { reveal(p) }.buttonStyle(.pl(.ghost, size: .sm, full: false))
             }

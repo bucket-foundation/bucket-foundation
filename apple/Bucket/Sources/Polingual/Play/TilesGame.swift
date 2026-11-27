@@ -42,7 +42,7 @@ struct TilesGame: View {
             ViewThatFits(in: .horizontal) {
                 HStack {
                     status
-                    ComboChip(streak: feel.streak, multiplier: false)
+                    ComboSlot(streak: feel.streak, multiplier: false)
                     Spacer()
                     hearts
                 }
