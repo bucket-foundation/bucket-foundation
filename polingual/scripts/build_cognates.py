@@ -11,7 +11,8 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT = ROOT / "polingual/public/input/cognates"
+OUT = Path(os.environ.get("POLINGUAL_INPUT_BANDS_DIR", Path.home() / ".cache/polingual-input-bands"))
+MANIFEST = ROOT / "polingual/public/input/manifest.json"
 GRAPH = Path(os.environ.get("ROOT_GRAPH_DIR", ROOT / "_intake/root-graph")) / "graph-v4.sqlite"
 RANKS = Path(os.environ.get("POLINGUAL_RANKS_DIR", ROOT / "_intake/polingual-frequency"))
 TOP = 10_000
@@ -147,9 +148,11 @@ def build(db_path, ranks_dir, langs, out_dir, top=TOP, graph_sha=None):
                 found[lemma] = c
         doc = {"format": "polingual-cognates", "lang": lang, "rule": RULE, "top": top, "perLang": PER_LANG,
                "graph": "graph-v4.sqlite", "graphSha256": graph_sha, "credit": CREDIT, "cognates": found}
-        (out_dir / f"{lang}.json").write_text(json.dumps(doc, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n")
-        summary[lang] = len(found)
-        print(lang, len(found), file=sys.stderr)
+        body = (json.dumps(doc, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode()
+        name = f"cognates.{lang}.{hashlib.sha256(body).hexdigest()[:12]}.json"
+        (out_dir / name).write_bytes(body)
+        summary[lang] = {"file": name, "bytes": len(body), "lemmas": len(found)}
+        print(lang, name, len(found), file=sys.stderr)
     return summary
 
 
@@ -159,9 +162,17 @@ def main(argv=None):
     ap.add_argument("--graph", default=str(GRAPH))
     ap.add_argument("--ranks", default=str(RANKS))
     ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--manifest", default=str(MANIFEST))
     ap.add_argument("--top", type=int, default=TOP)
     a = ap.parse_args(argv)
-    build(Path(a.graph), Path(a.ranks), a.langs.split(","), Path(a.out), a.top, file_sha256(a.graph))
+    summary = build(Path(a.graph), Path(a.ranks), a.langs.split(","), Path(a.out), a.top, file_sha256(a.graph))
+    record(Path(a.manifest), summary)
+
+
+def record(manifest_path, summary):
+    m = json.loads(manifest_path.read_text())
+    m["cognates"] = {**m.get("cognates", {}), **summary}
+    manifest_path.write_text(json.dumps(m, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
 
 
 if __name__ == "__main__":

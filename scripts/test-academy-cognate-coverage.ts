@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { UNSTUDIED_COGNATE_WEIGHT, cognateAdjusted, cognateKnownCount, heldCognates, heldFromCards, loadCognates, parseCognates, withCognates, type CognateIndex } from "../src/lib/academy/cognate-coverage";
+import { UNSTUDIED_COGNATE_WEIGHT, cognateAdjusted, cognateKnownCount, heldCognates, heldFromCards, cognateFileUrl, loadCognates, parseCognates, withCognates, type CognateIndex } from "../src/lib/academy/cognate-coverage";
 import { planUnit, rawCoverage, UNKNOWN_BELOW, type Learner } from "../src/lib/academy/input-selector";
 
 const DAY = 86_400_000;
@@ -60,10 +60,21 @@ test("parse and load reject files for another language or format", async () => {
   assert.equal(parseCognates({ format: "polingual-cognates", lang: "fr", cognates: {} }, "es"), null);
   assert.equal(parseCognates({ format: "other", lang: "es", cognates: {} }, "es"), null);
   assert.deepEqual(parseCognates({ format: "polingual-cognates", lang: "es", cognates: INDEX }, "es"), INDEX);
-  const ok = (async () => new Response(JSON.stringify({ format: "polingual-cognates", lang: "es", cognates: INDEX }))) as typeof fetch;
-  const missing = (async () => new Response("", { status: 404 })) as typeof fetch;
-  assert.deepEqual(await loadCognates("es", "/x", ok), INDEX);
-  assert.equal(await loadCognates("es", "/x", missing), null);
+  const FILE = "cognates.es.0123456789ab.json";
+  const manifest = { bandBase: "https://store.example/polingual-input", cognates: { es: { file: FILE }, fr: { file: "../evil.json" } } };
+  const seen: string[] = [];
+  const fetcher = (async (u: string) => {
+    seen.push(u);
+    if (u === "/x/manifest.json") return new Response(JSON.stringify(manifest));
+    if (u === `https://store.example/polingual-input/${FILE}`) return new Response(JSON.stringify({ format: "polingual-cognates", lang: "es", cognates: INDEX }));
+    return new Response("", { status: 404 });
+  }) as typeof fetch;
+  assert.deepEqual(await loadCognates("es", "/x", fetcher, undefined, true), INDEX);
+  assert.equal(await loadCognates("fr", "/x", fetcher, undefined, true), null);
+  assert.equal(await loadCognates("it", "/x", fetcher, undefined, true), null);
+  assert.equal(await loadCognates("es", "/x", fetcher, "http://127.0.0.1:54321/storage", true), null);
+  assert.ok(!seen.some((u) => u.includes("evil")));
+  assert.equal(cognateFileUrl(manifest, "es", "https://store.example/polingual-input/", false), `https://store.example/polingual-input/${FILE}`);
 });
 
 test("a unit made only of recognised cognates counts 0.5 per token, glosses none up front and is not selected", () => {
