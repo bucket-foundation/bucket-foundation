@@ -89,6 +89,18 @@ class LobbyHostApiTest {
         assertEquals(100, a.trivia("t", "L1")?.scores?.get("u1"))
         assertEquals("ciao", a.atlas("t", "L1").single().form)
         assertEquals("Silver", a.league("t").tierName)
-        assertTrue(seen[0].contains("lobbyId=L1"))
+        assertTrue(seen[0].startsWith("GET /api/academy/lobby-teach?lobby=L1 "))
+        assertTrue(seen[1].startsWith("GET /api/academy/lobby-trivia?lobby=L1 "))
+        assertTrue(seen[2].startsWith("GET /api/academy/lobbies/atlas?lobbyId=L1 "))
+    }
+
+    @Test
+    fun foreheadAndAtlasGuessParams() = runTest {
+        val seen = mutableListOf<String>()
+        val a = api(seen) { if (it.endsWith("bonus")) """{"points":80,"km":420}""" else """{"cards":[{"lang":"es","form":"perro","meaning":"dog"}]}""" }
+        assertEquals("perro", a.forehead(listOf("es", "fr"), "42100000", "en").single().form)
+        assertTrue(seen[0].startsWith("GET /api/academy/forehead?") && "langs=es%2Cfr" in seen[0] && "seed=42100000" in seen[0] && "root=en" in seen[0])
+        assertEquals(420, a.atlasGuess("t", "L1", 2, 41.9, 12.5).km)
+        assertTrue(seen[1].endsWith("""{"kind":"atlas","lobbyId":"L1","clip":2,"lat":41.9,"lon":12.5}"""))
     }
 }

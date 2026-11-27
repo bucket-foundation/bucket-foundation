@@ -164,14 +164,14 @@ class BucketApi(
     }
 
     suspend fun teach(token: String, lobbyId: String): foundation.bucket.core.model.TeachView? =
-        decode<foundation.bucket.core.model.TeachReply>(call("api/academy/lobby-teach", token, query = mapOf("lobbyId" to lobbyId))).teach
+        decode<foundation.bucket.core.model.TeachReply>(call("api/academy/lobby-teach", token, query = mapOf("lobby" to lobbyId))).teach
 
     suspend fun teachAction(token: String, lobbyId: String, action: String, extra: JsonObject = JsonObject(emptyMap())) {
         call("api/academy/lobby-teach", token, JsonObject(extra + mapOf("lobbyId" to JsonPrimitive(lobbyId), "action" to JsonPrimitive(action))))
     }
 
     suspend fun trivia(token: String, lobbyId: String): foundation.bucket.core.model.TriviaView? =
-        decode<foundation.bucket.core.model.TriviaReply>(call("api/academy/lobby-trivia", token, query = mapOf("lobbyId" to lobbyId))).trivia
+        decode<foundation.bucket.core.model.TriviaReply>(call("api/academy/lobby-trivia", token, query = mapOf("lobby" to lobbyId))).trivia
 
     suspend fun triviaAction(token: String, lobbyId: String, action: String, extra: JsonObject = JsonObject(emptyMap())) {
         call("api/academy/lobby-trivia", token, JsonObject(extra + mapOf("lobbyId" to JsonPrimitive(lobbyId), "action" to JsonPrimitive(action))))
@@ -182,6 +182,9 @@ class BucketApi(
 
     suspend fun forehead(langs: List<String>, seed: String, root: String): List<foundation.bucket.core.model.ForeheadCard> =
         decode<foundation.bucket.core.model.ForeheadReply>(call("api/academy/forehead", null, query = mapOf("langs" to langs.joinToString(","), "seed" to seed, "root" to root))).cards
+
+    suspend fun atlasGuess(token: String, lobbyId: String, clip: Int, lat: Double, lon: Double): foundation.bucket.core.model.AtlasGuess =
+        decode(call("api/academy/lobbies/bonus", token, buildJsonObject { put("kind", "atlas"); put("lobbyId", lobbyId); put("clip", clip); put("lat", lat); put("lon", lon) }))
 
     suspend fun foreheadMark(token: String, lobbyId: String, card: Int, got: Boolean) {
         call("api/academy/lobbies/bonus", token, buildJsonObject { put("kind", "forehead"); put("lobbyId", lobbyId); put("card", card); put("got", got) })

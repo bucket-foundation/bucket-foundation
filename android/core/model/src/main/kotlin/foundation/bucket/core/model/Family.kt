@@ -134,6 +134,9 @@ data class AtlasClip(val clip: Int, val form: String, val licence: String? = nul
 data class AtlasReply(val rounds: List<AtlasClip> = emptyList())
 
 @Serializable
+data class AtlasGuess(val points: Int = 0, val km: Int = 0)
+
+@Serializable
 data class ForeheadCard(val lang: String, val form: String, val meaning: String, val itemId: String = "")
 
 @Serializable

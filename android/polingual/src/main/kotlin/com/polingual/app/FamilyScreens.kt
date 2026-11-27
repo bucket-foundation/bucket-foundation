@@ -197,6 +197,9 @@ private fun secondsLeft(endsAt: Long, now: Long) = maxOf(0L, (endsAt - now + 999
 @Composable
 private fun AtlasInterlude(graph: Graph, lobby: Lobby, slot: Interlude.VoiceAtlas, now: Long) {
     var clips by remember(lobby.startedAt) { mutableStateOf<List<AtlasClip>>(emptyList()) }
+    val scope = rememberCoroutineScope()
+    var pins by remember(lobby.startedAt) { mutableStateOf<Map<Int, com.polingual.app.play.LatLon>>(emptyMap()) }
+    var results by remember(lobby.startedAt) { mutableStateOf<Map<Int, String>>(emptyMap()) }
     LaunchedEffect(lobby.startedAt, slot.clip) { runCatching { graph.lobbies.room { t, id -> atlas(t, id) } }.onSuccess { clips = it } }
     val clip = clips.getOrNull(slot.clip)
     val last = clips.getOrNull(slot.clip - 1)
@@ -206,7 +209,23 @@ private fun AtlasInterlude(graph: Graph, lobby: Lobby, slot: Interlude.VoiceAtla
         last?.lang?.let { Text("Last clip was ${Lang.name(it)}.", color = PL.InkDim) }
         val lang = clip?.lang
         if (clip != null && lang != null) PLButton("Play the voice", variant = ButtonVariant.Ghost, size = ButtonSize.Md) { graph.voice.speak(clip.form, lang) }
-        else Text("Listen to the TV and talk it over.", color = PL.Ink)
+        else Text("Listen to the TV.", color = PL.Ink)
+        if (lobby.me != null) {
+            val done = results[slot.clip]
+            com.polingual.app.play.AtlasPicker(pins[slot.clip], enabled = done == null) { p -> pins = pins + (slot.clip to p) }
+            if (done != null) Text(done, color = PL.InkDim)
+            else PrimaryButton("Lock in", enabled = pins[slot.clip] != null) {
+                val p = pins[slot.clip] ?: return@PrimaryButton
+                val at = slot.clip
+                scope.launch {
+                    val text = try {
+                        val g = graph.lobbies.room { t, id -> atlasGuess(t, id, at, p.lat, p.lon) }
+                        "Placed: ${g.km} km away, +${g.points}"
+                    } catch (e: BucketError) { LobbyErrors.atlasGuess(e) }
+                    results = results + (at to text)
+                }
+            }
+        }
     }
 }
 

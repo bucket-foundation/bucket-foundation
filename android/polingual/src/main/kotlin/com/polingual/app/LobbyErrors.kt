@@ -41,5 +41,17 @@ object LobbyErrors {
         "bots_off" to "Bots are off for this room.",
     )
 
+    fun atlasGuess(e: BucketError): String = when ((e as? BucketError.Server)?.text) {
+        "already_answered" -> "You already placed a pin for this clip."
+        "wrong_round" -> "That clip is over. Pin the next one."
+        else -> "That guess did not count."
+    }
+
+    fun pollProblem(e: BucketError): String? = when {
+        e == BucketError.Offline || e == BucketError.Unavailable || e is BucketError.RateLimited -> null
+        e is BucketError.Server && e.status >= 500 -> null
+        else -> text(e)
+    }
+
     fun text(e: BucketError): String = (e as? BucketError.Server)?.text?.let { copy[it] } ?: e.message
 }

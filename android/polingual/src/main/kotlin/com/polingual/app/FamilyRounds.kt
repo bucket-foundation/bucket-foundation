@@ -59,16 +59,22 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-private fun <T> rememberPolled(lobby: Lobby, fetch: suspend () -> T?): Pair<T?, () -> Unit> {
+private fun <T> rememberPolled(lobby: Lobby, fetch: suspend () -> T?): Triple<T?, String?, () -> Unit> {
     var value by remember(lobby.id) { mutableStateOf<T?>(null) }
+    var problem by remember(lobby.id) { mutableStateOf<String?>(null) }
     var tick by remember { mutableIntStateOf(0) }
     LaunchedEffect(lobby.id, tick) {
         while (true) {
-            runCatching { fetch() }.onSuccess { value = it }
+            try {
+                value = fetch()
+                problem = null
+            } catch (e: BucketError) {
+                LobbyErrors.pollProblem(e)?.let { problem = it }
+            }
             delay(2_000)
         }
     }
-    return value to { tick++ }
+    return Triple(value, problem, { tick++ })
 }
 
 @Composable
@@ -76,7 +82,7 @@ internal fun TeachInterlude(graph: Graph, lobby: Lobby) {
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     var error by remember { mutableStateOf<String?>(null) }
-    val (view, refresh) = rememberPolled(lobby) { graph.lobbies.room { t, id -> teach(t, id) } }
+    val (view, problem, refresh) = rememberPolled(lobby) { graph.lobbies.room { t, id -> teach(t, id) } }
     fun act(action: String, extra: Map<String, kotlinx.serialization.json.JsonElement> = emptyMap()) = scope.launch {
         error = null
         try { graph.lobbies.room { t, id -> teachAction(t, id, action, kotlinx.serialization.json.JsonObject(extra)) } } catch (e: BucketError) { error = LobbyErrors.text(e) }
@@ -94,7 +100,7 @@ internal fun TeachInterlude(graph: Graph, lobby: Lobby) {
             }
             else -> TeachGuess(view) { i -> act("guess", mapOf("guess" to kotlinx.serialization.json.JsonPrimitive(i))) }
         }
-        error?.let { Text(it, color = PL.Vermilion) }
+        (error ?: problem)?.let { Text(it, color = PL.Vermilion) }
     }
 }
 
@@ -227,7 +233,7 @@ private fun ClipPlayer(dataUrl: String) {
 internal fun TriviaInterlude(graph: Graph, lobby: Lobby) {
     val scope = rememberCoroutineScope()
     var error by remember { mutableStateOf<String?>(null) }
-    val (view, refresh) = rememberPolled(lobby) { graph.lobbies.room { t, id -> trivia(t, id) } }
+    val (view, problem, refresh) = rememberPolled(lobby) { graph.lobbies.room { t, id -> trivia(t, id) } }
     fun act(action: String, extra: Map<String, kotlinx.serialization.json.JsonElement> = emptyMap()) = scope.launch {
         error = null
         try { graph.lobbies.room { t, id -> triviaAction(t, id, action, kotlinx.serialization.json.JsonObject(extra)) } } catch (e: BucketError) { error = LobbyErrors.text(e) }
@@ -239,7 +245,7 @@ internal fun TriviaInterlude(graph: Graph, lobby: Lobby) {
         if (editing) TriviaEditor(view?.questions) { qs -> act("save", mapOf("questions" to graph.api.json.encodeToJsonElement(kotlinx.serialization.builtins.ListSerializer(TriviaQuestion.serializer()), qs))) }
         if (view != null && (!editing || view.count > 0)) TriviaBoard(view, lobby.isHost, ::act)
         if (view == null && !lobby.isHost) Text("The host is writing questions.", color = PL.InkDim)
-        error?.let { Text(it, color = PL.Vermilion) }
+        (error ?: problem)?.let { Text(it, color = PL.Vermilion) }
     }
 }
 

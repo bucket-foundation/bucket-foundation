@@ -47,6 +47,19 @@ class LobbyFamilyStoreTest {
     }
 
     @Test
+    fun alreadyVotedKeepsTheVoteAndBlocksASecondSend() = runTest {
+        val f = Fake()
+        f.routes = { path, _ -> if (path.endsWith("react")) 409 to """{"error":"already_voted"}""" else 200 to """{"lobby":${lobbyJson(status = "playing")}}""" }
+        val s = store(f)
+        s.join("ABC123", "Ana")
+        assertFalse(s.vote(2, "a"))
+        val sent = f.calls.count { it.first.endsWith("react") }
+        assertFalse(s.vote(2, "b"))
+        assertEquals("a", s.state.value.votes[2])
+        assertEquals(sent, f.calls.count { it.first.endsWith("react") })
+    }
+
+    @Test
     fun leaveReportsHandoffAndVoteHoldsOnConflict() = runTest {
         val f = Fake()
         var react = 409 to """{"error":"already_voted"}"""
