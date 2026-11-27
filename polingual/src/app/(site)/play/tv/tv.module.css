@@ -38,3 +38,13 @@ div.screen{position:fixed;inset:0;z-index:1000;overflow:auto;min-height:100dvh;b
 .board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:clamp(48px,9vh,200px)}
 .board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:clamp(64px,9vh,140px)}
 @media (max-width:1500px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,3fr) minmax(0,8fr) minmax(0,4fr)}}
+@media (max-height:800px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,2fr) minmax(0,10fr)}.board[data-phase=round] .standings,.board[data-phase=reveal] .standings{display:none}.board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:48px}.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:64px}.board[data-phase=round] .round,.board[data-phase=reveal] .round{gap:8px;padding:12px}.board[data-phase=round] .choices,.board[data-phase=reveal] .choices{gap:10px}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{font-size:64px;line-height:1.05;padding:.1em .3em;min-height:1.3em}.frame{padding-block:8px;gap:8px}}
+.code{font-size:min(110px,16cqi);white-space:nowrap}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.15;padding:.05em .3em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.08;padding:0 .3em}}
+.roundTag{display:contents}
+@media (max-height:800px){.board[data-phase=round] .roundTag,.board[data-phase=reveal] .roundTag{display:none}.board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:40px}.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:56px;line-height:1}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.12;padding:.06em .3em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.06;padding:.1em .3em}}
+@media (max-height:800px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,1.7fr) minmax(0,10.3fr)}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{padding:.1em .15em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1}}
+@media (max-height:800px){.hostBar{position:fixed;top:8px;left:50%;transform:translateX(-50%);padding:0;z-index:2;flex-wrap:nowrap}.hostBar button{min-height:40px;padding-block:4px;font-size:16px}.hostBar .hint{display:none}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.08}}

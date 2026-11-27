@@ -154,7 +154,7 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   }
   return (
     <>
-      <Tag>{round.label}</Tag>
+      <span className={tv.roundTag}><Tag>{round.label}</Tag></span>
       {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
       {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
       {round.choices.length ? (
