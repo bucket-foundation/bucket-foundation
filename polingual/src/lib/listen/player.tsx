@@ -58,77 +58,99 @@ export function usePlayer(): Player {
   return p;
 }
 
-export function PlayerProvider({ children }: { children: ReactNode }) {
-  const audio = useRef<HTMLAudioElement | null>(null);
-  const [now, setNow] = useState<NowPlaying>({ station: null, lang: null, playing: false, buffering: false, error: null });
+function restoreHeard(): Heard[] {
+  try {
+    return parseHeard(local()?.getItem(HEARD_KEY) ?? null);
+  } catch {
+    return [];
+  }
+}
+
+function usePageHide(onHide: () => void) {
+  useEffect(() => {
+    const vis = () => {
+      if (document.visibilityState === "hidden") onHide();
+    };
+    window.addEventListener("pagehide", onHide);
+    document.addEventListener("visibilitychange", vis);
+    return () => {
+      window.removeEventListener("pagehide", onHide);
+      document.removeEventListener("visibilitychange", vis);
+    };
+  }, [onHide]);
+}
+
+function useListening(playing: boolean) {
   const listening = useRef<Listening | null>(null);
   const heardList = useRef<Heard[]>([]);
   const [heard, setHeard] = useState<Heard[]>([]);
+
+  const keepHeard = useCallback((next: Heard[]) => {
+    heardList.current = next;
+    saveHeard(next);
+    setHeard(next);
+  }, []);
 
   const close = useCallback((keep: boolean) => {
     const t = Date.now();
     const l = settle(listening.current, t);
     const h = heardOf(l);
-    if (h) {
-      heardList.current = [...heardList.current, h];
-      saveHeard(heardList.current);
-      setHeard(heardList.current);
-    }
+    if (h) keepHeard([...heardList.current, h]);
     listening.current = keep && l ? { ...l, startedAt: t, ms: 0, since: null } : null;
-  }, []);
+  }, [keepHeard]);
+
+  const checkpoint = useCallback(() => {
+    const was = listening.current?.since != null;
+    close(true);
+    if (was && listening.current) listening.current = { ...listening.current, since: Date.now() };
+  }, [close]);
 
   const takeHeard = useCallback((pick: (h: Heard) => boolean) => {
     const out = heardList.current.filter(pick);
-    heardList.current = heardList.current.filter((h) => !pick(h));
-    saveHeard(heardList.current);
-    setHeard(heardList.current);
+    keepHeard(heardList.current.filter((h) => !pick(h)));
     return out;
+  }, [keepHeard]);
+
+  const resume = useCallback(() => {
+    if (listening.current && listening.current.since === null) listening.current = { ...listening.current, since: Date.now() };
   }, []);
 
+  const begin = useCallback((stationId: string, lang: string) => {
+    if (listening.current?.stationId === stationId && listening.current?.lang === lang) return;
+    close(false);
+    listening.current = { stationId, lang, startedAt: Date.now(), since: null, ms: 0 };
+  }, [close]);
+
   useEffect(() => {
-    let stored: string | null = null;
-    try {
-      stored = local()?.getItem(HEARD_KEY) ?? null;
-    } catch {
-      stored = null;
-    }
-    const restored = parseHeard(stored);
+    const restored = restoreHeard();
     if (restored.length) {
       heardList.current = [...restored, ...heardList.current];
       setHeard(heardList.current);
     }
-    const hide = () => {
-      const was = listening.current?.since != null;
-      close(true);
-      if (was && listening.current) listening.current = { ...listening.current, since: Date.now() };
-    };
-    const vis = () => {
-      if (document.visibilityState === "hidden") hide();
-    };
-    window.addEventListener("pagehide", hide);
-    document.addEventListener("visibilitychange", vis);
-    return () => {
-      window.removeEventListener("pagehide", hide);
-      document.removeEventListener("visibilitychange", vis);
-    };
-  }, [close]);
+  }, []);
+
+  usePageHide(checkpoint);
 
   useEffect(() => {
-    if (!now.playing) return;
-    const id = setInterval(() => {
-      const keep = listening.current;
-      close(true);
-      if (listening.current && keep?.since !== null) listening.current = { ...listening.current, since: Date.now() };
-    }, HEARD_FLUSH_MS);
+    if (!playing) return;
+    const id = setInterval(checkpoint, HEARD_FLUSH_MS);
     return () => clearInterval(id);
-  }, [now.playing, close]);
+  }, [playing, checkpoint]);
+
+  return { heard, takeHeard, close, resume, begin };
+}
+
+export function PlayerProvider({ children }: { children: ReactNode }) {
+  const audio = useRef<HTMLAudioElement | null>(null);
+  const [now, setNow] = useState<NowPlaying>({ station: null, lang: null, playing: false, buffering: false, error: null });
+  const { heard, takeHeard, close, resume, begin } = useListening(now.playing);
 
   useEffect(() => {
     const a = stationAudio();
     audio.current = a;
     const handlers: [string, () => void][] = [
       ["playing", () => {
-        if (listening.current && listening.current.since === null) listening.current = { ...listening.current, since: Date.now() };
+        resume();
         setNow((n) => ({ ...n, playing: true, buffering: false, error: null }));
       }],
       ["pause", () => {
@@ -144,20 +166,17 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
       for (const [e, h] of handlers) a.removeEventListener(e, h);
       a.pause();
     };
-  }, [close]);
+  }, [close, resume]);
 
   const play = useCallback((s: RadioStation, lang: string) => {
     const a = audio.current;
     const url = streamOf(s);
     if (!a || !url) return setNow((n) => ({ ...n, station: s, lang, error: "This station stopped. Pick another." }));
     if (a.src !== url) a.src = url;
-    if (listening.current?.stationId !== s.stationuuid || listening.current?.lang !== lang) {
-      close(false);
-      listening.current = { stationId: s.stationuuid, lang, startedAt: Date.now(), since: null, ms: 0 };
-    }
+    begin(s.stationuuid, lang);
     setNow({ station: s, lang, playing: false, buffering: true, error: null });
     void a.play().catch(() => setNow((n) => ({ ...n, buffering: false, playing: false, error: "Tap play to start the station." })));
-  }, [close]);
+  }, [begin]);
 
   const toggle = useCallback(() => {
     const a = audio.current;
