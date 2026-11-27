@@ -111,7 +111,7 @@ test("teacher award goes to a home speaker at most once per round", () => {
   assert.deepEqual([...teacherAwards(langs, answers, homes)], [["abuela", 1]]);
 });
 
-test("a seat with no card in a family room gets the kid window", () => {
-  assert.equal(seatBand(null), "under13");
-  assert.equal(timeFactor({ band: seatBand(null) }), 2);
+test("a seat with no card plays on the default 1x window", () => {
+  assert.equal(seatBand(null), "adult");
+  assert.equal(timeFactor({ band: seatBand(null) }), 1);
 });

@@ -1,7 +1,7 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { configured, json, preflight, readBody, requestUser, service } from "@/lib/academy/groups-server";
 import { readAgeBand } from "@/lib/research-os/learn-gate";
-import { capped, cohortFor, leagueAllowed, nextTier, previousWeekId, ranked, TIER_NAMES, weekOf } from "@/lib/academy/league";
+import { basePoints, claimOpen, cohortFor, DAILY_CAP, leagueAllowed, nextTier, previousWeekId, ranked, TIER_NAMES, weekOf } from "@/lib/academy/league";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -57,21 +57,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!lobbyId) return json({ error: "bad_request" }, 400);
   try {
     const now = Date.now();
-    const lobby = data<{ started_at: string | null } | null>(await service().from("lobbies").select("started_at").eq("id", lobbyId).maybeSingle(), "lobby");
-    if (!lobby?.started_at) return json({ error: "not_found" }, 404);
-    const answers = data<{ points: number }[]>(await service().from("lobby_answers").select("points").eq("lobby_id", lobbyId).eq("user_id", uid), "answers");
+    const lobby = data<{ status: "lobby" | "playing" | "done"; started_at: string | null; rounds: number; round_seconds: number; reveal_seconds?: number } | null>(await service().from("lobbies").select("status,started_at,rounds,round_seconds,reveal_seconds").eq("id", lobbyId).maybeSingle(), "lobby");
+    if (!lobby) return json({ error: "not_found" }, 404);
+    const humans = data<{ user_id: string }[]>(await service().from("lobby_players").select("user_id").eq("lobby_id", lobbyId).eq("is_bot", false), "humans");
+    if (!claimOpen(lobby, humans.length, now)) return json({ error: "not_finished" }, 409);
+    const answers = data<{ correct: boolean }[]>(await service().from("lobby_answers").select("correct").eq("lobby_id", lobbyId).eq("user_id", uid), "answers");
     if (!answers.length) return json({ error: "not_found" }, 404);
     const me = await membership(uid, now);
     const day = new Date(now).toISOString().slice(0, 10);
-    const today = data<{ points: number }[]>(await service().from("league_claims").select("points").eq("user_id", uid).eq("day", day), "today");
-    const points = capped(answers.reduce((s, a) => s + a.points, 0), today.reduce((s, c) => s + c.points, 0));
-    const claim = await service().from("league_claims").insert({ user_id: uid, game_key: `${lobbyId}|${lobby.started_at}`, week_id: me.week, day, points });
-    if (claim.error) {
-      if (/duplicate key|unique/i.test(claim.error.message)) return json({ ok: true, added: 0, points: me.points });
-      throw new Error(`claim: ${claim.error.message}`);
-    }
-    const total = data<number | null>(await service().rpc("league_add_points", { p_week: me.week, p_user: uid, p_points: points }), "add");
-    return json({ ok: true, added: points, points: total ?? me.points + points });
+    const points = data<number>(await service().rpc("league_claim", { p_week: me.week, p_user: uid, p_key: `${lobbyId}|${lobby.started_at}`, p_day: day, p_points: basePoints(answers), p_cap: DAILY_CAP }), "claim");
+    if (points < 0) return json({ ok: true, added: 0, points: me.points });
+    return json({ ok: true, added: points, points: me.points + points });
   } catch (err) {
     console.error("[academy/league] post:", err instanceof Error ? err.message : err);
     return json({ error: "sync_unavailable" }, 503);

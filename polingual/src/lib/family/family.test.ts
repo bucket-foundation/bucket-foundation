@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "@academy/lobbies";
-import { cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
+import { cardEditable, cardReadAllowed, cardStorable, freshCard, roomCard, sharedCards } from "@academy/lobby-cards";
 import { sendCard } from "./cards-api";
 import { familyQuest } from "@academy/family-quest";
 import { kidSeatFrom, kidSeatHref } from "./kid";
@@ -215,4 +215,10 @@ test("kid seats are flagged by link and the family is remembered on the device",
   rememberFamily(s, { id: "g", name: "Rossi family", code: "XYZ" });
   assert.deepEqual(readFamily(s), { id: "g", name: "Rossi family", code: "XYZ" });
   assert.equal(familyName("Blue Fox"), "Blue family");
+});
+
+test("cards lock once a game starts and edits wait for the next waiting room", () => {
+  assert.equal(cardEditable("lobby"), true);
+  assert.equal(cardEditable("playing"), false);
+  assert.equal(cardEditable("done"), false);
 });

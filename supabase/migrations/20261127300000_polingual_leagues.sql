@@ -36,14 +36,28 @@ revoke all on bucket.league_weeks from anon, authenticated;
 revoke all on bucket.league_members from anon, authenticated;
 revoke all on bucket.league_claims from anon, authenticated;
 
-create or replace function bucket.league_add_points(p_week text, p_user uuid, p_points int)
-returns int language sql security definer set search_path = bucket as $$
-  update bucket.league_members set points = points + greatest(p_points, 0), updated_at = now()
-  where week_id = p_week and user_id = p_user
-  returning points;
-$$;
+create or replace function bucket.league_claim(p_week text, p_user uuid, p_key text, p_day date, p_points int, p_cap int)
+returns int language plpgsql security definer set search_path = bucket as $$
+declare
+  v_today int;
+  v_add int;
+begin
+  perform 1 from bucket.league_members where week_id = p_week and user_id = p_user for update;
+  if not found then
+    raise exception 'not_member';
+  end if;
+  select coalesce(sum(points), 0) into v_today from bucket.league_claims where user_id = p_user and day = p_day;
+  v_add := least(greatest(p_points, 0), greatest(p_cap - v_today, 0));
+  insert into bucket.league_claims (user_id, game_key, week_id, day, points) values (p_user, p_key, p_week, p_day, v_add)
+  on conflict (user_id, game_key) do nothing;
+  if not found then
+    return -1;
+  end if;
+  update bucket.league_members set points = points + v_add, updated_at = now() where week_id = p_week and user_id = p_user;
+  return v_add;
+end $$;
 
-revoke execute on function bucket.league_add_points(text, uuid, int) from public, anon, authenticated;
+revoke execute on function bucket.league_claim(text, uuid, text, date, int, int) from public, anon, authenticated;
 
 create or replace function bucket.delete_lobby_user(p_user uuid)
 returns int language plpgsql security definer set search_path = bucket as $$

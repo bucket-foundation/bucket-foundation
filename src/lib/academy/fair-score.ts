@@ -22,7 +22,7 @@ export function timeFactor(card: Pick<FairCard, "band"> | null, firstRoundMs: nu
 }
 
 export function seatBand(card: Pick<FairCard, "band"> | null): Band {
-  return card?.band ?? "under13";
+  return card?.band ?? "adult";
 }
 
 export function windowSeconds(roundSeconds: number, factor: number): number {

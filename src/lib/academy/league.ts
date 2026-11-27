@@ -1,3 +1,5 @@
+import { finished } from "./lobbies";
+
 export const COHORT_SIZE = 30;
 export const PROMOTE = 7;
 export const DEMOTE = 5;
@@ -38,10 +40,20 @@ export function cohortFor(countsByCohort: ReadonlyMap<number, number>): number {
   return c;
 }
 
-export function capped(points: number, todaySoFar: number): number {
-  return Math.max(0, Math.min(Math.round(points), DAILY_CAP - todaySoFar));
-}
-
 export function leagueAllowed(band: string | null): boolean {
   return band === "13to17" || band === "18plus";
+}
+
+export const LEAGUE_BASE = 100;
+
+export function basePoints(answers: readonly { correct: boolean }[]): number {
+  return answers.filter((a) => a.correct).length * LEAGUE_BASE;
+}
+
+export function claimOpen(lobby: Parameters<typeof finished>[0], humans: number, now: number): boolean {
+  return !!lobby.started_at && humans >= 2 && finished(lobby, now);
+}
+
+export function familyJoinAllowed(kind: string, band: string | null): boolean {
+  return kind !== "family" || band !== "under13";
 }

@@ -42,3 +42,7 @@ export function cardStorable(card: RoomCard): boolean {
 export function sharedCards<T>(cards: readonly T[], share: boolean): T[] {
   return share ? cards.slice() : [];
 }
+
+export function cardEditable(lobbyStatus: string): boolean {
+  return lobbyStatus === "lobby";
+}

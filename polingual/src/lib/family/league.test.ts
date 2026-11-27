@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { capped, cohortFor, COHORT_SIZE, DAILY_CAP, leagueAllowed, nextTier, previousWeekId, ranked, weekOf } from "@academy/league";
+import { basePoints, claimOpen, cohortFor, COHORT_SIZE, familyJoinAllowed, leagueAllowed, nextTier, previousWeekId, ranked, weekOf } from "@academy/league";
 import { leagueEligible, nearMe } from "./league";
 
 test("weeks start on Monday UTC and step back by seven days", () => {
@@ -26,10 +26,26 @@ test("cohorts fill to 30 before opening the next", () => {
   assert.equal(cohortFor(new Map([[0, COHORT_SIZE], [1, COHORT_SIZE]])), 2);
 });
 
-test("league points cap at 1,500 a day and only 13+ accounts join", () => {
-  assert.equal(capped(900, 0), 900);
-  assert.equal(capped(900, 1000), DAILY_CAP - 1000);
-  assert.equal(capped(900, 2000), 0);
+test("league pays base points only, so a slow-round window adds nothing", () => {
+  assert.equal(basePoints([{ correct: true }, { correct: false }, { correct: true }]), 200);
+});
+
+test("claims open only after the game ends with two or more humans", () => {
+  const start = Date.parse("2026-11-27T20:00:00Z");
+  const lobby = { status: "playing" as const, started_at: new Date(start).toISOString(), rounds: 3, round_seconds: 10, reveal_seconds: 0 };
+  assert.equal(claimOpen(lobby, 2, start + 5_000), false);
+  assert.equal(claimOpen(lobby, 2, start + 120_000), true);
+  assert.equal(claimOpen(lobby, 1, start + 120_000), false);
+  assert.equal(claimOpen({ ...lobby, status: "done" }, 3, start), true);
+});
+
+test("under-13 accounts cannot join a family group", () => {
+  assert.equal(familyJoinAllowed("family", "under13"), false);
+  assert.equal(familyJoinAllowed("family", "13to17"), true);
+  assert.equal(familyJoinAllowed("friends", "under13"), true);
+});
+
+test("only 13+ accounts join leagues", () => {
   assert.equal(leagueAllowed("13to17"), true);
   assert.equal(leagueAllowed("under13"), false);
   assert.equal(leagueAllowed(null), false);

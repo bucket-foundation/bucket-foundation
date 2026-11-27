@@ -98,10 +98,11 @@ export default function FamilyWaiting({ lobby, token }: { lobby: WebLobbyState; 
   const [sent, setSent] = useState<string | null>(null);
   useEffect(() => {
     const card = currentCard();
-    if (!token || !card || !keepsData(card.band) || sent === lobby.id) return;
-    setSent(lobby.id);
+    const round = `${lobby.id}|${lobby.startedAt ?? ""}`;
+    if (!token || !card || !keepsData(card.band) || sent === round || lobby.status !== "lobby") return;
+    setSent(round);
     void sendCard(bound(), token, lobby.id, card);
-  }, [lobby.id, token, sent]);
+  }, [lobby.id, lobby.startedAt, lobby.status, token, sent]);
   return (
     <section className={f.card} aria-label="Room languages" data-testid="family-waiting">
       <p className={f.step}>Room languages</p>
