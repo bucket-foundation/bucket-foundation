@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { addSeen, EMPTY_VIEWING, reveal, toggleTap, type StageChoice, type Viewing } from "@academy/input-stage";
 import { fromYouTube, IDLE_MS, isActive, youtubePlaying } from "@academy/input-mix";
 import { Button } from "@/ui";
+import { onAnswer, onPoster, rememberConsent, storedConsent, type VideoGate } from "@/lib/app/embed-consent";
 import styles from "../../app.module.css";
 import own from "./InputStage.module.css";
 
@@ -78,7 +79,8 @@ function useViewing(active: React.MutableRefObject<() => boolean>): { v: Viewing
 }
 
 function Video({ choice, player }: { choice: StageChoice; player: React.MutableRefObject<HTMLIFrameElement | null> }) {
-  const [load, setLoad] = useState(false);
+  const [gate, setGate] = useState<VideoGate>("poster");
+  const store = () => (typeof window === "undefined" ? null : window.localStorage);
   const v = choice.items[0]?.media;
   if (!v) return null;
   const end = Math.ceil(choice.items[choice.items.length - 1].media?.end ?? v.end);
@@ -86,10 +88,24 @@ function Video({ choice, player }: { choice: StageChoice; player: React.MutableR
   const src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(v.videoId) + "?start=" + Math.floor(v.start) + "&end=" + end + "&autoplay=1&rel=0&enablejsapi=1";
   return (
     <div className={own.videoBox}>
-      {load ? (
+      {gate === "playing" ? (
         <iframe ref={player} className={own.video} title={choice.items[0].text} src={src} allow="autoplay; encrypted-media" data-testid="input-video" onLoad={(e) => e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: "listening" }), "*")} />
-      ) : (
-        <button type="button" className={own.poster} onClick={() => setLoad(true)} data-testid="input-video-poster">
+      ) : gate === "asking" ? (
+        <section className={own.consent} role="region" aria-label="YouTube consent" data-testid="input-video-consent">
+          <p className={styles.small}>
+            This clip plays from YouTube. Loading it sends your address and device details to Google, which may set cookies. <a href="/privacy">Privacy</a>
+          </p>
+          <div className={styles.row}>
+            <Button variant="ghost" size="md" onClick={() => { rememberConsent(store()); setGate(onAnswer(true)); }} data-testid="input-video-allow">
+              Allow YouTube videos
+            </Button>
+            <Button variant="ghost" size="md" onClick={() => setGate(onAnswer(false))} data-testid="input-video-decline">
+              Read without video
+            </Button>
+          </div>
+        </section>
+      ) : gate === "declined" ? null : (
+        <button type="button" className={own.poster} onClick={() => setGate(onPoster(storedConsent(store())))} data-testid="input-video-poster">
           Play the clip
           <span>Loads the video from YouTube</span>
         </button>
