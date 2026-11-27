@@ -952,16 +952,21 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
 
 const NATIVE_GAMES: readonly LobbyGame[] = ["daily", "same-word", "flags", "live"];
 
-export const NATIVE_DECLARABLE = ["tiles", "duel", "reveal"] as const;
+export const NATIVE_DECLARABLE = ["tiles", "duel", "reveal", "playlist", "night"] as const;
 
 export function nativePlays(header: string | null | undefined): Set<string> {
   return new Set((header ?? "").split(",").map((s) => s.trim().toLowerCase()).filter((s) => (NATIVE_DECLARABLE as readonly string[]).includes(s)));
 }
 
-export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist">, raceClient = false, plays: ReadonlySet<string> = new Set()): boolean {
+export function nativePlayable(lobby: Pick<LobbyRow, "game" | "reveal_seconds" | "playlist"> & { mix?: boolean }, raceClient = false, plays: ReadonlySet<string> = new Set()): boolean {
   if (isRace(lobby.game)) return raceClient;
   const game = lobby.game ?? "daily";
-  return (NATIVE_GAMES.includes(game) || plays.has(game)) && (!lobby.reveal_seconds || plays.has("reveal")) && !lobby.playlist;
+  const games = lobby.playlist?.length ? lobby.playlist : [game];
+  if (!games.every((g) => NATIVE_GAMES.includes(g) || plays.has(g))) return false;
+  if (lobby.reveal_seconds && !plays.has("reveal")) return false;
+  if (games.length === 1) return true;
+  if (!plays.has("playlist")) return false;
+  return !nightRound({ ...lobby, game }) || plays.has("night");
 }
 
 export const MESSAGE_REPORTS = "lobby_message_reports";
