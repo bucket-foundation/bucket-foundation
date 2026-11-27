@@ -947,6 +947,34 @@ export function wantsScreen(body: unknown): boolean {
 }
 
 export const SCREEN_CAP = 3;
+export const AUDIENCE_CAP = 40;
+export const REACTIONS = ["👏", "😂", "😮", "❤️", "🔥", "🎉", "🤔", "👀"] as const;
+export type Reaction = (typeof REACTIONS)[number];
+export const AGE_BANDS = ["under13", "13to17", "18plus"] as const;
+export type AgeBand = (typeof AGE_BANDS)[number];
+
+export function audienceEnabled(env: Record<string, string | undefined> = process.env): boolean {
+  return flagOn(env.POLINGUAL_LOBBY_AUDIENCE);
+}
+
+export type AudienceJoin = "player" | "audience" | "seat_open" | "under13" | "closed";
+
+export function audienceDecision(lobby: Pick<LobbyRow, "status" | "standing_slot">, playerIds: readonly string[], uid: string, ageBand: unknown): AudienceJoin {
+  if (playerIds.includes(uid)) return "player";
+  if (lobby.status === "done" || lobby.standing_slot) return "closed";
+  if (ageBand !== "13to17" && ageBand !== "18plus") return "under13";
+  if (lobby.status === "lobby" && playerIds.length < LOBBY_CAP) return "seat_open";
+  return "audience";
+}
+
+export type RoomSignal = { kind: "react"; emoji: Reaction } | { kind: "vote"; round: number; choice: string };
+
+export function roomSignal(body: Record<string, unknown> | null): RoomSignal | null {
+  if (!body) return null;
+  if (typeof body.emoji === "string" && (REACTIONS as readonly string[]).includes(body.emoji)) return { kind: "react", emoji: body.emoji as Reaction };
+  if (Number.isInteger(body.round) && (body.round as number) >= 0 && typeof body.choice === "string" && body.choice.length > 0 && body.choice.length <= 80) return { kind: "vote", round: body.round as number, choice: body.choice };
+  return null;
+}
 
 export type ScreenJoin = "player" | "screen" | "add" | "full" | "closed";
 

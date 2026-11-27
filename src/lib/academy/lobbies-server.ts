@@ -9,6 +9,7 @@ import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
+  audienceEnabled,
   nightRound,
   stealBonus,
   hostLeaveDecision,
@@ -355,8 +356,42 @@ export async function freshScreens(lobbyIds: string[], now: number): Promise<Set
   return new Set(rows.filter((r) => now - Date.parse(r.last_seen) < STALE_MS).map((r) => r.lobby_id));
 }
 
+export function roomTopic(lobbyId: string): string {
+  return `lobby-room:${lobbyId}`;
+}
+
+export function roomRealtime(lobbyId: string): { url: string; key: string; topic: string } | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  return url && key ? { url, key, topic: roomTopic(lobbyId) } : null;
+}
+
+export async function broadcastRoom(lobbyId: string, payload: unknown): Promise<boolean> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return false;
+  try {
+    const res = await fetch(`${url}/realtime/v1/api/broadcast`, {
+      method: "POST",
+      headers: { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: [{ topic: roomTopic(lobbyId), event: "stoa", payload, private: false }] }),
+      signal: AbortSignal.timeout(3000),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+export async function addAudience(lobbyId: string, uid: string): Promise<void> {
+  const res = await service().from(SCREENS).insert({ lobby_id: lobbyId, user_id: uid, role: "audience" });
+  if (res.error && /duplicate key|unique/i.test(res.error.message)) return;
+  check(res, "audience insert");
+}
+
 export async function screensOf(lobbyId: string): Promise<string[]> {
-  return (check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId), "screens") as { user_id: string }[]).map((r) => r.user_id);
+  const q = service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId);
+  return (check(await (audienceEnabled() ? q.eq("role", "screen") : q), "screens") as { user_id: string }[]).map((r) => r.user_id);
 }
 
 export async function addScreen(lobbyId: string, uid: string): Promise<void> {

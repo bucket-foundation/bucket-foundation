@@ -10,6 +10,7 @@ import { useJoinUrl } from "../RoomQr";
 import FamilyWaiting from "../family/LanguageMap";
 import { RoomToolbar } from "./RoomBits";
 import { WaitingBoard } from "./WaitingBoard";
+import { ReactionBar } from "./ReactionBar";
 import wait from "./waiting.module.css";
 import type { LiveRoom } from "./useRoomGame";
 
@@ -20,6 +21,7 @@ export function RoomWaiting({ g }: { g: LiveRoom }) {
     <div className={app.stack} data-testid="room">
       <WaitingBoard lobby={lobby} joinUrl={joinUrl} showJoin={roomControls(lobby).bigScreen} host={{ api, take: g.take }} actions={<RoomActions g={g} />}>
         <RoomLinks g={g} />
+        <ReactionBar api={api} lobbyId={lobby.id} />
         <FamilyWaiting lobby={lobby} token={g.state.status === "ready" ? g.state.identity.token : null} />
         <RoomChat lobby={lobby} api={api} chat={g.chat} setChat={g.setChat} onSend={(body) => void act(() => api.chat(lobby.id, body))} />
       </WaitingBoard>

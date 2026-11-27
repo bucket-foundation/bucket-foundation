@@ -7,6 +7,9 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  audienceDecision,
+  roomSignal,
+  REACTIONS,
   nightRound,
   stealBonus,
   FAMILY_NIGHT,
@@ -573,4 +576,27 @@ test("a trailing player steals when someone ahead already missed the final quest
   assert.equal(stealBonus("lead", players, [{ user_id: "low", correct: false }]), 0);
   assert.equal(stealBonus("mid", players, [{ user_id: "low", correct: false }]), 0);
   assert.equal(stealBonus("mid", players, []), 0);
+});
+
+test("the audience opens past the player cap or once a game started, and never to an under-13 seat", () => {
+  const full = Array.from({ length: LOBBY_CAP }, (_, i) => `p${i}`);
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, full, "x", "18plus"), "audience");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a", "b"], "x", "13to17"), "audience");
+  assert.equal(audienceDecision({ status: "lobby", standing_slot: null }, ["a"], "x", "18plus"), "seat_open");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a"], "x", "under13"), "under13");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a"], "x", undefined), "under13");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: null }, ["a", "x"], "x", "18plus"), "player");
+  assert.equal(audienceDecision({ status: "done", standing_slot: null }, ["a"], "x", "18plus"), "closed");
+  assert.equal(audienceDecision({ status: "playing", standing_slot: "daily-romance" }, ["a"], "x", "18plus"), "closed");
+});
+
+test("room signals carry one of 8 fixed reactions or a vote, nothing else", () => {
+  assert.equal(REACTIONS.length, 8);
+  for (const emoji of REACTIONS) assert.deepEqual(roomSignal({ emoji }), { kind: "react", emoji });
+  assert.equal(roomSignal({ emoji: "💩" }), null);
+  assert.equal(roomSignal({ emoji: "<b>hi</b>" }), null);
+  assert.deepEqual(roomSignal({ round: 2, choice: "es:gato" }), { kind: "vote", round: 2, choice: "es:gato" });
+  assert.equal(roomSignal({ round: -1, choice: "x" }), null);
+  assert.equal(roomSignal({ round: 1, choice: "x".repeat(81) }), null);
+  assert.equal(roomSignal(null), null);
 });

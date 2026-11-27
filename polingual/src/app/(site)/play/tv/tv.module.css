@@ -56,3 +56,9 @@ div.screen{position:fixed;inset:0;z-index:1000;overflow:auto;min-height:100dvh;b
 .moments li[data-kind=perfect]{background:var(--pl-malachite);color:var(--pl-white)}
 @media (prefers-reduced-motion:no-preference){.moments li{animation:momentIn .45s cubic-bezier(.2,.9,.3,1.2) both}}
 @keyframes momentIn{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.floats{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+.float{position:absolute;bottom:-10vh;left:var(--x);font-size:clamp(48px,5vw,96px);line-height:1}
+@media (prefers-reduced-motion:no-preference){.float{animation:floatUp 3.2s ease-out forwards}}
+@media (prefers-reduced-motion:reduce){.float{bottom:10vh}}
+@keyframes floatUp{from{transform:translateY(0);opacity:1}to{transform:translateY(-90vh);opacity:0}}
+.audience{margin:0;font-family:var(--pl-font-display);font-size:clamp(20px,1.8vw,36px);color:var(--pl-lapis)}
