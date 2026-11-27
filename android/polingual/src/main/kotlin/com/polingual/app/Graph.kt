@@ -77,8 +77,10 @@ class Graph(val context: Context) {
         scope.launch { syncRadio() }
     }
 
-    suspend fun syncRadio() {
-        val token = account.token() ?: return
+    private val radioLock = kotlinx.coroutines.sync.Mutex()
+
+    suspend fun syncRadio() = radioLock.withLock {
+        val token = account.token() ?: return@withLock
         radioLog.upload { batch -> api.learnEvents(token, batch) }
     }
     val billing = Billing(context, this)

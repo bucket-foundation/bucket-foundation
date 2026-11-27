@@ -68,7 +68,7 @@ class RadioLogTest {
         assertEquals(emptyList(), log.rows())
     }
 
-    @Test fun aFailedPostKeepsRowsAndAClosedGateDropsThem() = runBlocking {
+    @Test fun aFailedPostKeepsRowsAndAClosedGateKeepsThemLocal() = runBlocking {
         val kv = MemKv()
         val log = RadioLog(kv)
         kv.set(RadioLog.GATE_KEY, UploadGate.Open.name)
@@ -77,9 +77,9 @@ class RadioLogTest {
         assertEquals(1, log.rows().size)
         assertEquals(0, log.upload { "no_consent" })
         assertEquals(UploadGate.Closed, log.gate())
-        assertEquals(emptyList(), log.rows())
+        assertEquals(1, log.rows().size)
         log.log(Heard("st", "es", 0, 120_000), "sys", "dev", "UTC", 1_000, ids)
         assertEquals(0, log.upload { error("must not post") })
-        assertEquals(emptyList(), log.rows())
+        assertEquals(2, log.rows().size)
     }
 }

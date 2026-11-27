@@ -92,7 +92,11 @@ class Radio(private val context: Context, private val clock: () -> Long = System
     private suspend fun connect(): MediaController {
         controller?.let { return it }
         val token = SessionToken(context, ComponentName(context, RadioService::class.java))
-        val future = MediaController.Builder(context, token).buildAsync()
+        val future = MediaController.Builder(context, token)
+            .setListener(object : MediaController.Listener {
+                override fun onDisconnected(controller: MediaController) { release() }
+            })
+            .buildAsync()
         val c = suspendCancellableCoroutine { cont -> future.addListener({ cont.resume(future.get()) }, MoreExecutors.directExecutor()) }
         c.addListener(object : Player.Listener {
             override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -129,4 +133,11 @@ class Radio(private val context: Context, private val clock: () -> Long = System
     }
 
     suspend fun pause() { connect().pause() }
+
+    fun release() {
+        ticker.removeCallbacks(tick)
+        close(keep = false)
+        controller = null
+        _now.value = NowPlaying()
+    }
 }

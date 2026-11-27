@@ -30,10 +30,6 @@ class RadioLog(private val kv: KeyValue, private val cap: Int = MAX_ROWS) {
             gate = StudySync.gateAfter(post(JsonObject(mapOf("events" to JsonArray(emptyList())))), gate)
             kv.set(GATE_KEY, gate.name)
         }
-        if (gate == UploadGate.Closed) {
-            kv.set(KEY, null)
-            return 0
-        }
         if (gate != UploadGate.Open) return 0
         val rows = rows()
         val sent = ReviewLog.take(rows).filterIsInstance<LogRow.Exposure>()
@@ -41,10 +37,6 @@ class RadioLog(private val kv: KeyValue, private val cap: Int = MAX_ROWS) {
         val outcome = post(batch)
         val next = StudySync.gateAfter(outcome, gate)
         kv.set(GATE_KEY, next.name)
-        if (next == UploadGate.Closed) {
-            kv.set(KEY, null)
-            return 0
-        }
         if (outcome != "recorded") return 0
         val ids = sent.map { it.id }.toSet()
         val left = rows().filter { it.id !in ids }
