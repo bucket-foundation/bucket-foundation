@@ -15,6 +15,7 @@ test("tvTrack maps phases onto Stoa music", () => {
   assert.equal(tvTrack({ kind: "round", index: 0, remaining: 9 }), "question");
   assert.equal(tvTrack({ kind: "reveal", index: 0, remaining: 2 }), "reveal");
   assert.equal(tvTrack({ kind: "finished" }), "finale");
+  assert.equal(tvTrack({ kind: "round", index: 0, remaining: 9 }, true), "finale");
 });
 
 test("tvKey splits countdown seconds and the last round seconds", () => {

@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { normalizeLobbyCode } from "@academy/lobbies";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { Sfx } from "@/lib/stoa/script";
+import { TvMoments, useTvMoments } from "./TvMoments";
+import { nightRound, normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { LobbyError, lobbyError, phaseAt, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
 import { everyoneReady, roomControls, secondsUntil } from "@/lib/lobby/room";
@@ -30,7 +32,7 @@ function useTvSound(lobby: WebLobbyState | null, now: number, stage: AudioStage)
     if (!lobby) return;
     const phase = phaseAt(lobby, now);
     const next = { key: tvKey(lobby.startedAt, phase), players: tvPlayers(lobby).length };
-    stage.play(tvTrack(phase));
+    stage.play(tvTrack(phase, nightRound(lobby)?.final === true));
     for (const s of tvSfx(beat.current, next)) stage.sfx(s);
     beat.current = next;
   }, [lobby, now, stage]);
@@ -57,6 +59,8 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
     };
   }, []);
   useTvSound(sync.lobby, now, stage);
+  const playSfx = useCallback((s: Sfx) => stage.sfx(s), [stage]);
+  const moments = useTvMoments(sync.lobby, playSfx);
   usePauseAds(true);
 
   const screen = (
@@ -66,6 +70,7 @@ export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay
           <Brand link={false} />
           <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} />
         </header>
+        <TvMoments moments={moments} />
         <main className={tv.main}>
           <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} onPlay={onPlay} />
         </main>

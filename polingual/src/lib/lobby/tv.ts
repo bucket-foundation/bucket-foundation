@@ -7,8 +7,8 @@ export type TvBeat = { key: string; players: number };
 
 const TICK_FROM = 3;
 
-export function tvTrack(phase: Phase): Track {
-  if (phase.kind === "round") return "question";
+export function tvTrack(phase: Phase, final = false): Track {
+  if (phase.kind === "round") return final ? "finale" : "question";
   if (phase.kind === "reveal") return "reveal";
   if (phase.kind === "finished") return "finale";
   return "lobby";
