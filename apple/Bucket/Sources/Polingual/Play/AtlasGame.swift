@@ -187,7 +187,7 @@ struct AtlasGame: View {
         }
         .aspectRatio(Atlas.mapW / Atlas.mapH, contentMode: .fit)
         .background(PL.lapisDeep)
-        .clipShape(.rect(cornerRadius: 12))
+        .clipShape(.rect(cornerRadius: PL.Radius.md))
     }
 
     func zoomButton(_ glyph: PLGlyph, _ label: LocalizedStringKey, _ act: @escaping () -> Void) -> some View {

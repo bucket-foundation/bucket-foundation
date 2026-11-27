@@ -40,11 +40,7 @@ enum InputConfig {
         return v.isEmpty ? nil : v
     }
 
-    static let enrolmentKey = "polingual.ci14.enrolment"
-
-    static var consent: InputExperiment.Consent {
-        InputExperiment.Consent(flag: InputExperiment.on(Bundle.main.object(forInfoDictionaryKey: "PolingualInputExperiment") as? String), uploadOpen: false, disclosed: false, optedOut: false)
-    }
+    static var consent: InputExperiment.Consent { StudyPrefs().consent(flag: StudyConfig.flag) }
 
     static var debug: Bool {
         #if DEBUG
@@ -57,7 +53,7 @@ enum InputConfig {
     static let repo = InputRepo(dir: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("input"), base: base, bandBase: bandBase, debug: debug)
 
     @MainActor
-    static func load(store: LangStore, system: LangSystem, cards: Int) async -> InputPlanState? {
+    static func load(store: LangStore, system: LangSystem, cards: Int, account: String?, token: String?) async -> InputPlanState? {
         var mode = mode
         var cards = cards
         #if DEBUG
@@ -74,10 +70,12 @@ enum InputConfig {
             let resolve = InputStage.resolver([lang: InputStage.lemmaCardMap(corpus, lang: lang)])
             let tier = Int(system.placement[lang] ?? 0)
             let freq = InputStage.freqIndex((LangStore.topWords(lang) ?? []).map { ($0.word, Double($0.rank), false) })
-            if let p = InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, consent: consent, enrolment: InputExperiment.parseEnrolment(UserDefaults.standard.data(forKey: enrolmentKey)), key: InputExperiment.enrolmentKey(account: nil, device: LangStore.deviceId)) {
-                if let e = p.enrolment, let d = try? JSONEncoder().encode(e) { UserDefaults.standard.set(d, forKey: enrolmentKey) }
-                return p
-            }
+            let api = BucketAPI()
+            let planned = await StudyEnrolment.plan(consent: consent, account: account, device: LangStore.deviceId, prefs: StudyPrefs(account: account), token: token,
+                                                    fetch: { await api.fetchEnrolment(token: $0) }, register: { await api.registerEnrolment(token: $0, stratum: $1) },
+                                                    compute: { c, e, k in InputPlanState.plan(mode: mode, lang: lang, bundle: bundle, resolve: resolve, state: state, cards: cards, tier: tier, systemId: system.id, device: LangStore.deviceId, now: now, freq: freq, consent: c, enrolment: e, key: k) },
+                                                    enrolment: \.enrolment)
+            if let planned { return planned }
         }
         return nil
     }
@@ -114,8 +112,8 @@ private struct GlossCard: View {
                 Text(InputStageCopy.title).plType(PL.title).foregroundStyle(PL.ink)
                 ForEach(shown, id: \.self) { w in
                     HStack(alignment: .firstTextBaseline, spacing: PL.Space.s3) {
-                        Text(w).font(.system(size: 18, weight: .semibold)).foregroundStyle(choice.plan.newWords.contains(w) ? PL.vermilion : PL.ink)
-                        Text(gloss(w) ?? "").font(.system(size: 16)).foregroundStyle(PL.inkDim)
+                        Text(w).font(PL.text(18, .semibold)).foregroundStyle(choice.plan.newWords.contains(w) ? PL.vermilion : PL.ink)
+                        Text(gloss(w) ?? "").font(PL.text(16)).foregroundStyle(PL.inkDim)
                     }
                 }
                 if words.count > shown.count { Text(InputStageCopy.rest(words.count - shown.count)).foregroundStyle(PL.inkDim) }
@@ -194,8 +192,8 @@ private struct PlayCard: View {
         if !loadVideo || unavailable {
             Button { loadVideo = true } label: {
                 VStack(alignment: .leading, spacing: PL.Space.s1) {
-                    Text(InputStageCopy.play).font(.system(size: 20, weight: .semibold)).foregroundStyle(PL.ink)
-                    Text(unavailable ? InputStageCopy.unavailable : InputStageCopy.playNote).font(.system(size: 13)).foregroundStyle(PL.inkDim)
+                    Text(InputStageCopy.play).font(PL.text(20, .semibold)).foregroundStyle(PL.ink)
+                    Text(unavailable ? InputStageCopy.unavailable : InputStageCopy.playNote).font(PL.text(13)).foregroundStyle(PL.inkDim)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(PL.Space.s5)
@@ -206,7 +204,7 @@ private struct PlayCard: View {
         } else {
             YouTubeClip(media: m, playing: $playing, failed: $unavailable).aspectRatio(16 / 9, contentMode: .fit)
         }
-        Text(InputStageCopy.fallback).font(.system(size: 13)).foregroundStyle(PL.inkDim)
+        Text(InputStageCopy.fallback).font(PL.text(13)).foregroundStyle(PL.inkDim)
     }
 }
 
@@ -222,12 +220,12 @@ private struct SentenceRow: View {
                     let on = view.taps[item.id]?.contains(t.lemma) == true
                     Button { view = InputStage.toggleTap(view, item: item.id, lemma: t.lemma) } label: {
                         Text(t.surface)
-                            .font(.system(size: 20))
+                            .font(PL.text(20))
                             .foregroundStyle(PL.ink)
                             .padding(.horizontal, 3)
                             .padding(.vertical, 8)
                             .frame(minHeight: 44)
-                            .background(on ? PL.ochre : PL.card, in: RoundedRectangle(cornerRadius: 6))
+                            .background(on ? PL.ochre : PL.card, in: RoundedRectangle(cornerRadius: PL.Radius.xs))
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(t.surface)
@@ -237,10 +235,10 @@ private struct SentenceRow: View {
             .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
             if let tr = item.translation {
                 if view.revealed.contains(item.id) {
-                    Text(tr + (item.translationSource == "machine" ? "  · " + InputStageCopy.machine : "")).font(.system(size: 14)).foregroundStyle(PL.inkDim)
+                    Text(tr + (item.translationSource == "machine" ? "  · " + InputStageCopy.machine : "")).font(PL.text(14)).foregroundStyle(PL.inkDim)
                 } else {
                     Button(InputStageCopy.showMeaning) { view = InputStage.reveal(view, item: item.id) }
-                        .font(.system(size: 13)).foregroundStyle(PL.lapis).buttonStyle(.plain)
+                        .font(PL.text(13)).foregroundStyle(PL.lapis).buttonStyle(.plain)
                 }
             }
         }

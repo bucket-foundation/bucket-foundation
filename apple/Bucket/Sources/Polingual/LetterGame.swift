@@ -163,7 +163,7 @@ struct SayItButton: View {
                       systemImage: listening ? "waveform" : "mic.fill")
                     .symbolEffect(.variableColor.iterative, isActive: listening)
             }
-            .buttonStyle(D8Option(align: .center, compact: true))
+            .buttonStyle(PLOption(align: .center, compact: true))
             HStack(spacing: 6) {
                 Image(systemName: result == true ? "sparkles" : "ear")
                 Text(result == true ? Self.cheer(tries) : String(localized: "Close. Tap play, listen once more, then try again."))
@@ -232,7 +232,7 @@ struct LetterMeet: View {
         let width: CGFloat = sideways ? 190 : 250
         return ZStack {
             FlagFace(flag: D8Flag.of(ex.lang), emblem: false)
-            RoundedRectangle(cornerRadius: 8).fill(PL.paper.opacity(0.8)).padding(width * 0.05)
+            RoundedRectangle(cornerRadius: PL.Radius.sm).fill(PL.paper.opacity(0.8)).padding(width * 0.05)
             VStack(spacing: 2) {
                 HStack {
                     Text(langName(ex.lang).uppercased()).font(PL.capsFont(11)).tracking(0.8).foregroundStyle(PL.inkDim)

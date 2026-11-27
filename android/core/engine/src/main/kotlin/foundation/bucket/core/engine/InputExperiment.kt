@@ -75,4 +75,11 @@ object InputExperiment {
 
     fun heldOutWords(forms: Map<String, List<YesNoTest.TestItem>>?): Set<String> =
         forms.orEmpty().values.flatten().filter { it.real }.map { it.word }.toSet()
+
+    fun withoutHeldOut(corpus: LangCorpus, heldOut: Map<String, Set<String>>): LangCorpus {
+        val sets = heldOut.filterValues { it.isNotEmpty() }
+        if (sets.isEmpty()) return corpus
+        fun hit(i: LangItem) = i.kind == ItemKind.Word && sets.any { (l, words) -> i.forms[l]?.let { YesNoTest.normalizeWord(it) in words } == true }
+        return LangCorpus(corpus.items.filterNot(::hit), corpus.attribution)
+    }
 }

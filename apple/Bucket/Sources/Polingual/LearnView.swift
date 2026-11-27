@@ -105,10 +105,10 @@ struct LearnView: View {
                 .listRowBackground(Color.clear)
         case .error:
             Section {
-                Text("The language corpus files did not arrive. Check the connection and try again.").foregroundStyle(Palette.muted)
+                Text("The language corpus files did not arrive. Check the connection and try again.").foregroundStyle(PL.inkDim)
                 Button("Retry") { Task { await langs.load(force: true) } }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
         case .ready:
             if let corpus = langs.corpus {
                 if langs.systems.isEmpty {
@@ -163,7 +163,7 @@ struct LearnHeading: View {
         Section {
             Text(LocalizedStringKey(text))
                 .font(PL.heading.font())
-                .foregroundStyle(Palette.ink)
+                .foregroundStyle(PL.ink)
                 .accessibilityAddTraits(.isHeader)
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets(top: 8, leading: 4, bottom: 0, trailing: 4))
@@ -180,7 +180,7 @@ struct LearnGroupTitle: View {
             Text(LocalizedStringKey(text)).font(PL.heading.font(scale: 0.8)).foregroundStyle(PL.ink)
             Spacer()
             if let more {
-                NavigationLink("See all", value: more).font(.subheadline.weight(.semibold))
+                NavigationLink("See all", value: more).font(PL.text(15, .semibold))
             }
         }
         .textCase(nil)
@@ -216,16 +216,16 @@ struct LangTile: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 4) { ForEach(system.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 28) } }
                     .frame(height: 34, alignment: .leading)
-                Text(system.title).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
+                Text(system.title).font(PL.script(17, .heavy)).foregroundStyle(PL.ink)
                     .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
-                ProgressView(value: Double(sum.started), total: Double(max(1, sum.total))).tint(D8.malachite)
-                Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                ProgressView(value: Double(sum.started), total: Double(max(1, sum.total))).tint(PL.malachite)
+                Text("\(sum.started) of \(sum.total) cards").font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(D8.face, in: .rect(cornerRadius: 18))
-            .overlay { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.edge, lineWidth: 2) }
-            .background(D8.edge, in: .rect(cornerRadius: 18).offset(y: 5))
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.paper3, lineWidth: 2) }
+            .background(PL.paper3, in: .rect(cornerRadius: PL.Radius.lg).offset(y: 5))
             .padding(.bottom, 5)
         }
         .buttonStyle(.plain)
@@ -243,7 +243,7 @@ struct NewSetTile: View {
     let open: () -> Void
 
     var body: some View {
-        LearnTile(title: String(localized: "New set"), detail: String(localized: "Pick the languages to learn together."), face: D8.lapis, lip: Color(hex: 0x12326A), open: open) {
+        LearnTile(title: String(localized: "New set"), detail: String(localized: "Pick the languages to learn together."), face: PL.lapis, lip: PL.lapisDeep, open: open) {
             LearnSymbol(name: "plus")
         }
     }
@@ -259,13 +259,13 @@ struct ContentSection: View {
     var body: some View {
         Section {
             LazyVGrid(columns: learnColumns, spacing: 14) {
-                LearnTile(title: ContentKind.read.title, detail: String(localized: "Side by side in \(names)"), face: D8.malachite, lip: D8.malachiteLip, open: { open(.content(.read)) }) {
+                LearnTile(title: ContentKind.read.title, detail: String(localized: "Side by side in \(names)"), face: PL.malachite, lip: PL.malachiteDeep, open: { open(.content(.read)) }) {
                     LearnSymbol(name: "book")
                 }
-                LearnTile(title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), face: D8.vermilion, lip: D8.vermilionLip, item: .activity(.listen), open: { open(.content(.listen)) }) {
+                LearnTile(title: ContentKind.listen.title, detail: String(localized: "Live radio in \(names)"), face: PL.vermilion, lip: PL.vermilionDeep, item: .activity(.listen), open: { open(.content(.listen)) }) {
                     LearnSymbol(name: "dot.radiowaves.left.and.right")
                 }
-                LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: D8.lapis, lip: Color(hex: 0x12326A), item: .activity(.watch), open: { open(.content(.watch)) }) {
+                LearnTile(title: ContentKind.watch.title, detail: String(localized: "Videos on \(ContentCatalog.topics.count) topics"), face: PL.lapis, lip: PL.lapisDeep, item: .activity(.watch), open: { open(.content(.watch)) }) {
                     LearnSymbol(name: "play.rectangle")
                 }
                 if library.index?.books.isEmpty == false {

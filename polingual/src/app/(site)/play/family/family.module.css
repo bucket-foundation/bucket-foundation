@@ -31,3 +31,5 @@
 .choice{min-height:64px;padding:8px;border:2px solid var(--pl-ink);border-radius:var(--pl-radius-md);background:var(--pl-paper);font:inherit;font-weight:800;font-size:18px;color:var(--pl-ink);cursor:pointer;overflow-wrap:anywhere}
 .choice[data-right="true"]{background:var(--pl-malachite);color:var(--pl-white)}
 .choice[data-wrong="true"]{background:var(--pl-vermilion);color:var(--pl-white)}
+.qr{max-width:200px}
+.choice[aria-pressed="true"]{background:var(--pl-ochre)}

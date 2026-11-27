@@ -1,5 +1,7 @@
 package com.polingual.app
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -39,7 +41,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import foundation.bucket.core.engine.ExposureInput
@@ -47,7 +48,6 @@ import foundation.bucket.core.engine.InputStage
 import foundation.bucket.core.engine.SessionMix
 import foundation.bucket.core.engine.StageChoice
 import foundation.bucket.core.engine.Viewing
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.PrimaryButton
@@ -80,19 +80,18 @@ fun InputStageScreen(choice: StageChoice, lang: String, gloss: (String) -> Strin
 
 @Composable
 private fun GlossCard(choice: StageChoice, lang: String, gloss: (String) -> String?, start: () -> Unit) {
-    val p = LocalPalette.current
     val words = choice.plan.newWords + choice.plan.glossed
     val shown = words.filter { gloss(it) != null }
     Card(Modifier.fillMaxWidth()) {
-        Text(InputStageCopy.TITLE, fontSize = 26.sp, color = p.ink)
+        Text(InputStageCopy.TITLE, style = Type.title, color = PL.Ink)
         shown.forEach { w ->
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(w, fontSize = 18.sp, color = if (w in choice.plan.newWords) PL.Vermilion else p.ink)
-                Text(gloss(w) ?: "", fontSize = 16.sp, color = p.muted)
+                Text(w, style = Type.subhead, color = if (w in choice.plan.newWords) PL.Vermilion else PL.Ink)
+                Text(gloss(w) ?: "", style = Type.small, color = PL.InkDim)
             }
         }
-        if (words.size > shown.size) Text(InputStageCopy.rest(words.size - shown.size), color = p.muted)
-        if (words.isEmpty()) Text("You know every word here.", color = p.muted)
+        if (words.size > shown.size) Text(InputStageCopy.rest(words.size - shown.size), color = PL.InkDim)
+        if (words.isEmpty()) Text("You know every word here.", color = PL.InkDim)
         PrimaryButton(InputStageCopy.START, Modifier.fillMaxWidth(), onClick = start)
     }
 }
@@ -134,7 +133,6 @@ private fun rememberActivity(choice: StageChoice, view: () -> Viewing, setView: 
 
 @Composable
 private fun PlayCard(choice: StageChoice, gloss: (String) -> String?, onFinish: (List<ExposureInput>, Double) -> Unit) {
-    val p = LocalPalette.current
     var view by remember { mutableStateOf(Viewing()) }
     val flags = rememberActivity(choice, { view }, { view = it }) { v, unavailable -> onFinish(InputStage.exposureRows(choice, v, completed = false, playerUnavailable = unavailable), v.seenMs.values.sum() / 1000) }
     Card(Modifier.fillMaxWidth().pointerInput(Unit) { awaitPointerEventScope { while (true) { awaitPointerEvent(); flags.lastInput = System.currentTimeMillis() } } }) {
@@ -142,7 +140,7 @@ private fun PlayCard(choice: StageChoice, gloss: (String) -> String?, onFinish: 
         choice.items.forEach { item ->
             Column(Modifier.onGloballyPositioned { flags.visible[item.id] = visibleShare(it) >= 0.6f }) { SentenceRow(item, view) { view = it } }
         }
-        Text(InputStageCopy.TAP_HINT, color = p.muted)
+        Text(InputStageCopy.TAP_HINT, color = PL.InkDim)
         PrimaryButton(InputStageCopy.DONE, Modifier.fillMaxWidth()) { onFinish(InputStage.exposureRows(choice, view, completed = true, playerUnavailable = flags.unavailable), view.seenMs.values.sum() / 1000) }
         Text(InputStageCopy.SKIP, color = PL.Lapis, modifier = Modifier.padding(8.dp).clickable(role = Role.Button) { onFinish(emptyList(), 0.0) })
     }
@@ -156,13 +154,12 @@ fun visibleShare(c: LayoutCoordinates): Float {
 
 @Composable
 private fun InputVideo(m: foundation.bucket.core.engine.InputMedia, flags: PlayFlags) {
-    val p = LocalPalette.current
     var load by remember { mutableStateOf(false) }
     val owner = LocalLifecycleOwner.current
     if (!load || flags.unavailable) {
-        Column(Modifier.fillMaxWidth().background(PL.Paper3, RoundedCornerShape(12.dp)).clickable(role = Role.Button) { load = true }.padding(24.dp)) {
-            Text(InputStageCopy.PLAY, fontSize = 20.sp, color = p.ink)
-            Text(if (flags.unavailable) InputStageCopy.UNAVAILABLE else InputStageCopy.PLAY_NOTE, fontSize = 13.sp, color = p.muted)
+        Column(Modifier.fillMaxWidth().background(PL.Paper3, RoundedCornerShape(PLRadius.sm)).clickable(role = Role.Button) { load = true }.padding(24.dp)) {
+            Text(InputStageCopy.PLAY, style = Type.subhead, color = PL.Ink)
+            Text(if (flags.unavailable) InputStageCopy.UNAVAILABLE else InputStageCopy.PLAY_NOTE, style = Type.small, color = PL.InkDim)
         }
     } else {
         AndroidView(
@@ -182,23 +179,22 @@ private fun InputVideo(m: foundation.bucket.core.engine.InputMedia, flags: PlayF
             onRelease = { it.release() },
         )
     }
-    Text(InputStageCopy.FALLBACK, fontSize = 13.sp, color = p.muted)
+    Text(InputStageCopy.FALLBACK, style = Type.small, color = PL.InkDim)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SentenceRow(item: foundation.bucket.core.engine.InputItem, view: Viewing, update: (Viewing) -> Unit) {
-    val p = LocalPalette.current
     FlowRow(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
         item.tokens.forEach { t ->
             val on = t.lemma in view.taps[item.id].orEmpty()
             Text(
                 t.surface,
-                fontSize = 20.sp,
-                color = p.ink,
+                style = Type.subhead,
+                color = PL.Ink,
                 modifier = Modifier
                     .defaultMinSize(minHeight = 44.dp)
-                    .background(if (on) PL.Ochre else PL.Card, RoundedCornerShape(6.dp))
+                    .background(if (on) PL.Ochre else PL.Card, RoundedCornerShape(PLRadius.xs))
                     .semantics { contentDescription = t.surface; stateDescription = if (on) "tapped" else "not tapped" }
                     .clickable(role = Role.Button) { update(InputStage.toggleTap(view, item.id, t.lemma)) }
                     .padding(horizontal = 3.dp, vertical = 8.dp),
@@ -207,9 +203,9 @@ private fun SentenceRow(item: foundation.bucket.core.engine.InputItem, view: Vie
     }
     item.translation?.let { tr ->
         if (item.id in view.revealed) {
-            Text(tr + if (item.translationSource == "machine") "  · " + InputStageCopy.MACHINE else "", fontSize = 14.sp, color = p.muted)
+            Text(tr + if (item.translationSource == "machine") "  · " + InputStageCopy.MACHINE else "", style = Type.small, color = PL.InkDim)
         } else {
-            Text(InputStageCopy.SHOW_MEANING, fontSize = 13.sp, color = PL.Lapis, modifier = Modifier.clickable(role = Role.Button) { update(InputStage.reveal(view, item.id)) })
+            Text(InputStageCopy.SHOW_MEANING, style = Type.small, color = PL.Lapis, modifier = Modifier.clickable(role = Role.Button) { update(InputStage.reveal(view, item.id)) })
         }
     }
 }

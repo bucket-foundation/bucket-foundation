@@ -93,7 +93,7 @@ struct ScienceDrill: View {
             }
             .padding(.vertical, 8)
         }
-        .buttonStyle(D8Option(selected: picked == r.value))
+        .buttonStyle(PLOption(selected: picked == r.value))
         .keyboardShortcut(KeyEquivalent(Character(String(r.value))), modifiers: [])
     }
 

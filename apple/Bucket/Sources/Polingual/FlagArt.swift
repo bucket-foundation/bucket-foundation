@@ -73,7 +73,7 @@ struct FlagEmblem: View {
         case "☯": Taegeuk(size: size, red: color)
         default:
             Text(emblem.glyph)
-                .font(.system(size: size, weight: .bold, design: serif ? .serif : .default))
+                .font(PL.script(size, .bold))
                 .foregroundStyle(color)
         }
     }

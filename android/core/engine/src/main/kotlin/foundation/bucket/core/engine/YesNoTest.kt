@@ -1,6 +1,12 @@
 package foundation.bucket.core.engine
 
 import java.text.Normalizer
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.intOrNull
 import kotlin.math.abs
 import kotlin.math.floor
 
@@ -205,4 +211,16 @@ object YesNoTest {
         val day = Math.floorDiv(now - enrolledAt, DAY_MS)
         return if (!taken.day28 && day >= TEST_DAY && day <= WINDOW_END_DAY) "day28" else null
     }
+
+    fun parseForms(text: String?): Map<String, List<TestItem>>? = runCatching {
+        val forms = (Json.parseToJsonElement(text ?: return null) as JsonObject)["forms"] as? JsonObject ?: return null
+        listOf("A", "B").associateWith { k ->
+            (forms[k] as? JsonArray ?: return null).map { e ->
+                val o = e as? JsonObject ?: return null
+                val w = (o["word"] as? JsonPrimitive)?.takeIf { it.isString }?.content?.takeIf { it.isNotEmpty() } ?: return null
+                val real = (o["real"] as? JsonPrimitive)?.booleanOrNull ?: return null
+                TestItem(w, real, (o["band"] as? JsonPrimitive)?.intOrNull)
+            }
+        }.takeIf { m -> m.values.all { it.isNotEmpty() } }
+    }.getOrNull()
 }

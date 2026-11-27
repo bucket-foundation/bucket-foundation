@@ -60,6 +60,7 @@ const CORS_HEADERS: Record<string, string> = {
 export class GroupsError extends Error {
   constructor(public code: string, public status: number) {
     super(code);
+    Object.setPrototypeOf(this, new.target.prototype);
   }
 }
 

@@ -163,7 +163,7 @@ struct TileRow: View {
                 .font(PL.icon(22))
                 .foregroundStyle(PL.paper)
                 .frame(width: 48, height: 48)
-                .background(color, in: .rect(cornerRadius: 12))
+                .background(color, in: .rect(cornerRadius: PL.Radius.md))
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                 Text(detail).font(PL.small.font()).foregroundStyle(PL.inkDim)
@@ -583,7 +583,7 @@ struct QuestCard: View {
                         Text(m.name).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1)
                         Spacer(minLength: 8)
                         Button(sent.contains(m.userId) ? String(localized: "Nudged") : String(localized: "Nudge")) { nudge(m) }
-                            .buttonStyle(D8Option(align: .center, compact: true))
+                            .buttonStyle(PLOption(align: .center, compact: true))
                             .disabled(sent.contains(m.userId))
                     }
                 }
@@ -610,9 +610,9 @@ struct GamePips: View {
     var body: some View {
         HStack(spacing: 6) {
             ForEach(0..<total, id: \.self) { i in
-                RoundedRectangle(cornerRadius: 4)
+                RoundedRectangle(cornerRadius: PL.Radius.xs)
                     .fill(i < results.count ? (results[i] ? PL.malachite : PL.vermilion) : empty)
-                    .overlay { RoundedRectangle(cornerRadius: 4).strokeBorder(.white.opacity(i < results.count ? 0.4 : 0), lineWidth: 1) }
+                    .overlay { RoundedRectangle(cornerRadius: PL.Radius.xs).strokeBorder(.white.opacity(i < results.count ? 0.4 : 0), lineWidth: 1) }
                     .frame(height: 12)
             }
         }

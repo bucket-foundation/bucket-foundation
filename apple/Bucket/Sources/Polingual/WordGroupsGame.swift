@@ -165,7 +165,7 @@ struct WordGroupsGame: View {
                 .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, minHeight: 68)
         }
-        .buttonStyle(D8Option(selected: on, align: .center, compact: true))
+        .buttonStyle(PLOption(selected: on, align: .center, compact: true))
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityIdentifier("groups.tile")
     }

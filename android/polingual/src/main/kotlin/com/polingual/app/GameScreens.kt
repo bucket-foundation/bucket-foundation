@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -82,7 +81,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
     var ctx by remember { mutableStateOf<GameContext?>(null) }
     LaunchedEffect(Unit) {
         val app = graph.store.current()
-        val system = app.system ?: return@LaunchedEffect
+        val system = RaceSession.system(app.system) ?: return@LaunchedEffect
         val corpus = graph.corpus.load()
         ctx = GameContext(system, app, corpus, offMain { GameWordPool.words(system, app, corpus) })
     }
@@ -98,6 +97,7 @@ fun WithGame(graph: Graph, kind: GameKind, back: () -> Unit, content: @Composabl
 
 suspend fun Graph.markPlayed(kind: GameKind, system: LangSystem, pattern: String, result: ((String, Long) -> DailyResult)? = null) {
     ads.gameFinished()
+    if (RaceSession.finishedKind(kind, pattern)) return
     kind.daily()?.let { g -> if (dailyResult(g) == null && result != null) recordDaily(result(dayKey(), System.currentTimeMillis())) }
     val key = "${kind.route}|${today()}|${system.id}"
     store.update { it.copy(played = (it.played + (key to pattern)).entries.toList().takeLast(200).associate { e -> e.key to e.value }, savePrompt = account.stage.value != foundation.bucket.core.auth.Stage.SignedIn) }
@@ -110,7 +110,7 @@ fun GameScreen(graph: Graph, kind: GameKind, back: () -> Unit) {
     val played = remember { kind.daily()?.let { book[DailyBook.key(it, dayKey())] } }
     WithGame(graph, kind, back) { c ->
         val today = played
-        if (today != null) { DoneToday(kind, today); return@WithGame }
+        if (today != null && !RaceSession.active) { DoneToday(kind, today); return@WithGame }
         val silentNow by graph.silent.collectAsState()
         if (SoundRules.needsSoundCard(silentNow, kind in SoundRules.soundOnlyGames)) { NeedsSound(graph, kind.title); return@WithGame }
         when (kind) {

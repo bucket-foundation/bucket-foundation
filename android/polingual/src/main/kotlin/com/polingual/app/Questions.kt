@@ -22,7 +22,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.Glyph
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PrimaryButton
 import java.text.Normalizer
 
@@ -65,7 +64,6 @@ object Answers {
 
 @Composable
 fun QuestionView(graph: Graph, q: Question, answered: (Boolean) -> Unit) {
-    val p = LocalPalette.current
     var picked by remember(q) { mutableStateOf<String?>(null) }
     var typed by remember(q) { mutableStateOf("") }
     var result by remember(q) { mutableStateOf<Boolean?>(null) }
@@ -78,9 +76,9 @@ fun QuestionView(graph: Graph, q: Question, answered: (Boolean) -> Unit) {
             QuestionKind.Reverse -> R.string.q_reverse
             QuestionKind.Sound -> R.string.q_sound
             QuestionKind.Letter -> R.string.q_letter
-        }), color = p.muted)
+        }), color = PL.InkDim)
         if (q.kind != QuestionKind.Sound) Text(q.prompt, style = Type.word, color = PL.Tyrian)
-        q.hint?.let { Text(it, color = p.muted) }
+        q.hint?.let { Text(it, color = PL.InkDim) }
         if (q.speak != null) IconButton(onClick = { graph.voice.speak(q.speak, q.speakLang ?: q.promptLang) }) { Glyph("speaker", stringResource(R.string.q_play), PL.Lapis, Modifier.size(28.dp)) }
     }
     if (q.typed) {

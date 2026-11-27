@@ -26,7 +26,7 @@ enum D8 {
     static func caps(_ size: CGFloat) -> Font { PL.label.font(scale: size / PL.label.size) }
 }
 
-struct D8Option: ButtonStyle {
+struct PLOption: ButtonStyle {
     var selected = false
     var align: Alignment = .leading
     var compact = false

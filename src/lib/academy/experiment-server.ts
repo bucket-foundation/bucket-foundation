@@ -1,9 +1,10 @@
 import { assignArm, EXPERIMENT_ID, parseEnrolment, type Enrolment, type Stratum } from "./input-experiment";
+import type { GateReason } from "./events-server";
 
 export interface ExperimentDeps {
   configured: () => boolean;
   verifyUser: (req: Request) => Promise<string | null>;
-  adult: (userId: string) => Promise<boolean | null>;
+  gate: (userId: string) => Promise<"ok" | GateReason | null>;
   load: (userId: string, experiment: string) => Promise<Enrolment | null | undefined>;
   insertFirst: (userId: string, e: Enrolment) => Promise<Enrolment | null>;
   now: () => number;
@@ -41,9 +42,9 @@ export function createExperimentHandlers(deps: ExperimentDeps) {
         return json({ error: "bad_json" }, 400);
       }
       if (body?.experiment !== EXPERIMENT_ID || (body.stratum !== "to-a2" && body.stratum !== "past-a2")) return json({ error: "bad_request" }, 400);
-      const adult = await deps.adult(u);
-      if (adult === null) return json({ error: "store" }, 502);
-      if (!adult) return json({ error: "under_age" }, 403);
+      const gate = await deps.gate(u);
+      if (gate === null) return json({ error: "store" }, 502);
+      if (gate !== "ok") return json({ error: gate }, 403);
       const existing = await deps.load(u, EXPERIMENT_ID);
       if (existing === undefined) return json({ error: "store" }, 502);
       if (existing) return json({ enrolment: existing });

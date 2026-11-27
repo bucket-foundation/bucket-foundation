@@ -14,7 +14,6 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavHostController
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PrimaryButton
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -25,12 +24,11 @@ import foundation.bucket.core.engine.StudyState
 @Composable
 fun TodayScreen(graph: Graph, nav: NavHostController) {
     val app by graph.state.collectAsState()
-    val p = LocalPalette.current
     val system = app?.system
     val study = system?.let { app?.study?.get(it.id) }
     Page("Today", ground = Ground.Diagonal, stickers = listOf(Sticker("ticket", Alignment.CenterStart, 120.dp, -8f), Sticker("seal", Alignment.TopEnd, 58.dp, 10f), Sticker("script-ru", Alignment.BottomEnd, 72.dp, -5f, dx = (-8).dp))) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text(system?.name ?: "No language set yet", style = Type.body, color = p.muted, modifier = Modifier.weight(1f))
+            Text(system?.name ?: "No language set yet", style = Type.body, color = PL.InkDim, modifier = Modifier.weight(1f))
             StreakFlame(syncedStreak(study))
         }
         if (system != null) LangProgress(system.targets, study)

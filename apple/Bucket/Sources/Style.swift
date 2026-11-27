@@ -127,7 +127,7 @@ struct StateMessage: View {
         } description: {
             if let detail { Text(detail) }
         } actions: {
-            if let retry { Button("Try again", action: retry).buttonStyle(D8Option(align: .center, compact: true)) }
+            if let retry { Button("Try again", action: retry).buttonStyle(PLOption(align: .center, compact: true)) }
         }
     }
 }

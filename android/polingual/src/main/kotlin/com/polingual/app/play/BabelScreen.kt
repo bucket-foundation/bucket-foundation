@@ -1,5 +1,7 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import foundation.bucket.core.ui.pl.plSurface
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -98,6 +100,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
             BabelBoard(board, picked, byId, ::tap)
             return@GameFrame
         }
+        androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Babel, points = score) }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
             BabelMatched(if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] } else emptyList())
         }
@@ -113,8 +116,8 @@ private fun BabelBoard(board: List<Cell>, picked: Int?, byId: Map<String, Meanin
                             val i = r * Babel.SIZE + c
                             val sel = picked == i
                             Column(
-                                Modifier.weight(1f).aspectRatio(1f).plSurface(if (sel) PL.Lapis else PL.White, 10.dp)
-                                    .border(2.dp, if (sel) PL.LapisDeep else PL.Hairline2, RoundedCornerShape(10.dp)).clickable(role = Role.Button) { tap(i) },
+                                Modifier.weight(1f).aspectRatio(1f).plSurface(if (sel) PL.Lapis else PL.White, PLRadius.sm)
+                                    .border(2.dp, if (sel) PL.LapisDeep else PL.Hairline2, RoundedCornerShape(PLRadius.sm)).clickable(role = Role.Button) { tap(i) },
                             ) {
                                 FlagSwatch(cell.lang, Modifier.fillMaxWidth().height(6.dp))
                                 Box(Modifier.fillMaxWidth().weight(1f).padding(2.dp), contentAlignment = Alignment.Center) {
@@ -142,7 +145,7 @@ private fun BabelHud(lvl: Int, moves: Int, cleared: Int, goal: Int, score: Int) 
 private fun BabelMatched(meanings: List<Meaning>) {
     SectionTitle("Words you matched")
     meanings.forEach { m ->
-        Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, 12.dp).padding(12.dp)) {
+        Column(Modifier.fillMaxWidth().plSurface(PL.Paper2, PLRadius.sm).padding(12.dp)) {
             Text(m.meaning, style = Type.title, color = PL.Ink)
             m.forms.forEach { (l, f) -> Text("${Lang.name(l)}: $f", style = Type.small, color = PL.InkDim) }
         }

@@ -21,7 +21,7 @@ struct PolingualRoot: View {
                     onboarded = true
                 }
             case .loading:
-                ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Palette.paper.ignoresSafeArea())
+                ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(PL.paper.ignoresSafeArea())
             case .studio:
                 Studio(access: subs.access)
             }
@@ -140,7 +140,7 @@ struct Studio: View {
 
     var body: some View {
         tabs
-            .background(Palette.paper)
+            .background(PL.paper)
             .task(id: TrialReminder.key(subs.access, allowed: reminders.enabled)) {
                 if case .trial(let until) = subs.access { trialReminder = await TrialReminder.schedule(until: until) } else { trialReminder = nil }
             }
@@ -274,7 +274,7 @@ struct LockedPreview<Content: View>: View {
                 }
                 .padding(16)
                 .frame(maxWidth: 520)
-                .background(Palette.card, in: .rect(cornerRadius: 16))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
                 .shadow(color: .black.opacity(0.15), radius: 10, y: 2)
                 .padding()
             }

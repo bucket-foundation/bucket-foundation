@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -77,7 +76,6 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
     var misses by remember { mutableIntStateOf(0) }
     var tick by remember { mutableIntStateOf(0) }
     var over by remember { mutableStateOf(false) }
-    val p = LocalPalette.current
     tick.let { }
     LaunchedEffect(game) {
         while (left - misses * DailySpeed.MISS_PENALTY > 0 && game.hits < DailyGames.SPEED_PAIRS && game.playable) { delay(100); left -= 0.1 }
@@ -91,7 +89,7 @@ fun SpeedMatch(graph: Graph, c: GameContext) {
         return
     }
     LinearProgressIndicator(progress = { (remaining / DailySpeed.SECONDS).toFloat() }, modifier = Modifier.fillMaxWidth(), color = PL.Malachite)
-    Text("${remaining.toInt()} s   ${game.hits} of ${DailyGames.SPEED_PAIRS} pairs   ${game.points} points", color = p.muted)
+    Text("${remaining.toInt()} s   ${game.hits} of ${DailyGames.SPEED_PAIRS} pairs   ${game.points} points", color = PL.InkDim)
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             game.meanings.forEachIndexed { slot, w -> androidx.compose.runtime.key(w?.id ?: "slot$slot") { if (w == null) Box(Modifier.fillMaxWidth().heightIn(min = 64.dp)) else MatchTile(w.gloss, game.pickedMeaning == w.id) { game.tapMeaning(w.id).also { if (it is DailySpeed.Outcome.Missed) misses += 1 }; tick += 1 } } }

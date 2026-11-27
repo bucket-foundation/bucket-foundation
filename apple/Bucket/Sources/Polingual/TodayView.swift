@@ -268,7 +268,7 @@ struct TodayView: View {
                 if over { dropTarget = item.id } else if dropTarget == item.id { dropTarget = nil }
             }
             .overlay {
-                if dropTarget == item.id { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.lapis, lineWidth: 3).allowsHitTesting(false) }
+                if dropTarget == item.id { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.lapis, lineWidth: 3).allowsHitTesting(false) }
             }
             .accessibilityIdentifier("today.widget.\(item.id)")
     }
@@ -324,11 +324,11 @@ struct TodayView: View {
                             hero(context.date, studied: done > 0 || live.countsToday, pending: pending, planned: planned, now: now)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        Divider().overlay(Palette.rule)
+                        Divider().overlay(PL.hairline2)
                         HStack(spacing: 0) {
-                            Tally(n: due, label: "due now", color: D8.vermilion)
-                            Tally(n: new, label: "new today", color: D8.lapis)
-                            Tally(n: done, label: "done today", color: D8.malachite)
+                            Tally(n: due, label: "due now", color: PL.vermilion)
+                            Tally(n: new, label: "new today", color: PL.lapis)
+                            Tally(n: done, label: "done today", color: PL.malachite)
                         }
                         .padding(.vertical, 4)
                     }
@@ -436,8 +436,8 @@ struct Tally: View {
 
     var body: some View {
         VStack(spacing: 2) {
-            Text("\(n)").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(n > 0 ? color : Palette.muted).monospacedDigit()
-            Text(LocalizedStringKey(label)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            Text("\(n)").font(PL.script(34, .bold)).foregroundStyle(n > 0 ? color : PL.inkDim).monospacedDigit()
+            Text(LocalizedStringKey(label)).font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim)
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .combine)
@@ -474,43 +474,43 @@ struct Shimmer: ViewModifier {
 
 struct TodaySkeleton: View {
     var body: some View {
-        let block = Palette.rule.opacity(0.7)
+        let block = PL.hairline2.opacity(0.7)
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 VStack(alignment: .leading, spacing: 16) {
-                    RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 90, height: 12)
+                    RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(width: 90, height: 12)
                     HStack(spacing: 0) {
                         ForEach(0..<3, id: \.self) { _ in
                             VStack(spacing: 8) {
-                                RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 40, height: 34)
-                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 58, height: 10)
+                                RoundedRectangle(cornerRadius: PL.Radius.sm).fill(block).frame(width: 40, height: 34)
+                                RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(width: 58, height: 10)
                             }
                             .frame(maxWidth: .infinity)
                         }
                     }
-                    RoundedRectangle(cornerRadius: 5).fill(block).frame(height: 12).padding(.trailing, 60)
-                    RoundedRectangle(cornerRadius: 12).fill(D8.vermilion.opacity(0.25)).frame(height: 50)
+                    RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(height: 12).padding(.trailing, 60)
+                    RoundedRectangle(cornerRadius: PL.Radius.md).fill(PL.vermilion.opacity(0.25)).frame(height: 50)
                 }
                 .padding(18)
-                .background(Palette.card, in: .rect(cornerRadius: 22))
-                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 100, height: 10).padding(.leading, 18)
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.xl))
+                RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(width: 100, height: 10).padding(.leading, 18)
                 VStack(spacing: 0) {
                     ForEach(0..<3, id: \.self) { i in
                         HStack(spacing: 12) {
-                            RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 36, height: 36)
+                            RoundedRectangle(cornerRadius: PL.Radius.sm).fill(block).frame(width: 36, height: 36)
                             VStack(alignment: .leading, spacing: 7) {
-                                RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 150, height: 13)
-                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 110, height: 10)
+                                RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(width: 150, height: 13)
+                                RoundedRectangle(cornerRadius: PL.Radius.xs).fill(block).frame(width: 110, height: 10)
                             }
                             Spacer()
                             Capsule().fill(block).frame(width: 56, height: 24)
                         }
                         .padding(.vertical, 14)
-                        if i < 2 { Divider().overlay(Palette.rule) }
+                        if i < 2 { Divider().overlay(PL.hairline2) }
                     }
                 }
                 .padding(.horizontal, 18)
-                .background(Palette.card, in: .rect(cornerRadius: 22))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.xl))
             }
             .padding(.horizontal, 16)
             .padding(.top, 8)

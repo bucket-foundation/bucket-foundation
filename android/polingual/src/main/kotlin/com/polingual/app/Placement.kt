@@ -28,7 +28,6 @@ import foundation.bucket.core.engine.usable
 import foundation.bucket.core.model.Lang
 import foundation.bucket.core.model.LangSystem
 import foundation.bucket.core.ui.pl.Card
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import kotlinx.coroutines.launch
@@ -190,7 +189,6 @@ object Cefr {
 
 @Composable
 fun PlacementScreen(graph: Graph, back: () -> Unit, study: () -> Unit) {
-    val p = LocalPalette.current
     val scope = rememberCoroutineScope()
     var corpus by remember { mutableStateOf<LangCorpus?>(null) }
     var system by remember { mutableStateOf<LangSystem?>(null) }
@@ -227,7 +225,7 @@ fun PlacementScreen(graph: Graph, back: () -> Unit, study: () -> Unit) {
         current = Triple(band, q.first, q.second)
     }
     Page(stringResource(R.string.placement), back = back) {
-        if (sys == null || c == null) { Text(stringResource(R.string.placement_loading), color = p.muted); return@Page }
+        if (sys == null || c == null) { Text(stringResource(R.string.placement_loading), color = PL.InkDim); return@Page }
         val r = result
         val q = current
         when {
@@ -244,7 +242,7 @@ fun PlacementScreen(graph: Graph, back: () -> Unit, study: () -> Unit) {
                 current = null
                 advance()
             }
-            else -> Text(stringResource(R.string.placement_picking), color = p.muted)
+            else -> Text(stringResource(R.string.placement_picking), color = PL.InkDim)
         }
     }
 }
@@ -252,7 +250,7 @@ fun PlacementScreen(graph: Graph, back: () -> Unit, study: () -> Unit) {
 @Composable
 private fun PlacementPick(sys: LangSystem, known: Set<String>, flip: (String) -> Unit, go: () -> Unit) {
     Text(stringResource(R.string.placement_which), style = Type.title, color = PL.Tyrian)
-    Text(stringResource(R.string.placement_which_detail), color = LocalPalette.current.muted)
+    Text(stringResource(R.string.placement_which_detail), color = PL.InkDim)
     sys.targets.forEach { l ->
         foundation.bucket.core.ui.pl.PLTile(l in known, Modifier.fillMaxWidth().heightIn(min = 52.dp), onClick = { flip(l) }) {
             Text("${Lang.flag(l)} ${Lang.name(l)}", style = Type.title, color = if (l in known) PL.Paper else PL.Ink)
@@ -263,14 +261,13 @@ private fun PlacementPick(sys: LangSystem, known: Set<String>, flip: (String) ->
 
 @Composable
 private fun PlacementResult(r: CefrPlacement, count: Int, nextLang: String?, study: () -> Unit, next: () -> Unit) {
-    val p = LocalPalette.current
     Text(stringResource(R.string.placement_level, r.label), style = Type.display, color = PL.Tyrian)
     Text(stringResource(R.string.placement_count, count) + " " +
         (if (r.placeIds.isEmpty() && r.floorTier == 0.0) stringResource(R.string.placement_from_first) else stringResource(R.string.placement_known, r.placeIds.size)) + " " +
-        stringResource(if (r.noCefr) R.string.placement_no_cefr else R.string.placement_proxy), color = p.muted)
-    r.unknownFrom?.let { Text(stringResource(R.string.placement_unknown_from, it.label), color = p.muted) }
+        stringResource(if (r.noCefr) R.string.placement_no_cefr else R.string.placement_proxy), color = PL.InkDim)
+    r.unknownFrom?.let { Text(stringResource(R.string.placement_unknown_from, it.label), color = PL.InkDim) }
     Card {
-        r.bands.forEach { b -> Text(stringResource(if (b.passed) R.string.placement_band_pass else R.string.placement_band_fail, b.band.label, b.right, b.asked), color = p.ink) }
+        r.bands.forEach { b -> Text(stringResource(if (b.passed) R.string.placement_band_pass else R.string.placement_band_fail, b.band.label, b.right, b.asked), color = PL.Ink) }
     }
     if (nextLang != null) PrimaryButton(stringResource(R.string.placement_place, Lang.name(nextLang)), onClick = next)
     else PrimaryButton(stringResource(R.string.placement_start_studying), onClick = study)
@@ -279,7 +276,7 @@ private fun PlacementResult(r: CefrPlacement, count: Int, nextLang: String?, stu
 @Composable
 private fun PlacementAsk(graph: Graph, root: String, lang: String, asked: Int, q: Triple<CefrBand, CefrTask, Question>, answer: (Boolean) -> Unit) {
     Text(stringResource(R.string.placement_pair, Lang.name(root), Lang.name(lang)), style = Type.title, color = PL.Tyrian)
-    if (asked == 1) Text(stringResource(R.string.placement_intro), color = LocalPalette.current.muted)
+    if (asked == 1) Text(stringResource(R.string.placement_intro), color = PL.InkDim)
     Text(stringResource(R.string.placement_question, asked, q.first.label), style = Type.caps, color = PL.Vermilion)
     QuestionView(graph, q.third, answer)
     PlainLink(stringResource(R.string.placement_dont_know)) { answer(false) }

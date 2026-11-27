@@ -109,6 +109,11 @@ object StudySync {
                     "arm" to JsonPrimitive(r.arm), "units" to JsonPrimitive(r.units), "cards" to JsonPrimitive(r.cards),
                     "seconds" to JsonPrimitive(minOf(86_400L, (r.ended - r.started) / 1000)),
                 ))))
+                is LogRow.VocabTest -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("vocab_test"), "props" to JsonObject(mapOf(
+                    "phase" to JsonPrimitive(r.phase), "form" to JsonPrimitive(r.form), "arm" to JsonPrimitive(r.arm),
+                    "hits" to JsonPrimitive(r.hits), "words" to JsonPrimitive(r.words), "false_alarms" to JsonPrimitive(r.falseAlarms),
+                    "pseudowords" to JsonPrimitive(r.pseudowords), "known" to JsonPrimitive(r.known), "day" to JsonPrimitive(r.day), "seconds" to JsonPrimitive(r.seconds),
+                ))))
                 is LogRow.Review -> null
             }
         }

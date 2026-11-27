@@ -10,8 +10,8 @@ extension View {
     func exerciseCard(tight: Bool = false) -> some View {
         padding(tight ? 12 : 18)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.card, in: .rect(cornerRadius: 22))
-            .overlay(RoundedRectangle(cornerRadius: 22).stroke(Palette.rule))
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.xl))
+            .overlay(RoundedRectangle(cornerRadius: PL.Radius.xl).stroke(PL.hairline2))
     }
 
     func langInput(_ lang: String) -> some View {
@@ -29,7 +29,7 @@ struct ReadingLine: View {
     var body: some View {
         if on, let r = reading {
             let parts = [r.kana, r.roman, r.ipa.map { "/\($0)/" }].compactMap { $0 }.filter { !$0.isEmpty }
-            if !parts.isEmpty { Text(parts.joined(separator: " · ")).font(.caption).foregroundStyle(Palette.muted) }
+            if !parts.isEmpty { Text(parts.joined(separator: " · ")).font(PL.text(12)).foregroundStyle(PL.inkDim) }
         }
     }
 }
@@ -47,12 +47,12 @@ struct OptionButton: View {
         Button(action: action) {
             VStack(alignment: tall ? .center : .leading, spacing: 2) {
                 Text(text).font(glyph ? .largeTitle.weight(.bold) : nil).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
-                if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
+                if let r = readingText(reading) { Text(r).font(PL.text(12)).foregroundStyle(PL.inkDim) }
             }
             .padding(.vertical, 10)
             .frame(maxWidth: tall ? .infinity : nil, minHeight: tall ? 72 : nil)
         }
-        .buttonStyle(D8Option(selected: selected))
+        .buttonStyle(PLOption(selected: selected))
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
         .accessibilityLabel("\(text), \(langName(lang))")
         .accessibilityAddTraits(selected ? .isSelected : [])
@@ -178,7 +178,7 @@ struct ExerciseView: View {
                     }
                 VStack(spacing: 12) {
                     PhraseWords(text: ex.answer, lang: ex.answerLang)
-                    Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline).frame(maxWidth: .infinity)
+                    Text(tapText(ex.prompt, ex.promptLang, color: PL.inkDim)).font(PL.text(15)).frame(maxWidth: .infinity)
                     Notes(ex: ex, showNote: true, readings: readings)
                     Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
                 }
@@ -212,16 +212,16 @@ struct ExerciseView: View {
                             FlagTile(lang: l, size: 64)
                                 .overlay(alignment: .topTrailing) {
                                     if matchDone {
-                                        Image(systemName: ok ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
-                                            .frame(width: 24, height: 24).background(ok ? D8.malachite : D8.vermilion, in: .circle).offset(x: 7, y: -7)
+                                        Image(systemName: ok ? "checkmark" : "xmark").font(PL.text(12, .heavy)).foregroundStyle(.white)
+                                            .frame(width: 24, height: 24).background(ok ? PL.malachite : PL.vermilion, in: .circle).offset(x: 7, y: -7)
                                     }
                                 }
-                            if flagNamed(l) || matchDone { Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted) }
-                            Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
-                                .foregroundStyle(matchDone ? (ok ? D8.rightText : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
-                            if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.rightText).lineLimit(1).minimumScaleFactor(0.6) }
+                            if flagNamed(l) || matchDone { Text(langName(l)).font(PL.text(12, .bold)).foregroundStyle(PL.inkDim) }
+                            Text(word ?? " ").font(PL.wordFont(16)).strikethrough(matchDone && !ok, color: PL.vermilion)
+                                .foregroundStyle(matchDone ? (ok ? PL.malachite : PL.inkDim) : PL.ink).lineLimit(1).minimumScaleFactor(0.6)
+                            if matchDone && !ok { Text(truth).font(PL.wordFont(16)).foregroundStyle(PL.malachite).lineLimit(1).minimumScaleFactor(0.6) }
                             if matchDone && LangVoice.shared.canSpeak(truth, l) {
-                                Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted)
+                                Image(systemName: "speaker.wave.2.fill").font(PL.text(13)).foregroundStyle(PL.inkDim)
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -265,13 +265,13 @@ struct ExerciseView: View {
                 FlowLayout(spacing: 8) {
                     ForEach(Array(built.enumerated()), id: \.offset) { k, ti in
                         Button(tokens[ti]) { built.remove(at: k) }
-                            .buttonStyle(D8Option())
+                            .buttonStyle(PLOption())
                             .fixedSize()
                             .disabled(verdict != nil)
                     }
                 }
                 .frame(maxWidth: .infinity, minHeight: 54, alignment: .topLeading)
-                .overlay(alignment: .bottom) { Rectangle().fill(Palette.rule).frame(height: 2) }
+                .overlay(alignment: .bottom) { Rectangle().fill(PL.hairline2).frame(height: 2) }
                 .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
             }
             VStack(alignment: .leading, spacing: 14) {
@@ -279,7 +279,7 @@ struct ExerciseView: View {
                     FlowLayout(spacing: 8) {
                         ForEach(Array(tokens.enumerated()), id: \.offset) { ti, t in
                             Button(t) { built.append(ti) }
-                                .buttonStyle(D8Option())
+                                .buttonStyle(PLOption())
                                 .fixedSize()
                                 .disabled(built.contains(ti))
                                 .opacity(built.contains(ti) ? 0.25 : 1)
@@ -341,7 +341,7 @@ struct ExerciseView: View {
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     if ex.optionLangs != nil {
                         Text("Some options are from other languages. Pick the right answer in \(targetName).")
-                            .font(.subheadline).foregroundStyle(Palette.muted)
+                            .font(PL.text(15)).foregroundStyle(PL.inkDim)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     LazyVGrid(columns: cols, spacing: 10) {
@@ -360,8 +360,8 @@ struct ExerciseView: View {
             if ex.kind == .speak && !typedKind && verdict == nil {
                 if listening {
                     Text(LangListener.shared.live.isEmpty ? String(localized: "Listening…") : LangListener.shared.live)
-                        .font(.system(size: 20, weight: .semibold, design: .rounded))
-                        .foregroundStyle(LangListener.shared.live.isEmpty ? Palette.muted : Palette.ink)
+                        .font(PL.script(20, .semibold))
+                        .foregroundStyle(LangListener.shared.live.isEmpty ? PL.inkDim : PL.ink)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentTransition(.opacity)
                 }
@@ -395,12 +395,12 @@ struct ExerciseView: View {
 
     var answerField: some View {
         TextField(ex.kind == .typeHeard ? "Type what you hear" : ex.kind == .spellHeard ? "Spell it in its own script" : "Your answer", text: $typed)
-            .font(.system(size: 18, weight: .semibold, design: .rounded))
-            .foregroundStyle(Palette.ink)
+            .font(PL.script(18, .semibold))
+            .foregroundStyle(PL.ink)
             .padding(.horizontal, 16)
             .frame(minHeight: 52)
-            .background(D8.face, in: .rect(cornerRadius: 12))
-            .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.edge, lineWidth: 2) }
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.paper3, lineWidth: 2) }
             .autocorrectionDisabled()
             .langInput(ex.answerLang)
             .focused($focused)
@@ -466,9 +466,9 @@ struct Answered: View {
         let target = ex.answerLang == ex.lang ? shownAnswer(ex) : ex.prompt
         VStack(alignment: .leading, spacing: 12) {
             if verdict == .close {
-                Text("Close. Check the spelling and accents.").font(.subheadline.weight(.semibold)).foregroundStyle(D8.rightText)
+                Text("Close. Check the spelling and accents.").font(PL.text(15, .semibold)).foregroundStyle(PL.malachite)
             } else if !ok {
-                (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
+                (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(PL.text(15, .semibold)).foregroundStyle(PL.vermilion)
             }
             AnswerRow(word: target, lang: ex.lang, state: .right, reading: reading)
             Notes(ex: ex, showNote: !ok || ex.kind == .conjugate || ex.kind == .gender)
@@ -490,7 +490,7 @@ struct Notes: View {
             FamilyLine(ex: ex, readings: readings)
             if ex.kind == .gender { ArticleKey(lang: ex.lang) }
             FalseFriendNote(ex: ex)
-            if showNote, let note = ex.note, !note.isEmpty { Text(tapText(note, ex.root, color: Palette.muted)).font(.caption) }
+            if showNote, let note = ex.note, !note.isEmpty { Text(tapText(note, ex.root, color: PL.inkDim)).font(PL.text(12)) }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -513,8 +513,8 @@ struct ArticleKey: View {
     var body: some View {
         if let table = Lang.articles[lang] {
             Text(table.map { "\($0.1): \(String(localized: "the")), \(Self.gender($0.0))" }.joined(separator: " · "))
-                .font(.caption)
-                .foregroundStyle(Palette.muted)
+                .font(PL.text(12))
+                .foregroundStyle(PL.inkDim)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
@@ -538,21 +538,21 @@ struct FamilyLine: View {
         let shown = words
         if !shown.isEmpty {
             VStack(alignment: .leading, spacing: 6) {
-                Text(sharedRoot ? "SAME ROOT" : "IN EACH LANGUAGE").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text(sharedRoot ? "SAME ROOT" : "IN EACH LANGUAGE").font(PL.text(11, .semibold)).foregroundStyle(PL.inkDim)
                 FlowLayout(spacing: 8) {
                     ForEach(shown, id: \.self) { w in
                         HStack(spacing: 6) {
                             FlagTile(lang: w.lang, size: 20)
                             VStack(alignment: .leading, spacing: 0) {
-                                Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
-                                if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(Palette.muted) }
+                                Text(w.word).font(PL.text(15, .semibold)).foregroundStyle(PL.ink)
+                                if readings, let r = readingText(w.reading) { Text(r).font(PL.text(11)).foregroundStyle(PL.inkDim) }
                             }
                             PlayButton(text: w.word, lang: w.lang, roomy: true)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 6)
-                        .background(D8.face, in: .rect(cornerRadius: 10))
-                        .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.edge, lineWidth: 1.5) }
+                        .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                        .overlay { RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(PL.paper3, lineWidth: 1.5) }
                         .accessibilityElement(children: .combine)
                         .fixedSize()
                     }
@@ -568,8 +568,8 @@ struct FalseFriendNote: View {
     var body: some View {
         if let f = ex.falseFriend {
             Text("False friend: \(f.word) means \(f.means). It looks like English \(f.looksLike).\(f.crossWith.map { " \(langName($0.lang)) \($0.word) means \($0.means)." } ?? "")")
-                .font(.caption)
-                .foregroundStyle(Palette.ink.opacity(0.8))
+                .font(PL.text(12))
+                .foregroundStyle(PL.ink.opacity(0.8))
         }
     }
 }
@@ -585,7 +585,7 @@ struct SentencePrompt: View {
     let lang: String
 
     var body: some View {
-        Text(tapText(text, lang)).font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center).frame(maxWidth: .infinity)
+        Text(tapText(text, lang)).font(PL.script(22, .semibold)).multilineTextAlignment(.center).frame(maxWidth: .infinity)
     }
 }
 
@@ -596,8 +596,8 @@ struct AskWord: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            Text(tapText(word, lang)).font(.system(size: 46, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
-            if let sub { Text(sub).font(.title3).foregroundStyle(Palette.muted).multilineTextAlignment(.center) }
+            Text(tapText(word, lang)).font(PL.script(46, .bold)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            if let sub { Text(sub).font(PL.script(20, .semibold)).foregroundStyle(PL.inkDim).multilineTextAlignment(.center) }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 8)
@@ -622,8 +622,8 @@ struct TypingPrompt: View {
 
     func line(_ word: String, _ lang: String, _ sub: String) -> some View {
         VStack(spacing: 2) {
-            Text(tapText(word, lang)).font(.system(size: 22, weight: .bold, design: .rounded)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
-            Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(1).minimumScaleFactor(0.7)
+            Text(tapText(word, lang)).font(PL.script(22, .bold)).lineLimit(2).minimumScaleFactor(0.5).multilineTextAlignment(.center)
+            Text(sub).font(PL.text(15)).foregroundStyle(PL.inkDim).lineLimit(1).minimumScaleFactor(0.7)
         }
         .frame(maxWidth: .infinity)
     }
@@ -642,10 +642,10 @@ struct Prompt: View {
         case .cloze:
             VStack(spacing: 6) {
                 if let c = ex.cloze {
-                    (Text(tapText(c.before, ex.lang)) + Text("______").foregroundStyle(Palette.muted) + Text(tapText(c.after, ex.lang)))
-                        .font(.serif(.title2, weight: .semibold)).multilineTextAlignment(.center)
+                    (Text(tapText(c.before, ex.lang)) + Text("______").foregroundStyle(PL.inkDim) + Text(tapText(c.after, ex.lang)))
+                        .font(PL.script(22, .semibold)).multilineTextAlignment(.center)
                 }
-                Text(tapText(ex.prompt, ex.promptLang, color: Palette.muted)).font(.subheadline)
+                Text(tapText(ex.prompt, ex.promptLang, color: PL.inkDim)).font(PL.text(15))
             }
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard, .spellHeard:
@@ -654,25 +654,25 @@ struct Prompt: View {
                 WordTile(word: seen || !LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? ex.prompt : nil, lang: ex.promptLang, reading: seen && readings ? ex.promptReading : nil, size: vertical == .compact ? 100 : 140, speakText: ex.prompt)
                 if answered { PhraseWords(text: ex.prompt, lang: ex.promptLang) }
                 if answered, let meaning = ex.meaning {
-                    Text(tapText(meaning, ex.root, color: Palette.muted))
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    Text(tapText(meaning, ex.root, color: PL.inkDim))
+                        .font(PL.script(18, .semibold))
                         .multilineTextAlignment(.center)
                         .lineLimit(2).minimumScaleFactor(0.7)
                         .accessibilityIdentifier("heardMeaning")
                 }
-                if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
+                if ex.kind == .listen { Text("Pick the meaning").font(PL.text(15)).foregroundStyle(PL.inkDim) }
             }
         case .gender:
             VStack(spacing: 4) {
-                (Text("______ ").foregroundStyle(Palette.muted) + Text(tapText(ex.prompt, ex.lang))).font(.serif(.title, weight: .semibold))
-                if let g = ex.promptReading?.roman { Text(g).font(.subheadline).foregroundStyle(Palette.muted) }
+                (Text("______ ").foregroundStyle(PL.inkDim) + Text(tapText(ex.prompt, ex.lang))).font(PL.script(28, .semibold))
+                if let g = ex.promptReading?.roman { Text(g).font(PL.text(15)).foregroundStyle(PL.inkDim) }
             }
             .frame(maxWidth: .infinity)
         case .conjugate:
             VStack(spacing: 8) {
                 WordTile(word: ex.prompt, lang: ex.lang, reading: nil, size: vertical == .compact ? 100 : 130)
-                Text([ex.promptReading?.roman, ex.tense == "past" ? "past" : "present"].compactMap { $0 }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.muted)
-                (Text("\(ex.person ?? "") ") + Text("______").foregroundStyle(Palette.muted)).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink)
+                Text([ex.promptReading?.roman, ex.tense == "past" ? "past" : "present"].compactMap { $0 }.joined(separator: " · ")).font(PL.text(15)).foregroundStyle(PL.inkDim)
+                (Text("\(ex.person ?? "") ") + Text("______").foregroundStyle(PL.inkDim)).font(PL.script(22, .semibold)).foregroundStyle(PL.ink)
             }
         case .falseFriend, .reverse:
             VStack(spacing: 10) {
@@ -682,7 +682,7 @@ struct Prompt: View {
                     WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: vertical == .compact ? 120 : 160)
                 }
                 PhraseWords(text: ex.prompt, lang: ex.lang)
-                Text("What does it mean?").font(.subheadline).foregroundStyle(Palette.muted)
+                Text("What does it mean?").font(PL.text(15)).foregroundStyle(PL.inkDim)
             }
         case .sentence:
             SentencePrompt(text: ex.prompt, lang: ex.promptLang)

@@ -114,10 +114,10 @@ struct GroupRow: View {
             PLArtView(group.kind.art)
                 .frame(width: 28)
             VStack(alignment: .leading, spacing: 2) {
-                Text(group.name).font(.headline)
+                Text(group.name).font(PL.text(17, .bold))
                 Text("\(group.members.count) of \(group.kind.capacity) members")
-                    .font(.footnote)
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(13))
+                    .foregroundStyle(PL.inkDim)
             }
         }
     }
@@ -165,7 +165,7 @@ struct CreateGroupSheet: View {
                 if let m = groupMessage(error) { Section { Text(m).foregroundStyle(.red) } }
                 if groups.busy { Section { ProgressView() } }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle(kind.inviteLabel)
             .inlineTitle()
@@ -187,22 +187,22 @@ struct InviteSheet: View {
                 if let g = groups.group(groupId) {
                     let page = SharePage.group(g)
                     Section {
-                        Text(g.name).font(.serif(.title2, weight: .semibold))
+                        Text(g.name).font(PL.script(22, .semibold))
                         Text("Anyone who opens this link can join \(g.name).")
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                         ShareLink(item: page.url, subject: Text(page.title), message: Text(page.title)) {
                             Label("Share invite link", systemImage: "square.and.arrow.up")
                         }
                         .buttonStyle(D8Primary())
                         LabeledContent("Invite code", value: g.code)
-                            .font(.body.monospaced())
+                            .font(PL.text(17).monospaced())
                             .textSelection(.enabled)
                     } footer: {
                         Text("\(g.members.count) of \(g.kind.capacity) members")
                     }
                 }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle("Invite")
             .inlineTitle()
@@ -252,8 +252,8 @@ struct GroupView: View {
                                 Button("Remove", role: .destructive) { removing = m }
                             }
                             if !m.isMe {
-                                Button("Block") { blocking = ModerationTarget(member: m, groupId: g.id) }.tint(D8.vermilion)
-                                Button("Report") { reporting = ModerationTarget(member: m, groupId: g.id) }.tint(Palette.muted)
+                                Button("Block") { blocking = ModerationTarget(member: m, groupId: g.id) }.tint(PL.vermilion)
+                                Button("Report") { reporting = ModerationTarget(member: m, groupId: g.id) }.tint(PL.inkDim)
                             }
                         }
                         .contextMenu {
@@ -307,7 +307,7 @@ struct GroupView: View {
             #endif
             if let m = groupMessage(error) { Section { Text(m).foregroundStyle(.red) } }
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
         .scrollContentBackground(.hidden)
         .navigationTitle(g.name)
         .navigationDestination(item: $opening) { id in
@@ -364,26 +364,26 @@ struct MemberRow: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 HStack(spacing: 6) {
-                    Text(member.name).font(.headline)
+                    Text(member.name).font(PL.text(17, .bold))
                     if member.isMe { Badge(text: String(localized: "You")) }
                     if member.role == .owner { Badge(text: String(localized: "Owner")) }
                 }
                 if !member.hasProgress {
                     Text("No progress synced yet")
-                        .font(.footnote.weight(.semibold))
-                        .foregroundStyle(Palette.muted)
+                        .font(PL.text(13, .semibold))
+                        .foregroundStyle(PL.inkDim)
                 } else {
                     HStack(spacing: 10) {
                         HStack(spacing: 3) {
                             Image(systemName: "flame.fill")
                             Text(member.streak, format: .number)
                         }
-                        .foregroundStyle(member.streak > 0 ? D8.vermilion : Palette.muted)
+                        .foregroundStyle(member.streak > 0 ? PL.vermilion : PL.inkDim)
                         .accessibilityLabel(Text(dayStreak(member.streak)))
                         Text("\(member.todayReviews) today")
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                     }
-                    .font(.footnote.weight(.semibold))
+                    .font(PL.text(13, .semibold))
                 }
             }
             Spacer(minLength: 8)
@@ -400,12 +400,12 @@ struct Badge: View {
 
     var body: some View {
         Text(text)
-            .font(D8.caps(10))
+            .font(PL.capsFont(10))
             .textCase(.uppercase)
             .padding(.horizontal, 6)
             .padding(.vertical, 2)
-            .foregroundStyle(Palette.green)
-            .overlay { Capsule().strokeBorder(Palette.green.opacity(0.6)) }
+            .foregroundStyle(PL.tyrian)
+            .overlay { Capsule().strokeBorder(PL.tyrian.opacity(0.6)) }
     }
 }
 
@@ -449,8 +449,8 @@ struct MemberView: View {
             Section {
                 if !member.hasProgress {
                     Text(member.isMe ? "Your progress has not synced yet. Finish a session while signed in." : "\(member.firstName) has no synced progress yet. Scores appear after their next session while signed in.")
-                        .font(.footnote)
-                        .foregroundStyle(Palette.muted)
+                        .font(PL.text(13))
+                        .foregroundStyle(PL.inkDim)
                 }
                 LabeledContent("Streak", value: String(localized: "\(member.streak) days"))
                 LabeledContent("Today", value: String(localized: "\(member.todayReviews) cards"))
@@ -483,16 +483,16 @@ struct MemberView: View {
             }
             Section {
                 if member.languages.isEmpty {
-                    Text("No languages yet.").foregroundStyle(Palette.muted)
+                    Text("No languages yet.").foregroundStyle(PL.inkDim)
                 }
                 ForEach(member.languages) { l in
                     HStack(spacing: 12) {
                         FlagTile(lang: l.lang, size: 32)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(langName(l.lang)).font(.headline)
+                            Text(langName(l.lang)).font(PL.text(17, .bold))
                             Text("\(l.learned) learned · \(l.mastered) mastered")
-                                .font(.footnote)
-                                .foregroundStyle(Palette.muted)
+                                .font(PL.text(13))
+                                .foregroundStyle(PL.inkDim)
                             StrengthBar(value: l.shownStrength)
                         }
                     }
@@ -506,9 +506,9 @@ struct MemberView: View {
                         Button { together = set } label: {
                             HStack(spacing: 10) {
                                 HStack(spacing: 2) { ForEach(set.targets.prefix(4), id: \.self) { FlagTile(lang: $0, size: 22) } }
-                                Text(set.name).font(.headline).foregroundStyle(Palette.ink)
+                                Text(set.name).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
                                 Spacer()
-                                Text("Learn together").font(.footnote.weight(.semibold))
+                                Text("Learn together").font(PL.text(13, .semibold))
                             }
                         }
                     }
@@ -519,7 +519,7 @@ struct MemberView: View {
             RecentWordsSection(member: member)
             if member.subjects.count >= 3 {
                 Section {
-                    StrengthRadar(spokes: member.subjectSpokes, compare: comparing ? me?.subjectSpokes : nil, tint: D8.lapis, compareTint: D8.vermilion)
+                    StrengthRadar(spokes: member.subjectSpokes, compare: comparing ? me?.subjectSpokes : nil, tint: PL.lapis, compareTint: PL.vermilion)
                         .frame(maxWidth: 340)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 8)
@@ -529,16 +529,16 @@ struct MemberView: View {
             }
             Section {
                 if member.subjects.isEmpty {
-                    Text("No subjects yet.").foregroundStyle(Palette.muted)
+                    Text("No subjects yet.").foregroundStyle(PL.inkDim)
                 }
                 ForEach(member.subjects) { s in
                     HStack(spacing: 12) {
                         BranchTile(branch: String(s.branch.prefix(2)), size: 32)
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(s.title).font(.headline)
+                            Text(s.title).font(PL.text(17, .bold))
                             Text("\(s.started) started · \(s.mastered) mastered")
-                                .font(.footnote)
-                                .foregroundStyle(Palette.muted)
+                                .font(PL.text(13))
+                                .foregroundStyle(PL.inkDim)
                             StrengthBar(value: s.shownStrength)
                         }
                     }
@@ -548,7 +548,7 @@ struct MemberView: View {
             }
             if !graphFirst { StrengthGraphSection(groupId: groupId, member: member) }
         }
-        .listRowBackground(Palette.card)
+        .listRowBackground(PL.card)
         .scrollContentBackground(.hidden)
         .paper()
         .navigationTitle(member.name)
@@ -585,7 +585,7 @@ struct MyStrength: View {
                         .padding(.vertical, 6)
                 }
                 if me.subjects.count >= 3 {
-                    StrengthRadar(spokes: me.subjectSpokes, tint: D8.lapis)
+                    StrengthRadar(spokes: me.subjectSpokes, tint: PL.lapis)
                         .frame(maxWidth: 300)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 6)
@@ -614,11 +614,11 @@ struct JoinGroupSheet: View {
             Form {
                 Section {
                     if let p = preview {
-                        Label(p.kind.label, systemImage: p.kind.symbol).foregroundStyle(Palette.muted)
-                        Text(p.name).font(.serif(.title, weight: .semibold))
+                        Label(p.kind.label, systemImage: p.kind.symbol).foregroundStyle(PL.inkDim)
+                        Text(p.name).font(PL.script(28, .semibold))
                         if let owner = p.owner, !owner.isEmpty {
                             Text("\(owner) invited you. \(p.members) of \(p.kind.capacity) members.")
-                                .foregroundStyle(Palette.muted)
+                                .foregroundStyle(PL.inkDim)
                         }
                     } else if previewError == nil {
                         ProgressView()
@@ -649,7 +649,7 @@ struct JoinGroupSheet: View {
                 if let m = groupMessage(joinError ?? previewError) { Section { Text(m).foregroundStyle(.red) } }
                 if groups.busy { Section { ProgressView() } }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle("Join group")
             .inlineTitle()
@@ -675,7 +675,7 @@ struct EnterCodeSheet: View {
             Form {
                 Section {
                     TextField("Invite code", text: $text)
-                        .font(.body.monospaced())
+                        .font(PL.text(17).monospaced())
                         .autocorrectionDisabled()
                         .codeCapitals()
                 } footer: {
@@ -687,7 +687,7 @@ struct EnterCodeSheet: View {
                         .disabled(code == nil)
                 }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle("Have an invite code?")
             .inlineTitle()

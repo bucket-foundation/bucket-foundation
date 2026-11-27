@@ -21,7 +21,6 @@ import foundation.bucket.core.auth.Stage
 import foundation.bucket.core.model.BucketError
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.SectionTitle
@@ -31,7 +30,6 @@ import kotlinx.coroutines.launch
 fun AccountScreen(graph: Graph, nav: NavHostController) {
     val stage by graph.account.stage.collectAsState()
     val app by graph.state.collectAsState()
-    val p = LocalPalette.current
     Page("Account", stickers = listOf(Sticker("script-he", Alignment.CenterStart, 90.dp, -8f), Sticker("azulejo", Alignment.TopEnd, 62.dp, 10f), Sticker("ink-dot", Alignment.BottomEnd, 36.dp, -5f, dx = (-8).dp))) {
         when (stage) {
             Stage.SignedIn -> SignedInSection(graph, nav)
@@ -40,12 +38,12 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
         NotificationSettings(graph)
         SectionTitle("Guest play")
         Card {
-            Text("Nickname for live rooms", color = p.ink, style = Type.caps)
+            Text("Nickname for live rooms", color = PL.Ink, style = Type.caps)
             var nick by remember(app?.nickname) { mutableStateOf(app?.nickname.orEmpty()) }
             val scope = rememberCoroutineScope()
             OutlinedTextField(nick, { nick = it.take(40) }, singleLine = true, modifier = Modifier.fillMaxWidth(), label = { Text("Nickname") })
             PlainLink("Save nickname") { scope.launch { graph.store.update { it.copy(nickname = nick.trim()) } } }
-            Text("Games and live rooms work without an account. An account saves your streak and progress on every device.", color = p.muted)
+            Text("Games and live rooms work without an account. An account saves your streak and progress on every device.", color = PL.InkDim)
         }
         AccountExtras(graph, nav)
     }
@@ -53,7 +51,6 @@ fun AccountScreen(graph: Graph, nav: NavHostController) {
 
 @Composable
 fun SignInCard(graph: Graph, stage: Stage) {
-    val p = LocalPalette.current
     var email by remember { mutableStateOf("") }
     var code by remember { mutableStateOf("") }
     var error by remember { mutableStateOf<String?>(null) }
@@ -65,15 +62,15 @@ fun SignInCard(graph: Graph, stage: Stage) {
         try { block() } catch (e: BucketError) { error = e.message } finally { busy = false }
     }
     Card {
-        Text("Sign in", style = Type.title, color = p.ink)
+        Text("Sign in", style = Type.title, color = PL.Ink)
         if (stage == Stage.CodeSent) {
-            Text("We sent a code to ${graph.account.email}.", color = p.muted)
+            Text("We sent a code to ${graph.account.email}.", color = PL.InkDim)
             OutlinedTextField(code, { code = it.filter(Char::isDigit).take(8) }, singleLine = true, label = { Text("Code") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword), modifier = Modifier.fillMaxWidth())
             PrimaryButton(if (busy) "Checking" else "Sign in", enabled = code.length >= 6 && !busy) { run { graph.account.verify(code) } }
             PlainLink("Use another email") { graph.account.editEmail() }
         } else {
-            Text("Get a code by email. No password.", color = p.muted)
+            Text("Get a code by email. No password.", color = PL.InkDim)
             OutlinedTextField(email, { email = it }, singleLine = true, label = { Text("Email") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email), modifier = Modifier.fillMaxWidth())
             PrimaryButton(if (busy) "Sending" else "Email me a code", enabled = email.contains("@") && !busy) { run { graph.account.requestCode(email) } }

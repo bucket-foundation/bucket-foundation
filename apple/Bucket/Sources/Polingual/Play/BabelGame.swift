@@ -86,8 +86,8 @@ struct BabelGame: View {
                     cellFace(cell)
                         .frame(maxWidth: .infinity, minHeight: wide ? 40 : 52)
                         .padding(2)
-                        .background(picked == i ? PL.maya : PL.card, in: .rect(cornerRadius: 8))
-                        .overlay { if hint.contains(i) { RoundedRectangle(cornerRadius: 8).stroke(PL.ochre, lineWidth: 3) } }
+                        .background(picked == i ? PL.maya : PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                        .overlay { if hint.contains(i) { RoundedRectangle(cornerRadius: PL.Radius.sm).stroke(PL.ochre, lineWidth: 3) } }
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(cellLabel(cell))

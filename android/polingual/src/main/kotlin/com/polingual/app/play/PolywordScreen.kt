@@ -97,6 +97,7 @@ fun PolywordScreen(graph: Graph, back: () -> Unit) {
             }
         } else {
             val stats = Polyword.stats(saved.filterKeys { it.startsWith("$lang:") }.mapKeys { it.key.substringAfter(':').toInt() }.mapValues { PolyGame(it.value.guesses, it.value.done, it.value.won) }, today)
+            androidx.compose.runtime.LaunchedEffect(over) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Polyword, hits = if (won) maxOf(1, 7 - guesses.size) else 0) }
             Results(graph, if (won) "Solved in ${guesses.size}" else "The word was ${puzzle.word}", "Streak ${stats.streak}. Best ${stats.best}. New word tomorrow.", again = null) {
                 val word = remember(puzzle.slug) { PlayAssets.words(context).firstOrNull { it.slug == puzzle.slug } }
                 if (RevealRules.polyword(guesses, puzzle.answer)) { if (word != null) RevealWord(graph, word, lang) else WordCard(lang, puzzle.word, gloss = puzzle.gloss) }
@@ -113,10 +114,10 @@ private fun PolyKeyboard(keys: Map<Char, Mark>, onKey: (Char) -> Unit) {
                     row.forEach { c ->
                         val m = keys[c]
                         Box(
-                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), 8.dp)
+                            Modifier.weight(1f).heightIn(min = 46.dp).plSurface(if (m == null) PL.Paper2 else markColor(m), PLRadius.xs)
                                 .clickable(role = Role.Button) { onKey(c) },
                             contentAlignment = Alignment.Center,
-                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, fontSize = 16.sp, style = Type.small) }
+                        ) { Text(c.uppercase(), color = if (m == null) PL.Ink else PL.Paper, style = Type.small) }
                     }
                 }
             }
