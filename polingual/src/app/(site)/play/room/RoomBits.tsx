@@ -2,6 +2,7 @@
 
 import { botLabel, flagEmoji, gameProgress, livesLeft, myScore, ranked, standings, streakOf, type Phase } from "@/lib/lobby/client";
 import { livesText, roomControls } from "@/lib/lobby/room";
+import { roundTitle } from "@/lib/lobby/waiting";
 import { Avatar } from "@/ui/avatar";
 import { Button, Pill } from "@/ui";
 import LiveBoard from "../LiveBoard";
@@ -61,6 +62,7 @@ export function RoomHud({ g, phase }: { g: LiveRoom; phase: Phase }) {
         <span className={styles.hudRound} data-testid="round-count">
           {phase.kind === "round" || phase.kind === "reveal" ? `Round ${phase.index + 1} of ${lobby.rounds}` : `${lobby.rounds} rounds`}
         </span>
+        {roundTitle(lobby) ? <span className={styles.hudRound} data-testid="night-round">{roundTitle(lobby)}</span> : null}
         <span className={styles.hudScore}>
           <span className={styles.scoreNow} key={myScore(lobby)} data-testid="my-score">{myScore(lobby)}</span> pts
         </span>

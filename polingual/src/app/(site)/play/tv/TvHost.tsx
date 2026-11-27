@@ -18,6 +18,7 @@ import Nickname from "../Nickname";
 import { gameName } from "../langs";
 import { usePauseAds } from "../AdsContext";
 import { WaitingBoard } from "../room/WaitingBoard";
+import { roundTitle } from "@/lib/lobby/waiting";
 import { savedNickname, usePlay } from "../usePlay";
 import { useRoomSync } from "../room/useRoomSync";
 
@@ -155,6 +156,7 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   return (
     <>
       <span className={tv.roundTag}><Tag>{round.label}</Tag></span>
+      {roundTitle(lobby) ? <p className={tv.night} data-testid="tv-night">{roundTitle(lobby)}</p> : null}
       {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
       {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
       {round.choices.length ? (

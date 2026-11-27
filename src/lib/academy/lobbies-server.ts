@@ -9,6 +9,8 @@ import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
+  nightRound,
+  stealBonus,
   hostLeaveDecision,
   endEnabled,
   NEXT_GAME_MS,
@@ -195,6 +197,13 @@ export async function submitAnswer(lobby: LobbyRow, uid: string, round: number, 
   if (lobby.game === "duel" && decision.points > 0) {
     const boost = check(await service().from(POWERS).select("kind").eq("lobby_id", lobby.id).eq("user_id", uid).eq("round", round).eq("kind", "double").limit(1), "boost") as unknown[];
     if (boost.length) decision.points *= 2;
+  }
+  if (decision.correct && nightRound(lobby)?.final) {
+    const [answers, seats] = await Promise.all([
+      check(await service().from(ANSWERS).select("user_id,correct").eq("lobby_id", lobby.id).eq("round", round), "final answers") as { user_id: string; correct: boolean }[],
+      check(await service().from(PLAYERS).select("user_id,score").eq("lobby_id", lobby.id), "final scores") as { user_id: string; score: number }[],
+    ]);
+    decision.points = decision.points * 2 + stealBonus(uid, seats, answers);
   }
   const res = await service().rpc("lobby_answer", { p_lobby: lobby.id, p_user: uid, p_round: round, p_choice: choice, p_correct: decision.correct, p_ms: decision.ms, p_points: decision.points });
   if (res.error) throw new Error(res.error.message);

@@ -33,6 +33,31 @@ export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
 export const NEXT_GAME_MS = 60_000;
 
+export const FAMILY_NIGHT: readonly { game: LobbyGame; label: string }[] = [
+  { game: "daily", label: "Warm Up" },
+  { game: "flags", label: "Voice Atlas" },
+  { game: "tiles", label: "Picture Race" },
+  { game: "same-word", label: "Final" },
+];
+
+export type NightRound = { index: number; label: string; final: boolean; total: number };
+
+export function nightRound(lobby: { playlist?: readonly string[] | null; mix?: boolean; game: string | null }): NightRound | null {
+  const list = lobby.playlist ?? [];
+  if (lobby.mix || list.length !== FAMILY_NIGHT.length || list.some((g, i) => g !== FAMILY_NIGHT[i].game)) return null;
+  const index = list.indexOf(lobby.game ?? "");
+  if (index < 0) return null;
+  return { index, label: FAMILY_NIGHT[index].label, final: index === FAMILY_NIGHT.length - 1, total: FAMILY_NIGHT.length };
+}
+
+export const STEAL_POINTS = 100;
+
+export function stealBonus(uid: string, players: readonly { user_id: string; score: number }[], answers: readonly { user_id: string; correct: boolean }[]): number {
+  const mine = players.find((p) => p.user_id === uid)?.score ?? 0;
+  const ahead = new Set(players.filter((p) => p.user_id !== uid && p.score > mine).map((p) => p.user_id));
+  return answers.some((a) => ahead.has(a.user_id) && !a.correct) ? STEAL_POINTS : 0;
+}
+
 export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at">, now: number, force = false): boolean {
   if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return false;
   return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS;

@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { FAMILY_NIGHT, nightRound } from "@academy/lobbies";
 import type { LobbyApi, WebLobbyState } from "@/lib/lobby/client";
 import { tvShortUrl } from "@/lib/lobby/tv";
 import { readyLine, setupGames, waitingRows } from "@/lib/lobby/waiting";
@@ -14,6 +15,7 @@ import wait from "./waiting.module.css";
 type Host = { api: LobbyApi; take: (l: WebLobbyState, sentAt: number) => void };
 
 function setupLabel(lobby: WebLobbyState): string {
+  if (nightRound(lobby)) return "Family night";
   if (lobby.setup === "mix") return "Random mix";
   if (lobby.setup === "sequence") return "Game set, in order";
   return "One game";
@@ -58,7 +60,7 @@ function GamesCard({ lobby, tv, host }: { lobby: WebLobbyState; tv: boolean; hos
         {setupGames(lobby).map((g, i) => (
           <li key={g} data-now={lobby.setup !== "mix" && g === lobby.game}>
             {lobby.setup === "sequence" ? <span className={wait.order}>{i + 1}</span> : null}
-            {gameName(g)}
+            {nightRound(lobby) ? FAMILY_NIGHT[i]?.label ?? gameName(g) : gameName(g)}
           </li>
         ))}
       </ol>

@@ -30,7 +30,7 @@ export function SetupFields({ s, compact = false }: { s: SetupState; compact?: b
           </Button>
         ))}
       </div>
-      {s.mode !== "mix" ? <GamePicker s={s} compact={compact} /> : null}
+      {s.mode !== "mix" && s.mode !== "night" ? <GamePicker s={s} compact={compact} /> : null}
       <LangPicker s={s} />
     </>
   );

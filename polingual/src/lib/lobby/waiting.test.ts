@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { LobbyState } from "./client";
-import { draftChanged, draftOf, readyLine, settingsBody, setupGames, waitingRows } from "./waiting";
+import { draftChanged, draftOf, readyLine, roundTitle, settingsBody, setupGames, waitingRows } from "./waiting";
 
 type Player = LobbyState["players"][number];
 
@@ -41,4 +41,14 @@ test("draftChanged spots edits to games or languages", () => {
   assert.equal(draftChanged({ ...d, game: "tiles" }, lobby), true);
   assert.equal(draftChanged({ ...d, langs: ["es", "fr"] }, lobby), true);
   assert.equal(draftChanged({ ...d, mode: "mix" }, lobby), true);
+});
+
+test("a family night reads back as night mode and titles each round", () => {
+  const playlist = ["daily", "flags", "tiles", "same-word"] as never[];
+  const lobby = { players, game: "flags" as const, targets: ["es", "fr"], setup: "sequence" as const, playlist };
+  assert.equal(draftOf(lobby).mode, "night");
+  assert.deepEqual(settingsBody({ mode: "night", game: "x", games: [], langs: ["es", "fr"] }), { setup: "sequence", games: ["daily", "flags", "tiles", "same-word"], targets: ["es", "fr"] });
+  assert.equal(roundTitle({ playlist, game: "flags" }), "Voice Atlas, round 2 of 4");
+  assert.equal(roundTitle({ playlist, game: "same-word" }), "Final: double points, steals on");
+  assert.equal(roundTitle({ playlist: ["flags", "tiles"] as never[], game: "flags" }), null);
 });

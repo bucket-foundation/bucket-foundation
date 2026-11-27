@@ -7,6 +7,10 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  nightRound,
+  stealBonus,
+  FAMILY_NIGHT,
+  STEAL_POINTS,
   hostLeaveDecision,
   abandonedLobby,
   nextGameDue,
@@ -542,4 +546,31 @@ test("a host-screen lobby with no players yet stays listed while its screen is w
   const row = { ...lobby({ id: "S", host_id: "h", created_at: new Date(now - 30_000).toISOString() }) } as LobbyRow;
   assert.deepEqual(openLobbies([row], [], [], "x", now).map((l) => l.id), []);
   assert.deepEqual(openLobbies([row], [], [], "x", now, false, new Set(["S"])).map((l) => l.id), ["S"]);
+});
+
+test("family night runs Warm Up, Voice Atlas, Picture Race and a final, and only the final doubles", () => {
+  const playlist = FAMILY_NIGHT.map((r) => r.game);
+  assert.deepEqual(FAMILY_NIGHT.map((r) => r.label), ["Warm Up", "Voice Atlas", "Picture Race", "Final"]);
+  assert.deepEqual(nightRound({ playlist, mix: false, game: "daily" }), { index: 0, label: "Warm Up", final: false, total: 4 });
+  assert.equal(nightRound({ playlist, mix: false, game: "same-word" })?.final, true);
+  assert.equal(nightRound({ playlist, mix: true, game: "same-word" }), null);
+  assert.equal(nightRound({ playlist: ["daily", "flags"], mix: false, game: "flags" }), null);
+  const env = process.env.POLINGUAL_LOBBY_SETUP;
+  process.env.POLINGUAL_LOBBY_SETUP = "on";
+  try {
+    const patch = normalizeLobbySettings({ setup: "sequence", games: playlist, targets: ["es", "fr"] }, { game: "flags", root: "en", targets: ["es"], status: "lobby" });
+    assert.deepEqual(patch?.playlist, playlist);
+    assert.equal(nextGame({ game: "tiles", playlist, mix: false, seed: "1", targets: ["es", "fr"] }), "same-word");
+  } finally {
+    process.env.POLINGUAL_LOBBY_SETUP = env;
+  }
+});
+
+test("a trailing player steals when someone ahead already missed the final question", () => {
+  const players = [{ user_id: "lead", score: 900 }, { user_id: "mid", score: 500 }, { user_id: "low", score: 100 }];
+  assert.equal(stealBonus("low", players, [{ user_id: "lead", correct: false }]), STEAL_POINTS);
+  assert.equal(stealBonus("low", players, [{ user_id: "lead", correct: true }]), 0);
+  assert.equal(stealBonus("lead", players, [{ user_id: "low", correct: false }]), 0);
+  assert.equal(stealBonus("mid", players, [{ user_id: "low", correct: false }]), 0);
+  assert.equal(stealBonus("mid", players, []), 0);
 });

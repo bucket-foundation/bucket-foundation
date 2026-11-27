@@ -1,6 +1,7 @@
+import { FAMILY_NIGHT, nightRound } from "@academy/lobbies";
 import type { LobbyState } from "./client";
 
-export type SetupMode = "single" | "sequence" | "mix";
+export type SetupMode = "single" | "sequence" | "mix" | "night";
 
 export type WaitingRow = { id: string; name: string; ready: boolean; host: boolean; bot: boolean; me: boolean };
 
@@ -27,10 +28,12 @@ export function setupGames(lobby: Lobby): string[] {
 
 export function draftOf(lobby: Lobby): SettingsDraft {
   const games = setupGames(lobby);
-  return { mode: lobby.setup, game: lobby.game ?? games[0], games: lobby.setup === "sequence" ? games : [], langs: [...lobby.targets] };
+  const mode: SetupMode = nightRound(lobby) ? "night" : lobby.setup;
+  return { mode, game: lobby.game ?? games[0], games: mode === "sequence" ? games : [], langs: [...lobby.targets] };
 }
 
 export function settingsBody(d: SettingsDraft): { setup: SetupMode; game?: string; games?: string[]; targets: string[] } {
+  if (d.mode === "night") return { setup: "sequence", games: FAMILY_NIGHT.map((r) => r.game), targets: d.langs };
   if (d.mode === "sequence") return { setup: "sequence", games: d.games, targets: d.langs };
   if (d.mode === "mix") return { setup: "mix", targets: d.langs };
   return { setup: "single", game: d.game, targets: d.langs };
@@ -42,4 +45,10 @@ export function draftChanged(d: SettingsDraft, lobby: Lobby): boolean {
   if (d.mode === "single") return d.game !== base.game;
   if (d.mode === "sequence") return d.games.join() !== base.games.join();
   return false;
+}
+
+export function roundTitle(lobby: Pick<LobbyState, "playlist" | "game">): string | null {
+  const night = nightRound({ playlist: lobby.playlist, game: lobby.game });
+  if (!night) return null;
+  return night.final ? "Final: double points, steals on" : `${night.label}, round ${night.index + 1} of ${night.total}`;
 }
