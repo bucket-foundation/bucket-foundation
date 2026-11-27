@@ -26,11 +26,20 @@ export const ATLAS_HOMES: Record<string, LatLon[]> = {
   tr: [[41.0, 29.0], [39.9, 32.9]],
 };
 
+export type ClipLicence = "device-tts" | "cc0" | "cc-by" | "cc-by-sa" | "family-room" | "personal" | "unknown";
+
+export const PUBLIC_LICENCES: readonly ClipLicence[] = ["device-tts", "cc0", "cc-by", "cc-by-sa"];
+
+export function publicPlayback(licence: ClipLicence | undefined): boolean {
+  return !!licence && PUBLIC_LICENCES.includes(licence);
+}
+
 export interface AtlasRound {
   lang: string;
   form: string;
   meaning: string;
   itemId: string;
+  licence: ClipLicence;
 }
 
 export interface AtlasGhost {
@@ -60,7 +69,7 @@ export function atlasRounds(items: readonly LangItem[], date: string, count = AT
     }
     const item = pool[Math.floor(rand() * Math.min(pool.length, 800))];
     usedLangs.add(lang);
-    out.push({ lang, form: item.forms[lang], meaning: item.forms[root], itemId: item.id });
+    out.push({ lang, form: item.forms[lang], meaning: item.forms[root], itemId: item.id, licence: "device-tts" });
   }
   return out;
 }
