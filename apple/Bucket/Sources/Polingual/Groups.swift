@@ -128,7 +128,7 @@ struct CreateGroupSheet: View {
     let created: (LearningGroup) -> Void
     @Environment(GroupStore.self) private var groups
     @Environment(\.dismiss) private var dismiss
-    @AppStorage("groups.displayName") private var displayName = ""
+    @AppStorage(AccountDefaults.key("groups.displayName")) private var displayName = ""
     @State private var name = ""
     @State private var error: BucketError?
 
@@ -603,7 +603,7 @@ struct JoinGroupSheet: View {
     let code: String
     @Environment(GroupStore.self) private var groups
     @Environment(\.dismiss) private var dismiss
-    @AppStorage("groups.displayName") private var displayName = ""
+    @AppStorage(AccountDefaults.key("groups.displayName")) private var displayName = ""
     @State private var preview: GroupPreview?
     @State private var previewError: BucketError?
     @State private var joinError: BucketError?

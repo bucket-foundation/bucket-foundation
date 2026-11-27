@@ -23,7 +23,7 @@ enum WantedWords {
 struct TranslateCard: View {
     @Environment(LangStore.self) private var store
     var today = false
-    @AppStorage("translate.targets") private var targetsRaw = ""
+    @AppStorage(AccountDefaults.key("translate.targets")) private var targetsRaw = ""
     @AppStorage("translate.recent") private var recentRaw = ""
     @State private var picking = false
     @State private var committed = TranslateCard.debugQuery

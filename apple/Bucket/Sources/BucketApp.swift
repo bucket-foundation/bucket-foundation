@@ -21,7 +21,9 @@ struct BucketApp: App {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
+        launch.defaults()
         let account = Account(api: BucketAPI(), store: launch.sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
+        launch.attach(account)
         PushRegistry.shared.token = { await account.freshToken() }
         PushRegistry.shared.user = { account.session?.userId }
         let langs = LangStore(api: BucketAPI(), disk: launch.disk("polingual"), token: launch.token(account))
@@ -43,7 +45,7 @@ struct BucketApp: App {
         let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }, guest: GuestPass(api: BucketAPI()) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
+        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }, guest: GuestPass(api: BucketAPI()) { UserDefaults.standard.string(forKey: AccountDefaults.key("groups.displayName")) ?? "" }))
     }
 
     var body: some Scene {

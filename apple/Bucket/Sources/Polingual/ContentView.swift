@@ -43,7 +43,7 @@ final class ContentStore {
     var stations: [String: [RadioStation]] = [:]
     var failed: Set<String> = []
 
-    var hidden: Set<String> = Set(UserDefaults.standard.stringArray(forKey: "content.hiddenStations") ?? [])
+    var hidden: Set<String> = Set(UserDefaults.standard.stringArray(forKey: AccountDefaults.key("content.hiddenStations")) ?? [])
 
     func titles(for topic: ContentTopic) async -> [String: String]? {
         if let t = titles[topic.title] { return t }
@@ -58,7 +58,7 @@ final class ContentStore {
 
     func report(_ s: RadioStation) {
         hidden.insert(s.id)
-        UserDefaults.standard.set(Array(hidden), forKey: "content.hiddenStations")
+        UserDefaults.standard.set(Array(hidden), forKey: AccountDefaults.key("content.hiddenStations"))
         Beta.shared.log("radio_report", ["station": .string(s.id), "name": .string(s.name), "country": .string(s.countrycode)])
     }
 

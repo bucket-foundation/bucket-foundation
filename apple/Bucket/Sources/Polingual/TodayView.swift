@@ -10,7 +10,7 @@ struct TodayView: View {
     @State private var session: StudyLaunch?
     @State private var picking = false
     @State private var dropTarget: String?
-    @AppStorage("bucket.today.order") private var order = ""
+    @AppStorage(AccountDefaults.key("bucket.today.order")) private var order = ""
     @State private var scienceReady = false
     private let plan = TodayPlanStore.shared
     var subjects: (any Subjects)?

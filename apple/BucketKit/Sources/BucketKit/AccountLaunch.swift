@@ -33,6 +33,19 @@ public struct AccountLaunch: Sendable {
         return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, folders: AccountFolders(), index: index)
     }
 
+    public func defaults(_ shared: AccountDefaults = .shared) {
+        shared.activate(multiAccount ? folderKey : nil)
+    }
+
+    @MainActor
+    public func attach(_ account: Account, defaults: AccountDefaults = .shared) {
+        guard multiAccount else { return }
+        account.onEnd = { how, user in
+            guard how != .expired, let user else { return }
+            defaults.remove(AccountIndex.key(user))
+        }
+    }
+
     public func disk(_ store: String) -> FileLangDisk { folders.disk(store, key: folderKey) }
 
     public var migrationError: String? { folders.lastError }

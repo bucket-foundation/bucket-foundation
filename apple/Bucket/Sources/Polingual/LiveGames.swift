@@ -98,7 +98,7 @@ struct LiveRoomChip: View {
 struct LiveStartScreen: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(LangStore.self) private var langs
-    @AppStorage("groups.displayName") private var displayName = ""
+    @AppStorage(AccountDefaults.key("groups.displayName")) private var displayName = ""
     let start: LiveStart
     @State private var entered = false
     @State private var working = false

@@ -8,8 +8,8 @@ struct PolingualRoot: View {
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
     @Environment(LobbyStore.self) private var lobbies
-    @AppStorage("polingual.onboarded") private var onboarded = false
-    @AppStorage("polingual.firstSystem") private var firstSystem = ""
+    @AppStorage(AccountDefaults.key("polingual.onboarded")) private var onboarded = false
+    @AppStorage(AccountDefaults.key("polingual.firstSystem")) private var firstSystem = ""
     @AppStorage(SaveProgress.key) private var savePending = false
 
     var body: some View {
@@ -132,7 +132,7 @@ struct Studio: View {
     @State private var managing = false
     @State private var paywall = false
     @State private var trialReminder: TrialReminder.Outcome?
-    @AppStorage("polingual.firstSystem") private var firstSystem = ""
+    @AppStorage(AccountDefaults.key("polingual.firstSystem")) private var firstSystem = ""
 
     init(access: Access) {
         _tab = State(initialValue: Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? Monetization.startTab(access: access))

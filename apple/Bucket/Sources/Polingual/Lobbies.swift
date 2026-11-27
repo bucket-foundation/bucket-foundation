@@ -176,7 +176,7 @@ struct StagedLobbyHook: ViewModifier {
 struct LobbiesScreen: View {
     @Environment(LobbyStore.self) private var lobbies
     @Environment(LangStore.self) private var langs
-    @AppStorage("groups.displayName") private var displayName = ""
+    @AppStorage(AccountDefaults.key("groups.displayName")) private var displayName = ""
     @State private var code = ""
     @State private var problem: String?
     @State private var inRoom = false

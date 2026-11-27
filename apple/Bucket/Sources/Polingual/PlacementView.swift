@@ -16,7 +16,7 @@ struct PlacementView: View {
     @State private var result: CefrPlacement?
     @State private var asked = 0
     @AppStorage("bucket.lang.readings") private var readings = true
-    @AppStorage("bucket.lang.placeQueue") private var queue = ""
+    @AppStorage(AccountDefaults.key("bucket.lang.placeQueue")) private var queue = ""
     @State private var picking = false
     @State private var confirming = false
     @State private var known = Set<String>()

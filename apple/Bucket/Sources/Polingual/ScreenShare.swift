@@ -234,7 +234,7 @@ enum InviteWait {
     static let step: Duration = .milliseconds(300)
     static let tries = 10
 
-    static var onboarded: Bool { !Feedback.isPolingual || UserDefaults.standard.bool(forKey: "polingual.onboarded") }
+    static var onboarded: Bool { !Feedback.isPolingual || UserDefaults.standard.bool(forKey: AccountDefaults.key("polingual.onboarded")) }
 
     static func next(onboarded: Bool, hasWindow: Bool, covered: Bool, tries: Int) -> Step {
         guard onboarded else { return .drop }

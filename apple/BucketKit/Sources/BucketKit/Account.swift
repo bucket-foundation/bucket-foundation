@@ -12,6 +12,7 @@ public final class Account {
     public private(set) var session: Session?
     public var error: String?
     public private(set) var busy = false
+    @ObservationIgnored public var onEnd: ((Ending, String?) -> Void)?
 
     let api: BucketAPI
     let store: SessionStore
@@ -149,7 +150,9 @@ public final class Account {
     }
 
     func end(_ how: Ending) {
+        let user = session?.userId ?? store.load()?.userId
         store.clear()
+        onEnd?(how, user)
         session = nil
         ending = how
         stage = .signedOut

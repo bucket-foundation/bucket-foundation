@@ -25,6 +25,7 @@ struct PolingualApp: App {
         let api = BucketAPI()
         #endif
         let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
+        launch.defaults()
         #if DEBUG
         let fresh = Launch.flag("-freshGuest")
         let sessions: SessionStore = fresh ? MemorySessionStore() : launch.sessions
@@ -34,6 +35,7 @@ struct PolingualApp: App {
         let disk = launch.disk("polingual")
         #endif
         let account = Account(api: api, store: sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
+        launch.attach(account)
         let store = LangStore(api: api, disk: disk, token: launch.token(account))
         PushRegistry.shared.api = api
         PushRegistry.shared.token = { await account.freshToken() }
@@ -48,7 +50,7 @@ struct PolingualApp: App {
         let groups = GroupStore(api: api, token: { await account.freshToken() })
         groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
         _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: "groups.displayName") ?? "" }))
+        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: AccountDefaults.key("groups.displayName")) ?? "" }))
         let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride(), web: web))
     }

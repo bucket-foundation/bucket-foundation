@@ -2,8 +2,8 @@ import BucketKit
 import SwiftUI
 
 enum MemberName {
-    static let storedKey = "groups.displayName"
-    static let askedKey = "groups.nameAsked"
+    static var storedKey: String { AccountDefaults.key("groups.displayName") }
+    static var askedKey: String { AccountDefaults.key("groups.nameAsked") }
     static let settleSeconds = 0.6
 
     static func ask(signedIn: Bool, loaded: Bool, unchosen: Bool, asked: Bool) -> Bool {
