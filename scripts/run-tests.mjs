@@ -57,6 +57,7 @@ const SUITES = {
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
+      "scripts/test-academy-lobby-erase.ts",
       "scripts/test-academy-profile-names.ts",
       "scripts/test-academy-apple-token.ts",
       "scripts/test-academy-google.ts",
