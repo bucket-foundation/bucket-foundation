@@ -33,6 +33,14 @@ export function recordRefusal(card: RoomCard | null, lang: string, status: Teach
   return null;
 }
 
+export type AccountRefusal = "not_adult_account" | "age_unavailable";
+
+export function accountRefusal(guest: boolean, age: { ok: true; band: string | null } | { ok: false } | null): AccountRefusal | null {
+  if (guest) return null;
+  if (!age || !age.ok) return "age_unavailable";
+  return age.band === "18plus" ? null : "not_adult_account";
+}
+
 export function homeLanguages(card: RoomCard | null): string[] {
   if (!card || card.band !== "adult") return [];
   return card.speaks.filter((s) => s.level === 4).map((s) => s.lang);

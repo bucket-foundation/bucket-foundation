@@ -22,6 +22,7 @@ export function fakeDb(tables: Record<string, Row[]>, keys: Record<string, strin
       if (op === "upsert" || op === "insert") {
         const k = keys[table] ?? [];
         const hit = k.length ? rows.find((r) => k.every((c) => r[c] === patch[c])) : undefined;
+        if (hit && op === "insert") return { data: null, error: { code: "23505", message: "duplicate key" } };
         if (hit && op === "upsert") Object.assign(hit, patch);
         else rows.push({ ...patch });
         log.push(`${op} ${table}`);

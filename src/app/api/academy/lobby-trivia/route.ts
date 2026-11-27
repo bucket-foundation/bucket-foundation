@@ -1,13 +1,12 @@
 import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight, service } from "@/lib/academy/groups-server";
 import { authed, checkLobby, lobbyFail } from "@/lib/academy/lobbies-server";
-import { addPoints, inRoom, roomSeats, UUID_RE } from "@/lib/academy/lobby-rooms-server";
-import { triviaAllowed, triviaFresh, triviaSet, triviaView, TRIVIA_POINTS, TRIVIA_TTL_MS, type TriviaAction, type TriviaRow } from "@/lib/academy/lobby-trivia";
+import { addPoints, claimed, inRoom, insertOnce, purgeRounds, roomSeats, TRIVIA, TRIVIA_ANSWERS, triviaAnswers, UUID_RE } from "@/lib/academy/lobby-rooms-server";
+import { triviaAllowed, triviaFresh, triviaSet, triviaView, TRIVIA_POINTS, type TriviaAction, type TriviaRow } from "@/lib/academy/lobby-trivia";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const TRIVIA = "lobby_trivia";
 const ACTIONS: readonly TriviaAction[] = ["save", "open", "answer", "reveal"];
 
 export function OPTIONS(): NextResponse {
@@ -15,9 +14,9 @@ export function OPTIONS(): NextResponse {
 }
 
 async function load(lobbyId: string, now: number): Promise<TriviaRow | null> {
-  checkLobby(await service().from(TRIVIA).delete().lt("created_at", new Date(now - TRIVIA_TTL_MS).toISOString()), "trivia purge");
-  const row = checkLobby(await service().from(TRIVIA).select("*").eq("lobby_id", lobbyId).maybeSingle(), "trivia read") as TriviaRow | null;
-  return row && triviaFresh(row.created_at, now) ? row : null;
+  await purgeRounds(now);
+  const row = checkLobby(await service().from(TRIVIA).select("lobby_id,questions,current,open,created_at").eq("lobby_id", lobbyId).maybeSingle(), "trivia read") as Omit<TriviaRow, "answers"> | null;
+  return row && triviaFresh(row.created_at, now) ? { ...row, answers: await triviaAnswers(lobbyId) } : null;
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
@@ -51,30 +50,31 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const row = await load(lobbyId, now);
     const index = typeof b.index === "number" ? b.index : undefined;
     if (!triviaAllowed(action, row, a.uid, s.host, index)) return json({ error: "not_allowed" }, 403);
-    const update = async (patch: Partial<TriviaRow>) => {
-      checkLobby(await service().from(TRIVIA).update(patch).eq("lobby_id", lobbyId), `trivia ${action}`);
-    };
     if (action === "save") {
       const questions = triviaSet(b.questions);
       if (!questions) return json({ error: "bad_request" }, 400);
-      checkLobby(await service().from(TRIVIA).upsert({ lobby_id: lobbyId, questions, current: -1, open: false, answers: {}, created_at: new Date(now).toISOString() }), "trivia save");
+      checkLobby(await service().from(TRIVIA_ANSWERS).delete().eq("lobby_id", lobbyId), "trivia reset");
+      checkLobby(await service().from(TRIVIA).upsert({ lobby_id: lobbyId, questions, current: -1, open: false, created_at: new Date(now).toISOString() }), "trivia save");
       return json({ ok: true, count: questions.length });
     }
     const r = row as TriviaRow;
-    if (action === "open") await update({ current: index as number, open: true });
+    if (action === "open") {
+      const ok = await claimed(await service().from(TRIVIA).update({ current: index as number, open: true }).eq("lobby_id", lobbyId).eq("current", r.current).eq("open", false).select("lobby_id"), "trivia open");
+      if (!ok) return json({ error: "not_allowed" }, 409);
+    }
     if (action === "answer") {
       const pick = b.pick;
       const q = r.questions[r.current];
       if (!s.players.includes(a.uid) || typeof pick !== "number" || !Number.isInteger(pick) || pick < 0 || pick >= q.choices.length) return json({ error: "bad_request" }, 400);
-      const key = String(r.current);
-      if ((r.answers[key] ?? {})[a.uid] !== undefined) return json({ error: "already_answered" }, 409);
-      await update({ answers: { ...r.answers, [key]: { ...(r.answers[key] ?? {}), [a.uid]: pick } } });
+      if (!(await insertOnce(TRIVIA_ANSWERS, { lobby_id: lobbyId, question: r.current, user_id: a.uid, pick }, "trivia answer"))) return json({ error: "already_answered" }, 409);
     }
     if (action === "reveal") {
+      const ok = await claimed(await service().from(TRIVIA).update({ open: false }).eq("lobby_id", lobbyId).eq("current", r.current).eq("open", true).select("lobby_id"), "trivia reveal");
+      if (!ok) return json({ error: "not_allowed" }, 409);
       const q = r.questions[r.current];
-      const points = Object.fromEntries(Object.entries(r.answers[String(r.current)] ?? {}).map(([uid, p]) => [uid, p === q.answer ? TRIVIA_POINTS : 0]));
+      const picks = (await triviaAnswers(lobbyId))[String(r.current)] ?? {};
+      const points = Object.fromEntries(Object.entries(picks).map(([uid, p]) => [uid, p === q.answer ? TRIVIA_POINTS : 0]));
       await addPoints(lobbyId, points);
-      await update({ open: false });
       return json({ ok: true, points });
     }
     return json({ ok: true });
