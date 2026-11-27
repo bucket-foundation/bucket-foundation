@@ -1,0 +1,529 @@
+{
+  "version": 1,
+  "unit": "set:es:mi",
+  "items": [
+    {
+      "id": "tatoeba:es:867196",
+      "tokens": [
+        {
+          "lemma": "qué",
+          "surface": "Qué"
+        },
+        {
+          "lemma": "haber",
+          "surface": "has"
+        },
+        {
+          "lemma": "hacer",
+          "surface": "hecho"
+        },
+        {
+          "lemma": "con",
+          "surface": "con"
+        },
+        {
+          "lemma": "mi",
+          "surface": "mi"
+        },
+        {
+          "lemma": "boli",
+          "surface": "boli"
+        },
+        {
+          "lemma": "estar",
+          "surface": "Estaba"
+        },
+        {
+          "lemma": "aquí",
+          "surface": "aquí"
+        },
+        {
+          "lemma": "hacer",
+          "surface": "hace"
+        },
+        {
+          "lemma": "un",
+          "surface": "un"
+        },
+        {
+          "lemma": "minuto",
+          "surface": "minuto"
+        }
+      ]
+    },
+    {
+      "id": "tatoeba:es:1349431",
+      "tokens": [
+        {
+          "lemma": "un",
+          "surface": "Un"
+        },
+        {
+          "lemma": "extraño",
+          "surface": "extraño"
+        },
+        {
+          "lemma": "auto",
+          "surface": "auto"
+        },
+        {
+          "lemma": "se",
+          "surface": "se"
+        },
+        {
+          "lemma": "estacionar",
+          "surface": "estacionó"
+        },
+        {
+          "lemma": "en",
+          "surface": "en"
+        },
+        {
+          "lemma": "frente",
+          "surface": "frente"
+        },
+        {
+          "lemma": "de",
+          "surface": "de"
+        },
+        {
+          "lemma": "mi",
+          "surface": "mi"
+        },
+        {
+          "lemma": "casa",
+          "surface": "casa"
+        }
+      ]
+    },
+    {
+      "id": "tatoeba:es:1744839",
+      "tokens": [
+        {
+          "lemma": "querer",
+          "surface": "Quiero"
+        },
+        {
+          "lemma": "limpiar",
+          "surface": "limpiar"
+        },
+        {
+          "lemma": "la",
+          "surface": "la"
+        },
+        {
+          "lemma": "casa",
+          "surface": "casa"
+        },
+        {
+          "lemma": "ante",
+          "surface": "antes"
+        },
+        {
+          "lemma": "de",
+          "surface": "de"
+        },
+        {
+          "lemma": "que",
+          "surface": "que"
+        },
+        {
+          "lemma": "venir",
+          "surface": "vengan"
+        },
+        {
+          "lemma": "mi",
+          "surface": "mis"
+        },
+        {
+          "lemma": "padre",
+          "surface": "padres"
+        }
+      ]
+    },
+    {
+      "id": "tatoeba:es:949133",
+      "tokens": [
+        {
+          "lemma": "no",
+          "surface": "No"
+        },
+        {
+          "lemma": "yo",
+          "surface": "me"
+        },
+        {
+          "lemma": "acuerdo",
+          "surface": "acuerdo"
+        },
+        {
+          "lemma": "muy",
+          "surface": "muy"
+        },
+        {
+          "lemma": "bien",
+          "surface": "bien"
+        },
+        {
+          "lemma": "del",
+          "surface": "del"
+        },
+        {
+          "lemma": "rostro",
+          "surface": "rostro"
+        },
+        {
+          "lemma": "de",
+          "surface": "de"
+        },
+        {
+          "lemma": "mi",
+          "surface": "mi"
+        },
+        {
+          "lemma": "abuela",
+          "surface": "abuela"
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "name": "nothing seen logs nothing",
+      "ops": [],
+      "completed": false,
+      "coverage": 0.96,
+      "expect": []
+    },
+    {
+      "name": "seen time splits across the sentences on screen",
+      "ops": [
+        {
+          "op": "seen",
+          "items": [
+            0
+          ],
+          "ms": 4000
+        },
+        {
+          "op": "seen",
+          "items": [
+            0,
+            1
+          ],
+          "ms": 6000
+        }
+      ],
+      "completed": true,
+      "coverage": 0.96,
+      "expect": [
+        {
+          "item": "tatoeba:es:867196",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "qué",
+            "haber",
+            "hacer",
+            "con",
+            "mi",
+            "boli",
+            "estar",
+            "aquí",
+            "un",
+            "minuto"
+          ],
+          "taps": [],
+          "seconds": 7,
+          "coverage_pred": 0.96,
+          "completed": true,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:1349431",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "un",
+            "extraño",
+            "auto",
+            "se",
+            "estacionar",
+            "en",
+            "frente",
+            "de",
+            "mi",
+            "casa"
+          ],
+          "taps": [],
+          "seconds": 3,
+          "coverage_pred": 0.96,
+          "completed": true,
+          "revealed": false
+        }
+      ]
+    },
+    {
+      "name": "taps toggle and ride on their sentence",
+      "ops": [
+        {
+          "op": "seen",
+          "items": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ms": 8000
+        },
+        {
+          "op": "tap",
+          "item": 1,
+          "token": 0
+        },
+        {
+          "op": "tap",
+          "item": 1,
+          "token": 2
+        },
+        {
+          "op": "tap",
+          "item": 1,
+          "token": 0
+        }
+      ],
+      "completed": true,
+      "coverage": 0.951234,
+      "expect": [
+        {
+          "item": "tatoeba:es:867196",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "qué",
+            "haber",
+            "hacer",
+            "con",
+            "mi",
+            "boli",
+            "estar",
+            "aquí",
+            "un",
+            "minuto"
+          ],
+          "taps": [],
+          "seconds": 2,
+          "coverage_pred": 0.9512,
+          "completed": true,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:1349431",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "un",
+            "extraño",
+            "auto",
+            "se",
+            "estacionar",
+            "en",
+            "frente",
+            "de",
+            "mi",
+            "casa"
+          ],
+          "taps": [
+            "auto"
+          ],
+          "seconds": 2,
+          "coverage_pred": 0.9512,
+          "completed": true,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:1744839",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "querer",
+            "limpiar",
+            "la",
+            "casa",
+            "ante",
+            "de",
+            "que",
+            "venir",
+            "mi",
+            "padre"
+          ],
+          "taps": [],
+          "seconds": 2,
+          "coverage_pred": 0.9512,
+          "completed": true,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:949133",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "no",
+            "yo",
+            "acuerdo",
+            "muy",
+            "bien",
+            "del",
+            "rostro",
+            "de",
+            "mi",
+            "abuela"
+          ],
+          "taps": [],
+          "seconds": 2,
+          "coverage_pred": 0.9512,
+          "completed": true,
+          "revealed": false
+        }
+      ]
+    },
+    {
+      "name": "a reveal marks only that sentence",
+      "ops": [
+        {
+          "op": "seen",
+          "items": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "ms": 2000
+        },
+        {
+          "op": "reveal",
+          "item": 2
+        }
+      ],
+      "completed": false,
+      "coverage": 1.2,
+      "expect": [
+        {
+          "item": "tatoeba:es:867196",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "qué",
+            "haber",
+            "hacer",
+            "con",
+            "mi",
+            "boli",
+            "estar",
+            "aquí",
+            "un",
+            "minuto"
+          ],
+          "taps": [],
+          "seconds": 1,
+          "coverage_pred": 1,
+          "completed": false,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:1349431",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "un",
+            "extraño",
+            "auto",
+            "se",
+            "estacionar",
+            "en",
+            "frente",
+            "de",
+            "mi",
+            "casa"
+          ],
+          "taps": [],
+          "seconds": 1,
+          "coverage_pred": 1,
+          "completed": false,
+          "revealed": false
+        },
+        {
+          "item": "tatoeba:es:1744839",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "querer",
+            "limpiar",
+            "la",
+            "casa",
+            "ante",
+            "de",
+            "que",
+            "venir",
+            "mi",
+            "padre"
+          ],
+          "taps": [],
+          "seconds": 1,
+          "coverage_pred": 1,
+          "completed": false,
+          "revealed": true
+        },
+        {
+          "item": "tatoeba:es:949133",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "no",
+            "yo",
+            "acuerdo",
+            "muy",
+            "bien",
+            "del",
+            "rostro",
+            "de",
+            "mi",
+            "abuela"
+          ],
+          "taps": [],
+          "seconds": 1,
+          "coverage_pred": 1,
+          "completed": false,
+          "revealed": false
+        }
+      ]
+    },
+    {
+      "name": "seconds cap at 3600",
+      "ops": [
+        {
+          "op": "seen",
+          "items": [
+            3
+          ],
+          "ms": 9000000
+        }
+      ],
+      "completed": true,
+      "coverage": 0.97,
+      "expect": [
+        {
+          "item": "tatoeba:es:949133",
+          "unit": "set:es:mi",
+          "lemmas_seen": [
+            "no",
+            "yo",
+            "acuerdo",
+            "muy",
+            "bien",
+            "del",
+            "rostro",
+            "de",
+            "mi",
+            "abuela"
+          ],
+          "taps": [],
+          "seconds": 3600,
+          "coverage_pred": 0.97,
+          "completed": true,
+          "revealed": false
+        }
+      ]
+    }
+  ]
+}

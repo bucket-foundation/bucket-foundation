@@ -1,6 +1,9 @@
 import type { ReactElement } from "react";
 import { ImageResponse } from "next/og";
 import type { OgFontSet } from "./og-fonts";
+import { tokens } from "@/ui/tokens";
+
+const C = tokens.color;
 
 const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CACHE_OK = "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=2592000";
@@ -10,9 +13,9 @@ export const OG_CACHE_MISSING = "public, max-age=3600, s-maxage=86400";
 
 function fallbackCard(): ReactElement {
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "#F6EEDC", color: "#5B1A4A" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: C.paper, color: C.tyrian }}>
       <div style={{ display: "flex", fontSize: 120, fontWeight: 700 }}>Polingual</div>
-      <div style={{ display: "flex", fontSize: 36, color: "#5D5650", marginTop: 16 }}>Learn several languages at once</div>
+      <div style={{ display: "flex", fontSize: 36, color: C["ink-dim"], marginTop: 16 }}>Learn several languages at once</div>
     </div>
   );
 }

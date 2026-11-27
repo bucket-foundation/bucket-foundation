@@ -34,11 +34,11 @@ struct MemberNameRow: View {
             LabeledContent("Your name") {
                 VStack(alignment: .trailing, spacing: 2) {
                     Text(shown.isEmpty ? String(localized: "Add") : shown)
-                    if let handle = groups.profile?.handle { Text(verbatim: "@\(handle)").font(.footnote).foregroundStyle(Palette.muted) }
+                    if let handle = groups.profile?.handle { Text(verbatim: "@\(handle)").font(PL.text(13)).foregroundStyle(PL.inkDim) }
                 }
             }
         }
-        .foregroundStyle(Palette.ink)
+        .foregroundStyle(PL.ink)
         .accessibilityIdentifier("accountName")
         .task { await groups.loadProfile() }
         .sheet(isPresented: $editing) { MemberNameSheet(withUsername: true) }
@@ -72,7 +72,7 @@ struct MemberNameSheet: View {
                 if withUsername {
                     Section {
                         HStack(spacing: 2) {
-                            Text(verbatim: "@").foregroundStyle(Palette.muted)
+                            Text(verbatim: "@").foregroundStyle(PL.inkDim)
                             TextField("Username", text: $username)
                                 .textContentType(.username)
                                 .textInputAutocapitalization(.never)
@@ -93,7 +93,7 @@ struct MemberNameSheet: View {
                 if let m = groupMessage(error) { Section { Text(m).foregroundStyle(.red) } }
                 if groups.busy { Section { ProgressView() } }
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             .paper()
             .navigationTitle(title)
             .inlineTitle()
@@ -138,8 +138,8 @@ struct UsernameStatus: View {
         switch state {
         case .empty, .invalid: Text("3 to 32 lowercase letters, numbers, - or _.")
         case .checking: Text("Checking")
-        case .free: Label("Available", systemImage: "checkmark.circle").foregroundStyle(Palette.ink)
-        case .yours: Label("Your username", systemImage: "checkmark.circle").foregroundStyle(Palette.ink)
+        case .free: Label("Available", systemImage: "checkmark.circle").foregroundStyle(PL.ink)
+        case .yours: Label("Your username", systemImage: "checkmark.circle").foregroundStyle(PL.ink)
         case .taken: Label("That username is taken. Try another.", systemImage: "xmark.circle").foregroundStyle(.red)
         case .unknown: Text("We check this username when you save.")
         }

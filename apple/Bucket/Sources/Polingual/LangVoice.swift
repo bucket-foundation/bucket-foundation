@@ -453,7 +453,7 @@ struct PlayButton: View {
             }
             .buttonStyle(.borderless)
             .padding(.vertical, roomy ? -9 : 0)
-            .tint(Palette.green)
+            .tint(PL.tyrian)
             .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }
     }

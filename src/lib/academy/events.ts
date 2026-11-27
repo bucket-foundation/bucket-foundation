@@ -1,10 +1,15 @@
-export const LEARN_EVENT_NAMES = ["age_band_set", "placement_done", "study_session_done", "assess_done", "tutor_turn"] as const;
+import { MAX_EXPOSURE_SECONDS, MAX_LEMMAS, MAX_SESSION_ITEMS, MAX_TAPS, type ExposureInput } from "./learn-log";
+
+export const LEARN_EVENT_NAMES = ["age_band_set", "placement_done", "study_session_done", "assess_done", "tutor_turn", "exposure", "session_mix", "vocab_test"] as const;
 export type LearnEventName = (typeof LEARN_EVENT_NAMES)[number];
 
-export const CLIENT_EVENT_NAMES = ["placement_done", "study_session_done", "assess_done"] as const;
+export const CLIENT_EVENT_NAMES = ["placement_done", "study_session_done", "assess_done", "exposure", "session_mix", "vocab_test"] as const;
+export const BATCH_EVENT_NAMES = ["exposure", "session_mix", "vocab_test"] as const;
+export type BatchEventName = (typeof BATCH_EVENT_NAMES)[number];
+export const MAX_BATCH_EVENTS = 360;
 export type ClientEventName = (typeof CLIENT_EVENT_NAMES)[number];
 
-export const EVENT_DAILY_CAPS: Record<ClientEventName, number> = { placement_done: 20, study_session_done: 60, assess_done: 30 };
+export const EVENT_DAILY_CAPS: Record<ClientEventName, number> = { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60, vocab_test: 4 };
 
 export const MAX_ASSESS_ITEMS = 50;
 const LEVELS = ["recall", "apply", "derive", "teach"] as const;
@@ -26,6 +31,9 @@ export interface LearnEventProps {
   placement_done: { branch: string; questions: number; known: number };
   study_session_done: { branch: string; items: number; correct: number; seconds: number };
   assess_done: { branch: string; items: AssessItemVerdict[] };
+  exposure: ExposureInput;
+  session_mix: { session: string; share_target: number | null; share_real: number | null; arm: string | null; units: number | null; cards: number; seconds: number };
+  vocab_test: VocabTestProps;
   tutor_turn: { atom: string; abstained: boolean; leakBlocked: boolean; inputTokens: number | null; outputTokens: number | null; costUsd: number | null };
 }
 
@@ -48,6 +56,24 @@ function int(v: unknown, max: number): v is number {
 
 function nullableNum(v: unknown): v is number | null {
   return v === null || (typeof v === "number" && Number.isFinite(v) && v >= 0);
+}
+
+const LEMMA_RE = /^\S{1,40}$/;
+
+function share(v: unknown): v is number {
+  return typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 1;
+}
+
+function orNull<T>(v: unknown, ok: (x: unknown) => x is T): v is T | null {
+  return v === null || ok(v);
+}
+
+function lemmaList(v: unknown, max: number): v is string[] {
+  return Array.isArray(v) && v.length <= max && v.every((x) => typeof x === "string" && LEMMA_RE.test(x));
+}
+
+function key(v: unknown): v is string {
+  return typeof v === "string" && ATOM_RE.test(v);
 }
 
 function branch(v: unknown): v is string {
@@ -82,6 +108,20 @@ export function parseProps<N extends LearnEventName>(name: N, raw: unknown): Par
       if (items.some((i) => i === null)) return fail;
       return done({ branch: raw.branch, items: items as AssessItemVerdict[] });
     }
+    case "exposure":
+      if (!key(raw.item) || !key(raw.unit) || !lemmaList(raw.lemmas_seen, MAX_LEMMAS) || !lemmaList(raw.taps, MAX_TAPS)) return fail;
+      if (!int(raw.seconds, MAX_EXPOSURE_SECONDS) || !share(raw.coverage_pred) || typeof raw.completed !== "boolean") return fail;
+      if (raw.revealed !== undefined && typeof raw.revealed !== "boolean") return fail;
+      if (raw.playback !== undefined && raw.playback !== "unavailable") return fail;
+      return done({ item: raw.item, unit: raw.unit, lemmas_seen: raw.lemmas_seen, taps: raw.taps, seconds: raw.seconds, coverage_pred: raw.coverage_pred, completed: raw.completed, ...(raw.revealed !== undefined ? { revealed: raw.revealed } : {}), ...(raw.playback === "unavailable" ? { playback: "unavailable" as const } : {}) });
+    case "session_mix":
+      if (!key(raw.session) || !orNull(raw.share_target, share) || !orNull(raw.share_real, share) || !orNull(raw.arm, validArm)) return fail;
+      if (!orNull(raw.units, (v): v is number => int(v, MAX_SESSION_ITEMS)) || !int(raw.cards, MAX_SESSION_ITEMS) || !int(raw.seconds, 86_400)) return fail;
+      return done({ session: raw.session, share_target: raw.share_target, share_real: raw.share_real, arm: raw.arm, units: raw.units, cards: raw.cards, seconds: raw.seconds });
+    case "vocab_test": {
+      const v = parseVocabTest(raw);
+      return v ? done(v) : fail;
+    }
     case "tutor_turn":
       if (typeof raw.atom !== "string" || !ATOM_RE.test(raw.atom)) return fail;
       if (typeof raw.abstained !== "boolean" || typeof raw.leakBlocked !== "boolean") return fail;
@@ -102,6 +142,44 @@ export function parseClientEvent(raw: unknown): Parsed<LearnEvent<ClientEventNam
   return { ok: true, value: { id: raw.id.toLowerCase(), name, props: props.value } };
 }
 
+export interface VocabTestProps {
+  phase: "baseline" | "day28";
+  form: "A" | "B";
+  arm: string | null;
+  hits: number;
+  words: number;
+  false_alarms: number;
+  pseudowords: number;
+  known: number;
+  day: number;
+  seconds: number;
+}
+
+export function parseVocabTest(raw: Record<string, unknown>): VocabTestProps | null {
+  const n = (v: unknown, max: number): v is number => typeof v === "number" && Number.isInteger(v) && v >= 0 && v <= max;
+  if (raw.phase !== "baseline" && raw.phase !== "day28") return null;
+  if (raw.form !== "A" && raw.form !== "B") return null;
+  if (!(raw.arm === null || validArm(raw.arm))) return null;
+  if (!n(raw.words, 100) || !n(raw.pseudowords, 100) || !n(raw.hits, raw.words as number) || !n(raw.false_alarms, raw.pseudowords as number)) return null;
+  if (typeof raw.known !== "number" || !(raw.known >= 0 && raw.known <= 100_000) || !n(raw.day, 3650) || !n(raw.seconds, 3600)) return null;
+  return { phase: raw.phase, form: raw.form, arm: raw.arm, hits: raw.hits, words: raw.words, false_alarms: raw.false_alarms, pseudowords: raw.pseudowords, known: raw.known, day: raw.day, seconds: raw.seconds };
+}
+
 export function validArm(arm: unknown): arm is string {
   return typeof arm === "string" && ARM_RE.test(arm);
+}
+
+export function parseClientBatch(raw: unknown): Parsed<LearnEvent<BatchEventName>[]> {
+  if (!isObj(raw) || !Array.isArray(raw.events) || raw.events.length > MAX_BATCH_EVENTS) return { ok: false, error: "bad_batch" };
+  const out: LearnEvent<BatchEventName>[] = [];
+  const seen = new Set<string>();
+  for (const e of raw.events) {
+    if (!isObj(e) || !BATCH_EVENT_NAMES.includes(e.name as BatchEventName)) return { ok: false, error: "bad_name" };
+    const parsed = parseClientEvent(e);
+    if (!parsed.ok) return parsed;
+    if (seen.has(parsed.value.id)) return { ok: false, error: "duplicate_id" };
+    seen.add(parsed.value.id);
+    out.push(parsed.value as LearnEvent<BatchEventName>);
+  }
+  return { ok: true, value: out };
 }

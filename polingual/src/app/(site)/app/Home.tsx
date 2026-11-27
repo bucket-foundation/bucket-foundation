@@ -6,6 +6,13 @@ import { appHref, levelText, nextToPlace } from "@/lib/app/systems";
 import { useEffect, useState } from "react";
 import { webProgressStore } from "@academy/progress-store";
 import { streakCard, type StreakCard as StreakData } from "@/lib/app/streak";
+import { langProgress, type LangProgress } from "@/lib/app/lang-progress";
+import { bookFromBranch, mergeRooms, readRooms, roomDays, ROOM_BRANCH } from "@/lib/family/results";
+import { local } from "@/lib/storage";
+import { loadCognates } from "@academy/cognate-coverage";
+import { langBranch, memoryState, mergeMemory, normalizeMemory } from "@academy/lang-memory";
+import { browserMemoryIO } from "@academy/lang-memory-store";
+import LangProgressRow from "./LangProgress";
 import NewSystem from "./NewSystem";
 import StreakCard from "./StreakCard";
 import { useSystems } from "./useSystems";
@@ -13,14 +20,20 @@ import styles from "./app.module.css";
 import { ButtonLink, Card, Stage, Tag } from "@/ui";
 
 function useStreakCard(systems: LangSystem[] | null) {
-  const [card, setCard] = useState<StreakData | null>(null);
+  const [card, setCard] = useState<{ streak: StreakData; langs: LangProgress[] } | null>(null);
   useEffect(() => {
     if (!systems?.length) return;
     let live = true;
-    void webProgressStore
-      .pull()
-      .then((server) => Promise.all(systems.map((s) => webProgressStore.load(progressBranch(s), server))))
-      .then((states) => live && setCard(streakCard(states, Date.now())));
+    const langs = Array.from(new Set(systems.flatMap((s) => s.targets))).sort();
+    void webProgressStore.pull().then(async (server) => {
+      const states = await Promise.all(systems.map((s) => webProgressStore.load(progressBranch(s), server)));
+      const memories = langs.map((l) => mergeMemory(normalizeMemory(l, browserMemoryIO.readRaw(langBranch(l))), normalizeMemory(l, server?.[langBranch(l)]?.data)));
+      const now = Date.now();
+      const indexes = langs.length > 1 ? await Promise.all(langs.map((l) => loadCognates(l))) : [];
+      const cognates = Object.fromEntries(indexes.flatMap((x, i) => (x ? [[langs[i], x]] : [])));
+      const progress = langProgress(memories, now, cognates);
+      if (live) setCard({ streak: streakCard([...states, ...memories.map((m) => memoryState(m))], now, [...progress.inputDays, ...roomDays(mergeRooms(readRooms(local()), bookFromBranch(server?.[ROOM_BRANCH]?.data)))]), langs: progress.langs });
+    });
     return () => {
       live = false;
     };
@@ -73,7 +86,12 @@ export default function Home() {
           <p className={styles.label}>Your language systems</p>
           <h1 className={styles.title}>Pick up where you left off</h1>
         </div>
-        {card ? <StreakCard card={card} /> : null}
+        {card ? (
+          <div className={styles.streakRowWrap}>
+            <StreakCard card={card.streak} />
+            <LangProgressRow langs={card.langs} />
+          </div>
+        ) : null}
         <ul className={styles.grid}>
           {state.systems.map((s) => (
             <SystemTile key={s.id} s={s} />

@@ -14,13 +14,23 @@ function profile(band: BirthYearBucket | null, consent: ConsentStatus = "none"):
   return { learnerId: USER, role: "independent", birthYearBucket: band, consentStatus: consent, consentSource: null, updatedAt: "2026-09-23T00:00:00Z" };
 }
 
-function memoryStore(p: LearnerProfile | null): LearnEventStore & { rows: LearnEventRow[]; writes: number; hits: number } {
+function memoryStore(p: LearnerProfile | null): LearnEventStore & { rows: LearnEventRow[]; writes: number; hits: number; batches: number } {
   const rows: LearnEventRow[] = [];
   const counts = new Map<string, number>();
   const store = {
     rows,
     writes: 0,
     hits: 0,
+    batches: 0,
+    writeBatch: async (userId: string, batch: LearnEventRow[], caps: Record<string, number>) => {
+      store.batches++;
+      return batch.map((row) => {
+        if (rows.some((r) => r.user_id === userId && r.event_id === row.event_id)) return { id: row.event_id, outcome: "duplicate" as const };
+        if (rows.filter((r) => r.user_id === userId && r.name === row.name).length >= (caps[row.name] ?? 0)) return { id: row.event_id, outcome: "rate_limited" as const };
+        rows.push(row);
+        return { id: row.event_id, outcome: "recorded" as const };
+      });
+    },
     readProfile: async () => p,
     hit: async (userId: string, name: string) => {
       store.hits++;
@@ -129,8 +139,8 @@ test("the route answers a minor with recorded false and writes nothing", async (
   assert.equal(store.hits, 0, "a minor leaves no counter row either");
 });
 
-test("the daily caps are placement 20, study sessions 60 and assessments 30", () => {
-  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30 });
+test("the daily caps are placement 20, study sessions 60, assessments 30, exposures 300, session mixes 60 and vocab tests 4", () => {
+  assert.deepEqual(EVENT_DAILY_CAPS, { placement_done: 20, study_session_done: 60, assess_done: 30, exposure: 300, session_mix: 60, vocab_test: 4 });
 });
 
 test("past the daily cap the route answers 429 with Retry-After and writes nothing more", async () => {
@@ -182,4 +192,82 @@ test("the client stops on a 4xx without retrying", async () => {
   }, async () => {});
   assert.equal(await sender.send(randomUUID(), "placement_done", { branch: "02-physics", questions: 5, known: 2 }), false);
   assert.equal(calls, 1);
+});
+
+const EXPOSURE: LearnEventProps["exposure"] = { item: "tatoeba:123", unit: "set:es:1", lemmas_seen: ["casa", "perro"], taps: ["perro"], seconds: 42, coverage_pred: 0.95, completed: true };
+const MIX: LearnEventProps["session_mix"] = { session: "s-1", share_target: null, share_real: null, arm: null, units: null, cards: 12, seconds: 600 };
+const ADULT = async () => ({ id: USER, email: null });
+
+test("exposure props cap lemmas at 200 and seconds at 3600", () => {
+  assert.equal(parseProps("exposure", EXPOSURE).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, lemmas_seen: Array.from({ length: 200 }, (_, i) => `w${i}`) }).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, lemmas_seen: Array.from({ length: 201 }, (_, i) => `w${i}`) }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, seconds: 3600 }).ok, true);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, seconds: 3601 }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, coverage_pred: 1.2 }).ok, false);
+  assert.equal(parseProps("exposure", { ...EXPOSURE, taps: ["two words"] }).ok, false);
+  assert.equal(parseProps("session_mix", MIX).ok, true);
+  assert.equal(parseProps("session_mix", { ...MIX, share_real: -0.1 }).ok, false);
+  assert.equal(parseProps("session_mix", { ...MIX, share_target: 0.7, share_real: 0.66, arm: "share70", units: 4 }).ok, true);
+  assert.equal(parseProps("session_mix", { ...MIX, arm: "control" }).ok, true);
+  assert.equal(parseProps("session_mix", { ...MIX, cards: null }).ok, false);
+});
+
+test("one batch per session records every row in one request", async () => {
+  const store = memoryStore(profile("18plus"));
+  const events = [
+    { id: randomUUID(), name: "exposure", props: EXPOSURE },
+    { id: randomUUID(), name: "exposure", props: { ...EXPOSURE, item: "tatoeba:124" } },
+    { id: randomUUID(), name: "session_mix", props: MIX },
+  ];
+  const res = await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store });
+  assert.equal(res.status, 200);
+  assert.equal((await res.json()).outcome, "recorded");
+  assert.deepEqual(store.rows.map((r) => r.name), ["exposure", "exposure", "session_mix"]);
+  assert.equal(store.batches, 1, "one bulk write per batch");
+  assert.equal(store.writes + store.hits, 0, "no per-event write or cap call");
+});
+
+test("a batch from a minor or a learner without a profile writes nothing", async () => {
+  for (const p of [profile("13to17", "parent"), profile("under13", "school"), null]) {
+    const store = memoryStore(p);
+    const res = await handleLearnEvent(post({ events: [{ id: randomUUID(), name: "exposure", props: EXPOSURE }] }), { verifyUser: ADULT, store: () => store });
+    assert.notEqual((await res.json()).outcome, "recorded");
+    assert.equal(store.writes + store.hits + store.batches, 0);
+  }
+});
+
+test("a batch refuses review-only names, duplicate ids and bad props", async () => {
+  const store = memoryStore(profile("18plus"));
+  const id = randomUUID();
+  for (const events of [
+    [{ id, name: "assess_done", props: ASSESS }],
+    [{ id, name: "exposure", props: EXPOSURE }, { id, name: "exposure", props: EXPOSURE }],
+    [{ id, name: "exposure", props: { ...EXPOSURE, seconds: 4000 } }],
+  ]) assert.equal((await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store })).status, 400);
+  assert.equal(store.writes, 0);
+});
+
+test("past 300 exposures a day the batch marks the rest rate limited", async () => {
+  const store = memoryStore(profile("18plus"));
+  const events = Array.from({ length: 302 }, () => ({ id: randomUUID(), name: "exposure", props: EXPOSURE }));
+  const body = await (await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store })).json();
+  assert.equal(store.rows.length, 300);
+  assert.equal(body.results.filter((r: { outcome: string }) => r.outcome === "rate_limited").length, 2);
+});
+
+test("a retried batch dedupes before the cap, so a retry never burns the cap", async () => {
+  const store = memoryStore(profile("18plus"));
+  const events = Array.from({ length: 300 }, () => ({ id: randomUUID(), name: "exposure", props: EXPOSURE }));
+  await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store });
+  const again = await (await handleLearnEvent(post({ events }), { verifyUser: ADULT, store: () => store })).json();
+  assert.ok(again.results.every((r: { outcome: string }) => r.outcome === "duplicate"));
+  assert.equal(store.rows.length, 300);
+});
+
+test("an empty batch probes the gate and writes nothing", async () => {
+  const store = memoryStore(profile("13to17", "parent"));
+  const body = await (await handleLearnEvent(post({ events: [] }), { verifyUser: ADULT, store: () => store })).json();
+  assert.equal(body.outcome, "under_age");
+  assert.equal(store.batches, 0);
 });

@@ -45,7 +45,7 @@ From the paper's own directory, `make lean` runs the same build.
 | `relate_converse_before_after` | Timeline | proved, unconditional |
 | `relate_converse_meets_metBy` | Timeline | proved, one non-degeneracy hypothesis (see note below) |
 | `lookup_other_succeeds` | Concept | proved |
-| `encode_injective` | Address | `sorry`, needs Mathlib's `Nat.factorization` (or an equivalent unique-factorization development), unavailable in this Mathlib-free build |
+| `encode_injective` | Address | proved in core Lean by peeling one coprime prime at a time |
 | `encode_injective_bounded` | Address | proved, for tuples with every index below 2 |
 | `sum_eq_one` | Belief | proved (`OpinionQ`) |
 | `project_mem_unit` | Belief | proved (`OpinionQ`) |
@@ -53,14 +53,8 @@ From the paper's own directory, `make lean` runs the same build.
 | `missingMass_le_one` | Unknowns | proved |
 | `chao1_ge_sObs` | Unknowns | proved |
 
-One `sorry`, in `Bucket/Address.lean`, on `encode_injective`. The TODO
-comment above it names the exact gap: the general injectivity argument
-("equal addresses force equal per-prime exponents force equal tuples")
-needs unique prime factorization, which this build does not carry without
-Mathlib. `encode_injective_bounded`, in the same file, proves the same
-fact in full for small, fixed vocabulary sizes (every slot index below 2)
-by direct computation, as the concrete sanity check that the scheme is
-sound.
+No `sorry` remains. `encode_injective` uses `peel`: each slot prime is coprime
+to the product of the others, so equal addresses force equal exponents.
 
 **`relate_converse_meets_metBy`'s hypothesis.** `meets` and `metBy` share
 a boundary check (`a.stop = b.start` versus `b.stop = a.start`), and

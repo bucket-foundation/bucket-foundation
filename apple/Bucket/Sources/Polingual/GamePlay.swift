@@ -356,7 +356,7 @@ struct PromptCard: View {
                 VStack(spacing: 4) {
                     FlagTile(lang: p.word.lang, size: 46)
                         .padding(3)
-                        .overlay { if p.id == prompt.id { RoundedRectangle(cornerRadius: 14).strokeBorder(PL.vermilion, lineWidth: 3) } }
+                        .overlay { if p.id == prompt.id { RoundedRectangle(cornerRadius: PL.Radius.md).strokeBorder(PL.vermilion, lineWidth: 3) } }
                     Text(solved ? p.word.form : "?")
                         .font(PL.small.font())
                         .foregroundStyle(solved ? PL.malachite : PL.inkDim)
@@ -380,7 +380,7 @@ struct DailyShareCard: View {
                 ForEach(Array(zip(prompts, results).enumerated()), id: \.offset) { _, pair in
                     VStack(spacing: 8) {
                         FlagTile(lang: pair.0.word.lang, size: 62)
-                        RoundedRectangle(cornerRadius: 5).fill(pair.1 ? PL.malachite : PL.vermilion).frame(width: 62, height: 14)
+                        RoundedRectangle(cornerRadius: PL.Radius.xs).fill(pair.1 ? PL.malachite : PL.vermilion).frame(width: 62, height: 14)
                     }
                 }
             }
@@ -407,7 +407,7 @@ struct DailyShare: View {
                 ShareLink(item: image, message: Text(message), preview: SharePreview(GameKind.daily.title, image: image)) {
                     Label("Share the card", systemImage: "photo")
                 }
-                .buttonStyle(D8Option(align: .center))
+                .buttonStyle(PLOption(align: .center))
                 .modifier(GameShareLog(kind: .daily, form: "image"))
             }
         }
@@ -572,9 +572,9 @@ struct SpeedMatchGame: View {
             Button { apply(board?.tapMeaning(w.id)) } label: {
                 Text(w.gloss).lineLimit(1).minimumScaleFactor(0.5).frame(maxWidth: .infinity)
             }
-            .buttonStyle(D8Option(selected: b.pickedMeaning == w.id, align: .center))
+            .buttonStyle(PLOption(selected: b.pickedMeaning == w.id, align: .center))
             .accessibilityIdentifier("game-meaning")
-            .overlay { if wrong.contains(w.id) { RoundedRectangle(cornerRadius: 12).stroke(PL.vermilion, lineWidth: 3).padding(.bottom, 4) } }
+            .overlay { if wrong.contains(w.id) { RoundedRectangle(cornerRadius: PL.Radius.md).stroke(PL.vermilion, lineWidth: 3).padding(.bottom, 4) } }
             .gameShake(wrong.contains(w.id) ? shake : 0)
             .transition(.scale(scale: 0.7).combined(with: .opacity))
         } else {
@@ -594,7 +594,7 @@ struct SpeedMatchGame: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .buttonStyle(D8Option(selected: b.pickedForm == w.id, align: .center))
+            .buttonStyle(PLOption(selected: b.pickedForm == w.id, align: .center))
             .accessibilityIdentifier("game-form")
             .gameShake(wrong.contains(w.id) ? shake : 0)
             .transition(.scale(scale: 0.7).combined(with: .opacity))

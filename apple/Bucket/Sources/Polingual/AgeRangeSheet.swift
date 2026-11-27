@@ -20,7 +20,7 @@ struct AgeRangeSheet: View {
                     Button("Done") { dismiss() }.buttonStyle(D8Primary())
                 } else if askParent {
                     Text("Enter a parent's email. We ask them to approve saving your progress.")
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                     TextField("Parent's email", text: $parentEmail)
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
@@ -36,19 +36,19 @@ struct AgeRangeSheet: View {
                     .disabled(saving || !parentEmail.contains("@"))
                 } else {
                     Text("Choose your age range so your progress saves to your account and your group can see your stats.")
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                     ForEach(AgeBand.allCases, id: \.self) { band in
                         Button {
                             Task { await choose(band) }
                         } label: {
                             Text(band.label)
                         }
-                        .buttonStyle(D8Option(align: .center))
+                        .buttonStyle(PLOption(align: .center))
                         .disabled(saving)
                     }
                 }
                 if failed {
-                    Text("That did not save. Check your connection and try again.").font(.footnote).foregroundStyle(.red)
+                    Text("That did not save. Check your connection and try again.").font(PL.text(13)).foregroundStyle(.red)
                 }
                 Spacer()
             }

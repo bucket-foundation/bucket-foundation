@@ -8,10 +8,11 @@ const OUT = join(__dirname, "../public/academy-app");
 const COPIES = [
   { from: "corpus", to: "corpus", only: /^lang-.*\.json$/ },
   { from: "polingual/top1000", to: "polingual/top1000" },
+  { from: "polingual/yesno", to: "polingual/yesno" },
   { from: "audio", to: "audio" },
 ];
 
-const VERSIONED = ["corpus", "polingual/top1000"];
+const VERSIONED = ["corpus", "polingual/top1000", "polingual/yesno"];
 const VERSIONED_FILES = ["audio/index.json"];
 
 function files(dir) {

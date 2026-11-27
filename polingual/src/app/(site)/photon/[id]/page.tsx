@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
 import { pageMeta } from "@/lib/meta";
 import Site from "@/app/site";
+import { IpaMark } from "@/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -43,17 +44,17 @@ function PhotonHeader({ photon, langLabel }: { photon: Photon; langLabel: string
     >
       <div className="flex items-baseline gap-3 flex-wrap mb-3">
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--blue)]"
+          className="font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-full bg-[var(--pl-paper-2)] text-[color:var(--pl-lapis)]"
         >
           {langLabel}
         </span>
         <span
-          className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--ink-faint)]"
+          className="font-mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--pl-ink-faint)]"
         >
           {photon.kind}{photon.pos ? ` · ${photon.pos}` : ""}
         </span>
         <span
-          className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
+          className="ml-auto font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-1 rounded-full bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-dim)]"
         >
           {photon.tier}
         </span>
@@ -67,9 +68,9 @@ function PhotonHeader({ photon, langLabel }: { photon: Photon; langLabel: string
 
       {photon.ipa && (
         <p
-          className="mt-3 font-mono text-lg md:text-xl text-[color:var(--blue)]"
+          className="mt-3 font-mono text-lg md:text-xl text-[color:var(--pl-lapis)]"
         >
-          /{photon.ipa.replace(/^\/|\/$/g, "")}/
+          /{photon.ipa.replace(/^\/|\/$/g, "")}/ <IpaMark source={photon.ipa_source} />
         </p>
       )}
     </header>
@@ -81,7 +82,7 @@ function Relations({ photon }: { photon: Photon }) {
   return (
     <section className="mt-10">
       <h2
-        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--pl-lapis)]"
       >
         relations · {photon.relations.length}
       </h2>
@@ -92,13 +93,13 @@ function Relations({ photon }: { photon: Photon }) {
             className="flex items-baseline gap-3 font-mono text-sm"
           >
             <span
-              className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap bg-[var(--sky-2)] text-[color:var(--ink-dim)]"
+              className="font-mono text-[10px] uppercase tracking-[0.18em] px-2 py-0.5 rounded-full whitespace-nowrap bg-[var(--pl-paper-2)] text-[color:var(--pl-ink-dim)]"
             >
               {r.predicate}
             </span>
             <Link
               href={`/photon/${encodeURIComponent(r.to)}`}
-              className="hover:underline truncate text-[color:var(--blue)]"
+              className="hover:underline truncate text-[color:var(--pl-lapis)]"
             >
               {r.to}
             </Link>
@@ -114,7 +115,7 @@ function Branches({ photon }: { photon: Photon }) {
   return (
     <section className="mt-10">
       <h2
-        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--pl-lapis)]"
       >
         canon branches
       </h2>
@@ -137,12 +138,12 @@ function Provenance({ photon }: { photon: Photon }) {
   return (
     <section className="mt-10 pb-12">
       <h2
-        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--ink-faint)]"
+        className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--pl-ink-faint)]"
       >
         provenance
       </h2>
-      <p className="font-mono text-sm text-[color:var(--ink-dim)]">
-        <span className="text-[color:var(--ink-2)]">
+      <p className="font-mono text-sm text-[color:var(--pl-ink-dim)]">
+        <span className="text-[color:var(--pl-ink-2)]">
           {photon.provenance.source}
         </span>
         {photon.provenance.source_uri && (
@@ -152,7 +153,7 @@ function Provenance({ photon }: { photon: Photon }) {
               href={photon.provenance.source_uri}
               target="_blank"
               rel="noreferrer"
-              className="underline hover:no-underline text-[color:var(--blue)]"
+              className="underline hover:no-underline text-[color:var(--pl-lapis)]"
             >
               source ↗
             </a>
@@ -161,7 +162,7 @@ function Provenance({ photon }: { photon: Photon }) {
         {photon.provenance.captured_at && (
           <>
             {" · "}
-            <span className="text-[color:var(--ink-faint)]">
+            <span className="text-[color:var(--pl-ink-faint)]">
               captured {photon.provenance.captured_at.slice(0, 10)}
             </span>
           </>
@@ -187,9 +188,9 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
           aria-label="back to polingual"
         >
           <span
-            className="font-mono text-[10px] uppercase tracking-[0.22em] transition text-[color:var(--ink-faint)]"
+            className="font-mono text-[10px] uppercase tracking-[0.22em] transition text-[color:var(--pl-ink-faint)]"
           >
-            <span className="text-[color:var(--blue)]">←</span> back to search
+            <span className="text-[color:var(--pl-lapis)]">←</span> back to search
           </span>
         </Link>
 
@@ -197,12 +198,12 @@ export default async function WordPage({ params }: { params: Promise<{ id: strin
 
         <section className="mt-8">
           <h2
-            className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--blue)]"
+            className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3 text-[color:var(--pl-lapis)]"
           >
             meaning · english
           </h2>
           <p
-            className="text-lg md:text-xl leading-relaxed text-[color:var(--ink)]"
+            className="text-lg md:text-xl leading-relaxed text-[color:var(--pl-ink)]"
           >
             {photon.meaning_en}
           </p>

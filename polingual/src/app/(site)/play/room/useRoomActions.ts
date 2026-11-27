@@ -72,7 +72,7 @@ async function newLobby(d: Deps, push: (href: string) => void, bots: boolean) {
   if (state.status !== "ready" || d.busy || !lobby) return;
   d.setBusy(true);
   try {
-    const created = await api.create({ name: `${state.nickname}'s lobby`, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, roundSeconds: lobby.roundSeconds, listed: true, displayName: state.nickname, game: lobby.game, fillBots: bots });
+    const created = await api.create({ name: `${state.nickname}'s lobby`, root: lobby.root, targets: lobby.targets, rounds: lobby.rounds, roundSeconds: lobby.roundSeconds, listed: true, displayName: state.nickname, game: lobby.game, fillBots: bots, setup: lobby.setup, ...(lobby.setup === "sequence" ? { games: lobby.playlist } : {}) });
     if (bots) await api.fillBots(created.id).catch(() => undefined);
     push(`/play/${created.code}`);
   } catch (err) {

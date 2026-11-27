@@ -39,13 +39,6 @@ enum WidgetBrand {
     #endif
 }
 
-enum WidgetInk {
-    static let parchment = Color(red: 0xF6 / 255, green: 0xEE / 255, blue: 0xDC / 255)
-    static let ink = Color(red: 0x23 / 255, green: 0x1F / 255, blue: 0x20 / 255)
-    static let vermilion = Color(red: 0xD9 / 255, green: 0x38 / 255, blue: 0x1E / 255)
-    static let plum = Color(red: 0x5B / 255, green: 0x1A / 255, blue: 0x4A / 255)
-}
-
 struct PolingualWidgetView: View {
     @Environment(\.widgetFamily) private var family
     let entry: SnapshotEntry
@@ -65,8 +58,8 @@ struct PolingualWidgetView: View {
             .gaugeStyle(.accessoryCircularCapacity)
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 1) {
-                Text(s.gloss).font(.caption2.weight(.semibold)).textCase(.uppercase).lineLimit(1).minimumScaleFactor(0.5)
-                Text(s.words.map(\.form).joined(separator: " · ")).font(.headline).lineLimit(2).minimumScaleFactor(0.5)
+                Text(s.gloss).font(PL.text(11, .semibold)).textCase(.uppercase).lineLimit(1).minimumScaleFactor(0.5)
+                Text(s.words.map(\.form).joined(separator: " · ")).font(PL.text(17, .bold)).lineLimit(2).minimumScaleFactor(0.5)
             }
         case .accessoryInline:
             ViewThatFits {
@@ -80,28 +73,28 @@ struct PolingualWidgetView: View {
                 Spacer(minLength: 0)
                 if let w = s.words.first { WidgetTile(word: w.form, lang: w.lang) }
             }
-            .foregroundStyle(WidgetInk.ink)
+            .foregroundStyle(PL.ink)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         default:
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                     HStack(alignment: .firstTextBaseline, spacing: 3) {
-                        Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
-                        Text("\(c.streak)").font(.system(size: 22, weight: .heavy, design: .rounded))
-                        if c.streak < StreakGoal.target { Text(verbatim: "/100").font(.caption.weight(.bold)).foregroundStyle(WidgetInk.ink.opacity(0.55)) }
+                        Image(systemName: "flame.fill").foregroundStyle(PL.vermilion)
+                        Text("\(c.streak)").font(PL.script(22, .heavy))
+                        if c.streak < StreakGoal.target { Text(verbatim: "/100").font(PL.text(12, .bold)).foregroundStyle(PL.ink.opacity(0.55)) }
                     }
                     .layoutPriority(2)
-                    Text("\(c.due) due").font(.subheadline.weight(.bold)).lineLimit(1).minimumScaleFactor(0.6).layoutPriority(1)
-                    Text("\(c.new) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text("\(c.due) due").font(PL.text(15, .bold)).lineLimit(1).minimumScaleFactor(0.6).layoutPriority(1)
+                    Text("\(c.new) new").font(PL.text(15)).foregroundStyle(PL.ink.opacity(0.6)).lineLimit(1).minimumScaleFactor(0.6)
                     Spacer(minLength: 4)
-                    Text(s.gloss).font(.caption.weight(.heavy)).textCase(.uppercase).foregroundStyle(WidgetInk.plum).lineLimit(1).minimumScaleFactor(0.5)
+                    Text(s.gloss).font(PL.text(12, .heavy)).textCase(.uppercase).foregroundStyle(PL.tyrian).lineLimit(1).minimumScaleFactor(0.5)
                 }
                 HStack(spacing: 8) {
                     ForEach(s.words.prefix(4), id: \.lang) { w in WidgetTile(word: w.form, lang: w.lang) }
                 }
                 .frame(maxHeight: .infinity)
             }
-            .foregroundStyle(WidgetInk.ink)
+            .foregroundStyle(PL.ink)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
     }
@@ -115,11 +108,11 @@ struct PolingualWidgetView: View {
     var tally: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 4) {
-                Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
-                Text(goal).font(.system(size: 17, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.7)
+                Image(systemName: "flame.fill").foregroundStyle(PL.vermilion)
+                Text(goal).font(PL.script(17, .heavy)).lineLimit(1).minimumScaleFactor(0.7)
             }
-            ProgressView(value: StreakGoal(streak: Double(c.streak)).fraction).tint(WidgetInk.vermilion)
-            Text("\(c.due) due · \(c.new) new").font(.caption.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.6)
+            ProgressView(value: StreakGoal(streak: Double(c.streak)).fraction).tint(PL.vermilion)
+            Text("\(c.due) due · \(c.new) new").font(PL.text(12, .semibold)).lineLimit(1).minimumScaleFactor(0.6)
         }
     }
 }
@@ -139,12 +132,12 @@ struct WidgetTile: View {
             let side = min(g.size.width, g.size.height)
             ZStack {
                 FlagFace(flag: D8Flag.of(lang), emblem: false)
-                RoundedRectangle(cornerRadius: 4).fill(WidgetInk.parchment.opacity(0.82)).padding(side * 0.07)
+                RoundedRectangle(cornerRadius: PL.Radius.xs).fill(PL.paper.opacity(0.82)).padding(side * 0.07)
                 VStack(spacing: 2) {
-                    Text(name.uppercased()).font(.system(size: max(7, side * 0.085), weight: .bold, design: .monospaced))
-                        .foregroundStyle(WidgetInk.ink.opacity(0.65)).lineLimit(1).minimumScaleFactor(0.6)
-                    Text(word).font(.system(size: side * 0.22, weight: .heavy, design: .rounded))
-                        .foregroundStyle(WidgetInk.ink).lineLimit(1).minimumScaleFactor(0.2).allowsTightening(true)
+                    Text(name.uppercased()).font(PL.text(max(7, side * 0.085), .bold))
+                        .foregroundStyle(PL.ink.opacity(0.65)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(word).font(PL.script(side * 0.22, .heavy))
+                        .foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.2).allowsTightening(true)
                         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
                 }
                 .padding(.horizontal, side * 0.11)
@@ -162,7 +155,7 @@ struct PolingualWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "PolingualToday", provider: SnapshotProvider()) { entry in
             PolingualWidgetView(entry: entry)
-                .containerBackground(WidgetInk.parchment, for: .widget)
+                .containerBackground(PL.paper, for: .widget)
         }
         .configurationDisplayName(WidgetBrand.name)
         .description("Your streak, reviews due and the word of the day.")
@@ -174,8 +167,8 @@ struct VoiceWidgetView: View {
     @Environment(\.widgetFamily) private var family
 
     var mic: some View {
-        Image(systemName: "mic.fill").font(.system(size: 40, weight: .bold)).foregroundStyle(WidgetInk.vermilion)
-            .frame(width: 84, height: 84).background(WidgetInk.parchment, in: .circle)
+        Image(systemName: "mic.fill").font(PL.text(40, .bold)).foregroundStyle(PL.vermilion)
+            .frame(width: 84, height: 84).background(PL.paper, in: .circle)
     }
 
     var body: some View {
@@ -184,23 +177,23 @@ struct VoiceWidgetView: View {
         case .accessoryCircular:
             ZStack {
                 AccessoryWidgetBackground()
-                Image(systemName: "mic.fill").font(.title2.weight(.bold))
+                Image(systemName: "mic.fill").font(PL.script(22, .bold))
             }
         #endif
         case .systemMedium:
             HStack(spacing: 18) {
                 mic
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Translate").font(.system(size: 26, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
-                    Text("Tap and speak").font(.subheadline.weight(.semibold)).lineLimit(1).minimumScaleFactor(0.6)
+                    Text("Translate").font(PL.script(26, .heavy)).lineLimit(1).minimumScaleFactor(0.5)
+                    Text("Tap and speak").font(PL.text(15, .semibold)).lineLimit(1).minimumScaleFactor(0.6)
                 }
-                .foregroundStyle(WidgetInk.parchment)
+                .foregroundStyle(PL.paper)
                 Spacer(minLength: 0)
             }
         default:
             VStack(spacing: 8) {
                 mic
-                Text("Tap and speak").font(.system(size: 14, weight: .heavy, design: .rounded)).foregroundStyle(WidgetInk.parchment).lineLimit(1).minimumScaleFactor(0.7)
+                Text("Tap and speak").font(PL.script(14, .heavy)).foregroundStyle(PL.paper).lineLimit(1).minimumScaleFactor(0.7)
             }
         }
     }
@@ -219,7 +212,7 @@ struct VoiceWidget: Widget {
         StaticConfiguration(kind: "PolingualVoice", provider: SnapshotProvider()) { _ in
             VoiceWidgetView()
                 .widgetURL(WidgetBrand.voice)
-                .containerBackground(WidgetInk.vermilion, for: .widget)
+                .containerBackground(PL.vermilion, for: .widget)
         }
         .configurationDisplayName("Translate")
         .description("One tap, then speak.")
@@ -233,7 +226,7 @@ struct StreakWidgetView: View {
 
     var streak: Int { entry.snapshot.counts(at: entry.date).streak }
     var lit: Bool { entry.snapshot.studiedToday(at: entry.date) }
-    var ink: Color { lit ? WidgetInk.parchment : StreakInk.ash }
+    var ink: Color { lit ? PL.paper : StreakInk.ash }
     var flame: String { lit ? "flame.fill" : "flame" }
     var line: String { lit ? String(localized: "On fire today") : String(localized: "Not yet today") }
 
@@ -244,8 +237,8 @@ struct StreakWidgetView: View {
             ZStack {
                 AccessoryWidgetBackground()
                 VStack(spacing: 0) {
-                    Image(systemName: flame).font(.title3.weight(.bold))
-                    Text(verbatim: "\(streak)").font(.system(size: 16, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.4)
+                    Image(systemName: flame).font(PL.script(20, .bold))
+                    Text(verbatim: "\(streak)").font(PL.script(16, .heavy)).lineLimit(1).minimumScaleFactor(0.4)
                 }
             }
             .widgetAccentable()
@@ -253,15 +246,15 @@ struct StreakWidgetView: View {
         default:
             VStack(spacing: 4) {
                 ZStack(alignment: .bottomTrailing) {
-                    Image(systemName: flame).font(.system(size: 52, weight: .bold))
-                        .foregroundStyle(lit ? WidgetInk.parchment : StreakInk.ash.opacity(0.7))
+                    Image(systemName: flame).font(PL.text(52, .bold))
+                        .foregroundStyle(lit ? PL.paper : StreakInk.ash.opacity(0.7))
                     if !lit {
-                        Text(verbatim: "😞").font(.system(size: 22)).grayscale(1)
+                        Text(verbatim: "😞").font(PL.text(22)).grayscale(1)
                             .background(StreakInk.cold, in: .circle)
                     }
                 }
-                Text(verbatim: "\(streak)").font(.system(size: 40, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.4)
-                Text(line).font(.system(size: 13, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                Text(verbatim: "\(streak)").font(PL.script(40, .heavy)).lineLimit(1).minimumScaleFactor(0.4)
+                Text(line).font(PL.script(13, .heavy)).lineLimit(1).minimumScaleFactor(0.5)
             }
             .foregroundStyle(ink)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -272,8 +265,8 @@ struct StreakWidgetView: View {
 }
 
 enum StreakInk {
-    static let ash = Color(red: 0x6E / 255, green: 0x6A / 255, blue: 0x66 / 255)
-    static let cold = Color(red: 0xD9 / 255, green: 0xD6 / 255, blue: 0xD1 / 255)
+    static let ash = PL.inkFaint
+    static let cold = PL.paperDim
 }
 
 struct StreakWidget: Widget {
@@ -288,7 +281,7 @@ struct StreakWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "PolingualStreak", provider: SnapshotProvider()) { entry in
             StreakWidgetView(entry: entry)
-                .containerBackground(entry.snapshot.studiedToday(at: entry.date) ? WidgetInk.vermilion : StreakInk.cold, for: .widget)
+                .containerBackground(entry.snapshot.studiedToday(at: entry.date) ? PL.vermilion : StreakInk.cold, for: .widget)
         }
         .configurationDisplayName("Streak")
         .description("Gray until you study today, then on fire.")

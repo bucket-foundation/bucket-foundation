@@ -175,3 +175,31 @@ def test_lint_accepts_learning_citation():
     text = "Every missing prerequisite is on the path [bm:BucketMath.Learning.remaining_necessary]."
     errors, _ = bm.lint_text(text, bm.load_manifest())
     assert errors == []
+
+
+def test_tex_macros_become_tags():
+    tex = "\n".join([
+        r"\newcommand{\emp}[1]{[empirical: #1]}",
+        r"\newcommand{\bt}{\emp{backtest.json, 2026-10-08, cmd}}",
+        r"\begin{document}",
+        r"% a 50% comment ratio",
+        r"The rate is 24\% inside \bt.",
+        "",
+        r"The ratio is 2.0 here \bm{BucketMath.Vec.sum\_nil}.",
+        "",
+        r"The share is 30\% untagged.",
+        "",
+        r"\begin{table}",
+        r"\caption{Rates by stratum \bt.}",
+        r"inside & 5.2\% rate \\",
+        r"\end{table}",
+    ])
+    out = bm.tex_to_tags(tex)
+    assert "[bm:BucketMath.Vec.sum_nil]" in out
+    _, warnings = bm.lint_text(out, [{"name": "BucketMath.Vec.sum_nil", "status": "proved"}])
+    assert len(warnings) == 1 and "30" in warnings[0]
+
+
+def test_spelled_quantities_warn():
+    _, warnings = bm.lint_text("It keeps 24 percent of the pool. It falls to four parts in ten thousand.\n", [])
+    assert len(warnings) == 2

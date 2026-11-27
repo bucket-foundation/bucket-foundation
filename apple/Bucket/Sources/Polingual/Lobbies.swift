@@ -145,7 +145,7 @@ struct LobbiesTile: View {
         } label: {
             TileRow(symbol: "person.3.fill", title: String(localized: "Live Lobbies"), detail: String(localized: "Play the same round with friends, live."), color: PL.malachite)
                 .padding(12)
-                .background(PL.card, in: .rect(cornerRadius: 18))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("lobbiesTile")
@@ -358,7 +358,8 @@ struct LobbyRoom: View {
                 ContentUnavailableView("Lobby closed", systemImage: "door.left.hand.closed")
             }
         }
-        .paper()
+        .scrollContentBackground(.hidden)
+        .plGround(.lattice, band: true)
         .navigationTitle(lobbies.current?.name ?? "")
         .inlineTitle()
         .fullHeightSession()
@@ -745,8 +746,8 @@ struct LobbyRoom: View {
                 }
                 .padding(8)
                 .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                .background(PL.card, in: .rect(cornerRadius: 10))
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(e.correct ? PL.malachite : .clear, lineWidth: 2))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                .overlay(RoundedRectangle(cornerRadius: PL.Radius.sm).stroke(e.correct ? PL.malachite : .clear, lineWidth: 2))
                 .accessibilityElement(children: .combine)
             }
         }
@@ -794,7 +795,7 @@ struct LobbyRoom: View {
             }
         }
         .padding(12)
-        .background(PL.card, in: .rect(cornerRadius: 12))
+        .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
     }
 
     func board(_ l: Lobby) -> some View {

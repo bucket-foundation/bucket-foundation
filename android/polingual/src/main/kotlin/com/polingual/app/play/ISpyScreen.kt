@@ -1,5 +1,7 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import foundation.bucket.core.ui.pl.plSurface
 import com.polingual.app.WordCard
 import androidx.compose.foundation.background
@@ -75,7 +77,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(loading) {
         if (!loading) return@LaunchedEffect
         val items = graph.corpus.load().items
-        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", set.targets, ISpy.ROUNDS) }
+        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", com.polingual.app.RaceDeal.langs(set.targets), ISpy.ROUNDS) }
         me = Tally(); bots = emptyMap(); loading = false
         phase = SpyPhase.Round(0, System.currentTimeMillis())
     }
@@ -111,7 +113,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 }
             }
             SpyPhase.Done -> {
-                val rank = (bots.values.map { it.score } + me.score).sortedDescending().indexOf(me.score) + 1
+                val rank = (bots.values.map { it.score } + me.score).sortedDescending().indexOf(me.score) + 1; androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.ISpy, points = me.score) }
                 Results(graph, if (rank == 1) "You spied them all first" else "You finished #$rank", "${me.score} points across ${rounds.size} rounds.", again = { seed = DealSeeds.fresh(); loading = true }) {
                     Board(me, bots)
                 }
@@ -128,7 +130,7 @@ private fun Board(me: Tally, bots: Map<String, Tally>) {
 
 @Composable
 internal fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.graphics.Color>, enabled: Boolean, onTap: (String) -> Unit) {
-                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).plSurface(PL.Tyrian, 20.dp).drawBehind {
+                BoxWithConstraints(Modifier.fillMaxWidth().aspectRatio(0.75f).plSurface(PL.Tyrian, PLRadius.lg).drawBehind {
                     drawPath(Path().apply { moveTo(0f, 0f); lineTo(size.width * 0.38f, 0f); lineTo(size.width * 0.22f, size.height); lineTo(0f, size.height); close() }, PL.TyrianDeep)
                 }) {
                     scene.decor.forEach { d -> Art(d.art, Modifier.width(maxWidth * (d.size / 100).toFloat()).offset(maxWidth * (d.x / 100).toFloat(), maxHeight * (d.y / 100).toFloat()).rotate(d.tilt.toFloat())) }
@@ -137,7 +139,7 @@ internal fun SpyStage(scene: SpyScene, marks: Map<String, androidx.compose.ui.gr
                         val mark = marks[o.id]
                         Box(
                             Modifier.offset(maxWidth * (o.x / 100).toFloat() - tile / 2, maxHeight * (o.y / 100).toFloat() - tile / 2).size(tile).rotate(o.tilt.toFloat())
-                                .then(if (mark != null) Modifier.border(4.dp, mark, RoundedCornerShape(8.dp)) else Modifier)
+                                .then(if (mark != null) Modifier.border(4.dp, mark, RoundedCornerShape(PLRadius.xs)) else Modifier)
                                 .clickable(enabled = enabled, role = Role.Button, onClickLabel = "Picture") { onTap(o.id) },
                             contentAlignment = Alignment.Center,
                         ) {

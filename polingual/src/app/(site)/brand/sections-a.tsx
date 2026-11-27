@@ -1,4 +1,4 @@
-import { Badge, ButtonLink, tokens, type ColorToken, type TypeToken } from "@/ui";
+import { Badge, ButtonLink, IpaMark, tokens, type ColorToken, type TypeToken } from "@/ui";
 import { Art } from "@/ui/art";
 import CopySwatch from "./CopySwatch";
 import { Dl, Section, Sub } from "./parts";
@@ -68,6 +68,29 @@ export function StorySection() {
   );
 }
 
+function MisuseAndMarks() {
+  return (
+    <>
+      <Sub title="Misuse">
+        <ul className={styles.misuse}>
+          {MISUSE.map((m) => (
+            <li key={m.label}>
+              <div className={`${styles.misuseStage} ${styles[m.cls]}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/kit/wordmark.svg" alt={`Misuse: ${m.label}`} />
+              </div>
+              <span><Badge tone="vermilion">DON&apos;T</Badge> {m.label}</span>
+            </li>
+          ))}
+        </ul>
+      </Sub>
+      <Sub title="Generated IPA">
+        <p className={styles.body}>/ˈpero/ <IpaMark source="llm" /> sits beside any IPA that came from epitran or a language model.</p>
+      </Sub>
+    </>
+  );
+}
+
 export function LogoSection() {
   return (
     <Section id="logo" n={2} title="The Po square" lede="A tyrian rounded square with a paper Po and a vermilion dot, set beside the lowercase wordmark.">
@@ -112,19 +135,7 @@ export function LogoSection() {
           <p className={styles.body}>Keep x clear on every side, where x is twice the vermilion dot. Smallest sizes: wordmark 96 px wide, mark 24 px.</p>
         </div>
       </Sub>
-      <Sub title="Misuse">
-        <ul className={styles.misuse}>
-          {MISUSE.map((m) => (
-            <li key={m.label}>
-              <div className={`${styles.misuseStage} ${styles[m.cls]}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/brand/kit/wordmark.svg" alt={`Misuse: ${m.label}`} />
-              </div>
-              <span><Badge tone="vermilion">DON&apos;T</Badge> {m.label}</span>
-            </li>
-          ))}
-        </ul>
-      </Sub>
+      <MisuseAndMarks />
     </Section>
   );
 }

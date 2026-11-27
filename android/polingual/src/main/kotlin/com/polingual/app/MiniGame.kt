@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -73,16 +72,15 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Mini(graph: Graph, c: GameContext) {
-    val p = LocalPalette.current
     val puzzle = remember { MiniPuzzle.daily(c.puzzleWords, dayKey(), c.system.root, c.system.targets) }
-    if (puzzle == null) { Text("Learn a few more words to unlock today's crossword.", color = p.muted); return }
+    if (puzzle == null) { Text("Learn a few more words to unlock today's crossword.", color = PL.InkDim); return }
     val filled = remember { mutableStateMapOf<MiniCell, String>() }
     var entry by remember { mutableStateOf(puzzle.entries.first()) }
     var cursor by remember { mutableIntStateOf(0) }
     val answers = puzzle.answers
     val solved = answers.all { (k, v) -> filled[k] == v }
     LaunchedEffect(solved) { if (solved) graph.markPlayed(GameKind.Mini, c.system, "1") { day, at -> DailyResults.mini(day, puzzle.entries, puzzle.entries.map { e -> e.cells.zip(e.letters).all { (cell, l) -> filled[cell] == l } }, at) } }
-    Text("${Lang.flag(puzzle.lang)} ${Lang.name(puzzle.lang)}", style = Type.caps, color = p.muted)
+    Text("${Lang.flag(puzzle.lang)} ${Lang.name(puzzle.lang)}", style = Type.caps, color = PL.InkDim)
     Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
         for (r in 0 until puzzle.rows) Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
             for (col in 0 until puzzle.cols) {
@@ -90,22 +88,22 @@ fun Mini(graph: Graph, c: GameContext) {
                 val live = cell in answers
                 val active = cell == entry.cells.getOrNull(cursor)
                 Box(
-                    Modifier.size(46.dp).plSurface(if (!live) PL.TyrianDeep else if (active) PL.LapisSoft else PL.White, 6.dp)
-                        .then(if (live) Modifier.border(1.dp, if (active) PL.Vermilion else p.rule, RoundedCornerShape(6.dp)).clickable {
+                    Modifier.size(46.dp).plSurface(if (!live) PL.TyrianDeep else if (active) PL.LapisSoft else PL.White, PLRadius.xs)
+                        .then(if (live) Modifier.border(1.dp, if (active) PL.Vermilion else PL.Hairline2, RoundedCornerShape(PLRadius.xs)).clickable {
                             val e = puzzle.entries.firstOrNull { it.cells.contains(cell) && it.across == entry.across } ?: puzzle.entries.first { it.cells.contains(cell) }
                             entry = e; cursor = e.cells.indexOf(cell)
                         } else Modifier),
                     contentAlignment = Alignment.Center,
                 ) {
                     if (live) {
-                        puzzle.numbers[cell]?.let { Text("$it", style = Type.caps, color = p.muted, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
-                        Text(filled[cell].orEmpty(), style = Type.subhead, color = if (solved) PL.Malachite else p.ink)
+                        puzzle.numbers[cell]?.let { Text("$it", style = Type.caps, color = PL.InkDim, modifier = Modifier.align(Alignment.TopStart).padding(2.dp)) }
+                        Text(filled[cell].orEmpty(), style = Type.subhead, color = if (solved) PL.Malachite else PL.Ink)
                     }
                 }
             }
         }
     }
-    Text("${entry.number}${if (entry.across) " across" else " down"}: ${entry.word.gloss}", color = p.ink, fontWeight = FontWeight.Bold)
+    Text("${entry.number}${if (entry.across) " across" else " down"}: ${entry.word.gloss}", color = PL.Ink, fontWeight = FontWeight.Bold)
     if (solved) {
         Finished("Solved", "New crossword tomorrow.", listOf(true), 1, null)
         puzzle.entries.forEach { e -> CardRoot.mini(e)?.let { t -> com.polingual.app.play.WordLine(e.word.lang, e.word.form, "${Lang.name(t.lang)}: ${t.text}") } }
@@ -113,7 +111,7 @@ fun Mini(graph: Graph, c: GameContext) {
     }
     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         (puzzle.keys + "⌫").forEach { k ->
-            Box(Modifier.size(44.dp).plSurface(p.card, 8.dp).border(1.dp, p.rule, RoundedCornerShape(8.dp)).clickable(role = Role.Button) {
+            Box(Modifier.size(44.dp).plSurface(PL.Card, PLRadius.xs).border(1.dp, PL.Hairline2, RoundedCornerShape(PLRadius.xs)).clickable(role = Role.Button) {
                 if (k == "⌫") {
                     entry.cells.getOrNull(cursor)?.let { filled.remove(it) }
                     if (cursor > 0) cursor -= 1
@@ -124,7 +122,7 @@ fun Mini(graph: Graph, c: GameContext) {
                         entry = puzzle.entries[(i + 1) % puzzle.entries.size]; cursor = 0
                     }
                 }
-            }, contentAlignment = Alignment.Center) { Text(k, fontWeight = FontWeight.Bold, color = p.ink) }
+            }, contentAlignment = Alignment.Center) { Text(k, fontWeight = FontWeight.Bold, color = PL.Ink) }
         }
     }
     PlainLink("Reveal word") { entry.cells.zip(entry.letters).forEach { (cell, l) -> filled[cell] = l } }

@@ -1,0 +1,2348 @@
+{
+ "version": 1,
+ "base": {
+  "format": "polingual-input",
+  "lang": "es",
+  "items": [
+   {
+    "id": "base:1",
+    "kind": "sentence",
+    "lang": "es",
+    "text": "sí",
+    "tokens": [
+     {
+      "surface": "sí",
+      "lemma": "sí"
+     }
+    ],
+    "lemmas": [
+     "sí"
+    ]
+   }
+  ],
+  "units": [
+   {
+    "id": "base:u",
+    "kind": "sentence_set",
+    "itemIds": [
+     "base:1"
+    ],
+    "targetLemmas": [],
+    "tokenCount": 1
+   }
+  ]
+ },
+ "bands": [
+  {
+   "attribution": [
+    "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
+    "Lemmas from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+    "Frequency bands from wordfreq (github.com/rspeer/wordfreq), CC-BY-SA 4.0."
+   ],
+   "band": 500,
+   "format": "polingual-input-band",
+   "lang": "es",
+   "part": 0,
+   "parts": 1,
+   "version": 1,
+   "items": [
+    {
+     "id": "tatoeba:es:1783219",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "bart",
+       "es": "marcelostockle"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1398528",
+       "es": "1783219"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/1783219"
+     },
+     "text": "El problema con el mundo no es que la gente sepa muy poco, sino que saben demasiadas cosas que no son verdad.",
+     "tok": [
+      [
+       0,
+       2,
+       "el"
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       12,
+       3
+      ],
+      [
+       16,
+       2
+      ],
+      [
+       19,
+       5
+      ],
+      [
+       25,
+       2
+      ],
+      [
+       28,
+       2,
+       "ser"
+      ],
+      [
+       31,
+       3
+      ],
+      [
+       35,
+       2
+      ],
+      [
+       38,
+       5
+      ],
+      [
+       44,
+       4,
+       "saber"
+      ],
+      [
+       49,
+       3
+      ],
+      [
+       53,
+       4
+      ],
+      [
+       59,
+       4
+      ],
+      [
+       64,
+       3
+      ],
+      [
+       68,
+       5,
+       "saber"
+      ],
+      [
+       74,
+       10,
+       "demasiado"
+      ],
+      [
+       85,
+       5,
+       "cosa"
+      ],
+      [
+       91,
+       3
+      ],
+      [
+       95,
+       2
+      ],
+      [
+       98,
+       3,
+       "ser"
+      ],
+      [
+       102,
+       6
+      ]
+     ],
+     "translation": "The trouble with the world isn't that people know too little, but they know so many things that ain't so."
+    },
+    {
+     "id": "tatoeba:es:10016201",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "es": "10016201"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/10016201"
+     },
+     "text": "Para algunas cosas no es tarde, pero para otras es demasiado tarde.",
+     "tok": [
+      [
+       0,
+       4,
+       "para"
+      ],
+      [
+       5,
+       7,
+       "alguno"
+      ],
+      [
+       13,
+       5,
+       "cosa"
+      ],
+      [
+       19,
+       2
+      ],
+      [
+       22,
+       2,
+       "ser"
+      ],
+      [
+       25,
+       5
+      ],
+      [
+       32,
+       4
+      ],
+      [
+       37,
+       4
+      ],
+      [
+       42,
+       5,
+       "otro"
+      ],
+      [
+       48,
+       2,
+       "ser"
+      ],
+      [
+       51,
+       9
+      ],
+      [
+       61,
+       5
+      ]
+     ]
+    },
+    {
+     "id": "tatoeba:es:2720",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1522",
+       "es": "2720"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2720"
+     },
+     "text": "Hazme saber si hay algo que yo pueda hacer.",
+     "tok": [
+      [
+       0,
+       5,
+       "hacer"
+      ],
+      [
+       6,
+       5
+      ],
+      [
+       12,
+       2
+      ],
+      [
+       15,
+       3,
+       "haber"
+      ],
+      [
+       19,
+       4
+      ],
+      [
+       24,
+       3
+      ],
+      [
+       28,
+       2
+      ],
+      [
+       31,
+       5,
+       "poder"
+      ],
+      [
+       37,
+       5
+      ]
+     ],
+     "translation": "Let me know if there is anything I can do."
+    },
+    {
+     "id": "tatoeba:es:2818",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "catakaoe"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1643",
+       "es": "2818"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2818"
+     },
+     "text": "¡¿Cómo que no sabes?!",
+     "tok": [
+      [
+       2,
+       4,
+       "cómo"
+      ],
+      [
+       7,
+       3
+      ],
+      [
+       11,
+       2
+      ],
+      [
+       14,
+       5,
+       "saber"
+      ]
+     ],
+     "translation": "What do you mean you don't know?!"
+    },
+    {
+     "id": "tatoeba:es:1430209",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "marcelostockle"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1092715",
+       "es": "1430209"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/1430209"
+     },
+     "text": "Tom le dijo a Mary que no lo esperara porque no llegaría a casa hasta muy tarde.",
+     "tok": [
+      [
+       0,
+       3
+      ],
+      [
+       4,
+       2
+      ],
+      [
+       7,
+       4,
+       "decir"
+      ],
+      [
+       12,
+       1
+      ],
+      [
+       14,
+       4
+      ],
+      [
+       19,
+       3
+      ],
+      [
+       23,
+       2
+      ],
+      [
+       26,
+       2
+      ],
+      [
+       29,
+       8,
+       "esperar"
+      ],
+      [
+       38,
+       6
+      ],
+      [
+       45,
+       2
+      ],
+      [
+       48,
+       8,
+       "llegar"
+      ],
+      [
+       57,
+       1
+      ],
+      [
+       59,
+       4
+      ],
+      [
+       64,
+       5
+      ],
+      [
+       70,
+       3
+      ],
+      [
+       74,
+       5
+      ]
+     ],
+     "translation": "Tom told Mary not to wait up because he wouldn't be home until very late."
+    },
+    {
+     "id": "tatoeba:es:13959165",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "mervert1"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "2376074",
+       "es": "13959165"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/13959165"
+     },
+     "text": "Sé que no es lo que esperabas, pero aquí tienes todo el dinero que puedo darte.",
+     "tok": [
+      [
+       0,
+       2,
+       "ser"
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       7,
+       2
+      ],
+      [
+       10,
+       2,
+       "ser"
+      ],
+      [
+       13,
+       2
+      ],
+      [
+       16,
+       3
+      ],
+      [
+       20,
+       9,
+       "esperar"
+      ],
+      [
+       31,
+       4
+      ],
+      [
+       36,
+       4
+      ],
+      [
+       41,
+       6,
+       "tener"
+      ],
+      [
+       48,
+       4
+      ],
+      [
+       53,
+       2
+      ],
+      [
+       56,
+       6
+      ],
+      [
+       63,
+       3
+      ],
+      [
+       67,
+       5,
+       "poder"
+      ],
+      [
+       73,
+       5,
+       "dar"
+      ]
+     ],
+     "translation": "I know it's not what you were hoping for, but here's all the money I can give you."
+    },
+    {
+     "id": "tatoeba:es:2549",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1343",
+       "es": "2549"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2549"
+     },
+     "text": "¡Yo sólo lo digo!",
+     "tok": [
+      [
+       1,
+       2,
+       "yo"
+      ],
+      [
+       4,
+       4
+      ],
+      [
+       9,
+       2
+      ],
+      [
+       12,
+       4,
+       "decir"
+      ]
+     ],
+     "translation": "I'm just saying!"
+    },
+    {
+     "id": "tatoeba:es:2552",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1346",
+       "es": "2552"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2552"
+     },
+     "text": "Esto es lo que yo habría dicho.",
+     "tok": [
+      [
+       0,
+       4,
+       "este"
+      ],
+      [
+       5,
+       2,
+       "ser"
+      ],
+      [
+       8,
+       2
+      ],
+      [
+       11,
+       3
+      ],
+      [
+       15,
+       2
+      ],
+      [
+       18,
+       6,
+       "haber"
+      ],
+      [
+       25,
+       5,
+       "decir"
+      ]
+     ],
+     "translation": "This is what I would have said."
+    },
+    {
+     "id": "x:astral",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "𝒜 hola 猫 casa",
+     "tok": [
+      [
+       0,
+       1
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       7,
+       1,
+       "gato"
+      ],
+      [
+       9,
+       4
+      ]
+     ]
+    },
+    {
+     "id": "x:bad",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "hola",
+     "tok": [
+      [
+       2,
+       9
+      ]
+     ]
+    },
+    {
+     "id": "x:ko",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "고양이가 집에 있다",
+     "tok": [
+      [
+       0,
+       4,
+       "고양이"
+      ],
+      [
+       5,
+       2,
+       "집"
+      ],
+      [
+       8,
+       2
+      ]
+     ]
+    },
+    {
+     "id": "x:th",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "แมวอยู่ที่บ้าน",
+     "tok": [
+      [
+       0,
+       3
+      ],
+      [
+       3,
+       4
+      ],
+      [
+       7,
+       3,
+       "ที่"
+      ],
+      [
+       10,
+       4
+      ]
+     ]
+    },
+    {
+     "id": "x:jamo",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "집에",
+     "tok": [
+      [
+       0,
+       3,
+       "집"
+      ],
+      [
+       3,
+       2
+      ]
+     ]
+    }
+   ],
+   "units": [
+    {
+     "band": 500,
+     "coverage": 0.9574,
+     "credit": "Tatoeba sentences #1783219 by marcelostockle (https://tatoeba.org/en/sentences/show/1783219), #1398528 by bart (https://tatoeba.org/en/sentences/show/1398528), #10016201 by Shishir (https://tatoeba.org/en/sentences/show/10016201), #2720 by Shishir (https://tatoeba.org/en/sentences/show/2720), #1522 by CK (https://tatoeba.org/en/sentences/show/1522), #2818 by catakaoe (https://tatoeba.org/en/sentences/show/2818), #1643 by Zifre (https://tatoeba.org/en/sentences/show/1643), CC-BY 2.0 FR",
+     "credits": [
+      {
+       "author": "marcelostockle",
+       "lang": "es",
+       "sentenceId": "1783219",
+       "url": "https://tatoeba.org/en/sentences/show/1783219"
+      },
+      {
+       "author": "bart",
+       "lang": "en",
+       "sentenceId": "1398528",
+       "url": "https://tatoeba.org/en/sentences/show/1398528"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "10016201",
+       "url": "https://tatoeba.org/en/sentences/show/10016201"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2720",
+       "url": "https://tatoeba.org/en/sentences/show/2720"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "1522",
+       "url": "https://tatoeba.org/en/sentences/show/1522"
+      },
+      {
+       "author": "catakaoe",
+       "lang": "es",
+       "sentenceId": "2818",
+       "url": "https://tatoeba.org/en/sentences/show/2818"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1643",
+       "url": "https://tatoeba.org/en/sentences/show/1643"
+      }
+     ],
+     "id": "graded:es:500:demasiado",
+     "itemIds": [
+      "tatoeba:es:1783219",
+      "tatoeba:es:10016201",
+      "tatoeba:es:2720",
+      "tatoeba:es:2818"
+     ],
+     "kind": "sentence_set",
+     "targetLemmas": [
+      "demasiado"
+     ],
+     "tokenCount": 47
+    },
+    {
+     "band": 500,
+     "coverage": 0.9545,
+     "credit": "Tatoeba sentences #1430209 by marcelostockle (https://tatoeba.org/en/sentences/show/1430209), #1092715 by CK (https://tatoeba.org/en/sentences/show/1092715), #13959165 by mervert1 (https://tatoeba.org/en/sentences/show/13959165), #2376074 by CK (https://tatoeba.org/en/sentences/show/2376074), #2549 by Shishir (https://tatoeba.org/en/sentences/show/2549), #1343 by Zifre (https://tatoeba.org/en/sentences/show/1343), #2552 by Shishir (https://tatoeba.org/en/sentences/show/2552), #1346 by Zifre (https://tatoeba.org/en/sentences/show/1346), CC-BY 2.0 FR",
+     "credits": [
+      {
+       "author": "marcelostockle",
+       "lang": "es",
+       "sentenceId": "1430209",
+       "url": "https://tatoeba.org/en/sentences/show/1430209"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "1092715",
+       "url": "https://tatoeba.org/en/sentences/show/1092715"
+      },
+      {
+       "author": "mervert1",
+       "lang": "es",
+       "sentenceId": "13959165",
+       "url": "https://tatoeba.org/en/sentences/show/13959165"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "2376074",
+       "url": "https://tatoeba.org/en/sentences/show/2376074"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2549",
+       "url": "https://tatoeba.org/en/sentences/show/2549"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1343",
+       "url": "https://tatoeba.org/en/sentences/show/1343"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2552",
+       "url": "https://tatoeba.org/en/sentences/show/2552"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1346",
+       "url": "https://tatoeba.org/en/sentences/show/1346"
+      }
+     ],
+     "id": "graded:es:500:esperar",
+     "itemIds": [
+      "tatoeba:es:1430209",
+      "tatoeba:es:13959165",
+      "tatoeba:es:2549",
+      "tatoeba:es:2552"
+     ],
+     "kind": "sentence_set",
+     "targetLemmas": [
+      "esperar"
+     ],
+     "tokenCount": 44
+    },
+    {
+     "id": "x:u-astral",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:astral",
+      "base:1"
+     ],
+     "targetLemmas": [
+      "gato"
+     ],
+     "tokenCount": 5,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "x:u-script",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:ko",
+      "x:th",
+      "x:jamo"
+     ],
+     "targetLemmas": [
+      "집"
+     ],
+     "tokenCount": 7,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "x:u-bad",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:bad"
+     ],
+     "targetLemmas": [],
+     "tokenCount": 1,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "base:u",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:astral"
+     ],
+     "targetLemmas": [],
+     "tokenCount": 4,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    }
+   ]
+  },
+  {
+   "attribution": [
+    "Sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each item keeps its Tatoeba sentence numbers and authors; each unit carries a credit line.",
+    "Lemmas from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+    "Frequency bands from wordfreq (github.com/rspeer/wordfreq), CC-BY-SA 4.0."
+   ],
+   "band": 500,
+   "format": "polingual-input-band",
+   "lang": "fr",
+   "part": 0,
+   "parts": 1,
+   "version": 1,
+   "items": [
+    {
+     "id": "tatoeba:es:1783219",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "bart",
+       "es": "marcelostockle"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1398528",
+       "es": "1783219"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/1783219"
+     },
+     "text": "El problema con el mundo no es que la gente sepa muy poco, sino que saben demasiadas cosas que no son verdad.",
+     "tok": [
+      [
+       0,
+       2,
+       "el"
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       12,
+       3
+      ],
+      [
+       16,
+       2
+      ],
+      [
+       19,
+       5
+      ],
+      [
+       25,
+       2
+      ],
+      [
+       28,
+       2,
+       "ser"
+      ],
+      [
+       31,
+       3
+      ],
+      [
+       35,
+       2
+      ],
+      [
+       38,
+       5
+      ],
+      [
+       44,
+       4,
+       "saber"
+      ],
+      [
+       49,
+       3
+      ],
+      [
+       53,
+       4
+      ],
+      [
+       59,
+       4
+      ],
+      [
+       64,
+       3
+      ],
+      [
+       68,
+       5,
+       "saber"
+      ],
+      [
+       74,
+       10,
+       "demasiado"
+      ],
+      [
+       85,
+       5,
+       "cosa"
+      ],
+      [
+       91,
+       3
+      ],
+      [
+       95,
+       2
+      ],
+      [
+       98,
+       3,
+       "ser"
+      ],
+      [
+       102,
+       6
+      ]
+     ],
+     "translation": "The trouble with the world isn't that people know too little, but they know so many things that ain't so."
+    },
+    {
+     "id": "tatoeba:es:10016201",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "es": "10016201"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/10016201"
+     },
+     "text": "Para algunas cosas no es tarde, pero para otras es demasiado tarde.",
+     "tok": [
+      [
+       0,
+       4,
+       "para"
+      ],
+      [
+       5,
+       7,
+       "alguno"
+      ],
+      [
+       13,
+       5,
+       "cosa"
+      ],
+      [
+       19,
+       2
+      ],
+      [
+       22,
+       2,
+       "ser"
+      ],
+      [
+       25,
+       5
+      ],
+      [
+       32,
+       4
+      ],
+      [
+       37,
+       4
+      ],
+      [
+       42,
+       5,
+       "otro"
+      ],
+      [
+       48,
+       2,
+       "ser"
+      ],
+      [
+       51,
+       9
+      ],
+      [
+       61,
+       5
+      ]
+     ]
+    },
+    {
+     "id": "tatoeba:es:2720",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1522",
+       "es": "2720"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2720"
+     },
+     "text": "Hazme saber si hay algo que yo pueda hacer.",
+     "tok": [
+      [
+       0,
+       5,
+       "hacer"
+      ],
+      [
+       6,
+       5
+      ],
+      [
+       12,
+       2
+      ],
+      [
+       15,
+       3,
+       "haber"
+      ],
+      [
+       19,
+       4
+      ],
+      [
+       24,
+       3
+      ],
+      [
+       28,
+       2
+      ],
+      [
+       31,
+       5,
+       "poder"
+      ],
+      [
+       37,
+       5
+      ]
+     ],
+     "translation": "Let me know if there is anything I can do."
+    },
+    {
+     "id": "tatoeba:es:2818",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "catakaoe"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1643",
+       "es": "2818"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2818"
+     },
+     "text": "¡¿Cómo que no sabes?!",
+     "tok": [
+      [
+       2,
+       4,
+       "cómo"
+      ],
+      [
+       7,
+       3
+      ],
+      [
+       11,
+       2
+      ],
+      [
+       14,
+       5,
+       "saber"
+      ]
+     ],
+     "translation": "What do you mean you don't know?!"
+    },
+    {
+     "id": "tatoeba:es:1430209",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "marcelostockle"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1092715",
+       "es": "1430209"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/1430209"
+     },
+     "text": "Tom le dijo a Mary que no lo esperara porque no llegaría a casa hasta muy tarde.",
+     "tok": [
+      [
+       0,
+       3
+      ],
+      [
+       4,
+       2
+      ],
+      [
+       7,
+       4,
+       "decir"
+      ],
+      [
+       12,
+       1
+      ],
+      [
+       14,
+       4
+      ],
+      [
+       19,
+       3
+      ],
+      [
+       23,
+       2
+      ],
+      [
+       26,
+       2
+      ],
+      [
+       29,
+       8,
+       "esperar"
+      ],
+      [
+       38,
+       6
+      ],
+      [
+       45,
+       2
+      ],
+      [
+       48,
+       8,
+       "llegar"
+      ],
+      [
+       57,
+       1
+      ],
+      [
+       59,
+       4
+      ],
+      [
+       64,
+       5
+      ],
+      [
+       70,
+       3
+      ],
+      [
+       74,
+       5
+      ]
+     ],
+     "translation": "Tom told Mary not to wait up because he wouldn't be home until very late."
+    },
+    {
+     "id": "tatoeba:es:13959165",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "CK",
+       "es": "mervert1"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "2376074",
+       "es": "13959165"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/13959165"
+     },
+     "text": "Sé que no es lo que esperabas, pero aquí tienes todo el dinero que puedo darte.",
+     "tok": [
+      [
+       0,
+       2,
+       "ser"
+      ],
+      [
+       3,
+       3
+      ],
+      [
+       7,
+       2
+      ],
+      [
+       10,
+       2,
+       "ser"
+      ],
+      [
+       13,
+       2
+      ],
+      [
+       16,
+       3
+      ],
+      [
+       20,
+       9,
+       "esperar"
+      ],
+      [
+       31,
+       4
+      ],
+      [
+       36,
+       4
+      ],
+      [
+       41,
+       6,
+       "tener"
+      ],
+      [
+       48,
+       4
+      ],
+      [
+       53,
+       2
+      ],
+      [
+       56,
+       6
+      ],
+      [
+       63,
+       3
+      ],
+      [
+       67,
+       5,
+       "poder"
+      ],
+      [
+       73,
+       5,
+       "dar"
+      ]
+     ],
+     "translation": "I know it's not what you were hoping for, but here's all the money I can give you."
+    },
+    {
+     "id": "tatoeba:es:2549",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1343",
+       "es": "2549"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2549"
+     },
+     "text": "¡Yo sólo lo digo!",
+     "tok": [
+      [
+       1,
+       2,
+       "yo"
+      ],
+      [
+       4,
+       4
+      ],
+      [
+       9,
+       2
+      ],
+      [
+       12,
+       4,
+       "decir"
+      ]
+     ],
+     "translation": "I'm just saying!"
+    },
+    {
+     "id": "tatoeba:es:2552",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC-BY 2.0 FR",
+     "source": {
+      "authors": {
+       "en": "Zifre",
+       "es": "Shishir"
+      },
+      "name": "tatoeba",
+      "sentenceIds": {
+       "en": "1346",
+       "es": "2552"
+      },
+      "url": "https://tatoeba.org/en/sentences/show/2552"
+     },
+     "text": "Esto es lo que yo habría dicho.",
+     "tok": [
+      [
+       0,
+       4,
+       "este"
+      ],
+      [
+       5,
+       2,
+       "ser"
+      ],
+      [
+       8,
+       2
+      ],
+      [
+       11,
+       3
+      ],
+      [
+       15,
+       2
+      ],
+      [
+       18,
+       6,
+       "haber"
+      ],
+      [
+       25,
+       5,
+       "decir"
+      ]
+     ],
+     "translation": "This is what I would have said."
+    },
+    {
+     "id": "x:astral",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "𝒜 hola 猫 casa",
+     "tok": [
+      [
+       0,
+       1
+      ],
+      [
+       2,
+       4
+      ],
+      [
+       7,
+       1,
+       "gato"
+      ],
+      [
+       9,
+       4
+      ]
+     ]
+    },
+    {
+     "id": "x:bad",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "hola",
+     "tok": [
+      [
+       2,
+       9
+      ]
+     ]
+    },
+    {
+     "id": "x:ko",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "고양이가 집에 있다",
+     "tok": [
+      [
+       0,
+       4,
+       "고양이"
+      ],
+      [
+       5,
+       2,
+       "집"
+      ],
+      [
+       8,
+       2
+      ]
+     ]
+    },
+    {
+     "id": "x:th",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "แมวอยู่ที่บ้าน",
+     "tok": [
+      [
+       0,
+       3
+      ],
+      [
+       3,
+       4
+      ],
+      [
+       7,
+       3,
+       "ที่"
+      ],
+      [
+       10,
+       4
+      ]
+     ]
+    },
+    {
+     "id": "x:jamo",
+     "kind": "sentence",
+     "lang": "es",
+     "license": "CC0",
+     "source": {
+      "name": "tatoeba",
+      "url": "https://tatoeba.org"
+     },
+     "text": "집에",
+     "tok": [
+      [
+       0,
+       3,
+       "집"
+      ],
+      [
+       3,
+       2
+      ]
+     ]
+    }
+   ],
+   "units": [
+    {
+     "band": 500,
+     "coverage": 0.9574,
+     "credit": "Tatoeba sentences #1783219 by marcelostockle (https://tatoeba.org/en/sentences/show/1783219), #1398528 by bart (https://tatoeba.org/en/sentences/show/1398528), #10016201 by Shishir (https://tatoeba.org/en/sentences/show/10016201), #2720 by Shishir (https://tatoeba.org/en/sentences/show/2720), #1522 by CK (https://tatoeba.org/en/sentences/show/1522), #2818 by catakaoe (https://tatoeba.org/en/sentences/show/2818), #1643 by Zifre (https://tatoeba.org/en/sentences/show/1643), CC-BY 2.0 FR",
+     "credits": [
+      {
+       "author": "marcelostockle",
+       "lang": "es",
+       "sentenceId": "1783219",
+       "url": "https://tatoeba.org/en/sentences/show/1783219"
+      },
+      {
+       "author": "bart",
+       "lang": "en",
+       "sentenceId": "1398528",
+       "url": "https://tatoeba.org/en/sentences/show/1398528"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "10016201",
+       "url": "https://tatoeba.org/en/sentences/show/10016201"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2720",
+       "url": "https://tatoeba.org/en/sentences/show/2720"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "1522",
+       "url": "https://tatoeba.org/en/sentences/show/1522"
+      },
+      {
+       "author": "catakaoe",
+       "lang": "es",
+       "sentenceId": "2818",
+       "url": "https://tatoeba.org/en/sentences/show/2818"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1643",
+       "url": "https://tatoeba.org/en/sentences/show/1643"
+      }
+     ],
+     "id": "graded:es:500:demasiado",
+     "itemIds": [
+      "tatoeba:es:1783219",
+      "tatoeba:es:10016201",
+      "tatoeba:es:2720",
+      "tatoeba:es:2818"
+     ],
+     "kind": "sentence_set",
+     "targetLemmas": [
+      "demasiado"
+     ],
+     "tokenCount": 47
+    },
+    {
+     "band": 500,
+     "coverage": 0.9545,
+     "credit": "Tatoeba sentences #1430209 by marcelostockle (https://tatoeba.org/en/sentences/show/1430209), #1092715 by CK (https://tatoeba.org/en/sentences/show/1092715), #13959165 by mervert1 (https://tatoeba.org/en/sentences/show/13959165), #2376074 by CK (https://tatoeba.org/en/sentences/show/2376074), #2549 by Shishir (https://tatoeba.org/en/sentences/show/2549), #1343 by Zifre (https://tatoeba.org/en/sentences/show/1343), #2552 by Shishir (https://tatoeba.org/en/sentences/show/2552), #1346 by Zifre (https://tatoeba.org/en/sentences/show/1346), CC-BY 2.0 FR",
+     "credits": [
+      {
+       "author": "marcelostockle",
+       "lang": "es",
+       "sentenceId": "1430209",
+       "url": "https://tatoeba.org/en/sentences/show/1430209"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "1092715",
+       "url": "https://tatoeba.org/en/sentences/show/1092715"
+      },
+      {
+       "author": "mervert1",
+       "lang": "es",
+       "sentenceId": "13959165",
+       "url": "https://tatoeba.org/en/sentences/show/13959165"
+      },
+      {
+       "author": "CK",
+       "lang": "en",
+       "sentenceId": "2376074",
+       "url": "https://tatoeba.org/en/sentences/show/2376074"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2549",
+       "url": "https://tatoeba.org/en/sentences/show/2549"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1343",
+       "url": "https://tatoeba.org/en/sentences/show/1343"
+      },
+      {
+       "author": "Shishir",
+       "lang": "es",
+       "sentenceId": "2552",
+       "url": "https://tatoeba.org/en/sentences/show/2552"
+      },
+      {
+       "author": "Zifre",
+       "lang": "en",
+       "sentenceId": "1346",
+       "url": "https://tatoeba.org/en/sentences/show/1346"
+      }
+     ],
+     "id": "graded:es:500:esperar",
+     "itemIds": [
+      "tatoeba:es:1430209",
+      "tatoeba:es:13959165",
+      "tatoeba:es:2549",
+      "tatoeba:es:2552"
+     ],
+     "kind": "sentence_set",
+     "targetLemmas": [
+      "esperar"
+     ],
+     "tokenCount": 44
+    },
+    {
+     "id": "x:u-astral",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:astral",
+      "base:1"
+     ],
+     "targetLemmas": [
+      "gato"
+     ],
+     "tokenCount": 5,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "x:u-script",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:ko",
+      "x:th",
+      "x:jamo"
+     ],
+     "targetLemmas": [
+      "집"
+     ],
+     "tokenCount": 7,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "x:u-bad",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:bad"
+     ],
+     "targetLemmas": [],
+     "tokenCount": 1,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    },
+    {
+     "id": "base:u",
+     "kind": "sentence_set",
+     "itemIds": [
+      "x:astral"
+     ],
+     "targetLemmas": [],
+     "tokenCount": 4,
+     "credit": "",
+     "credits": [],
+     "band": 500
+    }
+   ]
+  },
+  null,
+  {
+   "format": "polingual-input-band",
+   "lang": "es"
+  }
+ ],
+ "expanded": {
+  "tatoeba:es:1783219": [
+   [
+    "El",
+    "el"
+   ],
+   [
+    "problema",
+    "problema"
+   ],
+   [
+    "con",
+    "con"
+   ],
+   [
+    "el",
+    "el"
+   ],
+   [
+    "mundo",
+    "mundo"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "es",
+    "ser"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "la",
+    "la"
+   ],
+   [
+    "gente",
+    "gente"
+   ],
+   [
+    "sepa",
+    "saber"
+   ],
+   [
+    "muy",
+    "muy"
+   ],
+   [
+    "poco",
+    "poco"
+   ],
+   [
+    "sino",
+    "sino"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "saben",
+    "saber"
+   ],
+   [
+    "demasiadas",
+    "demasiado"
+   ],
+   [
+    "cosas",
+    "cosa"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "son",
+    "ser"
+   ],
+   [
+    "verdad",
+    "verdad"
+   ]
+  ],
+  "tatoeba:es:10016201": [
+   [
+    "Para",
+    "para"
+   ],
+   [
+    "algunas",
+    "alguno"
+   ],
+   [
+    "cosas",
+    "cosa"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "es",
+    "ser"
+   ],
+   [
+    "tarde",
+    "tarde"
+   ],
+   [
+    "pero",
+    "pero"
+   ],
+   [
+    "para",
+    "para"
+   ],
+   [
+    "otras",
+    "otro"
+   ],
+   [
+    "es",
+    "ser"
+   ],
+   [
+    "demasiado",
+    "demasiado"
+   ],
+   [
+    "tarde",
+    "tarde"
+   ]
+  ],
+  "tatoeba:es:2720": [
+   [
+    "Hazme",
+    "hacer"
+   ],
+   [
+    "saber",
+    "saber"
+   ],
+   [
+    "si",
+    "si"
+   ],
+   [
+    "hay",
+    "haber"
+   ],
+   [
+    "algo",
+    "algo"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "yo",
+    "yo"
+   ],
+   [
+    "pueda",
+    "poder"
+   ],
+   [
+    "hacer",
+    "hacer"
+   ]
+  ],
+  "tatoeba:es:2818": [
+   [
+    "Cómo",
+    "cómo"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "sabes",
+    "saber"
+   ]
+  ],
+  "tatoeba:es:1430209": [
+   [
+    "Tom",
+    "Tom"
+   ],
+   [
+    "le",
+    "le"
+   ],
+   [
+    "dijo",
+    "decir"
+   ],
+   [
+    "a",
+    "a"
+   ],
+   [
+    "Mary",
+    "Mary"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "lo",
+    "lo"
+   ],
+   [
+    "esperara",
+    "esperar"
+   ],
+   [
+    "porque",
+    "porque"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "llegaría",
+    "llegar"
+   ],
+   [
+    "a",
+    "a"
+   ],
+   [
+    "casa",
+    "casa"
+   ],
+   [
+    "hasta",
+    "hasta"
+   ],
+   [
+    "muy",
+    "muy"
+   ],
+   [
+    "tarde",
+    "tarde"
+   ]
+  ],
+  "tatoeba:es:13959165": [
+   [
+    "Sé",
+    "ser"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "no",
+    "no"
+   ],
+   [
+    "es",
+    "ser"
+   ],
+   [
+    "lo",
+    "lo"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "esperabas",
+    "esperar"
+   ],
+   [
+    "pero",
+    "pero"
+   ],
+   [
+    "aquí",
+    "aquí"
+   ],
+   [
+    "tienes",
+    "tener"
+   ],
+   [
+    "todo",
+    "todo"
+   ],
+   [
+    "el",
+    "el"
+   ],
+   [
+    "dinero",
+    "dinero"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "puedo",
+    "poder"
+   ],
+   [
+    "darte",
+    "dar"
+   ]
+  ],
+  "tatoeba:es:2549": [
+   [
+    "Yo",
+    "yo"
+   ],
+   [
+    "sólo",
+    "sólo"
+   ],
+   [
+    "lo",
+    "lo"
+   ],
+   [
+    "digo",
+    "decir"
+   ]
+  ],
+  "tatoeba:es:2552": [
+   [
+    "Esto",
+    "este"
+   ],
+   [
+    "es",
+    "ser"
+   ],
+   [
+    "lo",
+    "lo"
+   ],
+   [
+    "que",
+    "que"
+   ],
+   [
+    "yo",
+    "yo"
+   ],
+   [
+    "habría",
+    "haber"
+   ],
+   [
+    "dicho",
+    "decir"
+   ]
+  ],
+  "x:astral": [
+   [
+    "𝒜",
+    "𝒜"
+   ],
+   [
+    "hola",
+    "hola"
+   ],
+   [
+    "猫",
+    "gato"
+   ],
+   [
+    "casa",
+    "casa"
+   ]
+  ],
+  "x:bad": null,
+  "x:ko": [
+   [
+    "고양이가",
+    "고양이"
+   ],
+   [
+    "집에",
+    "집"
+   ],
+   [
+    "있다",
+    "있다"
+   ]
+  ],
+  "x:th": [
+   [
+    "แมว",
+    "แมว"
+   ],
+   [
+    "อยู่",
+    "อยู่"
+   ],
+   [
+    "ที่",
+    "ที่"
+   ],
+   [
+    "บ้าน",
+    "บ้าน"
+   ]
+  ],
+  "x:jamo": [
+   [
+    "집",
+    "집"
+   ],
+   [
+    "에",
+    "에"
+   ]
+  ]
+ },
+ "mergedUnits": [
+  "base:u",
+  "graded:es:500:demasiado",
+  "graded:es:500:esperar",
+  "x:u-astral",
+  "x:u-script"
+ ],
+ "mergedItems": [
+  "base:1",
+  "tatoeba:es:10016201",
+  "tatoeba:es:13959165",
+  "tatoeba:es:1430209",
+  "tatoeba:es:1783219",
+  "tatoeba:es:2549",
+  "tatoeba:es:2552",
+  "tatoeba:es:2720",
+  "tatoeba:es:2818",
+  "x:astral",
+  "x:jamo",
+  "x:ko",
+  "x:th"
+ ],
+ "bandsFor": [
+  [
+   0,
+   [
+    500,
+    1000
+   ]
+  ],
+  [
+   499,
+   [
+    500,
+    1000
+   ]
+  ],
+  [
+   500,
+   [
+    1000,
+    2000
+   ]
+  ],
+  [
+   3999,
+   [
+    4000,
+    8000
+   ]
+  ],
+  [
+   4000,
+   [
+    8000
+   ]
+  ],
+  [
+   12000,
+   [
+    8000
+   ]
+  ],
+  [
+   -3,
+   [
+    500,
+    1000
+   ]
+  ]
+ ]
+}

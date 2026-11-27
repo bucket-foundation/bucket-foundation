@@ -48,7 +48,7 @@ export function RecordSection() {
         written in English. Each dictionary sense gets its own record. Translations stay separate records joined
         by links.
       </P>
-      <pre className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white px-5 py-4 font-mono text-[12.5px] leading-6 border-[1px] border-[var(--hairline)] text-[color:var(--ink)]">{RECORD}</pre>
+      <pre className="scroll-fade mt-4 overflow-x-auto rounded-lg bg-white px-5 py-4 font-mono text-[12.5px] leading-6 border-[1px] border-[var(--pl-hairline)] text-[color:var(--pl-ink)]">{RECORD}</pre>
     </section>
   );
 }
@@ -125,7 +125,7 @@ export function NetworkSection() {
       <P>
         Every record carries a confidence tier: nucleus for settled entries, functional for sourced ones, edge
         for contested ones, and unverified for raw imports. The same graph powers{" "}
-        <a href="https://www.bucket.foundation" className="underline text-[color:var(--blue)]">bucket.foundation</a>,
+        <a href="https://www.bucket.foundation" className="underline text-[color:var(--pl-lapis)]">bucket.foundation</a>,
         which reads it as research claims. polingual reads it as words.
       </P>
     </section>
@@ -171,8 +171,8 @@ export function SourcesSection() {
       <H2 id="sources" n="5">Sources</H2>
       <P>
         Every record keeps its source URL and capture date. Dictionary data comes from{" "}
-        <a href="https://en.wiktionary.org" className="underline text-[color:var(--blue)]">Wiktionary</a>{" "}
-        through <a href="https://kaikki.org" className="underline text-[color:var(--blue)]">Kaikki</a>,
+        <a href="https://en.wiktionary.org" className="underline text-[color:var(--pl-lapis)]">Wiktionary</a>{" "}
+        through <a href="https://kaikki.org" className="underline text-[color:var(--pl-lapis)]">Kaikki</a>,
         under CC BY-SA 4.0.
       </P>
       <Table head={["Source", "Coverage", "Status"]} rows={SOURCES} />
@@ -187,8 +187,8 @@ export function QuestionsSection() {
       <dl className="mt-4 space-y-5">
         {QUESTIONS.map(([t, d]) => (
           <div key={t}>
-            <dt className="font-sans text-[15px] font-semibold text-[color:var(--ink)]">{t}</dt>
-            <dd className="mt-1 font-sans text-[15px] leading-7 text-[color:var(--ink-2)]">{d}</dd>
+            <dt className="font-sans text-[15px] font-semibold text-[color:var(--pl-ink)]">{t}</dt>
+            <dd className="mt-1 font-sans text-[15px] leading-7 text-[color:var(--pl-ink-2)]">{d}</dd>
           </div>
         ))}
       </dl>

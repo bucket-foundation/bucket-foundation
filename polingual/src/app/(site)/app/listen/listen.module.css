@@ -1,8 +1,8 @@
 .sheet{display:flex;flex-direction:column;gap:var(--pl-space-4)}
 .body{font:var(--pl-type-body);color:var(--pl-paper-2);margin:0}
 .langs{display:flex;flex-wrap:wrap;gap:8px}
-.ticket{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--pl-space-3);padding:18px 20px;background:var(--pl-paper);color:var(--pl-ink);border:3px solid var(--pl-ink);border-radius:8px;box-shadow:6px 8px 0 var(--pl-shadow);rotate:-1deg}
-.ticket::before{content:"";position:absolute;inset:-6px;border:8px dotted var(--pl-paper);border-radius:12px;pointer-events:none}
+.ticket{position:relative;display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--pl-space-3);padding:18px 20px;background:var(--pl-paper);color:var(--pl-ink);border:3px solid var(--pl-ink);border-radius:var(--pl-radius-xs);box-shadow:6px 8px 0 var(--pl-shadow);rotate:-1deg}
+.ticket::before{content:"";position:absolute;inset:-6px;border:8px dotted var(--pl-paper);border-radius:var(--pl-radius-md);pointer-events:none}
 .ticketText{display:flex;flex-direction:column;gap:2px;min-width:0}
 .ticketCap{font:var(--pl-type-label);letter-spacing:.14em;text-transform:uppercase;color:var(--pl-ink-faint)}
 .ticketName{font:var(--pl-type-heading);overflow-wrap:anywhere}

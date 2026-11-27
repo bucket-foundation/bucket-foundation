@@ -5,6 +5,7 @@ struct StudyView: View {
     @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
+    @Environment(Account.self) private var account
     @Environment(\.verticalSizeClass) private var vertical
     @Binding var path: NavigationPath
     let systemId: String
@@ -23,6 +24,9 @@ struct StudyView: View {
     @State private var chorus: [VoiceLine] = []
     @State private var introduced: Set<String> = []
     @State private var limited = false
+    @State private var input: InputPlanState?
+    @State private var inputTick = 0
+    @State private var studyStep: StudyPrefs.Step?
     @AppStorage("bucket.lang.readings") private var readings = true
     @AppStorage(SoundPolicy.silentKey) private var silent = false
     @AppStorage("bucket.lang.audioOffers") private var audioOffers = 0
@@ -33,6 +37,17 @@ struct StudyView: View {
                 StateMessage(title: "The session did not load", detail: "The language corpus files did not arrive.") { Task { await store.load(force: true) } }
             } else if store.status != .ready || (store.system(systemId) != nil && queue == nil) {
                 ProgressView("Building your session")
+            } else if let step = studyStep, let system = store.system(systemId), let lang = system.targets.first {
+                ScrollView {
+                    StudyPanel(step: step, lang: lang, onTest: { phase, items, yes, seconds in
+                        let at = Date().timeIntervalSince1970 * 1000
+                        let meta = LogRow.Meta(id: UUID().uuidString.lowercased(), at: at, device: LangStore.deviceId, tz: TimeZone.current.identifier, systemId: system.id)
+                        store.log([YesNoTest.row(phase: phase, lang: lang, items: items, yes: yes, seconds: seconds, enrolment: StudyPrefs().enrolment, meta: meta)])
+                        StudyPrefs().markTaken(phase)
+                        finishStudyStep(system)
+                    }, onDone: { finishStudyStep(system) })
+                    .padding(PL.Space.s4).frame(maxWidth: 640).frame(maxWidth: .infinity)
+                }
             } else if let system = store.system(systemId), let corpus = store.corpus, let queue {
                 content(system, corpus, queue)
             } else {
@@ -49,6 +64,7 @@ struct StudyView: View {
             await store.load()
         }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
+        .onChange(of: i) { _, _ in prepareInput() }
         .onChange(of: DailyLedger.shared.spent) { _, spent in
             guard limited, !spent else { return }
             limited = false
@@ -86,10 +102,41 @@ struct StudyView: View {
         }
         let replay = GameLedger.queue(system, state)
         let now = Date().timeIntervalSince1970 * 1000
-        queue = budgeted(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), state, now: now)
+        queue = budgeted(InputExperiment.withoutHeldOut(SessionMix.session(system, corpus, state, now: now, freq: frequency(system), lead: asked, replay: replay, writing: WritingMode.queue(system, state, now: now, corpus: corpus), heritage: HeritageMode.on(systemId)), corpus: corpus, sets: StudyConfig.heldOut(system.targets)), state, now: now)
         for id in wanted where queue?.contains(where: { $0.itemId == id }) != true { WantedWords.add(id, to: systemId) }
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
+        StudyPrefs.signedIn = account.session?.userId
+        studyStep = StudyPrefs().step(flag: StudyConfig.flag, now: now)
+        if studyStep == nil { loadInput(system) }
+        Task { _ = await store.flushStudy() }
+    }
+
+    func finishStudyStep(_ system: LangSystem) {
+        studyStep = nil
+        loadInput(system)
+        Task { _ = await store.flushStudy() }
+    }
+
+    func loadInput(_ system: LangSystem) {
+        input = nil
+        let cards = queue?.count ?? 0
+        Task {
+            let plan = await InputConfig.load(store: store, system: system, cards: cards, account: account.session?.userId, token: await account.freshToken())
+            input = plan
+            prepareInput()
+        }
+    }
+
+    func prepareInput() {
+        guard let input else { return }
+        input.prepare(answered: i, state: store.state(systemId))
+        inputTick += 1
+    }
+
+    func endInput() {
+        if let input, let row = input.end(answered: graded) { store.log([row]) }
+        Task { _ = await store.flushStudy() }
     }
 
     func budgeted(_ planned: [QueueEntry], _ state: EngineState, now: Double) -> [QueueEntry] {
@@ -231,6 +278,20 @@ struct StudyView: View {
                 .buttonStyle(.pl(.primary))
             }
             .padding(PL.Space.s5)
+        } else if let input, i < queue.count, let choice = input.due(answered: i) {
+            GeometryReader { outer in
+                ScrollView {
+                    InputStageView(choice: choice, lang: input.lang, viewport: outer.size, gloss: { input.itemId($0).flatMap { corpus.byId[$0]?.gloss } }) { rows, seconds in
+                        store.log(input.finish(rows, seconds: seconds))
+                        inputTick += 1
+                    }
+                    .id("input-\(i)-\(inputTick)")
+                    .padding(PL.Space.s4)
+                    .frame(maxWidth: 640)
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .coordinateSpace(name: InputStageView.space)
         } else if i >= queue.count || current == nil {
             FitPage(center: true) {
                 let gap = vertical == .compact ? 10.0 : 16.0
@@ -241,13 +302,15 @@ struct StudyView: View {
                             .frame(width: 76, height: 76)
                             .onAppear {
                                 haptic(true)
+                                endInput()
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
                                 FirstLesson.mark(graded: graded)
                             }
-                        Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
+                        Text("Session done").font(PL.script(30, .bold))
                         SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                             .monospacedDigit()
+                        StudyLeaveLink()
                         if vertical == .compact {
                             FeedbackLink()
                             ShareObjectButton(sessionShare(system, corpus, Int(state.streak)), wide: true)
@@ -269,6 +332,7 @@ struct StudyView: View {
                             correct = 0
                             xpStart = state.xp
                             makeExercise()
+                            loadInput(system)
                         }
                         .buttonStyle(D8Primary())
                         ForEach(NextLesson.otherSets(after: system.id, systems: store.systems, lastStudyDay: { store.state($0).lastStudyDay })) { other in
@@ -277,12 +341,12 @@ struct StudyView: View {
                             } label: {
                                 Label(other.title, systemImage: "arrow.right").lineLimit(1).minimumScaleFactor(0.7)
                             }
-                            .buttonStyle(D8Option(align: .center))
+                            .buttonStyle(PLOption(align: .center))
                         }
                         Button("See progress") {
                             path.replaceTop(with: LangRoute.system(system.id))
                         }
-                        .buttonStyle(D8Option(align: .center))
+                        .buttonStyle(PLOption(align: .center))
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -302,8 +366,8 @@ struct StudyView: View {
             let maps = readingMaps(ex, corpus)
             let page = VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 10) {
-                    ProgressView(value: Double(i), total: Double(queue.count)).tint(D8.malachite)
-                    Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    ProgressView(value: Double(i), total: Double(queue.count)).tint(PL.malachite)
+                    Text("\(i + 1)/\(queue.count)").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
                 ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done,
                              flagNamed: { store.showsFlagName(systemId, lang: $0) },

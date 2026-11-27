@@ -1,5 +1,5 @@
 import { parseTile, tappedChoice, tileKnown, TILE_ROUND_SECONDS } from "./lobby-tiles";
-import { gameEndMs, isRace, LOBBY_CAP, RACE_ROUND_SECONDS, RACE_ROUNDS, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
+import { flagOn, gameEndMs, isRace, LOBBY_CAP, RACE_ROUND_SECONDS, RACE_ROUNDS, type LobbyGame, type LobbyPrompt, type LobbyRow } from "./lobbies";
 
 export type BotSkill = "easy" | "medium" | "hard";
 
@@ -84,7 +84,7 @@ export const GREETINGS = ["hi all", "hola", "good luck", "ready when you are", "
 export const SIGNOFFS = ["gg", "nice one", "close game", "again?", "that was fun", "well played"];
 
 export function botsEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_BOTS === "on";
+  return flagOn(env.POLINGUAL_LOBBY_BOTS);
 }
 
 export function unit(key: string): number {

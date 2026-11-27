@@ -26,12 +26,10 @@ import foundation.bucket.core.net.RadioApi
 import foundation.bucket.core.net.RadioStation
 import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import kotlinx.coroutines.launch
 
 @Composable
 fun ListenScreen(graph: Graph, back: () -> Unit) {
-    val p = LocalPalette.current
     val app by graph.state.collectAsState()
     val now by graph.radio.now.collectAsState()
     val langs = app?.system?.targets.orEmpty().filter { RadioApi.radioName(it) != null }.ifEmpty { listOf("es", "fr") }
@@ -50,7 +48,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
             langs.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang) { lang = l } }
         }
         now.station?.let { s ->
-            Card(color = PL.Ink, onClick = { scope.launch { graph.radio.play(s) } }) {
+            Card(color = PL.Ink, onClick = { scope.launch { graph.radio.play(s, lang) } }) {
                 Text("NOW PLAYING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(s.name, style = Type.subhead, color = PL.Paper, modifier = Modifier.weight(1f))
@@ -65,11 +63,11 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
             list.isEmpty() -> Text(error ?: "No stations found for ${Lang.name(lang)}.", color = PL.Paper)
             else -> list.forEach { s ->
                 val active = now.station?.stationuuid == s.stationuuid
-                Card(onClick = { scope.launch { graph.radio.play(s) } }) {
+                Card(onClick = { scope.launch { graph.radio.play(s, lang) } }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
-                            Text(s.name, color = p.ink, style = Type.small)
-                            Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = p.muted)
+                            Text(s.name, color = PL.Ink, style = Type.small)
+                            Text(listOf(s.country, s.tags.split(",").take(2).joinToString(", ")).filter { it.isNotBlank() }.joinToString(" · "), color = PL.InkDim)
                         }
                         Glyph(if (active && now.playing) "pause" else "play", if (active && now.playing) "Pause ${s.name}" else "Play ${s.name}", PL.Vermilion, Modifier.size(28.dp))
                     }

@@ -43,6 +43,8 @@
 % through \lstinputlisting directly, see make_lean_snapshots.py's own
 % header). #2 = the real source path, shown in the pending note only.
 % #3 = the Lean identifier names #1 will define.
+\newcommand{\emp}[1]{\textcolor{gray}{\footnotesize [empirical: #1]}}
+\newcommand{\bm}[1]{\textcolor{gray}{\footnotesize [bm: #1]}}
 \newcommand{\bucketlean}[3]{%
   \IfFileExists{#1}{%
     \lstinputlisting[style=bucketlean]{#1}%
@@ -227,7 +229,7 @@ social evolution \autocite{turchin2015seshat}; a recent benchmark on that
 databank, referred to throughout the intake specification this paper
 implements as Hist-LLM, reports current language models near 46 percent
 recall on Seshat's coded judgments
-(\texttt{IDEAL-STATE-AND-UNKNOWNS-SPEC.md} \S7). That benchmark has no
+(\texttt{IDEAL-STATE-AND-UNKNOWNS-SPEC.md} \S7) \emp{Hist-LLM as reported in IDEAL-STATE-AND-UNKNOWNS-SPEC.md \S7, 2026-09, read by hand}. That benchmark has no
 resolvable DOI or arXiv identifier, so it is not a bibliography entry
 here; \Cref{sec:engine-loop} and \Cref{sec:limitations} cite its finding
 by pointing at the specification section that reports it, the rule this
@@ -564,7 +566,7 @@ following sizes.
 
 \begin{lemma}[Hypothesis space size]
 \label{lem:size}
-At the vocabulary sizes stated above,
+At the vocabulary sizes stated above \bm{BucketMath.Papers.hhe\_hypothesis\_space}, \bm{BucketMath.Papers.hhe\_sequence\_space},
 \begin{equation}
   \label{eq:size-h}
   |H| = 40 \times 50 \times 300 \times 120 \times 200 \times 25 \approx 3.6 \times 10^{11},
@@ -581,11 +583,11 @@ $|H|$ is the product of the six placement slots' vocabulary sizes by
 $40 \times 50 = 2{,}000$, $2{,}000 \times 300 = 600{,}000$,
 $600{,}000 \times 120 = 72{,}000{,}000$,
 $72{,}000{,}000 \times 200 = 14{,}400{,}000{,}000$, and
-$14{,}400{,}000{,}000 \times 25 = 3.6 \times 10^{11}$. $|H_{\mathrm{seq}}|$
+$14{,}400{,}000{,}000 \times 25 = 3.6 \times 10^{11}$ \bm{BucketMath.Papers.hhe\_slot\_products}. $|H_{\mathrm{seq}}|$
 is the product of $|H|$, the thirteen-value Allen relation vocabulary of
 \Cref{def:allen}, and a second copy of $|H|$ by \Cref{eq:sequence-space};
 $13 \times (3.6 \times 10^{11})^2 = 13 \times 1.296 \times 10^{23}
-\approx 1.7 \times 10^{24}$.
+\approx 1.7 \times 10^{24}$ \bm{BucketMath.Papers.hhe\_sequence\_space}.
 \end{proof}
 
 \Cref{fig:hypothesis-space} plots \Cref{lem:size}'s two sizes,
@@ -789,7 +791,7 @@ what $\Omega_{\mathrm{contradiction}}$ did.
 growing evidence count under \Cref{eq:opinion-sum} and
 \Cref{eq:diminishing}, for a fixed tier weight and an uninformative base
 rate $a = 0.5$: panel (a) accumulates supporting evidence only, panel (b)
-mixes support and refutation at a $2$-to-$1$ ratio, and both panels show
+mixes support and refutation at a $2$-to-$1$ ratio \emp{figures/fig\_evidence\_accumulation.py parameters, 2026-09, python3 figures/build\_all.py}, and both panels show
 $u$ shrinking as $r+s$ grows regardless of which side leads.
 
 \begin{figure}[htbp]
@@ -801,7 +803,7 @@ $u$ shrinking as $r+s$ grows regardless of which side leads.
     barycentric position; the projected probability $P = b + au$ for a
     base rate $a$ reads off the base edge along the line through the
     opinion point running parallel to the segment from the uncertainty
-    vertex to the base-rate point $(a, 0)$ on that edge.}
+    vertex to the base-rate point $(a, 0)$ on that edge \emp{figures/fig\_opinion\_triangle.py, 2026-09, python3 figures/build\_all.py}.}
   \label{fig:opinion-triangle}
 \end{figure}
 
@@ -811,7 +813,7 @@ $u$ shrinking as $r+s$ grows regardless of which side leads.
   \caption{Belief, disbelief, uncertainty, and projected probability
     against the number of independent evidence items $n$, for one
     hypothesis at a fixed tier weight and an uninformative base rate
-    $a = 0.5$. Panel (a) accumulates supporting evidence only; panel (b)
+    $a = 0.5$ \emp{figures/fig\_evidence\_accumulation.py parameters, 2026-09, python3 figures/build\_all.py}. Panel (a) accumulates supporting evidence only; panel (b)
     mixes support and refutation at a $2$-to-$1$ ratio. Both panels use
     \Cref{eq:opinion-sum} with $W=2$ and the diminishing-returns discount
     of \Cref{eq:diminishing} applied to each side before it enters $r$
@@ -830,8 +832,8 @@ flat tier:
 \end{equation}
 read as the likelihood ratio between observing no evidence when $h$ is
 true and observing no evidence when $h$ is false: as $\delta \to 0$ that
-ratio approaches $1$ and absence stops discriminating; as $\delta \to 1$
-it recovers the flat-tier treatment as its high-detectability limit. A
+ratio approaches $1$ and absence stops discriminating \bm{BucketMath.Papers.absenceRatio\_undetectable}; as $\delta \to 1$
+it recovers the flat-tier treatment as its high-detectability limit \bm{BucketMath.Papers.absenceRatio\_full}. A
 positive find in a low-$\delta$ context is the rarer event under this
 same ratio, so a reviewer can weight it up by the same $\delta$ on the
 corroboration side, by hand rather than by a default rule.
@@ -864,7 +866,7 @@ and within the textual kind,
 \end{equation}
 The pooled weight is $E = 4.759$ across $K=2$ kinds spanning one
 cross-family pair, so $X(2) = 1 + 0.3(1) = 1.3$ by \Cref{eq:cross-kind}
-and $S_{+} = 1.3 \times 4.759 = 6.186$ for the farmers reading,
+and $S_{+} = 1.3 \times 4.759 = 6.186$, truncated from $6.1867$, for the farmers reading \bm{BucketMath.Papers.hhe\_kind\_weights}, \bm{BucketMath.Papers.hhe\_support\_score},
 $S_{-} = 6.186$ for the extraterrestrial reading. \Cref{tab:worked-example}
 carries both readings through \Cref{eq:opinion-sum}.
 
@@ -872,7 +874,8 @@ carries both readings through \Cref{eq:opinion-sum}.
   \centering
   \caption{Çatalhöyük shrine-construction worked example: the base rate
     before any evidence is pooled, and the opinion after pooling the
-    three items of \Cref{eq:material-kind} and \Cref{eq:textual-kind}.}
+    three items of \Cref{eq:material-kind} and \Cref{eq:textual-kind}
+    \bm{BucketMath.Papers.hhe\_kind\_weights}, \bm{BucketMath.Papers.hhe\_support\_score}.}
   \label{tab:worked-example}
   \begin{tabular}{@{}lcc@{}}
     \toprule
@@ -894,10 +897,10 @@ Both readings land the same direction as the corpus's original sigmoid
 posterior ($\tau \approx 0.9998$ and $\tau \approx 0.0000031$ under
 \Cref{eq:rank} without the opinion layer) and stay separated, but land
 less extreme on each side: the opinion form keeps $24$ percent of the
-pool as stated uncertainty, so the same three findings move the
+pool as stated uncertainty \bm{BucketMath.Papers.hhe\_opinion\_roundings}, so the same three findings move the
 mainstream reading to $98$ percent instead of four nines, and the exotic
 reading to four parts in ten thousand instead of three parts in a
-million. The evidence pooled is unchanged; what changed is that the model
+million \bm{BucketMath.Papers.hhe\_opinion\_roundings}. The evidence pooled is unchanged; what changed is that the model
 now states how much of its confidence rests on the prior against how much
 rests on what was found.
 
@@ -1112,7 +1115,7 @@ under stable evidence volume is the same health signal
 \Cref{sec:unknowns}'s surprise-rate tracks, read here for target-blindness
 instead of vocabulary drift. The model's own trained-in sense of a
 period, cited in \Cref{sec:related} as Hist-LLM's near-46-percent recall
-against Seshat's coded judgments, enters as one evidence kind,
+against Seshat's coded judgments \emp{Hist-LLM as reported in IDEAL-STATE-AND-UNKNOWNS-SPEC.md \S7, 2026-09, read by hand}, enters as one evidence kind,
 \texttt{model-prior}, at a low tier, with its own reliability tracked run
 over run; it never counts as truth on its own.
 
@@ -1236,22 +1239,19 @@ is stated as illustrative in \Cref{fig:detectability}: its real values
 are a claim about the corpus, one new excavation or archive access can
 revise.
 
-Two gaps sit inside the Lean listings themselves (\Cref{app:lean}).
-First, \texttt{Bucket.Belief.Opinion} is the \texttt{Float} shape the
+One gap sits inside the Lean listings themselves (\Cref{app:lean}).
+\texttt{Bucket.Belief.Opinion} is the \texttt{Float} shape the
 running system computes with, and every proved claim, \Cref{lem:opinion-sum}
 included, is proved instead over \texttt{Bucket.Belief.OpinionQ}'s
 \texttt{Rat} counterpart, since \texttt{Float} carries no Lean order
 structure a proof can use; nothing in this pass bounds how far a running
-\texttt{Float} computation can drift from its \texttt{Rat} proof. Second,
+\texttt{Float} computation can drift from its \texttt{Rat} proof.
 \texttt{Bucket.Address.encode\_injective}, the Lean statement of
-\Cref{lem:injective}'s general injectivity claim, is left \texttt{sorry}:
-the pen-and-paper proof in \Cref{sec:combinatorics} stands on the
-fundamental theorem of arithmetic, and mechanizing that argument for an
-arbitrary vocabulary size needs Mathlib's \texttt{Nat.factorization} or
-an equivalent unique-factorization development, unavailable in this
-Mathlib-free build. Only the bounded case,
-\texttt{encode\_injective\_bounded}, is proved in full, by exhaustive
-computation over tuples with every slot index below $2$.
+\Cref{lem:injective}'s general injectivity claim, holds for every
+vocabulary size in core Lean: each slot prime is coprime to the product of
+the others, so peeling one prime at a time forces equal exponents. It
+covers the encoding; the injective vocabulary indexing it assumes is the
+caller's to construct.
 
 The Younger Dryas and Neolithic Anatolia candidates of
 \Cref{tab:pilot-periods} are both contested periods by design, chosen to
@@ -1303,9 +1303,8 @@ listing below is a defensive fallback rather than a live condition.
 \bucketlean{lean-snapshots/Unknowns.lean}{lean/Bucket/Unknowns.lean}{Bucket.Unknowns.missingMass}
 
 \texttt{Bucket.Address.encode\_injective}, the Lean statement of
-\Cref{lem:injective}'s general injectivity claim, is the one result this
-paper needs machine-checked and leaves \texttt{sorry}, per
-\Cref{sec:limitations}; \texttt{Bucket.Belief} discharges
+\Cref{lem:injective}'s general injectivity claim, is proved in full by
+peeling one coprime prime factor at a time, per \Cref{sec:limitations}; \texttt{Bucket.Belief} discharges
 \Cref{lem:opinion-sum} in full, as \texttt{sum\_eq\_one} and
 \texttt{project\_mem\_unit} over the \texttt{Rat}-typed
 \texttt{fromEvidenceQ}, and \texttt{Bucket.Timeline} discharges seven
@@ -1328,16 +1327,14 @@ nothing else in the line is altered:
 OK [2/9] Built Bucket.Concept (297ms)
 OK [3/9] Built Bucket.Belief (354ms)
 OK [4/9] Built Bucket.Unknowns (314ms)
-WARN [5/9] Built Bucket.Address (1.7s)
-warning: Bucket/Address.lean:57:8: declaration uses `sorry`
+OK [5/9] Built Bucket.Address (1.7s)
 OK [6/9] Built Bucket.Timeline (12s)
 OK [7/9] Built Bucket.Hypothesis (223ms)
 OK [8/9] Built Bucket (150ms)
 Build completed successfully (9 jobs).
 \end{verbatim}
 
-The one warning is \Cref{lem:injective}'s open item: every other module
-builds with no warning.
+Every module builds with no warning.
 
 \section{Bead list}
 \label{app:beads}

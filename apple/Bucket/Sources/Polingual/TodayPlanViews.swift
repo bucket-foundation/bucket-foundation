@@ -52,10 +52,10 @@ struct TodayHero: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(title).font(.system(size: 22, weight: .heavy, design: .rounded)).foregroundStyle(urgent ? D8.vermilion : Palette.ink)
-                Text(detail).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted)
+                Text(title).font(PL.script(22, .heavy)).foregroundStyle(urgent ? PL.vermilion : PL.ink)
+                Text(detail).font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim)
                 if total > 0 {
-                    Text("\(done) of \(total) done").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("\(done) of \(total) done").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
             }
             .accessibilityElement(children: .combine)
@@ -78,18 +78,18 @@ struct TileLook: Equatable {
 
 enum TodayLooks {
     static func game(_ g: GameKind) -> TileLook { .vivid(g.color, g.lip) }
-    static let listen = TileLook.vivid(D8.vermilion, D8.vermilionLip)
-    static let watch = TileLook.vivid(D8.lapis, Color(hex: 0x12326A))
-    static let alphabet = TileLook.vivid(D8.malachite, D8.malachiteLip)
+    static let listen = TileLook.vivid(PL.vermilion, PL.vermilionDeep)
+    static let watch = TileLook.vivid(PL.lapis, PL.lapisDeep)
+    static let alphabet = TileLook.vivid(PL.malachite, PL.malachiteDeep)
     static func branch(_ b: String) -> TileLook { .vivid(BranchTile.face(b)) }
 
     static func lang(_ targets: [String]) -> TileLook {
         for l in targets {
             let flag = D8Flag.of(l)
             let colors = flag.bands.sorted { $0.weight > $1.weight }.map(\.color) + [flag.canton?.color, flag.cross, flag.hoist].compactMap { $0 }
-            if let c = colors.first(where: { deep($0) }) { return .vivid(Color(hex: c)) }
+            if let c = colors.first(where: { deep($0) }) { return .vivid(Color(plHex: c)) }
         }
-        return .vivid(D8.lapis, Color(hex: 0x12326A))
+        return .vivid(PL.lapis, PL.lapisDeep)
     }
 
     static func deep(_ c: UInt32) -> Bool {
@@ -106,17 +106,17 @@ struct TodayTileSkin: ViewModifier {
     func body(content: Content) -> some View {
         if done {
             content
-                .background(Palette.card, in: .rect(cornerRadius: radius))
-                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(Palette.rule, lineWidth: 1) }
+                .background(PL.card, in: .rect(cornerRadius: radius))
+                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(PL.hairline2, lineWidth: 1) }
                 .padding(.bottom, 5)
         } else if let face = look.face {
             content.modifier(GameLip(face: face, lip: look.lip ?? face, radius: radius))
         } else {
             content
                 .environment(\.colorScheme, .light)
-                .background(D8.face, in: .rect(cornerRadius: radius))
-                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(D8.edge, lineWidth: 2) }
-                .background(D8.edge, in: .rect(cornerRadius: radius).offset(y: 5))
+                .background(PL.card, in: .rect(cornerRadius: radius))
+                .overlay { RoundedRectangle(cornerRadius: radius).strokeBorder(PL.paper3, lineWidth: 2) }
+                .background(PL.paper3, in: .rect(cornerRadius: radius).offset(y: 5))
                 .padding(.bottom, 5)
         }
     }
@@ -135,19 +135,19 @@ struct TodayWidgetFace: View {
     var badgeRoom: CGFloat = 0
 
     var vivid: Bool { look.face != nil && !done }
-    var ink: Color { vivid ? D8.parchment : Palette.ink }
-    var soft: Color { vivid ? D8.parchment.opacity(0.85) : Palette.muted }
+    var ink: Color { vivid ? PL.paper : PL.ink }
+    var soft: Color { vivid ? PL.paper.opacity(0.85) : PL.inkDim }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
                 ZStack {
-                    Circle().stroke(vivid ? D8.parchment.opacity(0.3) : Palette.rule, lineWidth: 5)
-                    Circle().trim(from: 0, to: progress).stroke(vivid ? D8.parchment : D8.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
+                    Circle().stroke(vivid ? PL.paper.opacity(0.3) : PL.hairline2, lineWidth: 5)
+                    Circle().trim(from: 0, to: progress).stroke(vivid ? PL.paper : PL.malachite, style: StrokeStyle(lineWidth: 5, lineCap: .round)).rotationEffect(.degrees(-90))
                     if done {
                         PLGlyphView(.check, size: 16).foregroundStyle(PL.malachite)
                     } else if let left {
-                        Text("\(left)").font(.system(size: 15, weight: .heavy, design: .rounded)).foregroundStyle(ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
+                        Text("\(left)").font(PL.script(15, .heavy)).foregroundStyle(ink).monospacedDigit().minimumScaleFactor(0.6).padding(6)
                     } else if let symbol {
                         SymbolArt(name: symbol, size: 15).foregroundStyle(ink)
                     }
@@ -160,9 +160,9 @@ struct TodayWidgetFace: View {
                     HStack(spacing: 3) { ForEach(flags.prefix(3), id: \.self) { FlagTile(lang: $0, size: 22) } }
                 }
             }
-            Text(title).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(ink)
+            Text(title).font(PL.script(17, .heavy)).foregroundStyle(ink)
                 .lineLimit(2, reservesSpace: true).multilineTextAlignment(.leading)
-            Text(detail).font(.caption.weight(.semibold)).foregroundStyle(soft).monospacedDigit().lineLimit(1).minimumScaleFactor(0.8).padding(.trailing, badgeRoom)
+            Text(detail).font(PL.text(12, .semibold)).foregroundStyle(soft).monospacedDigit().lineLimit(1).minimumScaleFactor(0.8).padding(.trailing, badgeRoom)
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -187,7 +187,7 @@ struct TodayWidget: View {
     var body: some View {
         Button(action: open) {
             TodayWidgetFace(symbol: symbol, branch: branch, flags: flags, title: title, detail: detail, left: left, progress: progress, done: done, look: look)
-                .contentShape(.dragPreview, .rect(cornerRadius: 18))
+                .contentShape(.dragPreview, .rect(cornerRadius: PL.Radius.lg))
                 .draggable(dragId)
         }
         .buttonStyle(.plain)
@@ -201,11 +201,11 @@ struct TodayAddWidget: View {
         Button(action: open) {
             VStack(spacing: 8) {
                 PLGlyphView(.plus, size: 26)
-                Text("Add to Today").font(.subheadline.weight(.bold))
+                Text("Add to Today").font(PL.text(15, .bold))
             }
-            .foregroundStyle(Palette.muted)
+            .foregroundStyle(PL.inkDim)
             .frame(maxWidth: .infinity, minHeight: 150)
-            .overlay { RoundedRectangle(cornerRadius: 22).strokeBorder(Palette.rule, style: StrokeStyle(lineWidth: 2, dash: [6, 5])) }
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.xl).strokeBorder(PL.hairline2, style: StrokeStyle(lineWidth: 2, dash: [6, 5])) }
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("today.add")
@@ -250,7 +250,7 @@ struct TodayPickTile: View {
                         .padding(.bottom, 5)
                 }
                 .overlay {
-                    if on { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.malachite, lineWidth: 3).padding(.bottom, 5) }
+                    if on { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.malachite, lineWidth: 3).padding(.bottom, 5) }
                 }
         }
         .buttonStyle(.plain)
@@ -296,7 +296,7 @@ struct TodayPicker: View {
     func row(_ entry: PickEntry) -> some View {
         HStack(spacing: 10) {
             if let first = entry.flags.first, entry.item.kind != .system { FlagTile(lang: first, size: 22) }
-            Text(entry.title).foregroundStyle(Palette.ink)
+            Text(entry.title).foregroundStyle(PL.ink)
             Spacer()
             AddToToday(item: entry.item, look: .icon)
         }
@@ -326,7 +326,7 @@ struct TodayPicker: View {
                 } header: {
                     Eyebrow(text: section.title)
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
         }
     }

@@ -9,7 +9,7 @@ export function errorOf(err: unknown): string {
   return lobbyError(err instanceof LobbyError ? err.code : undefined);
 }
 
-export function useRoomSync(api: LobbyApi, code: string | null, nickname: string, ready: boolean) {
+export function useRoomSync(api: LobbyApi, code: string | null, nickname: string, ready: boolean, screen = false, audience: string | null = null) {
   const [lobby, setLobby] = useState<WebLobbyState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [offset, setOffset] = useState(0);
@@ -27,13 +27,13 @@ export function useRoomSync(api: LobbyApi, code: string | null, nickname: string
     let stop = false;
     const sentAt = Date.now();
     api
-      .join({ code, displayName: nickname })
+      .join(audience ? { code, displayName: nickname, audience: true, ageBand: audience } : screen ? { code, displayName: nickname, screen } : { code, displayName: nickname })
       .then((l) => !stop && take(l, sentAt))
       .catch((err) => !stop && setError(errorOf(err)));
     return () => {
       stop = true;
     };
-  }, [api, code, nickname, ready, take]);
+  }, [api, code, nickname, ready, take, screen, audience]);
 
   usePoll(api, lobby?.id, take, kick, version, setError);
 

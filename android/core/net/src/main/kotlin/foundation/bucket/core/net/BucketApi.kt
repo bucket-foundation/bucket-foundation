@@ -64,6 +64,18 @@ class BucketApi(
         return json.decodeFromJsonElement(Profile.serializer(), json.parseToJsonElement(text).jsonObject.getValue("profile"))
     }
 
+    suspend fun learnEvents(token: String, batch: JsonObject): String? = runCatching {
+        (json.parseToJsonElement(call("api/academy/event", token, batch, mapper = ::groupError)).jsonObject["outcome"] as? kotlinx.serialization.json.JsonPrimitive)?.content
+    }.getOrNull()
+
+    suspend fun experiment(token: String): ExperimentReply? = runCatching {
+        ExperimentReply(json.parseToJsonElement(call("api/academy/experiment", token, mapper = ::groupError)).jsonObject["enrolment"]?.takeIf { it is JsonObject }?.toString())
+    }.getOrNull()
+
+    suspend fun enrol(token: String, experiment: String, stratum: String): String? = runCatching {
+        json.parseToJsonElement(call("api/academy/experiment", token, buildJsonObject { put("experiment", experiment); put("stratum", stratum) }, mapper = ::groupError)).jsonObject["enrolment"]?.takeIf { it is JsonObject }?.toString()
+    }.getOrNull()
+
     suspend fun progressPull(token: String): JsonObject? = runCatching {
         json.parseToJsonElement(call("api/academy/progress", token, mapper = ::groupError)).jsonObject["branches"] as? JsonObject ?: JsonObject(emptyMap())
     }.getOrNull()
@@ -92,23 +104,93 @@ class BucketApi(
     suspend fun fillBots(token: String, lobbyId: String): Lobby =
         lobbyCall("api/academy/lobbies/bots", token, buildJsonObject { put("lobbyId", lobbyId) })
 
-    suspend fun createLobby(token: String, name: String, game: LobbyGame, root: String, targets: List<String>, rounds: Int, roundSeconds: Int, listed: Boolean, displayName: String): Lobby =
+    suspend fun createLobby(token: String, name: String, game: LobbyGame, root: String, targets: List<String>, rounds: Int, roundSeconds: Int, listed: Boolean, displayName: String, hostScreen: Boolean = false, setup: String = "single", games: List<String> = emptyList()): Lobby =
         lobbyCall("api/academy/lobbies", token, buildJsonObject {
             put("name", name); put("game", game.wire); put("root", root)
             put("targets", kotlinx.serialization.json.JsonArray(targets.map(::JsonPrimitive)))
             put("rounds", rounds); put("roundSeconds", roundSeconds); put("listed", listed); put("displayName", displayName); put("reveal", true)
+            if (hostScreen) put("hostScreen", true)
+            if (setup != "single") { put("setup", setup); if (games.isNotEmpty()) put("games", kotlinx.serialization.json.JsonArray(games.map(::JsonPrimitive))) }
         }, RACE)
 
-    suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String): Lobby =
+    suspend fun joinLobby(token: String, code: String? = null, lobbyId: String? = null, displayName: String, audience: Boolean = false): Lobby =
         lobbyCall("api/academy/lobbies/join", token, buildJsonObject {
             put("displayName", displayName)
+            if (audience) put("audience", true)
             if (code != null) put("code", code)
             if (lobbyId != null) put("lobbyId", lobbyId)
         }, RACE)
 
-    suspend fun leaveLobby(token: String, lobbyId: String) {
-        call("api/academy/lobbies/leave", token, buildJsonObject { put("lobbyId", lobbyId) })
+    suspend fun leaveLobby(token: String, lobbyId: String): foundation.bucket.core.model.LeaveResult =
+        foundation.bucket.core.model.LeaveResult.of(errorBody(call("api/academy/lobbies/leave", token, buildJsonObject { put("lobbyId", lobbyId) }))["result"])
+
+    suspend fun nextGame(token: String, lobbyId: String): Lobby =
+        lobbyCall("api/academy/lobbies/next", token, buildJsonObject { put("lobbyId", lobbyId) })
+
+    suspend fun closeLobby(token: String, lobbyId: String): Lobby =
+        lobbyCall("api/academy/lobbies/end", token, buildJsonObject { put("lobbyId", lobbyId) })
+
+    suspend fun lobbySettings(token: String, lobbyId: String, game: LobbyGame? = null, setup: String? = null, games: List<String> = emptyList(), guestsWatch: Boolean? = null): Lobby =
+        lobbyCall("api/academy/lobbies/settings", token, buildJsonObject {
+            put("lobbyId", lobbyId)
+            if (game != null) put("game", game.wire)
+            if (setup != null) put("setup", setup)
+            if (games.isNotEmpty()) put("games", kotlinx.serialization.json.JsonArray(games.map(::JsonPrimitive)))
+            if (guestsWatch != null) put("guestsWatch", guestsWatch)
+        })
+
+    suspend fun hostMode(token: String, lobbyId: String, screen: Boolean, displayName: String?): Lobby =
+        lobbyCall("api/academy/lobbies/hostmode", token, buildJsonObject {
+            put("lobbyId", lobbyId); put("screen", screen)
+            if (displayName != null) put("displayName", displayName)
+        })
+
+    suspend fun bonusVote(token: String, lobbyId: String, round: Int, choice: String) {
+        call("api/academy/lobbies/react", token, buildJsonObject { put("lobbyId", lobbyId); put("round", round); put("choice", choice) })
     }
+
+    suspend fun saveCard(token: String, lobbyId: String, card: foundation.bucket.core.model.PlayerCard) {
+        call("api/academy/lobby-cards", token, buildJsonObject { put("lobbyId", lobbyId); put("band", card.band.wire) })
+        if (!card.sendsCard) return
+        call("api/academy/lobby-cards", token, buildJsonObject {
+            put("lobbyId", lobbyId)
+            put("card", buildJsonObject {
+                put("band", card.band.wire)
+                put("speaks", kotlinx.serialization.json.JsonArray(card.speaks.map { s -> buildJsonObject { put("lang", s.lang); put("level", s.level); s.reads?.let { put("reads", it) } } }))
+                put("learn", kotlinx.serialization.json.JsonArray(card.learn.map(::JsonPrimitive)))
+                put("surprise", card.surprise)
+            })
+        })
+    }
+
+    suspend fun teach(token: String, lobbyId: String): foundation.bucket.core.model.TeachView? =
+        decode<foundation.bucket.core.model.TeachReply>(call("api/academy/lobby-teach", token, query = mapOf("lobby" to lobbyId))).teach
+
+    suspend fun teachAction(token: String, lobbyId: String, action: String, extra: JsonObject = JsonObject(emptyMap())) {
+        call("api/academy/lobby-teach", token, JsonObject(extra + mapOf("lobbyId" to JsonPrimitive(lobbyId), "action" to JsonPrimitive(action))))
+    }
+
+    suspend fun trivia(token: String, lobbyId: String): foundation.bucket.core.model.TriviaView? =
+        decode<foundation.bucket.core.model.TriviaReply>(call("api/academy/lobby-trivia", token, query = mapOf("lobby" to lobbyId))).trivia
+
+    suspend fun triviaAction(token: String, lobbyId: String, action: String, extra: JsonObject = JsonObject(emptyMap())) {
+        call("api/academy/lobby-trivia", token, JsonObject(extra + mapOf("lobbyId" to JsonPrimitive(lobbyId), "action" to JsonPrimitive(action))))
+    }
+
+    suspend fun atlas(token: String, lobbyId: String): List<foundation.bucket.core.model.AtlasClip> =
+        decode<foundation.bucket.core.model.AtlasReply>(call("api/academy/lobbies/atlas", token, query = mapOf("lobbyId" to lobbyId))).rounds
+
+    suspend fun forehead(langs: List<String>, seed: String, root: String): List<foundation.bucket.core.model.ForeheadCard> =
+        decode<foundation.bucket.core.model.ForeheadReply>(call("api/academy/forehead", null, query = mapOf("langs" to langs.joinToString(","), "seed" to seed, "root" to root))).cards
+
+    suspend fun atlasGuess(token: String, lobbyId: String, clip: Int, lat: Double, lon: Double): foundation.bucket.core.model.AtlasGuess =
+        decode(call("api/academy/lobbies/bonus", token, buildJsonObject { put("kind", "atlas"); put("lobbyId", lobbyId); put("clip", clip); put("lat", lat); put("lon", lon) }))
+
+    suspend fun foreheadMark(token: String, lobbyId: String, card: Int, got: Boolean) {
+        call("api/academy/lobbies/bonus", token, buildJsonObject { put("kind", "forehead"); put("lobbyId", lobbyId); put("card", card); put("got", got) })
+    }
+
+    suspend fun league(token: String): foundation.bucket.core.model.LeagueBoard = decode(call("api/academy/league", token))
 
     suspend fun setReady(token: String, lobbyId: String, ready: Boolean): Lobby =
         lobbyCall("api/academy/lobbies/ready", token, buildJsonObject { put("lobbyId", lobbyId); put("ready", ready) })
@@ -120,7 +202,7 @@ class BucketApi(
         lobbyCall("api/academy/lobbies/chat", token, buildJsonObject { put("lobbyId", lobbyId); put("body", body) })
 
     suspend fun power(token: String, lobbyId: String, kind: foundation.bucket.core.model.PowerKind): Lobby =
-        lobbyCall("api/academy/lobbies/power", token, buildJsonObject { put("lobbyId", lobbyId); put("kind", if (kind == foundation.bucket.core.model.PowerKind.Double) "double" else "fifty") })
+        lobbyCall("api/academy/lobbies/power", token, buildJsonObject { put("lobbyId", lobbyId); put("kind", kind.wire) })
 
     suspend fun reportLobbyMessage(token: String, lobbyId: String, messageId: Int, reason: String) {
         call("api/academy/lobbies/report", token, buildJsonObject { put("lobbyId", lobbyId); put("messageId", messageId); put("reason", reason) })
@@ -274,3 +356,5 @@ enum class PushResult {
 
     val settled: Boolean get() = this == Written || this == Refused
 }
+
+data class ExperimentReply(val enrolment: String?)

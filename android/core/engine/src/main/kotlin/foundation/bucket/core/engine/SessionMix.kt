@@ -82,6 +82,62 @@ object SessionMix {
     fun startedCount(state: StudyState, targets: List<String>): Int =
         state.cards.keys.count { it.substringBefore(':') in targets && !isSentenceCard(it) && state.started(it) }
 
+    const val INPUT_TARGET_TO_A2 = 0.7
+    const val INPUT_TARGET_PAST_A2 = 0.6
+    const val A2_TOP_TIER = 6
+    const val CARD_SECONDS = 12.0
+
+    data class InputMix(val target: Double, val share: Double, val units: Int, val positions: List<Int>, val plannedShare: Double)
+
+    fun inputTarget(tier: Int): Double = if (tier <= A2_TOP_TIER) INPUT_TARGET_TO_A2 else INPUT_TARGET_PAST_A2
+
+    fun inputShare(tier: Int, eligibleSeconds: Double, sessionSeconds: Double): Double =
+        if (sessionSeconds <= 0 || eligibleSeconds <= 0) 0.0 else minOf(inputTarget(tier), eligibleSeconds / sessionSeconds)
+
+    fun planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: List<Double>, targetShare: Double? = null): InputMix {
+        val target = targetShare ?: inputTarget(tier)
+        val cardTime = maxOf(0, cards) * CARD_SECONDS
+        val pool = eligibleUnitSeconds.filter { it > 0 }
+        if (pool.isEmpty()) return InputMix(target, 0.0, 0, emptyList(), 0.0)
+        val eligible = pool.sum()
+        val avg = eligible / pool.size
+        val share = if (cardTime > 0) minOf(target, eligible / (eligible + cardTime)) else target
+        val want = if (cardTime > 0) share * cardTime / (1 - share) else avg
+        val units = minOf(pool.size, maxOf(1, cards), maxOf(1, Math.round(want / avg).toInt()))
+        val positions = (0 until units).map { minOf(maxOf(0, cards - 1), ((it + 1) * cards) / (units + 1)) }
+        return InputMix(target, share, units, positions, units * avg / (units * avg + cardTime))
+    }
+
+    fun roundedItems(targetPermille: Int, items: Int): Int = (targetPermille * items + 500) / 1000
+
+    const val IDLE_MS = 60_000L
+
+    fun isActive(visible: Boolean, focused: Boolean, playing: Boolean, needsPlayer: Boolean, idle: Boolean = false): Boolean = visible && focused && (if (needsPlayer) playing else !idle)
+
+    data class ActivityMark(val at: Long, val visible: Boolean? = null, val focused: Boolean? = null, val playing: Boolean? = null, val idle: Boolean? = null)
+
+    fun activeMs(marks: List<ActivityMark>, end: Long, needsPlayer: Boolean): Long {
+        var visible = true
+        var focused = true
+        var playing = false
+        var idle = false
+        var since: Long? = null
+        var total = 0L
+        for (m in marks.sortedBy { it.at }) {
+            if (m.at > end) break
+            val s = since
+            if (s != null && isActive(visible, focused, playing, needsPlayer, idle)) total += m.at - s
+            m.visible?.let { visible = it }
+            m.focused?.let { focused = it }
+            m.playing?.let { playing = it }
+            m.idle?.let { idle = it }
+            since = m.at
+        }
+        val s = since
+        if (s != null && isActive(visible, focused, playing, needsPlayer, idle) && end > s) total += end - s
+        return total
+    }
+
     fun soundShare(started: Int): Double = if (started < 40) 0.1 else if (started < 150) 0.25 else 0.4
 
     fun soundAllowed(tally: SoundTally, started: Int): Boolean = (tally.sounds + 1).toDouble() <= soundShare(started) * (tally.asked + 1)

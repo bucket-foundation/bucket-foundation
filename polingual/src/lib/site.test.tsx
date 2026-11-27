@@ -4,6 +4,27 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import Site from "../app/site";
+import { FrequencyCredit } from "../app/(site)/research/frequency-credit";
+import { DictionaryCredit } from "../app/(site)/research/dictionary-credit";
+
+test("the research page credits the frequency lists under CC BY-SA 4.0 with share-alike terms", () => {
+  const html = renderToStaticMarkup(<FrequencyCredit />);
+  assert.match(html, /wordfreq/);
+  assert.match(html, /FrequencyWords/);
+  assert.match(html, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
+  assert.match(html, /same licence/);
+  assert.match(readFileSync(join(__dirname, "../app/(site)/research/page.tsx"), "utf8"), /<FrequencyCredit \/>/);
+});
+test("the research page credits JMdict, KANJIDIC and CC-CEDICT under their share-alike licences", () => {
+  const html = renderToStaticMarkup(<DictionaryCredit />);
+  assert.match(html, /JMdict/);
+  assert.match(html, /KANJIDIC/);
+  assert.match(html, /Electronic Dictionary Research and Development Group/);
+  assert.match(html, /edrdg\.org\/edrdg\/licence\.html/);
+  assert.match(html, /CC-CEDICT/);
+  assert.match(html, /creativecommons\.org\/licenses\/by-sa\/4\.0/);
+  assert.match(readFileSync(join(__dirname, "../app/(site)/research/page.tsx"), "utf8"), /<FrequencyCredit \/>\s*<DictionaryCredit \/>/);
+});
 import LearnPage, { metadata as learnMeta } from "../app/(site)/learn/page";
 import { GUIDES } from "./guides";
 import { siteLocale } from "../app/(site)/word/views";
@@ -22,7 +43,7 @@ function files(dir: string): string[] {
 
 test("the shared shell renders the Po logo, the App Store CTA and the flag footer", () => {
   const html = renderToStaticMarkup(<Site><p>body</p></Site>);
-  assert.match(html, /<img src="\/d8\/mark-pl\.svg"/);
+  assert.match(html, /<img src="\/brand\/kit\/mark\.svg"/);
   assert.match(html, />polingual</);
   assert.ok(html.includes(`href="${APP_STORE_URL}"`), "App Store CTA");
   assert.match(html, />Get the app</);
@@ -69,7 +90,7 @@ test("the header and footer navs carry distinct labels in the page language", ()
 
 test("the guides index lists every guide and has its own canonical", () => {
   const html = renderToStaticMarkup(<LearnPage />);
-  assert.match(html, /<h1>Guides<\/h1>/);
+  assert.match(html, /<h1[^>]*>Guides<\/h1>/);
   for (const g of GUIDES) {
     assert.ok(html.includes(`href="/learn/${g.slug}"`), g.slug);
     assert.ok(html.includes(g.title), g.title);
@@ -108,7 +129,7 @@ test("unmatched urls get the branded global 404", async () => {
   const html = renderToStaticMarkup(<GlobalNotFound />);
   assert.match(html, /<html lang="en">/);
   assert.match(html, /Page not found/);
-  assert.match(html, /mark-pl\.svg/);
+  assert.match(html, /brand\/kit\/mark\.svg/);
   const config = readFileSync(join(__dirname, "../../next.config.js"), "utf8");
   assert.match(config, /globalNotFound: true/);
 });

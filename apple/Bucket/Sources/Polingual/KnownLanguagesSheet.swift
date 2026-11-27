@@ -22,7 +22,7 @@ struct KnownLanguagesSheet: View {
                         .accessibilityAddTraits(.isHeader)
                         .fixedSize(horizontal: false, vertical: true)
                     Text("Pick every one you can hold a conversation in.")
-                        .foregroundStyle(Palette.muted)
+                        .foregroundStyle(PL.inkDim)
                         .fixedSize(horizontal: false, vertical: true)
                     FlowLayout(spacing: 8) {
                         ForEach(KnownLanguages.speakable(device: picks.device), id: \.self) { l in
@@ -34,11 +34,15 @@ struct KnownLanguagesSheet: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     if picks.bases.count > 1 {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Base language").font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                            Text("Learn from").font(PL.text(12, .bold)).foregroundStyle(PL.inkDim)
+                            Text("Meanings and hints show in this language.")
+                                .font(PL.text(12))
+                                .foregroundStyle(PL.inkDim)
+                                .fixedSize(horizontal: false, vertical: true)
                             FlowLayout(spacing: 8) {
                                 ForEach(picks.bases, id: \.self) { l in
                                     Chip(title: langName(l), langs: [l], on: l == picks.root) { picks.choose(base: l) }
-                                        .accessibilityLabel(Text("Base language") + Text(verbatim: ", \(langName(l))"))
+                                        .accessibilityLabel(Text("Learn from") + Text(verbatim: ", \(langName(l))"))
                                 }
                             }
                         }
@@ -48,13 +52,13 @@ struct KnownLanguagesSheet: View {
                 .padding()
                 .animation(still ? nil : .spring(duration: 0.3), value: picks.bases)
             }
-            .background(Palette.paper.ignoresSafeArea())
+            .background(PL.paper.ignoresSafeArea())
             .safeAreaInset(edge: .bottom) {
                 Button("Done") { Task { await save() } }
                     .buttonStyle(D8Primary())
                     .disabled(!picks.ready || saving)
                     .padding()
-                    .background(Palette.paper)
+                    .background(PL.paper)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

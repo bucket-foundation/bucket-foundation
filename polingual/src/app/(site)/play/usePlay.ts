@@ -1,6 +1,7 @@
 "use client";
 
 import { local } from "@/lib/storage";
+import { kidSeat, tabStore } from "@/lib/family/kid";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
 import { browserGuestStore, cleanNickname, LobbyApi, LobbyError, lobbyError, resolveIdentity, type Identity } from "@/lib/lobby/client";
@@ -25,10 +26,11 @@ export function usePlay() {
 
   const connect = useCallback(async (nickname: string | null) => {
     const name = nickname ? cleanNickname(nickname) : null;
-    const store = browserGuestStore(local);
+    const kid = kidSeat();
+    const store = browserGuestStore(kid ? tabStore : local);
     const bare = new LobbyApi({ fetch: (input, init) => window.fetch(input, init), auth: async () => null });
     try {
-      const account = await appAuth().mobile.accessToken().catch(() => null);
+      const account = kid ? null : await appAuth().mobile.accessToken().catch(() => null);
       const merging = account ? new LobbyApi({ fetch: (input, init) => window.fetch(input, init), auth: async () => account }) : bare;
       if (!name) {
         setState({ status: "needs-name" });
@@ -39,7 +41,7 @@ export function usePlay() {
         setState({ status: "needs-name" });
         return;
       }
-      local()?.setItem(NICK_KEY, name);
+      if (!kid) local()?.setItem(NICK_KEY, name);
       setToken(identity.token);
       setState({ status: "ready", identity, nickname: name });
     } catch (err) {
@@ -48,7 +50,7 @@ export function usePlay() {
   }, []);
 
   useEffect(() => {
-    void connect(savedNickname() || null);
+    void connect(kidSeat() ? null : savedNickname() || null);
   }, [connect]);
 
   return { state, api, connect };

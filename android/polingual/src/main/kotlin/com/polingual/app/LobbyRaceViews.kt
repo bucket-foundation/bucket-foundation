@@ -46,7 +46,6 @@ import foundation.bucket.core.ui.pl.Card
 import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.Pill
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
@@ -56,21 +55,20 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun RaceRoom(graph: Graph, lobby: Lobby, remaining: Double, score: Int?, leave: () -> Unit) {
-    val p = LocalPalette.current
     val scope = rememberCoroutineScope()
     androidx.compose.runtime.DisposableEffect(lobby.id) {
         RaceSession.open(lobby) { s -> scope.launch { graph.lobbies.postScore(s) } }
         onDispose { RaceSession.close(lobby.id) }
     }
-    Column(Modifier.fillMaxSize().background(p.paper)) {
+    Column(Modifier.fillMaxSize().background(PL.Paper)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(lobby.game.title, style = Type.subhead, color = p.ink, modifier = Modifier.weight(1f))
-                Text(RaceClock.text(remaining), style = Type.subhead, color = if (remaining < 30) PL.Vermilion else p.ink, modifier = Modifier.testTag("lobbyRaceClock"))
+                Text(lobby.game.title, style = Type.subhead, color = PL.Ink, modifier = Modifier.weight(1f))
+                Text(RaceClock.text(remaining), style = Type.subhead, color = if (remaining < 30) PL.Vermilion else PL.Ink, modifier = Modifier.testTag("lobbyRaceClock"))
             }
             Row {
-                Text("${lobby.raceFinishers.size} of ${lobby.players.size} finished", style = Type.small, color = p.muted, modifier = Modifier.weight(1f))
-                Text(score?.let { "Your score: $it" } ?: "Highest score wins", style = Type.small, color = p.muted)
+                Text("${lobby.raceFinishers.size} of ${lobby.players.size} finished", style = Type.small, color = PL.InkDim, modifier = Modifier.weight(1f))
+                Text(score?.let { "Your score: $it" } ?: "Highest score wins", style = Type.small, color = PL.InkDim)
             }
         }
         Box(Modifier.weight(1f).fillMaxWidth()) {
@@ -78,8 +76,13 @@ internal fun RaceRoom(graph: Graph, lobby: Lobby, remaining: Double, score: Int?
                 LobbyGame.FlagTiles -> com.polingual.app.play.FlagTilesScreen(graph, leave)
                 LobbyGame.Shift -> com.polingual.app.play.ShiftScreen(graph, leave)
                 LobbyGame.Atlas -> com.polingual.app.play.AtlasScreen(graph, leave)
-                else -> Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Text("${lobby.game.title} races play on the web and iPhone.", color = p.ink)
+                LobbyGame.Polyword -> com.polingual.app.play.PolywordScreen(graph, leave)
+                LobbyGame.Babel -> com.polingual.app.play.BabelScreen(graph, leave)
+                LobbyGame.Snake -> com.polingual.app.play.SnakeScreen(graph, leave)
+                LobbyGame.Forehead -> com.polingual.app.play.ForeheadScreen(graph, leave)
+                LobbyGame.ISpy -> com.polingual.app.play.ISpyScreen(graph, leave)
+                else -> RaceRules.kindFor(lobby.game)?.let { kind -> GameScreen(graph, kind, leave) } ?: Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text("${lobby.game.title} races need the newest app.", color = PL.Ink)
                     PlainLink("Leave room") { leave() }
                 }
             }
@@ -106,20 +109,19 @@ object LobbySpy {
 
 @Composable
 internal fun SpyRound(graph: Graph, prompt: foundation.bucket.core.model.LobbyPrompt, index: Int, reveal: Boolean) {
-    val p = LocalPalette.current
     val state by graph.lobbies.state.collectAsState()
     val scope = rememberCoroutineScope()
     val picked = state.picks[index]
     val mark = state.marks[index]
-    Text(prompt.lang?.let { "Find this in the picture, ${Lang.name(it)}" } ?: "Find this in the picture", color = p.muted)
+    Text(prompt.lang?.let { "Find this in the picture, ${Lang.name(it)}" } ?: "Find this in the picture", color = PL.InkDim)
     WordCard(prompt.lang, prompt.gloss, tilt = 0f)
     val scene = LobbySpy.scene(prompt.choices)
-    if (scene == null) { Text("This round's picture is not on this version of the app.", color = p.muted); return }
+    if (scene == null) { Text("This round's picture is not on this version of the app.", color = PL.InkDim); return }
     com.polingual.app.play.SpyStage(scene, LobbySpy.marks(prompt, picked, mark), enabled = !reveal && picked == null) { id ->
         scope.launch { graph.lobbies.pick(id, index) }
     }
     when {
-        picked != null && mark == null -> Text("Checking", color = p.muted)
+        picked != null && mark == null -> Text("Checking", color = PL.InkDim)
         mark == true -> Text("Right", color = PL.Malachite, fontWeight = FontWeight.Bold)
         mark == false -> Text("Not this time.", color = PL.Vermilion, fontWeight = FontWeight.Bold)
     }

@@ -1,4 +1,6 @@
 import type { NextRequest, NextResponse } from "next/server";
+import { readAgeBand } from "@/lib/research-os/learn-gate";
+import { familyJoinAllowed } from "@/lib/academy/league";
 import { chosenDisplayName, joinBlocked, joinDecision, normalizeDisplayName, normalizeInviteCode } from "@/lib/academy/groups";
 import { nameAllowed } from "@/lib/academy/groups-names";
 import {
@@ -43,6 +45,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const group = await groupByCode(code);
     if (!group) return json({ error: "not_found" }, 404);
+    if (group.kind === "family") {
+      const band = await readAgeBand(uid);
+      if (!band.ok) return json({ error: "consent_unavailable" }, 503);
+      if (!familyJoinAllowed(group.kind, band.band)) return json({ error: "needs_parent" }, 403);
+    }
     const [members, mine, blocks] = await Promise.all([membersOf([group.id]), membershipsOf(uid), blocksTouching(uid)]);
     if (joinBlocked(blocks, uid, group)) return json({ error: "not_found" }, 404);
     const decision = joinDecision(group.kind, members, uid, mine.length);

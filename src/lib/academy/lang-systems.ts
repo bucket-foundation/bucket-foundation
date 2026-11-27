@@ -112,6 +112,7 @@ export interface Reading {
   roman?: string;
   kana?: string;
   ipa?: string;
+  ipa_source?: "wiktionary" | "epitran" | "llm";
 }
 
 export type ItemKind = "word" | "phrase" | "gender" | "conj";
@@ -1063,7 +1064,7 @@ export function buildQueue(
   state: EngineState,
   now: number = Date.now(),
   size = 14,
-  opts: { heritage?: boolean } = {}
+  opts: { heritage?: boolean; matchReady?: (item: LangItem) => boolean } = {}
 ): QueueEntry[] {
   const plan = planSession(system, corpus, state, now, size);
   const out: QueueEntry[] = opts.heritage ? letterQueue(system, state, now) : [];
@@ -1092,7 +1093,7 @@ export function buildQueue(
       const item = corpus.byId.get(itemId);
       if (!item || !isVocab(item) || !item.forms[system.root]) return false;
       const covered = system.targets.filter((l) => item.forms[l]);
-      return covered.length >= 2 && covered.every((l) => langs.has(l)) && new Set(covered.map((l) => item.forms[l])).size === covered.length;
+      return covered.length >= 2 && covered.every((l) => langs.has(l)) && new Set(covered.map((l) => item.forms[l])).size === covered.length && (opts.matchReady?.(item) ?? true);
     });
     const pick = matchPick(candidates.map(([id]) => id), system, corpus, new Set(out.map((e) => e.itemId)), `${system.id}|${dayKey(now)}|${Object.keys(state.cards).length}`);
     if (pick) out.push({ itemId: pick, lang: system.targets[0], stage: "match" });

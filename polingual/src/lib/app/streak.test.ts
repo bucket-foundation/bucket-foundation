@@ -28,3 +28,13 @@ test("streakCard reads Day N of 100 from the best live system and caps at 100", 
   assert.equal(done.label, "Day 100 of 100");
   assert.equal(done.complete, true);
 });
+
+test("a day with 5 minutes of input joins the study days in the streak", () => {
+  const s = normalizeState(null);
+  s.stats.history[dayKey(NOW - 2 * DAY_MS)] = { new: 1, reviews: 0 };
+  const input = [dayKey(NOW - DAY_MS), dayKey(NOW)];
+  const c = streakCard([s], NOW, input);
+  assert.equal(c.label, "Day 3 of 100");
+  assert.equal(c.studiedToday, true);
+  assert.equal(streakCard([s], NOW, [dayKey(NOW)]).label, "Day 1 of 100");
+});

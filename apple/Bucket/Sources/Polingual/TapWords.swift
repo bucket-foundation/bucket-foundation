@@ -1,7 +1,7 @@
 import BucketKit
 import SwiftUI
 
-func tapText(_ text: String, _ lang: String, color: Color = Palette.ink) -> AttributedString {
+func tapText(_ text: String, _ lang: String, color: Color = PL.ink) -> AttributedString {
     var out = WordTaps.attributed(text, lang: lang)
     for range in out.runs.filter({ $0.link != nil }).map(\.range) {
         out[range].foregroundColor = color
@@ -16,7 +16,7 @@ struct PhraseWords: View {
     var body: some View {
         if WordTaps.words(text).count > 1 {
             Text(tapText(text, lang))
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .font(PL.script(18, .semibold))
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
@@ -50,7 +50,7 @@ struct WordTapHost: ViewModifier {
                 WordCard(detail: d, reveal: reveal)
                     .presentationDetents([.height(260)])
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationBackground(Palette.card)
+                    .presentationBackground(PL.card)
             }
     }
 }
@@ -68,22 +68,22 @@ struct WordCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
                     FlagTile(lang: detail.lang, size: 30)
-                    Text(detail.word).font(D8.word(26)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.5)
+                    Text(detail.word).font(PL.wordFont(26)).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                     Spacer(minLength: 0)
                     PlayButton(text: detail.word, lang: detail.lang)
                 }
                 .environment(\.layoutDirection, Lang.isRTL(detail.lang) ? .rightToLeft : .leftToRight)
-                if let r = readingText(detail.reading) { Text(r).font(.subheadline).foregroundStyle(Palette.muted) }
+                if let r = readingText(detail.reading) { Text(r).font(PL.text(15)).foregroundStyle(PL.inkDim) }
                 switch detail.cardLine(reveal: reveal) {
                 case .meaning(let gloss):
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
-                        Text(langName(detail.rootLang).uppercased()).font(.caption2.monospaced()).foregroundStyle(Palette.muted).accessibilityLabel("\(langName(detail.rootLang)) meaning")
-                        Text(gloss).font(.body).foregroundStyle(Palette.ink)
+                        Text(langName(detail.rootLang).uppercased()).font(PL.text(11).monospaced()).foregroundStyle(PL.inkDim).accessibilityLabel("\(langName(detail.rootLang)) meaning")
+                        Text(gloss).font(PL.text(17)).foregroundStyle(PL.ink)
                     }
                 case .afterAnswer:
-                    Text("The meaning shows after you answer.").font(.subheadline).foregroundStyle(Palette.muted)
+                    Text("The meaning shows after you answer.").font(PL.text(15)).foregroundStyle(PL.inkDim)
                 case .noEntry:
-                    Text("No entry for this word yet.").font(.subheadline).foregroundStyle(Palette.muted)
+                    Text("No entry for this word yet.").font(PL.text(15)).foregroundStyle(PL.inkDim)
                 }
                 if reveal {
                     strip
@@ -122,7 +122,7 @@ struct WordCard: View {
                     ForEach(Array(forms)) { f in
                         HStack(spacing: 4) {
                             FlagTile(lang: f.lang, size: 18)
-                            Text(f.word).font(.subheadline).foregroundStyle(Palette.ink).lineLimit(1)
+                            Text(f.word).font(PL.text(15)).foregroundStyle(PL.ink).lineLimit(1)
                         }
                         .accessibilityElement(children: .combine)
                         .accessibilityLabel("\(Lang.name(f.lang)): \(f.word)")

@@ -103,6 +103,73 @@ public enum SessionMix {
         state.cards.entries.filter { system.targets.contains(parseCardId($0.key).lang) && !isSentenceCard($0.key) && isStarted($0.value) }.count
     }
 
+    public static let inputTargetToA2 = 0.7
+    public static let inputTargetPastA2 = 0.6
+    public static let a2TopTier = 6
+    public static let cardSeconds = 12.0
+    public static let idleMs = 60_000.0
+
+    public static func isActive(visible: Bool, focused: Bool, playing: Bool, needsPlayer: Bool, idle: Bool = false) -> Bool { visible && focused && (needsPlayer ? playing : !idle) }
+
+    public struct InputMix: Equatable, Sendable {
+        public var target: Double
+        public var share: Double
+        public var units: Int
+        public var positions: [Int]
+        public var plannedShare: Double
+    }
+
+    public static func inputTarget(tier: Int) -> Double { tier <= a2TopTier ? inputTargetToA2 : inputTargetPastA2 }
+
+    public static func inputShare(tier: Int, eligibleSeconds: Double, sessionSeconds: Double) -> Double {
+        sessionSeconds > 0 && eligibleSeconds > 0 ? min(inputTarget(tier: tier), eligibleSeconds / sessionSeconds) : 0
+    }
+
+    public static func planInputMix(tier: Int, cards: Int, eligibleUnitSeconds: [Double], targetShare: Double? = nil) -> InputMix {
+        let target = targetShare ?? inputTarget(tier: tier)
+        let cardTime = Double(max(0, cards)) * cardSeconds
+        let pool = eligibleUnitSeconds.filter { $0 > 0 }
+        if pool.isEmpty { return InputMix(target: target, share: 0, units: 0, positions: [], plannedShare: 0) }
+        let eligible = pool.reduce(0, +)
+        let avg = eligible / Double(pool.count)
+        let share = cardTime > 0 ? min(target, eligible / (eligible + cardTime)) : target
+        let want = cardTime > 0 ? share * cardTime / (1 - share) : avg
+        let units = min(pool.count, max(1, cards), max(1, Int((want / avg).rounded())))
+        let positions = (0..<units).map { min(max(0, cards - 1), (($0 + 1) * cards) / (units + 1)) }
+        return InputMix(target: target, share: share, units: units, positions: positions, plannedShare: Double(units) * avg / (Double(units) * avg + cardTime))
+    }
+
+    public static func roundedItems(targetPermille: Int, items: Int) -> Int { (targetPermille * items + 500) / 1000 }
+
+    public struct ActivityMark: Sendable {
+        public var at: Double
+        public var visible: Bool?
+        public var focused: Bool?
+        public var playing: Bool?
+        public var idle: Bool?
+        public init(at: Double, visible: Bool? = nil, focused: Bool? = nil, playing: Bool? = nil, idle: Bool? = nil) {
+            self.at = at; self.visible = visible; self.focused = focused; self.playing = playing; self.idle = idle
+        }
+    }
+
+    public static func activeMs(_ marks: [ActivityMark], end: Double, needsPlayer: Bool) -> Double {
+        var visible = true, focused = true, playing = false, idle = false
+        var since: Double?
+        var total = 0.0
+        func on() -> Bool { visible && focused && (needsPlayer ? playing : !idle) }
+        for m in marks.sorted(by: { $0.at < $1.at }) {
+            if m.at > end { break }
+            if let s = since, on() { total += m.at - s }
+            if let v = m.visible { visible = v }
+            if let f = m.focused { focused = f }
+            if let p = m.playing { playing = p }
+            if let i = m.idle { idle = i }
+            since = m.at
+        }
+        if let s = since, on(), end > s { total += end - s }
+        return total
+    }
+
     public static func soundShare(started: Int) -> Double {
         started < 40 ? 0.1 : started < 150 ? 0.25 : 0.4
     }

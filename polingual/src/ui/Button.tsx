@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import s from "./ui.module.css";
 
-export type ButtonVariant = "primary" | "secondary" | "accent" | "success" | "gold" | "ghost" | "quiet";
+export type ButtonVariant = "primary" | "secondary" | "accent" | "success" | "gold" | "ghost" | "quiet" | "link";
 export type ButtonSize = "sm" | "md" | "lg" | "xl";
 
 type Shared = { variant?: ButtonVariant; size?: ButtonSize; block?: boolean; onDark?: boolean; icon?: ReactNode; iconOnly?: boolean; className?: string; children?: ReactNode };

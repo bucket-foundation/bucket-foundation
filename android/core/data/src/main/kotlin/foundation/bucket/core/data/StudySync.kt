@@ -1,7 +1,11 @@
 package foundation.bucket.core.data
 
 import foundation.bucket.core.engine.CardState
+import foundation.bucket.core.engine.LogRow
+import foundation.bucket.core.engine.ReviewLog
+import foundation.bucket.core.engine.UploadGate
 import foundation.bucket.core.engine.StudyState
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -89,5 +93,36 @@ object StudySync {
         val cards = (merged["cards"] as? JsonObject)?.mapNotNull { (id, v) -> (v as? JsonObject)?.let { id to card(it) } }?.toMap().orEmpty()
         val days = ((merged["stats"] as? JsonObject)?.get("history") as? JsonObject)?.keys.orEmpty() + local.days
         return local.copy(cards = cards, days = days.toSortedSet().toList())
+    }
+
+    fun batch(rows: List<LogRow>, gate: UploadGate): JsonObject? {
+        if (gate == UploadGate.Closed) return null
+        val events = ReviewLog.take(rows).mapNotNull { r ->
+            when (r) {
+                is LogRow.Exposure -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("exposure"), "props" to JsonObject(mapOf(
+                    "item" to JsonPrimitive(r.item), "unit" to JsonPrimitive(r.unit),
+                    "lemmas_seen" to JsonArray(r.lemmasSeen.map(::JsonPrimitive)), "taps" to JsonArray(r.taps.map(::JsonPrimitive)),
+                    "seconds" to JsonPrimitive(r.seconds), "coverage_pred" to JsonPrimitive(r.coveragePred), "completed" to JsonPrimitive(r.completed),
+                ) + (r.revealed?.let { mapOf("revealed" to JsonPrimitive(it)) } ?: emptyMap()) + (r.playback?.let { mapOf("playback" to JsonPrimitive(it)) } ?: emptyMap()))))
+                is LogRow.Session -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("session_mix"), "props" to JsonObject(mapOf(
+                    "session" to JsonPrimitive(r.sessionId), "share_target" to JsonPrimitive(r.shareTarget), "share_real" to JsonPrimitive(r.shareReal),
+                    "arm" to JsonPrimitive(r.arm), "units" to JsonPrimitive(r.units), "cards" to JsonPrimitive(r.cards),
+                    "seconds" to JsonPrimitive(minOf(86_400L, (r.ended - r.started) / 1000)),
+                ))))
+                is LogRow.VocabTest -> JsonObject(mapOf("id" to JsonPrimitive(r.id), "name" to JsonPrimitive("vocab_test"), "props" to JsonObject(mapOf(
+                    "phase" to JsonPrimitive(r.phase), "form" to JsonPrimitive(r.form), "arm" to JsonPrimitive(r.arm),
+                    "hits" to JsonPrimitive(r.hits), "words" to JsonPrimitive(r.words), "false_alarms" to JsonPrimitive(r.falseAlarms),
+                    "pseudowords" to JsonPrimitive(r.pseudowords), "known" to JsonPrimitive(r.known), "day" to JsonPrimitive(r.day), "seconds" to JsonPrimitive(r.seconds),
+                ))))
+                is LogRow.Review -> null
+            }
+        }
+        return if (events.isEmpty()) null else JsonObject(mapOf("events" to JsonArray(events)))
+    }
+
+    fun gateAfter(outcome: String?, gate: UploadGate): UploadGate = when (outcome) {
+        "recorded" -> UploadGate.Open
+        "under_age", "no_consent" -> UploadGate.Closed
+        else -> gate
     }
 }

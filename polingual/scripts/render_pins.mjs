@@ -33,6 +33,7 @@ export const FLAGS = {
 
 const ORDER = ["es", "ja", "ar", "fr", "ru", "hi", "de", "zh", "he", "it", "ko", "el", "pt", "th", "tr", "fa", "vi"];
 
+export const PAGE_TIMEOUT_MS = 30_000;
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;800&family=Space+Mono:wght@700&family=Noto+Sans:wght@400;800&family=Noto+Sans+Hebrew:wght@800&family=Noto+Sans+Arabic:wght@800&family=Noto+Sans+Devanagari:wght@800&family=Noto+Sans+SC:wght@800&family=Noto+Sans+JP:wght@800&family=Noto+Sans+KR:wght@800&family=Noto+Sans+Thai:wght@800&display=block";
 
@@ -125,17 +126,21 @@ async function main() {
   const css = fs.readFileSync(path.join(ROOT, "public", "d8", "tiles.css"), "utf8");
   fs.mkdirSync(o.out, { recursive: true });
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: W, height: H } });
-  for (const [turn, [meaning, langs]] of chosen.entries()) {
-    const tiles = pickTiles(langs, 6, turn);
-    await page.setContent(pinHtml(meaning, tiles, css, cr.text), { waitUntil: "networkidle" });
-    await page.evaluate(() => document.fonts.ready);
-    const file = path.join(o.out, `pin-${meaning.replace(/\s+/g, "-")}.png`);
-    await page.screenshot({ path: file });
-    fs.writeFileSync(file.replace(/\.png$/, ".txt"), `${meaning}: ${tiles.map((t) => `${FLAGS[t.lang].n} ${t.w}`).join(", ")}\n${cr.text}\nLicense: ${cr.url}\n`);
-    console.log(file);
+  try {
+    const page = await browser.newPage({ viewport: { width: W, height: H } });
+    page.setDefaultTimeout(PAGE_TIMEOUT_MS);
+    for (const [turn, [meaning, langs]] of chosen.entries()) {
+      const tiles = pickTiles(langs, 6, turn);
+      await page.setContent(pinHtml(meaning, tiles, css, cr.text), { waitUntil: "networkidle" });
+      await page.evaluate(() => document.fonts.ready);
+      const file = path.join(o.out, `pin-${meaning.replace(/\s+/g, "-")}.png`);
+      await page.screenshot({ path: file });
+      fs.writeFileSync(file.replace(/\.png$/, ".txt"), `${meaning}: ${tiles.map((t) => `${FLAGS[t.lang].n} ${t.w}`).join(", ")}\n${cr.text}\nLicense: ${cr.url}\n`);
+      console.log(file);
+    }
+  } finally {
+    await browser.close();
   }
-  await browser.close();
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

@@ -47,13 +47,14 @@ function loadApi(): Promise<YTApi> {
   return loading;
 }
 
-export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: string) {
+export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: string, enabled: boolean) {
   const player = useRef<YTPlayer | null>(null);
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
+    if (!enabled) return;
     let live = true;
     let timer = 0;
     const mount = document.createElement("div");
@@ -80,7 +81,7 @@ export function useYouTube(host: RefObject<HTMLDivElement | null>, videoId: stri
       player.current = null;
       mount.remove();
     };
-  }, [host, videoId]);
+  }, [host, videoId, enabled]);
 
   const seek = useCallback((t: number) => {
     setTime(t);

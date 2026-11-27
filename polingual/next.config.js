@@ -1,6 +1,7 @@
 const path = require("path");
 const SITE_LANGS = require("./src/lib/site-langs.json");
 const { syncCorpus } = require("./scripts/sync-corpus.cjs");
+const { adminRewrites } = require("./src/lib/ops/hosts.cjs");
 
 const SYNC_PHASES = ["phase-production-build", "phase-development-server"];
 
@@ -9,7 +10,7 @@ const SYNC_BASE = (process.env.POLINGUAL_SYNC_BASE || "https://www.bucket.founda
 const nextConfig = {
   async rewrites() {
     return {
-      beforeFiles: [{ source: "/", has: [{ type: "host", value: "beta.polingual.com" }], destination: "/beta" }, { source: "/", destination: "/d8/index.html" }, ...SITE_LANGS.map((l) => ({ source: `/${l}`, destination: `/d8/${l}.html` }))],
+      beforeFiles: [...adminRewrites(), { source: "/", has: [{ type: "host", value: "beta.polingual.com" }], destination: "/beta" }, { source: "/", destination: "/d8/index.html" }, ...SITE_LANGS.map((l) => ({ source: `/${l}`, destination: `/d8/${l}.html` }))],
       afterFiles: [
         { source: "/api/academy/:path*", destination: `${SYNC_BASE}/api/academy/:path*` },
         { source: "/api/polingual/checkout", destination: `${SYNC_BASE}/api/polingual/checkout` },
@@ -22,13 +23,14 @@ const nextConfig = {
       { source: "/academy-app/corpus/:path*", headers: [{ key: "cache-control", value: "public, max-age=86400, s-maxage=31536000" }] },
       { source: "/academy-app/polingual/:path*", headers: [{ key: "cache-control", value: "public, max-age=86400, s-maxage=31536000" }] },
       { source: "/academy-app/audio/:path*", headers: [{ key: "cache-control", value: "public, max-age=604800, s-maxage=2592000, stale-while-revalidate=2592000" }] },
+      { source: "/input/:file([a-z]{2,3}\\.[0-9a-f]{12}\\.json)", headers: [{ key: "cache-control", value: "public, max-age=31536000, immutable" }] },
+      { source: "/input/manifest.json", headers: [{ key: "cache-control", value: "public, max-age=3600, s-maxage=86400" }] },
     ];
   },
   async redirects() {
     return [
       { source: "/word/:id(photon.*)", destination: "/photon/:id", permanent: true },
-      { source: "/admin", destination: `${SYNC_BASE}/admin/growth`, permanent: false },
-      { source: "/:path*", has: [{ type: "host", value: "admin.polingual.com" }], destination: `${SYNC_BASE}/admin/growth`, permanent: false },
+      { source: "/admin", missing: [{ type: "host", value: "admin.polingual.com" }], destination: `${SYNC_BASE}/admin/growth`, permanent: false },
     ];
   },
   reactStrictMode: true,

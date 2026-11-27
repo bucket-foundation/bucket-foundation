@@ -33,7 +33,7 @@ export interface SessionDeps {
   enabled: () => boolean;
   configured: () => boolean;
   rateHit: (key: string, limit: number, windowSeconds: number) => Promise<boolean>;
-  sendOtp: (email: string, redirectTo?: string) => Promise<{ status: number | null }>;
+  sendOtp: (email: string, redirectTo?: string, create?: boolean) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
   signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
@@ -153,7 +153,7 @@ export function createSessionHandler(deps: SessionDeps) {
         return { status: 200, body: { ok: true } };
       }
       const redirectTo = typeof b.app === "string" && Object.hasOwn(APP_REDIRECTS, b.app) ? APP_REDIRECTS[b.app] : undefined;
-      const r = redirectTo ? await deps.sendOtp(email, redirectTo) : await deps.sendOtp(email);
+      const r = b.create === false ? await deps.sendOtp(email, redirectTo, false) : redirectTo ? await deps.sendOtp(email, redirectTo) : await deps.sendOtp(email);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.status === null ? { status: 200, body: { ok: true } } : { status: 400, body: { error: "send_failed" } };
     }

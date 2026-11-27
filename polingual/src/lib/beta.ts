@@ -2,6 +2,10 @@ import { APP_STORE_URL } from "./facts";
 import { parseSignup } from "./signup";
 import { betaLink } from "./beta-link";
 import { TESTFLIGHT_APP_URL } from "./testflight-links";
+import { ANDROID_STEPS, parsePlatform } from "./beta-platform";
+import { tokens } from "@/ui/tokens";
+
+const C = tokens.color;
 
 export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
@@ -52,7 +56,7 @@ export function welcomeEmail(to: string, from: string) {
     to: [to],
     subject: "Your Polingual link",
     text: `Polingual is on the App Store.\n\nOn your iPhone, open this link:\n${APP_STORE_URL}\n\nTap Get to install it.\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Polingual is on the App Store.</p><p><a href="${APP_STORE_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install Polingual</a></p><p>Open it on your iPhone and tap Get.</p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:${C.ink}"><p>Polingual is on the App Store.</p><p><a href="${APP_STORE_URL}" style="display:inline-block;background:${C.vermilion};color:${C.white};padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install Polingual</a></p><p>Open it on your iPhone and tap Get.</p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:${C["ink-dim"]}">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
 }
 
@@ -63,8 +67,29 @@ export function testflightEmail(to: string, from: string, link: string) {
     to: [to],
     subject: "Your Polingual beta invite",
     text: `You're in. Open this on your iPhone (iOS 26) to join the Polingual beta:\n${link}\n\nNo TestFlight yet? Get it first: ${TESTFLIGHT_APP_URL}\n\nApple may also send you a TestFlight email.\n\nFull access is free while you test. Reply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>You're in. Open this on your iPhone to join the Polingual beta.</p><p><a href="${href}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Join the beta</a></p><p>Needs iOS 26 and the <a href="${TESTFLIGHT_APP_URL}">TestFlight app</a>.</p><p>Apple may also send you a TestFlight email.</p><p>Full access is free while you test. Reply with anything that feels off.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:${C.ink}"><p>You're in. Open this on your iPhone to join the Polingual beta.</p><p><a href="${href}" style="display:inline-block;background:${C.vermilion};color:${C.white};padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Join the beta</a></p><p>Needs iOS 26 and the <a href="${TESTFLIGHT_APP_URL}">TestFlight app</a>.</p><p>Apple may also send you a TestFlight email.</p><p>Full access is free while you test. Reply with anything that feels off.</p><p style="font-size:13px;color:${C["ink-dim"]}">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
+}
+
+export function androidEmail(to: string, from: string) {
+  const button = (href: string, label: string) => `<a href="${href}" style="display:inline-block;background:${C.vermilion};color:${C.white};padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">${label}</a>`;
+  const text = ANDROID_STEPS.map((s, i) => `${i + 1}. ${s.title}: ${s.href}\n${s.body}`).join("\n\n");
+  const html = ANDROID_STEPS.map((s, i) => `<p><b>${i + 1}. ${s.title}.</b> ${s.body}</p><p>${button(s.href, s.cta)}</p>`).join("");
+  return {
+    from,
+    to: [to],
+    subject: "Your Polingual Android beta",
+    text: `You're in. Two steps on your Android phone, both with the same Google account:\n\n${text}\n\nReply with anything that feels off.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:${C.ink}"><p>You're in. Two steps on your Android phone, both with the same Google account.</p>${html}<p>Reply with anything that feels off.</p><p style="font-size:13px;color:${C["ink-dim"]}">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
+  };
+}
+
+export const ANDROID_MARK = "android";
+let warnedAndroid = false;
+function warnNoAndroidAudience() {
+  if (warnedAndroid) return;
+  warnedAndroid = true;
+  console.error("[beta] RESEND_ANDROID_AUDIENCE_ID is not set; Android signups are marked by last_name in the beta audience");
 }
 
 export function wantsTestflight(body: unknown): boolean {
@@ -104,7 +129,10 @@ export async function joinBeta(
   if (parsed.suspect) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   if (!limits.email.take(parsed.signup.email, req.now)) return TOO_MANY;
   const key = env.RESEND_API_KEY?.trim();
-  const audience = env.RESEND_BETA_AUDIENCE_ID?.trim();
+  const android = wantsTestflight(body) && parsePlatform(body) === "android";
+  const androidAudience = android ? env.RESEND_ANDROID_AUDIENCE_ID?.trim() : undefined;
+  if (android && !androidAudience) warnNoAndroidAudience();
+  const audience = androidAudience || env.RESEND_BETA_AUDIENCE_ID?.trim();
   if (!key || !audience) return { status: 503, body: { error: "Signups are offline. Try again soon." } };
   if (!req.human && needsHuman(req.token, env) && !(await verifyHuman(req.token, req.ip ?? null, env, send))) return { status: 403, body: { error: "Finish the check below your email, then try again." } };
   const headers = { Authorization: `Bearer ${key}`, "Content-Type": "application/json" };
@@ -115,14 +143,14 @@ export async function joinBeta(
     const contact = await send(`${API}/audiences/${audience}/contacts`, {
       method: "POST",
       headers,
-      body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false }),
+      body: JSON.stringify({ email: parsed.signup.email, unsubscribed: false, ...(android ? { last_name: ANDROID_MARK } : {}) }),
     });
     if (!contact.ok && contact.status !== 409) return { status: 502, body: { error: "Your signup did not save. Try again in a minute." } };
     if (contact.status === 409 && !testflight) return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   } else if (!testflight) {
     return { status: 200, body: { ok: true, appStore: APP_STORE_URL } };
   }
-  const letter = testflight ? testflightEmail(parsed.signup.email, from, betaLink(parsed.signup.email, env, req.now)) : welcomeEmail(parsed.signup.email, from);
+  const letter = android ? androidEmail(parsed.signup.email, from) : testflight ? testflightEmail(parsed.signup.email, from, betaLink(parsed.signup.email, env, req.now)) : welcomeEmail(parsed.signup.email, from);
   const mail = await send(`${API}/emails`, { method: "POST", headers, body: JSON.stringify(letter) });
   if (!mail.ok) {
     console.error("[beta] email failed", mail.status);

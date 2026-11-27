@@ -40,6 +40,7 @@ class Graph(val context: Context) {
     val api = BucketApi(http, BuildConfig.BUCKET_BASE, app = "polingual")
     val store = AppStore(context)
     val corpus = CorpusRepo(context)
+    val inputs = InputRepo(java.io.File(context.filesDir, "input"), BuildConfig.INPUT_BASE, BuildConfig.INPUT_BAND_BASE.ifBlank { null }, BuildConfig.DEBUG, http)
     val account = Account(api, KeystoreVault(context))
     val kv = PrefsKeyValue(context)
     val funnel = Funnel(kv, { UUID.randomUUID().toString() }) { body ->
@@ -65,7 +66,60 @@ class Graph(val context: Context) {
             ?: guest.token()?.let { t -> guest.userId?.let { foundation.bucket.core.auth.ChatIdentity(it, t) } }
     }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
-    val radio = Radio(context)
+    val radioLog = RadioLog(kv)
+    val studyLog = LogQueue(kv, RadioLog.STUDY_KEY, RadioLog.STUDY_MAX_ROWS)
+    val ci14 = Ci14Prefs(kv) { account.userId }
+
+    suspend fun probeUploadGate() {
+        if (Ci14.flag && radioLog.gate() == foundation.bucket.core.engine.UploadGate.Unknown) syncRadio()
+    }
+
+    fun ci14Consent() = ci14.consent(Ci14.flag, radioLog.gate())
+
+    suspend fun experimentApi(): ExperimentApi? {
+        val token = account.token() ?: return null
+        return object : ExperimentApi {
+            override suspend fun fetch() = api.experiment(token)?.let { ExperimentApi.Fetched(foundation.bucket.core.engine.InputExperiment.parseEnrolment(it.enrolment)) }
+            override suspend fun register(stratum: String) = foundation.bucket.core.engine.InputExperiment.parseEnrolment(api.enrol(token, foundation.bucket.core.engine.InputExperiment.EXPERIMENT_ID, stratum))
+        }
+    }
+
+    suspend fun heldOut(langs: List<String>): Map<String, Set<String>> {
+        if (!foundation.bucket.core.engine.InputExperiment.mayTakePart(ci14Consent())) return emptyMap()
+        return kotlinx.coroutines.withContext(Dispatchers.IO) {
+            langs.associateWith { l -> foundation.bucket.core.engine.InputExperiment.heldOutWords(yesNoForms(l)) }.filterValues { it.isNotEmpty() }
+        }
+    }
+
+    fun yesNoForms(lang: String) = foundation.bucket.core.engine.YesNoTest.parseForms(runCatching { context.assets.open("Corpus/yesno/$lang.json").bufferedReader().use { it.readText() } }.getOrNull())
+
+    fun recordStudy(rows: List<foundation.bucket.core.engine.LogRow>) {
+        if (rows.isEmpty()) return
+        studyLog.append(rows)
+        scope.launch { syncRadio() }
+    }
+
+    fun deviceId(): String {
+        val salt = kv.get("polingual.reviewLog.salt") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.reviewLog.salt", it) }
+        return foundation.bucket.core.engine.ReviewLog.deviceHash(salt, kv.get("polingual.install") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.install", it) })
+    }
+    val radio = Radio(context) { h -> logRadio(h) }
+
+    private fun logRadio(h: Heard) {
+        val system = state.value?.systems?.firstOrNull { h.lang in it.targets } ?: return
+        val salt = kv.get("polingual.reviewLog.salt") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.reviewLog.salt", it) }
+        val device = foundation.bucket.core.engine.ReviewLog.deviceHash(salt, kv.get("polingual.install") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.install", it) })
+        radioLog.log(h, system.id, device, java.util.TimeZone.getDefault().id, System.currentTimeMillis()) { java.util.UUID.randomUUID().toString() }
+        scope.launch { syncRadio() }
+    }
+
+    private val radioLock = kotlinx.coroutines.sync.Mutex()
+
+    suspend fun syncRadio() = radioLock.withLock {
+        val token = account.token() ?: return@withLock
+        radioLog.upload { batch -> api.learnEvents(token, batch) }
+        studyLog.upload { batch -> api.learnEvents(token, batch) }
+    }
     val billing = Billing(context, this)
     val ads = Ads(context, this)
     var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
@@ -103,7 +157,7 @@ class Graph(val context: Context) {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily() }
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily(); syncRadio() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {
