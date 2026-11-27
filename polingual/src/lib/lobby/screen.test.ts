@@ -46,7 +46,9 @@ test("a screen seat reads state and nothing else", () => {
   assert.equal(seatAllowed(null, true), false);
 });
 
-test("only the state route admits screen seats", () => {
+const HOST_ONLY = new Set(["start", "settings", "next", "end", "bots", "hostmode"]);
+
+test("only the state route admits screen seats, and only host-only routes admit a seatless host", () => {
   for (const name of readdirSync(ROUTES, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)) {
     let src: string;
     try {
@@ -56,10 +58,13 @@ test("only the state route admits screen seats", () => {
     }
     const calls = (src.match(/memberLobby\(/g) ?? []).length;
     const playerOnly = (src.match(/memberLobby\(a\.uid, a\.body\??\.lobbyId\)/g) ?? []).length;
-    if (name === "state") assert.match(src, /memberLobby\(a\.uid, params\.get\("lobbyId"\), true\)/);
+    const hostOnly = (src.match(/memberLobby\(a\.uid, a\.body\??\.lobbyId, false, true\)/g) ?? []).length;
+    if (name === "state") assert.match(src, /memberLobby\(a\.uid, params\.get\("lobbyId"\), true, true\)/);
+    else if (HOST_ONLY.has(name)) assert.equal(hostOnly, calls, `${name} admits players and its host`);
     else assert.equal(playerOnly, calls, `${name} must admit players only`);
   }
-  for (const name of ["answer", "chat", "ready"]) assert.match(route(name), /memberLobby\(a\.uid, a\.body\??\.lobbyId\)/);
+  for (const name of ["answer", "chat", "ready", "power", "continue", "score"]) assert.match(route(name), /memberLobby\(a\.uid, a\.body\??\.lobbyId\)/);
+  for (const name of HOST_ONLY) assert.match(route(name), /host_id !== a\.uid\) return json\(\{ error: "not_host" \}, 403\)|decision === "not_host"/);
 });
 
 test("join route answers a full screen cap with lobby_full and a closed lobby with not_found", () => {

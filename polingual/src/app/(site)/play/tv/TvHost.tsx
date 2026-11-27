@@ -3,12 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
-import { phaseAt, type WebLobbyState } from "@/lib/lobby/client";
-import { secondsUntil } from "@/lib/lobby/room";
+import { LobbyError, lobbyError, phaseAt, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
+import { everyoneReady, roomControls, secondsUntil } from "@/lib/lobby/room";
 import { TV_ORIGIN, tvChoice, tvTotals, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
 import { createPortal } from "react-dom";
-import { ButtonLink, Pill, Tag } from "@/ui";
+import { Button, ButtonLink, Pill, Tag } from "@/ui";
 import { Brand, Standings } from "../../live/parts";
 import Qr from "../../live/Qr";
 import { MixBar, Podium, useStage } from "../../live/show";
@@ -35,7 +35,7 @@ function useTvSound(lobby: WebLobbyState | null, now: number, stage: AudioStage)
   }, [lobby, now, stage]);
 }
 
-export default function TvHost({ code: rawCode }: { code: string }) {
+export default function TvHost({ code: rawCode, onPlay }: { code: string; onPlay?: () => void }) {
   const code = normalizeLobbyCode(rawCode);
   const { state, api, connect } = usePlay();
   const ready = state.status === "ready";
@@ -47,6 +47,13 @@ export default function TvHost({ code: rawCode }: { code: string }) {
   useEffect(() => {
     setOrigin(window.location.origin);
     setHost(document.body);
+    const frame = document.querySelector<HTMLElement>("[data-testid=play-frame]");
+    if (!frame) return;
+    const prior = frame.style.display;
+    frame.style.display = "none";
+    return () => {
+      frame.style.display = prior;
+    };
   }, []);
   useTvSound(sync.lobby, now, stage);
   usePauseAds(true);
@@ -59,7 +66,7 @@ export default function TvHost({ code: rawCode }: { code: string }) {
           <MixBar mix={mix} setMix={setMix} ready={soundReady} unlock={unlock} full={false} />
         </header>
         <main className={tv.main}>
-          <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} />
+          <TvView code={code} play={{ state, connect, api }} sync={sync} now={now} origin={origin} onPlay={onPlay} />
         </main>
       </div>
     </div>
@@ -67,7 +74,7 @@ export default function TvHost({ code: rawCode }: { code: string }) {
   return host ? createPortal(screen, host) : null;
 }
 
-function TvView({ code, play, sync, now, origin }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect" | "api">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string }) {
+function TvView({ code, play, sync, now, origin, onPlay }: { code: string | null; play: Pick<ReturnType<typeof usePlay>, "state" | "connect" | "api">; sync: ReturnType<typeof useRoomSync>; now: number; origin: string; onPlay?: () => void }) {
   const { state, connect } = play;
   const ready = state.status === "ready";
   if (!code) {
@@ -89,8 +96,15 @@ function TvView({ code, play, sync, now, origin }: { code: string | null; play: 
   }
   if (!sync.lobby) return sync.error ? <p className={styles.error} role="alert">{sync.error}</p> : <p className={styles.muted} aria-busy="true">Opening the room</p>;
   const url = tvJoinUrl(origin, code);
-  if (phaseAt(sync.lobby, now).kind === "waiting") return <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} />;
-  return <TvBoard lobby={sync.lobby} now={now} url={url} />;
+  const board = phaseAt(sync.lobby, now).kind === "waiting" ? <WaitingBoard lobby={sync.lobby} joinUrl={url} tv host={{ api: play.api, take: sync.take }} /> : <TvBoard lobby={sync.lobby} now={now} url={url} />;
+  if (!sync.lobby.isHost) return board;
+  const nickname = state.status === "ready" ? state.nickname : "";
+  return (
+    <>
+      {board}
+      <HostBar lobby={sync.lobby} now={now} api={play.api} take={sync.take} nickname={nickname} onPlay={onPlay} />
+    </>
+  );
 }
 
 function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: string }) {
@@ -140,7 +154,7 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
   }
   return (
     <>
-      <Tag>{round.label}</Tag>
+      <span className={tv.roundTag}><Tag>{round.label}</Tag></span>
       {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
       {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
       {round.choices.length ? (
@@ -151,5 +165,51 @@ function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
         </div>
       ) : null}
     </>
+  );
+}
+
+function HostBar({ lobby, now, api, take, nickname, onPlay }: { lobby: WebLobbyState; now: number; api: LobbyApi; take: (l: WebLobbyState, sentAt: number) => void; nickname: string; onPlay?: () => void }) {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const phase = phaseAt(lobby, now);
+  const act = async (fn: () => Promise<WebLobbyState>, after?: () => void) => {
+    setBusy(true);
+    setError(null);
+    try {
+      const sentAt = Date.now();
+      take(await fn(), sentAt);
+      after?.();
+    } catch (err) {
+      setError(lobbyError(err instanceof LobbyError ? err.code : undefined));
+    } finally {
+      setBusy(false);
+    }
+  };
+  const can = roomControls(lobby);
+  return (
+    <nav className={tv.hostBar} aria-label="Host controls" data-testid="host-bar">
+      {can.start ? (
+        <Button size="lg" disabled={busy || !everyoneReady(lobby)} onClick={() => void act(() => api.start(lobby.id))} data-testid="start">
+          Start game
+        </Button>
+      ) : null}
+      {can.nextNow && phase.kind === "finished" && !lobby.ended ? (
+        <Button size="lg" disabled={busy} onClick={() => void act(() => api.next(lobby.id))} data-testid="next-now">
+          Next game
+        </Button>
+      ) : null}
+      {can.settings && onPlay ? (
+        <Button variant="ghost" size="lg" disabled={busy} onClick={() => void act(() => api.hostMode(lobby.id, false, nickname), onPlay)} data-testid="mode-play">
+          Play on this device
+        </Button>
+      ) : null}
+      {lobby.canEnd && !lobby.ended ? (
+        <Button variant="ghost" size="lg" disabled={busy} onClick={() => void act(() => api.end(lobby.id))} data-testid="end-game">
+          Close lobby
+        </Button>
+      ) : null}
+      {lobby.status === "lobby" && !everyoneReady(lobby) ? <span className={tv.hint}>Start opens when every player is ready.</span> : null}
+      {error ? <span className={tv.hint} role="alert">{error}</span> : null}
+    </nav>
   );
 }

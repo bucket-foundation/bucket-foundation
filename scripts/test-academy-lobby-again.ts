@@ -72,3 +72,39 @@ test("two pollers reach the next game together and only one resets it", async ()
   assert.equal(tables.lobby_answers.length, 1);
   assert.deepEqual(tables.lobby_players.map((p) => p.total), [400, 200]);
 });
+
+function room(over: Record<string, unknown> = {}) {
+  const t = "2026-11-27T10:00:00.000Z";
+  return { id: "00000000-0000-4000-8000-000000000002", code: "XYZ123", host_id: "h", name: "R", game: "flags", root: "en", targets: ["es"], seed: "1", status: "lobby", listed: true, rounds: 2, round_seconds: 10, reveal_seconds: 0, started_at: null, version: 1, created_at: t, standing_slot: null, playlist: ["flags"], mix: false, start_at: null, ended_at: null, ...over };
+}
+
+test("a seatless host passes only host-only membership checks", async () => {
+  const server = await import("../src/lib/academy/lobbies-server");
+  const { db } = fakeDb({ lobbies: [room()], lobby_players: [], lobby_screens: [{ lobby_id: "00000000-0000-4000-8000-000000000002", user_id: "h", last_seen: "2026-11-27T10:00:00.000Z" }] });
+  (groups as unknown as Record<string, unknown>).service = () => db;
+  await assert.rejects(server.memberLobby("h", "00000000-0000-4000-8000-000000000002"), /not_found/);
+  assert.equal((await server.memberLobby("h", "00000000-0000-4000-8000-000000000002", false, true)).id, "00000000-0000-4000-8000-000000000002");
+  await assert.rejects(server.memberLobby("x", "00000000-0000-4000-8000-000000000002", false, true), /not_found/);
+});
+
+test("a leaving host hands off to a human who still has a seat, or closes the room", async () => {
+  const server = await import("../src/lib/academy/lobbies-server");
+  const now = Date.parse("2026-11-27T10:05:00.000Z");
+  const seen = new Date(now - 1000).toISOString();
+  const seat = (user_id: string, joined: string) => ({ lobby_id: "00000000-0000-4000-8000-000000000002", user_id, display_name: user_id, ready: true, score: 0, total: 0, last_seen: seen, joined_at: joined, is_bot: false });
+  const tables: Record<string, Row[]> = { lobbies: [room()], lobby_players: [seat("h", "2026-11-27T10:00:00.000Z"), seat("a", "2026-11-27T10:01:00.000Z"), seat("b", "2026-11-27T10:02:00.000Z")], lobby_screens: [] };
+  const { db } = fakeDb(tables);
+  (groups as unknown as Record<string, unknown>).service = () => db;
+  assert.equal(await server.handOffHost(room() as never, "h", now), "handoff");
+  assert.equal(tables.lobbies[0].host_id, "a");
+  assert.deepEqual(tables.lobby_players.map((p) => p.user_id), ["a", "b"]);
+
+  tables.lobby_players.push(seat("h", "2026-11-27T10:00:00.000Z"));
+  assert.equal(await server.handOffHost(room() as never, "h", now), "moved");
+  assert.equal(tables.lobby_players.length, 3);
+
+  tables.lobbies[0].host_id = "a";
+  tables.lobby_players = [seat("a", "2026-11-27T10:01:00.000Z")];
+  assert.equal(await server.handOffHost(room({ host_id: "a" }) as never, "a", now), "closed");
+  assert.equal(tables.lobbies[0].status, "done");
+});

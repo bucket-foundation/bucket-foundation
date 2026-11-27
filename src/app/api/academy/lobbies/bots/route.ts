@@ -17,7 +17,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!("uid" in a)) return a;
   if (!botsEnabled()) return json({ error: "bots_off" }, 404);
   try {
-    const lobby = await memberLobby(a.uid, a.body?.lobbyId);
+    const lobby = await memberLobby(a.uid, a.body?.lobbyId, false, true);
     if (lobby.host_id !== a.uid) return json({ error: "not_host" }, 403);
     if (lobby.status !== "lobby") return json({ error: "lobby_started" }, 409);
     if (isRace(lobby.game)) return json({ error: "bots_off" }, 404);

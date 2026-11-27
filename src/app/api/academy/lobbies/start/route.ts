@@ -14,7 +14,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const a = await authed(req);
   if (!("uid" in a)) return a;
   try {
-    const lobby = await memberLobby(a.uid, a.body?.lobbyId);
+    const lobby = await memberLobby(a.uid, a.body?.lobbyId, false, true);
     const decision = startDecision(lobby, await playersOf([lobby.id]), a.uid, Date.now());
     if (decision === "not_host") return json({ error: "not_host" }, 403);
     if (decision === "not_lobby") return json({ error: "lobby_started" }, 409);

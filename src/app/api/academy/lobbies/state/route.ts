@@ -19,7 +19,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const since = Number(params.get("since") ?? "-1");
   try {
     const now = Date.now();
-    const lobby = await pace(await settle(await tickLobby(await memberLobby(a.uid, params.get("lobbyId"), true), now), now), now);
+    const lobby = await pace(await settle(await tickLobby(await memberLobby(a.uid, params.get("lobbyId"), true, true), now), now), now);
     const seenBefore = new Date(now - SEEN_EVERY_MS).toISOString();
     for (const table of [PLAYERS, SCREENS]) checkLobby(await service().from(table).update({ last_seen: new Date(now).toISOString() }).eq("lobby_id", lobby.id).eq("user_id", a.uid).lt("last_seen", seenBefore), "seen");
     if (lobby.status !== "playing" && Number.isFinite(since) && since === lobby.version) return json({ changed: false, version: lobby.version, now: new Date(now).toISOString() });
