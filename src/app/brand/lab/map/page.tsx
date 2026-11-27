@@ -17,7 +17,8 @@ const ROUTES_BEFORE: Box[] = [
 ];
 
 const ROUTES_AFTER: Box[] = [
-  { name: "/about", size: "1 page, 4 sections", tone: "move", items: ["#mission from /mission", "#manifesto from /manifesto", "#governance from /governance", "#changelog from /whats-new"] },
+  { name: "/about", size: "1 page, 3 sections", tone: "move", items: ["#mission from /mission", "#manifesto from /manifesto", "#governance from /governance"] },
+  { name: "/whats-new", size: "stays its own page", tone: "keep", items: ["fed by every feat, fix and perf commit"] },
   { name: "/legal", size: "1 page", tone: "move", items: ["#terms from /terms", "#privacy from /privacy", "#support from /support"] },
   { name: "/learn", size: "1 hub", tone: "move", items: ["/learn/academy", "/learn/ladder", "/learn/explore", "/learn/earth", "/learn/sacred-history", "/learn/build"] },
   { name: "/canon", size: "1 hub", tone: "move", items: ["/canon/excerpts", "/canon/protocol", "/canon/cite", "/canon/contributors", "/canon/contribute"] },
@@ -58,6 +59,46 @@ const CHROME_AFTER: Box[] = [
   { name: "Page sources blocks", size: "<aside>", tone: "move", items: ["the 12 page-local footers become a Sources block"] },
   { name: "SiteHeader", size: "1", tone: "keep", items: ["nav built from the same route list"] },
 ];
+
+
+const BEST: { move: string; urls: string; code: string; effort: string }[] = [
+  { move: "Pages from Markdown: about, mission, manifesto, governance, terms, privacy, support render through one ContentPage component from content/*.md. Your text moves word for word.", urls: "no change", code: "~1,000 lines of page TSX become ~60 plus 7 .md files", effort: "S" },
+  { move: "One route list in src/lib/routes.ts drives the header menu, both footers and the sitemap", urls: "no change", code: "3 hand-kept link lists become 1", effort: "S" },
+  { move: "One footer: SiteFooter with full and slim variants. The 12 page-local <footer> tags become a shared <Sources> block", urls: "no change", code: "15 footers become 1 + 1", effort: "S" },
+  { move: "Download, device and demo pages: three redirects to polingual.com in next.config", urls: "3 redirect", code: "-677 lines", effort: "S" },
+  { move: "Unused code sweep with knip: dead files, exports and API routes", urls: "dead ones only", code: "measured before any delete", effort: "S" },
+  { move: "Raw data out of the site repo: archaeology, openalex-fanout, yt, arxiv have 0 to 1 code references. Move them to bucket-data", urls: "no change", code: "~90,000 files and ~3G out of every clone and Vercel upload", effort: "M" },
+  { move: "Archive the 6 dead GitHub repos", urls: "no change", code: "0", effort: "S" },
+];
+
+const BEFORE_AFTER: [string, string, string][] = [
+  ["Page routes", "174", "171 + 3 redirects"],
+  ["Footers", "15", "1"],
+  ["Link lists", "3", "1"],
+  ["Static page TSX", "1,071 lines", "~60 + Markdown"],
+  ["Tracked files", "143,893", "~50,000"],
+  ["Repos to maintain", "7", "2: site + data"],
+];
+
+function Best() {
+  return (
+    <section className="mb-16 rounded border-2 p-5" style={{ borderColor: "var(--bk-success)" }}>
+      <h2 className="text-2xl font-semibold">Recommended: least code</h2>
+      <p className="font-mono text-xs mt-1 mb-5 text-[color:var(--bk-muted)]">No URL moves, no copy rewrites, no new repos for code. Each row ships alone.</p>
+      <table className="w-full text-sm mb-6">
+        <thead><tr className="text-left font-mono text-xs text-[color:var(--bk-muted)]"><th className="py-1">Measure</th><th>Before</th><th>After</th></tr></thead>
+        <tbody>{BEFORE_AFTER.map(([m, b, a]) => <tr key={m} className="border-t border-[color:var(--bk-line)]"><td className="py-1.5">{m}</td><td className="font-mono">{b}</td><td className="font-mono" style={{ color: "var(--bk-success)" }}>{a}</td></tr>)}</tbody>
+      </table>
+      <ol className="grid gap-2">
+        {BEST.map((r, i) => (
+          <li key={r.move} className="rounded bg-[color:var(--bk-card)] p-3 text-sm grid md:grid-cols-[2rem_1fr_9rem_14rem_2rem] gap-2">
+            <span className="font-mono">{i + 1}</span><span>{r.move}</span><span className="font-mono text-xs">{r.urls}</span><span className="font-mono text-xs">{r.code}</span><span className="font-mono text-xs">{r.effort}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
 
 const TONE = { keep: "var(--bk-success)", move: "var(--bk-link)", cut: "var(--bk-danger)" } as const;
 
@@ -100,6 +141,8 @@ export default function Page() {
       <p className="font-mono text-xs mb-10 flex gap-4">
         <span style={{ color: TONE.keep }}>■ keep</span><span style={{ color: TONE.move }}>■ merge or move</span><span style={{ color: TONE.cut }}>■ cut or archive</span>
       </p>
+      <Best />
+      <h2 className="text-xl font-semibold mb-6 text-[color:var(--bk-muted)]">Larger collapse, later</h2>
       <Pair title="Routes" before={ROUTES_BEFORE} after={ROUTES_AFTER} />
       <Pair title="Footers and headers" before={CHROME_BEFORE} after={CHROME_AFTER} />
       <Pair title="Repos" before={REPO_BEFORE} after={REPO_AFTER} />
