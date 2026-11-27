@@ -178,7 +178,7 @@ data class Lobby(
 object LobbyGames {
     val prompt = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles, LobbyGame.Spy)
     val race = listOf(LobbyGame.Mini, LobbyGame.WordGroups, LobbyGame.Match, LobbyGame.Voice, LobbyGame.Letters, LobbyGame.Polyword, LobbyGame.FlagTiles, LobbyGame.Babel, LobbyGame.Shift, LobbyGame.Snake, LobbyGame.Atlas, LobbyGame.Forehead, LobbyGame.ISpy, LobbyGame.FlagDuel)
-    val raceOnAndroid: Set<LobbyGame> = race.toSet()
+    val raceOnAndroid: Set<LobbyGame> = race.toSet() - LobbyGame.FlagDuel
     const val PLAYS_HEADER = "x-polingual-plays"
     val nativeExtras = listOf(LobbyGame.Tiles, LobbyGame.Duel)
     val plays: String = (nativeExtras.map { it.wire } + listOf("reveal", "playlist", "night")).joinToString(",")
@@ -200,6 +200,8 @@ object LobbyRace {
     fun seedValue(seed: String): ULong = seed.toULongOrNull() ?: fnv(seed)
 
     fun dayKey(seed: String): String = "race-${seedValue(seed)}"
+
+    fun deal(seed: String): String = (1uL + seedValue(seed) % 1_000_000_000_000uL).toString()
 
     fun score(points: Int?, hits: Int): Int = (points ?: (hits * 100)).coerceIn(0, SCORE_MAX)
 

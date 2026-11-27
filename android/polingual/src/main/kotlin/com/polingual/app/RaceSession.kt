@@ -18,6 +18,7 @@ object RaceSession {
     }
 
     val dayKey: String? get() = lobby?.raceKey
+    val deal: String? get() = lobby?.seed?.let(LobbyRace::deal)
     val root: String? get() = lobby?.root
     val targets: List<String>? get() = lobby?.targets
 
@@ -49,9 +50,14 @@ object RaceRules {
         LobbyGame.Match -> GameKind.Match
         LobbyGame.Voice -> GameKind.Voice
         LobbyGame.Letters -> GameKind.Letters
-        LobbyGame.FlagDuel -> GameKind.Flags
         else -> null
     }
 
     fun hits(pattern: String): Int = pattern.count { it == '1' }
+}
+
+object RaceDeal {
+    fun langs(own: List<String>, race: List<String>? = RaceSession.targets): List<String> = race?.takeIf { it.isNotEmpty() } ?: own
+
+    fun lang(own: String, race: List<String>? = RaceSession.targets): String = race?.firstOrNull() ?: own
 }

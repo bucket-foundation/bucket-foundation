@@ -13,8 +13,8 @@ class RaceRulesTest {
 
     @Test
     fun everyRaceGameHasAnAndroidScreen() {
-        LobbyGames.race.forEach { g -> assertTrue(g in screens || RaceRules.kindFor(g) != null, g.wire) }
-        assertTrue(LobbyGames.race.all(LobbyGames::playable))
+        LobbyGames.race.filter(LobbyGames::playable).forEach { g -> assertTrue(g in screens || RaceRules.kindFor(g) != null, g.wire) }
+        assertEquals(LobbyGames.race.toSet() - LobbyGame.FlagDuel, LobbyGames.race.filter(LobbyGames::playable).toSet())
         assertFalse(LobbyGames.playable(LobbyGame.Unknown))
     }
 
@@ -25,7 +25,7 @@ class RaceRulesTest {
         assertEquals(GameKind.Match, RaceRules.kindFor(LobbyGame.Match))
         assertEquals(GameKind.Voice, RaceRules.kindFor(LobbyGame.Voice))
         assertEquals(GameKind.Letters, RaceRules.kindFor(LobbyGame.Letters))
-        assertEquals(GameKind.Flags, RaceRules.kindFor(LobbyGame.FlagDuel))
+        assertNull(RaceRules.kindFor(LobbyGame.FlagDuel))
         assertNull(RaceRules.kindFor(LobbyGame.Daily))
         assertEquals(3, RaceRules.hits("10110"))
     }

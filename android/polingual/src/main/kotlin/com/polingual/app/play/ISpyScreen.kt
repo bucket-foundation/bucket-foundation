@@ -77,7 +77,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(loading) {
         if (!loading) return@LaunchedEffect
         val items = graph.corpus.load().items
-        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", set.targets, ISpy.ROUNDS) }
+        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", com.polingual.app.RaceDeal.langs(set.targets), ISpy.ROUNDS) }
         me = Tally(); bots = emptyMap(); loading = false
         phase = SpyPhase.Round(0, System.currentTimeMillis())
     }

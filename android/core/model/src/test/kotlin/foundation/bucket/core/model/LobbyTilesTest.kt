@@ -116,7 +116,7 @@ class LobbyRaceTest {
     @Test
     fun androidHostsEveryPromptAndRaceGame() {
         assertTrue(LobbyGames.prompt.all(LobbyGames::playable))
-        assertEquals(LobbyGames.race.toSet(), LobbyGames.race.filter(LobbyGames::playable).toSet())
+        assertEquals(LobbyGames.race.toSet() - LobbyGame.FlagDuel, LobbyGames.race.filter(LobbyGames::playable).toSet())
     }
 
     @Test

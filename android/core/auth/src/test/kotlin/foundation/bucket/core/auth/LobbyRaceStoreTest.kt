@@ -73,7 +73,7 @@ class LobbyRaceStoreTest {
         val f = Fake()
         f.routes = { _, _ -> 200 to """{"lobby":${lobbyJson(game = "mini")}}""" }
         val s = store(f)
-        assertTrue(foundation.bucket.core.model.LobbyGames.race.all { foundation.bucket.core.model.LobbyGames.playable(it) })
+        assertTrue(foundation.bucket.core.model.LobbyGames.race.filter { it != LobbyGame.FlagDuel }.all { foundation.bucket.core.model.LobbyGames.playable(it) })
         val e = kotlin.runCatching { s.create("Room", LobbyGame.Unknown, "en", listOf("es"), "Ana") }.exceptionOrNull()
         assertEquals(foundation.bucket.core.model.BucketError.Server(409, LobbyStore.UNPLAYABLE), e)
         assertTrue(f.calls.isEmpty())
