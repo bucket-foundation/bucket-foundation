@@ -25,7 +25,7 @@ function SideNav() {
         <ul className="space-y-2 font-sans text-sm">
           {NAV.map((n) => (
             <li key={n.id}>
-              <a href={`#${n.id}`} className="hover:underline text-[color:var(--ink-dim)]">{n.label}</a>
+              <a href={`#${n.id}`} className="hover:underline text-[color:var(--pl-ink-dim)]">{n.label}</a>
             </li>
           ))}
         </ul>
@@ -37,10 +37,10 @@ function SideNav() {
 function MobileNav() {
   return (
     <details className="md:hidden sticky top-0 z-10 -mx-4 mt-8 px-4 py-3 font-sans text-[15px] backdrop-blur bg-[color-mix(in_srgb,var(--pl-paper)_88%,transparent)] border-b border-[color:var(--pl-hairline)]">
-      <summary className="cursor-pointer font-semibold text-[color:var(--ink)]">Contents</summary>
+      <summary className="cursor-pointer font-semibold text-[color:var(--pl-ink)]">Contents</summary>
       <ul className="mt-2 space-y-2">
         {NAV.map((n) => (
-          <li key={n.id}><a href={`#${n.id}`} className="text-[color:var(--ink-2)]">{n.label}</a></li>
+          <li key={n.id}><a href={`#${n.id}`} className="text-[color:var(--pl-ink-2)]">{n.label}</a></li>
         ))}
       </ul>
     </details>
@@ -57,19 +57,19 @@ export default function ResearchPage() {
 
         <div className="min-w-0 max-w-3xl pb-24">
           <header className="pt-10 md:pt-16">
-            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-dim)]">polingual v0, research notes</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--pl-ink-dim)]">polingual v0, research notes</p>
             <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)] text-[color:var(--pl-ink)] tracking-[-0.02em]">
-              Every word in every language, <em className="text-[color:var(--blue)]">one meaning.</em>
+              Every word in every language, <em className="text-[color:var(--pl-lapis)]">one meaning.</em>
             </h1>
-            <p className="mt-6 text-center text-[15px] font-bold text-[color:var(--ink)]">Abstract</p>
+            <p className="mt-6 text-center text-[15px] font-bold text-[color:var(--pl-ink)]">Abstract</p>
             <P>
               polingual is a cross-lingual dictionary and an open research project. It holds 6.5 million words in 35
               languages. Each word is a record with an English meaning, two vectors, and links to the same idea in
               other languages.
             </P>
-            <p className="mt-6 font-sans text-[15px]"><a href="/" className="underline text-[color:var(--blue)]">Back to search</a></p>
+            <p className="mt-6 font-sans text-[15px]"><a href="/" className="underline text-[color:var(--pl-lapis)]">Back to search</a></p>
             <div className="mt-6 max-w-lg">
-              <p className="font-sans text-[15px] font-semibold text-[color:var(--ink)]">Speak two languages or more? Get early access to the learner tools.</p>
+              <p className="font-sans text-[15px] font-semibold text-[color:var(--pl-ink)]">Speak two languages or more? Get early access to the learner tools.</p>
               <div className="mt-2"><Signup compact /></div>
             </div>
           </header>
@@ -84,7 +84,7 @@ export default function ResearchPage() {
           <QuestionsSection />
           <JoinSection />
 
-          <footer className="mt-24 space-y-2 font-sans text-[13px] text-[color:var(--ink-dim)]">
+          <footer className="mt-24 space-y-2 font-sans text-[13px] text-[color:var(--pl-ink-dim)]">
             <p>
               Dictionary data from <a href="https://en.wiktionary.org" className="underline">Wiktionary</a> via{" "}
               <a href="https://kaikki.org" className="underline">Kaikki</a>, licensed{" "}
@@ -93,7 +93,7 @@ export default function ResearchPage() {
             <FrequencyCredit />
             <DictionaryCredit />
             <p>
-              Same graph as <a href="https://www.bucket.foundation" className="underline text-[color:var(--blue)]">bucket.foundation</a>.
+              Same graph as <a href="https://www.bucket.foundation" className="underline text-[color:var(--pl-lapis)]">bucket.foundation</a>.
             </p>
           </footer>
         </div>
