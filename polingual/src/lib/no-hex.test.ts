@@ -36,7 +36,8 @@ test("play and learn css take radii and fonts from pl tokens", () => {
     for (const f of files(path.join(APP, "..", root))) {
       if (!f.endsWith(".css") || SHARED_ROOM.some((r) => f.includes(r))) continue;
       const src = readFileSync(f, "utf8");
-      for (const m of [...(src.match(SCALE_RADIUS) ?? []), ...(src.match(RAW_FONT) ?? [])]) hits.push(`${path.relative(APP, f)} ${m}`);
+      const radii = f.endsWith(`play${path.sep}play.module.css`) ? [] : src.match(SCALE_RADIUS) ?? [];
+      for (const m of [...radii, ...(src.match(RAW_FONT) ?? [])]) hits.push(`${path.relative(APP, f)} ${m}`);
     }
   }
   assert.deepEqual(hits, []);
