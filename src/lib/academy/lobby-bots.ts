@@ -84,7 +84,7 @@ export const GREETINGS = ["hi all", "hola", "good luck", "ready when you are", "
 export const SIGNOFFS = ["gg", "nice one", "close game", "again?", "that was fun", "well played"];
 
 export function botsEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_BOTS === "on";
+  return (env.POLINGUAL_LOBBY_BOTS ?? "").trim().toLowerCase() === "on";
 }
 
 export function unit(key: string): number {

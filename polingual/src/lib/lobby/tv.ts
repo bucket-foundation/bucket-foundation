@@ -81,3 +81,8 @@ export const TV_ORIGIN = ["https:", "", "polingual.com"].join("/");
 export function tvShortUrl(url: string): string {
   return url.replace(/^https?:[/][/]/, "");
 }
+
+export function tvChoice(choice: string): string {
+  const m = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})?:(.+)$/.exec(choice);
+  return m ? m[2] : choice;
+}

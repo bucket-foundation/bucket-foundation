@@ -17,6 +17,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const lobby = await memberLobby(a.uid, a.body?.lobbyId);
     if (lobby.host_id !== a.uid) return json({ error: "not_host" }, 403);
     if (lobby.status !== "lobby") return json({ error: "lobby_started" }, 409);
+    if (!setupEnabled() && (a.body?.setup ?? "single") !== "single") return json({ error: "setup_off" }, 409);
     const patch = normalizeLobbySettings(a.body, lobby);
     if (!patch) return json({ error: "bad_request" }, 400);
     const update = { game: patch.game, targets: patch.targets, ...(setupEnabled() ? { playlist: patch.playlist, mix: patch.mix } : {}) };

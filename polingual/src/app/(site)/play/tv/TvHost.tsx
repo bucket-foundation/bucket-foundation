@@ -4,13 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { normalizeLobbyCode } from "@academy/lobbies";
 import { useNow } from "@/lib/hooks/clock";
 import { phaseAt, type WebLobbyState } from "@/lib/lobby/client";
-import { TV_ORIGIN, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
+import { secondsUntil } from "@/lib/lobby/room";
+import { TV_ORIGIN, tvChoice, tvJoinUrl, tvShortUrl, tvKey, tvPlayers, tvRound, tvSfx, tvTrack, type TvBeat } from "@/lib/lobby/tv";
 import type { Stage as AudioStage } from "@/lib/stoa/stage";
 import { createPortal } from "react-dom";
 import { ButtonLink, Pill, Tag } from "@/ui";
 import { Brand, Standings } from "../../live/parts";
 import Qr from "../../live/Qr";
-import { MixBar, useStage } from "../../live/show";
+import { MixBar, Podium, useStage } from "../../live/show";
 import styles from "../../live/stoa.module.css";
 import tv from "./tv.module.css";
 import Nickname from "../Nickname";
@@ -94,7 +95,6 @@ function TvView({ code, play, sync, now, origin }: { code: string | null; play: 
 
 function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: string }) {
   const phase = phaseAt(lobby, now);
-  const round = tvRound(lobby, phase);
   const rows = tvPlayers(lobby);
   return (
     <div className={tv.board} data-testid="tv-board" data-phase={phase.kind}>
@@ -104,24 +104,44 @@ function TvBoard({ lobby, now, url }: { lobby: WebLobbyState; now: number; url: 
         <div className={tv.qr}>
           <Qr text={url} />
         </div>
-        <p className={tv.url}>{tvShortUrl(url)}</p>
+        <p className={tv.url} data-testid="tv-url">{tvShortUrl(url)}</p>
       </section>
       <section className={tv.round} aria-label="Round" data-testid="tv-round">
-        <Tag>{round.label}</Tag>
-        {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
-        {round.gloss ? <h2 className={tv.word}>{round.gloss}</h2> : null}
-        {round.choices.length ? (
-          <div className={tv.choices} role="list">
-            {round.choices.map((c) => (
-              <Pill key={c} role="listitem" active={round.answer === c} tabIndex={-1}>{c}</Pill>
-            ))}
-          </div>
-        ) : null}
+        <TvCenter lobby={lobby} now={now} />
       </section>
       <section className={tv.standings} aria-label="Standings">
         <p className={tv.label}>Standings</p>
         {rows.length ? <Standings rows={rows} testId="tv-players" /> : <p className={tv.empty}>Scan the code to join.</p>}
       </section>
     </div>
+  );
+}
+
+function TvCenter({ lobby, now }: { lobby: WebLobbyState; now: number }) {
+  const phase = phaseAt(lobby, now);
+  const round = tvRound(lobby, phase);
+  if (phase.kind === "finished") {
+    const left = secondsUntil(lobby.nextStartAt, now);
+    return (
+      <>
+        <Tag>Final scores</Tag>
+        <Podium rows={tvPlayers(lobby)} />
+        {left !== null ? <p className={tv.next} data-testid="tv-next">Next game in <b>{left}s</b></p> : null}
+      </>
+    );
+  }
+  return (
+    <>
+      <Tag>{round.label}</Tag>
+      {round.seconds !== null ? <p className={tv.count} data-testid="tv-seconds">{round.seconds}</p> : null}
+      {round.gloss ? <h2 className={tv.word} data-testid="tv-prompt">{round.gloss}</h2> : null}
+      {round.choices.length ? (
+        <div className={tv.choices} role="list">
+          {round.choices.map((c) => (
+            <Pill key={c} role="listitem" active={round.answer === tvChoice(c)} tabIndex={-1}>{tvChoice(c)}</Pill>
+          ))}
+        </div>
+      ) : null}
+    </>
   );
 }

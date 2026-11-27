@@ -9,6 +9,9 @@ import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
+  NEXT_GAME_MS,
+  nextGameDue,
+  MIN_READY,
   answerDecision,
   assembleLobby,
   tileAnswerDecision,
@@ -232,12 +235,11 @@ export function nextStartOf(lobby: LobbyRow): string | null {
   }
   if (lobby.status === "lobby") return lobby.start_at ?? null;
   if (!setupEnabled() || !lobby.playlist || !lobby.started_at) return null;
-  return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + STANDING_RESULTS_MS + AUTO_START_MS);
+  return iso(gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS);
 }
 
-export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRow> {
-  if (!setupEnabled() || lobby.standing_slot || !lobby.playlist || lobby.status !== "done" || !lobby.started_at) return lobby;
-  if (now < gameEndMs({ ...lobby, started_at: lobby.started_at }) + STANDING_RESULTS_MS) return lobby;
+export async function againHosted(lobby: LobbyRow, now: number, force = false): Promise<LobbyRow> {
+  if (!setupEnabled() || lobby.standing_slot || !lobby.playlist || !nextGameDue(lobby, now, force)) return lobby;
   const players = await playersOf([lobby.id]);
   const here = players.filter((p) => p.is_bot || now - Date.parse(p.last_seen) < STALE_MS).map((p) => p.user_id);
   const game = nextGame(lobby);
@@ -250,7 +252,7 @@ export async function againHosted(lobby: LobbyRow, now: number): Promise<LobbyRo
   const rows = check(
     await service()
       .from(LOBBIES)
-      .update({ status: "lobby", started_at: null, seed: generateSeed(), game, rounds: t.rounds, round_seconds: t.roundSeconds, start_at: here.length >= 2 ? new Date(now + AUTO_START_MS).toISOString() : null })
+      .update({ status: "lobby", started_at: null, seed: generateSeed(), game, rounds: t.rounds, round_seconds: t.roundSeconds, start_at: here.length >= MIN_READY ? new Date(now).toISOString() : null })
       .eq("id", lobby.id)
       .eq("status", "done")
       .select(LOBBY_COLS),

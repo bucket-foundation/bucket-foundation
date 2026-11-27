@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { LobbyError, lobbyError, type LobbyApi, type WebLobbyState } from "@/lib/lobby/client";
+import { roomControls } from "@/lib/lobby/room";
 import { draftChanged, draftOf, settingsBody, type SettingsDraft } from "@/lib/lobby/waiting";
 import { Button } from "@/ui";
 import { setupValid, type GameId } from "../langs";
@@ -12,7 +13,7 @@ type Take = (l: WebLobbyState, sentAt: number) => void;
 
 export function HostSettings({ lobby, api, take }: { lobby: WebLobbyState; api: LobbyApi; take: Take }) {
   const [open, setOpen] = useState(false);
-  if (!lobby.isHost || lobby.status !== "lobby") return null;
+  if (!roomControls(lobby).settings) return null;
   if (open) return <SettingsEditor lobby={lobby} api={api} take={take} close={() => setOpen(false)} />;
   return (
     <Button variant="ghost" size="md" onClick={() => setOpen(true)} data-testid="host-settings">

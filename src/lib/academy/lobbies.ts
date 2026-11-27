@@ -19,7 +19,7 @@ export function isRace(game: LobbyGame | null | undefined): game is RaceGame {
 }
 
 export function raceEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_RACE === "on";
+  return flagOn(env.POLINGUAL_LOBBY_RACE);
 }
 
 export function raceGames(env: Record<string, string | undefined> = process.env): RaceGame[] {
@@ -31,9 +31,19 @@ export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
 export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
+export const NEXT_GAME_MS = 8_000;
+
+export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds">, now: number, force = false): boolean {
+  if (lobby.status !== "done" || !lobby.started_at) return false;
+  return force || now >= gameEndMs({ ...lobby, started_at: lobby.started_at }) + NEXT_GAME_MS;
+}
 export function setupGames(env: Record<string, string | undefined> = process.env): LobbyGame[] {
   const base: LobbyGame[] = ["daily", "same-word", "flags", "live", "tiles", "spy"];
   return duelEnabled(env) ? [...base, "duel"] : base;
+}
+
+export function flagOn(value: string | undefined): boolean {
+  return (value ?? "").trim().toLowerCase() === "on";
 }
 
 export const LOBBY_CODE_LENGTH = 6;
@@ -48,15 +58,15 @@ export const WEB_CLIENT_HEADER = "x-polingual-client";
 export const NATIVE_PLAYS_HEADER = "x-polingual-plays";
 
 export function revealEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_REVEAL === "on";
+  return flagOn(env.POLINGUAL_LOBBY_REVEAL);
 }
 
 export function duelEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_DUEL === "on";
+  return flagOn(env.POLINGUAL_LOBBY_DUEL);
 }
 
 export function setupEnabled(env: Record<string, string | undefined> = process.env): boolean {
-  return env.POLINGUAL_LOBBY_SETUP === "on";
+  return flagOn(env.POLINGUAL_LOBBY_SETUP);
 }
 export const MESSAGE_LIMIT = 50;
 export const MESSAGE_MAX = 200;
@@ -360,11 +370,8 @@ export function normalizeLobbySettings(body: Record<string, unknown> | null, lob
   const game = body.game === undefined || body.game === null ? current : offered.includes(body.game) ? (body.game as LobbyGame) : null;
   if (!game) return null;
   if (!setupEnabled()) {
-    const mode = body.setup ?? "single";
-    if (mode !== "single" && mode !== "sequence" && mode !== "mix") return null;
-    const first = mode === "sequence" && Array.isArray(body.games) && offered.includes(body.games[0]) ? (body.games[0] as LobbyGame) : mode === "mix" ? current : game;
-    const pick = first === "same-word" && targets.length < 2 ? (mode === "single" ? null : "daily") : first;
-    return pick ? { game: pick, targets } : null;
+    if ((body.setup ?? "single") !== "single") return null;
+    return game === "same-word" && targets.length < 2 ? null : { game, targets };
   }
   const setup = normalizeSetup(body, game, targets);
   if (!setup || (setup.game === "same-word" && targets.length < 2)) return null;

@@ -13,7 +13,7 @@
 .code{margin:0;font-family:"Space Mono",monospace;font-weight:700;letter-spacing:.08em;font-size:min(64px,14cqi);line-height:1;color:var(--pl-ink);white-space:nowrap}
 .qr{width:min(200px,60vw)}
 .qr>div{width:100%;height:auto;padding:0;box-shadow:none}
-.url{margin:0;font-weight:800;font-size:16px;color:var(--pl-ink);overflow-wrap:anywhere}
+.url{margin:0;font-weight:800;font-size:min(16px,6cqi);color:var(--pl-ink);white-space:nowrap}
 .games{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .games li{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:2px solid var(--pl-ink);border-radius:999px;font-weight:800;font-size:16px;background:var(--pl-paper)}
 .games li[data-now="true"]{background:var(--pl-ochre)}
@@ -36,7 +36,7 @@
 .board[data-tv="true"] .label{font-size:clamp(14px,1.3vw,26px)}
 .board[data-tv="true"] .code{font-size:min(150px,14cqi)}
 .board[data-tv="true"] .qr{width:clamp(160px,22vh,320px)}
-.board[data-tv="true"] .url{font-size:clamp(18px,1.8vw,36px)}
+.board[data-tv="true"] .url{font-size:min(36px,6cqi)}
 .board[data-tv="true"] .info{min-height:0;overflow:auto}
 .board[data-tv="true"] .card{padding:clamp(16px,2vh,32px)}
 .board[data-tv="true"] .games li{font-size:clamp(18px,1.6vw,32px);padding:8px 18px}

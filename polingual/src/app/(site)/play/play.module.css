@@ -400,3 +400,4 @@
 .ingame .choice{min-height:0;height:100%;box-shadow:0 3px 0 var(--pl-ink)}
 }
 @media (max-width:900px){.ingame .prompt{padding:4px 0}.ingame .choiceTiles{flex:1;min-height:0;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(0,1fr)}.ingame .choiceTiles li{min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:2px}.ingame .choiceTiles .choiceTile{flex:1;min-height:0;height:auto;aspect-ratio:auto;padding:4px 0!important}}
+@media (max-width:900px){.playStage:has([data-compact=true])>header,.playStage:has([data-compact=true])>.bannerStrip,.playStage:has([data-compact=true]) .stickers,.playStage:has([data-compact=true]) .peek,.playStage:has([data-compact=true]) .rail{display:none}.playStage:has([data-compact=true]) .frame,.playStage:has([data-compact=true]) .frame[data-rails]{padding:0;max-width:none}.playStage:has([data-compact=true]) .center{margin:0;border:0;border-radius:0;box-shadow:none;padding:0;min-height:100dvh}}
