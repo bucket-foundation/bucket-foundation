@@ -1,6 +1,8 @@
 package foundation.bucket.core.data
 
 import foundation.bucket.core.engine.CardState
+import foundation.bucket.core.engine.LogRow
+import foundation.bucket.core.engine.UploadGate
 import foundation.bucket.core.engine.StudyState
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -109,5 +111,25 @@ class StudySyncTest {
                 assertEquals(winner == mine, StudySync.localWins(local, o[theirs]!!.jsonObject), "case $c local $mine")
             }
         }
+    }
+
+    @Test
+    fun aSessionBatchCarriesExposuresAndTheMixAndNothingWhenGated() {
+        val rows = listOf(
+            LogRow.Review("r", 1, "d", "UTC", "s", "es:casa", 3),
+            LogRow.Exposure("e", 2, "d", "UTC", "s", "es", "tatoeba:1", "set:es:1", listOf("casa"), listOf("casa"), 30, 0.95, true),
+            LogRow.Session("x", 3, "d", "UTC", "s", "es", "s-1", 0, 600_000, null, null, null, null, 2),
+        )
+        val batch = assertNotNull(StudySync.batch(rows, UploadGate.Unknown))
+        assertEquals(listOf("exposure", "session_mix"), batch["events"]!!.jsonArray.map { it.jsonObject["name"]!!.jsonPrimitive.content })
+        assertEquals(null, StudySync.batch(rows, UploadGate.Closed))
+        val mix = batch["events"]!!.jsonArray[1].jsonObject["props"]!!.jsonObject
+        assertEquals(listOf("null", "null", "null", "2"), listOf("arm", "units", "share_target", "cards").map { mix[it].toString() })
+        val many = (0 until 350).map { LogRow.Exposure("e$it", it.toLong(), "d", "UTC", "s", "es", "i", "u", emptyList(), emptyList(), 1, 0.5, true) }
+        assertEquals(300, StudySync.batch(many, UploadGate.Open)!!["events"]!!.jsonArray.size)
+        assertEquals(UploadGate.Closed, StudySync.gateAfter("under_age", UploadGate.Unknown))
+        assertEquals(UploadGate.Closed, StudySync.gateAfter("no_consent", UploadGate.Open))
+        assertEquals(UploadGate.Open, StudySync.gateAfter("recorded", UploadGate.Unknown))
+        assertEquals(UploadGate.Unknown, StudySync.gateAfter(null, UploadGate.Unknown))
     }
 }

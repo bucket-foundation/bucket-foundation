@@ -1,6 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { hostOnScreen } from "@/lib/lobby/room";
+import TvHost from "./tv/TvHost";
 import { useIsPhone } from "@/lib/hooks/phone";
 import { usePauseAds } from "./AdsContext";
 import { phaseAt } from "@/lib/lobby/client";
@@ -8,10 +10,9 @@ import type { WorldId } from "@/ui/art/play";
 import { ButtonLink } from "@/ui";
 import app from "../app/app.module.css";
 import GameWorld, { WorldStage } from "./GameWorld";
-import Nickname from "./Nickname";
+import PlayerCard from "./family/PlayerCard";
 import RoomQr, { useJoinUrl } from "./RoomQr";
 import { RoomHeader } from "./RoomParts";
-import { savedNickname } from "./usePlay";
 import world from "./world.module.css";
 import styles from "./play.module.css";
 import { gameName } from "./langs";
@@ -22,9 +23,13 @@ import { RoomRound } from "./room/RoomRound";
 import { RoomWaiting } from "./room/RoomWaiting";
 import { useRoomGame, type LiveRoom, type RoomGameState } from "./room/useRoomGame";
 
-function RoomGame({ code: rawCode, onGame }: { code: string; onGame: (g: WorldId, code: string) => void }) {
+function RoomGame({ code: rawCode, onGame, onScreen }: { code: string; onGame: (g: WorldId, code: string) => void; onScreen: () => void }) {
   const g = useRoomGame(rawCode, onGame);
   usePauseAds(useIsPhone());
+  const screen = !!g.lobby && hostOnScreen(g.lobby);
+  useEffect(() => {
+    if (screen) onScreen();
+  }, [screen, onScreen]);
   if (!g.code) {
     return (
       <div className={app.stack}>
@@ -43,9 +48,9 @@ function RoomGate({ g, code }: { g: RoomGameState; code: string }) {
   return (
     <div className={app.stack} data-testid="room-gate">
       <p className={app.label}>Lobby {code}</p>
-      <h2 className={app.title}>Pick a nickname to join</h2>
+      <h2 className={app.title}>Fill your player card</h2>
       {state.status === "error" ? <p className={app.error} role="alert">{state.message}</p> : null}
-      {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <Nickname initial={savedNickname()} onSubmit={(n) => void g.connect(n)} />}
+      {state.status === "loading" ? <p className={app.muted} aria-busy="true">Loading</p> : <PlayerCard onJoin={(n) => void g.connect(n)} />}
     </div>
   );
 }
@@ -102,10 +107,13 @@ function InGame({ g, phase }: { g: LiveRoom; phase: ReturnType<typeof phaseAt> }
 
 export default function Room({ code }: { code: string }) {
   const [room, setRoom] = useState<{ game: WorldId; code: string | null }>({ game: "duel", code: null });
+  const [screen, setScreen] = useState(false);
   const onGame = useCallback((game: WorldId, c: string) => setRoom((r) => (r.game === game && r.code === c ? r : { game, code: c })), []);
+  const onScreen = useCallback(() => setScreen(true), []);
+  if (screen) return <TvHost code={code} onPlay={() => setScreen(false)} />;
   return (
     <GameWorld id={room.game} compact aside={room.code ? <RoomBadge code={room.code} /> : null}>
-      <RoomGame code={code} onGame={onGame} />
+      <RoomGame code={code} onGame={onGame} onScreen={onScreen} />
     </GameWorld>
   );
 }

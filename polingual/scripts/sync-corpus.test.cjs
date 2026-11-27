@@ -61,7 +61,7 @@ test("next config runs the copy, exposes the version and proxies no academy-app 
 test("every academy-app path the web client fetches is one the build copies", () => {
   const roots = ["../src/lib/academy/lang-client.ts", "../src/lib/academy/lang-audio.ts"];
   const used = new Set();
-  for (const f of roots) for (const m of readFileSync(join(__dirname, "..", f), "utf8").matchAll(/\/academy-app\/([a-z0-9]+(?:\/top1000)?)/g)) used.add(m[1]);
+  for (const f of roots) for (const m of readFileSync(join(__dirname, "..", f), "utf8").matchAll(/\/academy-app\/([a-z0-9]+(?:\/(?:top1000|yesno))?)/g)) used.add(m[1]);
   const copied = new Set(COPIES.map((c) => c.to));
   assert.ok(used.size >= 3);
   for (const u of used) assert.ok(copied.has(u), u);

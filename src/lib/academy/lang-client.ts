@@ -1,5 +1,6 @@
 "use client";
 
+import { parseYesNoForms, type YesNoForms } from "./yes-no-test";
 import type { TopWord } from "./placement-cefr";
 import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type RawLayers, type SystemsDoc } from "./lang-systems";
 import { AUDIO_BASE, audioKey, audioUrl, pickVoice } from "./lang-audio";
@@ -31,6 +32,21 @@ export function loadTopWords(lang: string): Promise<TopWord[] | null> {
     );
   }
   return topCache.get(lang)!;
+}
+
+const yesNoCache = new Map<string, Promise<YesNoForms | null>>();
+
+export function loadYesNoForms(lang: string): Promise<YesNoForms | null> {
+  if (!yesNoCache.has(lang)) {
+    yesNoCache.set(
+      lang,
+      fetch(`/academy-app/polingual/yesno/${lang}.json${CORPUS_QUERY}`, { cache: "force-cache" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => parseYesNoForms(d))
+        .catch(() => null)
+    );
+  }
+  return yesNoCache.get(lang)!;
 }
 
 export function loadLangCorpus(): Promise<LangCorpus | null> {

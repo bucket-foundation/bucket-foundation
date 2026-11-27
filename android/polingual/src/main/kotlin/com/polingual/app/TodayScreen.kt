@@ -16,6 +16,11 @@ import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
 import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PrimaryButton
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import foundation.bucket.core.engine.ProgressMetric
+import foundation.bucket.core.engine.StudyState
 
 @Composable
 fun TodayScreen(graph: Graph, nav: NavHostController) {
@@ -28,7 +33,7 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
             Text(system?.name ?: "No language set yet", style = Type.body, color = p.muted, modifier = Modifier.weight(1f))
             StreakFlame(syncedStreak(study))
         }
-        if (system != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { system.targets.forEach { FlagTile(it, 44.dp) } }
+        if (system != null) LangProgress(system.targets, study)
         if (system == null) PrimaryButton("Pick languages", color = PL.Lapis) { nav.navigate("system/new") }
         if (system != null) TodayPlanCard(graph, nav)
         if (system != null) AskNotificationsOnce(graph)
@@ -36,3 +41,21 @@ fun TodayScreen(graph: Graph, nav: NavHostController) {
     }
 }
 
+
+@Composable
+fun LangProgress(langs: List<String>, study: StudyState?) {
+    val cards = ProgressMetric.cards(study)
+    val now = System.currentTimeMillis().toDouble()
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        langs.forEach { lang ->
+            val m = ProgressMetric.langMetrics(lang, cards, emptyList(), now)
+            val hours = if (m.inputSeconds > 0) m.inputHours.toString() else "\u2013"
+            val label = stringResource(R.string.d_progress_for, lang.uppercase())
+            Row(Modifier.semantics { contentDescription = label }, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                FlagTile(lang, 44.dp)
+                PLBadge(stringResource(R.string.d_input_hours, hours), BadgeTone.Lapis)
+                PLBadge(stringResource(R.string.d_known_words, m.knownWords), BadgeTone.Parchment)
+            }
+        }
+    }
+}

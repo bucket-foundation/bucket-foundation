@@ -1,0 +1,426 @@
+{
+  "version": 1,
+  "now": 1795716000000,
+  "rows": [
+    {
+      "name": "coverage at the bar counts, below it does not",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 120,
+          "coverage_pred": 0.9,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 600,
+          "coverage_pred": 0.89,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 60,
+          "coverage_pred": 1,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 180,
+        "inputDays": []
+      }
+    },
+    {
+      "name": "other languages and review rows are ignored",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "exposure",
+          "lang": "fr",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 200,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "review",
+          "reviewed_at": 1795716000000,
+          "tz": "UTC"
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795708800000,
+          "tz": "America/New_York",
+          "seconds": 3600,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 3600,
+        "inputDays": []
+      }
+    },
+    {
+      "name": "session with 5 minutes of input marks its day",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "session",
+          "lang": "es",
+          "reviewed_at": 1795713000000,
+          "tz": "America/New_York",
+          "started": 1795712400000,
+          "ended": 1795713000000
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712500000,
+          "tz": "America/New_York",
+          "seconds": 200,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712600000,
+          "tz": "America/New_York",
+          "seconds": 100,
+          "coverage_pred": 0.92,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 300,
+        "inputDays": [
+          "2026-11-26"
+        ]
+      }
+    },
+    {
+      "name": "session with 299 seconds does not count",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "session",
+          "lang": "es",
+          "reviewed_at": 1795713000000,
+          "tz": "America/New_York",
+          "started": 1795712400000,
+          "ended": 1795713000000
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712500000,
+          "tz": "America/New_York",
+          "seconds": 299,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795705200000,
+          "tz": "America/New_York",
+          "seconds": 500,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 799,
+        "inputDays": []
+      }
+    },
+    {
+      "name": "low coverage input does not fill a session",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "session",
+          "lang": "es",
+          "reviewed_at": 1795716000000,
+          "tz": "America/New_York",
+          "started": 1795712400000,
+          "ended": 1795716000000
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795714200000,
+          "tz": "America/New_York",
+          "seconds": 400,
+          "coverage_pred": 0.5,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 0,
+        "inputDays": []
+      }
+    },
+    {
+      "name": "session day uses the row time zone",
+      "lang": "es",
+      "rows": [
+        {
+          "kind": "session",
+          "lang": "es",
+          "reviewed_at": 1795665600000,
+          "tz": "America/Los_Angeles",
+          "started": 1795662000000,
+          "ended": 1795665600000
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795663800000,
+          "tz": "America/New_York",
+          "seconds": 400,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "session",
+          "lang": "es",
+          "reviewed_at": 1795457700000,
+          "tz": "UTC",
+          "started": 1795456800000,
+          "ended": 1795457700000
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795456801000,
+          "tz": "America/New_York",
+          "seconds": 300,
+          "coverage_pred": 1,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 700,
+        "inputDays": [
+          "2026-11-23",
+          "2026-11-25"
+        ]
+      }
+    }
+  ],
+  "streak": [
+    {
+      "name": "empty",
+      "days": [],
+      "today": "2026-11-26",
+      "expect": {
+        "streak": 0,
+        "studiedToday": false
+      }
+    },
+    {
+      "name": "today and two before",
+      "days": [
+        "2026-11-24",
+        "2026-11-25",
+        "2026-11-26"
+      ],
+      "today": "2026-11-26",
+      "expect": {
+        "streak": 3,
+        "studiedToday": true
+      }
+    },
+    {
+      "name": "ends yesterday",
+      "days": [
+        "2026-11-24",
+        "2026-11-25"
+      ],
+      "today": "2026-11-26",
+      "expect": {
+        "streak": 2,
+        "studiedToday": false
+      }
+    },
+    {
+      "name": "gap breaks it",
+      "days": [
+        "2026-11-22",
+        "2026-11-24"
+      ],
+      "today": "2026-11-26",
+      "expect": {
+        "streak": 0,
+        "studiedToday": false
+      }
+    },
+    {
+      "name": "across a month end",
+      "days": [
+        "2026-10-30",
+        "2026-10-31",
+        "2026-11-1"
+      ],
+      "today": "2026-11-1",
+      "expect": {
+        "streak": 3,
+        "studiedToday": true
+      }
+    },
+    {
+      "name": "across a year end",
+      "days": [
+        "2025-12-31",
+        "2026-1-1"
+      ],
+      "today": "2026-1-2",
+      "expect": {
+        "streak": 2,
+        "studiedToday": false
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "name": "cards only",
+      "lang": "es",
+      "cards": {
+        "es:casa": {
+          "stability": 30,
+          "lastReview": 1795543200000
+        },
+        "es:perro": {
+          "stability": 1,
+          "lastReview": 1794852000000
+        },
+        "es:gato": {
+          "stability": 50,
+          "lastReview": 1795629600000
+        },
+        "fr:chat": {
+          "stability": 50,
+          "lastReview": 1795629600000
+        }
+      },
+      "rows": [],
+      "expect": {
+        "inputSeconds": 0,
+        "inputHours": 0,
+        "knownWords": 3
+      }
+    },
+    {
+      "name": "a recent tap drops a card to unknown",
+      "lang": "es",
+      "cards": {
+        "es:casa": {
+          "stability": 30,
+          "lastReview": 1795543200000
+        },
+        "es:perro": {
+          "stability": 1,
+          "lastReview": 1794852000000
+        },
+        "es:gato": {
+          "stability": 50,
+          "lastReview": 1795629600000
+        },
+        "fr:chat": {
+          "stability": 50,
+          "lastReview": 1795629600000
+        }
+      },
+      "rows": [
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 1800,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [
+            "casa",
+            "gato",
+            "luna"
+          ],
+          "taps": [
+            "gato"
+          ]
+        }
+      ],
+      "expect": {
+        "inputSeconds": 1800,
+        "inputHours": 0.5,
+        "knownWords": 2
+      }
+    },
+    {
+      "name": "input hours round down to a tenth",
+      "lang": "es",
+      "cards": {},
+      "rows": [
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 3599,
+          "coverage_pred": 0.95,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 359,
+          "coverage_pred": 0.9,
+          "lemmas_seen": [],
+          "taps": []
+        },
+        {
+          "kind": "exposure",
+          "lang": "es",
+          "reviewed_at": 1795712400000,
+          "tz": "America/New_York",
+          "seconds": 2000,
+          "coverage_pred": 0.1,
+          "lemmas_seen": [],
+          "taps": []
+        }
+      ],
+      "expect": {
+        "inputSeconds": 3958,
+        "inputHours": 1,
+        "knownWords": 0
+      }
+    }
+  ]
+}

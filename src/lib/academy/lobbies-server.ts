@@ -9,6 +9,7 @@ import { langCorpus } from "./groups-server";
 import { LANG_CODES } from "./lang-systems";
 import {
   allReady,
+  hostLeaveDecision,
   endEnabled,
   NEXT_GAME_MS,
   nextGameDue,
@@ -300,10 +301,11 @@ export async function pace(lobby: LobbyRow, now: number): Promise<LobbyRow> {
   return autoStart(await armAutoStart(lobby, allReady(await playersOf([lobby.id]), now), now), now);
 }
 
-export async function memberLobby(uid: string, lobbyId: unknown, screenOk = false): Promise<LobbyRow> {
+export async function memberLobby(uid: string, lobbyId: unknown, screenOk = false, hostOk = false): Promise<LobbyRow> {
   const id = lobbyIdOf(lobbyId);
   const lobby = await lobbyById(id);
   if (!lobby) throw new GroupsError("not_found", 404);
+  if (hostOk && lobby.host_id === uid) return lobby;
   if (!seatAllowed(await seatOf(id, uid, screenOk), screenOk)) throw new GroupsError("not_found", 404);
   return lobby;
 }
@@ -314,6 +316,34 @@ async function seatOf(lobbyId: string, uid: string, screenOk: boolean): Promise<
   if (!screenOk) return null;
   const screens = check(await service().from(SCREENS).select("user_id").eq("lobby_id", lobbyId).eq("user_id", uid).limit(1), "screen") as unknown[];
   return screens.length ? "screen" : null;
+}
+
+export type HandOff = "handoff" | "closed" | "moved";
+
+export async function handOffHost(lobby: LobbyRow, uid: string, now: number): Promise<HandOff> {
+  const tried = new Set<string>();
+  for (;;) {
+    const players = (await playersOf([lobby.id])).filter((p) => !tried.has(p.user_id));
+    const decision = hostLeaveDecision(uid, players, now);
+    if (decision.kind === "close") {
+      await closeLobbies([lobby.id], now);
+      return "closed";
+    }
+    tried.add(decision.to);
+    const seat = check(await service().from(PLAYERS).select("user_id").eq("lobby_id", lobby.id).eq("user_id", decision.to).limit(1), "handoff seat check") as unknown[];
+    if (!seat.length) continue;
+    const moved = check(await service().from(LOBBIES).update({ host_id: decision.to }).eq("id", lobby.id).eq("host_id", uid).select("id"), "handoff") as unknown[];
+    if (!moved.length) return "moved";
+    check(await service().from(PLAYERS).delete().eq("lobby_id", lobby.id).eq("user_id", uid), "handoff seat");
+    check(await service().from(SCREENS).delete().eq("lobby_id", lobby.id).eq("user_id", uid), "handoff screen");
+    return "handoff";
+  }
+}
+
+export async function freshScreens(lobbyIds: string[], now: number): Promise<Set<string>> {
+  if (!lobbyIds.length) return new Set();
+  const rows = check(await service().from(SCREENS).select("lobby_id,last_seen").in("lobby_id", lobbyIds), "screens seen") as { lobby_id: string; last_seen: string }[];
+  return new Set(rows.filter((r) => now - Date.parse(r.last_seen) < STALE_MS).map((r) => r.lobby_id));
 }
 
 export async function screensOf(lobbyId: string): Promise<string[]> {

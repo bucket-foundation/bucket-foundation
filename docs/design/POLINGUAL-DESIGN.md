@@ -76,6 +76,7 @@ Build screens only from `@/ui`. A screen that styles its own button, card, input
 | `Card` | paper card, 2px hairline, 20px radius, 4px lip; tones ink and tyrian on dark grounds |
 | `FlagTile` | the word tile: flag stripes, mono language label, word, IPA, speaker, gloss, thick lower lip, slight tilt |
 | `Pill`, `Badge`, `Tag` | filters, counts, states |
+| `IpaMark` | a small `Tag` reading "generated" after any IPA whose `ipa_source` is `epitran` or `llm`; nothing for `wiktionary`. iOS and Android show the same lowercase label in the same small tag style beside the IPA on the word card, search rows and the word page |
 | `Field`, `Sheet`, `Tabs` | forms, bottom sheets, section switching |
 | `Stage` | places stickers around content on a ground |
 | `Avatar` | the layered avatar; no photos |

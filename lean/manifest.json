@@ -5,7 +5,7 @@
   "status": "def",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 26,
+  "line": 19,
   "type": "Type"
  },
  {
@@ -14,16 +14,16 @@
   "status": "def",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 42,
+  "line": 35,
   "type": "Bucket.Address.SlotTuple → Nat"
  },
  {
   "name": "Bucket.Address.encode_injective",
   "kind": "theorem",
-  "status": "open",
+  "status": "external",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 49,
+  "line": 58,
   "type": "Function.Injective Bucket.Address.encode"
  },
  {
@@ -32,8 +32,17 @@
   "status": "external",
   "module": "Bucket.Address",
   "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
-  "line": 60,
+  "line": 84,
   "type": "∀ (a1 b1 c1 d1 e1 f1 a2 b2 c2 d2 e2 f2 : Fin 2),\n  2 ^ (↑a1 + 1) * 3 ^ (↑b1 + 1) * 5 ^ (↑c1 + 1) * 7 ^ (↑d1 + 1) * 11 ^ (↑e1 + 1) * 13 ^ (↑f1 + 1) =\n      2 ^ (↑a2 + 1) * 3 ^ (↑b2 + 1) * 5 ^ (↑c2 + 1) * 7 ^ (↑d2 + 1) * 11 ^ (↑e2 + 1) * 13 ^ (↑f2 + 1) →\n    a1 = a2 ∧ b1 = b2 ∧ c1 = c2 ∧ d1 = d2 ∧ e1 = e2 ∧ f1 = f2"
+ },
+ {
+  "name": "Bucket.Address.peel",
+  "kind": "theorem",
+  "status": "external",
+  "module": "Bucket.Address",
+  "source": "papers/history-hypothesis-engine/lean/Bucket/Address.lean",
+  "line": 42,
+  "type": "∀ {p x y : Nat}, 1 < p → p.Coprime x → p.Coprime y → ∀ {a b : Nat}, x * p ^ a = y * p ^ b → a = b ∧ x = y"
  },
  {
   "name": "Bucket.Belief.Opinion",
@@ -484,6 +493,339 @@
   "source": "lean/BucketMath/Discovery.lean",
   "line": 20,
   "type": "∀ (ds : List BucketMath.Discovery.Direction), BucketMath.Discovery.Admissible ds → 0 ≤ BucketMath.Discovery.expected ds"
+ },
+ {
+  "name": "BucketMath.Etymology.RankedForest",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 7,
+  "type": "Type → Type"
+ },
+ {
+  "name": "BucketMath.Etymology.RankedForest.descends",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 10,
+  "type": "∀ {α : Type} (self : BucketMath.Etymology.RankedForest α) (a p : α), self.parent a = some p → self.rank p < self.rank a"
+ },
+ {
+  "name": "BucketMath.Etymology.addressForest",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 60,
+  "type": "BucketMath.Etymology.RankedForest (List Nat)"
+ },
+ {
+  "name": "BucketMath.Etymology.address_acyclic",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 62,
+  "type": "∀ (n : Nat) (a : List Nat), BucketMath.Etymology.ancestorIter BucketMath.Etymology.addressForest (n + 1) a ≠ some a"
+ },
+ {
+  "name": "BucketMath.Etymology.ancestorIter",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 12,
+  "type": "{α : Type} → BucketMath.Etymology.RankedForest α → Nat → α → Option α"
+ },
+ {
+  "name": "BucketMath.Etymology.ancestorIter_rank",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 18,
+  "type": "∀ {α : Type} (F : BucketMath.Etymology.RankedForest α) (n : Nat) (a b : α),\n  BucketMath.Etymology.ancestorIter F (n + 1) a = some b → F.rank b < F.rank a"
+ },
+ {
+  "name": "BucketMath.Etymology.borrowed",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 211,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Etymology.borrowing_breaks_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 215,
+  "type": "BucketMath.Etymology.setSim BucketMath.Etymology.inherited BucketMath.Etymology.otherFamily <\n  min (BucketMath.Etymology.setSim BucketMath.Etymology.inherited BucketMath.Etymology.borrowed)\n    (BucketMath.Etymology.setSim BucketMath.Etymology.borrowed BucketMath.Etymology.otherFamily)"
+ },
+ {
+  "name": "BucketMath.Etymology.borrowing_needs_two_addresses",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 219,
+  "type": "¬∀ (A B C : List (List Nat)),\n    min (BucketMath.Etymology.setSim A B) (BucketMath.Etymology.setSim B C) ≤ BucketMath.Etymology.setSim A C"
+ },
+ {
+  "name": "BucketMath.Etymology.depth",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 45,
+  "type": "List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.fmax",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 161,
+  "type": "{β : Type} → (β → Nat) → List β → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.fmax_attained",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 173,
+  "type": "∀ {β : Type} (f : β → Nat) (l : List β), l ≠ [] → ∃ x, x ∈ l ∧ BucketMath.Etymology.fmax f l = f x"
+ },
+ {
+  "name": "BucketMath.Etymology.forest_acyclic",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 39,
+  "type": "∀ {α : Type} (F : BucketMath.Etymology.RankedForest α) (n : Nat) (a : α),\n  BucketMath.Etymology.ancestorIter F (n + 1) a ≠ some a"
+ },
+ {
+  "name": "BucketMath.Etymology.inherited",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 209,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Etymology.lcaDepth",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 65,
+  "type": "List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.lcaDepth_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 96,
+  "type": "∀ (a b c : List Nat),\n  min (BucketMath.Etymology.lcaDepth a b) (BucketMath.Etymology.lcaDepth b c) ≤ BucketMath.Etymology.lcaDepth a c"
+ },
+ {
+  "name": "BucketMath.Etymology.lcp_common_prefix",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 75,
+  "type": "∀ (a b : List Nat),\n  List.take (BucketMath.Learning.Sequencing.lcp a b) a = List.take (BucketMath.Learning.Sequencing.lcp a b) b"
+ },
+ {
+  "name": "BucketMath.Etymology.lcp_deepest",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 84,
+  "type": "∀ (p a b : List Nat), p <+: a → p <+: b → BucketMath.Etymology.depth p ≤ BucketMath.Learning.Sequencing.lcp a b"
+ },
+ {
+  "name": "BucketMath.Etymology.lcp_le_depth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 67,
+  "type": "∀ (a b : List Nat), BucketMath.Learning.Sequencing.lcp a b ≤ BucketMath.Etymology.depth a"
+ },
+ {
+  "name": "BucketMath.Etymology.lcp_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 110,
+  "type": "∀ (a : List Nat), BucketMath.Learning.Sequencing.lcp a a = a.length"
+ },
+ {
+  "name": "BucketMath.Etymology.le_fmax",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 163,
+  "type": "∀ {β : Type} (f : β → Nat) (l : List β) (x : β), x ∈ l → f x ≤ BucketMath.Etymology.fmax f l"
+ },
+ {
+  "name": "BucketMath.Etymology.otherFamily",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 213,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Etymology.parentAddr",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 47,
+  "type": "List Nat → Option (List Nat)"
+ },
+ {
+  "name": "BucketMath.Etymology.parentAddr_depth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 52,
+  "type": "∀ (a p : List Nat),\n  BucketMath.Etymology.parentAddr a = some p → BucketMath.Etymology.depth p < BucketMath.Etymology.depth a"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 120,
+  "type": "List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_eq_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 131,
+  "type": "∀ (a b : List Nat), BucketMath.Etymology.pathDist a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_not_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 157,
+  "type": "max (BucketMath.Etymology.pathDist [0, 0] [0]) (BucketMath.Etymology.pathDist [0] [0, 1]) <\n  BucketMath.Etymology.pathDist [0, 0] [0, 1]"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 126,
+  "type": "∀ (a : List Nat), BucketMath.Etymology.pathDist a a = 0"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 122,
+  "type": "∀ (a b : List Nat), BucketMath.Etymology.pathDist a b = BucketMath.Etymology.pathDist b a"
+ },
+ {
+  "name": "BucketMath.Etymology.pathDist_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 143,
+  "type": "∀ (a b c : List Nat),\n  BucketMath.Etymology.pathDist a c ≤ BucketMath.Etymology.pathDist a b + BucketMath.Etymology.pathDist b c"
+ },
+ {
+  "name": "BucketMath.Etymology.rootDist",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 99,
+  "type": "Nat → List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.rootDist_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 114,
+  "type": "∀ (H : Nat) (a : List Nat), BucketMath.Etymology.depth a = H → BucketMath.Etymology.rootDist H a a = 0"
+ },
+ {
+  "name": "BucketMath.Etymology.rootDist_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 107,
+  "type": "∀ (H : Nat) (a b : List Nat), BucketMath.Etymology.rootDist H a b = BucketMath.Etymology.rootDist H b a"
+ },
+ {
+  "name": "BucketMath.Etymology.rootDist_ultrametric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 101,
+  "type": "∀ (H : Nat) (a b c : List Nat),\n  BucketMath.Etymology.rootDist H a c ≤ max (BucketMath.Etymology.rootDist H a b) (BucketMath.Etymology.rootDist H b c)"
+ },
+ {
+  "name": "BucketMath.Etymology.setSim",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 184,
+  "type": "List (List Nat) → List (List Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Etymology.setSim_nil_left",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 186,
+  "type": "∀ (B : List (List Nat)), BucketMath.Etymology.setSim [] B = 0"
+ },
+ {
+  "name": "BucketMath.Etymology.single_address_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Etymology.Forest",
+  "source": "lean/BucketMath/Etymology/Forest.lean",
+  "line": 188,
+  "type": "∀ (A C : List (List Nat)) (b : List Nat),\n  min (BucketMath.Etymology.setSim A [b]) (BucketMath.Etymology.setSim [b] C) ≤ BucketMath.Etymology.setSim A C"
  },
  {
   "name": "BucketMath.Fsrs.clamp",
@@ -1125,6 +1467,177 @@
   "type": "{α : Type} → (α → Prop) → List α → α → Prop"
  },
  {
+  "name": "BucketMath.Learning.Capacity.capacity_bound",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 72,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (held : List ι) {m B : Nat},\n  0 < m → (∀ (i : ι), i ∈ held → m ≤ cost i) → BucketMath.Learning.Capacity.load cost held ≤ B → held.length ≤ B / m"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_bound_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 104,
+  "type": "∀ {m m' : Nat} (B : Nat), 0 < m' → m' ≤ m → B / m ≤ B / m'"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_rises",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 108,
+  "type": "∀ {ι : Type} (R : Nat → Nat → Nat) (r n c W B : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ (stab : Nat → ι → Nat) (held : List ι) {w w' : Nat},\n      (∀ (i : ι), i ∈ held → stab w i ≤ stab w' i) →\n        (∀ (i : ι), i ∈ held → 0 < BucketMath.Learning.Capacity.lastHold R r (stab w i) n) →\n          BucketMath.Learning.Capacity.load (fun i => BucketMath.Learning.Capacity.upkeep R r n c W (stab w i)) held ≤\n              B →\n            BucketMath.Learning.Capacity.load (fun i => BucketMath.Learning.Capacity.upkeep R r n c W (stab w' i))\n                held ≤\n              B"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.capacity_tight",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 86,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (pool : List ι) {m B : Nat},\n  B / m ≤ pool.length →\n    (∀ (i : ι), i ∈ pool → cost i = m) →\n      (List.take (B / m) pool).length = B / m ∧ BucketMath.Learning.Capacity.load cost (List.take (B / m) pool) ≤ B"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.held_retention",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 40,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n t : Nat),\n  (∀ (t t' S : Nat), t ≤ t' → R t' S ≤ R t S) →\n    0 < BucketMath.Learning.Capacity.lastHold R r S n → t ≤ BucketMath.Learning.Capacity.lastHold R r S n → r ≤ R t S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 7,
+  "type": "(Nat → Nat → Nat) → Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_holds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 16,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n : Nat),\n  0 < BucketMath.Learning.Capacity.lastHold R r S n → r ≤ R (BucketMath.Learning.Capacity.lastHold R r S n) S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_le",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 11,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n : Nat), BucketMath.Learning.Capacity.lastHold R r S n ≤ n"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.lastHold_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 26,
+  "type": "∀ (R : Nat → Nat → Nat) (r n : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ {S S' : Nat},\n      S ≤ S' → BucketMath.Learning.Capacity.lastHold R r S n ≤ BucketMath.Learning.Capacity.lastHold R r S' n"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.length_mul_le_load",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 62,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (m : Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → m ≤ cost i) → held.length * m ≤ BucketMath.Learning.Capacity.load cost held"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 60,
+  "type": "{ι : Type} → (ι → Nat) → List ι → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load_const",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 76,
+  "type": "∀ {ι : Type} (cost : ι → Nat) (m : Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → cost i = m) → BucketMath.Learning.Capacity.load cost held = held.length * m"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.load_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 94,
+  "type": "∀ {ι : Type} (cost cost' : ι → Nat) (held : List ι),\n  (∀ (i : ι), i ∈ held → cost' i ≤ cost i) →\n    BucketMath.Learning.Capacity.load cost' held ≤ BucketMath.Learning.Capacity.load cost held"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.maintenance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 45,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.maintenance_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 47,
+  "type": "∀ (c W : Nat) {I I' : Nat},\n  0 < I → I ≤ I' → BucketMath.Learning.Capacity.maintenance c W I' ≤ BucketMath.Learning.Capacity.maintenance c W I"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.powerRetention",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 117,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.powerRetention_antitone_time",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 119,
+  "type": "∀ (U S : Nat) {t t' : Nat},\n  0 < S →\n    t ≤ t' → BucketMath.Learning.Capacity.powerRetention U t' S ≤ BucketMath.Learning.Capacity.powerRetention U t S"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.upkeep",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 51,
+  "type": "(Nat → Nat → Nat) → Nat → Nat → Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Capacity.upkeep_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Capacity",
+  "source": "lean/BucketMath/Learning/Capacity.lean",
+  "line": 54,
+  "type": "∀ (R : Nat → Nat → Nat) (r n c W : Nat),\n  (∀ (t S S' : Nat), S ≤ S' → R t S ≤ R t S') →\n    ∀ {S S' : Nat},\n      0 < BucketMath.Learning.Capacity.lastHold R r S n →\n        S ≤ S' → BucketMath.Learning.Capacity.upkeep R r n c W S' ≤ BucketMath.Learning.Capacity.upkeep R r n c W S"
+ },
+ {
   "name": "BucketMath.Learning.Closed",
   "kind": "def",
   "status": "def",
@@ -1132,6 +1645,204 @@
   "source": "lean/BucketMath/Learning.lean",
   "line": 7,
   "type": "{α : Type} → (α → α → Prop) → (α → Prop) → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.CognateCoverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 16,
+  "type": "{L W : Type} → (L → W → Bool) → List L → List (W × Nat) → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.CoveredMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 10,
+  "type": "{L W : Type} → (L → W → Bool) → List L → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.Recognized",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 7,
+  "type": "{L W : Type} → (L → W → Bool) → List L → W → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.TotalMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 13,
+  "type": "{W : Type} → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_empty",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 91,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CognateCoverage cognate [] text = 0"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 71,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CognateCoverage cognate held text ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 62,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage cognate small text ≤\n        BucketMath.Learning.Cognate.CognateCoverage cognate large text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coverage_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 85,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  0 ≤ BucketMath.Learning.Cognate.CognateCoverage cognate held text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coveredMass_le_total",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 44,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) (text : List (W × Nat)),\n  BucketMath.Learning.Cognate.CoveredMass cognate held text ≤ BucketMath.Learning.Cognate.TotalMass text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.coveredMass_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 27,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass cognate small text ≤\n        BucketMath.Learning.Cognate.CoveredMass cognate large text"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.natCast_inv_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 56,
+  "type": "∀ (n : Nat), 0 ≤ (↑n)⁻¹"
+ },
+ {
+  "name": "BucketMath.Learning.Cognate.recognized_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Coverage",
+  "source": "lean/BucketMath/Learning/Coverage.lean",
+  "line": 19,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ (w : W),\n      BucketMath.Learning.Cognate.Recognized cognate small w = true →\n        BucketMath.Learning.Cognate.Recognized cognate large w = true"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.AdjustedCoverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 15,
+  "type": "{L W : Type} → (L → W → Bool) → List L → (W → Rat) → Rat → List W → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.AdjustedMass",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 11,
+  "type": "{L W : Type} → (L → W → Bool) → List L → (W → Rat) → Rat → List W → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 9,
+  "type": "Rat → Rat → Bool → Rat"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 47,
+  "type": "∀ {w p : Rat} (r : Bool),\n  0 ≤ w →\n    w ≤ 1 →\n      0 ≤ p →\n        p ≤ 1 →\n          0 ≤ BucketMath.Learning.CognateAdjusted.adjusted w p r ∧\n            BucketMath.Learning.CognateAdjusted.adjusted w p r ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.adjusted_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 21,
+  "type": "∀ {w p p' : Rat} {r r' : Bool},\n  p ≤ p' →\n    (r = true → r' = true) →\n      BucketMath.Learning.CognateAdjusted.adjusted w p r ≤ BucketMath.Learning.CognateAdjusted.adjusted w p' r'"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.c1_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 78,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) {known : W → Rat} {w : Rat},\n  0 ≤ w →\n    w ≤ 1 →\n      (∀ (x : W), 0 ≤ known x ∧ known x ≤ 1) →\n        ∀ (text : List W),\n          0 ≤ BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate held known w text ∧\n            BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate held known w text ≤ 1"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.c1_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 94,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ {known known' : W → Rat},\n      (∀ (x : W), known x ≤ known' x) →\n        ∀ (w : Rat) (text : List W),\n          BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate small known w text ≤\n            BucketMath.Learning.CognateAdjusted.AdjustedCoverage cognate large known' w text"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.mass_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 65,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) (held : List L) {known : W → Rat} {w : Rat},\n  0 ≤ w →\n    w ≤ 1 →\n      (∀ (x : W), 0 ≤ known x ∧ known x ≤ 1) →\n        ∀ (text : List W),\n          0 ≤ BucketMath.Learning.CognateAdjusted.AdjustedMass cognate held known w text ∧\n            BucketMath.Learning.CognateAdjusted.AdjustedMass cognate held known w text ≤ ↑text.length"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.mass_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 56,
+  "type": "∀ {L W : Type} (cognate : L → W → Bool) {small large : List L},\n  (∀ (l : L), l ∈ small → l ∈ large) →\n    ∀ {known known' : W → Rat},\n      (∀ (x : W), known x ≤ known' x) →\n        ∀ (w : Rat) (text : List W),\n          BucketMath.Learning.CognateAdjusted.AdjustedMass cognate small known w text ≤\n            BucketMath.Learning.CognateAdjusted.AdjustedMass cognate large known' w text"
+ },
+ {
+  "name": "BucketMath.Learning.CognateAdjusted.rat_add_le_add",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.CognateAdjusted",
+  "source": "lean/BucketMath/Learning/CognateAdjusted.lean",
+  "line": 18,
+  "type": "∀ {a b c d : Rat}, a ≤ b → c ≤ d → a + c ≤ b + d"
  },
  {
   "name": "BucketMath.Learning.CoordinateGrowth",
@@ -1188,6 +1899,186 @@
   "type": "{α : Type} → (α → α → Prop) → (α → Prop) → α → List α → Prop"
  },
  {
+  "name": "BucketMath.Learning.Exposure.Card",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 7,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.Ctx",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 15,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.credited",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 22,
+  "type": "BucketMath.Learning.Exposure.Ctx → BucketMath.Learning.Exposure.Card → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e1_bounds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 43,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  0 ≤ c.s →\n    0 ≤ x.gain →\n      x.gain ≤ BucketMath.Learning.Exposure.gainCap →\n        c.s ≤ (BucketMath.Learning.Exposure.exposure x c).s ∧\n          BucketMath.Learning.Exposure.gainUnit * (BucketMath.Learning.Exposure.exposure x c).s ≤\n            (BucketMath.Learning.Exposure.gainUnit + BucketMath.Learning.Exposure.gainCap) * c.s"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e1_skip",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 39,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  c.isNew = true ∨ x.recallOk = false → (BucketMath.Learning.Exposure.exposure x c).s = c.s"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e2_same_day",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 62,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card) (n : Nat),\n  Nat.repeat (BucketMath.Learning.Exposure.exposure x) (n + 1) c = BucketMath.Learning.Exposure.exposure x c"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e3_due",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 69,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  c.due ≤ (BucketMath.Learning.Exposure.exposure x c).due ∧ (BucketMath.Learning.Exposure.exposure x c).last = c.last"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e3_tap",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 75,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  (BucketMath.Learning.Exposure.row x true c).due = x.now ∧ (BucketMath.Learning.Exposure.row x true c).last = c.last"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e4_tap_keeps_s",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 78,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  (BucketMath.Learning.Exposure.row x true c).s = c.s"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.e5_order",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 103,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) {r₁ r₂ : List Bool},\n  r₁.Perm r₂ →\n    ∀ (c : BucketMath.Learning.Exposure.Card),\n      BucketMath.Learning.Exposure.group x r₁ c = BucketMath.Learning.Exposure.group x r₂ c"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.exposure",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 27,
+  "type": "BucketMath.Learning.Exposure.Ctx → BucketMath.Learning.Exposure.Card → BucketMath.Learning.Exposure.Card"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.exposure_idem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 54,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (c : BucketMath.Learning.Exposure.Card),\n  BucketMath.Learning.Exposure.exposure x (BucketMath.Learning.Exposure.exposure x c) =\n    BucketMath.Learning.Exposure.exposure x c"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.fold_exposure",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 81,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (l : List Bool) (c : BucketMath.Learning.Exposure.Card),\n  List.foldl (fun c x_1 => BucketMath.Learning.Exposure.exposure x c) c l =\n    if l.length = 0 then c else BucketMath.Learning.Exposure.exposure x c"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.fold_tap",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 92,
+  "type": "∀ (x : BucketMath.Learning.Exposure.Ctx) (l : List Bool) (c : BucketMath.Learning.Exposure.Card),\n  List.foldl (fun c x_1 => BucketMath.Learning.Exposure.tap x c) c l =\n    if l.length = 0 then c else BucketMath.Learning.Exposure.tap x c"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.gainCap",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 3,
+  "type": "Int"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.gainUnit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 5,
+  "type": "Int"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.group",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 36,
+  "type": "BucketMath.Learning.Exposure.Ctx → List Bool → BucketMath.Learning.Exposure.Card → BucketMath.Learning.Exposure.Card"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.raise",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 25,
+  "type": "BucketMath.Learning.Exposure.Ctx → Int → Int"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.row",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 34,
+  "type": "BucketMath.Learning.Exposure.Ctx → Bool → BucketMath.Learning.Exposure.Card → BucketMath.Learning.Exposure.Card"
+ },
+ {
+  "name": "BucketMath.Learning.Exposure.tap",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Exposure",
+  "source": "lean/BucketMath/Learning/Exposure.lean",
+  "line": 32,
+  "type": "BucketMath.Learning.Exposure.Ctx → BucketMath.Learning.Exposure.Card → BucketMath.Learning.Exposure.Card"
+ },
+ {
   "name": "BucketMath.Learning.Path",
   "kind": "inductive",
   "status": "def",
@@ -1213,6 +2104,555 @@
   "source": "lean/BucketMath/Learning.lean",
   "line": 24,
   "type": "{α : Type} → (α → α → Prop) → α → (α → Prop) → α → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.Plan",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 3,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.best",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 25,
+  "type": "List BucketMath.Learning.Selector.Plan → Option BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.best_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 47,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.best ps = some p → p ∈ ps"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 23,
+  "type": "BucketMath.Learning.Selector.Plan → BucketMath.Learning.Selector.Plan → BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 31,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  BucketMath.Learning.Selector.better a b = a ∨ BucketMath.Learning.Selector.better a b = b"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_score",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 90,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  a.score ≤ (BucketMath.Learning.Selector.better a b).score ∧ b.score ≤ (BucketMath.Learning.Selector.better a b).score"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.better_tie_lowest_id",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 94,
+  "type": "∀ (a b : BucketMath.Learning.Selector.Plan),\n  a.score = b.score → (BucketMath.Learning.Selector.better a b).id = min a.id b.id"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_gloss_budget",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 69,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.glossed ≤ 2 ∨ 100 * p.glossed ≤ 5 * p.tokens"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_media_floor",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 80,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.media = true → 900 ≤ p.coverMilli"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_new_share",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 86,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → 100 * p.newWords ≤ 5 * p.tokens"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_selected",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 62,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p →\n    BucketMath.Learning.Selector.minTokens ≤ p.tokens ∧\n      BucketMath.Learning.Selector.inBand p = true ∧\n        1 ≤ p.newWords ∧\n          p.newWords ≤ 3 ∧ 20 * p.newWords ≤ p.tokens ∧ BucketMath.Learning.Selector.withinGlossBudget p = true"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.c2_text_band",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 74,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → p.media = false → 950 ≤ p.coverMilli ∧ p.coverMilli ≤ 980"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.eligible",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 20,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.foldl_better_mem",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 35,
+  "type": "∀ (ps : List BucketMath.Learning.Selector.Plan) (a : BucketMath.Learning.Selector.Plan),\n  List.foldl BucketMath.Learning.Selector.better a ps = a ∨ List.foldl BucketMath.Learning.Selector.better a ps ∈ ps"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.inBand",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 15,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.minTokens",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 13,
+  "type": "Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.select",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 29,
+  "type": "List BucketMath.Learning.Selector.Plan → Option BucketMath.Learning.Selector.Plan"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.select_eligible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 58,
+  "type": "∀ {ps : List BucketMath.Learning.Selector.Plan} {p : BucketMath.Learning.Selector.Plan},\n  BucketMath.Learning.Selector.select ps = some p → BucketMath.Learning.Selector.eligible p = true"
+ },
+ {
+  "name": "BucketMath.Learning.Selector.withinGlossBudget",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Selector",
+  "source": "lean/BucketMath/Learning/Selector.lean",
+  "line": 18,
+  "type": "BucketMath.Learning.Selector.Plan → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 40,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra.symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 41,
+  "type": "∀ {α : Type} {sim : α → α → Nat}, BucketMath.Learning.Sequencing.Ultra sim → ∀ (a b : α), sim a b = sim b a"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.Ultra.ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 42,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim → ∀ (a b c : α), min (sim a b) (sim b c) ≤ sim a c"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetCluster",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 110,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetGreedy",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 108,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budgetHeld",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 106,
+  "type": "List (List Nat)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budget_greedy_is_greedy",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 112,
+  "type": "BucketMath.Learning.Sequencing.isGreedy BucketMath.Learning.Sequencing.lcp BucketMath.Learning.Sequencing.budgetHeld\n    BucketMath.Learning.Sequencing.budgetGreedy =\n  true"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.budget_same_pool",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 114,
+  "type": "BucketMath.Learning.Sequencing.budgetGreedy.Perm BucketMath.Learning.Sequencing.budgetCluster"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.depthBase",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 104,
+  "type": "List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.every_order_optimal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 96,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {g l : List α},\n      g.Perm l →\n        BucketMath.Learning.Sequencing.totalCost sim base held g ≤\n          BucketMath.Learning.Sequencing.totalCost sim base held l"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.greedy_fails_under_budget",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 116,
+  "type": "BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetCluster 3 <\n  BucketMath.Learning.Sequencing.prefixCost BucketMath.Learning.Sequencing.depthBase\n    BucketMath.Learning.Sequencing.budgetHeld BucketMath.Learning.Sequencing.budgetGreedy 3"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.isGreedy",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 92,
+  "type": "{α : Type} → (α → α → Nat) → List α → List α → Bool"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 7,
+  "type": "List Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 44,
+  "type": "BucketMath.Learning.Sequencing.Ultra BucketMath.Learning.Sequencing.lcp"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 11,
+  "type": "∀ (a b : List Nat), BucketMath.Learning.Sequencing.lcp a b = BucketMath.Learning.Sequencing.lcp b a"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.lcp_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 21,
+  "type": "∀ (a b c : List Nat),\n  min (BucketMath.Learning.Sequencing.lcp a b) (BucketMath.Learning.Sequencing.lcp b c) ≤\n    BucketMath.Learning.Sequencing.lcp a c"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.prefixCost",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 101,
+  "type": "(List Nat → Nat) → List (List Nat) → List (List Nat) → Nat → Int"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 30,
+  "type": "{α : Type} → (α → α → Nat) → α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared_ge_min",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 46,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (a b : α) (held : List α),\n      min (sim a b) (BucketMath.Learning.Sequencing.shared sim b held) ≤\n        BucketMath.Learning.Sequencing.shared sim a held"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.shared_swap",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 55,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (a b : α) (held : List α),\n      BucketMath.Learning.Sequencing.shared sim a held + BucketMath.Learning.Sequencing.shared sim b (a :: held) =\n        BucketMath.Learning.Sequencing.shared sim b held + BucketMath.Learning.Sequencing.shared sim a (b :: held)"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalCost",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 37,
+  "type": "{α : Type} → (α → α → Nat) → (α → Nat) → List α → List α → Int"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalCost_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 87,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ (base : α → Nat) (held : List α) {l l' : List α},\n      l.Perm l' →\n        BucketMath.Learning.Sequencing.totalCost sim base held l =\n          BucketMath.Learning.Sequencing.totalCost sim base held l'"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 33,
+  "type": "{α : Type} → (α → α → Nat) → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared_congr",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 63,
+  "type": "∀ {α : Type} (sim : α → α → Nat) (order held held' : List α),\n  (∀ (d : α), BucketMath.Learning.Sequencing.shared sim d held = BucketMath.Learning.Sequencing.shared sim d held') →\n    BucketMath.Learning.Sequencing.totalShared sim held order =\n      BucketMath.Learning.Sequencing.totalShared sim held' order"
+ },
+ {
+  "name": "BucketMath.Learning.Sequencing.totalShared_perm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.Sequencing",
+  "source": "lean/BucketMath/Learning/Sequencing.lean",
+  "line": 73,
+  "type": "∀ {α : Type} {sim : α → α → Nat},\n  BucketMath.Learning.Sequencing.Ultra sim →\n    ∀ {l l' : List α},\n      l.Perm l' →\n        ∀ (held : List α),\n          BucketMath.Learning.Sequencing.totalShared sim held l = BucketMath.Learning.Sequencing.totalShared sim held l'"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.eligibleRate",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 32,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 34,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_le_eligible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 38,
+  "type": "∀ (t e s : Nat), BucketMath.Learning.SessionMix.inputShare t e s ≤ BucketMath.Learning.SessionMix.eligibleRate e s"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_le_target",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 36,
+  "type": "∀ (t e s : Nat), BucketMath.Learning.SessionMix.inputShare t e s ≤ t"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.inputShare_zero_without_input",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 40,
+  "type": "∀ (t s : Nat), BucketMath.Learning.SessionMix.inputShare t 0 s = 0"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.m1_units_within_one_item",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 12,
+  "type": "∀ (want avg : Nat),\n  0 < avg →\n    BucketMath.Learning.SessionMix.units want avg * avg ≤ want + avg ∧\n      want ≤ BucketMath.Learning.SessionMix.units want avg * avg + avg"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.m1_within_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 5,
+  "type": "∀ (t n : Nat),\n  1000 * BucketMath.Learning.SessionMix.roundedItems t n ≤ t * n + 1000 ∧\n    t * n ≤ 1000 * BucketMath.Learning.SessionMix.roundedItems t n + 1000"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 44,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_le_cards",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 48,
+  "type": "∀ (p c r : Nat), 0 < c → BucketMath.Learning.SessionMix.planUnits p c r ≤ c"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_le_pool",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 46,
+  "type": "∀ (p c r : Nat), BucketMath.Learning.SessionMix.planUnits p c r ≤ p"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.planUnits_pos",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 54,
+  "type": "∀ (p c r : Nat), 0 < p → 0 < BucketMath.Learning.SessionMix.planUnits p c r"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.position",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 58,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.position_lt_cards",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 60,
+  "type": "∀ (c u i : Nat), 0 < c → BucketMath.Learning.SessionMix.position c u i < c"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.roundedItems",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 3,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.share",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 24,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.share_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 26,
+  "type": "∀ (i c : Nat), BucketMath.Learning.SessionMix.share i c ≤ 1000"
+ },
+ {
+  "name": "BucketMath.Learning.SessionMix.units",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Learning.SessionMix",
+  "source": "lean/BucketMath/Learning/SessionMix.lean",
+  "line": 10,
+  "type": "Nat → Nat → Nat"
  },
  {
   "name": "BucketMath.Learning.SquaredExtent",
@@ -1411,6 +2851,1248 @@
   "source": "lean/BucketMath/Learning.lean",
   "line": 183,
   "type": "∀ {small large : List Nat},\n  BucketMath.Learning.CoordinateGrowth small large →\n    BucketMath.Learning.SquaredExtent small ≤ BucketMath.Learning.SquaredExtent large"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.claim_anderson_1991_reflections_environment_memory",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 45,
+  "type": "(Nat → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.environment_need_falls",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 48,
+  "type": "∀ {needOdds : Nat → Nat} {U : Nat},\n  BucketMath.Literature.Actr.claim_anderson_1991_reflections_environment_memory needOdds U →\n    ∀ {a a' : Nat}, a ≤ a' → needOdds a' ≤ needOdds a"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 7,
+  "type": "Nat → Nat → List Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength_antitone_decay",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 37,
+  "type": "∀ (U : Nat) {dec dec' : Nat},\n  dec ≤ dec' →\n    ∀ (ages : List Nat),\n      BucketMath.Literature.Actr.strength U dec' ages ≤ BucketMath.Literature.Actr.strength U dec ages"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength_decays",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 28,
+  "type": "∀ (U dec Δ : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec (BucketMath.Literature.Actr.wait Δ ages) ≤\n    BucketMath.Literature.Actr.strength U dec ages"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength_practice",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 24,
+  "type": "∀ (U dec a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec ages ≤ BucketMath.Literature.Actr.strength U dec (a :: ages)"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.strength_practice_adds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 20,
+  "type": "∀ (U dec a : Nat) (ages : List Nat),\n  BucketMath.Literature.Actr.strength U dec (a :: ages) =\n    BucketMath.Literature.Actr.trace U dec a + BucketMath.Literature.Actr.strength U dec ages"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.trace",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 5,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.trace_antitone_age",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 11,
+  "type": "∀ (U dec : Nat) {a a' : Nat},\n  a ≤ a' → BucketMath.Literature.Actr.trace U dec a' ≤ BucketMath.Literature.Actr.trace U dec a"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.trace_antitone_decay",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 14,
+  "type": "∀ (U age : Nat) {dec dec' : Nat},\n  dec ≤ dec' → BucketMath.Literature.Actr.trace U dec' age ≤ BucketMath.Literature.Actr.trace U dec age"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.trace_fresh",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 18,
+  "type": "∀ (U dec : Nat), BucketMath.Literature.Actr.trace U dec 0 = U"
+ },
+ {
+  "name": "BucketMath.Literature.Actr.wait",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Actr",
+  "source": "lean/BucketMath/Literature/Actr.lean",
+  "line": 9,
+  "type": "Nat → List Nat → List Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 39,
+  "type": "Rat → Rat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.corbett_correct_raises",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 46,
+  "type": "∀ {L s g : Rat},\n  0 ≤ L →\n    L ≤ 1 →\n      BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing s g →\n        L * BucketMath.Literature.Bkt.evidenceDen L s g ≤ BucketMath.Literature.Bkt.evidenceNum L s"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.corbett_identifiable",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 42,
+  "type": "∀ {s g : Rat}, BucketMath.Literature.Bkt.claim_corbett_1994_knowledge_tracing s g → g + s < 1"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.correct_raises_belief",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 33,
+  "type": "∀ {L s g : Rat},\n  0 ≤ L →\n    L ≤ 1 → g ≤ 1 - s → L * BucketMath.Literature.Bkt.evidenceDen L s g ≤ BucketMath.Literature.Bkt.evidenceNum L s"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.evidenceDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 31,
+  "type": "Rat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.evidenceNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 29,
+  "type": "Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.learn",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 5,
+  "type": "Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.learnN",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 7,
+  "type": "Rat → Rat → Nat → Rat"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.learn_ge",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 11,
+  "type": "∀ {T L : Rat}, 0 ≤ T → L ≤ 1 → L ≤ BucketMath.Literature.Bkt.learn T L"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.learn_le_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 16,
+  "type": "∀ {T L : Rat}, T ≤ 1 → L ≤ 1 → BucketMath.Literature.Bkt.learn T L ≤ 1"
+ },
+ {
+  "name": "BucketMath.Literature.Bkt.unlearned_closed_form",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Bkt",
+  "source": "lean/BucketMath/Literature/Bkt.lean",
+  "line": 21,
+  "type": "∀ (T L : Rat) (n : Nat), 1 - BucketMath.Literature.Bkt.learnN T L n = (1 - L) * (1 - T) ^ n"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.MeetsThreshold",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 12,
+  "type": "{W : Type} → Nat → (W → Bool) → List (W × Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.claim_hu_2000_unknown_vocabulary_density",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 58,
+  "type": "{W : Type} → Prop → (W → Bool) → List (W × Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.claim_laufer_1989_coverage",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 55,
+  "type": "{W : Type} → Prop → (W → Bool) → List (W × Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.covered",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 7,
+  "type": "{W : Type} → (W → Bool) → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.covered_le_total",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 15,
+  "type": "∀ {W : Type} (known : W → Bool) (text : List (W × Nat)),\n  BucketMath.Literature.Coverage.covered known text ≤ BucketMath.Literature.Coverage.total text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.covered_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 22,
+  "type": "∀ {W : Type} {small large : W → Bool},\n  (∀ (w : W), small w = true → large w = true) →\n    ∀ (text : List (W × Nat)),\n      BucketMath.Literature.Coverage.covered small text ≤ BucketMath.Literature.Coverage.covered large text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.hu_threshold_implies_laufer",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 61,
+  "type": "∀ {W : Type} {comprehends : Prop} {known : W → Bool} {text : List (W × Nat)},\n  BucketMath.Literature.Coverage.claim_laufer_1989_coverage comprehends known text →\n    BucketMath.Literature.Coverage.MeetsThreshold 98 known text → comprehends"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.ninetyEight_unknown_density",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 43,
+  "type": "∀ {W : Type} {known : W → Bool} {text : List (W × Nat)},\n  BucketMath.Literature.Coverage.MeetsThreshold 98 known text →\n    50 * (BucketMath.Literature.Coverage.total text - BucketMath.Literature.Coverage.covered known text) ≤\n      BucketMath.Literature.Coverage.total text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.ninetyFive_unknown_density",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 49,
+  "type": "∀ {W : Type} {known : W → Bool} {text : List (W × Nat)},\n  BucketMath.Literature.Coverage.MeetsThreshold 95 known text →\n    20 * (BucketMath.Literature.Coverage.total text - BucketMath.Literature.Coverage.covered known text) ≤\n      BucketMath.Literature.Coverage.total text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.threshold_mono_known",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 35,
+  "type": "∀ {W : Type} {pct : Nat} {small large : W → Bool},\n  (∀ (w : W), small w = true → large w = true) →\n    ∀ {text : List (W × Nat)},\n      BucketMath.Literature.Coverage.MeetsThreshold pct small text →\n        BucketMath.Literature.Coverage.MeetsThreshold pct large text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.threshold_mono_pct",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 39,
+  "type": "∀ {W : Type} {pct pct' : Nat},\n  pct' ≤ pct →\n    ∀ {known : W → Bool} {text : List (W × Nat)},\n      BucketMath.Literature.Coverage.MeetsThreshold pct known text →\n        BucketMath.Literature.Coverage.MeetsThreshold pct' known text"
+ },
+ {
+  "name": "BucketMath.Literature.Coverage.total",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Coverage",
+  "source": "lean/BucketMath/Literature/Coverage.lean",
+  "line": 10,
+  "type": "{W : Type} → List (W × Nat) → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.LogLinearAt",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 5,
+  "type": "(Nat → Nat) → (Nat → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.Matches",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 51,
+  "type": "(Nat → Nat) → (Nat → Nat) → (Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.StrictLogConvexAt",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 8,
+  "type": "(Nat → Nat) → (Nat → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.claim_murre_2015_ebbinghaus_replication",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 86,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 130,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.ebbinghaus_data_not_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 89,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.Forgetting.claim_murre_2015_ebbinghaus_replication n d →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.expDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 13,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.expNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 11,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 31,
+  "type": "∀ {p q : Nat},\n  p ≤ q →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.expNum p (t + 1) * BucketMath.Literature.Forgetting.expDen q t ≤\n        BucketMath.Literature.Forgetting.expNum p t * BucketMath.Literature.Forgetting.expDen q (t + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_cannot_match_hyp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 82,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.hypNum a)\n            (BucketMath.Literature.Forgetting.hypDen a) (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_cannot_match_power",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 126,
+  "type": "∀ {s e : Nat},\n  0 < s →\n    0 < e →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.powerNum s e)\n              (BucketMath.Literature.Forgetting.powerDen s e) (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_logLinear",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 19,
+  "type": "∀ (p q t : Nat),\n  BucketMath.Literature.Forgetting.LogLinearAt (BucketMath.Literature.Forgetting.expNum p)\n    (BucketMath.Literature.Forgetting.expDen q) t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.exp_rejected_of_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 76,
+  "type": "∀ {n d : Nat → Nat} {t : Nat},\n  BucketMath.Literature.Forgetting.StrictLogConvexAt n d t →\n    ∀ {p q : Nat},\n      0 < q →\n        ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n            (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hypDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 17,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hypNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 15,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 38,
+  "type": "∀ (a t : Nat),\n  BucketMath.Literature.Forgetting.hypNum a (t + 1) * BucketMath.Literature.Forgetting.hypDen a t ≤\n    BucketMath.Literature.Forgetting.hypNum a t * BucketMath.Literature.Forgetting.hypDen a (t + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_half_at_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 48,
+  "type": "∀ (a : Nat), BucketMath.Literature.Forgetting.hypDen a a = 2 * BucketMath.Literature.Forgetting.hypNum a a"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 42,
+  "type": "∀ {a a' : Nat},\n  a ≤ a' →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.hypNum a t * BucketMath.Literature.Forgetting.hypDen a' t ≤\n        BucketMath.Literature.Forgetting.hypNum a' t * BucketMath.Literature.Forgetting.hypDen a t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyp_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 24,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (t : Nat),\n      BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.Forgetting.hypNum a)\n        (BucketMath.Literature.Forgetting.hypDen a) t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.hyperbolic_is_power_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 99,
+  "type": "∀ (s : Nat),\n  BucketMath.Literature.Forgetting.hypNum s = BucketMath.Literature.Forgetting.powerNum s 1 ∧\n    BucketMath.Literature.Forgetting.hypDen s = BucketMath.Literature.Forgetting.powerDen s 1"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.logLinear_of_matches_exp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 53,
+  "type": "∀ {n d : Nat → Nat} {p q : Nat},\n  0 < q →\n    BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n        (BucketMath.Literature.Forgetting.expDen q) →\n      ∀ (t : Nat), BucketMath.Literature.Forgetting.LogLinearAt n d t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.powerDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 97,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.powerNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 95,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.power_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 112,
+  "type": "∀ (s e t : Nat),\n  BucketMath.Literature.Forgetting.powerNum s e (t + 1) * BucketMath.Literature.Forgetting.powerDen s e t ≤\n    BucketMath.Literature.Forgetting.powerNum s e t * BucketMath.Literature.Forgetting.powerDen s e (t + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.power_steeper_with_exponent",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 117,
+  "type": "∀ {s e e' t : Nat},\n  e ≤ e' →\n    BucketMath.Literature.Forgetting.powerNum s e' t * BucketMath.Literature.Forgetting.powerDen s e t ≤\n      BucketMath.Literature.Forgetting.powerNum s e t * BucketMath.Literature.Forgetting.powerDen s e' t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.power_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 102,
+  "type": "∀ {s e : Nat},\n  0 < s →\n    0 < e →\n      ∀ (t : Nat),\n        BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.Forgetting.powerNum s e)\n          (BucketMath.Literature.Forgetting.powerDen s e) t"
+ },
+ {
+  "name": "BucketMath.Literature.Forgetting.wixted_data_not_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Forgetting",
+  "source": "lean/BucketMath/Literature/Forgetting.lean",
+  "line": 133,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting n d →\n    (∀ (t : Nat), 0 < d t) →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.claim_ye_2022_fsrs_ssp_mmc",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 63,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.fsrs_stored_denominator_pos",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 58,
+  "type": "∀ (x t : Int), 0 ≤ t → 0 < 9 * BucketMath.Fsrs.clampS x + t"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerInterval_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 49,
+  "type": "∀ (U r n : Nat) {S S' : Nat},\n  S ≤ S' →\n    BucketMath.Learning.Capacity.lastHold (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r S n ≤\n      BucketMath.Learning.Capacity.lastHold (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r S' n"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerRetention_at_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 37,
+  "type": "∀ (U S : Nat), 0 < S → BucketMath.Learning.Capacity.powerRetention U 0 S = U"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerRetention_half",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 41,
+  "type": "∀ (U S : Nat), 0 < S → BucketMath.Learning.Capacity.powerRetention U (9 * S) S = U / 2"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerRetention_is_hyperbolic",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 45,
+  "type": "∀ (U t S : Nat),\n  BucketMath.Learning.Capacity.powerRetention U t S =\n    U * BucketMath.Literature.Forgetting.hypNum (9 * S) t / BucketMath.Literature.Forgetting.hypDen (9 * S) t"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerRetention_mono_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 10,
+  "type": "∀ (U t : Nat) {S S' : Nat},\n  S ≤ S' → BucketMath.Learning.Capacity.powerRetention U t S ≤ BucketMath.Learning.Capacity.powerRetention U t S'"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.powerUpkeep_antitone",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 53,
+  "type": "∀ (U r n c W : Nat) {S S' : Nat},\n  0 < BucketMath.Learning.Capacity.lastHold (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r S n →\n    S ≤ S' →\n      BucketMath.Learning.Capacity.upkeep (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r n c W S' ≤\n        BucketMath.Learning.Capacity.upkeep (fun t S => BucketMath.Learning.Capacity.powerRetention U t S) r n c W S"
+ },
+ {
+  "name": "BucketMath.Literature.FsrsLink.ye_data_not_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.FsrsLink",
+  "source": "lean/BucketMath/Literature/FsrsLink.lean",
+  "line": 66,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.FsrsLink.claim_ye_2022_fsrs_ssp_mmc n d →\n    (∀ (t : Nat), 0 < d t) →\n      ∀ {p q : Nat},\n        0 < q →\n          ¬BucketMath.Literature.Forgetting.Matches n d (BucketMath.Literature.Forgetting.expNum p)\n              (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 42,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlrDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 9,
+  "type": "Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlrNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 7,
+  "type": "Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlr_disagrees_with_hyperbolic",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 23,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.Forgetting.hypNum a)\n        (BucketMath.Literature.Forgetting.hypDen a) BucketMath.Literature.HalfLife.hlrNum\n        BucketMath.Literature.HalfLife.hlrDen"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlr_half_at_one_halfLife",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 15,
+  "type": "BucketMath.Literature.HalfLife.hlrDen 1 = 2 * BucketMath.Literature.HalfLife.hlrNum 1"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlr_halves_each_halfLife",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 17,
+  "type": "∀ (k : Nat), BucketMath.Literature.HalfLife.hlrDen (k + 1) = 2 * BucketMath.Literature.HalfLife.hlrDen k"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlr_is_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 11,
+  "type": "BucketMath.Literature.HalfLife.hlrNum = BucketMath.Literature.Forgetting.expNum 1 ∧\n  BucketMath.Literature.HalfLife.hlrDen = BucketMath.Literature.Forgetting.expDen 2"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.hlr_logLinear",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 20,
+  "type": "∀ (k : Nat),\n  BucketMath.Literature.Forgetting.LogLinearAt BucketMath.Literature.HalfLife.hlrNum\n    BucketMath.Literature.HalfLife.hlrDen k"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.logHalfLife",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 28,
+  "type": "Int → Int → Int → Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.logHalfLife_antitone_wrong",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 36,
+  "type": "∀ {θw : Int},\n  θw ≤ 0 →\n    ∀ (θ0 θc c : Int) {w w' : Int},\n      w ≤ w' →\n        BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c w' ≤\n          BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c w"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.logHalfLife_mono_correct",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 30,
+  "type": "∀ {θc : Int},\n  0 ≤ θc →\n    ∀ (θ0 θw w : Int) {c c' : Int},\n      c ≤ c' →\n        BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c w ≤\n          BucketMath.Literature.HalfLife.logHalfLife θ0 θc θw c' w"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.settles_data_logLinear",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 44,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression n d →\n    ∀ (k : Nat), BucketMath.Literature.Forgetting.LogLinearAt n d k"
+ },
+ {
+  "name": "BucketMath.Literature.HalfLife.settles_wixted_incompatible",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.HalfLife",
+  "source": "lean/BucketMath/Literature/HalfLife.lean",
+  "line": 49,
+  "type": "∀ {n d : Nat → Nat},\n  BucketMath.Literature.HalfLife.claim_settles_2016_half_life_regression n d →\n    BucketMath.Literature.Forgetting.claim_wixted_1991_form_of_forgetting n d → (∀ (t : Nat), 0 < d t) → False"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.UnionClosed",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 9,
+  "type": "{α : Type} → ((α → Prop) → Prop) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.UnionClosed.empty",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 10,
+  "type": "∀ {α : Type} {K : (α → Prop) → Prop}, BucketMath.Literature.KnowledgeSpace.UnionClosed K → K fun x => False"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.UnionClosed.union",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 11,
+  "type": "∀ {α : Type} {K : (α → Prop) → Prop},\n  BucketMath.Literature.KnowledgeSpace.UnionClosed K → ∀ (A B : α → Prop), K A → K B → K fun x => A x ∨ B x"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.add_ready",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 38,
+  "type": "∀ {α : Type} (edge : α → α → Prop) [DecidableEq α] {K : α → Prop},\n  BucketMath.Learning.Closed edge K →\n    ∀ {v : α}, (∀ (p : α), edge p v → K p) → BucketMath.Learning.Closed edge fun x => K x ∨ x = v"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.aleks_states_form_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 50,
+  "type": "∀ {α : Type} {edge : α → α → Prop} {K : (α → Prop) → Prop},\n  BucketMath.Literature.KnowledgeSpace.claim_falmagne_2006_aleks_knowledge_space edge K →\n    BucketMath.Literature.KnowledgeSpace.claim_doignon_1985_knowledge_spaces K"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.claim_doignon_1985_knowledge_spaces",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 45,
+  "type": "{α : Type} → ((α → Prop) → Prop) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.claim_falmagne_2006_aleks_knowledge_space",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 47,
+  "type": "{α : Type} → (α → α → Prop) → ((α → Prop) → Prop) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.closed_empty",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 13,
+  "type": "∀ {α : Type} (edge : α → α → Prop), BucketMath.Learning.Closed edge fun x => False"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.closed_inter",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 23,
+  "type": "∀ {α : Type} (edge : α → α → Prop) {A B : α → Prop},\n  BucketMath.Learning.Closed edge A →\n    BucketMath.Learning.Closed edge B → BucketMath.Learning.Closed edge fun x => A x ∧ B x"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.closed_union",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 16,
+  "type": "∀ {α : Type} (edge : α → α → Prop) {A B : α → Prop},\n  BucketMath.Learning.Closed edge A →\n    BucketMath.Learning.Closed edge B → BucketMath.Learning.Closed edge fun x => A x ∨ B x"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.quasiOrdinal_is_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 27,
+  "type": "∀ {α : Type} (edge : α → α → Prop), BucketMath.Literature.KnowledgeSpace.UnionClosed (BucketMath.Learning.Closed edge)"
+ },
+ {
+  "name": "BucketMath.Literature.KnowledgeSpace.remove_maximal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.KnowledgeSpace",
+  "source": "lean/BucketMath/Literature/KnowledgeSpace.lean",
+  "line": 30,
+  "type": "∀ {α : Type} (edge : α → α → Prop) [DecidableEq α] {K : α → Prop},\n  BucketMath.Learning.Closed edge K →\n    ∀ {m : α}, (∀ (v : α), K v → ¬edge m v) → BucketMath.Learning.Closed edge fun x => K x ∧ x ≠ m"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.claim_bahrick_1984_permastore_spanish",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 9,
+  "type": "(Nat → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.exp_never_flat",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 23,
+  "type": "∀ {p q : Nat},\n  0 < p →\n    p < q →\n      ∀ (T : Nat),\n        BucketMath.Literature.Forgetting.expNum p (T + 1) * BucketMath.Literature.Forgetting.expDen q T <\n          BucketMath.Literature.Forgetting.expNum p T * BucketMath.Literature.Forgetting.expDen q (T + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.hyp_never_flat",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 18,
+  "type": "∀ {a : Nat},\n  0 < a →\n    ∀ (T : Nat),\n      BucketMath.Literature.Forgetting.hypNum a (T + 1) * BucketMath.Literature.Forgetting.hypDen a T <\n        BucketMath.Literature.Forgetting.hypNum a T * BucketMath.Literature.Forgetting.hypDen a (T + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.lastHold_full",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 31,
+  "type": "∀ (R : Nat → Nat → Nat) (r S n : Nat), (∀ (t : Nat), r ≤ R t S) → BucketMath.Learning.Capacity.lastHold R r S n = n"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.permastore_floor",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 12,
+  "type": "∀ {R : Nat → Nat} {T : Nat},\n  BucketMath.Literature.Permastore.claim_bahrick_1984_permastore_spanish R T → ∀ (t : Nat), R T ≤ R t"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.permastore_interval",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 36,
+  "type": "∀ {R : Nat → Nat → Nat} {S T r n : Nat},\n  BucketMath.Literature.Permastore.claim_bahrick_1984_permastore_spanish (fun t => R t S) T →\n    r ≤ R T S → BucketMath.Learning.Capacity.lastHold R r S n = n"
+ },
+ {
+  "name": "BucketMath.Literature.Permastore.permastore_upkeep_min",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Permastore",
+  "source": "lean/BucketMath/Literature/Permastore.lean",
+  "line": 41,
+  "type": "∀ {R : Nat → Nat → Nat} {S T r n c W : Nat},\n  BucketMath.Literature.Permastore.claim_bahrick_1984_permastore_spanish (fun t => R t S) T →\n    r ≤ R T S →\n      ∀ (S' : Nat),\n        BucketMath.Learning.Capacity.upkeep R r n c W S ≤ BucketMath.Learning.Capacity.upkeep R r n c W S' ∨\n          BucketMath.Learning.Capacity.lastHold R r S' n = 0"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.averaging_yields_newell",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 73,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      y ≤ q →\n        BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n            (BucketMath.Literature.Forgetting.expNum x) (BucketMath.Literature.Forgetting.expDen q) ∧\n          BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed\n              (BucketMath.Literature.Forgetting.expNum y) (BucketMath.Literature.Forgetting.expDen q) ∧\n            BucketMath.Literature.PracticeLaw.claim_newell_1981_power_law_practice\n              (BucketMath.Literature.PracticeLaw.mixNum x y) (BucketMath.Literature.PracticeLaw.mixDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 64,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.claim_newell_1981_power_law_practice",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 62,
+  "type": "(Nat → Nat) → (Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.decaying_mixture_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 51,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      0 < q →\n        ∀ (N : Nat),\n          BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.PracticeLaw.mixNum x y)\n            (BucketMath.Literature.PracticeLaw.mixDen q) N"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.exponential_learner_decays",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 69,
+  "type": "∀ {p q : Nat},\n  p ≤ q →\n    ∀ (N : Nat),\n      BucketMath.Literature.Forgetting.expNum p (N + 1) * BucketMath.Literature.Forgetting.expDen q N ≤\n        BucketMath.Literature.Forgetting.expNum p N * BucketMath.Literature.Forgetting.expDen q (N + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.heathcote_individuals",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 66,
+  "type": "∀ (p q : Nat),\n  BucketMath.Literature.PracticeLaw.claim_heathcote_2000_power_law_repealed (BucketMath.Literature.Forgetting.expNum p)\n    (BucketMath.Literature.Forgetting.expDen q)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 40,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 11,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixture_decays",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 42,
+  "type": "∀ {x y q : Nat},\n  x ≤ y →\n    y ≤ q →\n      ∀ (N : Nat),\n        BucketMath.Literature.PracticeLaw.mixNum x y (N + 1) * BucketMath.Literature.PracticeLaw.mixDen q N ≤\n          BucketMath.Literature.PracticeLaw.mixNum x y N * BucketMath.Literature.PracticeLaw.mixDen q (N + 1)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixture_not_exponential",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 80,
+  "type": "∀ {x y q : Nat},\n  0 < x →\n    x < y →\n      0 < q →\n        ∀ {p r : Nat},\n          0 < r →\n            ¬BucketMath.Literature.Forgetting.Matches (BucketMath.Literature.PracticeLaw.mixNum x y)\n                (BucketMath.Literature.PracticeLaw.mixDen q) (BucketMath.Literature.Forgetting.expNum p)\n                (BucketMath.Literature.Forgetting.expDen r)"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.mixture_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 26,
+  "type": "∀ {x y : Nat},\n  0 < x →\n    x < y →\n      ∀ (N : Nat),\n        BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.PracticeLaw.mixNum x y)\n          BucketMath.Literature.PracticeLaw.one N"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.one",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 13,
+  "type": "Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.powerTimeDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 9,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.powerTimeNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 7,
+  "type": "Nat → Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Literature.PracticeLaw.powerTime_strictLogConvex",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.PracticeLaw",
+  "source": "lean/BucketMath/Literature/PracticeLaw.lean",
+  "line": 15,
+  "type": "∀ {a c : Nat},\n  0 < a →\n    0 < c →\n      ∀ (N : Nat),\n        BucketMath.Literature.Forgetting.StrictLogConvexAt (BucketMath.Literature.PracticeLaw.powerTimeNum a c)\n          (BucketMath.Literature.PracticeLaw.powerTimeDen c) N"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.claim_lord_1980_applications_of_irt",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 42,
+  "type": "Int → Int → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.prob",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 9,
+  "type": "Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.prob_complement",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 33,
+  "type": "∀ {w : Rat}, 0 < w → BucketMath.Literature.Rasch.prob w + BucketMath.Literature.Rasch.prob w⁻¹ = 1"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.prob_half_at_even_odds",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 31,
+  "type": "BucketMath.Literature.Rasch.prob 1 = 1 / 2"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.raschLogit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 5,
+  "type": "Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.rasch_even_at_difficulty",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 19,
+  "type": "∀ (b : Int), BucketMath.Literature.Rasch.raschLogit b b = 0"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.rasch_mono_ability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 22,
+  "type": "∀ (b : Int) {θ θ' : Int},\n  θ ≤ θ' → BucketMath.Literature.Rasch.raschLogit θ b ≤ BucketMath.Literature.Rasch.raschLogit θ' b"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.rasch_order_invariant",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 11,
+  "type": "∀ (θ θ' b1 b2 : Int),\n  BucketMath.Literature.Rasch.raschLogit θ b1 ≤ BucketMath.Literature.Rasch.raschLogit θ b2 ↔\n    BucketMath.Literature.Rasch.raschLogit θ' b1 ≤ BucketMath.Literature.Rasch.raschLogit θ' b2"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.rasch_person_difference_free_of_item",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 15,
+  "type": "∀ (θ1 θ2 b b' : Int),\n  BucketMath.Literature.Rasch.raschLogit θ1 b - BucketMath.Literature.Rasch.raschLogit θ2 b =\n    BucketMath.Literature.Rasch.raschLogit θ1 b' - BucketMath.Literature.Rasch.raschLogit θ2 b'"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.twoPlLogit",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 7,
+  "type": "Int → Int → Int → Int"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.twoPl_is_rasch_at_unit_slope",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 28,
+  "type": "∀ (θ b : Int), BucketMath.Literature.Rasch.twoPlLogit 1 θ b = BucketMath.Literature.Rasch.raschLogit θ b"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.twoPl_orders_cross",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 25,
+  "type": "BucketMath.Literature.Rasch.twoPlLogit 1 0 0 > BucketMath.Literature.Rasch.twoPlLogit 2 0 1 ∧\n  BucketMath.Literature.Rasch.twoPlLogit 1 4 0 < BucketMath.Literature.Rasch.twoPlLogit 2 4 1"
+ },
+ {
+  "name": "BucketMath.Literature.Rasch.unequal_slopes_cross",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Rasch",
+  "source": "lean/BucketMath/Literature/Rasch.lean",
+  "line": 44,
+  "type": "∀ {a1 a2 b1 b2 : Int},\n  BucketMath.Literature.Rasch.claim_lord_1980_applications_of_irt a1 a2 →\n    ∃ θ θ',\n      BucketMath.Literature.Rasch.twoPlLogit a1 θ b1 < BucketMath.Literature.Rasch.twoPlLogit a2 θ b2 ∧\n        BucketMath.Literature.Rasch.twoPlLogit a2 θ' b2 < BucketMath.Literature.Rasch.twoPlLogit a1 θ' b1"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.InBand",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 5,
+  "type": "Nat → Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 7,
+  "type": "(Nat → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.fixed_gap_not_optimal",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 10,
+  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt → ∀ (g : Nat), opt (10 * g + 10) ≠ g"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.optimal_gap_at_least_tenth",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 15,
+  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri : Nat}, 0 < ri → ri ≤ 10 * opt ri"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.optimal_gap_below_interval",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 20,
+  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri : Nat}, 0 < ri → 5 * opt ri ≤ ri"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.ratio_band_shrinks_absolute",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 25,
+  "type": "∀ {opt : Nat → Nat},\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt →\n    ∀ {ri ri' : Nat}, 0 < ri → ri ≤ ri' → opt ri' * ri ≤ opt ri * ri'"
+ },
+ {
+  "name": "BucketMath.Literature.Ridgeline.year_interval_gap",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Literature.Ridgeline",
+  "source": "lean/BucketMath/Literature/Ridgeline.lean",
+  "line": 29,
+  "type": "∀ (opt : Nat → Nat),\n  BucketMath.Literature.Ridgeline.claim_cepeda_2008_spacing_temporal_ridgeline opt → 37 ≤ opt 365 ∧ opt 365 ≤ 73"
  },
  {
   "name": "BucketMath.Marketing.cac",
@@ -1807,6 +4489,276 @@
   "source": "lean/BucketMath/Markets.lean",
   "line": 61,
   "type": "∀ (band : Int),\n  0 ≤ band →\n    ∀ (i : BucketMath.Markets.Industry),\n      BucketMath.Markets.spread i = 0 → BucketMath.Markets.classify band i = BucketMath.Markets.Regime.efficient"
+ },
+ {
+  "name": "BucketMath.Papers.RoundsTo",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 33,
+  "type": "Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 21,
+  "type": "Rat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio_full",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 26,
+  "type": "∀ (q0 q1 : Rat), BucketMath.Papers.absenceRatio q0 q1 1 = (1 - q1) / (1 - q0)"
+ },
+ {
+  "name": "BucketMath.Papers.absenceRatio_undetectable",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 23,
+  "type": "∀ (q0 q1 : Rat), BucketMath.Papers.absenceRatio q0 q1 0 = 1"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_remaining_shares",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 142,
+  "type": "6 * 2 < 13 ∧ 18 * 4 = 24 * 3"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_settled_rates",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 133,
+  "type": "235 * 161 ≤ 1000 * 38 ∧\n  1000 * 38 < 245 * 161 ∧\n    585 * 68 ≤ 10000 * 4 ∧\n      10000 * 4 < 595 * 68 ∧ 125 * 272 ≤ 1000 * 35 ∧ 1000 * 35 < 135 * 272 ∧ 5 * 167 ≤ 1000 * 1 ∧ 1000 * 1 < 15 * 167"
+ },
+ {
+  "name": "BucketMath.Papers.frontier_settled_ratios",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 131,
+  "type": "BucketMath.Papers.ratioRoundsTo 4012 38 161 4 68 ∧ BucketMath.Papers.ratioRoundsTo 21489 35 272 1 167"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5SqDen",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 31,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5SqNum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 29,
+  "type": "Nat → Nat → Nat"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_horizon_ninety",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 46,
+  "type": "BucketMath.Papers.RoundsTo 35 90 3 ∧\n  BucketMath.Papers.RoundsTo 50 90 7 ∧ BucketMath.Papers.RoundsTo 71 90 21 ∧ BucketMath.Papers.RoundsTo 90 90 90"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_mastery_threshold_tenths",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 49,
+  "type": "49 * (81 * 203 + 19 * 900) ≤ 100 * 81 * 203 ∧ 100 * 81 * 202 < 49 * (81 * 202 + 19 * 900)"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_retest_week",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 43,
+  "type": "BucketMath.Papers.RoundsTo 80 7 3 ∧\n  BucketMath.Papers.RoundsTo 90 7 7 ∧ BucketMath.Papers.RoundsTo 96 7 21 ∧ BucketMath.Papers.RoundsTo 99 7 90"
+ },
+ {
+  "name": "BucketMath.Papers.fsrs5_target_at_stability",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 39,
+  "type": "∀ (S : Nat), 100 * BucketMath.Papers.fsrs5SqNum S S = 81 * BucketMath.Papers.fsrs5SqDen S S"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_hypothesis_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 9,
+  "type": "40 * 50 * 300 * 120 * 200 * 25 = 360000000000"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_kind_weights",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 15,
+  "type": "2000 * 900 + 1500 * 500 = 2550000 ∧\n  2550 * 15485 ≤ 39510000 ∧\n    39510000 ≤ 2550 * 15495 ∧\n      1000 * 600 = 600000 ∧ 808 * 1000 ≤ 600 * 1347 ∧ 600 * 1347 < 809 * 1000 ∧ 3951 + 808 = 4759"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_opinion_roundings",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 137,
+  "type": "24 * 8186 ≤ 100 * 2000 ∧\n  100 * 2000 < 25 * 8186 ∧\n    98 * 8186 ≤ 100 * (6186 + 1848) ∧\n      100 * (6186 + 1848) < 99 * 8186 ∧ 924 * 2000 = 1848 * 1000 ∧ 35 * 8186 ≤ 100000 * 3 ∧ 100000 * 3 < 45 * 8186"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_sequence_space",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 11,
+  "type": "13 * 360000000000 ^ 2 = 1684800000000000000000000 ∧\n  165 * 10 ^ 22 ≤ 13 * 360000000000 ^ 2 ∧ 13 * 360000000000 ^ 2 < 175 * 10 ^ 22"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_slot_products",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 5,
+  "type": "40 * 50 = 2000 ∧\n  2000 * 300 = 600000 ∧ 600000 * 120 = 72000000 ∧ 72000000 * 200 = 14400000000 ∧ 14400000000 * 25 = 360000000000"
+ },
+ {
+  "name": "BucketMath.Papers.hhe_support_score",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 19,
+  "type": "13 * 4759 = 61867 ∧ 6186 * 10 ≤ 61867 ∧ 61867 < 6187 * 10"
+ },
+ {
+  "name": "BucketMath.Papers.mean_sq_le_mean_of_sq",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 99,
+  "type": "∀ (d g : List Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) →\n    (0 < BucketMath.Papers.wsum d g fun x => 1) →\n      (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n          (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) ≤\n        (BucketMath.Papers.wsum d g fun x => x * x) / BucketMath.Papers.wsum d g fun x => 1"
+ },
+ {
+  "name": "BucketMath.Papers.multiplier",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 144,
+  "type": "Rat → Rat → Rat → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.multiplier_one_at_ceiling",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 146,
+  "type": "∀ {J A H : Rat}, 0 < A → H ≤ A → J = A → BucketMath.Papers.multiplier J H A = 1"
+ },
+ {
+  "name": "BucketMath.Papers.ratioRoundsTo",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 126,
+  "type": "Nat → Nat → Nat → Nat → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Papers.sq_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 92,
+  "type": "∀ (x : Rat), 0 ≤ x * x"
+ },
+ {
+  "name": "BucketMath.Papers.sq_sum_le_sum",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 110,
+  "type": "∀ (d g : List Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) →\n    (∀ (x : Rat), x ∈ g → 0 ≤ x ∧ x ≤ 1) → (BucketMath.Papers.wsum d g fun x => x * x) ≤ BucketMath.Papers.wsum d g id"
+ },
+ {
+  "name": "BucketMath.Papers.weighted_spread",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 58,
+  "type": "∀ (d g : List Rat) (G : Rat),\n  (BucketMath.Papers.wsum d g fun x => (x - G) * (x - G)) =\n    (BucketMath.Papers.wsum d g fun x => x * x) - 2 * G * BucketMath.Papers.wsum d g id +\n      G * G * BucketMath.Papers.wsum d g fun x => 1"
+ },
+ {
+  "name": "BucketMath.Papers.weighted_variance_identity",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 68,
+  "type": "∀ (d g : List Rat),\n  (BucketMath.Papers.wsum d g fun x => 1) ≠ 0 →\n    ((BucketMath.Papers.wsum d g fun x =>\n          (x - BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n            (x - BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1)) /\n        BucketMath.Papers.wsum d g fun x => 1) =\n      ((BucketMath.Papers.wsum d g fun x => x * x) / BucketMath.Papers.wsum d g fun x => 1) -\n        (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1) *\n          (BucketMath.Papers.wsum d g id / BucketMath.Papers.wsum d g fun x => 1)"
+ },
+ {
+  "name": "BucketMath.Papers.wsum",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 52,
+  "type": "List Rat → List Rat → (Rat → Rat) → Rat"
+ },
+ {
+  "name": "BucketMath.Papers.wsum_cons",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 54,
+  "type": "∀ (a b : Rat) (d g : List Rat) (f : Rat → Rat),\n  BucketMath.Papers.wsum (a :: d) (b :: g) f = a * f b + BucketMath.Papers.wsum d g f"
+ },
+ {
+  "name": "BucketMath.Papers.wsum_nonneg",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Papers",
+  "source": "lean/BucketMath/Papers.lean",
+  "line": 79,
+  "type": "∀ (d g : List Rat) (f : Rat → Rat),\n  (∀ (x : Rat), x ∈ d → 0 ≤ x) → (∀ (x : Rat), 0 ≤ f x) → 0 ≤ BucketMath.Papers.wsum d g f"
  },
  {
   "name": "BucketMath.Profile.Pair",
@@ -2212,6 +5164,798 @@
   "source": "lean/BucketMath/Ranking.lean",
   "line": 76,
   "type": "∀ (l out : List BucketMath.Ranking.Result),\n  BucketMath.Ranking.UniqueIds l → out.Perm l → BucketMath.Ranking.Ordered out → out = BucketMath.Ranking.rank l"
+ },
+ {
+  "name": "BucketMath.Similarity.Axes",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 15,
+  "type": "Type → Type → Type"
+ },
+ {
+  "name": "BucketMath.Similarity.Bounded",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 18,
+  "type": "{α : Type} → (α → α → Nat) → Nat → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Edit",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 78,
+  "type": "{α : Type} → List α → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Looser",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 26,
+  "type": "BucketMath.Similarity.Thresholds → BucketMath.Similarity.Thresholds → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 12,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric.separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 13,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Metric d → ∀ (a b : α), d a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Similarity.Metric.toPseudometric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 12,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Metric d → BucketMath.Similarity.Pseudometric d"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 7,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 8,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a : α), d a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 9,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a b : α), d a b = d b a"
+ },
+ {
+  "name": "BucketMath.Similarity.Pseudometric.triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 10,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Pseudometric d → ∀ (a b c : α), d a c ≤ d a b + d b c"
+ },
+ {
+  "name": "BucketMath.Similarity.Thresholds",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 9,
+  "type": "Type"
+ },
+ {
+  "name": "BucketMath.Similarity.Triangle",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 21,
+  "type": "{α : Type} → (α → α → Int) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Ultrametric",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 15,
+  "type": "{α : Type} → (α → α → Nat) → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.Within",
+  "kind": "inductive",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 83,
+  "type": "{α : Type} → Nat → List α → List α → Prop"
+ },
+ {
+  "name": "BucketMath.Similarity.combined",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 7,
+  "type": "{α : Type} → Nat → Nat → (α → α → Nat) → (α → α → Nat) → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_bounded",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 30,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} (w₁ w₂ : Nat) {B₁ B₂ : Nat},\n  BucketMath.Similarity.Bounded d₁ B₁ →\n    BucketMath.Similarity.Bounded d₂ B₂ →\n      BucketMath.Similarity.Bounded (BucketMath.Similarity.combined w₁ w₂ d₁ d₂) (w₁ * B₁ + w₂ * B₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 19,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} {w₁ : Nat} (w₂ : Nat),\n  0 < w₁ →\n    BucketMath.Similarity.Metric d₁ →\n      BucketMath.Similarity.Pseudometric d₂ → BucketMath.Similarity.Metric (BucketMath.Similarity.combined w₁ w₂ d₁ d₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 9,
+  "type": "∀ {α : Type} {d₁ d₂ : α → α → Nat} (w₁ w₂ : Nat),\n  BucketMath.Similarity.Pseudometric d₁ →\n    BucketMath.Similarity.Pseudometric d₂ →\n      BucketMath.Similarity.Pseudometric (BucketMath.Similarity.combined w₁ w₂ d₁ d₂)"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_ultra_components",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 46,
+  "type": "(BucketMath.Similarity.Ultrametric fun a b => BucketMath.Similarity.discrete a.fst b.fst) ∧\n  BucketMath.Similarity.Ultrametric fun a b => BucketMath.Similarity.discrete a.snd b.snd"
+ },
+ {
+  "name": "BucketMath.Similarity.combined_ultra_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Combined",
+  "source": "lean/BucketMath/Similarity/Combined.lean",
+  "line": 39,
+  "type": "¬BucketMath.Similarity.Ultrametric\n    (BucketMath.Similarity.combined 1 1 (fun a b => BucketMath.Similarity.discrete a.fst b.fst) fun a b =>\n      BucketMath.Similarity.discrete a.snd b.snd)"
+ },
+ {
+  "name": "BucketMath.Similarity.cosineDistance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 15,
+  "type": "Int → List Int → List Int → Int"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_counterexample",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 30,
+  "type": "BucketMath.Similarity.cosineDistance 5 [5, 0] [0, 5] = 25 ∧\n  BucketMath.Similarity.cosineDistance 5 [5, 0] [3, 4] = 10 ∧ BucketMath.Similarity.cosineDistance 5 [3, 4] [0, 5] = 5"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 21,
+  "type": "∀ (radius : Int) (a : List Int),\n  BucketMath.Similarity.dot a a = radius * radius → BucketMath.Similarity.cosineDistance radius a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 17,
+  "type": "∀ (radius : Int) (a b : List Int),\n  BucketMath.Similarity.cosineDistance radius a b = BucketMath.Similarity.cosineDistance radius b a"
+ },
+ {
+  "name": "BucketMath.Similarity.cosine_triangle_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 25,
+  "type": "¬BucketMath.Similarity.Triangle (BucketMath.Similarity.cosineDistance 5)"
+ },
+ {
+  "name": "BucketMath.Similarity.coveredMass_implies",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 40,
+  "type": "∀ {L W : Type} {c c' : L → W → Bool},\n  (∀ (l : L) (w : W), c l w = true → c' l w = true) →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass c held text ≤ BucketMath.Learning.Cognate.CoveredMass c' held text"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 33,
+  "type": "{α : Type} → [DecidableEq α] → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 35,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Metric BucketMath.Similarity.discrete"
+ },
+ {
+  "name": "BucketMath.Similarity.discrete_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 51,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Ultrametric BucketMath.Similarity.discrete"
+ },
+ {
+  "name": "BucketMath.Similarity.dot",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 5,
+  "type": "List Int → List Int → Int"
+ },
+ {
+  "name": "BucketMath.Similarity.dot_comm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 9,
+  "type": "∀ (a b : List Int), BucketMath.Similarity.dot a b = BucketMath.Similarity.dot b a"
+ },
+ {
+  "name": "BucketMath.Similarity.edit_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 87,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Edit a b → BucketMath.Similarity.Edit b a"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 21,
+  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Thresholds → L → W → Bool"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_axes_contribute",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 77,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds) {held : List L} {l : L}\n  {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held →\n    (w, k) ∈ text →\n      BucketMath.Similarity.formSimilar ax θ l w = true →\n        k ≤ BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.formSimilar ax θ) held text"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_contributes",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 59,
+  "type": "∀ {L W : Type} (c : L → W → Bool) {held : List L} {l : L} {w : W} {k : Nat} {text : List (W × Nat)},\n  l ∈ held → (w, k) ∈ text → c l w = true → k ≤ BucketMath.Learning.Cognate.CoveredMass c held text"
+ },
+ {
+  "name": "BucketMath.Similarity.formSimilar_looser",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 30,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (l : L) (w : W),\n      BucketMath.Similarity.formSimilar ax θ l w = true → BucketMath.Similarity.formSimilar ax θ' l w = true"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 7,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming.congr_simp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 0,
+  "type": "∀ {α : Type} {inst : DecidableEq α} [inst_1 : DecidableEq α] (a a_1 : List α),\n  a = a_1 →\n    ∀ (a_2 a_3 : List α), a_2 = a_3 → BucketMath.Similarity.hamming a a_2 = BucketMath.Similarity.hamming a_1 a_3"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_le_lengths",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 38,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), BucketMath.Similarity.hamming xs ys ≤ xs.length + ys.length"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 75,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Similarity.Metric BucketMath.Similarity.hamming"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_nil_right",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 12,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs : List α), BucketMath.Similarity.hamming xs [] = xs.length"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 15,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs : List α), BucketMath.Similarity.hamming xs xs = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 64,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), BucketMath.Similarity.hamming xs ys = 0 → xs = ys"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 19,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α),\n  BucketMath.Similarity.hamming xs ys = BucketMath.Similarity.hamming ys xs"
+ },
+ {
+  "name": "BucketMath.Similarity.hamming_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 47,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys zs : List α),\n  BucketMath.Similarity.hamming xs zs ≤ BucketMath.Similarity.hamming xs ys + BucketMath.Similarity.hamming ys zs"
+ },
+ {
+  "name": "BucketMath.Similarity.length_le_hamming",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 29,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (xs ys : List α), ys.length ≤ xs.length + BucketMath.Similarity.hamming xs ys"
+ },
+ {
+  "name": "BucketMath.Similarity.looser_coverage",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 82,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) {θ θ' : BucketMath.Similarity.Thresholds},\n  BucketMath.Similarity.Looser θ θ' →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.formSimilar ax θ) held text ≤\n        BucketMath.Learning.Cognate.CognateCoverage (BucketMath.Similarity.formSimilar ax θ') held text"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 35,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_padding_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 89,
+  "type": "BucketMath.Similarity.manhattan [] [0] = 0 ∧ [] ≠ [0]"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 77,
+  "type": "BucketMath.Similarity.Pseudometric BucketMath.Similarity.manhattan"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 41,
+  "type": "∀ (a : List Int), BucketMath.Similarity.manhattan a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_separate",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 80,
+  "type": "∀ (a b : List Int), a.length = b.length → BucketMath.Similarity.manhattan a b = 0 → a = b"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 45,
+  "type": "∀ (a b : List Int), BucketMath.Similarity.manhattan a b = BucketMath.Similarity.manhattan b a"
+ },
+ {
+  "name": "BucketMath.Similarity.manhattan_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 53,
+  "type": "∀ (a b c : List Int),\n  BucketMath.Similarity.manhattan a c ≤ BucketMath.Similarity.manhattan a b + BucketMath.Similarity.manhattan b c"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 50,
+  "type": "{α : Type} → [DecidableEq α] → Nat → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 69,
+  "type": "BucketMath.Similarity.morphemeDistance 2 [1, 2, 3] [1, 2, 4] = 0 ∧ [1, 2, 3] ≠ [1, 2, 4]"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 64,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (depth : Nat) (a : List α),\n  depth ≤ a.length → BucketMath.Similarity.morphemeDistance depth a a = 0"
+ },
+ {
+  "name": "BucketMath.Similarity.morphemeDistance_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 53,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (depth : Nat),\n  BucketMath.Similarity.Ultrametric (BucketMath.Similarity.morphemeDistance depth)"
+ },
+ {
+  "name": "BucketMath.Similarity.ngram_metric",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 73,
+  "type": "BucketMath.Similarity.Metric BucketMath.Similarity.hamming"
+ },
+ {
+  "name": "BucketMath.Similarity.overlap",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 75,
+  "type": "List Bool → List Bool → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.overlap_le_union",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 85,
+  "type": "∀ (a b : List Bool), BucketMath.Similarity.overlap a b ≤ BucketMath.Similarity.union a b"
+ },
+ {
+  "name": "BucketMath.Similarity.pullback_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 29,
+  "type": "∀ {α β : Type} {d : β → β → Nat},\n  BucketMath.Similarity.Pseudometric d → ∀ (t : α → β), BucketMath.Similarity.Pseudometric fun a b => d (t a) (t b)"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 10,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix.congr_simp",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 0,
+  "type": "∀ {α : Type} {inst : DecidableEq α} [inst_1 : DecidableEq α] (a a_1 : List α),\n  a = a_1 →\n    ∀ (a_2 a_3 : List α),\n      a_2 = a_3 → BucketMath.Similarity.sharedPrefix a a_2 = BucketMath.Similarity.sharedPrefix a_1 a_3"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 34,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Learning.Sequencing.Ultra BucketMath.Similarity.sharedPrefix"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_le_length",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 42,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b : List α), BucketMath.Similarity.sharedPrefix a b ≤ a.length"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 60,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a : List α), BucketMath.Similarity.sharedPrefix a a = a.length"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 14,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b : List α),\n  BucketMath.Similarity.sharedPrefix a b = BucketMath.Similarity.sharedPrefix b a"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedPrefix_ultra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 24,
+  "type": "∀ {α : Type} [inst : DecidableEq α] (a b c : List α),\n  min (BucketMath.Similarity.sharedPrefix a b) (BucketMath.Similarity.sharedPrefix b c) ≤\n    BucketMath.Similarity.sharedPrefix a c"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedSuffix",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 37,
+  "type": "{α : Type} → [DecidableEq α] → List α → List α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.sharedSuffix_isUltra",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 39,
+  "type": "∀ {α : Type} [inst : DecidableEq α], BucketMath.Learning.Sequencing.Ultra BucketMath.Similarity.sharedSuffix"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 92,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid.manhattanSq",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 94,
+  "type": "List Int → List Int → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.squaredEuclid_triangle_fails",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Vector",
+  "source": "lean/BucketMath/Similarity/Vector.lean",
+  "line": 98,
+  "type": "¬∀ (a b c : List Int),\n    BucketMath.Similarity.squaredEuclid a c ≤\n      BucketMath.Similarity.squaredEuclid a b + BucketMath.Similarity.squaredEuclid b c"
+ },
+ {
+  "name": "BucketMath.Similarity.subwordOff",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 91,
+  "type": "{L W : Type} → BucketMath.Similarity.Axes L W → BucketMath.Similarity.Axes L W"
+ },
+ {
+  "name": "BucketMath.Similarity.subword_adds_coverage",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Cognate",
+  "source": "lean/BucketMath/Similarity/Cognate.lean",
+  "line": 93,
+  "type": "∀ {L W : Type} (ax : BucketMath.Similarity.Axes L W) (θ : BucketMath.Similarity.Thresholds),\n  0 < θ.subword →\n    ∀ (held : List L) (text : List (W × Nat)),\n      BucketMath.Learning.Cognate.CoveredMass\n          (BucketMath.Similarity.formSimilar (BucketMath.Similarity.subwordOff ax) θ) held text ≤\n        BucketMath.Learning.Cognate.CoveredMass (BucketMath.Similarity.formSimilar ax θ) held text"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 123,
+  "type": "{α β : Type} → (α → β) → (β → β → Nat) → α → α → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated_not_separating",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 128,
+  "type": "BucketMath.Similarity.transliterated (List.map fun c => if c = 'ё' then 'е' else c) BucketMath.Similarity.hamming ['ё']\n      ['е'] =\n    0 ∧\n  ['ё'] ≠ ['е']"
+ },
+ {
+  "name": "BucketMath.Similarity.transliterated_pseudo",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 125,
+  "type": "∀ {α β : Type} (t : α → β) {d : β → β → Nat},\n  BucketMath.Similarity.Pseudometric d → BucketMath.Similarity.Pseudometric (BucketMath.Similarity.transliterated t d)"
+ },
+ {
+  "name": "BucketMath.Similarity.ultra_triangle",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Axioms",
+  "source": "lean/BucketMath/Similarity/Axioms.lean",
+  "line": 24,
+  "type": "∀ {α : Type} {d : α → α → Nat}, BucketMath.Similarity.Ultrametric d → ∀ (a b c : α), d a c ≤ d a b + d b c"
+ },
+ {
+  "name": "BucketMath.Similarity.union",
+  "kind": "def",
+  "status": "def",
+  "module": "BucketMath.Similarity.Subword",
+  "source": "lean/BucketMath/Similarity/Subword.lean",
+  "line": 79,
+  "type": "List Bool → List Bool → Nat"
+ },
+ {
+  "name": "BucketMath.Similarity.within_mono",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 92,
+  "type": "∀ {α : Type} {m n : Nat} {a b : List α}, BucketMath.Similarity.Within m a b → m ≤ n → BucketMath.Similarity.Within n a b"
+ },
+ {
+  "name": "BucketMath.Similarity.within_one",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 108,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Edit a b → BucketMath.Similarity.Within 1 a b"
+ },
+ {
+  "name": "BucketMath.Similarity.within_self",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 121,
+  "type": "∀ {α : Type} (a : List α), BucketMath.Similarity.Within 0 a a"
+ },
+ {
+  "name": "BucketMath.Similarity.within_symm",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 110,
+  "type": "∀ {α : Type} {n : Nat} {a b : List α}, BucketMath.Similarity.Within n a b → BucketMath.Similarity.Within n b a"
+ },
+ {
+  "name": "BucketMath.Similarity.within_trans",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 100,
+  "type": "∀ {α : Type} {m n : Nat} {a b c : List α},\n  BucketMath.Similarity.Within m a b → BucketMath.Similarity.Within n b c → BucketMath.Similarity.Within (m + n) a c"
+ },
+ {
+  "name": "BucketMath.Similarity.within_zero",
+  "kind": "theorem",
+  "status": "proved",
+  "module": "BucketMath.Similarity.Script",
+  "source": "lean/BucketMath/Similarity/Script.lean",
+  "line": 117,
+  "type": "∀ {α : Type} {a b : List α}, BucketMath.Similarity.Within 0 a b → a = b"
  },
  {
   "name": "BucketMath.Split.Parts",

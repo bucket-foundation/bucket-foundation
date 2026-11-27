@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getPhoton, type Photon } from "@/lib/photon-db";
 import { pageMeta } from "@/lib/meta";
 import Site from "@/app/site";
+import { IpaMark } from "@/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -69,7 +70,7 @@ function PhotonHeader({ photon, langLabel }: { photon: Photon; langLabel: string
         <p
           className="mt-3 font-mono text-lg md:text-xl text-[color:var(--blue)]"
         >
-          /{photon.ipa.replace(/^\/|\/$/g, "")}/
+          /{photon.ipa.replace(/^\/|\/$/g, "")}/ <IpaMark source={photon.ipa_source} />
         </p>
       )}
     </header>

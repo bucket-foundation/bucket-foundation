@@ -2,7 +2,7 @@ import type { NextRequest, NextResponse } from "next/server";
 import { json, preflight } from "@/lib/academy/groups-server";
 import { endEnabled } from "@/lib/academy/lobbies";
 import { service } from "@/lib/academy/groups-server";
-import { authed, closeLobbies, closeRace, lobbyById, lobbyFail, lobbyIdOf } from "@/lib/academy/lobbies-server";
+import { authed, closeRace, handOffHost, lobbyById, lobbyFail, lobbyIdOf } from "@/lib/academy/lobbies-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,8 +18,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const lobbyId = lobbyIdOf(a.body?.lobbyId);
     const current = await lobbyById(lobbyId);
     if (endEnabled() && current && current.host_id === a.uid && !current.standing_slot && current.status !== "done") {
-      await closeLobbies([current.id], Date.now());
-      return json({ ok: true, result: "closed" });
+      const result = await handOffHost(current, a.uid, Date.now());
+      if (result !== "moved") return json({ ok: true, result });
     }
     const res = await service().rpc("leave_lobby", { p_lobby: lobbyId, p_user: a.uid });
     if (res.error) throw new Error(res.error.message);

@@ -39,6 +39,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       if (seat === "add") await addScreen(lobby.id, a.uid);
       return json({ lobby: await lobbyState(lobby, a.uid, Date.now(), blocks) });
     }
+    if (lobby.host_id === a.uid && !players.some((p) => p.user_id === a.uid)) return json({ lobby: await lobbyState(lobby, a.uid, Date.now(), blocks) });
     const bots = botsEnabled();
     const decision = joinLobbyDecision(bots ? lobby : { ...lobby, standing_slot: null }, players, a.uid);
     const bump = decision === "full" && bots && (lobby.standing_slot || lobby.bot_fill) ? players.find((p) => p.is_bot && p.user_id !== lobby.host_id) : undefined;

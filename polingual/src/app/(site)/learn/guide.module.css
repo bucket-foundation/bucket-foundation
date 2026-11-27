@@ -1,2 +1,10 @@
 .scroll{overflow-x:auto}
 .scroll table{min-width:520px}
+.list{list-style:none;margin:var(--pl-space-6) 0 0;padding:0;display:grid;gap:var(--pl-space-4)}
+.entry{position:relative;display:flex;flex-direction:column;gap:var(--pl-space-2)}
+.entryTitle{font:var(--pl-type-subhead);color:var(--pl-tyrian);margin:0!important;padding:0}
+.entryTitle a{color:inherit;text-decoration:none}
+.entryTitle a::after{content:"";position:absolute;inset:0}
+.entryTitle a:focus-visible{outline:none}
+.entry:has(a:focus-visible){outline:3px solid var(--pl-lapis);outline-offset:3px}
+.entryBody{font:var(--pl-type-body);color:var(--pl-ink-dim);margin:0!important}

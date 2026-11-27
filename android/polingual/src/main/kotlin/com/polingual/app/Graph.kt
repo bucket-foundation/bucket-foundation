@@ -40,6 +40,7 @@ class Graph(val context: Context) {
     val api = BucketApi(http, BuildConfig.BUCKET_BASE, app = "polingual")
     val store = AppStore(context)
     val corpus = CorpusRepo(context)
+    val inputs = InputRepo(java.io.File(context.filesDir, "input"), BuildConfig.INPUT_BASE, BuildConfig.INPUT_BAND_BASE.ifBlank { null }, BuildConfig.DEBUG, http)
     val account = Account(api, KeystoreVault(context))
     val kv = PrefsKeyValue(context)
     val funnel = Funnel(kv, { UUID.randomUUID().toString() }) { body ->
@@ -65,7 +66,23 @@ class Graph(val context: Context) {
             ?: guest.token()?.let { t -> guest.userId?.let { foundation.bucket.core.auth.ChatIdentity(it, t) } }
     }
     val radioApi = foundation.bucket.core.net.RadioApi(http) { host -> if (host != null) kv.set("content.radioServer", host); kv.get("content.radioServer") }
-    val radio = Radio(context)
+    val radioLog = RadioLog(kv)
+    val radio = Radio(context) { h -> logRadio(h) }
+
+    private fun logRadio(h: Heard) {
+        val system = state.value?.systems?.firstOrNull { h.lang in it.targets } ?: return
+        val salt = kv.get("polingual.reviewLog.salt") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.reviewLog.salt", it) }
+        val device = foundation.bucket.core.engine.ReviewLog.deviceHash(salt, kv.get("polingual.install") ?: java.util.UUID.randomUUID().toString().also { kv.set("polingual.install", it) })
+        radioLog.log(h, system.id, device, java.util.TimeZone.getDefault().id, System.currentTimeMillis()) { java.util.UUID.randomUUID().toString() }
+        scope.launch { syncRadio() }
+    }
+
+    private val radioLock = kotlinx.coroutines.sync.Mutex()
+
+    suspend fun syncRadio() = radioLock.withLock {
+        val token = account.token() ?: return@withLock
+        radioLog.upload { batch -> api.learnEvents(token, batch) }
+    }
     val billing = Billing(context, this)
     val ads = Ads(context, this)
     var activity: java.lang.ref.WeakReference<android.app.Activity>? = null
@@ -103,7 +120,7 @@ class Graph(val context: Context) {
         scope.launch { billing.refresh() }
         scope.launch {
             account.restore()
-            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily() }
+            if (account.stage.value == Stage.SignedIn) { syncSystems(); syncStudy(); syncDaily(); syncRadio() }
             var last = account.stage.value
             account.stage.collect { stage ->
                 if (stage == Stage.SignedIn && last != Stage.SignedIn) {

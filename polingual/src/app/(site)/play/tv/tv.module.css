@@ -21,3 +21,30 @@ div.screen{position:fixed;inset:0;z-index:1000;overflow:auto;min-height:100dvh;b
 .choices button{font-size:clamp(18px,1.8vw,36px)}
 .empty{margin:0;font-weight:700;font-size:clamp(16px,1.4vw,28px)}
 @media (max-width:900px){.board{grid-template-columns:minmax(0,1fr)}}
+.hostBar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding-top:clamp(10px,1.6vh,20px)}
+.hint{color:var(--pl-paper);font-weight:700;font-size:clamp(16px,1.2vw,24px)}
+.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:clamp(72px,7vw,140px);color:var(--pl-ink)}
+.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,3fr) minmax(0,9fr) minmax(0,3fr)}
+.board[data-phase=round] .choices,.board[data-phase=reveal] .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:clamp(12px,1.6vw,28px)}
+.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{font-size:max(64px,4.2vw);line-height:1.1;min-height:1.6em;padding:.2em .4em;border:4px solid var(--pl-ink);background:var(--pl-white);color:var(--pl-ink);border-radius:20px;justify-content:center;white-space:normal;overflow-wrap:anywhere}
+.board[data-phase=reveal] .choices button[aria-pressed=true],.board[data-phase=reveal] .choices button[data-active=true]{background:var(--pl-malachite);color:var(--pl-white)}
+.board[data-phase=round] .join .qr,.board[data-phase=reveal] .join .qr{width:clamp(90px,10vh,160px)}
+.frame{height:100dvh;min-height:0;overflow:hidden}
+.board{min-height:0}
+.join,.round,.standings{min-height:0;overflow:hidden}
+.hostBar button{background:var(--pl-paper);color:var(--pl-ink);border-color:var(--pl-paper)}
+.hostBar button[data-testid=start],.hostBar button[data-testid=next-now]{background:var(--pl-vermilion);color:var(--pl-white);border-color:var(--pl-ink)}
+.hostBar button:disabled{opacity:.55}
+.board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:clamp(48px,9vh,200px)}
+.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:clamp(64px,9vh,140px)}
+@media (max-width:1500px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,3fr) minmax(0,8fr) minmax(0,4fr)}}
+@media (max-height:800px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,2fr) minmax(0,10fr)}.board[data-phase=round] .standings,.board[data-phase=reveal] .standings{display:none}.board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:48px}.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:64px}.board[data-phase=round] .round,.board[data-phase=reveal] .round{gap:8px;padding:12px}.board[data-phase=round] .choices,.board[data-phase=reveal] .choices{gap:10px}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{font-size:64px;line-height:1.05;padding:.1em .3em;min-height:1.3em}.frame{padding-block:8px;gap:8px}}
+.code{font-size:min(110px,16cqi);white-space:nowrap}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.15;padding:.05em .3em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.08;padding:0 .3em}}
+.roundTag{display:contents}
+@media (max-height:800px){.board[data-phase=round] .roundTag,.board[data-phase=reveal] .roundTag{display:none}.board[data-phase=round] .count,.board[data-phase=reveal] .count{font-size:40px}.board[data-phase=round] .word,.board[data-phase=reveal] .word{font-size:56px;line-height:1}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.12;padding:.06em .3em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.06;padding:.1em .3em}}
+@media (max-height:800px){.board[data-phase=round],.board[data-phase=reveal]{grid-template-columns:minmax(0,1.7fr) minmax(0,10.3fr)}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{padding:.1em .15em}}
+@media (max-height:800px){.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1}}
+@media (max-height:800px){.hostBar{position:fixed;top:8px;left:50%;transform:translateX(-50%);padding:0;z-index:2;flex-wrap:nowrap}.hostBar button{min-height:40px;padding-block:4px;font-size:16px}.hostBar .hint{display:none}.board[data-phase=round] .choices button,.board[data-phase=reveal] .choices button{line-height:1.08}}

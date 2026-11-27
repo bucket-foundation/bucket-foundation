@@ -50,7 +50,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
             langs.forEach { l -> PLPill("${Lang.flag(l)} ${Lang.name(l)}", active = l == lang) { lang = l } }
         }
         now.station?.let { s ->
-            Card(color = PL.Ink, onClick = { scope.launch { graph.radio.play(s) } }) {
+            Card(color = PL.Ink, onClick = { scope.launch { graph.radio.play(s, lang) } }) {
                 Text("NOW PLAYING", style = Type.caps, color = PL.Paper.copy(alpha = 0.7f))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(s.name, style = Type.subhead, color = PL.Paper, modifier = Modifier.weight(1f))
@@ -65,7 +65,7 @@ fun ListenScreen(graph: Graph, back: () -> Unit) {
             list.isEmpty() -> Text(error ?: "No stations found for ${Lang.name(lang)}.", color = PL.Paper)
             else -> list.forEach { s ->
                 val active = now.station?.stationuuid == s.stationuuid
-                Card(onClick = { scope.launch { graph.radio.play(s) } }) {
+                Card(onClick = { scope.launch { graph.radio.play(s, lang) } }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Column(Modifier.weight(1f)) {
                             Text(s.name, color = p.ink, style = Type.small)

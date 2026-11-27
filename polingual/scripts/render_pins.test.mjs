@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { chromium } from "@playwright/test";
 import fs from "node:fs";
-import { credit, defaultPins, loadCredit, loadConcepts, pickTiles, pinHtml } from "./render_pins.mjs";
+import { credit, defaultPins, loadCredit, loadConcepts, PAGE_TIMEOUT_MS, pickTiles, pinHtml } from "./render_pins.mjs";
 
 const hasBrowser = (() => {
   try {
@@ -26,12 +26,17 @@ test("every default pin shows a different language set and all flags appear", ()
   assert.equal(new Set(pins.flat()).size, 17);
 });
 
-test("a rendered pin's caption carries the credit", { skip: !hasBrowser && "no Chromium installed" }, async () => {
+test("a rendered pin's caption carries the credit", { skip: !hasBrowser && "no Chromium installed", timeout: 60_000 }, async () => {
   const cr = loadCredit();
   const tiles = pickTiles(loadConcepts().get("pig").langs);
   const browser = await chromium.launch();
-  const page = await browser.newPage();
-  await page.setContent(pinHtml("pig", tiles, "", cr.text));
-  assert.equal(await page.locator(".cr").innerText(), cr.text);
-  await browser.close();
+  try {
+    const page = await browser.newPage();
+    page.setDefaultTimeout(PAGE_TIMEOUT_MS);
+    await page.route(/^https?:\/\//, (route) => route.abort());
+    await page.setContent(pinHtml("pig", tiles, "", cr.text), { waitUntil: "domcontentloaded" });
+    assert.equal(await page.locator(".cr").innerText(), cr.text);
+  } finally {
+    await browser.close();
+  }
 });

@@ -31,7 +31,7 @@ export const POWER_COST: Record<PowerKind, number> = { double: 2, fifty: 1 };
 export const DUEL_ROUNDS = 10;
 export type LobbySetup = "single" | "sequence" | "mix";
 export const AUTO_START_MS = 15_000;
-export const NEXT_GAME_MS = 8_000;
+export const NEXT_GAME_MS = 60_000;
 
 export function nextGameDue(lobby: Pick<LobbyRow, "status" | "started_at" | "rounds" | "round_seconds" | "reveal_seconds" | "ended_at">, now: number, force = false): boolean {
   if (lobby.status !== "done" || !lobby.started_at || lobby.ended_at) return false;
@@ -847,13 +847,22 @@ export function lobbySummary(lobby: LobbyRow, players: readonly LobbyPlayerRow[]
 
 export const ABANDONED_PLAYING_MS = 5 * 60_000;
 
+export type HostLeave = { kind: "handoff"; to: string } | { kind: "close" };
+
+export function hostLeaveDecision(hostId: string, players: readonly Pick<LobbyPlayerRow, "user_id" | "last_seen" | "joined_at" | "is_bot">[], now: number): HostLeave {
+  const next = players
+    .filter((p) => p.user_id !== hostId && p.is_bot !== true && now - Date.parse(p.last_seen) < STALE_MS)
+    .sort((a, b) => Date.parse(a.joined_at) - Date.parse(b.joined_at))[0];
+  return next ? { kind: "handoff", to: next.user_id } : { kind: "close" };
+}
+
 export function abandonedLobby(lobby: Pick<LobbyRow, "id" | "status" | "standing_slot">, players: readonly Pick<LobbyPlayerRow, "lobby_id" | "last_seen" | "is_bot">[], now: number): boolean {
   if (lobby.standing_slot || lobby.status === "done") return false;
   const window = lobby.status === "playing" ? ABANDONED_PLAYING_MS : STALE_MS;
   return !players.some((p) => p.lobby_id === lobby.id && p.is_bot !== true && now - Date.parse(p.last_seen) < window);
 }
 
-export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false): LobbySummary[] {
+export function openLobbies(lobbies: readonly LobbyRow[], players: readonly LobbyPlayerRow[], blocks: readonly BlockRow[], uid: string, now: number, bots = false, watched: ReadonlySet<string> = new Set()): LobbySummary[] {
   const hidden = hiddenUsers(blocks, uid);
   const blockedLobbies = new Set(blocks.filter((b) => b.blocker_id === uid && b.target_group_id).map((b) => b.target_group_id as string));
   const byLobby = new Map<string, LobbyPlayerRow[]>();
@@ -863,9 +872,9 @@ export function openLobbies(lobbies: readonly LobbyRow[], players: readonly Lobb
       const ps = byLobby.get(l.id) ?? [];
       const mine = ps.some((p) => p.user_id === uid);
       if (l.standing_slot) return bots && (mine || ps.length < LOBBY_CAP);
-      if (l.ended_at || abandonedLobby(l, ps, now)) return false;
+      if (l.ended_at || (abandonedLobby(l, ps, now) && !watched.has(l.id))) return false;
       if (mine) return l.status !== "done";
-      return l.listed && l.status === "lobby" && !hidden.has(l.host_id) && !blockedLobbies.has(l.id) && ps.length > 0 && ps.length < LOBBY_CAP && now - Date.parse(l.created_at) < OPEN_WINDOW_MS;
+      return l.listed && l.status === "lobby" && !hidden.has(l.host_id) && !blockedLobbies.has(l.id) && (ps.length > 0 || watched.has(l.id)) && ps.length < LOBBY_CAP && now - Date.parse(l.created_at) < OPEN_WINDOW_MS;
     })
     .map((l) => lobbySummary(l, byLobby.get(l.id) ?? [], uid))
     .sort((a, b) => Number(b.isMember) - Number(a.isMember) || Number(b.standing) - Number(a.standing) || b.players - a.players);

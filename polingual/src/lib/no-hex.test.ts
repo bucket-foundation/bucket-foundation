@@ -24,3 +24,21 @@ test("owned app files use pl tokens instead of hex literals", () => {
   }
   assert.deepEqual(hits, []);
 });
+
+const BRANDED = ["app/(site)/play", "app/(site)/app", "app/(site)/learn"];
+const SHARED_ROOM = [`${path.sep}room${path.sep}`, `${path.sep}tv${path.sep}`];
+const SCALE_RADIUS = /border-radius:(6|8|10|12|14|16|18|20|22|24|999)px/g;
+const RAW_FONT = /font-family:"?(Fredoka|Space Mono)"?/g;
+
+test("play and learn css take radii and fonts from pl tokens", () => {
+  const hits: string[] = [];
+  for (const root of BRANDED) {
+    for (const f of files(path.join(APP, "..", root))) {
+      if (!f.endsWith(".css") || SHARED_ROOM.some((r) => f.includes(r))) continue;
+      const src = readFileSync(f, "utf8");
+      const radii = f.endsWith(`play${path.sep}play.module.css`) ? [] : src.match(SCALE_RADIUS) ?? [];
+      for (const m of [...radii, ...(src.match(RAW_FONT) ?? [])]) hits.push(`${path.relative(APP, f)} ${m}`);
+    }
+  }
+  assert.deepEqual(hits, []);
+});

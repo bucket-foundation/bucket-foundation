@@ -9,6 +9,8 @@ const ANON_KEY =
 
 const SCHEMA = "polingual";
 
+export type IpaSource = "wiktionary" | "epitran" | "llm" | "rules" | "jmdict" | "cedict";
+
 export type Photon = {
   id: string;
   kind: string;
@@ -16,9 +18,13 @@ export type Photon = {
   surface: string;
   meaning_en: string;
   tier: string;
+  freq_rank?: number | null;
+  freq_derived?: boolean;
   branch: string[];
   pos?: string | null;
   ipa?: string | null;
+  ipa_source?: IpaSource | null;
+  reading?: string | null;
   provenance?: {
     source: string;
     source_uri: string;

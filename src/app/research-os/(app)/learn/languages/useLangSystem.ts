@@ -1,5 +1,6 @@
 "use client";
 
+import type { VocabTestProps } from "@/lib/academy/events";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
@@ -10,7 +11,10 @@ import { flagTables, runGated, saveSetFlags, withFlagTables, type FlagTables } f
 import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
-import { browserMemoryIO, gradeShared, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
+import type { ExposureInput, SessionInput } from "@/lib/academy/learn-log";
+import type { LemmaResolver } from "@/lib/academy/exposure-replay";
+import { lemmaCardMap, resolverFrom } from "@/lib/academy/input-selector";
+import { browserMemoryIO, flushSession, gradeShared, logExposure, logSession, logVocabTest, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
 
@@ -26,6 +30,10 @@ export interface LangSystemHandle {
   edit: (targets: string[]) => void;
   langStatus: Record<string, LangLoadStatus>;
   shared?: boolean;
+  endSession?: (input: SessionInput) => void;
+  logExposures?: (lang: string, rows: ExposureInput[]) => void;
+  logVocabTest?: (lang: string, input: VocabTestProps) => void;
+  resolve?: LemmaResolver;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
@@ -155,7 +163,8 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
           setStatus("missing");
           return;
         }
-        const s = await openShared(browserMemoryIO, sys, systems, server);
+        const resolve = resolverFrom(Object.fromEntries(sys.targets.map((l) => [l, lemmaCardMap(c, l)])));
+        const s = await openShared(browserMemoryIO, sys, systems, server, resolve);
         const branch = progressBranch(sys);
         const setState0 = await webProgressStore.load(branch, server);
         if (!alive) return;
@@ -181,6 +190,33 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     void saved.then((ok) => {
       if (!ok) setSaveState("local-only");
     });
+  }, []);
+
+  const endSession = useCallback((input: SessionInput) => {
+    const s = ref.current;
+    const lang = s?.system.targets.find((l) => s.langStatus[l] === "ready");
+    if (!s || !lang) return;
+    const r = logSession(browserMemoryIO, s, lang, input);
+    ref.current = r.session;
+    setSession(r.session);
+    void flushSession(browserMemoryIO);
+  }, []);
+
+  const recordVocabTest = useCallback((lang: string, input: VocabTestProps) => {
+    const s = ref.current;
+    if (!s || s.langStatus[lang] !== "ready") return;
+    const r = logVocabTest(browserMemoryIO, s, lang, input);
+    ref.current = r.session;
+    setSession(r.session);
+    void flushSession(browserMemoryIO);
+  }, []);
+
+  const logExposures = useCallback((lang: string, rows: ExposureInput[]) => {
+    let s = ref.current;
+    if (!s || s.langStatus[lang] !== "ready") return;
+    for (const row of rows) s = logExposure(browserMemoryIO, s, lang, row).session;
+    ref.current = s;
+    setSession(s);
   }, []);
 
   const recordFlags = useCallback((tables: FlagTables) => {
@@ -223,6 +259,10 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
     saveState,
     edit,
     langStatus: session?.langStatus ?? {},
+    endSession,
+    logExposures,
+    logVocabTest: recordVocabTest,
+    resolve: session?.resolve,
   };
 }
 

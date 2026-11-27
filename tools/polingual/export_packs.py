@@ -66,6 +66,7 @@ LANGUAGE_NAMES = {
     "ko": "Korean",
     "la": "Latin",
     "nl": "Dutch",
+    "pa": "Punjabi",
     "non": "Old Norse",
     "pl": "Polish",
     "pt": "Portuguese",

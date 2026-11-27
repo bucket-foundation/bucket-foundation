@@ -2,6 +2,7 @@
 
 import { Button } from "@/ui";
 import app from "../../app/app.module.css";
+import styles from "../play.module.css";
 import { SetupFields } from "./SetupFields";
 import type { LobbiesState } from "./useLobbies";
 
@@ -19,6 +20,16 @@ export function LobbySetup({ s }: { s: LobbiesState }) {
             ))}
           </select>
         </label>
+      </div>
+      <div className={styles.setupModes} role="group" aria-label="How you join">
+        <Button bare className={styles.game} aria-pressed={!s.hostScreen} onClick={() => s.setHostScreen(false)} data-testid="mode-play">
+          <b>Play on this device</b>
+          <span className={app.small}>You take a seat and answer.</span>
+        </Button>
+        <Button bare className={styles.game} aria-pressed={s.hostScreen} onClick={() => s.setHostScreen(true)} data-testid="mode-screen">
+          <b>Host on this screen</b>
+          <span className={app.small}>This screen shows the game for the room. Phones join with the code.</span>
+        </Button>
       </div>
       {s.botsOn ? (
         <label className={app.small}>

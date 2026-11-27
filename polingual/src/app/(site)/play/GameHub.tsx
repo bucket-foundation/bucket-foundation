@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 import type { WorldId } from "@/ui/art/play";
-import { Button } from "@/ui";
+import { Button, SectionHeading } from "@/ui";
 import { bookKey } from "@/lib/daily/store";
 import { useDailyBook } from "./daily/useDaily";
 import { DAILY_GAMES } from "./daily";
@@ -38,7 +38,7 @@ function DailyHub() {
   const today = useDailyBook();
   return (
     <section className={styles.hubGroup} data-testid="daily-hub">
-      <h2 className={styles.hubHeading}>Daily</h2>
+      <SectionHeading>Daily</SectionHeading>
       <ul className={styles.hub}>
         {DAILY_GAMES.map((g) => {
           const done = today ? today.book[bookKey(g.slug, today.day)] : undefined;
@@ -66,7 +66,7 @@ function GameHub({ open, ispyReady, offered, onPick }: { open: LobbySummary[] | 
   return (
     <>
     <DailyHub />
-    <h2 className={styles.hubHeading}>All games</h2>
+    <SectionHeading>All games</SectionHeading>
     <ul className={styles.hub} data-testid="game-hub">
       {HUB.map((g) => {
         const body = (

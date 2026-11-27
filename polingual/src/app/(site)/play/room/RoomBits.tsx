@@ -91,7 +91,7 @@ export function RoomSide({ g, phase }: { g: LiveRoom; phase: Phase }) {
 export function EndGame({ g }: { g: LiveRoom }) {
   return (
     <Button variant="quiet" size="sm" disabled={g.busy} onClick={() => void g.act(() => g.api.end(g.lobby.id))} data-testid="end-game">
-      End game
+      Close lobby
     </Button>
   );
 }

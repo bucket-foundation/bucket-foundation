@@ -14,7 +14,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const a = await authed(req);
   if (!("uid" in a)) return a;
   try {
-    const lobby = await memberLobby(a.uid, a.body?.lobbyId);
+    const lobby = await memberLobby(a.uid, a.body?.lobbyId, false, true);
     if (lobby.host_id !== a.uid) return json({ error: "not_host" }, 403);
     if (lobby.status !== "lobby") return json({ error: "lobby_started" }, 409);
     if (!setupEnabled() && (a.body?.setup ?? "single") !== "single") return json({ error: "setup_off" }, 409);

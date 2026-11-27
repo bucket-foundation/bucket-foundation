@@ -1,0 +1,399 @@
+{
+  "version": 1,
+  "now": 1795176000000,
+  "known": [
+    {
+      "name": "fresh card a day after review is known",
+      "evidence": {
+        "stability": 10,
+        "lastReview": 1795089600000
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.988473986,
+        "known": true,
+        "source": "card"
+      }
+    },
+    {
+      "name": "card just inside its stability stays known",
+      "evidence": {
+        "stability": 5,
+        "lastReview": 1794752640000
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.901714889,
+        "known": true,
+        "source": "card"
+      }
+    },
+    {
+      "name": "overdue card is below the known bar",
+      "evidence": {
+        "stability": 3,
+        "lastReview": 1792584000000
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.546711065,
+        "known": false,
+        "source": "card"
+      }
+    },
+    {
+      "name": "tap six days ago overrides a strong card",
+      "evidence": {
+        "stability": 100,
+        "lastReview": 1795089600000,
+        "lastTap": 1794657600000
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0,
+        "known": false,
+        "source": "tap"
+      }
+    },
+    {
+      "name": "tap eight days ago has expired",
+      "evidence": {
+        "stability": 100,
+        "lastReview": 1795089600000,
+        "lastTap": 1794484800000
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.99882922,
+        "known": true,
+        "source": "card"
+      }
+    },
+    {
+      "name": "exposures count for nothing while lambda is 0",
+      "evidence": {
+        "exposures": 25
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0,
+        "known": false,
+        "source": "prior"
+      }
+    },
+    {
+      "name": "exposures with a fitted lambda",
+      "evidence": {
+        "exposures": 5
+      },
+      "tier": 0,
+      "lambda": 0.1,
+      "expect": {
+        "p": 0.39346934,
+        "known": false,
+        "source": "exposure"
+      }
+    },
+    {
+      "name": "exposures combine with the frequency prior",
+      "evidence": {
+        "exposures": 5,
+        "freq": {
+          "rank": 500,
+          "derived": false
+        }
+      },
+      "tier": 0,
+      "lambda": 0.1,
+      "expect": {
+        "p": 0.69673467,
+        "known": false,
+        "source": "exposure"
+      }
+    },
+    {
+      "name": "an unseen frequent word is capped below the known bar",
+      "evidence": {
+        "freq": {
+          "rank": 100,
+          "derived": false
+        }
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.85,
+        "known": false,
+        "source": "prior"
+      }
+    },
+    {
+      "name": "a capped prior plus exposures can cross the bar",
+      "evidence": {
+        "exposures": 30,
+        "freq": {
+          "rank": 1,
+          "derived": false
+        }
+      },
+      "tier": 0,
+      "lambda": 0.1,
+      "expect": {
+        "p": 0.99253194,
+        "known": true,
+        "source": "exposure"
+      }
+    },
+    {
+      "name": "unseen word at the half rank",
+      "evidence": {
+        "freq": {
+          "rank": 500,
+          "derived": false
+        }
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.5,
+        "known": false,
+        "source": "prior"
+      }
+    },
+    {
+      "name": "a higher placement tier raises the prior",
+      "evidence": {
+        "freq": {
+          "rank": 1500,
+          "derived": false
+        }
+      },
+      "tier": 2,
+      "lambda": 0,
+      "expect": {
+        "p": 0.5,
+        "known": false,
+        "source": "prior"
+      }
+    },
+    {
+      "name": "a derived rank is an upper bound and lowers the prior",
+      "evidence": {
+        "freq": {
+          "rank": 500,
+          "derived": true
+        }
+      },
+      "tier": 0,
+      "lambda": 0,
+      "expect": {
+        "p": 0.2,
+        "known": false,
+        "source": "prior"
+      }
+    },
+    {
+      "name": "no rank and no evidence gives zero",
+      "evidence": {},
+      "tier": 3,
+      "lambda": 0,
+      "expect": {
+        "p": 0,
+        "known": false,
+        "source": "prior"
+      }
+    }
+  ],
+  "knownCount": [
+    {
+      "name": "sum of the probabilities",
+      "tier": 0,
+      "lambda": 0,
+      "lemmas": {
+        "l0": {
+          "stability": 10,
+          "lastReview": 1795089600000
+        },
+        "l1": {
+          "stability": 5,
+          "lastReview": 1794752640000
+        },
+        "l2": {
+          "stability": 3,
+          "lastReview": 1792584000000
+        },
+        "l3": {
+          "stability": 100,
+          "lastReview": 1795089600000,
+          "lastTap": 1794657600000
+        },
+        "l4": {
+          "stability": 100,
+          "lastReview": 1795089600000,
+          "lastTap": 1794484800000
+        },
+        "l5": {
+          "exposures": 25
+        }
+      },
+      "expect": 3.43572916
+    },
+    {
+      "name": "with a fitted lambda and tier 1",
+      "tier": 1,
+      "lambda": 0.1,
+      "lemmas": {
+        "l0": {
+          "stability": 10,
+          "lastReview": 1795089600000
+        },
+        "l1": {
+          "stability": 5,
+          "lastReview": 1794752640000
+        },
+        "l2": {
+          "stability": 3,
+          "lastReview": 1792584000000
+        },
+        "l3": {
+          "stability": 100,
+          "lastReview": 1795089600000,
+          "lastTap": 1794657600000
+        },
+        "l4": {
+          "stability": 100,
+          "lastReview": 1795089600000,
+          "lastTap": 1794484800000
+        },
+        "l5": {
+          "exposures": 25
+        },
+        "l6": {
+          "exposures": 5
+        },
+        "l7": {
+          "exposures": 5,
+          "freq": {
+            "rank": 500,
+            "derived": false
+          }
+        },
+        "l8": {
+          "freq": {
+            "rank": 100,
+            "derived": false
+          }
+        },
+        "l9": {
+          "exposures": 30,
+          "freq": {
+            "rank": 1,
+            "derived": false
+          }
+        },
+        "l10": {
+          "freq": {
+            "rank": 500,
+            "derived": false
+          }
+        },
+        "l11": {
+          "freq": {
+            "rank": 1500,
+            "derived": false
+          }
+        },
+        "l12": {
+          "freq": {
+            "rank": 500,
+            "derived": true
+          }
+        },
+        "l13": {}
+      },
+      "expect": 9.076031617
+    }
+  ],
+  "freqRows": [
+    {
+      "row": [
+        "id",
+        "es",
+        "casa",
+        "house",
+        "noun",
+        "",
+        1,
+        120,
+        0
+      ],
+      "expect": {
+        "rank": 120,
+        "derived": false
+      }
+    },
+    {
+      "row": [
+        "id",
+        "es",
+        "casa-cuna",
+        "",
+        "noun",
+        "",
+        3,
+        4000,
+        1
+      ],
+      "expect": {
+        "rank": 4000,
+        "derived": true
+      }
+    },
+    {
+      "row": [
+        "id",
+        "es",
+        "x",
+        "",
+        "",
+        "",
+        1,
+        null,
+        0
+      ],
+      "expect": null
+    }
+  ],
+  "priors": {
+    "halfRank": 500,
+    "slope": 2,
+    "derivedRankFactor": 2,
+    "cap": 0.85
+  },
+  "prior": [
+    {
+      "tier": 0,
+      "rank": 300,
+      "derived": false,
+      "expect": 0.735294118
+    },
+    {
+      "tier": 1,
+      "rank": 300,
+      "derived": false,
+      "expect": 0.85
+    },
+    {
+      "tier": 3,
+      "rank": 300,
+      "derived": false,
+      "expect": 0.85
+    }
+  ]
+}

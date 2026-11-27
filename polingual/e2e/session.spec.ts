@@ -20,11 +20,19 @@ async function answerOne(page: Page): Promise<void> {
 }
 
 const LONG_KINDS = ["match the set", "translate"];
+const MASTERED = ["one", "two", "three", "four", "five", "six"];
+
+function masteredBranches() {
+  const now = Date.now();
+  const card = { state: "review", stability: 365, difficulty: 4, lastReview: now, due: now + 365 * 86_400_000, reps: 8, lapses: 0, introduced: "2026-01-01" };
+  const cards = Object.fromEntries(MASTERED.flatMap((id) => ["es", "fr"].map((l) => [`${l}:${id}`, card])));
+  return { ...seeded(), "lang-sys-en-es-fr": { updated_at: new Date().toISOString(), data: { cards, stats: { xp: 0, streak: 0, lastStudyDay: "", history: {} } } } };
+}
 
 for (const width of [1280, 390]) {
   test(`daily session fits without page scroll through every exercise kind at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width > 500 ? 800 : 844 });
-    await mockApi(page, { branches: seeded() });
+    await mockApi(page, { branches: masteredBranches() });
     await signIn(page);
     await page.goto("/app/en-es-fr/study");
     await expect(page.getByTestId("session")).toBeVisible({ timeout: 60_000 });
@@ -56,7 +64,7 @@ test("grading syncs progress and the session ends with a score", async ({ page }
     await expect(page.getByTestId("session-done")).toBeVisible({ timeout: 300 });
   }).toPass({ timeout: 60_000 });
   await expect(page.getByTestId("session-score")).toContainText("right");
-  await expect.poll(() => api.posts.some((p) => p.branch === "lang-sys-en-es-fr"), { timeout: 10_000 }).toBe(true);
+  await expect.poll(() => api.posts.some((p) => p.branch === "lang-sys-en-es-fr" || /^lang-[a-z]{2,3}$/.test(p.branch)), { timeout: 10_000 }).toBe(true);
 });
 
 test("a learner without a subscription finishes the first lesson and then sees the paywall", async ({ page }) => {

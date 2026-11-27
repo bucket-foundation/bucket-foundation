@@ -1,5 +1,6 @@
 import { dayKey, type EngineState } from "@academy/engine";
 import { DAY_MS } from "@academy/fsrs";
+import { streakFromDays } from "@academy/progress-metric";
 
 const STREAK_GOAL = 100;
 
@@ -19,8 +20,9 @@ export function liveStreak(stats: EngineState["stats"], now: number): { streak: 
   return { streak: 0, studiedToday: false };
 }
 
-export function streakCard(states: EngineState[], now: number): StreakCard {
-  let best = { streak: 0, studiedToday: false };
+export function streakCard(states: EngineState[], now: number, inputDays: readonly string[] = []): StreakCard {
+  const studyDays = states.flatMap((s) => Object.keys(s.stats.history));
+  let best = inputDays.length ? streakFromDays([...studyDays, ...inputDays], dayKey(now)) : { streak: 0, studiedToday: false };
   for (const s of states) {
     const live = liveStreak(s.stats, now);
     if (live.streak > best.streak || (live.streak === best.streak && live.studiedToday)) best = live;

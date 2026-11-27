@@ -1,0 +1,570 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polingual.com/schemas/input-bundle.json",
+  "title": "Polingual input bundle",
+  "type": "object",
+  "required": [
+    "format",
+    "version",
+    "lang",
+    "attribution",
+    "coverage",
+    "items",
+    "units",
+    "tatoebaItems",
+    "tatoebaIdsMatched"
+  ],
+  "properties": {
+    "format": {
+      "const": "polingual-input"
+    },
+    "version": {
+      "const": 1
+    },
+    "lang": {
+      "type": "string",
+      "minLength": 2
+    },
+    "attribution": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "coverage": {
+      "$ref": "#/$defs/coverage"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unit"
+      }
+    },
+    "tatoebaItems": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tatoebaIdsMatched": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "books": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/book"
+      }
+    }
+  },
+  "$defs": {
+    "coverage": {
+      "type": "object",
+      "required": [
+        "tokens",
+        "tokensMapped",
+        "tokenShare",
+        "types",
+        "typesMapped",
+        "typeShare"
+      ],
+      "properties": {
+        "tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tokensMapped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tokenShare": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "types": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "typesMapped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "typeShare": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "token": {
+      "type": "object",
+      "required": [
+        "surface",
+        "lemma"
+      ],
+      "properties": {
+        "surface": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lemma": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unmapped": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "lang",
+        "kind",
+        "text",
+        "tokens",
+        "lemmas",
+        "source",
+        "license"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "sentence",
+            "passage",
+            "audio",
+            "video_segment"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/token"
+          }
+        },
+        "lemmas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "translation": {
+          "type": "string"
+        },
+        "audioUrl": {
+          "type": "string"
+        },
+        "media": {
+          "type": "object",
+          "required": [
+            "videoId",
+            "start",
+            "end"
+          ],
+          "properties": {
+            "videoId": {
+              "type": "string"
+            },
+            "start": {
+              "type": "number"
+            },
+            "end": {
+              "type": "number"
+            }
+          }
+        },
+        "cefr": {
+          "enum": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "name",
+            "url"
+          ],
+          "properties": {
+            "name": {
+              "enum": [
+                "tatoeba",
+                "youtube",
+                "graded",
+                "african-storybook",
+                "global-storybooks",
+                "storyweaver",
+                "global-voices",
+                "voa",
+                "voa-learning-english"
+              ]
+            },
+            "url": {
+              "type": "string"
+            },
+            "sentenceIds": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "title": {
+              "type": "string"
+            },
+            "channel": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "authors": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "image": {
+          "type": "object",
+          "required": [
+            "url",
+            "credit"
+          ],
+          "properties": {
+            "url": {
+              "type": "string"
+            },
+            "credit": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source": {
+                "properties": {
+                  "name": {
+                    "const": "tatoeba"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "license": {
+                "const": "CC-BY 2.0 FR"
+              },
+              "source": {
+                "required": [
+                  "sentenceIds",
+                  "authors"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "unit": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "itemIds",
+        "targetLemmas",
+        "tokenCount",
+        "credit",
+        "credits"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "episode",
+            "sentence_set",
+            "passage"
+          ]
+        },
+        "itemIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "targetLemmas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tokenCount": {
+          "type": "integer",
+          "minimum": 40
+        },
+        "credit": {
+          "type": "string"
+        },
+        "credits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "url",
+              "author"
+            ],
+            "properties": {
+              "url": {
+                "type": "string"
+              },
+              "author": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sentenceId": {
+                "type": "string"
+              },
+              "lang": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "band": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bookId": {
+          "type": "string"
+        },
+        "cefr": {
+          "enum": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            null
+          ]
+        },
+        "sourceLevel": {
+          "type": "object",
+          "required": [
+            "scale",
+            "value",
+            "cefr"
+          ]
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "paired": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "sentence_set"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "itemIds": {
+                "minItems": 4,
+                "maxItems": 6
+              },
+              "credit": {
+                "pattern": "^Tatoeba sentences .*tatoeba\\.org/en/sentences/show/"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "book": {
+      "type": "object",
+      "required": [
+        "id",
+        "source",
+        "lang",
+        "title",
+        "url",
+        "authors",
+        "illustrators",
+        "translators",
+        "license",
+        "level",
+        "pages",
+        "licenseVersion",
+        "licenseUrl"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "african-storybook",
+            "global-storybooks",
+            "storyweaver",
+            "global-voices",
+            "voa",
+            "voa-learning-english"
+          ]
+        },
+        "lang": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "illustrators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "translators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "license": {
+          "enum": [
+            "CC BY",
+            "CC BY 2.0",
+            "CC BY 3.0",
+            "CC BY 4.0",
+            "CC0 1.0",
+            "Public Domain"
+          ]
+        },
+        "level": {
+          "type": "object"
+        },
+        "pages": {
+          "type": "integer"
+        },
+        "pairedWith": {
+          "type": "string"
+        },
+        "via": {
+          "type": "string"
+        },
+        "cover": {
+          "type": "object",
+          "required": [
+            "url",
+            "credit"
+          ]
+        },
+        "rightsHolder": {
+          "type": "string"
+        },
+        "original": {
+          "type": "object"
+        },
+        "approved": {
+          "const": true
+        },
+        "licenseVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "licenseUrl": {
+          "type": "string",
+          "pattern": "^https://(creativecommons\\.org/(licenses/by/|publicdomain/zero/1\\.0/)|www\\.usagm\\.gov/terms-of-use/)"
+        },
+        "pairedBook": {
+          "type": "object",
+          "required": [
+            "id",
+            "title",
+            "url",
+            "authors",
+            "translators",
+            "license"
+          ]
+        },
+        "review": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "licenseBasis": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

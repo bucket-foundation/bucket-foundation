@@ -1,0 +1,652 @@
+{
+ "entries": 11071243,
+ "cycle_cuts": 47,
+ "nodes": 6978752,
+ "reconstructed_nodes": 165539,
+ "languages_with_lexemes": 5162,
+ "languages_any_node": 5969,
+ "edges": {
+  "af": 3252206,
+  "bor": 574692,
+  "cal": 29663,
+  "cog": 733497,
+  "der": 847106,
+  "inh": 1088147
+ },
+ "forest_roots_with_children": 368,
+ "max_depth": 10,
+ "top_families": [
+  {
+   "family_root_lang": "ine-pro",
+   "lexemes": 145564,
+   "languages": 457,
+   "mean_depth": 3.0821219532301942
+  },
+  {
+   "family_root_lang": "la",
+   "lexemes": 49055,
+   "languages": 82,
+   "mean_depth": 1.3500560595250228
+  },
+  {
+   "family_root_lang": "sla-pro",
+   "lexemes": 26860,
+   "languages": 32,
+   "mean_depth": 1.2077810871183916
+  },
+  {
+   "family_root_lang": "trk-pro",
+   "lexemes": 17573,
+   "languages": 45,
+   "mean_depth": 1.316451374267342
+  },
+  {
+   "family_root_lang": "gem-pro",
+   "lexemes": 17568,
+   "languages": 80,
+   "mean_depth": 2.2455031876138434
+  },
+  {
+   "family_root_lang": "enm",
+   "lexemes": 13441,
+   "languages": 28,
+   "mean_depth": 1.0803511643478907
+  },
+  {
+   "family_root_lang": "sa",
+   "lexemes": 13067,
+   "languages": 96,
+   "mean_depth": 1.4097344455498584
+  },
+  {
+   "family_root_lang": "map-pro",
+   "lexemes": 10544,
+   "languages": 507,
+   "mean_depth": 2.503793626707132
+  },
+  {
+   "family_root_lang": "ar",
+   "lexemes": 8987,
+   "languages": 24,
+   "mean_depth": 1.01468788249694
+  },
+  {
+   "family_root_lang": "ota",
+   "lexemes": 8767,
+   "languages": 2,
+   "mean_depth": 1.0043344359530055
+  },
+  {
+   "family_root_lang": "urj-pro",
+   "lexemes": 8593,
+   "languages": 56,
+   "mean_depth": 1.7144187129058537
+  },
+  {
+   "family_root_lang": "urj-fin-pro",
+   "lexemes": 8083,
+   "languages": 12,
+   "mean_depth": 1.0022268959544725
+  },
+  {
+   "family_root_lang": "poz-pro",
+   "lexemes": 6759,
+   "languages": 293,
+   "mean_depth": 1.6866400355082112
+  },
+  {
+   "family_root_lang": "gmw-pro",
+   "lexemes": 6137,
+   "languages": 53,
+   "mean_depth": 2.119439465536907
+  },
+  {
+   "family_root_lang": "dum",
+   "lexemes": 5630,
+   "languages": 6,
+   "mean_depth": 1.1182948490230906
+  },
+  {
+   "family_root_lang": "grc",
+   "lexemes": 5062,
+   "languages": 8,
+   "mean_depth": 1.0869221651521137
+  },
+  {
+   "family_root_lang": "non",
+   "lexemes": 5030,
+   "languages": 18,
+   "mean_depth": 1.110337972166998
+  },
+  {
+   "family_root_lang": "bnt-pro",
+   "lexemes": 4902,
+   "languages": 160,
+   "mean_depth": 1.1013871889024889
+  },
+  {
+   "family_root_lang": "xcl",
+   "lexemes": 4834,
+   "languages": 3,
+   "mean_depth": 1.0270997103847745
+  },
+  {
+   "family_root_lang": "ms",
+   "lexemes": 4553,
+   "languages": 9,
+   "mean_depth": 1.0707226004831978
+  },
+  {
+   "family_root_lang": "ang",
+   "lexemes": 4228,
+   "languages": 26,
+   "mean_depth": 1.6125827814569536
+  },
+  {
+   "family_root_lang": "sit-pro",
+   "lexemes": 3911,
+   "languages": 119,
+   "mean_depth": 1.371516236256712
+  },
+  {
+   "family_root_lang": "smi-pro",
+   "lexemes": 3426,
+   "languages": 11,
+   "mean_depth": 1.0
+  },
+  {
+   "family_root_lang": "sga",
+   "lexemes": 3038,
+   "languages": 6,
+   "mean_depth": 1.1566820276497696
+  },
+  {
+   "family_root_lang": "qfa-yuk-pro",
+   "lexemes": 2868,
+   "languages": 4,
+   "mean_depth": 1.0
+  }
+ ],
+ "top_languages": [
+  {
+   "lang": "en",
+   "lexemes": 889786,
+   "inh": 27219,
+   "bor": 67070,
+   "der": 38134,
+   "cal": 2151,
+   "af": 331780,
+   "none": 1032799,
+   "mean_depth": 0.053081302695254816,
+   "depth_max": 9
+  },
+  {
+   "lang": "zh",
+   "lexemes": 308727,
+   "inh": 918,
+   "bor": 5166,
+   "der": 1016,
+   "cal": 1042,
+   "af": 266,
+   "none": 320510,
+   "mean_depth": 0.002827741013905489,
+   "depth_max": 3
+  },
+  {
+   "lang": "fi",
+   "lexemes": 183845,
+   "inh": 3165,
+   "bor": 6597,
+   "der": 6519,
+   "cal": 541,
+   "af": 144265,
+   "none": 106754,
+   "mean_depth": 0.020441132475726834,
+   "depth_max": 4
+  },
+  {
+   "lang": "it",
+   "lexemes": 183074,
+   "inh": 5186,
+   "bor": 9810,
+   "der": 9692,
+   "cal": 282,
+   "af": 48086,
+   "none": 551066,
+   "mean_depth": 0.09450823164403466,
+   "depth_max": 7
+  },
+  {
+   "lang": "ar",
+   "lexemes": 176064,
+   "inh": 501,
+   "bor": 2706,
+   "der": 554,
+   "cal": 170,
+   "af": 2279,
+   "none": 227207,
+   "mean_depth": 0.0029080334423845873,
+   "depth_max": 3
+  },
+  {
+   "lang": "ja",
+   "lexemes": 173278,
+   "inh": 811,
+   "bor": 10558,
+   "der": 1419,
+   "cal": 449,
+   "af": 7442,
+   "none": 179348,
+   "mean_depth": 0.004132088320502314,
+   "depth_max": 3
+  },
+  {
+   "lang": "es",
+   "lexemes": 132088,
+   "inh": 4611,
+   "bor": 13640,
+   "der": 5704,
+   "cal": 284,
+   "af": 32237,
+   "none": 757661,
+   "mean_depth": 0.1084882805402459,
+   "depth_max": 9
+  },
+  {
+   "lang": "fr",
+   "lexemes": 105381,
+   "inh": 6513,
+   "bor": 10879,
+   "der": 4908,
+   "cal": 506,
+   "af": 27165,
+   "none": 354155,
+   "mean_depth": 0.20795968912802118,
+   "depth_max": 8
+  },
+  {
+   "lang": "ro",
+   "lexemes": 105292,
+   "inh": 2394,
+   "bor": 43554,
+   "der": 828,
+   "cal": 137,
+   "af": 35799,
+   "none": 47859,
+   "mean_depth": 0.04550203244311059,
+   "depth_max": 7
+  },
+  {
+   "lang": "de",
+   "lexemes": 103048,
+   "inh": 7345,
+   "bor": 7434,
+   "der": 3137,
+   "cal": 359,
+   "af": 53357,
+   "none": 300161,
+   "mean_depth": 0.19349235307817717,
+   "depth_max": 8
+  },
+  {
+   "lang": "pl",
+   "lexemes": 103009,
+   "inh": 7144,
+   "bor": 12574,
+   "der": 1467,
+   "cal": 624,
+   "af": 49797,
+   "none": 128570,
+   "mean_depth": 0.09993301556174704,
+   "depth_max": 7
+  },
+  {
+   "lang": "mul",
+   "lexemes": 93056,
+   "inh": 0,
+   "bor": 1481,
+   "der": 4420,
+   "cal": 3,
+   "af": 7209,
+   "none": 80918,
+   "mean_depth": 0.0,
+   "depth_max": 0
+  },
+  {
+   "lang": "pt",
+   "lexemes": 88362,
+   "inh": 4749,
+   "bor": 14466,
+   "der": 2947,
+   "cal": 342,
+   "af": 19001,
+   "none": 405524,
+   "mean_depth": 0.12873180779067925,
+   "depth_max": 8
+  },
+  {
+   "lang": "nl",
+   "lexemes": 79508,
+   "inh": 9965,
+   "bor": 8162,
+   "der": 2332,
+   "cal": 625,
+   "af": 28594,
+   "none": 97112,
+   "mean_depth": 0.25588620013080443,
+   "depth_max": 8
+  },
+  {
+   "lang": "mt",
+   "lexemes": 77106,
+   "inh": 3052,
+   "bor": 4310,
+   "der": 289,
+   "cal": 12,
+   "af": 519,
+   "none": 72608,
+   "mean_depth": 0.037078826550463,
+   "depth_max": 3
+  },
+  {
+   "lang": "cmn",
+   "lexemes": 75150,
+   "inh": 0,
+   "bor": 0,
+   "der": 0,
+   "cal": 0,
+   "af": 0,
+   "none": 75844,
+   "mean_depth": 0.0,
+   "depth_max": 0
+  },
+  {
+   "lang": "la",
+   "lexemes": 74515,
+   "inh": 1723,
+   "bor": 5873,
+   "der": 4094,
+   "cal": 131,
+   "af": 20371,
+   "none": 861271,
+   "mean_depth": 0.10705227135476078,
+   "depth_max": 8
+  },
+  {
+   "lang": "sv",
+   "lexemes": 68867,
+   "inh": 3754,
+   "bor": 3697,
+   "der": 3111,
+   "cal": 474,
+   "af": 26413,
+   "none": 276370,
+   "mean_depth": 0.1486488448749038,
+   "depth_max": 7
+  },
+  {
+   "lang": "ru",
+   "lexemes": 65634,
+   "inh": 4218,
+   "bor": 7532,
+   "der": 1373,
+   "cal": 210,
+   "af": 29246,
+   "none": 400681,
+   "mean_depth": 0.12461529085534936,
+   "depth_max": 7
+  },
+  {
+   "lang": "sh",
+   "lexemes": 58829,
+   "inh": 6937,
+   "bor": 5161,
+   "der": 2167,
+   "cal": 47,
+   "af": 7397,
+   "none": 48757,
+   "mean_depth": 0.18971935609988272,
+   "depth_max": 6
+  },
+  {
+   "lang": "cs",
+   "lexemes": 49129,
+   "inh": 4636,
+   "bor": 2565,
+   "der": 861,
+   "cal": 45,
+   "af": 15356,
+   "none": 48978,
+   "mean_depth": 0.16432249791365588,
+   "depth_max": 7
+  },
+  {
+   "lang": "mk",
+   "lexemes": 46860,
+   "inh": 2609,
+   "bor": 1659,
+   "der": 257,
+   "cal": 8,
+   "af": 2395,
+   "none": 62002,
+   "mean_depth": 0.08629961587708067,
+   "depth_max": 6
+  },
+  {
+   "lang": "enm",
+   "lexemes": 46506,
+   "inh": 4211,
+   "bor": 3257,
+   "der": 440,
+   "cal": 19,
+   "af": 1988,
+   "none": 46772,
+   "mean_depth": 0.28484496624091515,
+   "depth_max": 8
+  },
+  {
+   "lang": "ko",
+   "lexemes": 45818,
+   "inh": 278,
+   "bor": 4402,
+   "der": 406,
+   "cal": 75,
+   "af": 9053,
+   "none": 50242,
+   "mean_depth": 0.0071151075996333316,
+   "depth_max": 3
+  },
+  {
+   "lang": "vi",
+   "lexemes": 45244,
+   "inh": 1089,
+   "bor": 1926,
+   "der": 1718,
+   "cal": 277,
+   "af": 8078,
+   "none": 39079,
+   "mean_depth": 0.022544425780213952,
+   "depth_max": 3
+  },
+  {
+   "lang": "hu",
+   "lexemes": 39923,
+   "inh": 591,
+   "bor": 2364,
+   "der": 2805,
+   "cal": 31,
+   "af": 61455,
+   "none": 11649,
+   "mean_depth": 0.017007739899306165,
+   "depth_max": 2
+  },
+  {
+   "lang": "ca",
+   "lexemes": 37163,
+   "inh": 3344,
+   "bor": 8450,
+   "der": 1729,
+   "cal": 155,
+   "af": 10947,
+   "none": 174060,
+   "mean_depth": 0.19723918951645453,
+   "depth_max": 8
+  },
+  {
+   "lang": "el",
+   "lexemes": 34571,
+   "inh": 4711,
+   "bor": 3703,
+   "der": 2162,
+   "cal": 217,
+   "af": 3242,
+   "none": 71389,
+   "mean_depth": 0.2625611061294148,
+   "depth_max": 8
+  },
+  {
+   "lang": "id",
+   "lexemes": 34454,
+   "inh": 5971,
+   "bor": 10478,
+   "der": 1259,
+   "cal": 390,
+   "af": 8534,
+   "none": 14110,
+   "mean_depth": 0.221164451152261,
+   "depth_max": 8
+  },
+  {
+   "lang": "tl",
+   "lexemes": 34029,
+   "inh": 1902,
+   "bor": 11239,
+   "der": 938,
+   "cal": 195,
+   "af": 9755,
+   "none": 16917,
+   "mean_depth": 0.055893502600722914,
+   "depth_max": 4
+  },
+  {
+   "lang": "uk",
+   "lexemes": 32319,
+   "inh": 3872,
+   "bor": 3490,
+   "der": 1245,
+   "cal": 128,
+   "af": 16240,
+   "none": 35322,
+   "mean_depth": 0.2240477737553761,
+   "depth_max": 9
+  },
+  {
+   "lang": "tr",
+   "lexemes": 28276,
+   "inh": 11845,
+   "bor": 2993,
+   "der": 808,
+   "cal": 102,
+   "af": 4241,
+   "none": 26265,
+   "mean_depth": 0.4735111048238789,
+   "depth_max": 7
+  },
+  {
+   "lang": "nn",
+   "lexemes": 26604,
+   "inh": 3410,
+   "bor": 1162,
+   "der": 5220,
+   "cal": 75,
+   "af": 7872,
+   "none": 45667,
+   "mean_depth": 0.375432265824688,
+   "depth_max": 6
+  },
+  {
+   "lang": "ga",
+   "lexemes": 26289,
+   "inh": 3966,
+   "bor": 1174,
+   "der": 2105,
+   "cal": 82,
+   "af": 8591,
+   "none": 23070,
+   "mean_depth": 0.32838829928867586,
+   "depth_max": 7
+  },
+  {
+   "lang": "da",
+   "lexemes": 25753,
+   "inh": 2168,
+   "bor": 2472,
+   "der": 4269,
+   "cal": 122,
+   "af": 10274,
+   "none": 39381,
+   "mean_depth": 0.29021861530695453,
+   "depth_max": 7
+  },
+  {
+   "lang": "lv",
+   "lexemes": 25594,
+   "inh": 291,
+   "bor": 670,
+   "der": 1098,
+   "cal": 14,
+   "af": 3358,
+   "none": 129017,
+   "mean_depth": 0.05567711182308353,
+   "depth_max": 5
+  },
+  {
+   "lang": "grc",
+   "lexemes": 25283,
+   "inh": 1238,
+   "bor": 1216,
+   "der": 1772,
+   "cal": 11,
+   "af": 10578,
+   "none": 54355,
+   "mean_depth": 0.21595538504133213,
+   "depth_max": 7
+  },
+  {
+   "lang": "nb",
+   "lexemes": 24967,
+   "inh": 1376,
+   "bor": 1348,
+   "der": 5734,
+   "cal": 70,
+   "af": 10276,
+   "none": 62844,
+   "mean_depth": 0.32651099451275684,
+   "depth_max": 8
+  },
+  {
+   "lang": "ang",
+   "lexemes": 23692,
+   "inh": 5924,
+   "bor": 341,
+   "der": 444,
+   "cal": 13,
+   "af": 6803,
+   "none": 55379,
+   "mean_depth": 0.575130845855141,
+   "depth_max": 7
+  },
+  {
+   "lang": "hi",
+   "lexemes": 23295,
+   "inh": 3096,
+   "bor": 11683,
+   "der": 681,
+   "cal": 139,
+   "af": 4646,
+   "none": 19268,
+   "mean_depth": 0.3645417471560421,
+   "depth_max": 8
+  }
+ ]
+}

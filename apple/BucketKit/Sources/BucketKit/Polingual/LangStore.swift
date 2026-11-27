@@ -51,6 +51,16 @@ public final class LangStore {
     public static let guestLessonMs: Double = 45 * 60 * 1000
 
     public private(set) var status = Status.idle
+    public private(set) var reviewLog: [LogRow] = []
+
+    static var installDevice: String {
+        let d = UserDefaults.standard
+        let key = "polingual.reviewLog.install"
+        let saltKey = "polingual.reviewLog.salt"
+        let id = d.string(forKey: key) ?? { let v = UUID().uuidString; d.set(v, forKey: key); return v }()
+        let salt = d.string(forKey: saltKey) ?? { let v = UUID().uuidString; d.set(v, forKey: saltKey); return v }()
+        return ReviewLog.deviceHash(salt: salt, device: id)
+    }
     public private(set) var corpus: LangCorpus?
 
     public static func topWords(_ lang: String, bundle: Bundle = .main) -> [TopWord]? {
@@ -468,8 +478,22 @@ public final class LangStore {
 
     public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating, counted: Bool = true) {
         guard let s = system(systemId) else { return }
-        commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier, counted: counted))
+        let at = now()
+        let tz = TimeZone.current.identifier
+        let id = cardId(lang, itemId)
+        let prior = state(systemId)
+        let next = gradeCard(prior, lang, itemId, rating, now: at, tz: tz, counted: counted)
+        let b = prior.cards[id]
+        let a = next.cards[id]
+        let elapsed = b?.lastReview.map { max(0, (at - $0) / 86_400_000) } ?? 0
+        let meta = LogRow.Meta(id: UUID().uuidString.lowercased(), at: at, device: Self.installDevice, tz: tz, systemId: systemId)
+        reviewLog.append(.review(.init(meta: meta, card: id, rating: rating, elapsedDays: elapsed, sBefore: b?.stability ?? 0, sAfter: a?.stability, d: a?.difficulty)))
+        commit(s, next)
     }
+
+    public func log(_ rows: [LogRow]) { reviewLog.append(contentsOf: rows) }
+
+    public static var deviceId: String { installDevice }
 
     public func queue(_ systemId: String, lang: String, itemId: String) {
         guard let s = system(systemId) else { return }

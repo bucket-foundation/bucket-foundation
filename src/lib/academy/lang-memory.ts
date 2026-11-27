@@ -2,10 +2,12 @@ import { mergeState, normalizeState, type EngineState } from "./engine";
 import { laterCard } from "./card-merge";
 import type { Card } from "./fsrs";
 import { parseCardId, progressBranch, type LangCard, type LangSystem } from "./lang-systems";
-import { LANG_ATOMS_VERSION, orderLog, replay, type ReviewRow } from "./replay";
+import { LANG_ATOMS_VERSION, orderLog, replay } from "./replay";
+import { NO_RESOLVER, exposureParams, replayLangLog, type LemmaResolver } from "./exposure-replay";
+import { isReview, parseLogRow, rowLang, type LogRow, type ReviewLogRow } from "./learn-log";
 
 export function sharedMemoryOn(value: string | undefined = process.env.NEXT_PUBLIC_POLINGUAL_SHARED_MEMORY): boolean {
-  return value === "1" || value === "true";
+  return value !== "0" && value !== "false";
 }
 
 export const SHARED_MEMORY_PREVIEW_KEY = "bucket-academy/v1/flags/polingual-shared-memory";
@@ -22,14 +24,12 @@ export function sharedMemoryActive(): boolean {
 export const MIGRATION = "v1";
 export const BACKUP_SUFFIX = ".bak-v1";
 
-export interface LangRow extends ReviewRow {
-  system_id: string;
-}
+export type LangRow = ReviewLogRow;
 
 export interface LangMemory {
   lang: string;
   baseline: EngineState;
-  log: LangRow[];
+  log: LogRow[];
   migrated: typeof MIGRATION | null;
 }
 
@@ -49,11 +49,6 @@ export function emptyMemory(lang: string): LangMemory {
   return { lang, baseline: normalizeState(null), log: [], migrated: null };
 }
 
-function isRow(r: unknown): r is LangRow {
-  const x = r as Partial<LangRow> | null;
-  return !!x && typeof x.review_id === "string" && typeof x.card_id === "string" && typeof x.rating === "number" && typeof x.reviewed_at === "number" && typeof x.tz === "string" && typeof x.system_id === "string";
-}
-
 export function onlyLang(state: EngineState, lang: string): EngineState {
   const out = normalizeState(state);
   out.cards = Object.fromEntries(Object.entries(out.cards).filter(([id]) => parseCardId(id).lang === lang));
@@ -66,7 +61,7 @@ export function normalizeMemory(lang: string, raw: unknown): LangMemory {
   return {
     lang,
     baseline: onlyLang(normalizeState(x.baseline), lang),
-    log: orderLog((Array.isArray(x.log) ? x.log : []).filter(isRow).filter((r) => parseCardId(r.card_id).lang === lang)) as LangRow[],
+    log: orderLog((Array.isArray(x.log) ? x.log : []).map(parseLogRow).filter((r): r is LogRow => r !== null && rowLang(r) === lang)),
     migrated: x.migrated === MIGRATION ? MIGRATION : null,
   };
 }
@@ -75,14 +70,14 @@ export function mergeMemory(a: LangMemory, b: LangMemory): LangMemory {
   return {
     lang: a.lang,
     baseline: unionCards(a.baseline, b.baseline),
-    log: orderLog([...a.log, ...b.log]) as LangRow[],
+    log: orderLog([...a.log, ...b.log]),
     migrated: a.migrated ?? b.migrated,
   };
 }
 
-export function withRows(m: LangMemory, rows: readonly LangRow[]): LangMemory {
-  const mine = rows.filter((r) => parseCardId(r.card_id).lang === m.lang);
-  return mine.length ? { ...m, log: orderLog([...m.log, ...mine]) as LangRow[] } : m;
+export function withRows(m: LangMemory, rows: readonly LogRow[]): LangMemory {
+  const mine = rows.filter((r) => rowLang(r) === m.lang);
+  return mine.length ? { ...m, log: orderLog([...m.log, ...mine]) } : m;
 }
 
 function pickCard(a: Card | undefined, b: Card | undefined): Card | undefined {
@@ -117,8 +112,8 @@ export function unionCards(a: EngineState, b: EngineState): EngineState {
   return out;
 }
 
-export function memoryState(m: LangMemory): EngineState {
-  return onlyLang(replay(m.baseline, m.log, {}), m.lang);
+export function memoryState(m: LangMemory, resolve: LemmaResolver = NO_RESOLVER): EngineState {
+  return onlyLang(replayLangLog(m.baseline, m.log, exposureParams(resolve)), m.lang);
 }
 
 export function migrateLang(lang: string, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>, existing: LangMemory | null): LangMemory {
@@ -140,11 +135,11 @@ export function planningSystem(system: LangSystem, systems: readonly LangSystem[
   return { ...system, placement: Object.fromEntries(system.targets.map((l) => [l, maxPlacement(all, l)])) };
 }
 
-export function foldByLang(system: LangSystem, memories: Readonly<Record<string, LangMemory>>, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>): EngineState {
+export function foldByLang(system: LangSystem, memories: Readonly<Record<string, LangMemory>>, systems: readonly LangSystem[], oldStates: Readonly<Record<string, EngineState | null>>, resolve: LemmaResolver = NO_RESOLVER): EngineState {
   let view = normalizeState(null);
   for (const lang of system.targets) {
     const m = memories[lang];
-    let s = m ? memoryState(m) : normalizeState(null);
+    let s = m ? memoryState(m, resolve) : normalizeState(null);
     for (const other of systems) {
       if (!other.targets.includes(lang)) continue;
       const old = oldStates[progressBranch(other)];
@@ -156,16 +151,16 @@ export function foldByLang(system: LangSystem, memories: Readonly<Record<string,
 }
 
 export function rollback(systems: readonly LangSystem[], memories: Readonly<Record<string, LangMemory>>, backups: Readonly<Record<string, EngineState | null>>): { branches: Record<string, EngineState>; dropped: number } {
-  const rows = Object.values(memories).flatMap((m) => m.log);
+  const rows = Object.values(memories).flatMap((m) => m.log.filter(isReview));
   const known = new Set(systems.map((s) => s.id));
   const branches: Record<string, EngineState> = {};
   for (const s of systems) {
     const branch = progressBranch(s);
     branches[branch] = replay(backups[backupBranch(branch)] ?? null, rows.filter((r) => r.system_id === s.id), {});
   }
-  return { branches, dropped: orderLog(rows).filter((r) => !known.has((r as LangRow).system_id)).length };
+  return { branches, dropped: orderLog(rows).filter((r) => !known.has(r.system_id)).length };
 }
 
 export function makeRow(systemId: string, cardId: string, rating: LangRow["rating"], reviewId: string, deviceId: string, now: number, tz: string): LangRow {
-  return { review_id: reviewId, card_id: cardId, rating, level: "recall", reviewed_at: now, atoms_version: LANG_ATOMS_VERSION, device_id: deviceId, tz, system_id: systemId };
+  return { kind: "review", review_id: reviewId, card_id: cardId, rating, level: "recall", reviewed_at: now, atoms_version: LANG_ATOMS_VERSION, device_id: deviceId, tz, system_id: systemId };
 }

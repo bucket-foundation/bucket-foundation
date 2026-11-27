@@ -7,6 +7,7 @@ import {
   nextGame,
   normalizeSetup,
   normalizeLobbySettings,
+  hostLeaveDecision,
   abandonedLobby,
   nextGameDue,
   NEXT_GAME_MS,
@@ -490,18 +491,18 @@ test("lobby settings: mix and game set persist as mix and sequence", () => {
   }
 });
 
-test("next game is due 8 seconds after the game ends, or at once when the host skips", () => {
+test("next game is due 60 seconds after the game ends, or at once when the host skips", () => {
   const done = { status: "done" as const, started_at: new Date(T0).toISOString(), rounds: 2, round_seconds: 10, reveal_seconds: 0 };
   const end = T0 + 20_000;
-  assert.equal(nextGameDue(done, end + 7_000), false);
-  assert.equal(nextGameDue(done, end + 8_000), true);
+  assert.equal(nextGameDue(done, end + 59_000), false);
+  assert.equal(nextGameDue(done, end + 60_000), true);
   assert.equal(nextGameDue(done, end, true), true);
   assert.equal(nextGameDue({ ...done, status: "playing" }, end + 60_000, true), false);
-  assert.equal(NEXT_GAME_MS, 8_000);
+  assert.equal(NEXT_GAME_MS, 60_000);
 });
 
 test("host-only lobby routes reject everyone but the host", () => {
-  for (const name of ["bots", "start", "settings", "next", "end"]) {
+  for (const name of ["bots", "start", "settings", "next", "end", "hostmode"]) {
     const src = readFileSync(join(__dirname, "../src/app/api/academy/lobbies", name, "route.ts"), "utf8");
     assert.ok(/host_id !== a\.uid\) return json\(\{ error: "not_host" \}, 403\)|decision === "not_host"\) return json\(\{ error: "not_host" \}, 403\)/.test(src), `${name} must reject non-hosts`);
   }
@@ -524,4 +525,21 @@ test("a lobby with no human seen recently is abandoned and drops off the open li
   const rows = [row("A", { host_id: "me" }), row("B", { host_id: "x" }), row("C", { host_id: "y" }), row("D", { host_id: "z", status: "playing" }), row("E", { host_id: "me", ended_at: new Date(now).toISOString(), status: "done" })];
   const seats = [seat("A", "me", stale), seat("B", "x", fresh), seat("C", "y", stale), seat("D", "z", fresh), seat("E", "me", fresh)];
   assert.deepEqual(openLobbies(rows, seats, [], "me", now).map((l) => l.id), ["B"]);
+});
+
+test("a leaving host hands the room to the earliest present human, or closes it", () => {
+  const now = T0 + 600_000;
+  const fresh = new Date(now - 5_000).toISOString();
+  const stale = new Date(now - 120_000).toISOString();
+  const seat = (user_id: string, joined: number, seen: string, is_bot = false) => ({ user_id, joined_at: new Date(T0 + joined).toISOString(), last_seen: seen, is_bot });
+  assert.deepEqual(hostLeaveDecision("h", [seat("h", 0, fresh), seat("b", 2000, fresh), seat("a", 1000, fresh)], now), { kind: "handoff", to: "a" });
+  assert.deepEqual(hostLeaveDecision("h", [seat("h", 0, fresh), seat("a", 1000, stale), seat("bot", 500, fresh, true)], now), { kind: "close" });
+  assert.deepEqual(hostLeaveDecision("h", [], now), { kind: "close" });
+});
+
+test("a host-screen lobby with no players yet stays listed while its screen is watched", () => {
+  const now = T0 + 600_000;
+  const row = { ...lobby({ id: "S", host_id: "h", created_at: new Date(now - 30_000).toISOString() }) } as LobbyRow;
+  assert.deepEqual(openLobbies([row], [], [], "x", now).map((l) => l.id), []);
+  assert.deepEqual(openLobbies([row], [], [], "x", now, false, new Set(["S"])).map((l) => l.id), ["S"]);
 });

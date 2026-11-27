@@ -1,9 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import type { RequestUser } from "@/lib/auth/verify";
-import { parseClientEvent } from "@/lib/academy/events";
-import { recordLearnEvent, type LearnEventStore } from "@/lib/academy/events-server";
+import { parseClientBatch, parseClientEvent } from "@/lib/academy/events";
+import { recordLearnBatch, recordLearnEvent, type LearnEventStore } from "@/lib/academy/events-server";
 
 export const MAX_EVENT_BYTES = 16_384;
+export const MAX_BATCH_BYTES = 262_144;
 const NO_STORE = { "cache-control": "no-store" };
 
 export interface EventDeps {
@@ -22,13 +23,25 @@ export async function handleLearnEvent(req: NextRequest, deps: EventDeps): Promi
   if (!user) return reply({ error: "unauthorized" }, 401);
 
   const text = await req.text();
-  if (Buffer.byteLength(text, "utf8") > MAX_EVENT_BYTES) return reply({ error: "too_large" }, 413);
+  const bytes = Buffer.byteLength(text, "utf8");
+  if (bytes > MAX_BATCH_BYTES) return reply({ error: "too_large" }, 413);
   let raw: unknown;
   try {
     raw = JSON.parse(text);
   } catch {
-    return reply({ error: "bad_request" }, 400);
+    return bytes > MAX_EVENT_BYTES ? reply({ error: "too_large" }, 413) : reply({ error: "bad_request" }, 400);
   }
+  if (raw && typeof raw === "object" && "events" in raw) {
+    const batch = parseClientBatch(raw);
+    if (!batch.ok) return reply({ error: batch.error }, 400);
+    try {
+      return reply({ ...(await recordLearnBatch(store, user.id, batch.value)) }, 200);
+    } catch (err) {
+      console.error("[academy/event] batch write failed:", err instanceof Error ? err.message : err);
+      return reply({ error: "write_failed" }, 500);
+    }
+  }
+  if (bytes > MAX_EVENT_BYTES) return reply({ error: "too_large" }, 413);
   const parsed = parseClientEvent(raw);
   if (!parsed.ok) return reply({ error: parsed.error }, 400);
 

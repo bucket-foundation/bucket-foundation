@@ -66,6 +66,10 @@ export function roomControls(lobby: Pick<LobbyState, "isHost" | "status" | "bots
   };
 }
 
+export function hostOnScreen(lobby: Pick<LobbyState, "isHost" | "players">): boolean {
+  return lobby.isHost && !lobby.players.some((p) => p.isMe);
+}
+
 export function livesText(lives: number): string {
   return `${"♥".repeat(lives)}${"♡".repeat(Math.max(0, 3 - lives))}`;
 }

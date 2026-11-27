@@ -13,6 +13,7 @@ export function tokensCss(t) {
   for (const [k, v] of Object.entries(t.radius)) lines.push(`  --pl-radius-${k}: ${v}px;`);
   for (const [k, v] of Object.entries(t.space)) lines.push(`  --pl-space-${k}: ${v}px;`);
   for (const [k, v] of Object.entries(t.lip)) lines.push(`  --pl-lip-${k}: ${v}px;`);
+  for (const [k, v] of Object.entries(t.shadow ?? {})) lines.push(`  --pl-shadow-${k}: ${v};`);
   for (const [k, v] of Object.entries(t.motion)) lines.push(`  --pl-motion-${k}: ${typeof v === "number" ? `${v}ms` : v};`);
   return `:root {\n${lines.join("\n")}\n}\n`;
 }

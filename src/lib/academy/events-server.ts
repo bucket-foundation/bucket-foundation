@@ -3,7 +3,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { decideConsent, readLearnerProfile, type LearnerProfile } from "@/lib/research-os/consent";
 import { configured, graphService } from "@/lib/research-os/db";
 import { secondsUntilUtcMidnight } from "@/lib/llm/daily-limit";
-import { CLIENT_EVENT_NAMES, EVENT_DAILY_CAPS, parseProps, validArm, type ClientEventName, type LearnEvent, type LearnEventName, type LearnEventProps } from "./events";
+import { BATCH_EVENT_NAMES, CLIENT_EVENT_NAMES, type BatchEventName, EVENT_DAILY_CAPS, parseProps, validArm, type ClientEventName, type LearnEvent, type LearnEventName, type LearnEventProps } from "./events";
 
 export type WriteOutcome = "recorded" | "duplicate" | "refused";
 export type GateReason = "no_profile" | "under_age" | "no_consent";
@@ -23,6 +23,12 @@ export interface LearnEventStore {
   readProfile: (userId: string) => Promise<LearnerProfile | null>;
   write: (row: LearnEventRow) => Promise<WriteOutcome>;
   hit: (userId: string, name: ClientEventName) => Promise<number>;
+  writeBatch: (userId: string, rows: LearnEventRow[], caps: Record<string, number>) => Promise<BatchResult[]>;
+}
+
+export interface BatchResult {
+  id: string;
+  outcome: WriteOutcome | "rate_limited";
 }
 
 export type EventGate = { record: true } | { record: false; reason: GateReason };
@@ -59,6 +65,24 @@ export async function recordLearnEvent(store: LearnEventStore, userId: string, e
   return { recorded: outcome === "recorded", outcome };
 }
 
+export interface BatchOutcome {
+  outcome: "recorded" | GateReason;
+  results: BatchResult[];
+}
+
+export async function recordLearnBatch(store: LearnEventStore, userId: string, events: readonly LearnEvent<BatchEventName>[]): Promise<BatchOutcome> {
+  const gate = learnEventGate(await store.readProfile(userId));
+  if (!gate.record) return { outcome: gate.reason, results: [] };
+  if (!events.length) return { outcome: "recorded", results: [] };
+  const rows = events.map((event) => {
+    const props = parseProps(event.name, event.props);
+    if (!props.ok) throw new Error(`recordLearnBatch: ${props.error}`);
+    return { user_id: userId, event_id: event.id, name: event.name, props: props.value, arm: validArm(event.arm) ? event.arm : null };
+  });
+  const caps = Object.fromEntries(BATCH_EVENT_NAMES.map((n) => [n, EVENT_DAILY_CAPS[n]]));
+  return { outcome: "recorded", results: await store.writeBatch(userId, rows, caps) };
+}
+
 let _bucket: SupabaseClient | null = null;
 function bucketService(): SupabaseClient {
   if (_bucket) return _bucket;
@@ -84,6 +108,19 @@ export function supabaseEventStore(): LearnEventStore | null {
       if (error) throw new Error(`record_learn_event failed: ${error.message}`);
       if (data !== "recorded" && data !== "duplicate" && data !== "refused") throw new Error(`record_learn_event returned ${String(data)}`);
       return data;
+    },
+    writeBatch: async (userId, rows, caps) => {
+      const { data, error } = await bucketService().rpc("record_learn_events_batch", {
+        p_user_id: userId,
+        p_events: rows.map((r) => ({ event_id: r.event_id, name: r.name, props: r.props, arm: r.arm })),
+        p_caps: caps,
+      });
+      if (error) throw new Error(`record_learn_events_batch failed: ${error.message}`);
+      if (!Array.isArray(data)) throw new Error("record_learn_events_batch returned no results");
+      return (data as { id: string; outcome: string }[]).map((r) => {
+        if (r.outcome !== "recorded" && r.outcome !== "duplicate" && r.outcome !== "refused" && r.outcome !== "rate_limited") throw new Error(`record_learn_events_batch returned ${r.outcome}`);
+        return { id: r.id, outcome: r.outcome };
+      });
     },
     hit: async (userId, name) => {
       const { data, error } = await graphService().rpc("event_usage_hit", { p_subject: userId, p_name: name });
