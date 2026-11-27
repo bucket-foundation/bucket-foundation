@@ -178,10 +178,10 @@ data class Lobby(
 object LobbyGames {
     val prompt = listOf(LobbyGame.Daily, LobbyGame.SameWord, LobbyGame.Flags, LobbyGame.Live, LobbyGame.Duel, LobbyGame.Tiles, LobbyGame.Spy)
     val race = listOf(LobbyGame.Mini, LobbyGame.WordGroups, LobbyGame.Match, LobbyGame.Voice, LobbyGame.Letters, LobbyGame.Polyword, LobbyGame.FlagTiles, LobbyGame.Babel, LobbyGame.Shift, LobbyGame.Snake, LobbyGame.Atlas, LobbyGame.Forehead, LobbyGame.ISpy, LobbyGame.FlagDuel)
-    val raceOnAndroid = setOf(LobbyGame.FlagTiles, LobbyGame.Shift, LobbyGame.Atlas)
+    val raceOnAndroid: Set<LobbyGame> = race.toSet()
     const val PLAYS_HEADER = "x-polingual-plays"
     val nativeExtras = listOf(LobbyGame.Tiles, LobbyGame.Duel)
-    val plays: String = (nativeExtras.map { it.wire } + "reveal").joinToString(",")
+    val plays: String = (nativeExtras.map { it.wire } + listOf("reveal", "playlist", "night")).joinToString(",")
     private val fallback = setOf("daily", "same-word", "flags", "live", "tiles")
 
     fun offered(server: List<String>, raceServer: List<String> = emptyList()): List<LobbyGame> {

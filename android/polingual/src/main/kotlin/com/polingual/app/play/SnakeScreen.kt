@@ -106,6 +106,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
             SnakePhase.Dead, SnakePhase.Over -> {
                 val a = arena
                 val me = a?.snakes?.firstOrNull { it.id == "me" }
+                androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Snake, hits = me?.length ?: 0) }
                 Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     SnakeWords(graph, a, me, left)
                 }

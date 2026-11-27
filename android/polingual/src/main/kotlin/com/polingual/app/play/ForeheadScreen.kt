@@ -96,6 +96,7 @@ fun ForeheadScreen(graph: Graph, back: () -> Unit) {
             }
             FhPhase.Done -> {
                 val got = results.count { it.got }
+                androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Forehead, hits = got) }
                 Results(graph, "$got guessed", "${results.size - got} passed. Tap a card to hear it.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     ForeheadWords(graph, results.map { it.card to it.got }, RevealRules.forehead(cards.size - index, left))
                 }

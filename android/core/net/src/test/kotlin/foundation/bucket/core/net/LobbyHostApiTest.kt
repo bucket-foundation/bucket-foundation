@@ -95,6 +95,18 @@ class LobbyHostApiTest {
     }
 
     @Test
+    fun joinAndCreateDeclarePlaylistAndNight() = runTest {
+        val plays = mutableListOf<String?>()
+        val a = BucketApi(HttpClient(MockEngine { req ->
+            plays += req.headers["x-polingual-plays"]
+            respond("""{"lobby":$lobby}""", HttpStatusCode.OK)
+        }), base = "https://t.local")
+        a.joinLobby("t", code = "ABC123", displayName = "Ana")
+        a.createLobby("t", "Room", LobbyGame.Daily, "en", listOf("es"), 6, 8, false, "Ana")
+        assertEquals<List<String?>>(listOf("tiles,duel,reveal,playlist,night", "tiles,duel,reveal,playlist,night"), plays)
+    }
+
+    @Test
     fun foreheadAndAtlasGuessParams() = runTest {
         val seen = mutableListOf<String>()
         val a = api(seen) { if (it.endsWith("bonus")) """{"points":80,"km":420}""" else """{"cards":[{"lang":"es","form":"perro","meaning":"dog"}]}""" }
