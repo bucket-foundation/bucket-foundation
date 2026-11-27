@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 
 public typealias LemmaResolver = (_ lang: String, _ lemma: String) -> String?
@@ -200,6 +201,12 @@ public enum InputManifest {
         return Set(bundles + ls.keys.flatMap { bandFiles(data, lang: $0, bands: InputStage.bandRanks) })
     }
 
+    public static func digestOk(_ name: String, _ data: Data) -> Bool {
+        guard name.hasSuffix(".json"), let want = name.dropLast(5).split(separator: ".").last, want.count >= 8 else { return false }
+        let hex = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        return hex.hasPrefix(want)
+    }
+
     public static func file(_ data: Data, lang: String) -> String? {
         guard let f = (langs(data)?[lang] as? [String: Any])?["file"] as? String, f.range(of: file, options: .regularExpression) != nil else { return nil }
         return f
@@ -207,28 +214,73 @@ public enum InputManifest {
 }
 
 public final class InputRepo: @unchecked Sendable {
+    public static let maxManifestBytes = 512 * 1024
+    public static let maxFileBytes = 8 * 1024 * 1024
+    public static let maxCacheBytes = 64 * 1024 * 1024
+    public static let requestTimeout: TimeInterval = 20
+    public static let resourceTimeout: TimeInterval = 60
+
     let dir: URL
+    let cacheCap: Int
     let base: String
     let bandBase: String?
     let debug: Bool
     let fetch: @Sendable (URL) async -> Data?
 
-    public init(dir: URL, base: String, bandBase: String? = nil, debug: Bool = false, fetch: @escaping @Sendable (URL) async -> Data?) {
-        self.dir = dir; self.base = base; self.bandBase = bandBase; self.debug = debug; self.fetch = fetch
+    public init(dir: URL, base: String, bandBase: String? = nil, debug: Bool = false, cacheCap: Int = InputRepo.maxCacheBytes, fetch: @escaping @Sendable (URL) async -> Data?) {
+        self.dir = dir; self.base = base; self.bandBase = bandBase; self.debug = debug; self.cacheCap = cacheCap; self.fetch = fetch
     }
+
+    static let session: URLSession = {
+        let c = URLSessionConfiguration.default
+        c.timeoutIntervalForRequest = requestTimeout
+        c.timeoutIntervalForResource = resourceTimeout
+        c.urlCache = nil
+        return URLSession(configuration: c)
+    }()
 
     public convenience init(dir: URL, base: String, bandBase: String?, debug: Bool) {
         self.init(dir: dir, base: base, bandBase: bandBase, debug: debug) { url in
-            guard let (d, r) = try? await URLSession.shared.data(from: url), (r as? HTTPURLResponse)?.statusCode == 200 else { return nil }
+            guard let (d, r) = try? await InputRepo.session.data(from: url), (r as? HTTPURLResponse)?.statusCode == 200, d.count <= InputRepo.maxFileBytes else { return nil }
             return d
         }
     }
 
+    func get(_ url: URL, max: Int) async -> Data? {
+        guard let d = await fetch(url), d.count <= max else { return nil }
+        return d
+    }
+
     func cached(_ name: String) -> Data? { try? Data(contentsOf: dir.appendingPathComponent(name)) }
+
+    func verified(_ name: String) -> Data? {
+        guard let d = cached(name) else { return nil }
+        if d.count <= Self.maxFileBytes && InputManifest.digestOk(name, d) { return d }
+        try? FileManager.default.removeItem(at: dir.appendingPathComponent(name))
+        return nil
+    }
 
     func store(_ name: String, _ data: Data) {
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         try? data.write(to: dir.appendingPathComponent(name), options: .atomic)
+        evict(keeping: name)
+    }
+
+    func evict(keeping keep: String) {
+        let fm = FileManager.default
+        guard let urls = try? fm.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey, .contentModificationDateKey]) else { return }
+        var files = urls.compactMap { u -> (URL, Int, Date)? in
+            guard let v = try? u.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey]), let size = v.fileSize else { return nil }
+            return (u, size, v.contentModificationDate ?? .distantPast)
+        }
+        var total = files.reduce(0) { $0 + $1.1 }
+        files.sort { $0.2 < $1.2 }
+        for (u, size, _) in files where total > cacheCap {
+            let n = u.lastPathComponent
+            if n == "manifest.json" || n == keep { continue }
+            try? fm.removeItem(at: u)
+            total -= size
+        }
     }
 
     func prune(_ manifest: Data) {
@@ -244,8 +296,8 @@ public final class InputRepo: @unchecked Sendable {
         guard let root = InputManifest.bandBase(bandBase, debug: debug) else { return b }
         var parts: [Data?] = []
         for f in InputManifest.bandFiles(manifest, lang: lang, bands: bands) {
-            if let d = cached(f) { parts.append(d); continue }
-            guard let u = URL(string: "\(root)/\(f)"), let d = await fetch(u), InputManifest.isBand(d, lang: lang) else { parts.append(nil); continue }
+            if let d = verified(f) { parts.append(d); continue }
+            guard let u = URL(string: "\(root)/\(f)"), let d = await get(u, max: Self.maxFileBytes), InputManifest.digestOk(f, d), InputManifest.isBand(d, lang: lang) else { parts.append(nil); continue }
             store(f, d)
             parts.append(d)
         }
@@ -254,14 +306,14 @@ public final class InputRepo: @unchecked Sendable {
 
     func base(_ lang: String) async -> (Data, InputBundle)? {
         var fresh: Data?
-        if let u = url("manifest.json"), let d = await fetch(u), !InputManifest.files(d).isEmpty { fresh = d }
+        if let u = url("manifest.json"), let d = await get(u, max: Self.maxManifestBytes), !InputManifest.files(d).isEmpty { fresh = d }
         if let f = fresh, f != cached("manifest.json") {
             store("manifest.json", f)
             prune(f)
         }
         guard let manifest = fresh ?? cached("manifest.json"), let file = InputManifest.file(manifest, lang: lang) else { return nil }
-        if let d = cached(file), let b = InputStage.parseBundle(d) { return (manifest, b) }
-        guard let u = url(file), let d = await fetch(u), let b = InputStage.parseBundle(d) else { return nil }
+        if let d = verified(file), let b = InputStage.parseBundle(d) { return (manifest, b) }
+        guard let u = url(file), let d = await get(u, max: Self.maxFileBytes), InputManifest.digestOk(file, d), let b = InputStage.parseBundle(d) else { return nil }
         store(file, d)
         return (manifest, b)
     }

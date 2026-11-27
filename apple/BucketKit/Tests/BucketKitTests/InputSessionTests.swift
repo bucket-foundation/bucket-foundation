@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 import Testing
 @testable import BucketKit
@@ -160,15 +161,20 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
     #expect(r("fr", "casa") == nil)
 }
 
+private func digestName(_ prefix: String, _ d: Data) -> String {
+    prefix + "." + SHA256.hash(data: d).map { String(format: "%02x", $0) }.joined().prefix(12) + ".json"
+}
+
 @Test func theRepoCachesTheManifestAndBundleAndPrunesOldFiles() async throws {
     let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
     defer { try? FileManager.default.removeItem(at: dir) }
     let bundleData = try Data(contentsOf: repoFile("scripts/fixtures/polingual-input/es.json"))
-    let manifest = Data(#"{"langs":{"es":{"file":"es.0123456789ab.json"}}}"#.utf8)
+    let file = digestName("es", bundleData)
+    let manifest = Data(#"{"langs":{"es":{"file":"\#(file)"}}}"#.utf8)
     try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     try Data("old".utf8).write(to: dir.appendingPathComponent("es.ffffffffffff.json"))
     let online = InputRepo(dir: dir, base: "https://x.test/input/") { url in
-        url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == "es.0123456789ab.json" ? bundleData : nil
+        url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == file ? bundleData : nil
     }
     #expect(await online.bundle("es")?.lang == "es")
     #expect(await online.bundle("fr") == nil)
@@ -177,24 +183,73 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
     #expect(await offline.bundle("es")?.lang == "es")
 }
 
+@Test func aBundleWhoseBytesMissTheFilenameHashIsRejectedAndEvictedFromCache() async throws {
+    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let bundleData = try Data(contentsOf: repoFile("scripts/fixtures/polingual-input/es.json"))
+    let file = digestName("es", bundleData)
+    let manifest = Data(#"{"langs":{"es":{"file":"\#(file)"}}}"#.utf8)
+    let tampered = bundleData + Data(" ".utf8)
+    let bad = InputRepo(dir: dir, base: "https://x.test/input") { url in url.lastPathComponent == "manifest.json" ? manifest : tampered }
+    #expect(await bad.bundle("es") == nil)
+    #expect(!FileManager.default.fileExists(atPath: dir.appendingPathComponent(file).path))
+    try tampered.write(to: dir.appendingPathComponent(file))
+    let good = InputRepo(dir: dir, base: "https://x.test/input") { url in url.lastPathComponent == "manifest.json" ? manifest : bundleData }
+    #expect(await good.bundle("es")?.lang == "es")
+    #expect(try Data(contentsOf: dir.appendingPathComponent(file)) == bundleData)
+    #expect(InputManifest.digestOk(file, bundleData))
+    #expect(!InputManifest.digestOk("es.abc.json", bundleData))
+    #expect(!InputManifest.digestOk("manifest.json", bundleData))
+}
+
+@Test func oversizedDownloadsAreRefused() async throws {
+    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let huge = Data(count: InputRepo.maxManifestBytes + 1)
+    let repo = InputRepo(dir: dir, base: "https://x.test/input") { _ in huge }
+    #expect(await repo.bundle("es") == nil)
+    #expect(!FileManager.default.fileExists(atPath: dir.appendingPathComponent("manifest.json").path))
+}
+
+@Test func theCacheEvictsOldestFilesPastItsCapAndKeepsTheManifest() async throws {
+    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
+    defer { try? FileManager.default.removeItem(at: dir) }
+    let bundleData = try Data(contentsOf: repoFile("scripts/fixtures/polingual-input/es.json"))
+    let file = digestName("es", bundleData)
+    let manifest = Data(#"{"langs":{"es":{"file":"\#(file)"},"fr":{"file":"fr.ffffffffffff.json"}}}"#.utf8)
+    try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+    let old = dir.appendingPathComponent("fr.ffffffffffff.json")
+    try Data(count: 40_000).write(to: old)
+    try FileManager.default.setAttributes([.modificationDate: Date(timeIntervalSince1970: 0)], ofItemAtPath: old.path)
+    let repo = InputRepo(dir: dir, base: "https://x.test/input", cacheCap: bundleData.count + manifest.count + 10) { url in
+        url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == file ? bundleData : nil
+    }
+    #expect(await repo.bundle("es")?.lang == "es")
+    #expect(!FileManager.default.fileExists(atPath: old.path))
+    #expect(FileManager.default.fileExists(atPath: dir.appendingPathComponent(file).path))
+    #expect(FileManager.default.fileExists(atPath: dir.appendingPathComponent("manifest.json").path))
+}
+
 @Test func gradedBandsAreFetchedCachedAndMerged() async throws {
     let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
     defer { try? FileManager.default.removeItem(at: dir) }
     let bundleData = Data(#"{"format":"polingual-input","lang":"es","items":[{"id":"t:1","tokens":[{"surface":"Hola","lemma":"hola"}],"text":"Hola"}],"units":[]}"#.utf8)
-    let manifest = Data(#"{"bandBase":null,"langs":{"es":{"file":"es.0123456789ab.json","graded":{"files":{"500":[{"file":"es.b500.p0.76b9c85a128a.json"},{"file":"../x.json"}],"1000":[{"file":"es.b1000.p0.76b9c85a128b.json"}]}}}}}"#.utf8)
     let band = Data(#"{"format":"polingual-input-band","lang":"es","band":500,"items":[{"id":"t:2","kind":"sentence","text":"El gato","tok":[[0,2,"el"],[3,4]]}],"units":[{"id":"graded:es:500:gato","kind":"sentence_set","itemIds":["t:2"],"targetLemmas":["gato"]}]}"#.utf8)
+    let file = digestName("es", bundleData)
+    let bandFile = digestName("es.b500.p0", band)
+    let manifest = Data(#"{"bandBase":null,"langs":{"es":{"file":"\#(file)","graded":{"files":{"500":[{"file":"\#(bandFile)"},{"file":"../x.json"}],"1000":[{"file":"es.b1000.p0.76b9c85a128b.json"}]}}}}}"#.utf8)
     let repo = InputRepo(dir: dir, base: "https://x.test/input", bandBase: "https://cdn.x.test/bands/") { url in
         switch url.absoluteString {
         case "https://x.test/input/manifest.json": return manifest
-        case "https://x.test/input/es.0123456789ab.json": return bundleData
-        case "https://cdn.x.test/bands/es.b500.p0.76b9c85a128a.json": return band
+        case "https://x.test/input/\(file)": return bundleData
+        case "https://cdn.x.test/bands/\(bandFile)": return band
         default: return nil
         }
     }
     let b = try #require(await repo.bundle("es", bands: [500, 1000]))
     #expect(b.units.map(\.id) == ["graded:es:500:gato"])
     #expect(b.byId["t:2"]?.tokens.map(\.lemma) == ["el", "gato"])
-    #expect(FileManager.default.fileExists(atPath: dir.appendingPathComponent("es.b500.p0.76b9c85a128a.json").path))
+    #expect(FileManager.default.fileExists(atPath: dir.appendingPathComponent(bandFile).path))
     let offline = InputRepo(dir: dir, base: "https://x.test/input", bandBase: "https://cdn.x.test/bands") { _ in nil }
     #expect(await offline.bundle("es", bands: [500])?.units.count == 1)
     #expect(await offline.bundle("es")?.units.count == 0)
@@ -204,15 +259,17 @@ private func plan(_ mode: InputMode, _ b: InputBundle, _ state: EngineState, clo
 }
 
 @Test func bandsLoadOnlyFromAnHttpsConfigBaseOrLoopbackInDebug() async throws {
-    let manifest = Data(#"{"bandBase":"https://cdn.x.test/bands","langs":{"es":{"file":"es.0123456789ab.json","graded":{"files":{"500":[{"file":"es.b500.p0.76b9c85a128a.json"}]}}}}}"#.utf8)
     let bundleData = Data(#"{"format":"polingual-input","lang":"es","items":[{"id":"t:1","tokens":[{"surface":"Hola","lemma":"hola"}],"text":"Hola"}],"units":[]}"#.utf8)
     let band = Data(#"{"format":"polingual-input-band","lang":"es","items":[{"id":"t:2","text":"gato","tok":[[0,4]]}],"units":[{"id":"g:1","kind":"sentence_set","itemIds":["t:2"]}]}"#.utf8)
+    let file = digestName("es", bundleData)
+    let bandFile = digestName("es.b500.p0", band)
+    let manifest = Data(#"{"bandBase":"https://cdn.x.test/bands","langs":{"es":{"file":"\#(file)","graded":{"files":{"500":[{"file":"\#(bandFile)"}]}}}}}"#.utf8)
     let cases: [(String?, Bool, Int)] = [(nil, false, 0), (nil, true, 0), ("http://127.0.0.1:9000", false, 0), ("http://cdn.x.test", true, 0), ("ftp://cdn.x.test", true, 0), ("http://127.0.0.1:9000", true, 1), ("https://cdn.x.test/bands", false, 1)]
     for (base, debug, units) in cases {
         let dir = FileManager.default.temporaryDirectory.appendingPathComponent("input-\(UUID().uuidString)")
         defer { try? FileManager.default.removeItem(at: dir) }
         let repo = InputRepo(dir: dir, base: "https://x.test/input", bandBase: base, debug: debug) { url in
-            url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == "es.0123456789ab.json" ? bundleData : band
+            url.lastPathComponent == "manifest.json" ? manifest : url.lastPathComponent == file ? bundleData : band
         }
         #expect(await repo.bundle("es", bands: [500])?.units.count == units, "\(String(describing: base)) \(debug)")
     }
