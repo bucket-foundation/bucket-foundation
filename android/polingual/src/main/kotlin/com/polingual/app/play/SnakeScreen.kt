@@ -1,5 +1,7 @@
 package com.polingual.app.play
 
+import foundation.bucket.core.ui.pl.PLRadius
+
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
@@ -32,12 +34,10 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.polingual.app.Graph
 import com.polingual.app.Type
 import foundation.bucket.core.model.Lang
@@ -118,7 +118,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
 @Composable
 fun WordLine(lang: String, form: String, meaning: String) {
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        FlagSwatch(lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(3.dp)))
+        FlagSwatch(lang, Modifier.size(22.dp, 16.dp).clip(RoundedCornerShape(PLRadius.xs)))
         Text(form, style = Type.body.copy(fontWeight = FontWeight.Bold), color = PL.Ink)
         Text(Lang.name(lang), style = Type.caps, color = PL.InkDim)
         Text(meaning, style = Type.small, color = PL.InkDim)
@@ -128,7 +128,7 @@ fun WordLine(lang: String, form: String, meaning: String) {
 @Composable
 private fun SnakeArena(a: Arena, me: Snake, current: () -> Arena?, onAim: (Double) -> Unit, measurer: androidx.compose.ui.text.TextMeasurer, chips: HashMap<String, androidx.compose.ui.text.TextLayoutResult>) {
     SceneFrame(Scenes.snake, inset = 36.dp) { Canvas(
-                    Modifier.fillMaxWidth().aspectRatio(0.8f).clip(RoundedCornerShape(16.dp)).pointerInput(Unit) {
+                    Modifier.fillMaxWidth().aspectRatio(0.8f).clip(RoundedCornerShape(PLRadius.card)).pointerInput(Unit) {
                         awaitEachGesture {
                             val down = awaitFirstDown()
                             fun point(p: Offset) {
@@ -200,7 +200,7 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawArena(a: Arena,
                         val y = sy(fw.y)
                         val rawX = sx(fw.x)
                         if (rawX < -200 || y < -60 || rawX > size.width + 200 || y > size.height + 60) return@forEach
-                        val r = chips.getOrPut(fw.form) { measurer.measure(fw.form, TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1) }
+                        val r = chips.getOrPut(fw.form) { measurer.measure(fw.form, Type.small.copy(fontWeight = FontWeight.Bold, color = PL.Ink), softWrap = false, maxLines = 1) }
                         val tw = r.size.width + 24f
                         val x = FitRules.clampCenter(rawX, tw, size.width)
                         drawRoundRect(PL.White, Offset(x - tw / 2, y - 18.dp.toPx() / 1f), Size(tw, 36.dp.toPx() / 1f), CornerRadius(12f))
@@ -211,7 +211,7 @@ private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawArena(a: Arena,
                         val path = Path().apply { s.body.forEachIndexed { i, p -> if (i == 0) moveTo(sx(p.x), sy(p.y)) else lineTo(sx(p.x), sy(p.y)) } }
                         drawPath(path, SNAKE_COLORS[s.color % SNAKE_COLORS.size], style = Stroke(14f * k, cap = StrokeCap.Round, join = StrokeJoin.Round))
                         drawCircle(PL.White, 4f * k, Offset(sx(s.body[0].x), sy(s.body[0].y)))
-                        val label = measurer.measure("${s.name} ${s.length}", TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = PL.Paper), softWrap = false, maxLines = 1)
+                        val label = measurer.measure("${s.name} ${s.length}", Type.caps.copy(color = PL.Paper), softWrap = false, maxLines = 1)
                         drawText(label, topLeft = Offset(FitRules.clampCenter(sx(s.body[0].x), label.size.width.toFloat(), size.width) - label.size.width / 2f, sy(s.body[0].y) - 18 * k - label.size.height))
                     }
 }

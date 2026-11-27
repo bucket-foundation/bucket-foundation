@@ -21,7 +21,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import foundation.bucket.core.ui.LocalPalette
 
 enum class Tab(val route: String, val label: String, val art: String) {
     Today("today", "Today", "streak-flame"),

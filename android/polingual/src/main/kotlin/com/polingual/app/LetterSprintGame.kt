@@ -63,7 +63,6 @@ import foundation.bucket.core.ui.pl.ChoiceButton
 import foundation.bucket.core.ui.pl.ChoiceState
 import foundation.bucket.core.ui.pl.PL
 import foundation.bucket.core.ui.pl.FlagTile
-import foundation.bucket.core.ui.LocalPalette
 import foundation.bucket.core.ui.pl.PlainLink
 import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.ui.pl.ResultDots
@@ -72,9 +71,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun Letters(graph: Graph, c: GameContext) {
-    val p = LocalPalette.current
     val prompts = remember { com.polingual.app.play.PlayAssets.alphabets(graph.context).let { (heritage, letters) -> DailyGames.letters(dayKey(), c.system.targets, letters, heritage) } }
-    if (prompts.isEmpty()) { Text("Letter Sprint needs a language with its own letters, like Greek, Russian or Japanese.", color = p.muted); return }
+    if (prompts.isEmpty()) { Text("Letter Sprint needs a language with its own letters, like Greek, Russian or Japanese.", color = PL.InkDim); return }
     var index by remember { mutableIntStateOf(0) }
     val results = remember { mutableStateOf(listOf<Boolean>()) }
     var picked by remember { mutableStateOf<String?>(null) }
@@ -88,8 +86,8 @@ fun Letters(graph: Graph, c: GameContext) {
     val q = prompts[index]
     LaunchedEffect(q) { graph.voice.speak(q.ch, q.lang, auto = true) }
     ResultDots(results.value, prompts.size)
-    Text("${left.toInt()} s · ${Lang.name(q.lang)}", style = Type.caps, color = p.muted)
-    Text("Hear the sound, then find its letter.", color = p.muted)
+    Text("${left.toInt()} s · ${Lang.name(q.lang)}", style = Type.caps, color = PL.InkDim)
+    Text("Hear the sound, then find its letter.", color = PL.InkDim)
     PLButton("Play the sound", variant = ButtonVariant.Accent, leading = { Glyph("speaker", null, PL.Paper, Modifier.size(20.dp)) }) { graph.voice.speak(q.ch, q.lang) }
     q.choices.forEach { ch ->
         val state = when { picked == null -> ChoiceState.Idle; ch == q.ch -> ChoiceState.Right; ch == picked -> ChoiceState.Wrong; else -> ChoiceState.Dim }

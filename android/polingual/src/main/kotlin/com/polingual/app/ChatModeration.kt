@@ -23,7 +23,6 @@ import foundation.bucket.core.ui.pl.PrimaryButton
 import foundation.bucket.core.model.BucketError
 import foundation.bucket.core.model.ChatReportReason
 import foundation.bucket.core.model.LobbyMessage
-import foundation.bucket.core.ui.LocalPalette
 import kotlinx.coroutines.launch
 
 val ChatReportReason.label: Int
@@ -50,13 +49,12 @@ private sealed interface ChatSheet {
 
 @Composable
 fun ChatLine(message: LobbyMessage, myId: String?, bots: Set<String>, report: suspend (Int, ChatReportReason) -> Unit, block: suspend (String, String) -> Unit) {
-    val p = LocalPalette.current
     val scope = rememberCoroutineScope()
     var sheet by remember { mutableStateOf<ChatSheet?>(null) }
     var failure by remember { mutableStateOf<Int?>(null) }
     var busy by remember { mutableStateOf(false) }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text("${message.name}: ${message.body}", color = p.ink, modifier = Modifier.weight(1f))
+        Text("${message.name}: ${message.body}", color = PL.Ink, modifier = Modifier.weight(1f))
         if (canModerate(message, myId, bots)) {
             PlainLink(stringResource(R.string.s_report), Modifier.testTag("chatReport")) { failure = null; sheet = ChatSheet.Reasons(message) }
             PlainLink(stringResource(R.string.s_block), Modifier.testTag("chatBlock")) { sheet = ChatSheet.Block(message) }
