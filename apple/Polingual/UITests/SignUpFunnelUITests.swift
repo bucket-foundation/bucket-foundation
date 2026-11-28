@@ -65,6 +65,9 @@ final class SignUpFunnelUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["10 minutes a day"].exists)
         XCTAssertTrue(app.staticTexts["Practice time: Evening"].exists)
         shot("onboarding-plan")
+        app.buttons["Continue"].tap()
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label ENDSWITH 'first word'")).firstMatch.waitForExistence(timeout: 10))
+        shot("onboarding-say")
         app.buttons["Start learning"].tap()
         let plans = app.buttons["Restore"]
         let home = app.buttons["Today"]
@@ -83,8 +86,16 @@ final class SignUpFunnelUITests: XCTestCase {
         let app = launch(["-onboardingStep", "10", "-polingual.onboarded", "NO"])
         guard app.staticTexts["Your plan"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
         XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label BEGINSWITH 'In 3 months: about'")).firstMatch.exists || app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'By '")).firstMatch.exists)
-        XCTAssertTrue(app.buttons["Start learning"].isHittable)
+        XCTAssertTrue(app.buttons["Continue"].isHittable)
         shot("plan-unanswered")
+    }
+
+    func testSayPageShowsHelloInEveryPickedLanguage() throws {
+        let app = launch(["-onboardingStep", "11", "-polingual.onboarded", "NO"])
+        guard app.staticTexts.matching(NSPredicate(format: "label ENDSWITH 'first word'")).firstMatch.waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
+        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'say-tile-'")).firstMatch.exists)
+        XCTAssertTrue(app.buttons["Start learning"].isHittable)
+        shot("say-page")
     }
 
     func testLockedTodayOpensPaywall() throws {
