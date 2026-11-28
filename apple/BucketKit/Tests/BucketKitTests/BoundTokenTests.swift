@@ -84,6 +84,57 @@ import Testing
         #expect(EngineState(js: server.branches.value[d.branch]).cards.has(first.id))
     }
 
+    @Test func unsyncedScienceSurvivesAKeepingSignOutAndPushesAtTheNextSignIn() async throws {
+        let server = ProgressServer()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(false)
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let store = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { signedIn.value ? "t" : nil }, now: { 1_000_000 }, tz: utc)
+        let d = try ScienceStoreTests().deck()
+        let first = try #require(store.route(d).first)
+        store.grade(d, id: first.id, rating: 3, level: "recall")
+        await store.flush()
+        #expect(store.unsyncedCount == 1)
+        store.clearLocal(keepUnsynced: true)
+        #expect(store.unsyncedCount == 1)
+        #expect(store.localBranches() == [d.branch])
+        signedIn.mutate { $0 = true }
+        await store.syncAfterSignIn()
+        #expect(server.posts.value == [d.branch])
+        #expect(EngineState(js: server.branches.value[d.branch]).cards.has(first.id))
+        #expect(!store.hasUnsyncedWork)
+        store.clearLocal(keepUnsynced: true)
+        #expect(store.localBranches().isEmpty)
+    }
+
+    @Test func aStaleSendLeavesANewerScienceGradeUnsynced() async throws {
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let store = ScienceStore(api: BucketAPI(transport: ProgressServer().transport), disk: MemoryLangDisk(), token: { nil }, now: { 1_000_000 }, tz: utc)
+        let d = try ScienceStoreTests().deck()
+        let items = store.route(d)
+        try #require(items.count >= 2)
+        store.grade(d, id: items[0].id, rating: 3, level: "recall")
+        let sent = try #require(store.readLocal(d.branch))
+        store.grade(d, id: items[1].id, rating: 3, level: "recall")
+        store.markSent(d.branch, sent)
+        #expect(store.hasUnsyncedWork)
+        store.markSent(d.branch, try #require(store.readLocal(d.branch)))
+        #expect(!store.hasUnsyncedWork)
+    }
+
+    @Test func plainScienceClearDropsUnsyncedWork() async throws {
+        let server = ProgressServer()
+        let disk = MemoryLangDisk()
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let store = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { nil }, now: { 1_000_000 }, tz: utc)
+        let d = try ScienceStoreTests().deck()
+        let first = try #require(store.route(d).first)
+        store.grade(d, id: first.id, rating: 3, level: "recall")
+        store.clearLocal()
+        #expect(!store.hasUnsyncedWork)
+        #expect(store.localBranches().isEmpty)
+    }
+
     @Test func scienceSendRefusesTokenForAnotherUserAndRecoversOnResync() async throws {
         let server = ProgressServer()
         let disk = MemoryLangDisk()

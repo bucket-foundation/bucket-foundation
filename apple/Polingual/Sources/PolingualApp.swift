@@ -27,6 +27,7 @@ struct PolingualApp: App {
         let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: box.graph.account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
         let subs = Subscriptions(forced: Subscriptions.launchOverride(), web: web)
         subs.owner = Self.launchOwner(box.graph)
+        box.onRebuild = { [subs] graph in subs.owner = Self.launchOwner(graph) }
         _subs = State(initialValue: subs)
     }
 

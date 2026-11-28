@@ -77,6 +77,28 @@ public final class ScienceStore {
         return j.stringArray ?? []
     }
 
+    var dirty: Set<String> {
+        guard let d = disk.read("dirty.json"), let j = try? JSON.parse(d) else { return [] }
+        return Set(j.stringArray ?? [])
+    }
+
+    func setDirty(_ all: Set<String>) {
+        if all.isEmpty { disk.remove("dirty.json") } else { disk.write("dirty.json", JSON.data(.array(all.sorted().map(JSValue.string)))) }
+    }
+
+    func markSent(_ branch: String, _ sent: EngineState) {
+        if readLocal(branch) == sent { mark(branch, clean: true) }
+    }
+
+    func mark(_ branch: String, clean: Bool) {
+        var all = dirty
+        if clean { all.remove(branch) } else { all.insert(branch) }
+        setDirty(all)
+    }
+
+    public var unsyncedCount: Int { dirty.count }
+    public var hasUnsyncedWork: Bool { !dirty.isEmpty }
+
     func remember(_ branch: String) {
         var all = localBranches()
         guard !all.contains(branch) else { return }
@@ -119,8 +141,10 @@ public final class ScienceStore {
         if remote != merged {
             let t = await token()
             guard epoch == ep else { return nil }
-            if let t { _ = await send(t, branch, merged.js, epoch: ep) }
+            if let t, (200..<300).contains(await send(t, branch, merged.js, epoch: ep)), epoch == ep { markSent(branch, merged) }
             guard epoch == ep else { return nil }
+        } else {
+            markSent(branch, merged)
         }
         return merged
     }
@@ -136,6 +160,7 @@ public final class ScienceStore {
         states[branch] = next
         writeLocal(branch, next)
         remember(branch)
+        mark(branch, clean: false)
         pushes[branch]?.cancel()
         pushes[branch] = Task { [weak self] in
             try? await Task.sleep(for: .seconds(1.2))
@@ -179,6 +204,7 @@ public final class ScienceStore {
             return
         }
         saveState = status == 403 ? .needsProfile : (200..<300).contains(status) ? .synced : .localOnly
+        if (200..<300).contains(status) { markSent(branch, merged) }
     }
 
     @ObservationIgnored private(set) var epoch = 0
@@ -189,11 +215,17 @@ public final class ScienceStore {
         epoch += 1
     }
 
-    public func clearLocal() {
+    public func clearLocal(keepUnsynced: Bool = false) {
         for t in pushes.values { t.cancel() }
         pushes = [:]
         epoch += 1
+        let kept = keepUnsynced ? dirty.sorted().compactMap { b in disk.read(file(b)).map { (b, $0) } } : []
         disk.removeAll()
+        for (b, data) in kept {
+            disk.write(file(b), data)
+            remember(b)
+        }
+        setDirty(Set(kept.map(\.0)))
         states = [:]
         pulled = false
         saveState = .idle
@@ -219,7 +251,7 @@ public final class ScienceStore {
                 guard let merged = await merge(b, server, epoch: ep), epoch == ep else { return }
                 states[b] = merged
             } else if let local = readLocal(b) {
-                _ = await send(t, b, local.js, epoch: ep)
+                if (200..<300).contains(await send(t, b, local.js, epoch: ep)), epoch == ep { markSent(b, local) }
             }
         }
         guard epoch == ep else { return }

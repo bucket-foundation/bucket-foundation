@@ -60,6 +60,7 @@ final class PolingualGraphBox {
     private(set) var graph: PolingualGraph
     @ObservationIgnored let api: BucketAPI
     @ObservationIgnored private(set) var host: AccountHost?
+    @ObservationIgnored var onRebuild: (@MainActor (PolingualGraph) -> Void)?
 
     init(api: BucketAPI) {
         self.api = api
@@ -72,6 +73,7 @@ final class PolingualGraphBox {
         await graph.close()
         if signedIn { await PushRegistry.shared.unregister() }
         graph = PolingualGraph(api: api, relaunch: true)
+        onRebuild?(graph)
         await PushRegistry.shared.upload()
     }
 

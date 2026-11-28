@@ -156,7 +156,7 @@ struct RootView: View {
             }
             if change == .endedByUser {
                 ProgressChoice.shared.cancel()
-                science.clearLocal()
+                science.clearLocal(keepUnsynced: accountHost != nil && account.ending != .deleted)
                 langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
                 accountHost?.afterSignOut()
