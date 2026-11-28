@@ -75,6 +75,7 @@ struct PolingualRoot: View {
             change.mergeGuest(lobbies)
             if change == .signedIn {
                 savePending = false
+                if let step = PolingualFunnel.signupStep(account.session) { AppFunnel.track(step) }
                 ProgressChoice.shared.signedIn(store, account: account.session?.userId ?? LangStore.unknownOwner)
                 Task { await PushRegistry.shared.refresh() }
             }
@@ -170,6 +171,7 @@ struct Studio: View {
         .manageSubscriptions(isPresented: $managing)
         .sheet(isPresented: $paywall) { Paywall() }
         .onReceive(NotificationCenter.default.publisher(for: FirstLesson.finished)) { _ in
+            AppFunnel.track("first_lesson")
             if FirstLesson.paywallAfter(open: subs.access.open, done: FirstLesson.done()) { paywall = true }
         }
         .rootSheet(.paywall, open: paywall)

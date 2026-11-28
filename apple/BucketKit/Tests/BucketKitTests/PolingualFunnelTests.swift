@@ -35,6 +35,26 @@ struct PolingualFunnelTests {
         #expect(f.body("made_up") == nil)
     }
 
+    @Test func signupAndFirstLessonSendOnceWhilePaywallViewsRepeat() {
+        let (f, _) = funnel()
+        #expect(f.body("signup") != nil)
+        #expect(f.body("signup") == nil)
+        #expect(f.body("first_lesson") != nil)
+        #expect(f.body("first_lesson") == nil)
+        #expect(f.body("paywall_view") != nil)
+        #expect(f.body("paywall_view") != nil)
+    }
+
+    @Test func signupStepFollowsTheServerNewAccountFlag() throws {
+        let fresh = try JSONDecoder().decode(Session.self, from: Data(#"{"access_token":"a","refresh_token":"r","expires_at":1,"user_id":"u","new_account":true}"#.utf8))
+        let returning = try JSONDecoder().decode(Session.self, from: Data(#"{"access_token":"a","refresh_token":"r","expires_at":1,"user_id":"u","new_account":false}"#.utf8))
+        let stored = try JSONDecoder().decode(Session.self, from: Data(#"{"access_token":"a","refresh_token":"r","expires_at":1,"user_id":"u"}"#.utf8))
+        #expect(PolingualFunnel.signupStep(fresh) == "signup")
+        #expect(PolingualFunnel.signupStep(returning) == nil)
+        #expect(PolingualFunnel.signupStep(stored) == nil)
+        #expect(PolingualFunnel.signupStep(nil) == nil)
+    }
+
     @Test func visitorStaysTheSameAcrossCalls() {
         let d = UserDefaults(suiteName: "funnel-\(UUID().uuidString)")!
         let counter = IdCounter()

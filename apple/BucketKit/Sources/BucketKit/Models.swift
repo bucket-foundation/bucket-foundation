@@ -114,16 +114,18 @@ public struct Session: Codable, Sendable, Equatable {
     public let refreshToken: String
     public let expiresAt: Int
     public let userId: String?
+    public let newAccount: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case accessToken = "access_token", refreshToken = "refresh_token", expiresAt = "expires_at", userId = "user_id"
+        case accessToken = "access_token", refreshToken = "refresh_token", expiresAt = "expires_at", userId = "user_id", newAccount = "new_account"
     }
 
-    public init(accessToken: String, refreshToken: String, expiresAt: Int, userId: String?) {
+    public init(accessToken: String, refreshToken: String, expiresAt: Int, userId: String?, newAccount: Bool? = nil) {
         self.accessToken = accessToken
         self.refreshToken = refreshToken
         self.expiresAt = expiresAt
         self.userId = userId
+        self.newAccount = newAccount
     }
 
     public func expires(within seconds: Int, now: Date = .now) -> Bool {

@@ -38,6 +38,10 @@ public final class PolingualFunnel: Sendable {
         self.makeId = makeId
     }
 
+    public static func signupStep(_ session: Session?) -> String? {
+        session?.newAccount == true ? "signup" : nil
+    }
+
     public var visitor: String {
         if let have = defaults.string(forKey: Self.visitorKey) { return have }
         let id = makeId()
