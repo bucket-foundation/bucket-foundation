@@ -17,3 +17,14 @@ import Testing
     #expect(url.hasPrefix("mailto:support@polingual.com"))
     #expect(url.contains("Polingual%20feedback"))
 }
+
+@Test func asksAfterTheThirdThreeStarGameInAQuietWindow() {
+    let now = Date(timeIntervalSince1970: 2_000_000_000)
+    #expect(Feedback.isGameWin(stars: 3))
+    #expect(!Feedback.isGameWin(stars: 2))
+    #expect(!Feedback.isGameWin(stars: nil))
+    #expect(!Feedback.shouldAskAfterGame(wins: 2, now: now, last: 0))
+    #expect(Feedback.shouldAskAfterGame(wins: 3, now: now, last: 0))
+    #expect(!Feedback.shouldAskAfterGame(wins: 5, now: now, last: now.timeIntervalSince1970 - 30 * 86_400))
+    #expect(Feedback.shouldAskAfterGame(wins: 5, now: now, last: now.timeIntervalSince1970 - 61 * 86_400))
+}

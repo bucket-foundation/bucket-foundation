@@ -120,6 +120,7 @@ struct GameResults: View {
             if stars != nil { landed += 1 }
             SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
         }
+        .modifier(AskAfterGameWin(stars: stars))
         .resultScreen()
     }
 }
