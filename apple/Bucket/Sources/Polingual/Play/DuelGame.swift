@@ -65,7 +65,7 @@ struct DuelGame: View {
         return PlayResults(
             title: String(localized: "\(points) points"),
             line: String(localized: "\(right) of \(marks.count) rounds right on both questions."),
-            reveals: Array(zip(prompts, marks).filter { !$0.1 }.map { PlayRevealItem(lang: $0.0.word.lang, form: $0.0.word.form, meaning: $0.0.word.gloss) }.prefix(6)),
+            reveals: Array(zip(prompts, marks).filter { !$0.1 }.map { PlayRevealItem($0.0.word) }.prefix(6)),
             root: langs.playRoot,
             share: (.duel, .points(points, marks: marks)),
             again: { deal() }
@@ -83,8 +83,8 @@ struct DuelGame: View {
         let words = GameWords.ordered(langs.freshGameWords(corpus), using: &rng)
         let clash: (GameWord, String) -> Bool = { w, l in l != w.lang && corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }
         prompts = GameRounds.flags(words, own: langs.gameLangs, mode: .flag, count: Self.rounds, sameForm: clash, using: &rng)
-        let glosses = Set(words.map(\.gloss)).sorted()
-        meanings = prompts.map { p in ([p.word.gloss] + glosses.filter { $0.lowercased() != p.word.gloss.lowercased() }.shuffled(using: &rng).prefix(3)).shuffled(using: &rng) }
+        let foilPool = words + GameWords.starter(langs.systems, corpus: corpus)
+        meanings = prompts.map { p in ([p.word.gloss] + GameWords.meaningFoils(for: p.word, in: foilPool, using: &rng)).shuffled(using: &rng) }
         index = 0
         step = 0
         pickedLang = nil

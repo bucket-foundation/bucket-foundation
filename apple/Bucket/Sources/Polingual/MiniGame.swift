@@ -70,7 +70,7 @@ struct MiniGame: View {
         let words = puzzle.entries.map(\.word)
         return GameResults(title: MiniRecord.clock(time),
                            line: round.score.map(PracticeLine.text) ?? (showed ? String(localized: "Answers shown. New puzzle tomorrow.") : String(localized: "New puzzle tomorrow.")),
-                           reveals: (showed ? words : []).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                           reveals: (showed ? words : []).map(PlayRevealItem.init),
                            root: words.first?.root ?? langs.playRoot,
                            share: showed ? nil : (.mini, .time(seconds: time, cells: GameBrag.miniCells(puzzle))),
                            retry: (.mini, nil, { retry(puzzle) }),

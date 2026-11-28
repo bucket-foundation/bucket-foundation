@@ -119,6 +119,28 @@ struct LangReferenceTests {
         #expect(en.gloss != nil)
     }
 
+    @Test func tappedWordFallsBackToEnglishWhenTheRootCannotHelp() {
+        let c = Self.corpus()
+        let missing = WordLookup.detail("beber", lang: "es", corpus: c, top: [], root: "de")
+        #expect(missing.rootLang == "en")
+        #expect(missing.gloss == "to drink")
+        let same = WordLookup.detail("beber", lang: "es", corpus: c, top: [], root: "es")
+        #expect(same.rootLang == "en")
+        #expect(same.gloss == "to drink")
+        let english = WordLookup.detail("beber", lang: "es", corpus: c, top: [], root: "en")
+        #expect(english.rootLang == "en")
+        #expect(english.gloss == "to drink")
+    }
+
+    @Test func rootFormSpelledLikeTheWordGivesTheEnglishMeaning() {
+        let taxi = LangItem(id: "taxi", kind: .word, baseId: "taxi", tier: 1, unit: 0, category: "noun", gloss: "cab", forms: ["es": "taxi", "fr": "Taxi"], readings: [:], root: nil, cognateLangs: [],
+                            note: nil, example: [:], sentences: [:], gender: OrderedMap(), conj: [:], conjPast: [:], falseFriends: [:])
+        let c = LangCorpus(items: [taxi], byId: ["taxi": taxi], attribution: "", sources: [], pool: [:], poolKeys: [], persons: [:], falseFriends: [], units: [])
+        let d = WordLookup.detail("taxi", lang: "es", corpus: c, top: [], root: "fr")
+        #expect(d.rootLang == "en")
+        #expect(d.gloss == "cab")
+    }
+
     @Test func factsForAnUnknownWordStayEmpty() {
         let d = WordLookup.detail("zzz", lang: "es", corpus: Self.corpus(), top: [])
         let f = LangReference.facts(d, corpus: Self.corpus(), others: ["fr"])
