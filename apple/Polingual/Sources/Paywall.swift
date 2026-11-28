@@ -76,6 +76,7 @@ struct Paywall: View {
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .task(id: subs.current) { await load() }
+        .onAppear { AppFunnel.track("paywall_view") }
         .task { freeBeta = await FreeBeta.active() }
         .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
         .sheet(isPresented: $signingIn) { SignInSheet() }
