@@ -68,8 +68,9 @@ final class BucketGraphBox {
     }
 
     func rebuild() async {
+        let signedIn = graph.account.session != nil
         await graph.close()
-        await PushRegistry.shared.unregister()
+        if signedIn { await PushRegistry.shared.unregister() }
         graph = BucketGraph(relaunch: true)
         await PushRegistry.shared.upload()
     }

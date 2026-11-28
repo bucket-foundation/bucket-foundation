@@ -118,6 +118,7 @@ struct RootView: View {
     @Environment(Gate.self) private var gate
     @Environment(Account.self) private var account
     @Environment(LobbyStore.self) private var lobbies
+    @Environment(\.accountHost) private var accountHost
     @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
 
     var subjects: ScienceSubjects { ScienceSubjects(library: library, science: science) }
@@ -158,6 +159,7 @@ struct RootView: View {
                 science.clearLocal()
                 langs.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
+                accountHost?.afterSignOut()
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }

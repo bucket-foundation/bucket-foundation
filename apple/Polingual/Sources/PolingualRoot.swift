@@ -8,6 +8,7 @@ struct PolingualRoot: View {
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
     @Environment(LobbyStore.self) private var lobbies
+    @Environment(\.accountHost) private var accountHost
     @AppStorage(AccountDefaults.key("polingual.onboarded")) private var onboarded = false
     @AppStorage(AccountDefaults.key("polingual.firstSystem")) private var firstSystem = ""
     @AppStorage(SaveProgress.key) private var savePending = false
@@ -82,6 +83,7 @@ struct PolingualRoot: View {
                 ProgressChoice.shared.cancel()
                 store.clearLocal(accountDeleted: account.ending == .deleted)
                 reminders.reset()
+                accountHost?.afterSignOut()
             }
         }
         .task {

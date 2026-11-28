@@ -84,6 +84,29 @@ import Testing
         #expect(back.disk("polingual").read("systems.json") == Data("S".utf8))
     }
 
+    @Test func signOutRebuildOpensTheNextAccountThenTheGuestSlot() throws {
+        let (items, index, folders, d) = try fresh()
+        try signIn("A", items, index, at: 10)
+        try signIn("B", items, index, at: 20)
+        index.activate("A")
+        let a = launch(items, index, folders, d)
+        #expect(a.userId == "A")
+        let account = Account(api: BucketAPI(), store: a.sessions)
+        a.attach(account, defaults: d)
+        account.signOut()
+        #expect(index.activeUserId == "B")
+        let b = launch(items, index, folders, d, relaunch: true)
+        #expect(b.userId == "B")
+        #expect(b.folderKey == AccountIndex.key("B"))
+        let bAccount = Account(api: BucketAPI(), store: b.sessions)
+        b.attach(bAccount, defaults: d)
+        bAccount.signOut()
+        let guest = launch(items, index, folders, d, relaunch: true)
+        #expect(guest.userId == nil)
+        #expect(guest.inGuest)
+        #expect(index.rows.isEmpty)
+    }
+
     @Test func relaunchLeavesTheFolderMoveWhereItWas() throws {
         let (items, index, folders, d) = try fresh()
         try signIn("A", items, index)
@@ -170,6 +193,32 @@ import Testing
         #expect(await host.add())
         #expect(host.choices.contains { $0.active } == false)
         #expect(builds == 2)
+    }
+
+    @Test func reloadDuringASwitchRunsOnceMoreAfterIt() async throws {
+        let (items, index, _, _) = try fresh()
+        try signIn("A", items, index)
+        try signIn("B", items, index)
+        var builds = 0
+        let gate = AsyncStream<Void>.makeStream()
+        var host: AccountHost!
+        host = AccountHost(switcher: AccountSwitch(index: index, items: items)) {
+            builds += 1
+            if builds == 1 {
+                host.afterSignOut()
+                await host.reload()
+                var it = gate.stream.makeAsyncIterator()
+                await it.next()
+            }
+        }
+        let opening = Task { await host.open("A") }
+        try await Task.sleep(for: .milliseconds(50))
+        gate.continuation.yield()
+        #expect(await opening.value)
+        try await Task.sleep(for: .milliseconds(50))
+        #expect(builds == 2)
+        #expect(host.generation == 2)
+        #expect(host.switching == false)
     }
 }
 

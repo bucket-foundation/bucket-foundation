@@ -79,11 +79,23 @@ public final class AccountHost {
         return true
     }
 
+    public func afterSignOut() {
+        Task { await reload() }
+    }
+
+    @ObservationIgnored private var queued = false
+
     public func reload() async {
-        guard !switching else { return }
+        guard !switching else {
+            queued = true
+            return
+        }
         switching = true
-        await rebuild()
-        generation += 1
+        repeat {
+            queued = false
+            await rebuild()
+            generation += 1
+        } while queued
         refresh()
         switching = false
     }
