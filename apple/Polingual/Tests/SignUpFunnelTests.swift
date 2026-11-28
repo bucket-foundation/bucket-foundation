@@ -1,3 +1,4 @@
+import BucketKit
 import Foundation
 import UserNotifications
 import Testing
@@ -29,6 +30,26 @@ struct SignUpFunnelTests {
         PlanPaywall.arm(d)
         #expect(!PlanPaywall.take(open: true, d))
         #expect(!PlanPaywall.take(open: false, d))
+    }
+
+    @Test func swipingPastAnUnfinishedStepReturnsToIt() {
+        #expect(Onboarding.blocked(.plan, ready: false, targets: 2) == .speak)
+        #expect(Onboarding.blocked(.reason, ready: true, targets: 0) == .languages)
+        #expect(Onboarding.blocked(.languages, ready: true, targets: 0) == nil)
+        #expect(Onboarding.blocked(.plan, ready: true, targets: 1) == nil)
+    }
+
+    @Test func planPaywallWaitsForAccessAndOtherRootSheets() {
+        #expect(!PlanPaywall.ready(.checking, sheets: []))
+        #expect(!PlanPaywall.ready(.locked, sheets: [.saveProgress]))
+        #expect(PlanPaywall.ready(.locked, sheets: []))
+    }
+
+    @Test func planKeepsAReminderTimeTheLearnerAlreadySet() {
+        let plan = PersonalPlan(QuizAnswers(time: .morning), languages: 1, now: .now)
+        #expect(PlanPaywall.reminderMinute(plan, current: nil) == 480)
+        #expect(PlanPaywall.reminderMinute(plan, current: 1200) == nil)
+        #expect(PlanPaywall.reminderMinute(PersonalPlan(QuizAnswers(), languages: 1, now: .now), current: nil) == nil)
     }
 
     @Test func purchaseOffersSaveOnlyWhenSignedOut() {

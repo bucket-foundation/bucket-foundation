@@ -71,8 +71,9 @@ public struct PersonalPlan: Equatable, Sendable {
     public static let retention = 0.9
 
     public let languages: Int
-    public let minutes: Int
+    public let minutes: Int?
     public let deadline: QuizDeadline
+    public let dated: Bool
     public let until: Date
     public let days: Int
     public let wordsPerLanguage: Int
@@ -83,11 +84,12 @@ public struct PersonalPlan: Equatable, Sendable {
 
     public init(_ answers: QuizAnswers, languages: Int, now: Date, calendar: Calendar = .current) {
         self.languages = max(0, languages)
-        minutes = (answers.minutes ?? .ten).rawValue
+        minutes = answers.minutes?.rawValue
         let picked = answers.deadline ?? .open
-        deadline = picked.months == nil ? .fallback : picked
+        dated = picked.months != nil
+        deadline = dated ? picked : .fallback
         let start = calendar.startOfDay(for: now)
-        until = calendar.date(byAdding: .month, value: deadline.months ?? 3, to: start) ?? start
+        until = calendar.date(byAdding: .month, value: deadline.months ?? 0, to: start) ?? start
         days = max(0, calendar.dateComponents([.day], from: start, to: until).day ?? 0)
         wordsPerLanguage = ExpectedLearning.items(newPerDay: Double(Lang.newPerLangPerDay), retention: Self.retention, days: days)
         reminderMinute = answers.time?.minute

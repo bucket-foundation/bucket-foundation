@@ -22,14 +22,17 @@ struct OnboardingQuizTests {
         #expect(plan.words == 414 * 3)
         #expect(plan.newToday == Lang.newPerLangPerDay * 3)
         #expect(plan.minutes == 15)
+        #expect(plan.dated)
     }
 
-    @Test func openDeadlinePlansThreeMonthsAndUnansweredMinutesMeanTen() {
+    @Test func openDeadlinePlansThreeMonthsUndatedAndUnansweredMinutesStayEmpty() {
         let open = PersonalPlan(QuizAnswers(deadline: .open), languages: 1, now: day(2026, 11, 28), calendar: calendar)
         let none = PersonalPlan(QuizAnswers(), languages: 1, now: day(2026, 11, 28), calendar: calendar)
         #expect(open.deadline == .quarter)
+        #expect(!open.dated)
+        #expect(open.days == 92)
         #expect(none == open)
-        #expect(none.minutes == 10)
+        #expect(none.minutes == nil)
         #expect(none.reminderMinute == nil)
     }
 

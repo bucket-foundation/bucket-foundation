@@ -36,11 +36,20 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
-        .onChange(of: step, initial: true) { _, s in AppFunnel.track("onboarding_view", detail: s.funnelName) }
+        .onChange(of: step, initial: true) { _, s in
+            if let back = Self.blocked(s, ready: picks.ready, targets: targets.count) { step = back; return }
+            AppFunnel.track("onboarding_view", detail: s.funnelName)
+        }
         .task {
             await store.load()
             if !store.known.isBlank, !picks.touched { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
         }
+    }
+
+    static func blocked(_ s: Step, ready: Bool, targets: Int) -> Step? {
+        if s.rawValue > Step.speak.rawValue, !ready { return .speak }
+        if s.rawValue > Step.languages.rawValue, targets == 0 { return .languages }
+        return nil
     }
 
     var root: String { picks.root }
@@ -155,9 +164,13 @@ struct Onboarding: View {
                 .accessibilityAddTraits(.isHeader)
             HStack(spacing: 6) { ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 32) } }
             VStack(alignment: .leading, spacing: 12) {
-                PlanLine(icon: "clock", text: "\(p.minutes) minutes a day")
+                if let minutes = p.minutes { PlanLine(icon: "clock", text: "\(minutes) minutes a day") }
                 if let time = quiz.time { PlanLine(icon: "bell", text: "Practice time: \(QuizOption.local(QuizOption.label(time)))") }
-                PlanLine(icon: "calendar", text: "By \(p.until.formatted(.dateTime.month(.wide).day().year())): about \(p.wordsPerLanguage) words in each language")
+                if p.dated {
+                    PlanLine(icon: "calendar", text: "By \(p.until.formatted(.dateTime.month(.wide).day().year())): about \(p.wordsPerLanguage) words in each language")
+                } else {
+                    PlanLine(icon: "calendar", text: "In 3 months: about \(p.wordsPerLanguage) words in each language")
+                }
                 if let reason = quiz.reason { PlanLine(icon: "star", text: "Goal: \(QuizOption.local(QuizOption.label(reason)))") }
                 if let level = quiz.level { PlanLine(icon: "chart.line.uptrend.xyaxis", text: "Starting point: \(QuizOption.local(QuizOption.label(level)))") }
             }
@@ -387,7 +400,7 @@ struct Onboarding: View {
 
     func done(_ id: String) {
         quiz.save()
-        if let minute = plan.reminderMinute { reminders.customMinute = minute }
+        if let minute = PlanPaywall.reminderMinute(plan, current: reminders.customMinute) { reminders.customMinute = minute }
         PlanPaywall.arm()
         finish(id)
     }
@@ -615,6 +628,14 @@ enum PlanPaywall {
     static let key = "polingual.planPaywall"
 
     static func arm(_ defaults: UserDefaults = .standard) { defaults.set(true, forKey: key) }
+
+    static func reminderMinute(_ plan: PersonalPlan, current: Int?) -> Int? {
+        current == nil ? plan.reminderMinute : nil
+    }
+
+    static func ready(_ access: Access, sheets: Set<RootSheet>) -> Bool {
+        access != .checking && sheets.isEmpty
+    }
 
     static func take(open: Bool, _ defaults: UserDefaults = .standard) -> Bool {
         guard defaults.bool(forKey: key) else { return false }

@@ -80,9 +80,9 @@ final class SignUpFunnelUITests: XCTestCase {
     }
 
     func testPlanPageFitsWithoutAnswers() throws {
-        let app = launch(["-onboardingStep", "10"])
+        let app = launch(["-onboardingStep", "10", "-polingual.onboarded", "NO"])
         guard app.staticTexts["Your plan"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
-        XCTAssertTrue(app.staticTexts["10 minutes a day"].exists)
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label BEGINSWITH 'In 3 months: about'")).firstMatch.exists || app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'By '")).firstMatch.exists)
         XCTAssertTrue(app.buttons["Start learning"].isHittable)
         shot("plan-unanswered")
     }
