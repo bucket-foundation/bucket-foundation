@@ -32,6 +32,15 @@ struct SignUpFunnelTests {
         #expect(!PlanPaywall.take(open: false, d))
     }
 
+    @Test func replayClearsOnboardedAndTheSpentPlanPaywall() {
+        let d = UserDefaults(suiteName: "plan-replay-\(UUID().uuidString)")!
+        d.set(true, forKey: "polingual.onboarded")
+        PlanPaywall.arm(d)
+        PlanPaywall.replay(d)
+        #expect(!d.bool(forKey: "polingual.onboarded"))
+        #expect(!PlanPaywall.take(open: false, d))
+    }
+
     @Test func swipingPastAnUnfinishedStepReturnsToIt() {
         #expect(Onboarding.blocked(.plan, ready: false, targets: 2) == .speak)
         #expect(Onboarding.blocked(.reason, ready: true, targets: 0) == .languages)

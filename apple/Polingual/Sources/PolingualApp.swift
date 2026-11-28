@@ -26,6 +26,7 @@ struct PolingualApp: App {
         #endif
         #if DEBUG
         let fresh = Launch.flag("-freshGuest")
+        if Launch.flag("-replayOnboarding") { PlanPaywall.replay() }
         let sessions: SessionStore = fresh ? MemorySessionStore() : KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared")
         let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : FileLangDisk()
         #else
