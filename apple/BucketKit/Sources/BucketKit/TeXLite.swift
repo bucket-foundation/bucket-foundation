@@ -109,16 +109,42 @@ public enum TeXLite {
     }
 
     public static func attributed(_ text: String) -> AttributedString {
+        let segs = segments(text)
+        let texts = segs.compactMap { seg -> String? in
+            if case .text(let t) = seg { return t }
+            return nil
+        }
+        let strongCounts = texts.map { $0.components(separatedBy: "**").count - 1 }
+        let splittable = !texts.contains { $0.contains("`") || $0.contains("\\*") || $0.contains("***") }
+        let strongCrossesMath = splittable && strongCounts.contains { !$0.isMultiple(of: 2) } && strongCounts.reduce(0, +).isMultiple(of: 2)
         var out = AttributedString()
-        for seg in segments(text) {
+        var strong = false
+        for seg in segs {
             switch seg {
+            case .text(let t) where strongCrossesMath:
+                for (i, piece) in t.components(separatedBy: "**").enumerated() {
+                    if i > 0 { strong.toggle() }
+                    out += strong ? strengthened(inlineMarkdown(piece)) : inlineMarkdown(piece)
+                }
             case .text(let t):
-                out += (try? AttributedString(markdown: t, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(t)
+                out += inlineMarkdown(t)
             case .math(_, let shown):
-                out += AttributedString(shown)
+                out += strong ? strengthened(AttributedString(shown)) : AttributedString(shown)
             }
         }
         return out
+    }
+
+    static func strengthened(_ s: AttributedString) -> AttributedString {
+        var s = s
+        for run in s.runs {
+            s[run.range].inlinePresentationIntent = (run.inlinePresentationIntent ?? []).union(.stronglyEmphasized)
+        }
+        return s
+    }
+
+    static func inlineMarkdown(_ t: String) -> AttributedString {
+        (try? AttributedString(markdown: t, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace))) ?? AttributedString(t)
     }
 
     public static func spokenProse(_ text: String) -> String {
