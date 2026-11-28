@@ -177,6 +177,7 @@ struct Studio: View {
         .rootSheet(.paywall, open: paywall)
         .environment(\.limitPaywall, limitPaywall)
         .modifier(GrantNoticeToast())
+        .task { if PlanPaywall.take(open: subs.access.open) { paywall = true } }
         #if DEBUG
         .task { if Launch.flag("-showPaywall") { paywall = true } }
         #endif

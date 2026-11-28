@@ -5,9 +5,30 @@ import Testing
 
 @MainActor
 struct SignUpFunnelTests {
-    @Test func onboardingAsksWhereTheLearnerHeardBeforeLanguages() {
-        #expect(Onboarding.Step.allCases == [.welcome, .heard, .speak, .languages])
-        #expect(Onboarding.Step.allCases.map(\.funnelName) == ["welcome", "heard_about", "speak", "languages"])
+    @Test func onboardingAsksWhereTheLearnerHeardBeforeLanguagesThenBuildsAPlan() {
+        #expect(Onboarding.Step.allCases == [.welcome, .heard, .speak, .languages, .reason, .level, .motivation, .minutes, .time, .deadline, .plan])
+        #expect(Onboarding.Step.allCases.map(\.funnelName) == ["welcome", "heard_about", "speak", "languages", "reason", "level", "motivation", "minutes", "practice_time", "deadline", "plan"])
+        #expect(Onboarding.Step.allCases.allSatisfy { $0.funnelName.count <= 40 })
+    }
+
+    @Test func quizOptionsCoverEveryAnswerWithDistinctKeys() {
+        for options in [QuizOption.reasons, QuizOption.levels, QuizOption.minutes, QuizOption.times, QuizOption.deadlines] {
+            #expect(Set(options.map(\.key)).count == options.count)
+            #expect(options.allSatisfy { !$0.label.isEmpty })
+        }
+        #expect(QuizOption.minutes.map(\.key) == ["5", "10", "15", "20"])
+        #expect(QuizOption.levels.map(\.key).contains("get_by"))
+    }
+
+    @Test func planPaywallShowsOnceAfterOnboardingForLearnersWithoutAccess() {
+        let d = UserDefaults(suiteName: "plan-paywall-\(UUID().uuidString)")!
+        #expect(!PlanPaywall.take(open: false, d))
+        PlanPaywall.arm(d)
+        #expect(PlanPaywall.take(open: false, d))
+        #expect(!PlanPaywall.take(open: false, d))
+        PlanPaywall.arm(d)
+        #expect(!PlanPaywall.take(open: true, d))
+        #expect(!PlanPaywall.take(open: false, d))
     }
 
     @Test func purchaseOffersSaveOnlyWhenSignedOut() {
