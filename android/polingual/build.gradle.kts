@@ -38,8 +38,8 @@ android {
         versionCode = 1
         versionName = "1.0.2"
         buildConfigField("String", "BUCKET_BASE", "\"https://www.bucket.foundation\"")
-        buildConfigField("String", "INPUT_BASE", "\"${project.findProperty("polingualInputBase") ?: "https://polingual.com/input"}\"")
-        buildConfigField("String", "INPUT_BAND_BASE", "\"${project.findProperty("polingualInputBandBase") ?: ""}\"")
+        buildConfigField("String", "INPUT_BASE", "\"${project.findProperty("polingualInputBase") ?: "https://xbwblxwafphvdeldighd.supabase.co/storage/v1/object/public/polingual-input"}\"")
+        buildConfigField("String", "INPUT_BAND_BASE", "\"${project.findProperty("polingualInputBandBase") ?: "https://xbwblxwafphvdeldighd.supabase.co/storage/v1/object/public/polingual-input"}\"")
         buildConfigField("String", "INPUT_STAGE", "\"${project.findProperty("polingualInputStage") ?: ""}\"")
         buildConfigField("String", "INPUT_EXPERIMENT", "\"${project.findProperty("polingualInputExperiment") ?: ""}\"")
         manifestPlaceholders["admobAppId"] = TEST_ADMOB_APP
