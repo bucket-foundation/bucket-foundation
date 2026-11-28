@@ -267,7 +267,7 @@ struct QuizGame: View {
     func end(_ r: GameRun) -> some View {
         GameResults(title: String(localized: "\(r.hits) of \(r.results.count)"),
                     line: endLine(r),
-                    reveals: r.missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                    reveals: r.missed.prefix(5).map(PlayRevealItem.init),
                     root: r.missed.first?.root ?? langs.playRoot,
                     share: (kind, .marks(r.results)),
                     retry: kind == .daily ? (kind, nil, { retry(r.prompts) }) : nil,
@@ -494,7 +494,7 @@ struct SpeedMatchGame: View {
                     if over || gameEndForced {
                         GameResults(title: String(localized: "\(board.points) points"),
                                     line: String(localized: "\(board.hits) pairs. Longest run \(board.bestCombo)."),
-                                    reveals: board.missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                                    reveals: board.missed.prefix(5).map(PlayRevealItem.init),
                                     root: board.missed.first?.root ?? langs.playRoot,
                                     share: (.match, .points(board.points, marks: [])),
                                     stars: GameStars.rating(hits: board.hits, total: board.hits + board.missed.count),

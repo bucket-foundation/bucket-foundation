@@ -20,6 +20,32 @@ func words(_ n: Int) -> [GameWord] {
         #expect(!GameWords.starter([system], corpus: corpus).isEmpty)
     }
 
+    @Test func learnedWordWithoutARootFormIsLabeledEnglish() {
+        let item = LangItem(id: "w", kind: .word, baseId: "w", tier: 1, unit: 0, category: "noun", gloss: "night", forms: ["es": "noche", "fr": "nuit"], readings: [:], root: nil, cognateLangs: [],
+                            note: nil, example: [:], sentences: [:], gender: OrderedMap(), conj: [:], conjPast: [:], falseFriends: [:])
+        let corpus = LangCorpus(items: [item], byId: ["w": item], attribution: "", sources: [], pool: [:], poolKeys: [], persons: [:], falseFriends: [], units: [])
+        let state = gradeCard(EngineState(), "es", "w", 3, now: 1_800_000_000_000)
+        let withFrench = GameWords.learned([LangSystem(id: "a", name: "es", root: "fr", targets: ["es"], createdAt: 0)], states: ["a": state], corpus: corpus)
+        #expect(withFrench.first?.gloss == "nuit")
+        #expect(withFrench.first?.root == "fr")
+        let withGerman = GameWords.learned([LangSystem(id: "b", name: "es", root: "de", targets: ["es"], createdAt: 0)], states: ["b": state], corpus: corpus)
+        #expect(withGerman.first?.gloss == "night")
+        #expect(withGerman.first?.root == "en")
+    }
+
+    @Test func meaningFoilsShareTheWordsRootLanguage() {
+        let french = (0..<5).map { GameWord(itemId: "f\($0)", lang: "es", form: "es\($0)", gloss: "fr\($0)", root: "fr") }
+        let english = (0..<5).map { GameWord(itemId: "e\($0)", lang: "de", form: "de\($0)", gloss: "en\($0)", root: "en") }
+        let dupe = GameWord(itemId: "f9", lang: "it", form: "it9", gloss: "FR0", root: "fr")
+        var rng = SeededRandom(seed: 7)
+        let foils = GameWords.meaningFoils(for: french[0], in: french + english + [dupe], using: &rng)
+        #expect(foils.count == 3)
+        #expect(foils.allSatisfy { $0.hasPrefix("fr") && $0 != "fr0" })
+        #expect(Set(foils.map { $0.lowercased() }).count == 3)
+        var few = SeededRandom(seed: 7)
+        #expect(GameWords.meaningFoils(for: english[0], in: [english[0], english[1]] + french, using: &few) == ["en1"])
+    }
+
     @Test func wordsMissedOrDueLeadTheRound() throws {
         let corpus = try translateCorpus()
         let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)

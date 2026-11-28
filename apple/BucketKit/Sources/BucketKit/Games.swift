@@ -38,10 +38,16 @@ public enum GameWords {
                       seen.insert(key).inserted else { continue }
                 let due = (state.cards[key]?.due ?? .infinity) <= now
                 let rank = missed.contains(key) ? missedRank : due ? dueRank : heldRank
-                out.append(GameWord(itemId: item.id, lang: p.lang, form: form, gloss: gloss, root: s.root, rank: rank))
+                out.append(GameWord(itemId: item.id, lang: p.lang, form: form, gloss: gloss, root: item.form(s.root) == nil ? "en" : s.root, rank: rank))
             }
         }
         return out
+    }
+
+    public static func meaningFoils<R: RandomNumberGenerator>(for word: GameWord, in words: [GameWord], count: Int = 3, using rng: inout R) -> [String] {
+        var seen: Set<String> = [word.gloss.lowercased()]
+        let pool = words.filter { $0.root == word.root }.map(\.gloss).sorted().filter { seen.insert($0.lowercased()).inserted }
+        return Array(pool.shuffled(using: &rng).prefix(count))
     }
 
     public static func starter(_ systems: [LangSystem], corpus: LangCorpus, perLang: Int = 12) -> [GameWord] {

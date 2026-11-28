@@ -101,7 +101,7 @@ struct GameResults: View {
                     }
                 }
             }
-            ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: root) }
+            ForEach(reveals) { PlayReveal(lang: $0.lang, form: $0.form, meaning: $0.meaning, root: $0.root ?? root) }
             if let share { GameShareButton(kind: share.kind, text: langs.shareText(share.kind, share.shape), style: .pl(.primary, size: .lg)) }
             if let extra { extra }
             if let retry { TryAgainOffer(kind: retry.kind, deck: retry.deck, start: retry.start) }

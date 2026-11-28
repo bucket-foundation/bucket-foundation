@@ -33,7 +33,7 @@ public enum WordLookup {
         let ranked = top.first { keys.contains(fold($0.word, lang)) }
         let gloss = (item?.gloss ?? ranked?.meaning).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
         let reading = item?.readings[lang] ?? ranked?.ipa.map { Reading(ipa: $0.trimmingCharacters(in: CharacterSet(charactersIn: "/"))) }
-        let rootForm = root == "en" || root == lang ? nil : item?.form(root)
+        let rootForm = root == "en" || root == lang ? nil : item?.form(root).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
         return WordDetail(word: word, lang: lang, gloss: rootForm ?? gloss, reading: reading, itemId: item?.id, pos: ranked?.pos, band: ranked?.band, rootLang: rootForm == nil ? "en" : root)
     }
 

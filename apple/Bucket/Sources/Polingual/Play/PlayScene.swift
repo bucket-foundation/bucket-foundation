@@ -151,7 +151,14 @@ struct PlayRevealItem: Identifiable, Hashable {
     let lang: String
     let form: String
     let meaning: String
+    var root: String? = nil
     var id: String { "\(lang):\(form)" }
+}
+
+extension PlayRevealItem {
+    init(_ word: GameWord) {
+        self.init(lang: word.lang, form: word.form, meaning: word.gloss, root: word.root)
+    }
 }
 
 typealias PlayResults = GameResults

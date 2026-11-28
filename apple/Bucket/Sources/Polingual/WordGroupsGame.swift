@@ -207,7 +207,7 @@ struct WordGroupsGame: View {
             }
             GameResults(title: score,
                         line: practice.score.map(PracticeLine.text) ?? (save.misses == 0 ? String(localized: "No mistakes. New board tomorrow.") : String(localized: "New board tomorrow.")),
-                        reveals: missed.prefix(5).map { PlayRevealItem(lang: $0.lang, form: $0.form, meaning: $0.gloss) },
+                        reveals: missed.prefix(5).map(PlayRevealItem.init),
                         root: missed.first?.root ?? langs.playRoot,
                         share: (.wordGroups, .groups(order: GameShare.groupOrder(solved: save.solved, groups: round?.puzzle.groups.map(\.id) ?? []), attempts: save.results, total: total)),
                         retry: round.map { r in (.wordGroups, nil, { retry(r.puzzle) }) },
