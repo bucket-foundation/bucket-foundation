@@ -36,8 +36,8 @@ final class SignUpFunnelUITests: XCTestCase {
     }
 
     func testOnboardingQuizEndsOnPlanThenPaywall() throws {
-        let app = launch([])
-        guard app.buttons["Get started"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
+        let app = launch(["-replayOnboarding", "-freshGuest", "-polingualLocked", "-adsOff", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"])
+        XCTAssertTrue(app.buttons["Get started"].waitForExistence(timeout: 30))
         app.buttons["Get started"].tap()
         XCTAssertTrue(app.staticTexts["How did you hear about Polingual?"].waitForExistence(timeout: 10))
         shot("onboarding-heard")
@@ -69,13 +69,8 @@ final class SignUpFunnelUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label ENDSWITH 'first word'")).firstMatch.waitForExistence(timeout: 10))
         shot("onboarding-say")
         app.buttons["Start learning"].tap()
-        let plans = app.buttons["Restore"]
-        let home = app.buttons["Today"]
-        let deadline = Date().addingTimeInterval(60)
-        while !plans.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
-        XCTAssertTrue(plans.exists || home.exists, "Onboarding did not reach the paywall or Today")
-        shot(plans.exists ? "plan-paywall" : "home-already-subscribed")
-        guard plans.exists else { return }
+        XCTAssertTrue(app.buttons["Restore"].waitForExistence(timeout: 60), "A locked learner did not see the paywall after the plan")
+        shot("plan-paywall")
         dismissStoreSignIn(app)
         app.swipeDown(velocity: .fast)
         XCTAssertTrue(app.buttons["Play"].waitForExistence(timeout: 20))
@@ -99,9 +94,8 @@ final class SignUpFunnelUITests: XCTestCase {
     }
 
     func testLockedTodayOpensPaywall() throws {
-        let app = launch(["-polingual.onboarded", "YES", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"])
-        guard app.navigationBars["Games"].waitForExistence(timeout: 60) else { throw XCTSkip("Subscribed on this simulator") }
-        passConsent(app)
+        let app = launch(["-polingual.onboarded", "YES", "-freshGuest", "-polingualLocked", "-adsOff", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", "guest"])
+        XCTAssertTrue(app.navigationBars["Games"].waitForExistence(timeout: 60))
         app.buttons["Today"].firstMatch.tap()
         let plans = app.buttons["See plans"]
         XCTAssertTrue(plans.waitForExistence(timeout: 20))

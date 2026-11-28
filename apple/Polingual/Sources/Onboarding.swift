@@ -682,6 +682,11 @@ enum PlanPaywall {
 
     static func arm(_ defaults: UserDefaults = .standard) { defaults.set(true, forKey: key) }
 
+    static func replay(_ defaults: UserDefaults = .standard) {
+        defaults.removeObject(forKey: "polingual.onboarded")
+        defaults.removeObject(forKey: key)
+    }
+
     static func reminderMinute(_ plan: PersonalPlan, current: Int?) -> Int? {
         current == nil ? plan.reminderMinute : nil
     }
