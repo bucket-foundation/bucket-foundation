@@ -325,6 +325,56 @@ def context(trend, prev, cape, flb, fomc_next, today, alerts):
     return out
 
 
+def moved(now, before, unit="%"):
+    if unit == "points":
+        d = now - before
+        return "unchanged" if abs(d) < 0.005 else f"{'up' if d > 0 else 'down'} {abs(d):.2f} points"
+    d = now / before - 1
+    return "unchanged" if abs(d) < 0.0005 else f"{'up' if d > 0 else 'down'} {abs(d):.1%}"
+
+
+MARKET_LINES = [("^GSPC", "The S&P 500 is at {v:,.0f}, {m} since yesterday.", "%", "The S&P 500"),
+                ("^TNX", "The 10-year Treasury rate is {v:.2f}%, {m} since yesterday.", "points", "The 10-year Treasury rate"),
+                (BTC, "Bitcoin is at ${v:,.0f}, {m} since yesterday.", "%", "Bitcoin"),
+                ("GC=F", "Gold is at ${v:,.0f} an ounce, {m} since yesterday.", "%", "Gold"),
+                ("MORTGAGE30US", "The 30-year mortgage rate is {v:.2f}%, {m} since last week.", "points", "The 30-year mortgage rate")]
+
+
+def market_lines(series):
+    out = []
+    for key, template, unit, name in MARKET_LINES:
+        s = series.get(key)
+        s = s.dropna() if s is not None else None
+        if s is None or len(s) < 2:
+            out.append(f"{name}: no data today.")
+            continue
+        out.append(template.format(v=float(s.iloc[-1]), m=moved(float(s.iloc[-1]), float(s.iloc[-2]), unit)))
+    return out
+
+
+def plain_actions(paper, sleeve_stats):
+    out = []
+    if paper["kills"]:
+        out.append("Look at the Kalshi test bets: they hit a loss limit and stopped. Run brief.py --clear-kill once you have reviewed them.")
+    for s in sleeve_stats.values():
+        if s["kills"]:
+            out.append(f"Look at the paper bet \"{s['plain']}\": it hit its loss limit and moved to cash. Run brief.py --clear-kill once you have reviewed it.")
+        elif s["promotable"]:
+            cap = "" if math.isinf(s["max_live_usd"]) else f", up to ${s['max_live_usd']:,.0f}"
+            out.append(f"The paper bet \"{s['plain']}\" has a long and strong enough record to try with real money{cap}. It needs your approval.")
+    return out or ["Nothing to do today."]
+
+
+def render_plain(today, series, paper, sleeve_stats, sleeve_status, macro):
+    L = [" ".join(plain_actions(paper, sleeve_stats)), "", f"Markets, {today:%a %d %b}"] + market_lines(series)
+    warnings = dashboard.plain(macro) if macro else []
+    L += ["", "Warnings"] + (warnings or ["None fired today." if macro is not None else "No warning data today."])
+    L += ["", "Paper bets, $1,000 of pretend money each"]
+    L += [sleeves.plain_line(st, (sleeve_status or {}).get(sid, "")) for sid, st in sleeve_stats.items()]
+    L += ["", "Full numbers: python brief.py --detail"]
+    return "\n".join(L)
+
+
 def render(today, snap, regime, sigs, paper, evts, acts, notes, sleeve_stats=None, sleeve_status=None, macro=None, ctx=None):
     L = [f"Finance brief {today:%a %d %b %Y %H:%M} ET", "", "MARKETS"]
     L += [f"{r[0]}: {r[1]} ({r[2]}) {r[3]} {r[4]}" for r in snap]
@@ -363,6 +413,7 @@ def parse_args(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--send", action="store_true")
+    ap.add_argument("--detail", action="store_true")
     ap.add_argument("--out")
     ap.add_argument("--clear-kill", action="store_true")
     return ap.parse_args(argv)
@@ -437,7 +488,13 @@ def main(argv=None):
     ctx = context(trend, prev, cape, flb, fomc_next, today, dashboard.summary(macro)[1] if macro else [])
     if targets["yield_gap"].get("detail"):
         ctx.append(f"Yield gap sleeve reads {targets['yield_gap']['detail']}, the latest in the lab file at least {EARNINGS_LAG_MONTHS} months old.")
-    text = render(today, snap, regime, sigs, paper, evts, acts, notes, sleeve_stats, sleeve_status, macro, ctx)
+    mortgage = safe(lambda: feeds.fred_series("MORTGAGE30US"), notes, "Mortgage rate")
+    if mortgage:
+        series["MORTGAGE30US"] = mortgage[0]
+    if args.detail:
+        text = render(today, snap, regime, sigs, paper, evts, acts, notes, sleeve_stats, sleeve_status, macro, ctx)
+    else:
+        text = render_plain(today, series, paper, sleeve_stats, sleeve_status, macro)
     if args.out:
         Path(args.out).write_text(text + "\n")
     if args.dry_run:

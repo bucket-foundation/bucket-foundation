@@ -21,14 +21,15 @@ class Sleeve:
     backtest_sharpe: float
     lab_row: str
     evidence: str
+    plain: str = ""
 
 
 SLEEVES = {
-    "btc_sma50": Sleeve("BTC SMA50 trend", 25.0, 0.80, "legacy_crypto_trend_BTC_sma50", "fails pooled 0.75 and family 0.18"),
-    "sp_above_200d": Sleeve("S&P above 200-day average", 5.0, 0.56, "price_above_ma200", "family deflation only"),
-    "sp_cross_50_200": Sleeve("S&P 50/200-day cross", 5.0, 0.63, "ma_cross_50_200", "family deflation only"),
-    "yield_gap": Sleeve("S&P yield gap vs 10-year", 10.0, 0.79, "fed_model", "family deflation only"),
-    "fx_carry": Sleeve("Currency carry, 10 currencies", 10.0, 0.73, "fx_carry", "held, neither deflation passed"),
+    "btc_sma50": Sleeve("BTC SMA50 trend", 25.0, 0.80, "legacy_crypto_trend_BTC_sma50", "fails pooled 0.75 and family 0.18", "Bitcoin trend"),
+    "sp_above_200d": Sleeve("S&P above 200-day average", 5.0, 0.56, "price_above_ma200", "family deflation only", "Stocks above their 200-day average"),
+    "sp_cross_50_200": Sleeve("S&P 50/200-day cross", 5.0, 0.63, "ma_cross_50_200", "family deflation only", "Stocks, 50-day against 200-day average"),
+    "yield_gap": Sleeve("S&P yield gap vs 10-year", 10.0, 0.79, "fed_model", "family deflation only", "Stocks or bonds by earnings yield"),
+    "fx_carry": Sleeve("Currency carry, 10 currencies", 10.0, 0.73, "fx_carry", "held, neither deflation passed", "High-rate against low-rate currencies"),
 }
 
 
@@ -127,9 +128,15 @@ def stats(events, sleeve):
     history = marks(events, sleeve)
     out = {"sleeve": sleeve, "label": spec.label, "equity": history[-1]["equity"] if history else None, "obs": 0, "days": 0,
            "live_sharpe": float("nan"), "max_dd": 0.0, "live_dsr": float("nan"), "gate": False, "promotable": False, "max_live_usd": 0.0,
-           "weights": history[-1]["weights"] if history else {}, "kills": killed(events, sleeve) or []}
+           "weights": history[-1]["weights"] if history else {}, "kills": killed(events, sleeve) or [], "plain": spec.plain,
+           "change": 0.0, "change_days": 0}
     if len(history) < 2:
         return out
+    last_date = pd.Timestamp(history[-1]["date"])
+    week = [m for m in history if pd.Timestamp(m["date"]) <= last_date - pd.Timedelta(days=7)]
+    base = week[-1] if week else history[0]
+    out["change"] = history[-1]["equity"] - base["equity"]
+    out["change_days"] = (last_date - pd.Timestamp(base["date"])).days
     excess, gaps = [], []
     for a, b in zip(history, history[1:]):
         gap = (pd.Timestamp(b["date"]) - pd.Timestamp(a["date"])).days
@@ -171,3 +178,23 @@ def line(s):
     state = "KILLED: " + "; ".join(s["kills"]) if s["kills"] else "promotable" if s["promotable"] else "evidence only"
     return (f"{s['label']}: ${s['equity']:,.2f}, holds {held}, {s['days']} days of evidence, {s['obs']} obs, live Sharpe {sr}, "
             f"drawdown {s['max_dd']:.1%}, live DSR {dsr} vs {signals.DSR_BAR:.2f}, {state}")
+
+
+HOLDING_NAMES = {"BTC": "Bitcoin", "SPX": "stocks", "IEF": "Treasury bonds"}
+
+
+def plain_line(s, today_status=""):
+    name = s["plain"]
+    if s["equity"] is None:
+        return f"{name}: no price today, so no record yet." if today_status.startswith("missing") else f"{name}: no record yet."
+    held = [HOLDING_NAMES.get(k, k) for k, w in s["weights"].items() if w]
+    holding = "holding cash" if not held else f"holding {' and '.join(held)}" if len(held) <= 2 else f"holding {len(held)} currencies"
+    if s["kills"]:
+        holding = "stopped after hitting its loss limit, now in cash"
+    if s["obs"] == 0:
+        move = f"started today with ${NOTIONAL:,.0f}"
+    else:
+        span = "this week" if s["change_days"] >= 7 else f"in {s['change_days']} day{'s' if s['change_days'] != 1 else ''}"
+        move = f"flat {span}" if abs(s["change"]) < 0.5 else f"{'up' if s['change'] > 0 else 'down'} ${abs(s['change']):,.0f} {span}"
+    tail = " No price today." if today_status.startswith("missing") else ""
+    return f"{name}: {move}, {holding}, paper only, {s['days']} day{'s' if s['days'] != 1 else ''} of record.{tail}"

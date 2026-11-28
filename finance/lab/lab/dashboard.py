@@ -223,3 +223,42 @@ def summary(items):
     head = (f"{len(items)} gauges: {counts['ok']} ok, {counts['ALERT']} in alert, {counts['stale']} stale, {counts['missing']} missing. "
             f"House thresholds are working levels with no source. No gauge changes a position.")
     return head, [f"{it['label']} {it['value']} on {it['asof']}: {it['rule']} [{it['basis']}]" for it in alerts]
+
+
+PLAIN = {
+    "Fed funds effective": "The Fed's overnight rate is {value}%, outside the range the Fed set, a sign it is losing its grip on short-term rates.",
+    "SOFR minus IORB, bp": "Banks are paying more to borrow overnight than the Fed pays them, a sign cash is tight.",
+    "ON RRP, $B": "Money funds parked more than $100 billion at the Fed overnight, a sign spare cash is piling up.",
+    "Reserve balances, $B": "Cash that banks hold at the Fed is low or falling fast at ${value} billion, which has come before funding scares.",
+    "TGA, $B": "The Treasury is sitting on ${value} billion of cash, above its own target, which pulls money out of the banking system.",
+    "Fed total assets, $B": "The Fed's balance sheet moved more than $50 billion in a week, so it is adding or draining money faster than usual.",
+    "2-year yield": "The 2-year Treasury rate jumped in one day to {value}%, so markets changed their mind about the Fed.",
+    "10-year yield": "The 10-year Treasury rate is {value}%, above its October peak, which raises mortgage and loan costs.",
+    "10y minus 3m": "Long-term rates fell below short-term rates, a pattern that has come before recessions.",
+    "Term premium, 10y": "Investors want more extra pay to hold long bonds than a month ago, which pushes long-term rates up.",
+    "5y5y breakeven": "Markets expect long-run inflation of {value}%, outside the comfortable zone around 2%.",
+    "10y TIPS real yield": "Rates after inflation are {value}%, above 3%, which weighs on stocks, gold and housing.",
+    "Core CPI m/m, %": "Prices outside food and energy rose {value}% in a month, fast enough to keep the Fed from cutting rates.",
+    "Headline CPI y/y, %": "Prices are up {value}% from a year ago, above 4.5%, so cash and bonds lose buying power faster.",
+    "Core PCE y/y, %": "The Fed's preferred inflation measure is {value}%, above the Fed's own forecast, which argues for higher rates.",
+    "Michigan 1y expectation": "Households expect {value}% inflation over the next year, above 5%, which can feed into wages and prices.",
+    "WTI, $": "Oil moved more than 10% in a week to ${value} a barrel, which feeds into gas prices and inflation.",
+    "Sahm rule": "Unemployment has risen enough to trip a rule that marked the start of past recessions.",
+    "CFNAI 3-month mean": "A broad index of US activity reads {value}, far from normal, which points to a sharp turn in growth.",
+    "Initial claims, k": "New unemployment claims average more than 250,000 a week, a sign layoffs are rising.",
+    "Payrolls change, k": "Job growth stalled: the economy changed by {value} thousand jobs last month.",
+    "Smoothed recession probability, %": "A model puts the chance the US is in recession at {value}%.",
+    "NFCI": "Borrowing is harder than average by the Chicago Fed's measure, which slows spending and hiring.",
+    "STLFSI4": "Financial stress is above normal by the St. Louis Fed's measure.",
+    "HY OAS": "Risky companies pay {value} points more than the government to borrow, the most in three years, a sign lenders are nervous.",
+    "Baa minus 10y": "Mid-grade companies pay {value} points more than the government to borrow, a gap this wide shows up in 1 month of 10.",
+    "VIX": "The stock market's fear gauge is {value}, a level reached on 1 day in 10, so expect bigger daily swings.",
+    "SLOOS C&I tightening": "Many more banks are tightening business loans, which slows company spending.",
+    "Broad dollar": "The dollar moved more than 3% in a month, which shifts import prices and the value of foreign earnings.",
+    "USD/JPY": "The yen moved more than 3% against the dollar in a week, a move that has shaken global markets before.",
+    "Stablecoin supply, $B": "The supply of dollar coins used in crypto fell more than 5% in a month to ${value} billion, a sign money is leaving crypto.",
+}
+
+
+def plain(items):
+    return [PLAIN[it["label"]].format(value=it["value"].lstrip("+")) for it in items if it["status"] == "ALERT"]
