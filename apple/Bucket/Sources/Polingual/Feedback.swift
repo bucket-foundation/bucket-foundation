@@ -34,12 +34,26 @@ enum Feedback {
 
     static let lastAskKey = "feedback.lastReviewAsk"
 
+    static let gameWinsKey = "feedback.gameWins"
+    static let gameWinsBeforeAsk = 3
+
+    static var asksOff: Bool { ProcessInfo.processInfo.arguments.contains("-reviewAskOff") }
+
+    static func quiet(now: Date, last: Double) -> Bool {
+        last == 0 || now.timeIntervalSince1970 - last > 60 * 86_400
+    }
+
     static func shouldAsk(streak: Int, graded: Int, correct: Int, now: Date = .now, last: Double) -> Bool {
-        let quiet = last == 0 || now.timeIntervalSince1970 - last > 60 * 86_400
         let accuracy = Double(correct) / Double(max(graded, 1))
         let strong = graded >= 10 && accuracy >= 0.9
         let milestone = [3, 7, 30].contains(streak) && graded >= 5 && accuracy >= 0.7
-        return quiet && (strong || milestone)
+        return quiet(now: now, last: last) && (strong || milestone)
+    }
+
+    static func isGameWin(stars: Int?) -> Bool { stars == 3 }
+
+    static func shouldAskAfterGame(wins: Int, now: Date = .now, last: Double) -> Bool {
+        wins >= gameWinsBeforeAsk && quiet(now: now, last: last)
     }
 }
 
@@ -52,9 +66,31 @@ struct AskForReview: ViewModifier {
 
     func body(content: Content) -> some View {
         content.task {
-            guard Feedback.shouldAsk(streak: streak, graded: graded, correct: correct, last: last) else { return }
+            guard !Feedback.asksOff, Feedback.shouldAsk(streak: streak, graded: graded, correct: correct, last: last) else { return }
             try? await Task.sleep(for: .seconds(1.2))
             last = Date().timeIntervalSince1970
+            requestReview()
+        }
+    }
+}
+
+struct AskAfterGameWin: ViewModifier {
+    @Environment(\.requestReview) private var requestReview
+    @AppStorage(Feedback.lastAskKey) private var last = 0.0
+    @AppStorage(Feedback.gameWinsKey) private var wins = 0
+    @State private var counted = false
+    let stars: Int?
+
+    func body(content: Content) -> some View {
+        content.task {
+            guard !Feedback.asksOff, !counted, Feedback.isGameWin(stars: stars) else { return }
+            counted = true
+            wins += 1
+            guard Feedback.shouldAskAfterGame(wins: wins, last: last) else { return }
+            try? await Task.sleep(for: .seconds(1.5))
+            guard !Task.isCancelled else { return }
+            last = Date().timeIntervalSince1970
+            wins = 0
             requestReview()
         }
     }

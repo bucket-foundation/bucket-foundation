@@ -4,7 +4,7 @@ import XCTest
 final class GamesUITests: XCTestCase {
     private func launch(_ extra: [String], orientation: String? = nil, asked: String = "guest", motion: Bool = false) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked] + (motion ? [] : ["-reduceMotion"]) + extra
+        app.launchArguments = ["-polingual.onboarded", "YES", "-polingualOpen", "-polingualOrientation", orientation ?? ProcessInfo.processInfo.environment["GAME_ORIENT"] ?? "portrait", "-startTab", "learn", "-openLang", "en:es,fr,de:none", "-polingualDemo", "40", "-polingual.saveProgress", "NO", "-polingual.knownAskedOwners", asked, "-reviewAskOff"] + (motion ? [] : ["-reduceMotion"]) + extra
         app.launch()
         return app
     }
@@ -140,7 +140,7 @@ final class GamesUITests: XCTestCase {
     }
 
     func testLanguagesSheetStaysOffADailyGame() {
-        let app = launch(["-openGame", "mini", "-knownBlank"], asked: "none")
+        let app = launch(["-openGame", "mini", "-freshDaily", "-knownBlank"], asked: "none")
         let square = app.buttons.matching(NSPredicate(format: "label == %@", "Empty square")).firstMatch
         XCTAssertTrue(square.waitForExistence(timeout: 60))
         XCTAssertFalse(app.staticTexts["Which languages do you speak?"].waitForExistence(timeout: 12))
