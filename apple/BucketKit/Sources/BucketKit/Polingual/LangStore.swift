@@ -126,6 +126,16 @@ public final class LangStore {
 
     public var hasUnsyncedWork: Bool { !pending.isEmpty }
 
+    public var unsyncedCount: Int { pending.count }
+
+    public func discardUnsynced() {
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        pending = [:]
+        savePending()
+        if let owner = disk.read("owner.json").flatMap({ String(data: $0, encoding: .utf8) }) { dropHeld(owner) }
+    }
+
     static func isBlank(_ branch: String, _ data: JSValue?) -> Bool {
         guard let data else { return true }
         if branch == systemsBranch {

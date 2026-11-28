@@ -137,6 +137,27 @@ final class LangServer: @unchecked Sendable {
         #expect(!s.hasUnsyncedWork)
     }
 
+    @Test func discardedOfflineWorkStaysOffTheServerAtTheNextSignIn() async {
+        let server = seeded()
+        let disk = MemoryLangDisk()
+        let signedIn = LockedBox(true)
+        let s = store(server, disk, signedIn: signedIn)
+        await s.syncAfterSignIn(account: "user-a")
+        server.online.mutate { $0 = false }
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        await s.flush()
+        #expect(s.unsyncedCount == 1)
+        s.discardUnsynced()
+        #expect(s.unsyncedCount == 0)
+        signedIn.mutate { $0 = false }
+        s.clearLocal()
+        server.online.mutate { $0 = true }
+        signedIn.mutate { $0 = true }
+        await s.syncAfterSignIn(account: "user-a")
+        #expect(!EngineState(js: server.branches.value[Self.branch]).cards.has(cardId("es", "adios")))
+        #expect(!s.hasUnsyncedWork)
+    }
+
     @Test func reconnectWithoutRelaunchPushesQueuedWork() async {
         let server = seeded()
         let s = store(server, MemoryLangDisk(), signedIn: LockedBox(true))

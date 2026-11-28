@@ -7,6 +7,9 @@ struct AccountView: View {
     @Environment(Account.self) private var account
     @Environment(GroupStore.self) private var groups
     @Environment(\.accountHost) private var accountHost
+    @Environment(LangStore.self) private var langs
+    @State private var confirmingOfflineSignOut = false
+    @State private var confirmingDiscard = false
     @State private var openGroup: String?
     @State private var openMember: String?
     @State private var confirmingReset = false
@@ -25,6 +28,11 @@ struct AccountView: View {
     private static var privacyURL: URL {
         let polingual = Bundle.main.bundleIdentifier == "com.polingual.app"
         return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
+    }
+
+    private func signOut() {
+        Beta.shared.signedOut()
+        Task { await account.signOutAfterSync() }
     }
 
     private var statusSlot: AccountStatusSlot { .slot(stage: account.stage, emailing: emailing) }
@@ -58,8 +66,23 @@ struct AccountView: View {
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
                         MemberNameRow()
                         Button("Sign out", role: .destructive) {
-                            Beta.shared.signedOut()
-                            Task { await account.signOutAfterSync() }
+                            if accountHost != nil, !NetworkWatch.shared.online, langs.hasUnsyncedWork { confirmingOfflineSignOut = true } else { signOut() }
+                        }
+                        .confirmationDialog("Sign out while offline?", isPresented: $confirmingOfflineSignOut, titleVisibility: .visible) {
+                            Button("Sign out, keep work on this device") { signOut() }
+                            Button("Discard work", role: .destructive) { confirmingDiscard = true }
+                            Button("Keep signed in", role: .cancel) {}
+                        } message: {
+                            Text("\(langs.unsyncedCount) study sets have not reached the server.")
+                        }
+                        .alert("Discard unsaved work?", isPresented: $confirmingDiscard) {
+                            Button("Discard and sign out", role: .destructive) {
+                                langs.discardUnsynced()
+                                signOut()
+                            }
+                            Button("Cancel", role: .cancel) {}
+                        } message: {
+                            Text("This progress is removed from this device for good.")
                         }
                     } header: {
                         Eyebrow(text: "Account")
