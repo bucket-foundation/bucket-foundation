@@ -83,7 +83,8 @@ struct DuelGame: View {
         let words = GameWords.ordered(langs.freshGameWords(corpus), using: &rng)
         let clash: (GameWord, String) -> Bool = { w, l in l != w.lang && corpus.byId[w.itemId]?.form(l)?.lowercased() == w.form.lowercased() }
         prompts = GameRounds.flags(words, own: langs.gameLangs, mode: .flag, count: Self.rounds, sameForm: clash, using: &rng)
-        meanings = prompts.map { p in ([p.word.gloss] + GameWords.meaningFoils(for: p.word, in: words, using: &rng)).shuffled(using: &rng) }
+        let foilPool = words + GameWords.starter(langs.systems, corpus: corpus)
+        meanings = prompts.map { p in ([p.word.gloss] + GameWords.meaningFoils(for: p.word, in: foilPool, using: &rng)).shuffled(using: &rng) }
         index = 0
         step = 0
         pickedLang = nil

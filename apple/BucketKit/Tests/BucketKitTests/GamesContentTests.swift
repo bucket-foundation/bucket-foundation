@@ -46,6 +46,17 @@ func words(_ n: Int) -> [GameWord] {
         #expect(GameWords.meaningFoils(for: english[0], in: [english[0], english[1]] + french, using: &few) == ["en1"])
     }
 
+    @Test func starterWordsGiveASmallRootFullMeaningChoices() throws {
+        let corpus = try translateCorpus()
+        let system = LangSystem(id: "s", name: "es", root: "fr", targets: ["es"], createdAt: 0)
+        let starter = GameWords.starter([system], corpus: corpus)
+        let word = try #require(starter.first)
+        var rng = SeededRandom(seed: 3)
+        let foils = GameWords.meaningFoils(for: word, in: [word] + starter, using: &rng)
+        #expect(foils.count == 3)
+        #expect(!foils.contains { $0.lowercased() == word.gloss.lowercased() })
+    }
+
     @Test func wordsMissedOrDueLeadTheRound() throws {
         let corpus = try translateCorpus()
         let system = LangSystem(id: "s", name: "es", root: "en", targets: ["es"], createdAt: 0)
