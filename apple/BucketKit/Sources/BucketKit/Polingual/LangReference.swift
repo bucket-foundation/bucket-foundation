@@ -261,13 +261,14 @@ public enum LangReference {
 
     public static func characters(_ lang: String) -> AlphabetUnit? { ScriptCourse.characterUnit(lang) }
 
-    public static func words(_ lang: String, corpus: LangCorpus?, top: [TopWord]) -> [WordDetail] {
+    public static func words(_ lang: String, corpus: LangCorpus?, top: [TopWord], root: String = "en") -> [WordDetail] {
         var seen = Set<String>()
         var out: [WordDetail] = []
         for item in corpus?.items ?? [] where isVocab(item) {
             guard let form = item.form(lang), seen.insert(WordLookup.fold(form, lang)).inserted else { continue }
             let ranked = top.first { WordLookup.fold($0.word, lang) == WordLookup.fold(form, lang) }
-            out.append(WordDetail(word: form, lang: lang, gloss: item.gloss, reading: item.readings[lang], itemId: item.id, pos: ranked?.pos, band: ranked?.band))
+            let rootForm = WordLookup.rootForm(item, word: form, lang: lang, root: root)
+            out.append(WordDetail(word: form, lang: lang, gloss: rootForm ?? item.gloss, reading: item.readings[lang], itemId: item.id, pos: ranked?.pos, band: ranked?.band, rootLang: rootForm == nil ? "en" : root))
         }
         for t in top where seen.insert(WordLookup.fold(t.word, lang)).inserted {
             out.append(WordDetail(word: t.word, lang: lang, gloss: t.meaning, reading: t.ipa.map(stripSlashes), pos: t.pos, band: t.band))
