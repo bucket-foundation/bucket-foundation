@@ -64,6 +64,31 @@ import Testing
         #expect(TeXLite.segments("$x_ab$ and *c*") == [.math(tex: "x_ab", shown: "xₐb"), .text(" and *c*")])
     }
 
+    @Test func strongSpansMath() {
+        let a = TeXLite.attributed("a **binding ($K_d$) step** and **$5\\sigma$** then *em*")
+        #expect(String(a.characters) == "a binding (K_d) step and 5σ then em")
+        let strong = a.runs.filter { $0.inlinePresentationIntent?.contains(.stronglyEmphasized) == true }.map { String(a[$0.range].characters) }.joined()
+        #expect(strong == "binding (K_d) step5σ")
+        let em = a.runs.first { $0.inlinePresentationIntent == .emphasized }
+        #expect(em.map { String(a[$0.range].characters) } == "em")
+    }
+
+    @Test func unbalancedStrongStaysLiteral() {
+        #expect(String(TeXLite.attributed("a ** b $x$ c").characters) == "a ** b x c")
+    }
+
+    @Test func codeSpansAndEscapesKeepStrongMarkersOut() {
+        #expect(String(TeXLite.attributed("`**` **a $x$ b**").characters).hasPrefix("**"))
+        #expect(String(TeXLite.attributed("\\*\\* **a $x$ b**").characters).hasPrefix("** "))
+        let mixed = TeXLite.attributed("**one** then **two $x$ three**")
+        #expect(String(mixed.characters) == "one then two x three")
+    }
+
+    @Test func liveProseLeavesNoStrongMarkers() throws {
+        let raw = try live().prose.filter { String(TeXLite.attributed($0).characters).contains("**") }
+        #expect(raw.isEmpty, "\(raw.count): \(raw.prefix(3))")
+    }
+
     @Test func spokenForms() {
         #expect(TeXLite.spoken("\\frac{a}{b}") == "a over b")
         #expect(TeXLite.spoken("e^{Ht}") == "e to the Ht")
