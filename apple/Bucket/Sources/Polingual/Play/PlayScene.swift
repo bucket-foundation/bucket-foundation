@@ -26,7 +26,9 @@ enum PlayLaunch {
 extension LangStore {
     var playRoot: String { dailySystem?.root ?? "en" }
 
-    func meaningRoot(_ lang: String) -> String { WordLookup.meaningRoot(lang, systems: systems, daily: dailySystem) }
+    func meaningRoot(_ lang: String, lesson: String? = nil) -> String {
+        WordLookup.meaningRoot(lang, systems: systems, daily: dailySystem, lessonId: lesson)
+    }
 
     var playTargets: [String] {
         let t = dailySystem?.targets ?? []

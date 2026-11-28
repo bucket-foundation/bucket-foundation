@@ -57,6 +57,7 @@ struct StudyView: View {
         .paper()
         .sharePage(sharePage)
         .shareObjects(wordObjects)
+        .environment(\.lessonSystem, systemId)
         .navigationTitle(store.system(systemId)?.title ?? String(localized: "Study"))
         .inlineTitle()
         .task {

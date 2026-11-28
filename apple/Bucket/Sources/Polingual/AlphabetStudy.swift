@@ -66,6 +66,7 @@ struct AlphabetStudy: View {
             }
         }
         .paper()
+        .environment(\.lessonSystem, systemId)
         .navigationTitle(unit?.title ?? "")
         .inlineTitle()
         .toolbar {

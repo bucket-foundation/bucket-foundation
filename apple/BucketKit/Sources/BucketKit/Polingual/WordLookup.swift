@@ -42,7 +42,12 @@ public enum WordLookup {
         return item?.form(root).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
     }
 
-    public static func meaningRoot(_ lang: String, systems: [LangSystem], daily: LangSystem?) -> String {
+    public static func meaningRoot(_ lang: String, systems: [LangSystem], daily: LangSystem?, lessonId: String?) -> String {
+        meaningRoot(lang, systems: systems, daily: daily, lesson: lessonId.flatMap { id in systems.first { $0.id == id } })
+    }
+
+    public static func meaningRoot(_ lang: String, systems: [LangSystem], daily: LangSystem?, lesson: LangSystem? = nil) -> String {
+        if let lesson, lesson.targets.contains(lang) { return lesson.root }
         if let daily, daily.targets.contains(lang) { return daily.root }
         return systems.first { $0.targets.contains(lang) }?.root ?? daily?.root ?? "en"
     }

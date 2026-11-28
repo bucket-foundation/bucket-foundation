@@ -116,6 +116,20 @@ struct LangReferenceTests {
         #expect(WordLookup.meaningRoot("de", systems: [], daily: nil) == "en")
     }
 
+    @Test func meaningRootPrefersTheLessonSystem() {
+        let romance = LangSystem(id: "a", name: "A", root: "en", targets: ["es", "fr"], createdAt: 0)
+        let italian = LangSystem(id: "b", name: "B", root: "fr", targets: ["it", "es"], createdAt: 1)
+        let systems = [romance, italian]
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: romance, lesson: italian) == "fr")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: italian, lesson: romance) == "en")
+        #expect(WordLookup.meaningRoot("fr", systems: systems, daily: italian, lesson: italian) == "en")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: romance, lesson: nil) == "en")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: romance, lessonId: "b") == "fr")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: italian, lessonId: "a") == "en")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: romance, lessonId: "gone") == "en")
+        #expect(WordLookup.meaningRoot("it", systems: systems, daily: romance, lessonId: nil) == "fr")
+    }
+
     @Test func searchMatchesWordAndMeaning() {
         let words = LangReference.words("es", corpus: Self.corpus(), top: [])
         #expect(LangReference.filter(words, query: "BEB").count == 1)
