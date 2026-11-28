@@ -474,6 +474,14 @@ public final class LangStore {
         await persistSystems(upsert: next)
     }
 
+    public func rename(_ id: String, to name: String) async {
+        guard let s = system(id) else { return }
+        let next = renameSystem(s, name, now: now())
+        guard next.name != s.name else { return }
+        replace(next)
+        await persistSystems(upsert: next)
+    }
+
     func replace(_ s: LangSystem) {
         if let i = systems.firstIndex(where: { $0.id == s.id }) { systems[i] = s }
     }

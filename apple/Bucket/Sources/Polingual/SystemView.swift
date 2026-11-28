@@ -8,6 +8,8 @@ struct SystemView: View {
     @State private var unitLang: String?
     @State private var editing: [String]?
     @State private var editError: String?
+    @State private var renaming = false
+    @State private var draftName = ""
 
     var body: some View {
         Group {
@@ -34,6 +36,14 @@ struct SystemView: View {
         .task {
             await store.load()
             store.adoptSiblings(systemId)
+        }
+        .alert("Rename set", isPresented: $renaming) {
+            TextField(store.system(systemId)?.title ?? "", text: $draftName)
+                .accessibilityIdentifier("set.renameField")
+            Button("Save name") { Task { await store.rename(systemId, to: draftName) } }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Leave it empty to use the language names.")
         }
     }
 
@@ -91,6 +101,11 @@ struct SystemView: View {
                     if let editError { Text(editError).noticeStyle() }
                 } else {
                     Button("Edit languages") { editing = system.targets }
+                    Button("Rename set") {
+                        draftName = hasCustomName(system) ? system.name : ""
+                        renaming = true
+                    }
+                    .accessibilityIdentifier("set.rename")
                 }
                 SaveNotice(state: store.saveState)
             } header: {
