@@ -5,8 +5,9 @@ import Testing
 
 @MainActor
 struct SignUpFunnelTests {
-    @Test func onboardingIsThreeSteps() {
-        #expect(Onboarding.Step.allCases == [.welcome, .speak, .languages])
+    @Test func onboardingAsksWhereTheLearnerHeardBeforeLanguages() {
+        #expect(Onboarding.Step.allCases == [.welcome, .heard, .speak, .languages])
+        #expect(Onboarding.Step.allCases.map(\.funnelName) == ["welcome", "heard_about", "speak", "languages"])
     }
 
     @Test func purchaseOffersSaveOnlyWhenSignedOut() {

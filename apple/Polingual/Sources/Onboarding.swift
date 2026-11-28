@@ -2,7 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct Onboarding: View {
-    enum Step: Int, CaseIterable { case welcome, speak, languages }
+    enum Step: Int, CaseIterable { case welcome, heard, speak, languages }
 
     @Environment(LangStore.self) private var store
     @Environment(\.accessibilityReduceMotion) private var still
@@ -12,6 +12,7 @@ struct Onboarding: View {
     @State private var picks = KnownPicks(device: InterfaceLanguage.deviceRoot)
     @State private var creating = false
     @State private var failed: String?
+    @State private var heard: String?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -33,6 +34,7 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
+        .onChange(of: step, initial: true) { _, s in AppFunnel.track("onboarding_view", detail: s.funnelName) }
         .task {
             await store.load()
             if !store.known.isBlank, !picks.touched { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
@@ -46,6 +48,7 @@ struct Onboarding: View {
     func page(_ s: Step) -> some View {
         switch s {
         case .welcome: welcome
+        case .heard: heardAbout
         case .speak: speak
         case .languages: languages
         }
@@ -77,6 +80,42 @@ struct Onboarding: View {
                 .minimumScaleFactor(0.6)
                 .fixedSize(horizontal: false, vertical: true)
             StreakBadge()
+        }
+    }
+
+    var heardAbout: some View {
+        ViewThatFits(in: .vertical) {
+            heardPage
+            ScrollView { heardPage }
+        }
+    }
+
+    var heardPage: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("How did you hear about Polingual?")
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+                .minimumScaleFactor(0.6)
+                .fixedSize(horizontal: false, vertical: true)
+            FlowLayout(spacing: 8) {
+                ForEach(HeardSource.all) { source in
+                    Chip(title: source.label, on: heard == source.key) { answer(source.key) }
+                        .accessibilityIdentifier("heard-\(source.key)")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 2)
+        }
+    }
+
+    func answer(_ key: String) {
+        guard heard == nil else { advance(); return }
+        heard = key
+        AppFunnel.track("heard_about", detail: key)
+        Task {
+            try? await Task.sleep(for: .milliseconds(still ? 0 : 250))
+            if step == .heard { advance() }
         }
     }
 
@@ -197,7 +236,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
-        case .speak: "Continue"
+        case .heard, .speak: "Continue"
         case .languages: creating ? "Setting up" : failed == nil ? "Continue" : "Try again"
         }
     }
@@ -226,6 +265,36 @@ struct Onboarding: View {
         } catch {
             failed = "That set could not be created. Try again, or skip and build one from the home screen."
         }
+    }
+}
+
+extension Onboarding.Step {
+    var funnelName: String {
+        switch self {
+        case .welcome: "welcome"
+        case .heard: "heard_about"
+        case .speak: "speak"
+        case .languages: "languages"
+        }
+    }
+}
+
+enum AppFunnel {
+    static let shared = PolingualFunnel()
+
+    static var live: Bool {
+        #if DEBUG
+        PolingualLaunch.value("-funnel") == "on"
+        #else
+        true
+        #endif
+    }
+
+    static func track(_ name: String, detail: String? = nil) {
+        guard live else { return }
+        let lang = Locale.current.language.languageCode?.identifier
+        _ = shared.visitor
+        Task.detached(priority: .utility) { await shared.send(name, detail: detail, lang: lang) }
     }
 }
 
