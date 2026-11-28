@@ -1,0 +1,18 @@
+<!-- voice-ignore-file: transcript-derived digest -->
+# Complete Guide to building an AI Trading Bot with Claude for Beginners | Ray Fu | oQdkFPhqaGk | 0.24 h
+
+Teaches: Ray Fu (2026) builds a beginner moving-average crossover bot with Claude Code and the Alpaca MCP server on a paper account, trading one share of Apple. Promotes giveaways; no performance results shown.
+
+Claims:
+- A bot automates a repetitive strategy and executes better than a human; the speaker's own problem was execution and emotional trade management. "It automates a repetitive strategy and it executes better than human can" [0:01:07]
+- Alpaca is connected as an MCP server in the Claude config with paper API keys, and Claude must be restarted for the MCP to load. "the MCP can only update after we restart the app" [0:06:10]
+- The strategy is a 20-day fast average crossing a 50-day slow average between two consecutive days, with a buy or sell order placed in the paper account. "when the 20-day average actually crosses above or below the 50-day average" [0:10:05]
+- Credentials go in an .env file so the bot does not need them each trade, and the bot runs a check each market open, so the computer must stay on. "your computer should stay on so your bot can run every single morning" [0:13:16]
+
+Architecture: Claude Code with Alpaca MCP, .env keys, a daily moving-average crossover check placing paper orders for one share of AAPL.
+
+Worked:
+- none reported
+
+Failed:
+- none reported

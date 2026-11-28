@@ -1,0 +1,449 @@
+# Source Registry
+
+Data sources the finance atlas draws from, tiered by default reliability. Every number used downstream still carries its source and fetch date. Full detail per source lives in `03-data-sources/DATA-SOURCES.md`. Last verified 2026-11-27, bead `bkt-q5moa`.
+
+## Official and Regulatory
+- FRED and ALFRED, US Treasury yield curve, BIS, IMF, World Bank WDI, OECD
+- SEC EDGAR full-text, XBRL APIs, Financial Statement Data Sets
+- FINRA TRACE, CFTC Commitments of Traders, EIA, FHFA HPI, USDA NASS
+- Fannie Mae and Freddie Mac loan-level performance data
+
+## Academic
+- CRSP, Compustat and OptionMetrics via WRDS
+- Ken French Data Library, Shiller data, JST Macrohistory, Global Financial Data
+
+## Exchange and Venue
+- Cboe DataShop, CME DataMine, LME
+- Coinbase, Binance, Kraken public market data
+- Polymarket and Kalshi APIs
+
+## Commercial Vendors
+- Equities and multi-asset: Norgate, FirstRate, Massive, Databento, Tiingo, Alpaca, IBKR, QuantConnect, EODHD, Nasdaq Data Link, Intrinio, Kibot, Alpha Vantage, FMP, Stooq, yfinance
+- Terminals: LSEG Workspace, Bloomberg
+- Options: ORATS
+- FX: TrueFX, HistData, OANDA, Dukascopy
+- Crypto: CoinGecko, Tardis.dev, Kaiko, CoinMetrics, Glassnode, Dune, DefiLlama, Artemis, Visa Onchain Analytics
+- Odds: The Odds API, SportsDataIO, OddsPortal
+- Real estate and SME: Zillow, Redfin, S&P Case-Shiller, BizBuySell
+- GPU compute: Silicon Data, Ornn, SF Compute, Vast.ai
+- Alternative: Quiver Quantitative, Thinknum, SimilarWeb, Google Trends
+
+## Reverify Queue
+Pages that failed on 2026-11-27: Databento, Interactive Brokers, Nasdaq Data Link Sharadar, Bloomberg, FMP, CME DataMine, Dukascopy, OECD, USDA NASS land values, Lincoln Institute, CoinMetrics, Kaggle, Artemis, SF Compute pricing. Zillow, Fannie Mae, BizBuySell and LME returned 403 and rest on search snippets.
+
+## Crawl Manifests
+Every fetch logs to `_intake-raw/<source>/MANIFEST.jsonl`. Prices change; re-run the fetch before any purchase.
+
+## Forbidden URLs
+Honor `.nucleus/config.json` `forbidden_urls` before any fetch. Research reads only.
+
+## Stablecoin Book Sources
+
+Mined 2026-11-27 with pdftotext from the 12 stablecoin research PDFs in `~/Documents` (Your Money Is Broken draft 1, the research dossier and 10 research reports). 365 unique URLs. Book citations carry the grade of their tier: official and academic entries are candidates for grade A once fetched; news is B; tertiary and social entries need a primary replacement before any atlas card cites them. Doc tags name the PDF that cites each URL.
+
+### Official and Central Bank
+
+- https://documents1.worldbank.org/curated/en/900911468047101453/pdf/WPS5988.pdf, cited in Historical Ledger Evolution
+- https://ec.europa.eu/eurostat/documents/2995521/15265521/2-17112022-AP-EN.pdf/b6953137-786e-ed9c-5ee2-6812c0f8f07f, cited in YMIB Dossier
+- https://fred.stlouisfed.org/data/CPIAUCNS, cited in YMIB Dossier
+- https://fred.stlouisfed.org/data/SNDR, cited in YMIB Dossier
+- https://history.state.gov/milestones/1969-1976/nixon-shock, cited in Historical Ledger Evolution
+- https://home.treasury.gov/news/press-releases/jy2722, cited in Research Findings
+- https://oversight.house.gov/wp-content/uploads/2014/05/Staff-Report-Operation-Choke-Point1.pdf, cited in YMIB Dossier
+- https://remittanceprices.worldbank.org/, cited in Integrated Research Report
+- https://www.bankcustomer.gov/help-topics/debt-credit-scores/credit-scores-reports/credit-reports/credit-report-chex.html, cited in YMIB Dossier
+- https://www.bankofengland.co.uk/freedom-of-information/2020/details-of-the-bank-of-england-loan-to-the-government-in-1694, cited in Historical Ledger Evolution
+- https://www.bankofengland.co.uk/museum/online-collections/banknotes/early-banknotes, cited in Historical Ledger Evolution
+- https://www.bankofengland.co.uk/museum/online-collections/blog/why-was-the-bank-of-england-founded, cited in Historical Ledger Evolution
+- https://www.bankofengland.co.uk/paper/2024/responses-to-the-digital-pound-consultation-paper, cited in YMIB Dossier
+- https://www.bis.org/fsi/fsibriefs27.pdf, cited in Ecosystem Overview
+- https://www.bis.org/publ/arpdf/ar2025e3.htm, cited in Biggest Infrastructure Upgrade, Geopolitical Impacts
+- https://www.bis.org/publ/bppdf/bispap123_e.pdf, cited in YMIB Dossier
+- https://www.bis.org/publ/work1270.htm, cited in YMIB Dossier
+- https://www.bis.org/publ/work1270.pdf, cited in YMIB Dossier
+- https://www.bis.org/review/r200903d.pdf, cited in Biggest Infrastructure Upgrade
+- https://www.bis.org/speeches/sp251127a.pdf, cited in Integrated Research Report
+- https://www.bls.gov/regions/mid-atlantic/data/consumerpriceindexhistorical_us_table.htm, cited in YMIB Dossier
+- https://www.cftc.gov/PressRoom/PressReleases/8450-21, cited in Ecosystem Overview
+- https://www.congress.gov/118/meeting/house/116085/witnesses/HHRG-118-BA00-Wstate-AllaireJ-20230613.pdf, cited in User Stories
+- https://www.ecb.europa.eu/euro/digital_euro/progress/html/index.en.html, cited in YMIB Dossier
+- https://www.fdic.gov/household-survey, cited in YMIB Dossier
+- https://www.fdic.gov/news/press-releases/2025/fdic-releases-documents-related-supervision-crypto-related-activities, cited in YMIB Dossier
+- https://www.federalreserve.gov/aboutthefed/fract.htm, cited in Historical Ledger Evolution
+- https://www.federalreserve.gov/econres/feds/files/2023044pap.pdf, cited in Ecosystem Overview
+- https://www.federalreservehistory.org/essays/bretton-woods-created, cited in Historical Ledger Evolution
+- https://www.federalreservehistory.org/essays/bretton-woods-launched, cited in Historical Ledger Evolution
+- https://www.federalreservehistory.org/essays/fedwire, cited in Historical Ledger Evolution
+- https://www.federalreservehistory.org/essays/gold-convertibility-ends, cited in Historical Ledger Evolution
+- https://www.federalreservehistory.org/essays/great-inflation, cited in YMIB Dossier
+- https://www.federalreservehistory.org/essays/panic-of-1907, cited in Historical Ledger Evolution
+- https://www.imf.org/-/media/files/publications/dp/2025/english/usea.pdf?ref=mariblock.com, cited in Geopolitical Impacts
+- https://www.imf.org/en/blogs/articles/2025/12/04/how-stablecoins-can-improve-payments-and-global-finance, cited in Biggest Infrastructure Upgrade
+- https://www.imf.org/en/publications/fandd/issues/2025/09/the-stablecoin-balancing-act-darrell-duffie, cited in Biggest Infrastructure Upgrade
+- https://www.imf.org/en/publications/wp/issues/2023/05/16/nigerias-enaira-one-year-after-533487, cited in YMIB Dossier
+- https://www.imf.org/external/pubs/nft/2005/hawala/hawala.pdf, cited in Historical Ledger Evolution
+- https://www.justice.gov/ola/operation-choke-point, cited in YMIB Dossier
+- https://www.moderntreasury.com/learn/top-stablecoin-issuers, cited in Ecosystem Overview
+- https://www.occ.gov/news-issuances/speeches/2022/pub-speech-2022-106.pdf, cited in Integrated Research Report
+- https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/consumerpriceinflation/october2022, cited in YMIB Dossier
+- https://www.stlouisfed.org/annual-report/2013/maverick-great-inflation, cited in YMIB Dossier
+- https://www.swift.com/about-us/legal/compliance-0/swift-and-sanctions, cited in Historical Ledger Evolution
+- https://www.swift.com/news-events/news/year-shared-progress-5-highlights-2025, cited in Historical Ledger Evolution
+- https://www.swift.com/sites/default/files/files/swift-annual-review-2024.pdf, cited in Historical Ledger Evolution
+- https://www.worldbank.org/en/archive/history/exhibits/Bretton-Woods-and-the-Birth-of-the-World-Bank, cited in Historical Ledger Evolution
+
+### Academic and Archive
+
+- https://academic.oup.com/ereh/article/14/3/361/395172, cited in Historical Ledger Evolution
+- https://academic.oup.com/jiel/article/28/2/204/8139924, cited in Biggest Infrastructure Upgrade
+- https://aier.org/article/cryptocurrencies-and-the-denationalization-of-money/, cited in Biggest Infrastructure Upgrade
+- https://aier.org/article/what-shipping-containers-did-for-trade-stablecoins-can-do-for-money/, cited in Biggest Infrastructure Upgrade, Research Findings
+- https://brill.com/previewpdf/book/edcoll/9789004190597/Bej.9789004190580.i-420_018.xml, cited in Historical Ledger Evolution
+- https://brill.com/previewpdf/view/journals/lega/71/1-2/article-p7_2.xml?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://link.springer.com/article/10.1007/s40822-025-00311-4, cited in User Stories
+- https://onlinelibrary.wiley.com/doi/full/10.1002/jid.3943, cited in Biggest Infrastructure Upgrade
+- https://www.cambridge.org/core/services/aop-cambridge-core/content/view/07949802533E88EC09DC855F179ED53E/S0002020625000204a.pdf/, cited in User Stories
+- https://www.jstor.org/stable/1832571, cited in Historical Ledger Evolution
+- https://www.jstor.org/stable/2113028?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://www.jstor.org/stable/2113081, cited in Historical Ledger Evolution
+- https://www.jstor.org/stable/26787212, cited in Historical Ledger Evolution
+- https://www.jstor.org/stable/43713641?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://www.jstor.org/stable/639677?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://www.science.org/doi/suppl/10.1126/science.aah5309/suppl_file/suri.sm.pdf, cited in Historical Ledger Evolution
+- https://www.sciencedirect.com/science/article/abs/pii/S154461232400120X, cited in Research Findings
+- https://www.sciencedirect.com/science/article/pii/S0736585324001345, cited in User Stories
+- https://www.themorgan.org/exhibitions/online/guide/stop-23-panic-1907, cited in Historical Ledger Evolution
+
+### News
+
+- https://apnews.com/article/fdc6bf0df8629e542f18fab50f5d32fd, cited in YMIB Dossier
+- https://coingeek.com/digital-assets-threaten-nigeria-monetary-stability-imf/, cited in Geopolitical Impacts
+- https://coingeek.com/nigeria-forms-task-force-to-study-stablecoin-adoption/, cited in Ecosystem Overview, Geopolitical Impacts
+- https://coingeek.com/stablecoins-make-up-43-percent-of-africa-crypto-transactions-in-2024/, cited in Research Findings
+- https://coingeek.com/tether-2025-sees-profits-down-loans-up-controversy-constant/, cited in Research Findings
+- https://decrypt.co/101224/stablecoins-without-backing-have-risk-of-blowing-up-in-your-face-imf-managing-director?amp=1, cited in User Stories
+- https://decrypt.co/112544/tether-usdt-will-be-available-from-24000-atms-across-brazil, cited in Research Findings
+- https://decrypt.co/154049/grand-theft-auto-6-release-date-rumors-leaks-news, cited in Frontier Use Cases
+- https://decrypt.co/350630/playstation-goes-crypto-sony-stablecoin-gaming-payments-nikkei, cited in Frontier Use Cases, Geopolitical Impacts
+- https://decrypt.co/73810/mark-cuban-hit-apparent-defi-rug-pull, cited in Research Findings
+- https://finance.yahoo.com/news/defi-tvl-hits-record-237b-181957477.html, cited in Research Findings
+- https://finance.yahoo.com/news/ecb-president-christine-lagarde-says-173037716.html, cited in User Stories
+- https://finance.yahoo.com/news/global-virtual-goods-market-size-140000757.html, cited in Frontier Use Cases
+- https://finance.yahoo.com/news/solana-cashio-hack-loots-52-165359406.html, cited in Research Findings
+- https://finance.yahoo.com/news/stablecoins-hit-56t-valuation-2030-090407498.html, cited in Research Findings
+- https://fortune.com/2022/03/25/crypto-robin-hood-stole-50-million-hacker-heist-cashio/, cited in Research Findings
+- https://fortune.com/2025/12/09/circle-privacy-stablecoin-aleo-udsc-udscx/, cited in Research Findings
+- https://restofworld.org/2021/stablecoins-find-a-use-case-in-africas-most-volatile-markets/, cited in User Stories
+- https://restofworld.org/2023/nigeria-digital-currency-failing/, cited in Geopolitical Impacts
+- https://sg.finance.yahoo.com/news/visa-brings-circles-usdc-settlement-120000746.html, cited in User Stories
+- https://www.aljazeera.com/news/2021/6/22/with-venezuelas-economy-in-crisis-cryptocurrency-fills-the-gaps, cited in User Stories
+- https://www.bloomberg.com/news/articles/2025-05-20/yield-bearing-stablecoins-challenge-dominance-of-tether-circle, cited in Biggest Infrastructure Upgrade
+- https://www.bloomberg.com/news/features/2024-11-20/yellow-card-is-the-crypto-startup-behind-africa-s-stablecoin-boom, cited in User Stories
+- https://www.bloomberg.com/news/videos/2025-07-21/stablecoin-an-opportunity-not-a-threat-mcgranahan-video, cited in Research Findings
+- https://www.coindesk.com/business/2023/03/22/telegram-users-can-now-transfer-usdt-through-chats, cited in Frontier Use Cases
+- https://www.coindesk.com/markets/2014/11/20/realcoin-rebrands-as-tether-to-avoid-altcoin-association?, cited in Historical Ledger Evolution
+- https://www.coindesk.com/tech/2022/03/23/stablecoin-cashio-suffers-infinite-glitch-exploit-tvl-drops-by-28m, cited in Research Findings
+- https://www.economist.com/finance-and-economics/2025/02/23/stablecoins-the-real-crypto-craze, cited in Geopolitical Impacts
+- https://www.forbes.com/sites/stevenehrlich/2018/09/25/two-reasons-for-venture-capitals-inexplicable-interest-in-stablecoins/, cited in Ecosystem Overview
+- https://www.pymnts.com/cryptocurrency/2023/usdc-stablecoin-value-recovers-after-dipping-as-low-as-86-cents/, cited in Research Findings
+- https://www.pymnts.com/cryptocurrency/2025/stablecoins-power-billions-in-payments-one-in-ten-could-be-illicit/, cited in Ecosystem Overview
+- https://www.reuters.com/business/finance/turkeys-crypto-rules-seen-addressing-licensing-taxation-after-boom-2023-11-14/, cited in Geopolitical Impacts
+- https://www.reuters.com/business/finance/visa-crypto-chief-bets-stablecoin-settlement-sees-volumes-growing-2026-01-14/, cited in Ecosystem Overview
+- https://www.reuters.com/markets/us/crypto-collapse-intensifies-stablecoin-tether-slides-below-dollar-peg-2022-05-12/, cited in Ecosystem Overview
+- https://www.reuters.com/technology/crypto-network-wormhole-hit-with-possible-320-mln-hack-2022-02-03/, cited in Research Findings
+- https://www.reuters.com/technology/cryptoverse-digital-coins-lure-inflation-weary-argentines-turks-2023-05-02/, cited in Geopolitical Impacts
+- https://www.reuters.com/technology/ethereums-energy-saving-merge-upgrade-2022-09-15/, cited in Research Findings
+- https://www.reuters.com/technology/stablecoin-tether-gets-boost-dollar-alternative-emerging-markets-ceo-says-2024-04-19/, cited in User Stories
+- https://www.reuters.com/technology/why-paypals-stablecoin-is-likely-succeed-where-facebooks-libra-failed-2023-08-21/, cited in User Stories
+- https://www.semafor.com/article/12/24/2025/uae-blockchain-project-eyes-africa-growth-through-m-pesa-deal, cited in Historical Ledger Evolution
+- https://www.theblock.co/post/138934/stablecoin-cashio-on-solana-exploited-for-28-million-in-infinite-mint-glitch, cited in Research Findings
+- https://www.theguardian.com/technology/2022/apr/18/beanstalk-cryptocurrency-loses-182m-of-reserves-in-flash-attack, cited in Ecosystem Overview, Research Findings
+- https://www.theverge.com/2021/10/15/22728425/valve-steam-blockchain-nft-crypto-ban-games-age-of-rust, cited in Frontier Use Cases
+- https://www.theverge.com/2021/12/7/22822410/ubisoft-nfts-quartz-digits-ghost-recon-breakpoint, cited in Frontier Use Cases
+- https://www.wired.com/story/operation-chokepoint-20-crypto-debanking-conspiracy/, cited in YMIB Dossier
+
+### Industry and Company
+
+- https://a16zcrypto.com/posts/article/state-of-crypto-report-2024/, cited in 100 Opportunities
+- https://a16zcrypto.substack.com/p/state-of-crypto-2025-the-latest-data, cited in Ecosystem Overview
+- https://aavescan.com/, cited in YMIB Dossier
+- https://aimspress.com/article/doi/10.3934/NAR.2023016?viewType=HTML, cited in Integrated Research Report
+- https://amlwatcher.com/blog/mica-regulation-how-the-eu-is-shaping-the-future-of-crypto-asset-compliance/, cited in User Stories
+- https://artandbiz.substack.com/p/the-perfect-book-title, cited in Integrated Research Report
+- https://avalon.law.yale.edu/ancient/hamcode.asp?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://banksparency.com/high-yield-savings-accounts/resources/fdic-rates, cited in YMIB Dossier
+- https://bdap.wharton.upenn.edu/wp-content/uploads/2026/01/Stablecoin-Toolkit.pdf, cited in Biggest Infrastructure Upgrade
+- https://beincrypto.com/africa-stablecoin-surges-yellow-card/, cited in User Stories
+- https://beincrypto.com/circle-usdc-cross-chain-trading-record-high/, cited in Research Findings
+- https://bitcoin.org/en/bitcoin-paper?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://bitwage.com/en-us/blog/how-blockchain-technology-simplifies-crossborder-contractor-payments, cited in Freelancer Case Studies
+- https://blockworks.co/news/nuon-flatcoin-targets-inflation, cited in Ecosystem Overview
+- https://blockworks.co/news/tether-wont-freeze-sanctioned-tornado-cash-addresses-without-authorities-request, cited in Ecosystem Overview
+- https://blog.ethereum.org/2021/05/18/country-power-no-more, cited in Research Findings
+- https://botpopuli.net/stablecoins-the-ultimate-tool-of-currency-hegemony/, cited in Biggest Infrastructure Upgrade
+- https://bpi.com/stablecoin-risks-some-warning-bells/, cited in Research Findings
+- https://business.cornell.edu/article/2025/04/stablecoins-importance-in-emerging-markets/, cited in Geopolitical Impacts
+- https://business.cornell.edu/article/2025/08/grassroots-cryptocurrency-adoption/, cited in Geopolitical Impacts
+- https://businessday.ng/news/article/fg-has-formed-team-to-study-stablecoin-adoption-says-cardoso/, cited in User Stories
+- https://bvnk.com/blog/global-stablecoin-regulations-2026, cited in User Stories
+- https://capitaloneshopping.com/research/ecommerce-statistics/, cited in Integrated Research Report
+- https://cbdctracker.hrf.org/currency/palau, cited in Ecosystem Overview
+- https://cbdctracker.org/currency/republic_of_palau-palau_stablecoin, cited in Ecosystem Overview
+- https://cdli.earth/cdli-tablet/565, cited in Historical Ledger Evolution
+- https://cdli.mpiwg-berlin.mpg.de/cdli-tablet/269, cited in Historical Ledger Evolution
+- https://cepr.org/voxeu/columns/medieval-champagne-fairs-lessons-development, cited in Historical Ledger Evolution
+- https://chargedevs.com/newswire/blink-adds-usdc-crypto-payments-at-select-ev-fast-charging-sites/, cited in Frontier Use Cases
+- https://coinness.com/vi/article/2868, cited in Geopolitical Impacts
+- https://corporate.visa.com/en/sites/visa-perspectives/innovation/visas-role-in-stablecoins.html, cited in User Stories
+- https://corporate.visa.com/en/solutions/crypto/stablecoins/stablecoins-and-the-future-of-onchain-finance.html, cited in Research Findings
+- https://cryptonews.com/news/trons-biggest-backer-fuels-110m-trx-buy-doubling-companys-treasury-to-220m/, cited in Research Findings
+- https://cryptopotato.com/ethereum-dominates-2025-defi-tvl-tops-99b-stablecoin-volume-hits-18-8t/, cited in Research Findings
+- https://cryptoslate.com/bis-chief-says-past-events-cast-doubt-on-stablecoins-ability-to-function-as-money/, cited in User Stories
+- https://cryptoslate.com/stablecoins-infiltrate-deeper-into-global-finance-as-western-union-enters-crypto/, cited in Research Findings
+- https://currencyinsider.com/2024/03/05/bahamas-sand-dollar-cbdc-has-2-1m-in-circulation-after-3-years/, cited in YMIB Dossier
+- https://currenxie.com/company/articles-and-guides/from-swift-to-stablecoins-a-practical-guide-to-the-payment-rails-powering, cited in Research Findings
+- https://defillama.com/chains, cited in Research Findings
+- https://digicoll.lib.berkeley.edu/record/230786?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://digitalcommons.wcl.american.edu/fac_works_pubs/24/, cited in User Stories
+- https://discover.knoxcountylibrary.org/oreilly/on1281679633, cited in Integrated Research Report
+- https://docs.wanchain.org/products/wanbridge/circle-cctp, cited in Research Findings
+- https://ecaef.org/forward-to-the-past-hayek-free-banking-and-the-cryptocurrency-revolution/, cited in Biggest Infrastructure Upgrade
+- https://emergingmarkets.today/how-latin-america-is-rewiring-money-with-stablecoins-and-pix/, cited in User Stories
+- https://enjin.io/blog/steam-nft-ban-how-its-going, cited in Frontier Use Cases
+- https://fasterpaymentscouncil.org/blog/15401/Stablecoins-for-Faster-Payments, cited in Ecosystem Overview
+- https://ffnews.com/newsarticle/fintech/tria-unveils-zkkyc-integration-with-billions-as-u-s-considers-patriot-act-for-digital-assets/, cited in Research Findings
+- https://financialtransparency.org/is-financial-privacy-a-human-right-more-unlikely-questions/, cited in Biggest Infrastructure Upgrade
+- https://fintechly.com/interviews/exclusive-with-don-tapscott-top-blockchain-influencer/, cited in Integrated Research Report
+- https://fintelegram.com/tethers-99-margin-claim-stablecoin-seigniorage-at-industrial-scale/, cited in Biggest Infrastructure Upgrade
+- https://fisglobal.gcs-web.com/news-releases/news-release-details/fis-research-banks-hold-key-stablecoin-adoption, cited in Biggest Infrastructure Upgrade
+- https://fivethirtyeight.com/features/its-not-just-silicon-valley-bank-americans-havent-trusted-banks-for-years/, cited in Integrated Research Report
+- https://futurumgroup.com/insights/terras-not-so-stablecoin-ust-collapses-resulting-in-over-40-billion-in-losses/, cited in Research Findings
+- https://hashedem.substack.com/p/stablecoins-leapfrogging-africas, cited in Biggest Infrastructure Upgrade
+- https://ia804507.us.archive.org/31/items/the-taxes-in-grain-in-ptolemaic-egypt/, cited in Historical Ledger Evolution
+- https://ideas.repec.org/a/bla/ecaffa/v39y2019i1p160-161.html, cited in Integrated Research Report
+- https://insight.dickinsonlaw.psu.edu/cgi/viewcontent.cgi?article=1387&context=psilr, cited in Biggest Infrastructure Upgrade
+- https://insights.flagshipadvisorypartners.com/decoding-the-stablecoin-opportunity-an-introduction, cited in 100 Opportunities
+- https://instituteofgeoeconomics.org/en/research/20250507/, cited in Geopolitical Impacts
+- https://irulast.com/blog/frax-collateralization-analysis, cited in Ecosystem Overview
+- https://janefriedman.com/start-here-how-to-write-a-book-proposal/, cited in Integrated Research Report
+- https://kotaku.com/ubisoft-nft-quartz-digits-ghost-recon-assassins-creed-p-1848437476, cited in Frontier Use Cases
+- https://leadingadvice.com.au/stable-money-in-an-unstable-world/, cited in Integrated Research Report
+- https://liamhorne.com/stablecoins, cited in Geopolitical Impacts
+- https://longbridge.com/en/news/273707510, cited in Frontier Use Cases
+- https://m.economictimes.com/tech/technology/billionaire-investor-mark-cuban-loses-870k-in-crypto-scam/articleshow/, cited in Research Findings
+- https://markets.businessinsider.com/news/currencies/dollar-dominance-russia-iran-gold-backed-stablecoin-crypto-2023-1, cited in Geopolitical Impacts
+- https://messari.io/report/the-stablecoin-leapfrog-how-emerging-markets-are-bypassing-traditional-banking, cited in Biggest Infrastructure Upgrade
+- https://milkeninstitute.org/content-hub/insights/global-digital-asset-adoption-latin-america, cited in Geopolitical Impacts
+- https://mph-intl.com/blog/stablecoins/stablecoins-the-promise-of-targeted-advertising-and-the-perils-of-privacy/, cited in Biggest Infrastructure Upgrade
+- https://nairametrics.com/2024/07/21/enaira-makes-up-less-than-1-of-currency-in-circulation-as-of-march-2024/, cited in Research Findings
+- https://nairametrics.com/2025/06/20/nigeria-ranks-first-in-global-stablecoins-adoption-in-2025-report/, cited in Geopolitical Impacts
+- https://naka.com/blog/crypto-payments-el-salvador-adoption, cited in Geopolitical Impacts
+- https://news.bitcoin.com/tether-and-smartpay-to-offer-usdt-at-more-than-24000-atms-in-brazil/, cited in Research Findings
+- https://news.bitcoin.com/tether-dominates-crypto-revenue-with-5-2-billion-in-2025/, cited in Research Findings
+- https://news.gallup.com/poll/505796/money-doesn-buy-confidence-financial-sector.aspx, cited in Integrated Research Report
+- https://news.gallup.com/topic/personal-finance.aspx, cited in YMIB Dossier
+- https://news.mit.edu/2016/mobile-money-kenyans-out-poverty-1208, cited in Biggest Infrastructure Upgrade
+- https://newsroom.safaricom.co.ke/innovation/m-pesa-17-years-of-transforming-lives/, cited in Historical Ledger Evolution
+- https://old.maa.org/press/periodicals/convergence/mathematical-treasure-luca-pacioli-s-summa, cited in Historical Ledger Evolution
+- https://openbanker.beehiiv.com/p/learnfromhistory, cited in Research Findings
+- https://paymentexpert.com/2025/10/08/approvely-stablecoins-gaming/, cited in Ecosystem Overview
+- https://paymentexpert.com/2026/01/22/wef-stablecoin-panel-2026/, cited in User Stories
+- https://phemex.com/news/article/imf-advocates-for-digital-currencies-cautions-on-stablecoins-26856, cited in User Stories
+- https://protos.com/tether-ten-years-100000000000-usdt-and-still-no-audit/?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://qz.com/emails/private-key/1663626/tencents-qq-coin-and-chinas-response, cited in Frontier Use Cases
+- https://regulationinnovation.org/podcast/stablecoins-sovereignty-africas-digital-money-revolution/, cited in Biggest Infrastructure Upgrade, Geopolitical Impacts
+- https://research.nansen.ai/articles/usdc-de-peg-what-happened-on-chain, cited in Research Findings
+- https://responsiblestatecraft.org/dedollarization-china-russia/, cited in Geopolitical Impacts
+- https://richturrin.substack.com/p/stablecoins-complement-tradfinot, cited in Research Findings
+- https://rockstarintel.com/gta-6-fuels-crypto-projects-which-break-rockstar-games-legal-terms/, cited in Frontier Use Cases
+- https://scholarship.law.gwu.edu/cgi/viewcontent.cgi?article=2834&context=faculty_publications, cited in User Stories
+- https://sites.utexas.edu/dsb/tokens/from-accounting-to-writing/, cited in Historical Ledger Evolution
+- https://smartstate.tech/blog/zkkyc-zero-knowledge-proofs-in-blockchain-kyc.html, cited in Research Findings
+- https://stablecoininsider.org/tether-achieves-record-10b-profits-in-2025/, cited in Research Findings
+- https://steamcommunity.com/discussions/forum/12/5241649843388784474/?l=ukrainian&ctp=2, cited in Frontier Use Cases
+- https://stellar.org/case-studies/moneygram-international, cited in Research Findings
+- https://stripe.com/en-pl/resources/more/b2b-stablecoin-payments, cited in Ecosystem Overview
+- https://synaptic.finance/p/how-stablecoins-are-claiming-the-900-billion-remittance-market, cited in Geopolitical Impacts
+- https://tass.com/world/1985999, cited in Geopolitical Impacts
+- https://tether.to/Whitepaper%3A?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://thecryptobasic.com/2025/10/24/argentines-turn-to-stablecoins-for-4-daily-arbitrage-profits-amid-currency-controls/, cited in User Stories
+- https://thedefiant.io/news/defi/makerdao-dai-peg, cited in User Stories
+- https://thediplomat.com/2025/07/who-will-rule-crypto-the-china-us-battle-for-global-financial-leadership/, cited in Geopolitical Impacts
+- https://theflip.africa/podcast/the-real-reason-people-are-using-stablecoins, cited in User Stories
+- https://thepaymentsassociation.org/article/the-future-of-cross-border-payments-market-expansion-cbdcs-and-real-time-systems/, cited in Ecosystem Overview
+- https://thepaymentsassociation.org/article/what-will-payments-look-like-in-2030/, cited in Frontier Use Cases
+- https://time.com/7346945/edelman-trust-barometer/, cited in Integrated Research Report
+- https://usa.visa.com/partner-with-us/visa-consulting-analytics/economic-insights/the-rise-of-the-video-gamer-economy.html, cited in Frontier Use Cases
+- https://vaultleap.com/, cited in Freelancer Case Studies
+- https://ventureburn.com/tether-vs-tron-2026-differences-price-performance/, cited in Ecosystem Overview
+- https://verafiles.org/articles/fact-check-claim-about-digital-bank-transaction-restriction-false, cited in YMIB Dossier
+- https://www.21shares.com/en-us/research/2025-scorecard-where-our-market-outlook-hit-the-mark-and-where-we-missed, cited in Research Findings
+- https://www.abebooks.com/9780062362506/Digital-Gold-Bitcoin-Story-Misfits-006236250X/plp, cited in Integrated Research Report
+- https://www.ainvest.com/news/stablecoin-issuers-earn-10-billion-annually-driven-reserve-interest-2507/, cited in Biggest Infrastructure Upgrade
+- https://www.ainvest.com/news/stablecoins-hedge-hyperinflation-case-venezuela-2601/, cited in User Stories
+- https://www.americanbanker.com/opinion/stablecoins-need-privacy-baked-in-not-bolted-on, cited in Biggest Infrastructure Upgrade
+- https://www.americanbanker.com/payments/news/the-disaster-playbook-what-happens-if-a-stablecoin-fails, cited in User Stories
+- https://www.ancient-origins.net/history-important-events/hyperinflation-0017747, cited in Historical Ledger Evolution
+- https://www.aol.com/finance/stablecoins-shake-900-billion-remittance-113000942.html, cited in Geopolitical Impacts
+- https://www.artemisanalytics.com/resources/real-world-crypto-mika-reyes-at-parallax, cited in Freelancer Case Studies
+- https://www.atlanticcouncil.org/blogs/econographics/the-stablecoin-race/, cited in Geopolitical Impacts, YMIB Dossier
+- https://www.atlanticcouncil.org/blogs/econographics/what-to-watch-as-china-prepares-its-digital-yuan-for-prime-time/, cited in Research Findings
+- https://www.axelar.network/blog/stablecoin-remittances-cross-border-payments-opportunity, cited in Ecosystem Overview
+- https://www.axios.com/2024/12/01/debanked-crypto-andreessen-joe-rogan, cited in YMIB Dossier
+- https://www.banque-france.fr/en/publications-and-statistics/publications/sanctions-against-russia-role-swift, cited in Historical Ledger Evolution
+- https://www.binance.com/en/square/hashtag/cryptorevenue, cited in Research Findings
+- https://www.binance.com/en/square/post/01-20-2026-2026-35301477827129, cited in User Stories
+- https://www.binance.com/en/square/post/02-02-2026-tether-2025-100-35892455151953, cited in Research Findings
+- https://www.binance.com/en/square/post/10342049637561, cited in Frontier Use Cases
+- https://www.binance.com/en/square/post/16796254015674, cited in Research Findings
+- https://www.binance.com/en/square/post/25517553430753, cited in Research Findings
+- https://www.binance.com/en/square/post/33837559166234, cited in User Stories
+- https://www.binance.com/en/square/post/6519493049185, cited in User Stories
+- https://www.binance.com/en/square/post/7306021543154, cited in Research Findings
+- https://www.binance.com/en/square/post/837482, cited in Frontier Use Cases
+- https://www.bitget.com/news/detail/12560605031410, cited in Frontier Use Cases
+- https://www.boniltd.com/post/stablecoins-sovereignty-and-survival-why-caricom-and-africa-might-leapfrog-the-financial-status-q, cited in Biggest Infrastructure Upgrade
+- https://www.britannica.com/money/Western-Union-Corporation, cited in Historical Ledger Evolution
+- https://www.brookings.edu/articles/can-global-cooperation-prevent-a-financial-tsunami/, cited in Geopolitical Impacts
+- https://www.bundesbank.de/en/tasks/payment-systems/oversight/swift-626536, cited in Historical Ledger Evolution
+- https://www.cato.org/briefing-paper/cbdc-lessons-caribbean, cited in Research Findings
+- https://www.cato.org/cato-journal/spring/summer-2021/ten-stablecoin-predictions-their-monetary-policy-implications, cited in Biggest Infrastructure Upgrade
+- https://www.ccn.com/opinion/business/why-journalism-future-depends-on-stablecoin-micropayments/, cited in Ecosystem Overview
+- https://www.cfr.org/articles/why-china-spooked-dollar-stablecoins-and-how-it-will-respond, cited in Geopolitical Impacts
+- https://www.cgdev.org/blog/how-stablecoins-could-further-weaken-africas-public-finances, cited in Research Findings
+- https://www.cgdev.org/blog/how-will-international-financial-institutions-manage-stablecoin-stampede, cited in Geopolitical Impacts
+- https://www.chainalysis.com/blog/2024-latin-america-crypto-adoption/, cited in Biggest Infrastructure Upgrade, Geopolitical Impacts, Research Findings
+- https://www.chainalysis.com/blog/2024-western-europe-crypto-adoption/, cited in Research Findings
+- https://www.chainalysis.com/blog/latin-america-crypto-adoption-2025/, cited in Ecosystem Overview
+- https://www.chainalysis.com/blog/mica-stablecoin-regime-challenges-part-1/, cited in Ecosystem Overview
+- https://www.chainalysis.com/blog/stablecoins-most-popular-asset/, cited in Geopolitical Impacts
+- https://www.chainalysis.com/blog/subsaharan-africa-crypto-adoption-2024/, cited in Research Findings, YMIB Dossier
+- https://www.chexsystems.com/answers-to-frequently-asked-questions, cited in YMIB Dossier
+- https://www.circle.com/blog/stablecoin-payments-the-next-phase-of-digital-commerce, cited in Research Findings
+- https://www.circle.com/cross-chain-transfer-protocol, cited in Research Findings
+- https://www.coinbase.com/legal/foia, cited in YMIB Dossier
+- https://www.coinchange.io/zh/blog/how-coinchange-protects-its-users-from-crypto-exploits, cited in Research Findings
+- https://www.cointribune.com/en/use-of-remittances-boosts-cryptocurrencies-in-latin-america/, cited in Geopolitical Impacts
+- https://www.dbresearch.com/PROD/RI-PROD/PROD0000000000602780/, cited in Geopolitical Impacts
+- https://www.dbresearch.com/PROD/RI-PROD/PROD0000000000610103/The_stablecoin_plateau_-_from_disruption_to_integr.pdf, cited in Research Findings
+- https://www.dlnews.com/research/internal/state-of-defi-2025/, cited in Research Findings
+- https://www.econstor.eu/bitstream/10419/101021/1/wp0516.pdf, cited in Historical Ledger Evolution
+- https://www.edelman.com/news-awards/2026-edelman-trust-barometer-society-slides-into-insularity, cited in Integrated Research Report
+- https://www.emergingfintech.co/p/the-technical-standard-positioning, cited in Research Findings
+- https://www.finextra.com/blogposting/28886/the-stablecoin-revolution-in-remittances, cited in Research Findings
+- https://www.fintechfutures.com/press-releases/zkme-unveils-zkkyc-a-fully-decentralized-and-privacy-first-kyc-solution, cited in Research Findings
+- https://www.fintechweekly.com/magazine/articles/agentic-commerce-stablecoins-micropayments-ai-payments, cited in Frontier Use Cases
+- https://www.fxcintel.com/research/reports/ct-india-upi-cross-border-payments, cited in Research Findings
+- https://www.fxcintel.com/research/reports/ct-state-of-stablecoins-cross-border-payments-2025, cited in Research Findings
+- https://www.fxcintel.com/research/reports/ct-western-union-investor-day-2025, cited in Geopolitical Impacts
+- https://www.gemini.com/cryptopedia/what-are-stablecoins-how-do-they-work, cited in Ecosystem Overview
+- https://www.halborn.com/blog/post/explained-the-cashio-hack-march-2022, cited in Research Findings
+- https://www.hudson.org/foreign-policy/how-counter-brics-preserve-global-dollar-dominance-zineb-riboua, cited in Geopolitical Impacts
+- https://www.ignaciodelatorre.com/web/data/articulo%20ashgate.pdf, cited in Historical Ledger Evolution
+- https://www.instagram.com/p/DUI5eb4ErQN/, cited in Frontier Use Cases
+- https://www.instagram.com/reel/DUBSn5zj_IK/, cited in User Stories
+- https://www.ledgerinsights.com/chinas-digital-yuan-cbdc-processes-2-trillion-mbridge-scale-revealed/, cited in Research Findings
+- https://www.ledgerinsights.com/the-facts-about-mica-stablecoin-caps/, cited in Geopolitical Impacts
+- https://www.lightspark.com/knowledge/fednow-vs-pix, cited in Research Findings
+- https://www.lightspark.com/knowledge/fednow-vs-upi, cited in Research Findings
+- https://www.lowyinstitute.org/the-interpreter/stablecoins-remittances-solution-search-problem, cited in Biggest Infrastructure Upgrade
+- https://www.mdpi.com/2227-7099/13/1/12, cited in Biggest Infrastructure Upgrade
+- https://www.mexc.com/news/581174, cited in Research Findings
+- https://www.mocomila.org/meetings/2012-ri-geva.pdf, cited in Historical Ledger Evolution
+- https://www.mordorintelligence.com/industry-reports/remittance-market, cited in Geopolitical Impacts
+- https://www.mordorintelligence.com/industry-reports/virtual-goods-market, cited in Frontier Use Cases
+- https://www.morganstanley.com/im/en-us/individual-investor/insights/articles/modernizing-financial-infrastructure.html, cited in Biggest Infrastructure Upgrade
+- https://www.morganstanley.com/im/fr-fr/institutional-investor/insights/articles/modernizing-financial-infrastructure.html, cited in Geopolitical Impacts
+- https://www.morsetelegraphclub.com/files/OldSiteArchive/files/WUHistory.pdf, cited in Historical Ledger Evolution
+- https://www.moviemaker.com/stablecoins-are-disrupting-cross-border-payments-heres-what-that-means/, cited in Research Findings
+- https://www.newschinamag.com/newschina/articleDetail.do?article_id=8121&magazine_id=111§ion_id=38, cited in Historical Ledger Evolution
+- https://www.opendue.com/blog/stablecoin-regulation-compliance-guide, cited in Ecosystem Overview
+- https://www.openpayd.com/blog/stablecoins-are-entering-the-distribution-decade/, cited in Research Findings
+- https://www.orrick.com/en/Insights/2025/07/Stablecoin-Framework-Signed-into-Law, cited in Ecosystem Overview
+- https://www.ostia-antica.org/dict/topics/puteoli/presentation/puteoli-sulpicii.htm?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://www.panewslab.com/en/articles/24e0dcec-16e1-41fb-bdd8-8fb932214cc9, cited in Integrated Research Report
+- https://www.paymentsjournal.com/are-stablecoins-weakening-emerging-market-currencies/, cited in Geopolitical Impacts
+- https://www.pcgamer.com/steam-bans-nfts-cryptocurrencies-blockchain/, cited in Frontier Use Cases
+- https://www.plasma.to/learn/nigeria-stablecoins, cited in Ecosystem Overview
+- https://www.plasma.to/learn/stablecoins-for-remittance, cited in Ecosystem Overview
+- https://www.rand.org/pubs/commentary/2025/08/russias-use-of-crypto-schemes.html, cited in Geopolitical Impacts
+- https://www.smartinsights.com/social-media-marketing/social-media-strategy/new-global-social-media-research/, cited in Integrated Research Report
+- https://www.sophos.com/pt-br/blog/beanstalk-cryptocurrency-heist-scammer-votes-himself-all-the-money, cited in Research Findings
+- https://www.statestreet.com/us/en/insights/stablecoin-moment, cited in Biggest Infrastructure Upgrade
+- https://www.thecable.ng/cbn-will-play-active-role-in-shaping-global-stablecoin-rules-says-cardoso/, cited in User Stories
+- https://www.thepeg.co/p/the-weekly-peg-making-seigniorage, cited in Biggest Infrastructure Upgrade
+- https://www.thunes.com/insights/solutions/thunes-circle-stablecoin-liquidity/, cited in Ecosystem Overview
+- https://www.tradingview.com/news/cointelegraph:9e767242a094b:0-fiat-inflation-drives-crypto-adoption-across-the-globe/, cited in Geopolitical Impacts
+- https://www.transfi.com/blog/the-peso-crisis-in-argentina-and-the-rise-of-stablecoins-in-usd, cited in Ecosystem Overview
+- https://www.trmlabs.com/reports-and-whitepapers/global-crypto-policy-review-outlook-2025-26, cited in User Stories
+- https://www.unicef.org/innovation/unicef-cryptofund-use-stablecoins-humanitarian-action, cited in Ecosystem Overview
+- https://www.urban.org/sites/default/files/2023-10/Trust%20Me%20I%27m%20a%20Bank.pdf, cited in Integrated Research Report
+- https://www.vaneck.com/us/en/blogs/digital-assets/matthew-sigel-how-el-salvador-became-latin-americas-comeback-story/, cited in Geopolitical Impacts
+- https://www.vgr.com/forum/topic/15228-ubisoft-quartz-nfts-failed-so-badly-theyre-now-pretending-it-was-only-for-research/, cited in Frontier Use Cases
+- https://www.vice.com/en/article/the-guilt-is-unbearable-ust-luna-investors-discuss-the-9999-crypto-crash/, cited in User Stories
+- https://www.web3isgoinggreat.com/?id=misconfiguration-in-the-acala-stablecoin-project-allows-attacker-to-steal-1-2-billion-ausd, cited in Research Findings
+- https://www.weforum.org/organizations/circle-internet-financial/, cited in Biggest Infrastructure Upgrade
+- https://www.weforum.org/stories/2025/01/stablecoin-ai-business/, cited in Frontier Use Cases
+- https://www.weforum.org/stories/2026/01/how-stablecoins-can-expand-financial-access/, cited in 100 Opportunities
+- https://www.westernunion.com/blog/en/6-fascinating-things-about-western-unions-history/, cited in Historical Ledger Evolution
+- https://www.wider.unu.edu/sites/default/files/Publications/Working-paper/PDF/wp2025-34-trust-changing-world.pdf, cited in Integrated Research Report
+- https://www.writersandartists.co.uk/advice/how-write-non-fiction-proposal-and-get-agent, cited in Integrated Research Report
+- https://www.zk.me/zkpoai, cited in Research Findings
+- https://www.zoom.com/en/blog/reflecting-looking-ahead/, cited in Integrated Research Report
+- https://x.com/paoloardoino/status/1913256690633392378?lang=en, cited in User Stories
+
+### Tertiary and Social
+
+- https://en.wikipedia.org/wiki/Banker_%28ancient%29?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://en.wikipedia.org/wiki/Bitcoin_in_El_Salvador, cited in Geopolitical Impacts
+- https://en.wikipedia.org/wiki/Economy_of_Second_Life, cited in Frontier Use Cases
+- https://en.wikipedia.org/wiki/Hawala, cited in Historical Ledger Evolution
+- https://en.wikipedia.org/wiki/Science_and_Civilisation_in_China, cited in Historical Ledger Evolution
+- https://en.wikipedia.org/wiki/The_Bitcoin_Standard, cited in Integrated Research Report
+- https://en.wikipedia.org/wiki/Trials_of_the_Knights_Templar, cited in Historical Ledger Evolution
+- https://medium.com/@Klydo/from-five-steps-to-three-how-mohammed-fixed-his-broken-payment-flow-50e24b7836cf, cited in Freelancer Case Studies
+- https://medium.com/@eloisa.marchesoni/the-fall-and-recovery-of-ausd-in-10-points-7deb7b654481, cited in Research Findings
+- https://medium.com/@impactnews-wire/m-pesa-goes-blockchain-inside-kenyas-stablecoin-revolution-a09b18bcf789, cited in Research Findings
+- https://medium.com/coinmonks/defi-weekly-frax-finance-the-protocol-that-broke-the-stablecoin-trilemma-8a3e36cf23e7, cited in Ecosystem Overview
+- https://medium.com/fabric-ventures/stablecoins-now-the-web2-fintech-giants-and-banks-are-paying-attention-b1d74906aa77, cited in Biggest Infrastructure Upgrade
+- https://medium.com/included-vc/state-of-stablecoins-in-africa-6a61e6e76bcc, cited in Geopolitical Impacts
+- https://www.investopedia.com/news/what-genesis-block-bitcoin-terms/?utm_source=chatgpt.com, cited in Historical Ledger Evolution
+- https://www.investopedia.com/terms/g/genesis-block.asp, cited in Integrated Research Report
+- https://www.investopedia.com/terms/l/linden-dollar.asp, cited in Frontier Use Cases
+- https://www.linkedin.com/company/klydo-io, cited in Freelancer Case Studies
+- https://www.linkedin.com/posts/dweisburd_institutionalinvesting-macrotrends-digitalassets-activity-7386774746069385217-rmJq, cited in User Stories
+- https://www.linkedin.com/posts/pymnts-com_big-brands-are-launching-stablecoins-the-activity-7406763061987930113-WDFM, cited in Biggest Infrastructure Upgrade
+- https://www.linkedin.com/posts/stakely-io_the-first-private-stablecoin-on-aleo-activity-7422296689950203904-fuXq, cited in Research Findings
+- https://www.linkedin.com/pulse/human-cost-exclusion-why-financial-access-basic-need-eshandi-in8ye, cited in Integrated Research Report
+- https://www.linkedin.com/pulse/why-fortune-500s-smbs-betting-stablecoins-toronet-7xi4f, cited in Research Findings
+- https://www.reddit.com/r/Monero/comments/wjjxk1/in_response_to_tornado_cashs_sanctions_circle_has/, cited in Ecosystem Overview
+- https://www.reddit.com/r/PubTips/comments/tpp0ml/pubq_difficulty_find_recent_comp_titles_and/, cited in Integrated Research Report
+- https://www.reddit.com/r/cosmosnetwork/comments/13j8sw9/we_need_a_cryptonative_stablecoin_rating_system/, cited in Ecosystem Overview
+- https://www.reddit.com/r/technology/comments/q8vjdl/valve_banned_all_blockchainnft_games_from_steam/, cited in Frontier Use Cases
+
+### Unlinked Source Notes
+
+- 100 Opportunities: Stablecoin transaction volumes and usage stats 1 2 ; Stablecoin adoption in emerging markets
+- Biggest Infrastructure Upgrade: • Hayek, Friedrich A. Denationalisation of Money: The Argument Refined. Institute of Economic Affairs,
+- Freelancer Case Studies: • Artemis Interview with Mika Reyes: “Real World Crypto: Mika Reyes at Parallax,” Feb. 19, 2025 2 3 .
+- Frontier Use Cases: • Gaming and Stablecoins: Rockstar Games & GTA 6 crypto rumors 1 2 ; Rockstar’s Shark Cards
+- Geopolitical Impacts: Atlantic Council, CFR, BIS, Diplomat, J.P. Morgan.
+- Geopolitical Impacts: Company reserve reports, SEC data, BIS.
+- Geopolitical Impacts: IMF, Chainalysis, Reuters, Chainalysis Geography Report 2024, local news. Figures are 2023-2025.)
+- Geopolitical Impacts: IMF, Chainalysis, academic studies, news reports.
+- Geopolitical Impacts: TASS, Diplomat, Reuters, central bank reports. (Confidence: Medium: data is mix of official and
+- Integrated Research Report: • Human Themes (2005-2026): Trust in institutions declined globally since 2005 1 , majority now
+- Research Findings: 16 1 Western Union stablecoin pilot & global remittance cost (CryptoSlate, Jul. 2025)
+- User Stories: African Studies Review via Cambridge Univ. Press, 2025)
+- User Stories: BIS speech, Feb 2023; Bloomberg interview, 2023)
+- User Stories: Bloomberg/TheCryptoBasic, Oct 24, 2025)
+- User Stories: Real-world interviews and profiles from Reuters, Al Jazeera, Rest of World, Vice, CryptoSlate,
+- User Stories: Rest of
+- User Stories: Rest of World, Aug 19, 2021)
+- User Stories: Reuters interview, Apr 19, 2024)
+- User Stories: Reuters/Al
+- User Stories: The Defiant 2022; CoinDesk Consensus Magazine interview, 2024)
+- User Stories: TheCryptoBasic/Bloomberg, 2025)
+- User Stories: U.S. Congressional Testimony
+- User Stories: Vice Motherboard, May
+- User Stories: company blog posts

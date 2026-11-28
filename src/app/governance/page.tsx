@@ -1,5 +1,4 @@
-import PageShell from "@/components/PageShell";
-import { Markdown } from "@/lib/markdown";
+import ContentPage from "@/components/ContentPage";
 import { readDoc } from "@/lib/docs";
 
 import type { Metadata } from "next";
@@ -12,14 +11,12 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const md = readDoc("GOVERNANCE.md");
   return (
-    <PageShell
+    <ContentPage
+      source={readDoc("GOVERNANCE.md")}
       eyebrow="§ governance"
       title="How bucket is held."
       subtitle="Nonprofit in intent. MIT code, CC0 protocol. Conflicts of interest disclosed, not hidden."
-    >
-      <Markdown source={md} />
-    </PageShell>
+    />
   );
 }

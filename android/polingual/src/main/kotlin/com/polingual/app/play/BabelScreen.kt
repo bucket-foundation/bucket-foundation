@@ -100,6 +100,7 @@ fun BabelScreen(graph: Graph, back: () -> Unit) {
             BabelBoard(board, picked, byId, ::tap)
             return@GameFrame
         }
+        androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Babel, points = score) }
         Results(graph, if (phase == BabelPhase.Won) "Level $lvl cleared" else "Out of moves", "$score points, ${cleared.size} words cleared.", again = if (phase == BabelPhase.Won) ({ lvl += 1 }) else ({ attempt += 1 }), againLabel = if (phase == BabelPhase.Won) "Next level" else "Try again") {
             BabelMatched(if (RevealRules.babel(cleared.size, goal.goal, moves)) cleared.map { it.meaning }.distinct().mapNotNull { byId[it] } else emptyList())
         }

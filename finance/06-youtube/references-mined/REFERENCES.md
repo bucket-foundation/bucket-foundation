@@ -1,0 +1,531 @@
+# Trading and Finance Video References Mined
+
+*From 164 transcript(s):*
+- `-tMyq-wQZBU`
+- `0AuPs0VT26k`
+- `0ZJXpMZobjY`
+- `0biSwEL5eMQ`
+- `0sLQ6AfNzw8`
+- `1HoQI1eqnV8`
+- `1iJ34tTjwwo`
+- `1mDL1fKEVZM`
+- `2ZbtXVScXJE`
+- `2_pDTWgJg94`
+- `2bE2iyRBK1E`
+- `2yycGEFCNYE`
+- `3EzdvkRgToY`
+- `3Ir6sbDAx4c`
+- `55OXxe_ix2o`
+- `5G7YdjnRvVI`
+- `5qo5gxmGEt8`
+- `5v1EtiEuSEY`
+- `6HN-d9mC0DI`
+- `6mTvAjmF2-A`
+- `72qUcUAtRZc`
+- `78_GRGjlL6E`
+- `86AlV6174KI`
+- `8TJQhQ2GZ0Y`
+- `92WaNz9mPeY`
+- `9G1IDAqrWkg`
+- `9Y3yaoi9rUQ`
+- `9YtmGy-wfE4`
+- `9kH01CNISeQ`
+- `BN7ZAWRLJP0`
+- `BRUlSm4gdQ4`
+- `BiqG3it0gY0`
+- `CNvz91Jyzbg`
+- `CechARGinR4`
+- `D2Jn1VrqjWI`
+- `DW9zQ8Hz6gQ`
+- `DZt1DDmMNGk`
+- `F7e6SyOnOR8`
+- `FJYgrkVbpEE`
+- `FqaP3VTKccE`
+- `G-MlrpoMig0`
+- `GR3gWN5ka0c`
+- `HdHlfiOAJyE`
+- `HqCksxcX49w`
+- `IE9OJMyyWMY`
+- `Iij2mpilSJo`
+- `IqvnryFzZD4`
+- `JgGOtCskLRg`
+- `K07qbvcvAH0`
+- `KPc85Ixey8M`
+- `LJIwxiMxbaw`
+- `M1T0OlG3XEU`
+- `M23f8jouwWU`
+- `MXDozNbr7Js`
+- `N8gtnbJuMoo`
+- `NH1Tta7purM`
+- `Nx1U39sL7sE`
+- `PHb8EHIKfeQ`
+- `PHe0bXAIuk0`
+- `PPl-7_RL0Ko`
+- `PRdd_LW2fpQ`
+- `QUTaQvnwLzM`
+- `QbosMr2JVrc`
+- `S1r6Jpdeomk`
+- `S7eig5VXFpY`
+- `SoB1gSmrSWM`
+- `TJpXnvFuvZg`
+- `TnS8kI_KuJc`
+- `TuTmC8aOQJE`
+- `U03Md5enU-0`
+- `UD92QBqA8Eo`
+- `UgWQtQ3MEVE`
+- `VkUEWUxI6u0`
+- `VlOjcOp9a5U`
+- `VzF-tvz3DAk`
+- `W2BURItNYmI`
+- `W58yBI7owRs`
+- `WQui_3Hpmmc`
+- `Wq-5pnceeLI`
+- `Y82q5Lw7_8E`
+- `YAO0St7mPQM`
+- `Z5yRMMVUC5w`
+- `ZVMTeDBmSrI`
+- `ZVU5IQpXzA0`
+- `ZW18j-a-TuY`
+- `ZwS1gMGegrM`
+- `_76ZkKpdLAw`
+- `_87QHZXOOKA`
+- `_B_24GUWdSM`
+- `_IFUfFuyQlU`
+- `_SpIaGTq0u8`
+- `a5PF2PcElV0`
+- `aga-Tak3c3M`
+- `akrWQxUqjq8`
+- `b1e4t2k2KJY`
+- `bKmcRfE3I6E`
+- `bu2416DJSBc`
+- `cDlbEQz1PQk`
+- `cECouzfzqnM`
+- `chSHqogx2CI`
+- `dHlBxjbzrtU`
+- `e4ytbIm2Xg0`
+- `eG_aRPy1KVE`
+- `eGtGKk0E_qk`
+- `eLLarGvuBzY`
+- `ePT6aMqk2Oo`
+- `eTXixzzC-34`
+- `f9XFM8YLccg`
+- `fIxSae8k3t0`
+- `fOCzNFwmM7Y`
+- `g4K3uyMdVUo`
+- `gJLKVsIqiTE`
+- `gZweef8LX7M`
+- `gi2uH3YxohU`
+- `h-0NZ-oIjlk`
+- `h_8ZtD21I84`
+- `i2evTEaieY4`
+- `i3UmPsCQGVk`
+- `iUVSHMAHrok`
+- `iVxaTC7Qp44`
+- `i_pLF9J3QPE`
+- `iqEFMb1aKNU`
+- `joXDV5eqOoY`
+- `jtTl_QKxyq4`
+- `kAl8DezwLAE`
+- `kLJEXE5_7rI`
+- `kYGswg7KNMU`
+- `l1kLCrxL9Hk`
+- `lE0Eu19547Q`
+- `nmehlS-8b3Y`
+- `pKF4M9_LpQ8`
+- `pjLbNM0jcc4`
+- `qEp6mwNw68g`
+- `qdbkvD4N-us`
+- `qfK9rCDCicE`
+- `rMsu4v-UlkA`
+- `ro07evEWbCE`
+- `rxHu93YzHpc`
+- `sAONff8XU80`
+- `sFwyS-L-aDE`
+- `tL7Lcl90Sc0`
+- `tODXAJDZtow`
+- `txTaBKZ8qrs`
+- `uBeM1FUk4Ps`
+- `vc5dotshPZc`
+- `vuGvQM-oH-0`
+- `vucQ8ila814`
+- `wNEWK5sBJog`
+- `wRdx7kVNQ_E`
+- `wdQnaRL3D5w`
+- `wvXDB9dMdEo`
+- `x2pY9kI0zBY`
+- `xKZ_8ULR91Y`
+- `xWGlMuALK5g`
+- `xfzGZB4HhEE`
+- `y4z1FSdN_GA`
+- `y_IMH8erqds`
+- `y_bsjZThP0o`
+- `yrmqYNvvIzs`
+- `ywl3pq6yc54`
+- `yxqTervPZe8`
+- `zH2Mg782XhA`
+- `zR9PpXWsKFQ`
+- `zapp8smQKhg`
+
+**Heuristic regex extraction.** Hand-curate before treating as canon.
+
+
+## Concepts (term frequency across all transcripts)
+
+- **AGE** — 4990
+- **WHO** — 3273
+- **RAGE** — 1536
+- **AGEs** — 567
+- **EPA** — 430
+- **iron** — 223
+- **heme** — 135
+- **electron** — 96
+- **NAD** — 80
+- **Tesla** — 53
+- **DHA** — 43
+- **UV** — 19
+- **semiconductor** — 15
+- **Russell** — 14
+- **Einstein** — 13
+- **quantum** — 12
+- **copper** — 9
+- **Newton** — 6
+- **FDA** — 6
+- **Maxwell** — 5
+- **NIH** — 4
+- **ATP** — 3
+- **UVA** — 2
+- **dopamine** — 2
+- **Pauli** — 2
+- **red light** — 1
+- **zinc** — 1
+- **Feynman** — 1
+- **electromagnetic** — 1
+- **NIR** — 1
+- **ketosis** — 1
+- **solar flare** — 1
+- **proton** — 1
+- **Planck** — 1
+- **GSH** — 1
+- **photoelectric effect** — 1
+- **photoelectric** — 1
+
+## Titled people (Dr./Professor/Prof.)
+
+- Shiller — 13
+- Chan — 11
+- Marcos Lopez — 2
+- Wang — 2
+
+## Citations (Name year, Name et al)
+
+- Fabozzi et al — 31
+- November 2017 — 7
+- Russell 2000 — 6
+- April 2002 — 3
+- August 2007 — 3
+- November 2008 — 3
+- April 2011 — 3
+- July 1944 — 3
+- September 2007 — 2
+- September 2008 — 2
+- November 2022 — 2
+- States 2010 — 2
+- October 2017 — 2
+- April 2023 — 2
+- October 1987 — 2
+- Kansas 1911 — 2
+- Yale 1985 — 2
+- January 2009 — 2
+- January 1946 — 2
+- After 1929 — 2
+- Archipelago 2005 — 2
+- January 2020 — 2
+- July 2017 — 2
+- Berkeley 1968 — 1
+- July 2021 — 1
+- November 2013 — 1
+- June 2019 — 1
+- Harbor 1853 — 1
+- February 2020 — 1
+- Kingdom 2007 — 1
+- February 2025 — 1
+- August 2025 — 1
+- College 1863 — 1
+- Bangladesh 1976 — 1
+- Prize 2006 — 1
+- October 2011 — 1
+- Nature 1905 — 1
+- Here 1925 — 1
+- Cisneros 1995 — 1
+- Clinton 1995 — 1
+- Kraemer 1948 — 1
+- China 1919 — 1
+- Union 1964 — 1
+- Americans 2008 — 1
+- Allen 1975 — 1
+- Finance 1984 — 1
+- Economics 2005 — 1
+- From 1993 — 1
+- September 2025 — 1
+- Prize 1990 — 1
+- Trust 1986 — 1
+- Europe 1996 — 1
+- August 2023 — 1
+- September 2016 — 1
+- November 2016 — 1
+- October 2022 — 1
+- September 2023 — 1
+- January 2021 — 1
+- April 1973 — 1
+- Nvidia 2023 — 1
+- Tesla 2019 — 1
+- Sachs 1998 — 1
+- China 2015 — 1
+- October 2012 — 1
+- October 2020 — 1
+- Electric 1960 — 1
+- Show 1904 — 1
+- Sadow 1972 — 1
+- York 1811 — 1
+- Since 1971 — 1
+- Between 1999 — 1
+- December 2002 — 1
+- Sutter 1999 — 1
+- February 2018 — 1
+- September 2017 — 1
+- Japan 1989 — 1
+- States 1987 — 1
+- October 1929 — 1
+- Tower 2016 — 1
+- Trump 2016 — 1
+
+## "By author" patterns
+
+- Fannie Mae — 2
+- Eugene Fama — 2
+- Monte Carlo — 2
+- Donald Trump — 2
+- Harry Dexter White — 2
+- Michael Lewis — 2
+- Aaron Fifield — 2
+- Maxwell Taylor — 1
+- Walter
+Taylor — 1
+- Sharon Ross — 1
+- Scott Shu — 1
+- Erin
+Fifield — 1
+- Hank Greenberg — 1
+- William Graham Sumner — 1
+- Charles Ellis — 1
+- Professor
+Gary Gorton — 1
+- Professor Goetzmann — 1
+- Jonah Lehrer — 1
+- Jonathan Swift — 1
+- Joe Klein — 1
+- Bob
+Rubin — 1
+- Goldman
+Sachs — 1
+- Bill
+Gates — 1
+- Stewart Myers — 1
+- John Lintner — 1
+- Deutsche Bank — 1
+- Philip Fish
+Fischer — 1
+- July August — 1
+- Fiona Fiona — 1
+- Institutional Investor — 1
+- The Horizon — 1
+- Benoit Mandelbrot — 1
+- Bernard Sadow — 1
+- Robert Plath — 1
+- David Moss — 1
+- The Grow — 1
+- Herb Sutter — 1
+- Pacific Mutual — 1
+- Warren
+Buffett — 1
+- Professor
+Brunnermeier — 1
+
+## Quoted titles
+
+
+## High-frequency capitalized names (filtered)
+
+- Federal Reserve — 88
+- Goldman Sachs — 81
+- Monte Carlo — 68
+- Stock Exchange — 62
+- Bretton Woods — 54
+- Jane Street — 53
+- Hong Kong — 51
+- Morgan Stanley — 49
+- Fannie Mae — 44
+- United
+States — 40
+- Warren Buffett — 39
+- World War — 38
+- Random Walk — 36
+- United Kingdom — 35
+- Poly Market — 33
+- Creative
+Commons — 32
+- Snap Trade — 28
+- Efficient Markets — 27
+- Trading View — 27
+- Citadel Securities — 26
+- General Motors — 26
+- Jupyter Notebook — 26
+- Central Bank — 25
+- Freddie Mac — 25
+- Harry Dexter — 25
+- Interactive Brokers — 24
+- Lehman Brothers — 24
+- Nobel Prize — 24
+- Jane
+Street — 22
+- Middle East — 21
+- Robin Hood — 21
+- David Swensen — 21
+- Audience Member — 21
+- Cloud Code — 20
+- Great Depression — 20
+- Will Goetzmann — 19
+- World Bank — 18
+- The New — 18
+- Yale University — 18
+- Frank Act — 17
+- Soviet Union — 17
+- Silicon Valley — 16
+- Federal
+Reserve — 16
+- Taylor Swift — 16
+- Tangency Portfolio — 16
+- Geometric Brownian — 16
+- Super Bowl — 15
+- Robinson Crusoe — 15
+- Fundamental Theorem — 15
+- Weather Next — 14
+- Behavioral Finance — 14
+- Citadel
+Securities — 14
+- Steve Jobs — 14
+- Tik Tok — 14
+- Payment Systems — 13
+- The United — 13
+- Claude Code — 13
+- United
+Kingdom — 13
+- Quiver Quant — 13
+- Open Yale — 12
+- Bill Gates — 12
+- Wall
+Street — 12
+- Ken Griffin — 12
+- Pine Script — 12
+- European Union — 12
+- Karl Marx — 11
+- Jake Paul — 11
+- Donald Trump — 11
+- Barack Obama — 11
+- The Fed — 11
+- White House — 10
+- Exchange Commission — 10
+- The Gospel — 10
+- Chicago Mercantile — 10
+- Las Vegas — 10
+- The Federal — 10
+- John Maynard — 10
+- Los
+Angeles — 10
+- Sir John — 9
+- Northern Rock — 9
+- Professor Shiller — 9
+- Efficient Portfolio — 9
+- Irving Fisher — 9
+- Capital Management — 9
+- Treasury Secretary — 9
+- Goldman
+Sachs — 9
+- Brownian Motion — 9
+- Great
+Depression — 9
+- Bear Stearns — 8
+- Paul Allen — 8
+- Volcker Rule — 8
+- Bear Sterns — 8
+- African Americans — 8
+- Harvard Business — 8
+- Pricing Model — 8
+- Chicago Board — 8
+- Elon Musk — 8
+- Peter Lynch — 8
+- John Long — 8
+- Free Code — 8
+
+## URLs / domains
+
+- ocw.mit.edu — 31
+- claude.ai — 6
+- ramp.com/invest — 6
+- vanta.com/invest — 6
+- thinknewfound.com — 5
+- sec.gov — 4
+- tradingkit.com — 4
+- works.com — 4
+- predict.ai — 4
+- blockchain.com — 4
+- twosigma.com — 3
+- rogo.ai/invest — 3
+- ridgeline.ai — 3
+- ethnologue.com — 3
+- the.com — 3
+- tradegpt.com — 2
+- google.com — 2
+- unicef.org — 2
+- slido.com — 2
+- ridgelineapps.com — 2
+- rogo.ai/felix — 2
+- workos.com — 2
+- quankild.com — 2
+- ngrams.googlelabs.com — 2
+- self.de — 2
+- getcracked.io — 2
+- ww.thestop.co.uk — 2
+- name.org — 1
+- kite.szer.com/oms/orders/regular — 1
+- makemy.com — 1
+- github.com/mppc — 1
+- github.com/modcontext — 1
+- smallcases.com/callback — 1
+- tradcp.com — 1
+- facebook.com — 1
+- tradgpt.com — 1
+- api.tragptt.com/trade/redirect — 1
+- kite.zerata.com/connect/lo — 1
+- claude.com — 1
+- twosignal.com — 1
+- facebook.com/careers — 1
+- dictkit.com — 1
+- strategyfactory.ai — 1
+- trigger.com — 1
+- tree.com — 1
+- github.com/bah — 1
+- subttrack.com — 1
+- blogspot.com — 1
+- pack.com — 1
+- trading.com — 1
+- blog.com — 1
+- simplextrading.com — 1
+- polymerarket.com — 1
+- cboe.com — 1
+- sec.com — 1
+- yipichen.blogspot.com — 1
+- quant.com — 1
+- open.com — 1
+- box.com — 1
+- rocketedge.com — 1

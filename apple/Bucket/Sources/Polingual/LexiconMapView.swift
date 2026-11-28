@@ -13,10 +13,10 @@ extension LexiconWordState {
 
     var tint: Color {
         switch self {
-        case .unseen: D8.disabled
-        case .started: D8.pickedFace
-        case .known: D8.lapis
-        case .mastered: D8.malachite
+        case .unseen: PL.paper2
+        case .started: PL.lapisSoft
+        case .known: PL.lapis
+        case .mastered: PL.malachite
         }
     }
 }
@@ -82,7 +82,7 @@ struct LexiconMark: View {
     var body: some View {
         switch state {
         case .unseen: EmptyView()
-        case .started: Circle().fill(D8.ink).frame(width: size * 0.3, height: size * 0.3)
+        case .started: Circle().fill(PL.ink).frame(width: size * 0.3, height: size * 0.3)
         case .known:
             HStack(spacing: size * 0.14) {
                 Circle().fill(PL.paper).frame(width: size * 0.3, height: size * 0.3)
@@ -101,7 +101,7 @@ struct LexiconSwatch: View {
         GeometryReader { g in
             RoundedRectangle(cornerRadius: g.size.width * 0.18)
                 .fill(state.tint)
-                .overlay { RoundedRectangle(cornerRadius: g.size.width * 0.18).strokeBorder(on ? D8.ink : D8.edge, lineWidth: on ? 3 : 1) }
+                .overlay { RoundedRectangle(cornerRadius: g.size.width * 0.18).strokeBorder(on ? PL.ink : PL.paper3, lineWidth: on ? 3 : 1) }
                 .overlay { LexiconMark(state: state, size: g.size.width) }
         }
         .aspectRatio(1, contentMode: .fit)
@@ -123,8 +123,8 @@ struct LexiconRing: View {
             arc(known, .known, width)
             arc(mastered, .mastered, width)
             VStack(spacing: 0) {
-                Text(verbatim: "\(Int((counts.share * 100).rounded()))%").font(D8.word(size * 0.24)).foregroundStyle(Palette.ink)
-                Text(verbatim: "\(counts.learned)").font(D8.caps(size * 0.1)).foregroundStyle(Palette.muted)
+                Text(verbatim: "\(Int((counts.share * 100).rounded()))%").font(PL.wordFont(size * 0.24)).foregroundStyle(PL.ink)
+                Text(verbatim: "\(counts.learned)").font(PL.capsFont(size * 0.1)).foregroundStyle(PL.inkDim)
             }
             .monospacedDigit()
         }
@@ -171,8 +171,8 @@ struct LexiconLegend: View {
                 .accessibilityElement(children: .combine)
             }
         }
-        .font(.caption)
-        .foregroundStyle(Palette.muted)
+        .font(PL.text(12))
+        .foregroundStyle(PL.inkDim)
         .monospacedDigit()
     }
 }
@@ -186,10 +186,10 @@ struct LexiconSummary: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             if counts.total == 0 {
-                Text("Pick the languages to learn together.").font(.subheadline).foregroundStyle(Palette.muted)
+                Text("Pick the languages to learn together.").font(PL.text(15)).foregroundStyle(PL.inkDim)
             } else {
-                Text("\(counts.learned) of \(counts.total) words learned").font(.headline).foregroundStyle(Palette.ink)
-                Text(counts.left == 1 ? String(localized: "1 word left") : String(localized: "\(counts.left) words left")).font(.subheadline).foregroundStyle(Palette.muted)
+                Text("\(counts.learned) of \(counts.total) words learned").font(PL.text(17, .bold)).foregroundStyle(PL.ink)
+                Text(counts.left == 1 ? String(localized: "1 word left") : String(localized: "\(counts.left) words left")).font(PL.text(15)).foregroundStyle(PL.inkDim)
                 if let finish {
                     let month = Date(timeIntervalSince1970: finish / 1000).formatted(.dateTime.month(.wide).year().locale(InterfaceLanguage.locale))
                     Text("At your pace you finish in \(month).").noticeStyle()
@@ -275,14 +275,14 @@ struct LexiconMapView: View {
                 }
                 .padding(.vertical, 6)
             }
-            .listRowBackground(Palette.card)
+            .listRowBackground(PL.card)
             if !map.learning.isEmpty {
                 Section {
                     ForEach(map.learning) { row($0) }
                 } header: {
                     Eyebrow(text: "Your languages")
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
             if !map.others.isEmpty {
                 Section {
@@ -290,7 +290,7 @@ struct LexiconMapView: View {
                 } header: {
                     Eyebrow(text: "More languages")
                 }
-                .listRowBackground(Palette.card)
+                .listRowBackground(PL.card)
             }
         }
     }
@@ -302,9 +302,9 @@ struct LexiconMapView: View {
             VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 8) {
                     FlagTile(lang: l.lang, size: 26)
-                    Text(langName(l.lang)).font(.headline).foregroundStyle(Palette.ink)
+                    Text(langName(l.lang)).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
                     Spacer()
-                    Text(l.counts.left == 1 ? String(localized: "1 left") : String(localized: "\(l.counts.left) left")).font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text(l.counts.left == 1 ? String(localized: "1 left") : String(localized: "\(l.counts.left) left")).font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
                 LexiconBar(counts: l.counts)
             }
@@ -360,7 +360,7 @@ struct LexiconLanguageView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Eyebrow(text: g.title)
                             Spacer()
-                            Text("\(g.counts.learned) of \(g.counts.total)").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                            Text("\(g.counts.learned) of \(g.counts.total)").font(PL.text(12)).foregroundStyle(PL.inkDim).monospacedDigit()
                         }
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 44, maximum: 56), spacing: 0)], spacing: 0) {
                             ForEach(g.words) { tile($0) }
@@ -391,12 +391,12 @@ struct LexiconLanguageView: View {
         VStack(spacing: 8) {
             WideTile(word: w.form, lang: w.lang, reading: w.reading, state: w.state == .mastered ? .right : .plain)
             HStack(spacing: 8) {
-                Text(verbatim: w.meaning).font(.headline).foregroundStyle(D8.ink)
+                Text(verbatim: w.meaning).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
                 Spacer()
-                Text(verbatim: w.state.label).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label)
+                Text(verbatim: w.state.label).font(PL.capsFont(11)).tracking(0.9).foregroundStyle(PL.inkDim)
                 Button { picked = nil } label: { PLGlyphView(.close, size: 16).frame(width: 44, height: 44) }
                     .buttonStyle(.borderless)
-                    .tint(D8.ink)
+                    .tint(PL.ink)
                     .accessibilityLabel(Text("Close"))
             }
         }

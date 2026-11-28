@@ -80,9 +80,9 @@ private struct YesNoRun: View {
     var body: some View {
         PLCard {
             VStack(alignment: .leading, spacing: PL.Space.s3) {
-                Text(StudyCopy.progress(at + 1, items.count)).font(.system(size: 12)).monospacedDigit().foregroundStyle(PL.inkDim)
+                Text(StudyCopy.progress(at + 1, items.count)).font(PL.text(12)).monospacedDigit().foregroundStyle(PL.inkDim)
                 Text(StudyCopy.ask).foregroundStyle(PL.inkDim)
-                Text(items[at].word).font(.system(size: 32, weight: .semibold)).foregroundStyle(PL.ink)
+                Text(items[at].word).font(PL.text(32, .semibold)).foregroundStyle(PL.ink)
                     .environment(\.locale, Locale(identifier: lang)).accessibilityIdentifier("yes-no-word")
                 HStack(spacing: PL.Space.s3) {
                     Button(StudyCopy.yes) { answer(true) }.buttonStyle(.pl(.primary)).accessibilityIdentifier("yes-no-yes")
@@ -119,7 +119,7 @@ struct StudyLeaveLink: View {
                 StudyPrefs().leave()
                 left = true
             }
-            .font(.system(size: 12)).underline().foregroundStyle(PL.inkDim).buttonStyle(.plain).accessibilityIdentifier("study-leave")
+            .font(PL.text(12)).underline().foregroundStyle(PL.inkDim).buttonStyle(.plain).accessibilityIdentifier("study-leave")
         }
     }
 }

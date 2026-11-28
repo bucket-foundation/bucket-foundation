@@ -3,7 +3,7 @@ import { START_LEARNING_HREF } from "@/lib/analytics/funnel";
 
 export default function Presentation() {
   return (
-    <section data-hero className="stone-bone min-h-[calc(100svh-62px-77px)] flex items-center justify-center px-4">
+    <section data-hero className="stone-bone h-full flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto py-20 text-center">
         <h1 className="font-display uppercase text-[clamp(2.4rem,9vw,4.5rem)] leading-[1.02] chisel tracking-[0.01em] text-[color:var(--basalt)]">
           reform <span className="inlay-gold">education.</span>

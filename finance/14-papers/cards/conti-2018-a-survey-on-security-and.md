@@ -1,0 +1,35 @@
+# A Survey on Security and Privacy Issues of Bitcoin <!-- voice-ignore-line -->
+
+Topic: Cryptocurrency  
+Also tagged: Cryptocurrency  
+OpenAlex: https://openalex.org/W2624307925  
+Bead: `bkt-q5moa.19`
+
+| Field | Value |
+|---|---|
+| Authors | Mauro Conti, E. Sandeep Kumar, Chhagan Lal, Sushmita Ruj | <!-- voice-ignore-line -->
+| Year | 2018 |
+| Venue | IEEE Communications Surveys & Tutorials | <!-- voice-ignore-line -->
+| DOI | https://doi.org/10.1109/comst.2018.2842460 |
+| Cited by | 1390 as of 2026-11-27 |
+| Cited by inside this set | 1 |
+
+## Method
+
+Survey of literature or respondents. Assigned by keyword match on title and abstract.
+
+## Main Result
+
+Sentences from the abstract that state the finding:
+
+<!-- voice-ignore-next 1 -->
+> Finally, we summarize the critical open challenges, and we suggest directions for future research towards provisioning stringent security and privacy solutions for Bitcoin.
+
+## Replication
+
+No replication on file in 09-strategies or lab/RESULTS.md.
+
+## Abstract
+
+<!-- voice-ignore-next 1 -->
+> Bitcoin is a popular cryptocurrency that records all transactions in a distributed append-only public ledger called blockchain. The security of Bitcoin heavily relies on the incentive-compatible proof-of-work (PoW) based distributed consensus protocol, which is run by the network nodes called miners. In exchange for the incentive, the miners are expected to maintain the blockchain honestly. Since its launch in 2009, Bitcoin economy has grown at an enormous rate, and it is now worth about 150 billions of dollars. This exponential growth in the market value of bitcoins motivate adversaries to exploit weaknesses for profit, and researchers to discover new vulnerabilities in the system, propose countermeasures, and predict upcoming trends. In this paper, we present a systematic survey that covers the security and privacy aspects of Bitcoin. We start by giving an overview of the Bitcoin system and its major components along with their functionality and interactions within the system. We review the existing vulnerabilities in Bitcoin and its major underlying technologies such as blockchain and PoW-based consensus protocol. These vulnerabilities lead to the execution of various security threats to the standard functionality of Bitcoin. We then investigate the feasibility and robustness of the state-of-the-art security solutions. Additionally, we discuss the current anonymity considerations in Bitcoin and the privacy-related threats to Bitcoin users along with the analysis of the existing privacy-preserving solutions. Finally, we summarize the critical open challenges, and we suggest directions for future research towards provisioning stringent security and privacy solutions for Bitcoin.

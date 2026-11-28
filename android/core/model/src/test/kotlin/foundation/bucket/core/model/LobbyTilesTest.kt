@@ -100,7 +100,7 @@ class LobbyRaceTest {
     fun everyServerGameHasAnAndroidEntry() {
         val all = listOf("daily", "same-word", "flags", "live", "tiles", "duel", "spy") + server
         assertEquals(21, all.size)
-        assertEquals(all.toSet(), LobbyGame.entries.map { it.wire }.toSet())
+        assertEquals(all.toSet(), LobbyGame.entries.filter { it != LobbyGame.Unknown }.map { it.wire }.toSet())
         assertEquals(server, LobbyGames.race.map { it.wire })
     }
 
@@ -114,9 +114,9 @@ class LobbyRaceTest {
     }
 
     @Test
-    fun androidHostsPromptGamesAndItsThreeRaceScreens() {
+    fun androidHostsEveryPromptAndRaceGame() {
         assertTrue(LobbyGames.prompt.all(LobbyGames::playable))
-        assertEquals(setOf(LobbyGame.FlagTiles, LobbyGame.Shift, LobbyGame.Atlas), LobbyGames.race.filter(LobbyGames::playable).toSet())
+        assertEquals(LobbyGames.race.toSet() - LobbyGame.FlagDuel, LobbyGames.race.filter(LobbyGames::playable).toSet())
     }
 
     @Test
@@ -137,7 +137,7 @@ class LobbyRaceTest {
     @Test
     fun androidDeclaresDuelTilesAndRevealToTheServer() {
         assertEquals("x-polingual-plays", LobbyGames.PLAYS_HEADER)
-        assertEquals("tiles,duel,reveal", LobbyGames.plays)
+        assertEquals("tiles,duel,reveal,playlist,night", LobbyGames.plays)
         assertTrue(LobbyGames.nativeExtras.all { LobbyGames.playable(it) })
         assertEquals(true, LobbyGame.Duel in LobbyGames.offered(listOf("daily", "duel")))
     }

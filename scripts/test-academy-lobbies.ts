@@ -168,6 +168,20 @@ test("native clients list only games they can play on the plain clock", () => {
   assert.deepEqual(Array.from(nativePlays(null)), []);
 });
 
+test("native clients join single-game playlists, and longer ones only when they declare them", () => {
+  assert.equal(nativePlayable(lobby({ playlist: ["daily"] })), true);
+  assert.equal(nativePlayable(lobby({ game: "tiles", playlist: ["tiles"] })), false);
+  assert.equal(nativePlayable(lobby({ game: "tiles", playlist: ["tiles"] }), false, nativePlays("tiles")), true);
+  const set = lobby({ game: "daily", playlist: ["daily", "flags"] });
+  assert.equal(nativePlayable(set), false);
+  assert.equal(nativePlayable(set, false, nativePlays("playlist")), true);
+  assert.equal(nativePlayable(lobby({ game: "daily", playlist: ["daily", "spy"] }), false, nativePlays("playlist")), false);
+  const night = lobby({ game: FAMILY_NIGHT[0].game, playlist: FAMILY_NIGHT.map((r) => r.game) });
+  const all = "tiles,duel,reveal,playlist";
+  assert.equal(nativePlayable(night, false, nativePlays(all)), false);
+  assert.equal(nativePlayable(night, false, nativePlays(`${all},night`)), true);
+});
+
 test("a native header naming an unlisted game is refused", () => {
   const declared = nativePlays("spy, SPY, Tiles, made-up");
   assert.deepEqual(Array.from(declared).sort(), ["tiles"]);

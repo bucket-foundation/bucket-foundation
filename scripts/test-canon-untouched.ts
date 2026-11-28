@@ -69,7 +69,7 @@ function ensureMergeBase(): void {
 function changedFiles(): string[] {
   ensureBase();
   ensureMergeBase();
-  const diff = spawnSync("git", ["diff", "--name-only", "origin/dev...HEAD"], { cwd: ROOT, encoding: "utf8" });
+  const diff = spawnSync("git", ["diff", "--name-only", "origin/dev...HEAD"], { cwd: ROOT, encoding: "utf8", maxBuffer: 256 * 1024 * 1024 });
   assert.equal(diff.status, 0, diff.stderr);
   const dirty = spawnSync("git", ["diff", "--name-only", "HEAD"], { cwd: ROOT, encoding: "utf8" });
   return [...diff.stdout.split("\n"), ...dirty.stdout.split("\n")].filter(Boolean);

@@ -113,7 +113,7 @@ struct GameResults: View {
                     Button(LocalizedStringKey(againLabel), action: again).buttonStyle(.pl(.primary, size: .lg))
                 }
             }
-            StartLearningButton()
+            StartLearningButton().preference(key: LearnInPage.self, value: true)
         }
         .sensoryFeedback(.levelChange, trigger: landed)
         .onAppear {

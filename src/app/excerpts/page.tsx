@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getClaimsByConcept, getConcepts } from "@/lib/canon-claims";
 import { ExcerptListV2 } from "./ExcerptListV2";
 import { isFoundationTier, toExcerptItem } from "./qualify-v2";
+import Sources from "@/components/Sources";
 
 export const metadata = {
   title: "Source excerpts · bucket.foundation",
@@ -93,10 +94,7 @@ export default function Page() {
         <ExcerptListV2 items={items} showConcept clip={280} foundationCount={foundationTotal} allCount={total} />
       </section>
 
-      <footer
-        className="mt-20 border-t border-[color:var(--hairline)] pt-8 text-sm"
-        style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
-      >
+      <Sources>
         <p>
           Excerpts are found by pattern: assertion signals
           (&ldquo;the rule is&rdquo;, &ldquo;always&rdquo;, &ldquo;causes&rdquo;, &ldquo;must&rdquo;, &ldquo;only&rdquo;, &ldquo;I proved&rdquo;)
@@ -107,7 +105,7 @@ export default function Page() {
           See <Link className="underline" href="/canon">canon overview</Link> for
           the branches.
         </p>
-      </footer>
+      </Sources>
     </main>
   );
 }

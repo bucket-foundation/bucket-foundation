@@ -63,8 +63,8 @@ struct SnakeGame: View {
                 let v = Snakes.view(head: head, width: geo.size.width, height: geo.size.height)
                 Canvas { ctx, _ in draw(&ctx, a, v) }
                     .background(PL.tyrianDeep)
-                    .clipShape(.rect(cornerRadius: 16))
-                    .overlay(RoundedRectangle(cornerRadius: 16).stroke(PL.ink, lineWidth: 3))
+                    .clipShape(.rect(cornerRadius: PL.Radius.md))
+                    .overlay(RoundedRectangle(cornerRadius: PL.Radius.md).stroke(PL.ink, lineWidth: 3))
                     .contentShape(.rect)
                     .gesture(DragGesture(minimumDistance: 0).onChanged { g in
                         touch = Pt(g.location.x, g.location.y)
@@ -92,8 +92,8 @@ struct SnakeGame: View {
             let size = text.measure(in: CGSize(width: 240, height: 40))
             let at = CGPoint(x: w.x - v.x, y: w.y - v.y)
             let plate = CGRect(x: at.x - size.width / 2 - 10, y: at.y - size.height / 2 - 4, width: size.width + 20, height: size.height + 8)
-            ctx.fill(Path(roundedRect: plate.offsetBy(dx: 3, dy: 3), cornerRadius: 6), with: .color(PL.ink.opacity(0.35)))
-            ctx.fill(Path(roundedRect: plate, cornerRadius: 6), with: .color(PL.paper2))
+            ctx.fill(Path(roundedRect: plate.offsetBy(dx: 3, dy: 3), cornerRadius: PL.Radius.xs), with: .color(PL.ink.opacity(0.35)))
+            ctx.fill(Path(roundedRect: plate, cornerRadius: PL.Radius.xs), with: .color(PL.paper2))
             ctx.draw(text, at: at)
         }
         let colors = [PL.vermilion, PL.ochre, PL.maya, PL.malachite, PL.lapisSoft, PL.paper]

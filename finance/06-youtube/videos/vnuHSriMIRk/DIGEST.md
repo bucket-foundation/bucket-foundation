@@ -1,0 +1,17 @@
+<!-- voice-ignore-file: transcript-derived digest -->
+# Lec 10: Minimum Variance Line Continued, Market Portfolio | NPTEL IIT Guwahati | vnuHSriMIRk | 0.84 h
+
+Teaches: NPTEL IIT Guwahati mathematical finance, lecture 10: the minimum variance line, adding a risk-free asset, the half-line efficient frontier, and the market portfolio as the tangency portfolio with the highest slope.
+
+Claims:
+- Mixing one risky asset with the risk-free asset gives a straight line in the sigma-mu plane starting at (0, R). "this is (0, R) which corresponds to the risk-free" [0:20:57]
+- With a risk-free asset, the efficient frontier is the half line through (0, R) and the tangency point. "the half line passing through the exclusively risk-free portfolio" [0:30:42]
+- The market portfolio is chosen as the portfolio whose line from (0, R) has the highest slope, found by maximizing (mean minus R) over the standard deviation. "the market portfolio will be given by that particular line which has the highest slope" [0:40:14]
+
+Architecture: none (lecture).
+
+Worked:
+- none reported
+
+Failed:
+- none reported

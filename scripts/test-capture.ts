@@ -202,7 +202,7 @@ test("Start learning opens Learn as a guest and is the only hero action", () => 
   assert.equal(hero.match(/<TrackedLink/g)?.length, 1);
   assert.match(hero, /event="start_learning_click"/);
   assert.doesNotMatch(read("src/components/HeaderV3.tsx"), /Start learning|Download/);
-  assert.match(read("src/components/SiteFooter.tsx"), /href="\/download"/);
+  assert.match(read("src/lib/routes.ts"), /SLIM_LINKS: NavLink\[\] = \[\n  POLINGUAL_LINK/);
 });
 
 test("the forget route clears download and polingual parts", () => {

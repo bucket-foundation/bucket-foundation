@@ -1,0 +1,19 @@
+<!-- voice-ignore-file: transcript-derived digest -->
+# QuantConnect Tutorial 2026: Full Platform Tour for Beginners | Machine Lingo | Gg2YGq6rQsY | 0.23 h
+
+Teaches: A QuantConnect 2026 beginner platform tour: cloud lab, default algorithm template with initialize and on_data, backtest statistics, research notebook, dataset market, and paper versus live trading costs.
+
+Claims:
+- Lean is the open-source engine that feeds the algorithm data one bar at a time, fills orders, charges fees and tracks the portfolio; cloud needs no install while local needs a paid plan. "Lean is the program that actually runs your algorithm" [0:01:26]
+- The default template backtests 2020 with 100,000 dollars, subscribes to daily SPY and sets holdings to 100 percent, showing about 18 percent compounding return and a 33.2 percent drawdown from the COVID crash. "drawdown 33.2%" [0:08:09]
+- The toolbar has build, backtest, optimizer, live trading and a backtest list, and results show a banner, equity, drawdown, orders and logs, with logs as the main debugging tool. "Logs shows any messages your code prints" [0:08:21]
+- Both paper and live trading require a paid live node, so even paper trading costs money on the free plan. "even paper trading costs money here" [0:11:42]
+- QuantConnect terms bar showing raw price data on camera, and the community strategy leaderboard should be treated as ideas rather than proof. "A great backtest is not a promise about the future" [0:12:23]
+
+Architecture: Cloud project with main.py: initialize sets dates, cash and data subscriptions; on_data runs per bar and places orders; Lean engine executes.
+
+Worked:
+- none reported
+
+Failed:
+- none reported

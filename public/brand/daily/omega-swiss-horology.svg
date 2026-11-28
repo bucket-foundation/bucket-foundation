@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<defs>
+<radialGradient id="bg" cx="50%" cy="40%" r="72%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E0E0E0"/></radialGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset="0.45" stop-color="#D9A43A"/><stop offset="0.55" stop-color="#8A641A"/><stop offset="1" stop-color="#E9C46A"/></linearGradient>
+<filter id="tex"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .2 0"/></filter>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="2"/></pattern>
+<pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 7H14" stroke="#2A261E" stroke-opacity=".12" stroke-width="3"/></pattern>
+<linearGradient id="clay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#000000" stop-opacity=".2"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5"/></filter>
+<filter id="blur"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="1024" height="1024" fill="url(#bg)"/>
+<g transform="translate(162 140) scale(7)"><g transform-origin="50 50">
+<path d="M20.0 15H32.0C37.0 15 40.0 19 40.0 25.0A32.5 32.5 0 1 0 60.0 25.0C60.0 19 63.0 15 68.0 15H80.0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="11.6" stroke="#000000"></path><path d="M20.0 15H32.0C37.0 15 40.0 19 40.0 25.0A32.5 32.5 0 1 0 60.0 25.0C60.0 19 63.0 15 68.0 15H80.0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7.6" stroke="#E0E0E0"></path><path d="M20.0 15H32.0C37.0 15 40.0 19 40.0 25.0A32.5 32.5 0 1 0 60.0 25.0C60.0 19 63.0 15 68.0 15H80.0" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5999999999999996" stroke="#000000"></path>
+<g transform-origin="50 76"><path d="M50 42C60 50 60 66 50 74C40 66 40 50 50 42Z" fill="#333333"/><path d="M50 48V70" stroke="#666666" stroke-width="2.5" stroke-linecap="round"/></g>
+</g></g></svg>

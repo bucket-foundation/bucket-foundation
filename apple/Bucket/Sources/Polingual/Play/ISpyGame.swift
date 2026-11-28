@@ -44,7 +44,7 @@ struct ISpyGame: View {
             HStack {
                 PlayLabel(text: "\(scene?.name ?? "") · round \(index + 1) of \(rounds.count) · \(me.score)")
                 Spacer(minLength: 0)
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
             }
             HStack(spacing: PL.Space.s2) {
                 PlayLabel(text: Lang.name(r.lang))
@@ -84,14 +84,14 @@ struct ISpyGame: View {
                             } else {
                                 PLArtView(Self.tileArt[o.art % Self.tileArt.count]).frame(width: tile, height: tile)
                                 Text(labels[o.id] ?? o.id).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.4).padding(2)
-                                    .background(PL.card.opacity(0.92), in: .rect(cornerRadius: 4))
+                                    .background(PL.card.opacity(0.92), in: .rect(cornerRadius: PL.Radius.xs))
                                     .frame(width: tile)
                             }
                         }
                         .accessibilityLabel(Text(labels[o.id] ?? o.id))
                         .overlay {
-                            if closed && o.id == r.answer { RoundedRectangle(cornerRadius: 8).stroke(PL.malachite, lineWidth: 4) }
-                            else if closed && o.id == tapped { RoundedRectangle(cornerRadius: 8).stroke(PL.vermilion, lineWidth: 4) }
+                            if closed && o.id == r.answer { RoundedRectangle(cornerRadius: PL.Radius.sm).stroke(PL.malachite, lineWidth: 4) }
+                            else if closed && o.id == tapped { RoundedRectangle(cornerRadius: PL.Radius.sm).stroke(PL.vermilion, lineWidth: 4) }
                         }
                         .frame(width: max(tile, 44), height: max(tile, 44))
                     }
@@ -103,8 +103,8 @@ struct ISpyGame: View {
             }
         }
         .aspectRatio(0.75, contentMode: .fit)
-        .background(PL.tyrianDeep, in: .rect(cornerRadius: 20))
-        .clipShape(.rect(cornerRadius: 20))
+        .background(PL.tyrianDeep, in: .rect(cornerRadius: PL.Radius.lg))
+        .clipShape(.rect(cornerRadius: PL.Radius.lg))
     }
 
     var finished: some View {

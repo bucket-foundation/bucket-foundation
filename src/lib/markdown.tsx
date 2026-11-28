@@ -152,7 +152,7 @@ function inline(text: string, key: string): React.ReactNode {
       push(<em>{tok.slice(1, -1)}</em>);
     } else if (tok.startsWith("[")) {
       const lm = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(tok)!;
-      push(<a href={lm[2]} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)] underline-offset-4 hover:underline">{lm[1]}</a>);
+      push(<a href={lm[2]} {...(/^https?:/.test(lm[2]) ? { target: "_blank", rel: "noreferrer" } : {})} className="text-[color:var(--gold)] hover:text-[color:var(--parchment)] underline-offset-4 hover:underline">{lm[1]}</a>);
     }
     rest = rest.slice(m.index + tok.length);
   }

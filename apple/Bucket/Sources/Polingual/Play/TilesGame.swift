@@ -42,7 +42,7 @@ struct TilesGame: View {
             ViewThatFits(in: .horizontal) {
                 HStack {
                     status
-                    ComboChip(streak: feel.streak, multiplier: false)
+                    ComboSlot(streak: feel.streak, multiplier: false)
                     Spacer()
                     hearts
                 }
@@ -105,7 +105,7 @@ struct TilesGame: View {
                             Button { tapped.insert(s.index) } label: {
                                 Text(r.tiles[s.index].form).font(PL.small.font()).foregroundStyle(PL.ink).lineLimit(1).minimumScaleFactor(0.5)
                                     .frame(width: lane - 8, height: 44)
-                                    .background(PL.card, in: .rect(cornerRadius: 8))
+                                    .background(PL.card, in: .rect(cornerRadius: PL.Radius.sm))
                             }
                             .buttonStyle(.plain)
                             .position(x: lane * (CGFloat(s.lane) + 0.5), y: 22 + (geo.size.height - 44) * p)
@@ -116,7 +116,7 @@ struct TilesGame: View {
         }
         .playBoard(chrome: wide ? 4 : chrome, least: wide ? 220 : 380)
         .background {
-            RoundedRectangle(cornerRadius: 12).fill(PL.paper.opacity(0.08))
+            RoundedRectangle(cornerRadius: PL.Radius.md).fill(PL.paper.opacity(0.08))
                 .accessibilityElement()
                 .accessibilityLabel("Falling words")
                 .accessibilityIdentifier("tilesBoard")

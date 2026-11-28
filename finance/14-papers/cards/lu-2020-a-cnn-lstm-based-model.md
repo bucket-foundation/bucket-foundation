@@ -1,0 +1,35 @@
+# A CNN-LSTM-Based Model to Forecast Stock Prices <!-- voice-ignore-line -->
+
+Topic: Machine Learning in Finance  
+Also tagged: Machine Learning in Finance  
+OpenAlex: https://openalex.org/W3110420963  
+Bead: `bkt-q5moa.19`
+
+| Field | Value |
+|---|---|
+| Authors | Wenjie Lu, Jiazheng Li, Yifan Li, Sun Aijun, Jingyang Wang | <!-- voice-ignore-line -->
+| Year | 2020 |
+| Venue | Complexity | <!-- voice-ignore-line -->
+| DOI | https://doi.org/10.1155/2020/6622927 |
+| Cited by | 784 as of 2026-11-27 |
+| Cited by inside this set | 2 |
+
+## Method
+
+Machine learning model. Assigned by keyword match on title and abstract.
+
+## Main Result
+
+Sentences from the abstract that state the finding:
+
+<!-- voice-ignore-next 1 -->
+> This forecasting method not only provides a new research idea for stock price forecasting but also provides practical experience for scholars to study financial time series data.
+
+## Replication
+
+No replication on file in 09-strategies or lab/RESULTS.md.
+
+## Abstract
+
+<!-- voice-ignore-next 1 -->
+> Stock price data have the characteristics of time series. At the same time, based on machine learning long short-term memory (LSTM) which has the advantages of analyzing relationships among time series data through its memory function, we propose a forecasting method of stock price based on CNN-LSTM. In the meanwhile, we use MLP, CNN, RNN, LSTM, CNN-RNN, and other forecasting models to predict the stock price one by one. Moreover, the forecasting results of these models are analyzed and compared. The data utilized in this research concern the daily stock prices from July 1, 1991, to August 31, 2020, including 7127 trading days. In terms of historical data, we choose eight features, including opening price, highest price, lowest price, closing price, volume, turnover, ups and downs, and change. Firstly, we adopt CNN to efficiently extract features from the data, which are the items of the previous 10 days. And then, we adopt LSTM to predict the stock price with the extracted feature data. According to the experimental results, the CNN-LSTM can provide a reliable stock price forecasting with the highest prediction accuracy. This forecasting method not only provides a new research idea for stock price forecasting but also provides practical experience for scholars to study financial time series data.

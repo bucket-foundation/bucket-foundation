@@ -1,13 +1,13 @@
 import { describe, expect, test } from "bun:test";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { parseCanonSearchParams } from "../../../src/lib/canon-rank";
 import { CANON_DEFAULT_TOP_K } from "../src/canon";
 import { packCanon, searchCanon } from "../src/core/search";
 import { findKruse, kruseMarkers } from "../scripts/check-no-kruse";
-import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, keepGraph, kindOf, LICENCES, QUOTATION_NOTICE, readInputs, sourceMeta } from "../src/pack/canon";
-import { buildDenylist, deniedVideoIds, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
+import { assemble, buildCanonPack, CANON_PACK_BUDGET_BYTES, claimMeta, describeCounts, keepGraph, kindOf, LICENCES, QUOTATION_NOTICE, PRIVATE_SOURCE_META_FILE, readInputs, sourceMeta } from "../src/pack/canon";
+import { buildDenylist, deniedVideoIds, deniedVideos, DENIED_VIDEOS_FILE, scanDeniedVideos, denyRef, denyRow, keepConnections, keepVectorRows, residual, videoIdsIn, withDeniedFiles, type Denylist } from "../src/pack/rights";
 
 const REPO = resolve(import.meta.dir, "../../..");
 const DENIED_ID = "AAAAAAAAAAA";
@@ -67,7 +67,7 @@ describe("rights filter", () => {
       mkdirSync(join(dir, `yt/${CLEAN_ID}-other-talk`), { recursive: true });
       writeFileSync(join(dir, `yt/${CLEAN_ID}-other-talk/info.md`), "# A talk");
       expect(() => deniedVideoIds(dir)).toThrow(/no denied video/);
-      expect(() => deniedVideoIds(join(dir, "missing"))).toThrow(/missing/);
+      expect(deniedVideoIds(join(dir, "missing")).size).toBe(167);
       mkdirSync(join(dir, `yt/${DENIED_ID}-a-talk`), { recursive: true });
       writeFileSync(join(dir, `yt/${DENIED_ID}-a-talk/info.md`), "# A talk");
       writeFileSync(join(dir, `yt/${DENIED_ID}-a-talk/metadata.json`), JSON.stringify({ channel: `Dr. ${OWNER}` }));
@@ -100,9 +100,26 @@ describe("canon pack counts", () => {
   });
 
   test("directory names alone miss videos that the description files find", () => {
-    const named = readdirSync(join(REPO, "yt")).filter((d) => d.toLowerCase().includes(OWNER.toLowerCase())).length;
-    expect(named).toBe(124);
+    expect(deniedVideos(REPO).namedDirs).toBe(124);
     expect(buildDenylist(REPO).videoIds.size).toBe(167);
+  });
+
+  test("the committed source details match the private folders when they are present", () => {
+    const committed = JSON.parse(readFileSync(PRIVATE_SOURCE_META_FILE, "utf8")) as Record<string, { permitted: boolean } | null>;
+    expect(Object.keys(committed).length).toBe(655);
+    expect(Object.values(committed).filter((m) => m?.permitted).length).toBe(302);
+    for (const [path, want] of Object.entries(committed)) {
+      if (!existsSync(join(REPO, path.split("/")[0]))) continue;
+      const got = sourceMeta(REPO, path);
+      expect(got?.permitted ? got : { title: "", url: null, author: null, permitted: false }).toEqual(want as never);
+    }
+  });
+
+  test("the committed denied video list matches yt when the private data is present", () => {
+    const committed = JSON.parse(readFileSync(DENIED_VIDEOS_FILE, "utf8"));
+    expect(committed.namedDirs).toBe(124);
+    expect(committed.videoIds.length).toBe(167);
+    if (existsSync(join(REPO, "yt"))) expect(scanDeniedVideos(join(REPO, "yt"))).toEqual(committed);
   });
 
   test("the pack carries a version, a matching digest, licences and stays in budget", () => {

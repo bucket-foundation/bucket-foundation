@@ -77,7 +77,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
     LaunchedEffect(loading) {
         if (!loading) return@LaunchedEffect
         val items = graph.corpus.load().items
-        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", set.targets, ISpy.ROUNDS) }
+        rounds = com.polingual.app.offMain { ISpy.rounds(items, seed, "en", com.polingual.app.RaceDeal.langs(set.targets), ISpy.ROUNDS) }
         me = Tally(); bots = emptyMap(); loading = false
         phase = SpyPhase.Round(0, System.currentTimeMillis())
     }
@@ -113,7 +113,7 @@ fun ISpyScreen(graph: Graph, back: () -> Unit) {
                 }
             }
             SpyPhase.Done -> {
-                val rank = (bots.values.map { it.score } + me.score).sortedDescending().indexOf(me.score) + 1
+                val rank = (bots.values.map { it.score } + me.score).sortedDescending().indexOf(me.score) + 1; androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.ISpy, points = me.score) }
                 Results(graph, if (rank == 1) "You spied them all first" else "You finished #$rank", "${me.score} points across ${rounds.size} rounds.", again = { seed = DealSeeds.fresh(); loading = true }) {
                     Board(me, bots)
                 }

@@ -35,7 +35,7 @@ struct DuelGame: View {
             HStack {
                 PlayLabel(text: String(localized: "Round \(index + 1) of \(prompts.count) · \(points) points"))
                 Spacer(minLength: 0)
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
             }
             PLCard {
                 Text(p.word.form).font(PL.word.font(scale: 0.9)).foregroundStyle(PL.ink).lineLimit(2).minimumScaleFactor(0.5).frame(maxWidth: .infinity)

@@ -37,7 +37,7 @@ Cost-Weighted Thompson Sampling, see
 ```bash
 cd ~/agfarms/bucket-foundation
 LONGTAIL_HMAC_SECRET=<see below> \
-node scripts/submit-to-longtail.mjs grants-targets/drafts/sloan-exploratory-loi.md \
+node ../bucket-ops/scripts/submit-to-longtail.mjs ../bucket-ops/grants-targets/drafts/sloan-exploratory-loi.md \
   --title "Sloan Foundation — exploratory LoI" \
   --grant sloan-exploratory
 ```
@@ -45,9 +45,9 @@ node scripts/submit-to-longtail.mjs grants-targets/drafts/sloan-exploratory-loi.
 **Pull verdicts (once reviewers have tapped):**
 
 ```bash
-node scripts/pull-longtail-verdicts.mjs <draft_id>
-node scripts/pull-longtail-verdicts.mjs --all
-node scripts/pull-longtail-verdicts.mjs --grant sloan-exploratory
+node ../bucket-ops/scripts/pull-longtail-verdicts.mjs <draft_id>
+node ../bucket-ops/scripts/pull-longtail-verdicts.mjs --all
+node ../bucket-ops/scripts/pull-longtail-verdicts.mjs --grant sloan-exploratory
 ```
 
 **Submission log:** `grants-targets/.longtail-submissions.jsonl` (gitignored).

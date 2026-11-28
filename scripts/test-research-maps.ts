@@ -215,7 +215,7 @@ test("the maps stay unlisted: noindex on every page, absent from the sitemap and
     assert.deepEqual((m.robots as { index: boolean; follow: boolean }).index, false);
   }
   assert.deepEqual(sitemap().filter((e) => e.url.includes("/research/maps")), []);
-  for (const file of ["src/components/HeaderV3.tsx", "src/components/FooterV3.tsx", "src/app/research/page.tsx", "src/app/api/indexnow/ping/route.ts"]) {
+  for (const file of ["src/components/HeaderV3.tsx", "src/components/SiteFooter.tsx", "src/app/research/page.tsx", "src/app/api/indexnow/ping/route.ts"]) {
     assert.ok(!fs.readFileSync(path.join(ROOT, file), "utf8").includes("research/maps"), file);
   }
   const html = renderToStaticMarkup(createElement(MapsIndex));

@@ -52,7 +52,7 @@ const rosDark = vars(block(block(ROS, /@media \(prefers-color-scheme: dark\)\s*\
 const shared = vars(block(TOKENS, /:root\s*\{/));
 const sharedDark = vars(block(TOKENS, /:root\[data-scheme="dark"\]\s*\{/));
 const skin = vars(block(BRAND, /:root\[data-skin="brand"\]\s*\{/));
-const web = { ...shared, ...vars(block(WEB, /:root\s*\{/)) };
+const web = shared;
 
 const THEMES: [string, Record<string, string>][] = [
   ["desktop light", { ...appLight, ...rosBase }],
@@ -102,10 +102,10 @@ describe("shared brand tokens meet WCAG AA on every desktop surface", () => {
 describe("the site and the desktop read one token set", () => {
   test("the site imports the shared tokens and keeps no copy of the palette", () => {
     expect(WEB).toContain('@import "../styles/brand-tokens.css";');
-    for (const name of ["basalt", "bone", "gold", "gold-deep", "aegean", "crimson"]) expect(vars(block(WEB, /:root\s*\{/))[name]).toBeUndefined();
+    expect(/:root\s*\{/.test(WEB)).toBe(false);
   });
 
   test("dark tokens redefine every surface and text primitive", () => {
-    for (const name of ["basalt", "basalt-2", "stone-ink", "bone", "bone-1", "bone-2", "gold", "gold-ink", "on-gold", "on-gold-ink", "crimson", "laurel-deep", "papyrus"]) expect(sharedDark[name]).toBeDefined();
+    for (const name of ["text", "text-2", "muted", "bg", "card", "surface", "accent", "accent-text", "on-accent", "on-accent-deep", "danger", "success-deep", "surface-warm"]) expect(sharedDark[`bk-${name}`]).toBeDefined();
   });
 });

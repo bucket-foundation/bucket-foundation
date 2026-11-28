@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { usePathname } from "next/navigation";
 import { useSession } from "@/providers/SessionProvider";
 import SignInForm from "@/app/sign-in/SignInForm";
-import InverseOmega from "@/components/InverseOmega";
+import Logo from "@/components/Logo";
 import { mergeGuestProgress } from "@/lib/academy/guest-merge";
 import { AccountGateContext, type GatedAction } from "@/lib/academy/account-gate-context";
 
@@ -70,7 +70,7 @@ export function AccountGateProvider({ allowNewAccounts, children }: { allowNewAc
               ×
             </button>
             <div className="flex flex-col items-center text-center">
-              <InverseOmega size={44} variant="carved" />
+              <Logo size={44} />
               <h2 id="sign-in-modal-title" className="mt-4 font-display uppercase text-[20px] tracking-[0.04em] text-[color:var(--basalt)]">
                 Enter your email
               </h2>

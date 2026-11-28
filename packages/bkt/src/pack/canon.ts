@@ -176,8 +176,19 @@ function wikisourcePermitted(repo: string, sourcePath: string): boolean {
   return died || [d.license, d.licence, d.copyright].some((v) => typeof v === "string" && /public[ -]?domain/i.test(v));
 }
 
+export const PRIVATE_DATA_DIRS = ["archaeology", "openalex-fanout", "yt", "arxiv", "blog"];
+export const PRIVATE_SOURCE_META_FILE = join(import.meta.dir, "private-source-meta.json");
+let privateSourceMeta: Record<string, SourceMeta | null> | null = null;
+
+function committedSourceMeta(sourcePath: string): SourceMeta | null {
+  privateSourceMeta ??= JSON.parse(readFileSync(PRIVATE_SOURCE_META_FILE, "utf8")) as Record<string, SourceMeta | null>;
+  return privateSourceMeta[clean(sourcePath)] ?? null;
+}
+
 export function sourceMeta(repo: string, sourcePath: string): SourceMeta | null {
   const kind = kindOf(sourcePath);
+  const top = clean(sourcePath).split("/")[0];
+  if (PRIVATE_DATA_DIRS.includes(top) && !existsSync(join(repo, top))) return committedSourceMeta(sourcePath);
   const file = infoFile(repo, sourcePath);
   if (!file) return null;
   const head = readFileSync(file, "utf8").slice(0, 4000);

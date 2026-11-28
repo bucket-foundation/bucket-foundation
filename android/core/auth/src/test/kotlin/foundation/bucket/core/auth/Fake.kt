@@ -26,9 +26,9 @@ class Fake {
     }), base = "https://test.local")
 }
 
-fun lobbyJson(id: String = "L1", version: Int = 1, status: String = "lobby", ready: Boolean = false, game: String = "daily") = """
+fun lobbyJson(id: String = "L1", version: Int = 1, status: String = "lobby", ready: Boolean = false, game: String = "daily", startedAt: String = "2026-11-12T10:00:00Z") = """
 {"id":"$id","code":"ABC123","name":"Room","game":"$game","root":"en","targets":["es"],"seed":"42","status":"$status","listed":true,
-"rounds":3,"roundSeconds":10,"startedAt":"2026-11-12T10:00:00Z","version":$version,"now":"2026-11-12T10:00:00Z","isHost":true,
+"rounds":3,"roundSeconds":10,"startedAt":"$startedAt","version":$version,"now":"2026-11-12T10:00:00Z","isHost":true,
 "players":[{"userId":"u1","name":"Ana","ready":$ready,"score":0,"isHost":true,"isMe":true,"online":true,"answered":false}],
 "messages":[],"round":null,"prompts":[{"round":0,"mode":"form","lang":null,"gloss":"eight","choices":["ocho","nueve"],"answer":null}],"results":[],"extra":1}
 """.trimIndent()

@@ -94,7 +94,7 @@ struct AtlasGame: View {
             HStack {
                 PlayLabel(text: "Word \(index + 1) of \(rounds.count) · \(total) points")
                 Spacer(minLength: 0)
-                ComboChip(streak: feel.streak, multiplier: false)
+                ComboSlot(streak: feel.streak, multiplier: false)
             }
             if silent { PlayNote(text: "Sound is off, so each word shows in writing. Turn sound on to play by ear.", art: .ticket) }
             HStack(spacing: PL.Space.s3) {
@@ -187,7 +187,7 @@ struct AtlasGame: View {
         }
         .aspectRatio(Atlas.mapW / Atlas.mapH, contentMode: .fit)
         .background(PL.lapisDeep)
-        .clipShape(.rect(cornerRadius: 12))
+        .clipShape(.rect(cornerRadius: PL.Radius.md))
     }
 
     func zoomButton(_ glyph: PLGlyph, _ label: LocalizedStringKey, _ act: @escaping () -> Void) -> some View {

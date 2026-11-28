@@ -248,6 +248,12 @@ export function buildIndex() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === new URL(import.meta.url).pathname) {
+  for (const d of ["arxiv", "yt"]) {
+    if (!fs.existsSync(path.join(ROOT, d))) {
+      console.error(`${d}/ is missing. Run scripts/link-data.sh with a bucket-data clone before rebuilding the index.`);
+      process.exit(1);
+    }
+  }
   const { primary, skipped, ...index } = buildIndex();
   const body = JSON.stringify(index);
   const big = Buffer.byteLength(body) > LIMIT;

@@ -94,7 +94,7 @@ struct QuestionCard: View {
                 Button { if result == nil { choice = i; tap() } } label: {
                     Text(LessonText.inline(superscripts(q.options?[i] ?? ""))).frame(maxWidth: .infinity, alignment: .leading).padding(.vertical, 8)
                 }
-                .buttonStyle(D8Option(selected: choice == i))
+                .buttonStyle(PLOption(selected: choice == i))
             }
         case .spotError:
             ForEach(presented.order, id: \.self) { i in
@@ -105,7 +105,7 @@ struct QuestionCard: View {
                     }
                     .padding(.vertical, 6)
                 }
-                .buttonStyle(D8Option(selected: choice == i))
+                .buttonStyle(PLOption(selected: choice == i))
             }
         case .calculate:
             HStack {
@@ -137,7 +137,7 @@ struct QuestionCard: View {
                     }
                     .padding(.vertical, 6)
                 }
-                .buttonStyle(D8Option(selected: place != nil))
+                .buttonStyle(PLOption(selected: place != nil))
             }
         case .match:
             let pairs = q.pairs ?? []

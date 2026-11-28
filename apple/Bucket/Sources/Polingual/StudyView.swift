@@ -306,9 +306,9 @@ struct StudyView: View {
                                 Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
                                 FirstLesson.mark(graded: graded)
                             }
-                        Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
+                        Text("Session done").font(PL.script(30, .bold))
                         SessionTally(correct: correct, graded: graded, met: met, xp: Int(state.xp - xpStart), streak: Int(state.streak))
-                            .foregroundStyle(Palette.muted)
+                            .foregroundStyle(PL.inkDim)
                             .monospacedDigit()
                         StudyLeaveLink()
                         if vertical == .compact {
@@ -341,12 +341,12 @@ struct StudyView: View {
                             } label: {
                                 Label(other.title, systemImage: "arrow.right").lineLimit(1).minimumScaleFactor(0.7)
                             }
-                            .buttonStyle(D8Option(align: .center))
+                            .buttonStyle(PLOption(align: .center))
                         }
                         Button("See progress") {
                             path.replaceTop(with: LangRoute.system(system.id))
                         }
-                        .buttonStyle(D8Option(align: .center))
+                        .buttonStyle(PLOption(align: .center))
                     }
                     .frame(maxWidth: .infinity)
                 }
@@ -366,8 +366,8 @@ struct StudyView: View {
             let maps = readingMaps(ex, corpus)
             let page = VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 10) {
-                    ProgressView(value: Double(i), total: Double(queue.count)).tint(D8.malachite)
-                    Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                    ProgressView(value: Double(i), total: Double(queue.count)).tint(PL.malachite)
+                    Text("\(i + 1)/\(queue.count)").font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim).monospacedDigit()
                 }
                 ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done,
                              flagNamed: { store.showsFlagName(systemId, lang: $0) },
