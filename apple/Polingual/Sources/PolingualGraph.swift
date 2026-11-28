@@ -46,10 +46,11 @@ final class PolingualGraph {
 
     func close() async {
         let lobbies = lobbies, store = store
-        await Deadline.run(5) {
+        let done = await Deadline.run(5) {
             await lobbies.leave()
             await store.flush()
         }
+        if !done { store.detach() }
     }
 }
 

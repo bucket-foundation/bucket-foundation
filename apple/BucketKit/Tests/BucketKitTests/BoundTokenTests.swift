@@ -44,6 +44,26 @@ import Testing
         #expect(EngineState(js: server.branches.value[LangStoreSyncTests.branch]).cards.has(cardId("es", "adios")))
     }
 
+    @Test func detachedStoreKeepsItsPendingWorkOnDisk() async {
+        let server = LangStoreSyncTests().seeded()
+        let disk = MemoryLangDisk()
+        let s = LangStore(api: server.api, disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: BoundToken.make(owner: "A") { UserToken(userId: "A", token: "t") }, now: { 2_000 })
+        await s.load()
+        let before = server.posts.value.count
+        let epoch = s.epoch
+        s.grade("s1", lang: "es", itemId: "adios", rating: 3)
+        s.detach()
+        #expect(s.epoch == epoch + 1)
+        try? await Task.sleep(for: .seconds(1.5))
+        #expect(server.posts.value.count == before)
+        #expect(disk.read("pending.json") != nil)
+        let reopened = LangStore(api: server.api, disk: disk, cache: MemoryLangDisk(), seed: { _ in nil }, token: BoundToken.make(owner: "A") { UserToken(userId: "A", token: "t") }, now: { 2_000 })
+        await reopened.load()
+        await reopened.retryPending()
+        #expect(!reopened.hasUnsyncedWork)
+        #expect(EngineState(js: server.branches.value[LangStoreSyncTests.branch]).cards.has(cardId("es", "adios")))
+    }
+
     @Test func scienceSendRefusesTokenForAnotherUserAndRecoversOnResync() async throws {
         let server = ProgressServer()
         let disk = MemoryLangDisk()

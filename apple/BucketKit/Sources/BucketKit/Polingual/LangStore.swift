@@ -853,6 +853,13 @@ public final class LangStore {
         }
     }
 
+    public func detach() {
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        epoch += 1
+        inFlight = [:]
+    }
+
     public func clearLocal(accountDeleted: Bool = false) {
         for t in pushes.values { t.cancel() }
         pushes = [:]
