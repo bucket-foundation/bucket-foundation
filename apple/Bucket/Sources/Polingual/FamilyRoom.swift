@@ -564,7 +564,7 @@ struct TeachRound: View {
         let id = lobby.id
         problem = nil
         Task {
-            do {
+            do throws(BucketError) {
                 try await lobbies.withToken { api, t in try await api.teachAct(token: t, lobbyId: id, action: a, speakerId: speakerId, lang: lang, clip: clip, choices: choices, answer: answer, guess: guess) }
                 await load()
             } catch {
