@@ -371,7 +371,7 @@ struct LobbyRoom: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .plGround(.lattice, band: true)
+        .plGround(.paper, band: true)
         .navigationTitle(lobbies.current?.name ?? "")
         .inlineTitle()
         .fullHeightSession()
