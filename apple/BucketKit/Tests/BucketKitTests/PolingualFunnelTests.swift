@@ -20,12 +20,15 @@ struct PolingualFunnelTests {
         #expect(events == [["name": "heard_about", "path": "/ios", "detail": "tiktok", "lang": "en"]])
     }
 
-    @Test func heardAboutSendsOncePerInstall() {
-        let (f, _) = funnel()
-        #expect(f.body("heard_about", detail: "friend") != nil)
+    @Test func heardAboutSendsOncePerInstall() async {
+        let t = ReportTransport([])
+        let (f, _) = funnel(t)
+        #expect(await f.send("heard_about", detail: "friend") == 200)
+        #expect(await f.send("heard_about", detail: "reddit") == nil)
         #expect(f.body("heard_about", detail: "reddit") == nil)
-        #expect(f.body("onboarding_view", detail: "speak") != nil)
-        #expect(f.body("onboarding_view", detail: "speak") != nil)
+        #expect(await f.send("onboarding_view", detail: "speak") == 200)
+        #expect(await f.send("onboarding_view", detail: "speak") == 200)
+        #expect(t.requests.count == 3)
     }
 
     @Test func unknownAndBillingNamesAreDropped() {
@@ -35,14 +38,62 @@ struct PolingualFunnelTests {
         #expect(f.body("made_up") == nil)
     }
 
-    @Test func signupAndFirstLessonSendOnceWhilePaywallViewsRepeat() {
+    @Test func signupAndFirstLessonSendOnceWhilePaywallViewsRepeat() async {
+        let (f, _) = funnel()
+        #expect(await f.send("signup") == 200)
+        #expect(await f.send("signup") == nil)
+        #expect(await f.send("first_lesson") == 200)
+        #expect(await f.send("first_lesson") == nil)
+        #expect(await f.send("paywall_view") == 200)
+        #expect(await f.send("paywall_view") == 200)
+    }
+
+    @Test func bodyLeavesTheOnceFlagAlone() {
         let (f, _) = funnel()
         #expect(f.body("signup") != nil)
-        #expect(f.body("signup") == nil)
-        #expect(f.body("first_lesson") != nil)
-        #expect(f.body("first_lesson") == nil)
-        #expect(f.body("paywall_view") != nil)
-        #expect(f.body("paywall_view") != nil)
+        #expect(f.body("signup") != nil)
+        #expect(!f.sent("signup"))
+    }
+
+    @Test func failedOnceEventIsRetriedOnTheNextSend() async {
+        let t = ReportTransport([nil, 503, 200])
+        let (f, _) = funnel(t)
+        #expect(await f.send("first_lesson") == nil)
+        #expect(!f.sent("first_lesson"))
+        #expect(await f.send("first_lesson") == 503)
+        #expect(!f.sent("first_lesson"))
+        #expect(await f.send("first_lesson") == 200)
+        #expect(f.sent("first_lesson"))
+        #expect(await f.send("first_lesson") == nil)
+        #expect(t.requests.count == 3)
+    }
+
+    @Test func permanentClientErrorsSettleWhileThrottlingRetries() {
+        #expect(PolingualFunnel.settles(200))
+        #expect(PolingualFunnel.settles(400))
+        #expect(PolingualFunnel.settles(422))
+        #expect(!PolingualFunnel.settles(408))
+        #expect(!PolingualFunnel.settles(429))
+        #expect(!PolingualFunnel.settles(500))
+        #expect(!PolingualFunnel.settles(503))
+    }
+
+    @Test func rejectedOnceEventIsNotResent() async {
+        let t = ReportTransport([422])
+        let (f, _) = funnel(t)
+        #expect(await f.send("heard_about", detail: "tiktok") == 422)
+        #expect(await f.send("heard_about", detail: "tiktok") == nil)
+        #expect(t.requests.count == 1)
+    }
+
+    @Test func concurrentOnceSendsPostOnce() async {
+        let t = ReportTransport([], delay: .milliseconds(50))
+        let (f, _) = funnel(t)
+        async let a = f.send("signup")
+        async let b = f.send("signup")
+        let results = await [a, b]
+        #expect(results.compactMap { $0 } == [200])
+        #expect(t.requests.count == 1)
     }
 
     @Test func signupStepFollowsTheServerNewAccountFlag() throws {

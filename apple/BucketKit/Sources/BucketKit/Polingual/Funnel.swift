@@ -30,6 +30,8 @@ public final class PolingualFunnel: Sendable {
     let transport: any Transport
     let url: URL
     let makeId: @Sendable () -> String
+    let lock = NSLock()
+    nonisolated(unsafe) var inFlight: Set<String> = []
 
     public init(defaults: UserDefaults = .standard, transport: any Transport = URLSessionTransport(), url: URL = PolingualFunnel.eventsURL, makeId: @escaping @Sendable () -> String = { UUID().uuidString.lowercased() }) {
         self.defaults = defaults
@@ -51,16 +53,37 @@ public final class PolingualFunnel: Sendable {
 
     public func body(_ name: String, detail: String? = nil, lang: String? = nil) -> Data? {
         guard Self.names.contains(name) else { return nil }
-        if Self.once.contains(name) {
-            let key = Self.oncePrefix + name
-            if defaults.string(forKey: key) != nil { return nil }
-            defaults.set("1", forKey: key)
-        }
+        if Self.once.contains(name), sent(name) { return nil }
         var event: [String: String] = ["name": name, "path": "/ios"]
         if let detail { event["detail"] = detail }
         if let lang { event["lang"] = lang }
         struct Body: Encodable { let visitor: String; let events: [[String: String]] }
         return try? JSONEncoder().encode(Body(visitor: visitor, events: [event]))
+    }
+
+    public func sent(_ name: String) -> Bool {
+        defaults.string(forKey: Self.oncePrefix + name) != nil
+    }
+
+    func claim(_ name: String) -> Bool {
+        guard Self.once.contains(name) else { return true }
+        return lock.withLock {
+            if sent(name) || inFlight.contains(name) { return false }
+            inFlight.insert(name)
+            return true
+        }
+    }
+
+    public static func settles(_ status: Int) -> Bool {
+        (200..<300).contains(status) || ((400..<500).contains(status) && status != 408 && status != 429)
+    }
+
+    func settle(_ name: String, status: Int?) {
+        guard Self.once.contains(name) else { return }
+        lock.withLock {
+            inFlight.remove(name)
+            if let status, Self.settles(status) { defaults.set("1", forKey: Self.oncePrefix + name) }
+        }
     }
 
     public func request(_ body: Data) -> URLRequest {
@@ -74,7 +97,13 @@ public final class PolingualFunnel: Sendable {
 
     @discardableResult
     public func send(_ name: String, detail: String? = nil, lang: String? = nil) async -> Int? {
-        guard let b = body(name, detail: detail, lang: lang) else { return nil }
-        return try? await transport.send(request(b)).1.statusCode
+        guard claim(name) else { return nil }
+        guard let b = body(name, detail: detail, lang: lang) else {
+            settle(name, status: nil)
+            return nil
+        }
+        let status = try? await transport.send(request(b)).1.statusCode
+        settle(name, status: status)
+        return status
     }
 }
