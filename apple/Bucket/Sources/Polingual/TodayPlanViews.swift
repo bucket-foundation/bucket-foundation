@@ -227,6 +227,7 @@ struct PickEntry: Identifiable {
 struct PickSection: Identifiable {
     let title: String
     let entries: [PickEntry]
+    var sortable = false
     var id: String { title }
 }
 
@@ -265,6 +266,7 @@ struct TodayPicker: View {
     let subjects: [DeckEntry]?
     @Environment(\.dismiss) private var dismiss
     @AppStorage("today.picker.widgets") private var widgets = true
+    @AppStorage(SetSort.storageKey) private var setSort = SetSort.recent.rawValue
 
     var games: [GameKind] {
         GameKind.allCases.filter { $0 != .letters && ($0 != .wordGroups || langs.wordGroupsPuzzle != nil) }
@@ -276,7 +278,7 @@ struct TodayPicker: View {
         let study = String(localized: "Review and new cards")
         var out: [PickSection] = []
         if !langs.systems.isEmpty {
-            out.append(PickSection(title: "Languages", entries: langs.systems.map { PickEntry(item: .system($0), title: $0.title, symbol: "character.bubble", flags: $0.targets, look: TodayLooks.lang($0.targets), detail: study) }))
+            out.append(PickSection(title: "Languages", entries: langs.sortedSystems(SetSort(rawValue: setSort) ?? .recent).map { PickEntry(item: .system($0), title: $0.title, symbol: "character.bubble", flags: $0.targets, look: TodayLooks.lang($0.targets), detail: study) }, sortable: langs.systems.count > 1))
         }
         if let subjects {
             out.append(PickSection(title: "Subjects", entries: subjects.map { PickEntry(item: .deck($0), title: $0.title, symbol: "rectangle.stack", branch: $0.id, look: TodayLooks.branch($0.id), detail: study) }))
@@ -307,7 +309,12 @@ struct TodayPicker: View {
             VStack(alignment: .leading, spacing: 18) {
                 ForEach(sections) { section in
                     VStack(alignment: .leading, spacing: 10) {
-                        Eyebrow(text: section.title).padding(.leading, 4)
+                        HStack {
+                            Eyebrow(text: section.title)
+                            Spacer()
+                            if section.sortable { SetSortMenu() }
+                        }
+                        .padding(.leading, 4)
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 12)], spacing: 12) {
                             ForEach(section.entries) { TodayPickTile(entry: $0) }
                         }
@@ -324,7 +331,11 @@ struct TodayPicker: View {
                 Section {
                     ForEach(section.entries) { row($0) }
                 } header: {
-                    Eyebrow(text: section.title)
+                    HStack {
+                        Eyebrow(text: section.title)
+                        Spacer()
+                        if section.sortable { SetSortMenu().textCase(nil) }
+                    }
                 }
                 .listRowBackground(PL.card)
             }

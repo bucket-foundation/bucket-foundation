@@ -4,6 +4,7 @@ import SwiftUI
 struct LearnView: View {
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
+    @AppStorage(SetSort.storageKey) private var setSort = SetSort.recent.rawValue
     var subjects: (any Subjects)?
     var games = true
 
@@ -115,8 +116,16 @@ struct LearnView: View {
                     LanguageSections(path: $path, corpus: corpus, proxy: proxy)
                 } else {
                     Section {
+                        if langs.systems.count > 1 {
+                            HStack {
+                                Spacer()
+                                SetSortMenu()
+                            }
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                        }
                         LazyVGrid(columns: learnColumns, spacing: 14) {
-                            ForEach(langs.systems) { LangTile(system: $0, corpus: corpus, open: { id in path.append(LangRoute.system(id)) }) }
+                            ForEach(langs.sortedSystems(SetSort(rawValue: setSort) ?? .recent)) { LangTile(system: $0, corpus: corpus, open: { id in path.append(LangRoute.system(id)) }) }
                             NewSetTile { path.append(LearnRoute.newSet) }
                         }
                         .listRowInsets(EdgeInsets(top: 4, leading: 0, bottom: 4, trailing: 0))

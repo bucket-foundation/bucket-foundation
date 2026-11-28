@@ -1394,7 +1394,7 @@ public func editSystem(_ system: LangSystem, _ targets: [String], now: Double) t
     if t.count > Lang.maxTargets { throw SystemError.tooMany }
     var s = system
     s.targets = t
-    s.name = systemName(system.root, t)
+    if !hasCustomName(system) { s.name = systemName(system.root, t) }
     s.updatedAt = now
     return s
 }
