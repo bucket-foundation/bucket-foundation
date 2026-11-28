@@ -95,6 +95,15 @@ import Testing
         #expect(FileManager.default.fileExists(atPath: folders.root("polingual").appending(path: "systems.json").path))
     }
 
+    @Test func relaunchStillMigratesAnUnmovedInstall() throws {
+        let (items, index, folders, d) = try fresh()
+        try signIn("A", items, index)
+        let l = launch(items, index, folders, d, relaunch: true)
+        #expect(folders.phase == .copied)
+        #expect(l.folderKey == AccountIndex.key("A"))
+        #expect(l.disk("polingual").read("systems.json") == Data("S".utf8))
+    }
+
     @Test func addOpensTheGuestSlotAndSignInPromotesItOnRebuild() throws {
         let (items, index, folders, d) = try fresh()
         try signIn("A", items, index)
@@ -161,5 +170,20 @@ import Testing
         #expect(await host.add())
         #expect(host.choices.contains { $0.active } == false)
         #expect(builds == 2)
+    }
+}
+
+@MainActor
+@Suite struct DeadlineTests {
+    @Test func finishedWorkReportsTrue() async {
+        var ran = false
+        #expect(await Deadline.run(5) { ran = true })
+        #expect(ran)
+    }
+
+    @Test func stalledWorkIsLeftBehindAtTheDeadline() async {
+        let start = Date()
+        #expect(await Deadline.run(0.1) { try? await Task.sleep(for: .seconds(120)) } == false)
+        #expect(Date().timeIntervalSince(start) < 60)
     }
 }

@@ -24,14 +24,14 @@ struct AccountsSection: View {
                     HStack(spacing: 12) {
                         Text(choice.initial)
                             .font(.headline.weight(.heavy))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(PL.paper)
                             .frame(width: 32, height: 32)
                             .background(Circle().fill(PL.tyrian))
                             .accessibilityHidden(true)
                         Group {
                             if choice.label.isEmpty { Text("Account \(choice.shortId)") } else { Text(verbatim: choice.label) }
                         }
-                        .foregroundStyle(Palette.ink)
+                        .foregroundStyle(PL.ink)
                         Spacer(minLength: 8)
                         if choice.active { PLGlyphView(.check, size: 18).foregroundStyle(PL.tyrian) }
                     }

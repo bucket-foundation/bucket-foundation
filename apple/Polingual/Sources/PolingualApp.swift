@@ -49,7 +49,13 @@ struct PolingualApp: App {
                 .environment(\.accountHost, box.host)
                 .interfaceLanguage(store)
                 .preferredColorScheme(.light)
-                .task(id: box.host?.generation ?? 0) { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
+                .task(id: box.host?.generation ?? 0) {
+                    Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } }
+                    guard (box.host?.generation ?? 0) > 0 else { return }
+                    await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
+                    await WordOfDayReminder.schedule(store, enabled: reminders.wordOfDay)
+                    WidgetSync.refresh(store)
+                }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
