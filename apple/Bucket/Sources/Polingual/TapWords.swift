@@ -26,6 +26,7 @@ struct PhraseWords: View {
 
 extension EnvironmentValues {
     @Entry var wordTapsHosted = false
+    @Entry var lessonSystem: String? = nil
 }
 
 extension View {
@@ -35,6 +36,7 @@ extension View {
 struct WordTapHost: ViewModifier {
     let reveal: Bool
     @Environment(LangStore.self) private var store: LangStore?
+    @Environment(\.lessonSystem) private var lessonSystem
     @State private var shown: WordDetail?
 
     func body(content: Content) -> some View {
@@ -42,7 +44,7 @@ struct WordTapHost: ViewModifier {
             .environment(\.openURL, OpenURLAction { url in
                 guard let p = WordTaps.parse(url) else { return .systemAction }
                 if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
-                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.meaningRoot(p.lang) ?? "en")
+                shown = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.meaningRoot(p.lang, lesson: lessonSystem) ?? "en")
                 return .handled
             })
             .environment(\.wordTapsHosted, true)

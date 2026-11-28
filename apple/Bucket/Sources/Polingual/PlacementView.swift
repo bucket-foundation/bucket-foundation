@@ -37,6 +37,7 @@ struct PlacementView: View {
         }
         .paper()
         .sharePage(store.system(systemId).map { SharePage.langs($0) })
+        .environment(\.lessonSystem, systemId)
         .navigationTitle("Placement")
         .inlineTitle()
         .task { await store.load() }

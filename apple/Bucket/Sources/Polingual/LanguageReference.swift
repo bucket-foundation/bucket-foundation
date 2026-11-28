@@ -148,6 +148,7 @@ struct WritingRows: View {
 
 struct WordFactsView: View {
     @Environment(LangStore.self) private var store: LangStore?
+    @Environment(\.lessonSystem) private var lessonSystem
     let detail: WordDetail
     @State private var next: WordDetail?
     @State private var web = WordWeb.empty
@@ -257,7 +258,7 @@ struct WordFactsView: View {
             guard let p = WordTaps.parse(url) else { return .systemAction }
             if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
             if detail.leadsTo(p.word, lang: p.lang) {
-                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.meaningRoot(p.lang) ?? "en")
+                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.meaningRoot(p.lang, lesson: lessonSystem) ?? "en")
             }
             return .handled
         })
