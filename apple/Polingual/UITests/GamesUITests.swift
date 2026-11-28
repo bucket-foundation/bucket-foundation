@@ -225,6 +225,28 @@ final class GamesUITests: XCTestCase {
         shot("flags-end")
     }
 
+    func testDailyComboKeepsTheLayoutAndResultShowsOneStartLearning() {
+        let app = launch(["-openGame", "daily", "-freshDaily", "-revealAnswer"])
+        let combo = app.descendants(matching: .any)["game-combo"]
+        let right = app.buttons.matching(NSPredicate(format: "identifier == %@ AND value == %@", "game-choice", "answer")).firstMatch
+        XCTAssertTrue(right.waitForExistence(timeout: 60))
+        let height = right.frame.height
+        for _ in 0..<6 where !combo.exists {
+            expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: right)
+            waitForExpectations(timeout: 10)
+            right.tap()
+            XCTAssertTrue(app.buttons["game-hear"].waitForExistence(timeout: 3))
+        }
+        XCTAssertTrue(combo.waitForExistence(timeout: 3))
+        expectation(for: NSPredicate(format: "isEnabled == true"), evaluatedWith: right)
+        waitForExpectations(timeout: 10)
+        XCTAssertEqual(right.frame.height, height, accuracy: 1, "The streak chip rescaled the board")
+        shot("daily-combo")
+        playQuiz(app, until: app.staticTexts["New set tomorrow."], name: "daily-combo")
+        XCTAssertEqual(app.buttons.matching(identifier: "startLearning").count, 1)
+        shot("daily-combo-end")
+    }
+
     func testComboChipShowsAfterThreeRight() {
         let app = launch(["-openGame", "flags", "-revealAnswer"])
         let choice = app.buttons["game-choice"].firstMatch

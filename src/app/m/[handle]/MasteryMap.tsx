@@ -1,9 +1,9 @@
 import type { BranchSummary, ConceptSignal } from "@/lib/academy/mastery";
 
 const SHELL_COLOR: Record<string, string> = {
-  prereq: "#2E6B6B",
-  nucleus: "#B8861E",
-  frontier: "#5A7A3A",
+  prereq: "var(--aegean)",
+  nucleus: "var(--gold)",
+  frontier: "var(--laurel)",
 };
 const SHELL_RADIUS: Record<string, number> = {
   prereq: 0.42,
@@ -72,7 +72,7 @@ export default function MasteryMap({ branch }: { branch: BranchSummary }) {
         />
       ))}
       {placed.map((p) => {
-        const color = SHELL_COLOR[p.shell] || "#B8861E";
+        const color = SHELL_COLOR[p.shell] || "var(--gold)";
         const fillR = p.r * Math.max(0.12, p.mastery);
         return (
           <g key={p.id} transform={`translate(${p.x.toFixed(1)},${p.y.toFixed(1)})`}>

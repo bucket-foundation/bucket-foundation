@@ -134,7 +134,7 @@ struct WordGroupsGame: View {
                     .font(PL.small.font()).foregroundStyle(note == nil ? PL.paper.opacity(0.85) : PL.ochre)
                     .accessibilityIdentifier("groups.note")
                 Spacer(minLength: 0)
-                ComboChip(streak: streak, multiplier: false)
+                ComboSlot(streak: streak, multiplier: false)
             }
             ForEach(r.solved) { banner($0, r.puzzle) }
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 8) {
@@ -165,7 +165,7 @@ struct WordGroupsGame: View {
                 .padding(.horizontal, 4)
                 .frame(maxWidth: .infinity, minHeight: 68)
         }
-        .buttonStyle(D8Option(selected: on, align: .center, compact: true))
+        .buttonStyle(PLOption(selected: on, align: .center, compact: true))
         .accessibilityAddTraits(on ? .isSelected : [])
         .accessibilityIdentifier("groups.tile")
     }

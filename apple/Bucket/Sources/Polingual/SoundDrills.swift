@@ -14,8 +14,8 @@ struct SpokenTile: View {
     var body: some View {
         Button(action: action) {
             VStack(spacing: 2) {
-                if let symbol { Image(systemName: symbol).font(.system(size: 20, weight: .bold)) }
-                Text(text).font(.system(size: vertical == .compact ? 20 : 24, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
+                if let symbol { Image(systemName: symbol).font(PL.text(20, .bold)) }
+                Text(text).font(PL.script(vertical == .compact ? 20 : 24, .heavy)).lineLimit(1).minimumScaleFactor(0.5)
                 if let detail {
                     Text(detail).font(PL.small.font()).foregroundStyle(state == .other ? PL.inkDim : PL.paper.opacity(0.85)).lineLimit(2).minimumScaleFactor(0.7).multilineTextAlignment(.center)
                 }
@@ -41,7 +41,7 @@ struct TileGrid<Content: View>: View {
 struct NativeVoiceNote: View {
     var body: some View {
         Text("Device voice only. A native recording would show this contrast better.")
-            .font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+            .font(PL.text(12, .semibold)).foregroundStyle(PL.inkDim)
             .frame(maxWidth: .infinity, alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -54,7 +54,7 @@ struct DrillLine: View {
     var body: some View {
         Label(text, systemImage: "arrow.uturn.left")
             .lineLimit(1).minimumScaleFactor(0.7)
-            .font(.headline).foregroundStyle(D8.vermilion)
+            .font(PL.text(17, .bold)).foregroundStyle(PL.vermilion)
             .frame(maxWidth: .infinity)
             .opacity(shown ? 1 : 0)
             .accessibilityHidden(!shown)
@@ -90,13 +90,13 @@ struct PairMeet: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Tap each one and hear the difference.").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+            Text("Tap each one and hear the difference.").font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim).frame(maxWidth: .infinity)
             TileGrid {
                 ForEach(words, id: \.key) { w in
                     SpokenTile(text: w.text, detail: w.gloss, lang: ex.lang, state: .other, symbol: "speaker.wave.2.fill") { LangVoice.shared.speak(w.say, ex.lang) }
                 }
             }
-            if let hint = ex.hint { Text(hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink).frame(maxWidth: .infinity, alignment: .leading).fixedSize(horizontal: false, vertical: true) }
+            if let hint = ex.hint { Text(hint).font(PL.text(15, .medium)).foregroundStyle(PL.ink).frame(maxWidth: .infinity, alignment: .leading).fixedSize(horizontal: false, vertical: true) }
             if ex.nativeVoice { NativeVoiceNote() }
             Button("Got it", action: onDone).buttonStyle(D8Primary())
         }
@@ -116,7 +116,7 @@ struct PairDrill: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Which one did you hear?").font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+            Text("Which one did you hear?").font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim).frame(maxWidth: .infinity)
             SoundButtons(text: ex.prompt, lang: ex.lang, size: 64, plays: $plays)
             TileGrid {
                 ForEach(words, id: \.key) { w in
@@ -125,8 +125,8 @@ struct PairDrill: View {
                 }
             }
             Group {
-                if let hint = ex.hint { Text(hint).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink).frame(maxWidth: .infinity, alignment: .leading).fixedSize(horizontal: false, vertical: true) }
-                Button { hearAll(words, ex.lang) } label: { Label("Hear them again", systemImage: "speaker.wave.2.fill") }.buttonStyle(D8Option(align: .center, compact: true)).disabled(picked == nil)
+                if let hint = ex.hint { Text(hint).font(PL.text(15, .medium)).foregroundStyle(PL.ink).frame(maxWidth: .infinity, alignment: .leading).fixedSize(horizontal: false, vertical: true) }
+                Button { hearAll(words, ex.lang) } label: { Label("Hear them again", systemImage: "speaker.wave.2.fill") }.buttonStyle(PLOption(align: .center, compact: true)).disabled(picked == nil)
                 if ex.nativeVoice { NativeVoiceNote() }
             }
             .opacity(picked == nil ? 0 : 1)
@@ -172,10 +172,10 @@ struct LetterSoundDrill: View {
     var body: some View {
         VStack(spacing: 12) {
             Text(character ? String(localized: "What does this character say?") : String(localized: "What sound does this make?"))
-                .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
+                .font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim).frame(maxWidth: .infinity)
             Text(ex.answer.replacingOccurrences(of: "◌", with: ""))
-                .font(.system(size: 76, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.5)
-                .foregroundStyle(Palette.ink)
+                .font(PL.script(76, .heavy)).lineLimit(1).minimumScaleFactor(0.5)
+                .foregroundStyle(PL.ink)
                 .environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
             TileGrid {
                 ForEach(ex.spoken ?? [], id: \.key) { o in
@@ -225,7 +225,7 @@ struct BlendDrill: View {
     var body: some View {
         VStack(spacing: 12) {
             Text(voiced ? String(localized: "Sound it out, then find the word you hear.") : String(localized: "Sound it out, then find its meaning."))
-                .font(.subheadline.weight(.semibold)).foregroundStyle(Palette.muted).frame(maxWidth: .infinity).multilineTextAlignment(.center)
+                .font(PL.text(15, .semibold)).foregroundStyle(PL.inkDim).frame(maxWidth: .infinity).multilineTextAlignment(.center)
             chips.environment(\.layoutDirection, Lang.isRTL(ex.lang) ? .rightToLeft : .leftToRight)
             ForEach(Array(options.enumerated()), id: \.element.key) { k, o in
                 SpokenTile(text: label(k, o), detail: checked ? o.gloss : nil, lang: ex.lang, state: state(o), symbol: voiced && !checked ? "speaker.wave.2.fill" : nil, selected: !checked && o.key == chosen) { choose(o) }
@@ -253,11 +253,11 @@ struct BlendDrill: View {
         HStack(spacing: 4) {
             ForEach(Array((ex.segments ?? []).enumerated()), id: \.offset) { _, seg in
                 Text(seg)
-                    .font(D8.word(30)).lineLimit(1).minimumScaleFactor(0.4)
+                    .font(PL.wordFont(30)).lineLimit(1).minimumScaleFactor(0.4)
                     .padding(.horizontal, 8).padding(.vertical, 6)
-                    .foregroundStyle(seg.lowercased() == taught ? .white : Palette.ink)
-                    .background(seg.lowercased() == taught ? D8.vermilion : Palette.card, in: .rect(cornerRadius: 10))
-                    .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline))
+                    .foregroundStyle(seg.lowercased() == taught ? .white : PL.ink)
+                    .background(seg.lowercased() == taught ? PL.vermilion : PL.card, in: .rect(cornerRadius: PL.Radius.sm))
+                    .overlay(RoundedRectangle(cornerRadius: PL.Radius.sm).strokeBorder(PL.paper3))
             }
         }
         .frame(maxWidth: .infinity)

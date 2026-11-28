@@ -1,0 +1,141 @@
+<!-- voice-ignore-file -->
+# The AI Bubble Is Deflating. How Low Can Bitcoin Go?
+
+- **Video ID**: `ecpjncdGZIw`
+- **URL**: https://www.youtube.com/watch?v=ecpjncdGZIw
+- **Channel**: Bankless — https://www.youtube.com/channel/UCAl9Ld79qaZxp9JzEOwd3aA
+- **Uploaded**: 20261126
+- **Duration**: 56:24 (3384s)
+- **Views**: 10331  ·  **Likes**: 164
+- **Captured**: 2026-11-27T10:03:58
+
+## Description
+
+📣SPOTIFY PREMIUM RSS FEED | USE CODE: SPOTIFY24
+https://bankless.cc/spotify-premium
+
+---
+Bitcoin hits new lows as liquidity dries up and the AI bubble shows cracks. Ryan and David break down what’s driving the selloff, where the bottom could be, and whether AI poses an existential threat to crypto.
+
+---
+BANKLESS SPONSOR TOOLS:
+
+🔓NEAR | TRADE CONFIDENTIALLY, GET 20% BACK
+https://bankless.cc/near2026
+
+🛡️VIZOR | THE WALLET ZCASH DEVS USE
+ https://bankless.cc/vizor
+
+🌎RIPIO | LOCAL CURRENCIES, ONCHAIN
+https://bankless.cc/ripio
+
+🎯THE DEFI REPORT | ONCHAIN INSIGHTS
+https://thedefireport.io/bankless
+
+---
+TIMESTAMPS & RESOURCES
+
+0:00 Intro
+
+0:10 Downvember and Bitcoin’s New Lows
+https://www.coingecko.com/en/coins/bitcoin
+https://www.coingecko.com/en/coins/ethereum
+https://x.com/StockSavvyShay/status/2125603908517327244
+https://x.com/zerohedge/status/2125601982388068815
+https://x.com/KobeissiLetter/status/2125583144338260387
+https://x.com/KobeissiLetter/status/2125580585972228367
+
+4:34 Are Crypto Analysts Calling a Bottom?
+https://x.com/intangiblecoins/status/2125611340135870701
+https://x.com/benjamincowen/status/2125586804271178193
+https://x.com/CryptoHayes/status/2125452200814268543
+https://x.com/CryptoHayes/status/2123894151557390519
+https://x.com/caprioleio/status/2125140194852774295
+https://x.com/RaoulGMI/status/2124532621040300115
+https://x.com/JustDeauIt/status/2123868014583955619
+
+10:51 Five Takes on the Crypto Bear Market
+https://x.com/LynAldenContact/status/2125011976065622390
+https://x.com/LukeGromen/status/2125621164563218460
+https://capitalwars.substack.com/p/when-good-news-is-bad-and-bad-news
+https://vantage-ledger.com/articles/nasdaq-100-historical-returns
+https://thedefireport.io/research/was-55-7k-the-cycle-low
+
+19:06 Stablecoin Outflows and Bitcoin’s Next Move
+https://farside.co.uk/btc/
+https://thedefiant.io/news/markets/stablecoin-market-shrinks-about-17-billion-in-30-days
+https://x.com/laurashin/status/2125339037926109226
+https://x.com/LorenzoARK/status/2125337066846425429
+https://x.com/CW8900/status/2125572905174266334
+
+24:15 Is the AI Bubble Popping?
+https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director
+https://www.cnn.com/2026/11/23/politics/trump-administration-jensen-huang-reinstated
+https://x.com/JBSDC/status/2124906628743070177
+https://x.com/LukeGromen/status/2125261346866417668
+https://x.com/Evan_ss6/status/2125000892864688317
+https://x.com/Evan_ss6/status/2125251948815290395
+
+28:15 AI Debt, Credit Risks & a Repeat of 2022?
+https://www.federalreserve.gov/publications/files/financial-stability-report-20261113.pdf
+https://www.roic.ai/news/banks-offload-ai-data-center-loans-as-construction-risks-mount-11-25-2026
+https://x.com/DeItaone/status/2125610724885950960
+https://x.com/edzitron/status/2123923174140035410
+https://x.com/plur_daddy/status/2125589607685214551
+
+35:24 AI’s Math Breakthrough: Could AI Break Crypto?
+https://www.scientificamerican.com/article/the-ai-riemann-hypothesis-proof-is-almost-certainly-true-independent-mathematicians-attest/
+https://scottaaronson.blog/
+https://x.com/letonyo/status/2125500340833534056
+https://x.com/AndrewCurran_/status/2125589468786909510
+https://x.com/nic_carter/status/2125290528673767921
+https://x.com/danrobinson/status/2069970882559426611
+https://x.com/cburniske/status/2124955187895005284
+https://x.com/cburniske/status/2124955593932980371
+
+45:00 Crypto’s Race to Upgrade Its Cryptography
+https://blog.ethereum.org/2026/11/23/pqai-0
+
+49:23 Sky Founder’s Risky $77 Million Loan
+https://x.com/RuneKek/status/2124860307998732354
+https://www.theblock.co/news/defi/2026-11-23-sky-cofounder-weighs-sky-sale-repay-77-million-stusds-pool-runs-dry-445373
+https://bitquery.io/investigations/sky-stusds-rune-eth-loan
+https://unchainedcrypto.com/sky-cofounder-says-his-own-77-million-debt-is-part-of-why-depositors-cant-withdraw/
+https://x.com/thelearningpill/status/2123419785392488506
+
+52:24 Venice’s $200M Revenue & Prediction Market Regulation
+https://x.com/ErikVoorhees/status/2125059544569274703
+https://x.com/hosseeb/status/2125106573706231892
+https://www.theblock.co/news/regulation/2026-11-20-senate-death-bets-act-444200
+
+54:14 DeFi Tokens Arrive at Fidelity
+https://x.com/Fidelity/status/2125245887391613262
+https://x.com/haydenzadams/status/2125324446617514305
+https://thedefiant.io/converge/tradfi-and-fintech/fidelity-crypto-adds-aave-link-and-uni-to-its-lineup
+
+---
+Not financial or tax advice. See our investment disclosures here:
+https://www.bankless.com/disclosures
+
+## Chapters
+
+- `0s` — Intro
+- `10s` — Downvember and Bitcoin’s New Lows
+- `274s` — Are Crypto Analysts Calling a Bottom?
+- `651s` — Five Takes on the Crypto Bear Market
+- `1146s` — Stablecoin Outflows and Bitcoin’s Next Move
+- `1455s` — Is the AI Bubble Popping?
+- `1695s` — AI Debt, Credit Risks & a Repeat of 2022?
+- `2124s` — AI’s Math Breakthrough: Could AI Break Crypto?
+- `2700s` — Crypto’s Race to Upgrade Its Cryptography
+- `2963s` — Sky Founder’s Risky $77 Million Loan
+- `3144s` — Venice’s $200M Revenue & Prediction Market Regulation
+- `3254s` — DeFi Tokens Arrive at Fidelity
+
+## Files
+
+- `transcript.txt` — plain text
+- `transcript.vtt` — original captions
+- `transcript.json` — timestamped chunks
+- `chapters.json` — chapter markers
+- `thumbnail.jpg`

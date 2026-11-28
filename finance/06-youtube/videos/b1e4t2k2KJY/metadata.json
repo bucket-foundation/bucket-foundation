@@ -1,0 +1,17 @@
+{
+ "id": "b1e4t2k2KJY",
+ "title": "How to Build an Exchange",
+ "channel": "Jane Street",
+ "channel_id": "UCDsVC_ewpcEW_AQcO-H-RDQ",
+ "uploader": "Jane Street",
+ "upload_date": "20170313",
+ "duration": 2297,
+ "view_count": 325923,
+ "like_count": null,
+ "webpage_url": "https://www.youtube.com/watch?v=b1e4t2k2KJY",
+ "description": "Electronic exchanges play an important role in the world financial system, acting as focal points where actors from across the world meet to trade with each other.\n\nBut building an exchange is a difficult technical challenge, requiring high transaction rates, low, deterministic response times, fairness, and reliability.\n\nThis talk looks at the question of how to design an exchange through the lens of JX, a crossing engine we built at Jane Street in the last two years.  Performance plays an interesting role in this design, in that, although the end-to-end latency of the system is not important in and of itself, the ability of individual components of JX to handle messages rates in the 500k/sec range with latencies in the single-digit microseconds helped us build a replicated system that is both simple and robust.",
+ "tags": [],
+ "categories": [
+  "Science & Technology"
+ ]
+}

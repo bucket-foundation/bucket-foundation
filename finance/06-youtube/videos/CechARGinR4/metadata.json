@@ -1,0 +1,193 @@
+{
+ "id": "CechARGinR4",
+ "title": "Lecture 9: Principal Component Analysis in Finance",
+ "channel": "MIT OpenCourseWare",
+ "channel_id": "UCEBb1b_L6zDS3xTUrIALZOw",
+ "uploader": "MIT OpenCourseWare",
+ "upload_date": "20251203",
+ "duration": 4994,
+ "view_count": 15965,
+ "like_count": 267,
+ "webpage_url": "https://www.youtube.com/watch?v=CechARGinR4",
+ "description": "MIT 18.642 Topics in Mathematics with Applications in Finance, Fall 2024\nInstructor: Stefan Andreev\nView the complete course: https://ocw.mit.edu/courses/18-642-topics-in-mathematics-with-applications-in-finance-fall-2024\nYouTube Playlist: https://www.youtube.com/playlist?list=PLUl4u3cNGP601Q2jo-J_3raNCMMs6Jves\n\nThis lecture features a detailed guest lecture by Stefan Andreev on Principal Component Analysis (PCA) and its critical applications in quantitative finance, especially in modeling the U.S. bond market. The lecture explains PCA\u2019s mathematical foundations, practical challenges, and how it helps identify key factors driving yield curve dynamics, enabling portfolio construction and risk management in highly correlated financial markets. \n\nLicense: Creative Commons BY-NC-SA\nMore information at https://ocw.mit.edu/terms\nMore courses at https://ocw.mit.edu\nSupport OCW at http://ow.ly/a1If50zVRlQ\n\nWe encourage constructive comments and discussion on OCW\u2019s YouTube and other social media channels. Personal attacks, hate speech, trolling, and inappropriate comments are not allowed and may be removed. More details at https://ocw.mit.edu/comments.",
+ "tags": [
+  "18-642-topics-in-mathematics-with-applications-in-finance-fall-2024",
+  "bond market",
+  "covariance matrix",
+  "dimensionality reduction",
+  "eigenvalues",
+  "eigenvectors",
+  "pca",
+  "portfolio construction",
+  "principal component analysis",
+  "quantitative finance",
+  "risk management",
+  "time series",
+  "yield curve"
+ ],
+ "categories": [
+  "Education"
+ ],
+ "chapters": [
+  {
+   "start_time": 0,
+   "title": "Guest lecture intro",
+   "end_time": 69
+  },
+  {
+   "start_time": 69,
+   "title": "PCA overview and goals",
+   "end_time": 204
+  },
+  {
+   "start_time": 204,
+   "title": "Applications of PCA",
+   "end_time": 297
+  },
+  {
+   "start_time": 297,
+   "title": "PCA visual example",
+   "end_time": 492
+  },
+  {
+   "start_time": 492,
+   "title": "PCA versus regression",
+   "end_time": 668
+  },
+  {
+   "start_time": 668,
+   "title": "PCA robustness and noise",
+   "end_time": 756
+  },
+  {
+   "start_time": 756,
+   "title": "When PCA fails",
+   "end_time": 834
+  },
+  {
+   "start_time": 834,
+   "title": "Interpreting eigenvalues",
+   "end_time": 984
+  },
+  {
+   "start_time": 984,
+   "title": "PCA mathematical derivation",
+   "end_time": 1104
+  },
+  {
+   "start_time": 1104,
+   "title": "Variance and interpretation",
+   "end_time": 1295
+  },
+  {
+   "start_time": 1295,
+   "title": "Data preprocessing techniques",
+   "end_time": 1392
+  },
+  {
+   "start_time": 1392,
+   "title": "Normalization decisions",
+   "end_time": 1557
+  },
+  {
+   "start_time": 1557,
+   "title": "Importance of demeaning",
+   "end_time": 1687
+  },
+  {
+   "start_time": 1687,
+   "title": "PCA in finance",
+   "end_time": 1836
+  },
+  {
+   "start_time": 1836,
+   "title": "Financial hyperparameters",
+   "end_time": 1994
+  },
+  {
+   "start_time": 1994,
+   "title": "Bond market case study",
+   "end_time": 2172
+  },
+  {
+   "start_time": 2172,
+   "title": "Yield curve dynamics",
+   "end_time": 2676
+  },
+  {
+   "start_time": 2676,
+   "title": "Yield curve PCA results",
+   "end_time": 2853
+  },
+  {
+   "start_time": 2853,
+   "title": "Macroeconomic interpretation",
+   "end_time": 2982
+  },
+  {
+   "start_time": 2982,
+   "title": "Regime changes in PCA",
+   "end_time": 3105
+  },
+  {
+   "start_time": 3105,
+   "title": "Eigenvalue stability",
+   "end_time": 3260
+  },
+  {
+   "start_time": 3260,
+   "title": "Out-of-sample testing",
+   "end_time": 3353
+  },
+  {
+   "start_time": 3353,
+   "title": "Constructing PCA portfolios",
+   "end_time": 3555
+  },
+  {
+   "start_time": 3555,
+   "title": "Higher order PCs",
+   "end_time": 3667
+  },
+  {
+   "start_time": 3667,
+   "title": "Leverage in trading",
+   "end_time": 3799
+  },
+  {
+   "start_time": 3799,
+   "title": "Liquidity and competition",
+   "end_time": 3959
+  },
+  {
+   "start_time": 3959,
+   "title": "Data cleaning and challenges",
+   "end_time": 4244
+  },
+  {
+   "start_time": 4244,
+   "title": "Strategy implementation",
+   "end_time": 4353
+  },
+  {
+   "start_time": 4353,
+   "title": "Class discussion",
+   "end_time": 4448
+  },
+  {
+   "start_time": 4448,
+   "title": "Maturity analysis",
+   "end_time": 4627
+  },
+  {
+   "start_time": 4627,
+   "title": "Curvature and regime",
+   "end_time": 4868
+  },
+  {
+   "start_time": 4868,
+   "title": "Data acquisition challenges",
+   "end_time": 4994
+  }
+ ]
+}

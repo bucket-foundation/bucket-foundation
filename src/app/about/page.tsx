@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import PageShell from "@/components/PageShell";
-import Link from "next/link";
+import ContentPage from "@/components/ContentPage";
+import { readPage } from "@/lib/pages";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,55 +12,11 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <PageShell
+    <ContentPage
+      source={readPage("about")}
       eyebrow="§ about"
       title="A nonprofit canon of foundations."
       subtitle="Held in founder's personal capacity pending formal nonprofit filing."
-    >
-      <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
-        <p>
-          bucket.foundation exists to make primary research <strong className="text-[color:var(--parchment)]">paid-for-once</strong> and <strong className="text-[color:var(--parchment)]">citeable-forever</strong> — and to route citation fees to authors, not publishers.
-        </p>
-        <p>
-          It is built for the small number of people who can take a model and an axiom and reach a layer of reality nobody has reached before. AI + foundations + a small number of brilliant humans = the next layer of reality.
-        </p>
-        <p>
-          Canon holds only <em>foundations</em>: axioms, real math, rules, laws, principles, primary derivations. Outcomes — longevity, disease, cognition — are downstream applications, cross-mirrored into the branches that derive them.
-        </p>
-        <p>
-          The work is open-source under <Link href="/governance" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">MIT code + CC0 intent</Link>. The protocol is <Link href="/protocol" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">feed402</Link> over x402 on Base. Code, canon entries, claim cards, figures, bridges, all live in one repo: <a href="https://github.com/bucket-foundation/bucket-foundation" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">bucket-foundation</a>.
-        </p>
-      </div>
-
-      <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mt-16 mb-6">
-        Why education — the founding research.
-      </h2>
-      <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
-        <p>
-          Bucket exists to <strong className="text-[color:var(--parchment)]">reform education</strong>, and reform that is not grounded in evidence is opinion. The founding research is the <a href="https://github.com/bucket-foundation/education-atlas" target="_blank" rel="noreferrer" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">education-atlas</a>: 78,326 observations finding that for five thousand years every knowledge technology widened access to <em>consume</em> knowledge and none widened access to <em>produce</em> it — leaving 99.86% of humanity only ever consuming, and just ~0.14% reaching the frontier where it is produced.
-        </p>
-        <p>
-          <Link href="/mission" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Read the mission</Link> for the full evidence — the three crises, the 270× access cliff, the consume-vs-produce gap — and an honest map of what Bucket reforms (the knowledge layer) and what it explicitly does not (schooling logistics, K-12 funding, the floor-access crisis).
-        </p>
-      </div>
-
-      <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mt-16 mb-6">
-        History, briefly.
-      </h2>
-      <div className="space-y-6 text-lg text-[color:var(--parchment-dim)] leading-relaxed">
-        <p>
-          <strong className="text-[color:var(--parchment)]">2022.</strong> bucket 1.0 shipped as a four-verb prototype, <em>build · discuss · discover · publish</em>, a social network for collaboratively building and debating theories of history with evidence. It never shipped publicly. The slogan: <span className="italic">build the past.</span>
-        </p>
-        <p>
-          <strong className="text-[color:var(--parchment)]">2023-2025.</strong> The prototype slept. The slogan widened: <span className="italic">build history.</span> A hackathon build landed the reference site on Vercel.
-        </p>
-        <p>
-          <strong className="text-[color:var(--parchment)]">2026.</strong> Reactivated as an open-source nonprofit. Two verbs deleted, canon added. The thesis turned: <span className="italic">bucket is the new renaissance.</span> Read the <Link href="/manifesto" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">manifesto</Link>.
-        </p>
-        <p>
-          <strong className="text-[color:var(--parchment)]">2026-06.</strong> Story Protocol minting was removed on 2026-06-14; the citation fee rail over x402 on Base is specified and does not settle yet. Walrus storage and Dynamic sign-in went with it. Credentials are Open Badges 3.0 verifiable credentials. Research happens in <Link href="/research-os" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">Research OS</Link>, and the <Link href="/download" className="text-[color:var(--gold)] hover:text-[color:var(--parchment)]">desktop app</Link> runs it on your machine.
-        </p>
-      </div>
-    </PageShell>
+    />
   );
 }

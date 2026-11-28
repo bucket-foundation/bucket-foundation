@@ -4,7 +4,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/HeaderV3";
-import Footer from "@/components/FooterV3";
+import BrandPreview from "@/components/BrandPreview";
+import DailyTheme from "@/components/DailyTheme";
+import { applyScript } from "@/lib/daily-theme";
+import { FONTS_HREF, LOGO, THEME_COLOR } from "@/lib/brand";
 import { CANON_BRANCHES } from "@/lib/contribute";
 import { SessionProvider } from "@/providers/SessionProvider";
 import { AccountGateProvider } from "@/components/auth/AccountGate";
@@ -43,8 +46,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   interactiveWidget: "resizes-content",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#EFE8D4" },
-    { media: "(prefers-color-scheme: dark)",  color: "#1F1C16" },
+    { media: "(prefers-color-scheme: light)", color: THEME_COLOR.light },
+    { media: "(prefers-color-scheme: dark)",  color: THEME_COLOR.dark },
   ],
   colorScheme: "light dark",
 };
@@ -110,13 +113,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: LOGO.svg, type: "image/svg+xml" },
+      { url: LOGO.png512, type: "image/png", sizes: "512x512" },
     ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: ["/favicon.ico"],
+    apple: [{ url: LOGO.png180, sizes: "180x180", type: "image/png" }],
+    shortcut: [LOGO.ico],
   },
   manifest: "/manifest.webmanifest",
   verification: {
@@ -148,7 +149,7 @@ const JSON_LD = {
       name: "bucket.foundation",
       alternateName: ["bucket foundation", "bucket"],
       url: SITE_URL,
-      logo: `${SITE_URL}/icon.png`,
+      logo: `${SITE_URL}${LOGO.png512}`,
       image: `${SITE_URL}/opengraph-image.png`,
       nonprofitStatus: "Nonprofit501c3",
       description:
@@ -238,9 +239,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+          href={FONTS_HREF}
           rel="stylesheet"
         />
+        <script dangerouslySetInnerHTML={{ __html: applyScript }} />
       </head>
       <body className="stone-bg min-h-screen">
         <SessionProvider>
@@ -252,11 +254,11 @@ export default function RootLayout({
             strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
           />
+          <BrandPreview />
+          <DailyTheme />
           <Header launchList={!signInOpen()} />
           {children}
-          <SiteFooter>
-            <Footer launchList={!signInOpen()} signInClosed={signInClosed()} />
-          </SiteFooter>
+          <SiteFooter launchList={!signInOpen()} signInClosed={signInClosed()} />
           <Analytics />
           <SpeedInsights />
           </AccountGateProvider>

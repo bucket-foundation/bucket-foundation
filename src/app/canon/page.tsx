@@ -236,7 +236,7 @@ function countClaims(branchDir: string): number {
 }
 
 const BRANCH_COLOR: Record<string, string> = {
-  mathematics:  "#D9A43A",
+  mathematics:  "var(--gold-bright)",
   physics:      "#3E6FA8",
   chemistry:    "#9B5A2C",
   information:  "#557B66",
@@ -255,7 +255,7 @@ function CoverageBar({ branches }: { branches: BranchLike[] }) {
   const counts = branches.map((b) => ({
     ...b,
     count: countClaims(b.dir),
-    color: BRANCH_COLOR[b.slug] || "#D9A43A",
+    color: BRANCH_COLOR[b.slug] || "var(--gold-bright)",
   }));
   const max = Math.max(1, ...counts.map((c) => c.count));
   const total = counts.reduce((s, c) => s + c.count, 0);

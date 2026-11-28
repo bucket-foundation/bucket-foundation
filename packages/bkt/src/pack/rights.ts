@@ -27,22 +27,39 @@ export function marker(text: string): string | null {
   return m.length >= MARKER_MIN_CHARS ? m : null;
 }
 
-export function deniedVideoIds(repo: string): Set<string> {
-  const root = join(repo, "yt");
-  if (!existsSync(root)) throw new Error(`rights: ${root} is missing, so the denied video list cannot be built`);
+export const DENIED_VIDEOS_FILE = join(import.meta.dir, "denied-videos.json");
+
+export interface DeniedVideos {
+  namedDirs: number;
+  videoIds: string[];
+}
+
+export function scanDeniedVideos(root: string): DeniedVideos {
   const ids = new Set<string>();
+  let namedDirs = 0;
   for (const dir of readdirSync(root).sort()) {
+    const named = DENIED_NAME.test(dir);
+    if (named) namedDirs++;
     const m = VIDEO_DIR.exec(dir);
     if (!m || !statSync(join(root, dir)).isDirectory()) continue;
-    const named = DENIED_NAME.test(dir);
     const found = VIDEO_META_FILES.map((f) => join(root, dir, f))
       .filter((p) => existsSync(p))
       .map((p) => DENIED_NAME.test(readFileSync(p, "utf8")));
     if (found.length > 1 && new Set(found).size > 1) throw new Error(`rights: ${VIDEO_META_FILES.join(" and ")} disagree for yt/${dir}, so the denied video list cannot be trusted`);
     if (named || found.some(Boolean)) ids.add(m[1]);
   }
-  if (ids.size === 0) throw new Error("rights: no denied video found under yt, so the filter would pass everything");
-  return ids;
+  return { namedDirs, videoIds: [...ids].sort() };
+}
+
+export function deniedVideos(repo: string): DeniedVideos {
+  const root = join(repo, "yt");
+  const got: DeniedVideos = existsSync(root) ? scanDeniedVideos(root) : JSON.parse(readFileSync(DENIED_VIDEOS_FILE, "utf8"));
+  if (got.videoIds.length === 0) throw new Error("rights: no denied video found under yt, so the filter would pass everything");
+  return got;
+}
+
+export function deniedVideoIds(repo: string): Set<string> {
+  return new Set(deniedVideos(repo).videoIds);
 }
 
 export function buildDenylist(repo: string): Denylist {

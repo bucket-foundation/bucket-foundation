@@ -18,13 +18,13 @@ function saveFile(name: string, text: string, type: string) {
 function EntropyPicture({ p }: { p: number }) {
   const path = Array.from({ length: 101 }, (_, index) => `${index ? "L" : "M"}${50 + index * 4.4},${225 - binaryEntropy(index / 100) * 175}`).join(" ");
   return <svg viewBox="0 0 540 280" role="img" aria-label={`Binary entropy curve. At probability ${p.toFixed(2)}, entropy is ${binaryEntropy(p).toFixed(2)} bits.`} className={styles.plot}>
-    <defs><linearGradient id="entropy-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#b8861e" stopOpacity=".24" /><stop offset="100%" stopColor="#b8861e" stopOpacity="0" /></linearGradient></defs>
+    <defs><linearGradient id="entropy-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--gold)" stopOpacity=".24" /><stop offset="100%" stopColor="var(--gold)" stopOpacity="0" /></linearGradient></defs>
     {[0, .5, 1].map((value) => <g key={value}><path d={`M50 ${225 - value * 175}H490`} stroke="#d9d3c5" strokeDasharray="3 7" /><text x="35" y={230 - value * 175} textAnchor="end">{value}</text></g>)}
     <path d={`${path} L490 225 L50 225 Z`} fill="url(#entropy-area)" />
     <path d="M50 35V225H490" fill="none" stroke="#938773" />
     <path d={path} fill="none" stroke="#315e50" strokeWidth="3" />
-    <path d={`M${50 + p * 440} 225V${225 - binaryEntropy(p) * 175}`} stroke="#b8861e" strokeDasharray="4 5" />
-    <circle cx={50 + p * 440} cy={225 - binaryEntropy(p) * 175} r="8" fill="#b8861e" stroke="#faf7ed" strokeWidth="3" />
+    <path d={`M${50 + p * 440} 225V${225 - binaryEntropy(p) * 175}`} stroke="var(--gold)" strokeDasharray="4 5" />
+    <circle cx={50 + p * 440} cy={225 - binaryEntropy(p) * 175} r="8" fill="var(--gold)" stroke="#faf7ed" strokeWidth="3" />
     <text x="50" y="252">0</text><text x="270" y="252" textAnchor="middle">½</text><text x="490" y="252" textAnchor="end">1</text>
     <text x="52" y="22">uncertainty · bits</text><text x="270" y="275" textAnchor="middle">probability of heads</text>
   </svg>;

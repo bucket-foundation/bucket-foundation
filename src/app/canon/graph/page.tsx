@@ -7,6 +7,7 @@ import {
   getCentralityTopAuthors,
   getCentralityTopConcepts,
 } from "@/lib/canon-kg";
+import Sources from "@/components/Sources";
 
 export const metadata = { title: "Canon graph · bucket.foundation" };
 export const dynamic = "force-static";
@@ -260,10 +261,7 @@ export default function Page() {
         </div>
       </section>
 
-      <footer
-        className="mt-20 border-t border-[color:var(--hairline)] pt-8 text-sm"
-        style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-fraunces)" }}
-      >
+      <Sources>
         <p>
           Data:{" "}
           <Link href="/canon/bridges" className="underline">
@@ -282,7 +280,7 @@ export default function Page() {
           See <code>_intake/connections/COAUTHOR-MATRIX.md</code> for the
           complete pair list and per-author top-collaborator breakdown.
         </p>
-      </footer>
+      </Sources>
     </main>
   );
 }

@@ -40,7 +40,7 @@ struct AccountView: View {
                     Section {
                         AppleSignInButton()
                         Button("Sign in with email") { emailing = true }
-                            .buttonStyle(D8Option(align: .center))
+                            .buttonStyle(PLOption(align: .center))
                             .disabled(account.busy)
                         if account.busy && statusSlot == .signInSection {
                             ProgressView().frame(maxWidth: .infinity)

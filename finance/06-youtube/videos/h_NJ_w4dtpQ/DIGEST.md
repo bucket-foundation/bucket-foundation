@@ -1,0 +1,20 @@
+<!-- voice-ignore-file: transcript-derived digest -->
+# Getting Financial Predictions Right | Stanford | h_NJ_w4dtpQ | 0.53 h
+
+Teaches: A Stanford talk (2018) by a mathematician turned finance researcher on backtest overfitting: AI hype in finance, low reproducibility in science and economics, how easily a backtest is overfit, and the fund-letter fallacy.
+
+Claims:
+- The speaker cites average hedge fund performance of about 5 percent a year against 13 percent for the S&P 500, with highly mathematical quant funds as the exceptions. "is been running like a 5% just a straight S&amp;P 500 has been 13%" [0:09:01]
+- Reproducibility is poor: a Federal Reserve study could reproduce fewer than half of published economics results even after contacting authors. "they were able to reproduce less than fewer than half" [0:13:17]
+- Backtest overfitting means tuning a model or strategy variant until it scores best on the same historical data, and the speaker's group showed this can yield strategies that lose money out of sample. "backtest overfitting it means we're a backtest meaning you're testing some model based on historical market data" [0:19:01]
+- The letter scam shows the fallacy: send half the prospects an up call and half a down call, repeat, and the survivors see a perfect record while the failures are hidden. "The problem is is that all of those other investors were not told" [0:23:03]
+- A demo fund fit to a target profile matched it perfectly until test data stopped, then crashed to zero. "notice the orange and the blue line are really the same line" [0:26:03]
+- The speaker says finance practitioners are often patent-minded rather than scientists, and adds that published forecasters erred badly in a 1999 to 2016 study. "the amount of nonsense in the field is incredible" [0:18:06]
+
+Architecture: none (talk).
+
+Worked:
+- none reported
+
+Failed:
+- Forecast and fund-selection studies built on repeated testing until a p-value clears 95 percent produce results that do not hold, per the speaker. "they continue doing studies until they get a p-value" [0:30:00]

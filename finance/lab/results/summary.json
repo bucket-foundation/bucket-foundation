@@ -1,0 +1,103 @@
+{
+ "n_trials": 317,
+ "n_reported": 100,
+ "sr_ann_var_executable": 0.16571585839829697,
+ "sr_ann_var_all": 17.555102726523636,
+ "expected_max_sharpe_ann": 1.185745275922713,
+ "dsr_bar": 0.95,
+ "oos_t_bar": 2.0,
+ "families": {
+  "Crypto": {
+   "n_trials": 16,
+   "n_tradable": 16,
+   "sr_ann_var": 0.8410527736274228,
+   "expected_max_sharpe_ann": 1.6511773076578966
+  },
+  "Equities": {
+   "n_trials": 235,
+   "n_tradable": 235,
+   "sr_ann_var": 0.08744067106199034,
+   "expected_max_sharpe_ann": 0.8332414165247031
+  },
+  "FX": {
+   "n_trials": 5,
+   "n_tradable": 5,
+   "sr_ann_var": 0.07619076329817312,
+   "expected_max_sharpe_ann": 0.3291878387870671
+  },
+  "Commodities": {
+   "n_trials": 1,
+   "n_tradable": 0,
+   "sr_ann_var": 0.0,
+   "expected_max_sharpe_ann": 0.0
+  },
+  "ETFs and Macro": {
+   "n_trials": 35,
+   "n_tradable": 35,
+   "sr_ann_var": 0.024854108794625743,
+   "expected_max_sharpe_ann": 0.33677704050551766
+  },
+  "Futures and CTA": {
+   "n_trials": 7,
+   "n_tradable": 7,
+   "sr_ann_var": 0.05407490626984559,
+   "expected_max_sharpe_ann": 0.3224806962576735
+  },
+  "Technical Analysis": {
+   "n_trials": 3,
+   "n_tradable": 3,
+   "sr_ann_var": 0.012845182316981889,
+   "expected_max_sharpe_ann": 0.09665395234209084
+  },
+  "Options and Volatility": {
+   "n_trials": 2,
+   "n_tradable": 2,
+   "sr_ann_var": 0.14191631432058063,
+   "expected_max_sharpe_ann": 0.19580109913734672
+  },
+  "Prediction Markets": {
+   "n_trials": 4,
+   "n_tradable": 2,
+   "sr_ann_var": 0.6167398701229132,
+   "expected_max_sharpe_ann": 0.826261381003239
+  },
+  "Rates": {
+   "n_trials": 4,
+   "n_tradable": 4,
+   "sr_ann_var": 0.04382034829337208,
+   "expected_max_sharpe_ann": 0.2202441362327512
+  },
+  "Credit": {
+   "n_trials": 1,
+   "n_tradable": 1,
+   "sr_ann_var": 0.0,
+   "expected_max_sharpe_ann": 0.0
+  },
+  "Sports Betting": {
+   "n_trials": 4,
+   "n_tradable": 2,
+   "sr_ann_var": 3.981826966737228,
+   "expected_max_sharpe_ann": 2.099460140971666
+  }
+ },
+ "by_origin": {
+  "new": 61,
+  "chen-zimmermann": 212,
+  "legacy": 44
+ },
+ "survived": [],
+ "held_oos": [
+  "fed_model",
+  "fx_carry",
+  "ma_cross_50_200",
+  "price_above_ma200"
+ ],
+ "published_series_passing_pooled": [
+  "cz_smileslope"
+ ],
+ "passes_family": [
+  "fed_model",
+  "ma_cross_50_200",
+  "price_above_ma200"
+ ]
+}

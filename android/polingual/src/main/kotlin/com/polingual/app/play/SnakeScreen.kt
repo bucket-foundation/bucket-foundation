@@ -69,10 +69,10 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
     val scope = rememberCoroutineScope()
     LaunchedEffect(round) {
         if (round == 0) return@LaunchedEffect
-        val others = Snakes.LANG_CHOICES.filter { it != lang }.take(5)
+        val pick = com.polingual.app.RaceDeal.lang(lang); val others = Snakes.LANG_CHOICES.filter { it != pick }.take(5)
         val items = graph.corpus.load().items
         val seed = DealSeeds.ensure(dealSeed).also { dealSeed = it }
-        val d = com.polingual.app.offMain { Snakes.deck(items, lang, others, seed) }
+        val d = com.polingual.app.offMain { Snakes.deck(items, pick, others, seed) }
         val rng = XorRng(System.currentTimeMillis().toInt())
         val rand = rng::next
         val bots = Bots.all.take(4).mapIndexed { i, b -> Snakes.make(b.userId, b.name, true, Snakes.SKILL[b.skill] ?: 0.8, Pt(200 + rand() * 1200, 150 + rand() * 700), rand() * 6.28, i + 1) }
@@ -106,6 +106,7 @@ fun SnakeScreen(graph: Graph, back: () -> Unit) {
             SnakePhase.Dead, SnakePhase.Over -> {
                 val a = arena
                 val me = a?.snakes?.firstOrNull { it.id == "me" }
+                androidx.compose.runtime.LaunchedEffect(phase) { com.polingual.app.RaceSession.finished(foundation.bucket.core.model.LobbyGame.Snake, hits = me?.length ?: 0) }
                 Results(graph, "Length ${me?.length ?: 0}", if (phase == SnakePhase.Dead) "Swallowed by a bigger snake." else "Time is up.", again = { dealSeed = DealSeeds.fresh(); round += 1 }) {
                     SnakeWords(graph, a, me, left)
                 }

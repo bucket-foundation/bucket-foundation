@@ -1,0 +1,106 @@
+{
+ "id": "UD92QBqA8Eo",
+ "title": "\"Optimizing Trading Strategies without Overfitting\" by Dr. Ernest Chan - QuantCon 2018",
+ "channel": "Quantopian",
+ "channel_id": "UC606MUq45P3zFLa4VGKbxsg",
+ "uploader": "Quantopian",
+ "upload_date": "20181218",
+ "duration": 2777,
+ "view_count": 71711,
+ "like_count": 1829,
+ "webpage_url": "https://www.youtube.com/watch?v=UD92QBqA8Eo",
+ "description": "Optimizing parameters of a trading strategy via backtesting has one major problem: there are typically not enough historical trades to achieve statistical significance. This talk will discuss a variety of methods of overcoming that, including stochastic control theory and simulations. Simulations may involve either linear or nonlinear time series models such as recurrent neural networks.\n\nAbout the Speaker:\nDr. Ernest Chan is the Managing Member of QTS Capital Management, LLC., a commodity pool operator and trading advisor. He began his career as a machine learning researcher at IBM\u2019s Human Language Technologies Group, and later joined Morgan Stanley\u2019s Data Mining Group. He was also a quantitative researcher and proprietary trader for Credit Suisse. Ernie is the author of \u201cMachine Trading\u201d, \u201cAlgorithmic Trading\u201d, and \u201cQuantitative Trading\u201d, all published by Wiley, and a popular financial blogger at epchan.blogspot.com. He also teaches at the Master of Science in Predictive Analytics program at Northwestern University. He received his Ph.D. in theoretical physics from Cornell University.\n\nThe slides to this presentation can be found at http://bit.ly/2HWCFxC.\n\nTo learn more about Quantopian, visit http://www.quantopian.com.\n\nDisclaimer\nQuantopian provides this presentation to help people write trading algorithms - it is not intended to provide investment advice.\n\nMore specifically, the material is provided for informational purposes only and does not constitute an offer to sell, a solicitation to buy, or a recommendation or endorsement for any security or strategy, nor does it constitute an offer to provide investment advisory or other services by Quantopian.\n\nIn addition, the content neither constitutes investment advice nor offers any opinion with respect to the suitability of any security or any specific investment. Quantopian makes no guarantees as to accuracy or completeness of the views expressed in the website. The views are subject to change, and may have become unreliable for various reasons, including changes in market conditions or economic circumstances.",
+ "tags": [
+  "finance",
+  "quantitative finance",
+  "risk",
+  "risk analysis",
+  "math",
+  "statistics",
+  "algorithms",
+  "algorithmic trading",
+  "quantcon",
+  "quantcon 2018",
+  "quantcon NYC",
+  "NYC",
+  "quant",
+  "quant finance",
+  "quant finance conference",
+  "optimizing trading strategies"
+ ],
+ "categories": [
+  "Science & Technology"
+ ],
+ "chapters": [
+  {
+   "start_time": 0,
+   "title": "Intro",
+   "end_time": 62
+  },
+  {
+   "start_time": 62,
+   "title": "Typical Backtest Workflow",
+   "end_time": 506
+  },
+  {
+   "start_time": 506,
+   "title": "Remedies for Overfitting",
+   "end_time": 652
+  },
+  {
+   "start_time": 652,
+   "title": "Analytical Optimization",
+   "end_time": 925
+  },
+  {
+   "start_time": 925,
+   "title": "Solving HJB",
+   "end_time": 1770
+  },
+  {
+   "start_time": 1770,
+   "title": "Example: AUDCAD",
+   "end_time": 1900
+  },
+  {
+   "start_time": 1900,
+   "title": "Optimal trading of AUDCAD",
+   "end_time": 2049
+  },
+  {
+   "start_time": 2049,
+   "title": "Simulation Results",
+   "end_time": 2220
+  },
+  {
+   "start_time": 2220,
+   "title": "OOS Backtest Optimal Parameter",
+   "end_time": 2271
+  },
+  {
+   "start_time": 2271,
+   "title": "OOS Backtest Suboptimal Parameter",
+   "end_time": 2461
+  },
+  {
+   "start_time": 2461,
+   "title": "Suboptimal optimal?",
+   "end_time": 2574
+  },
+  {
+   "start_time": 2574,
+   "title": "Further work",
+   "end_time": 2664
+  },
+  {
+   "start_time": 2664,
+   "title": "Conclusion",
+   "end_time": 2709
+  },
+  {
+   "start_time": 2709,
+   "title": "Thank you for your time!",
+   "end_time": 2777
+  }
+ ]
+}

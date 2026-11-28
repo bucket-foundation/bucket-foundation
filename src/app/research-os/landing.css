@@ -37,7 +37,7 @@
   margin-top: 36px;
 }
 .ros-btn {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--bk-font-mono);
   font-size: 13px;
   letter-spacing: 0.06em;
   padding: 14px 28px;
@@ -55,7 +55,7 @@
   box-shadow: inset 0 0 0 1px var(--hairline);
 }
 .ros-trust {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--bk-font-mono);
   font-size: 10.5px;
   color: var(--basalt-3);
   letter-spacing: 0.03em;
@@ -112,7 +112,7 @@
   min-width: 240px;
 }
 .ros-num {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--bk-font-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
   color: var(--basalt-3);
@@ -132,7 +132,7 @@
 .ros-text a {
   display: inline-block;
   margin-top: 14px;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--bk-font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--aegean-deep);

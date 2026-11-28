@@ -21,7 +21,7 @@ struct LearnUpsell: View {
             Button(action: upsell) {
                 HStack(spacing: 12) {
                     Image(systemName: "book.fill").font(PL.heading.font(scale: 0.85)).foregroundStyle(PL.paper)
-                        .frame(width: 40, height: 40).background(PL.lapis, in: .rect(cornerRadius: 10))
+                        .frame(width: 40, height: 40).background(PL.lapis, in: .rect(cornerRadius: PL.Radius.sm))
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Learn these words for good").font(PL.heading.font(scale: 0.75)).foregroundStyle(PL.ink)
                         Text("Lessons and courses bring every word back at the right time.").font(PL.small.font()).foregroundStyle(PL.inkDim)
@@ -30,7 +30,7 @@ struct LearnUpsell: View {
                     Image(systemName: "chevron.right").foregroundStyle(PL.inkDim)
                 }
                 .padding(14)
-                .background(PL.card, in: .rect(cornerRadius: 14))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.md))
             }
             .buttonStyle(.plain)
             .accessibilityIdentifier("learnUpsell")

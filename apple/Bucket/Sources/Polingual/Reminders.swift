@@ -268,16 +268,16 @@ struct ReminderPrompt: View {
         if !reminders.enabled {
             VStack(alignment: .leading, spacing: 6) {
                 Text(reminders.denied ? String(localized: "Notifications are off for this app. Turn them on in Settings to get review reminders.") : String(localized: "Get one nudge a day when reviews are due, at your regular study time."))
-                    .font(.subheadline)
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(15))
+                    .foregroundStyle(PL.inkDim)
                 if !reminders.denied {
                     Button(reminders.stuckOff ? String(localized: "Turn on reminders") : String(localized: "Remind me when these are due")) { Task { _ = await reminders.enable() } }
-                        .buttonStyle(D8Option(align: .center, compact: true))
+                        .buttonStyle(PLOption(align: .center, compact: true))
                 }
                 #if os(iOS)
                 if reminders.denied, let url = URL(string: UIApplication.openNotificationSettingsURLString) {
                     Link("Open Settings", destination: url)
-                        .buttonStyle(D8Option(align: .center, compact: true))
+                        .buttonStyle(PLOption(align: .center, compact: true))
                 }
                 #endif
             }
@@ -309,8 +309,8 @@ struct ReminderSettings: View {
                     }), displayedComponents: .hourAndMinute)
                 } else {
                     Text("Currently around \(String(format: "%d:%02d", reminders.minute / 60, reminders.minute % 60))")
-                        .font(.footnote)
-                        .foregroundStyle(Palette.muted)
+                        .font(PL.text(13))
+                        .foregroundStyle(PL.inkDim)
                 }
             }
             Toggle("Streak at risk in the evening", isOn: Binding(get: { reminders.streakRisk }, set: { on in Task { await reminders.setStreakRisk(on) } }))
@@ -320,17 +320,17 @@ struct ReminderSettings: View {
                 LabeledContent("Trial ending", value: String(localized: "Sent once, before your trial ends"))
             }
             if reminders.unasked {
-                Text("Allow notifications from the reminder card on Today, then turn these on.").font(.footnote).foregroundStyle(Palette.muted)
+                Text("Allow notifications from the reminder card on Today, then turn these on.").font(PL.text(13)).foregroundStyle(PL.inkDim)
             }
             if reminders.denied {
-                Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
+                Text("Notifications are off for this app in Settings.").font(PL.text(13)).foregroundStyle(PL.inkDim)
                 #if os(iOS)
                 if let url = URL(string: UIApplication.openNotificationSettingsURLString) { Link("Open Settings", destination: url) }
                 #endif
             }
-            if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(.footnote).foregroundStyle(Palette.muted) }
+            if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(PL.text(13)).foregroundStyle(PL.inkDim) }
             Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
-            if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
+            if let testResult { Text(testResult).font(PL.text(13)).foregroundStyle(PL.inkDim) }
         } header: {
             Eyebrow(text: "Notifications")
         }

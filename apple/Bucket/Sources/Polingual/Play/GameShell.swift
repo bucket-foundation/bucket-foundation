@@ -132,16 +132,8 @@ struct ComboChip: View {
 
     var body: some View {
         if streak.tier >= .warm {
-            HStack(spacing: PL.Space.s2) {
-                Image(systemName: "bolt.fill")
-                Text("\(streak.current) in a row")
-                if multiplier && streak.multiplier > 1 { Text("x\(streak.multiplier)") }
-            }
-            .font(PL.label.font(scale: 1.3))
-            .textCase(.uppercase)
+            ComboChipFace(count: streak.current, multiplier: multiplier ? streak.multiplier : 1)
             .foregroundStyle(streak.tier == .warm ? PL.ink : PL.paper)
-            .padding(.horizontal, PL.Space.s3)
-            .padding(.vertical, PL.Space.s2)
             .background(tone, in: .capsule)
             .background(PL.shadow, in: .capsule.offset(y: PL.Lip.sm))
             .scaleEffect(reduce ? 1 : streak.climbed ? 1.12 : 1)
@@ -161,6 +153,35 @@ struct ComboChip: View {
     }
 }
 
+struct ComboChipFace: View {
+    let count: Int
+    var multiplier = 1
+
+    var body: some View {
+        HStack(spacing: PL.Space.s2) {
+            Image(systemName: "bolt.fill")
+            Text("\(count) in a row")
+            if multiplier > 1 { Text("x\(multiplier)") }
+        }
+        .font(PL.label.font(scale: 1.3))
+        .textCase(.uppercase)
+        .padding(.horizontal, PL.Space.s3)
+        .padding(.vertical, PL.Space.s2)
+    }
+}
+
+struct ComboSlot: View {
+    let streak: ComboCount
+    var multiplier = true
+
+    var body: some View {
+        ZStack {
+            ComboChipFace(count: 0).lineLimit(1).fixedSize().hidden().frame(width: 0).accessibilityHidden(true)
+            ComboChip(streak: streak, multiplier: multiplier)
+        }
+    }
+}
+
 struct GameHeader: View {
     let total: Int
     let results: [Bool]
@@ -170,7 +191,7 @@ struct GameHeader: View {
         VStack(spacing: PL.Space.s2) {
             GamePips(total: total, results: results, empty: PL.paper.opacity(0.25))
                 .accessibilityIdentifier("game-header")
-            ComboChip(streak: streak).frame(minHeight: PL.Space.s6)
+            ComboSlot(streak: streak)
         }
     }
 }
@@ -260,6 +281,7 @@ struct GameShell<Content: View>: View {
     var fit = false
     var burst = true
     @ViewBuilder let content: () -> Content
+    @State private var learnInPage = false
 
     var reduce: Bool { GameMotion.reduced(system: systemReduce) }
 
@@ -283,10 +305,14 @@ struct GameShell<Content: View>: View {
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("playTitle")
             }
-            ToolbarItem(placement: .confirmationAction) {
-                StartLearningButton(size: .sm, full: false)
+            if !learnInPage {
+                ToolbarItem(placement: .confirmationAction) {
+                    StartLearningButton(size: .sm, full: false)
+                }
+                .sharedBackgroundVisibility(.hidden)
             }
         }
+        .onPreferenceChange(LearnInPage.self) { shown in learnInPage = shown }
         .lightStatusBar()
         .fullHeightSession()
         .onDisappear { LangVoice.shared.hush() }
@@ -308,4 +334,9 @@ struct GameShell<Content: View>: View {
             .scrollContentBackground(.hidden)
         }
     }
+}
+
+struct LearnInPage: PreferenceKey {
+    static let defaultValue = false
+    static func reduce(value: inout Bool, nextValue: () -> Bool) { value = value || nextValue() }
 }

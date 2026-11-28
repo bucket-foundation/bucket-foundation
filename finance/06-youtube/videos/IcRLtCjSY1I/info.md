@@ -1,0 +1,80 @@
+<!-- voice-ignore-file -->
+# Portfolio Optimization Techniques | Explained
+
+- **Video ID**: `IcRLtCjSY1I`
+- **URL**: https://www.youtube.com/watch?v=IcRLtCjSY1I
+- **Channel**: QuantInsti Quantitative Learning — https://www.youtube.com/channel/UC8kXgHG13XdgsigIPRmrIyA
+- **Uploaded**: 20200710
+- **Duration**: 6:46 (406s)
+- **Views**: 2406  ·  **Likes**: 9
+- **Captured**: 2026-11-27T10:04:42
+
+## Description
+
+🔴 NEXT LIVE SESSION: Claude for Algo Trading, Tuesday 18 August, 7 PM IST. Watch Claude turn a plain-English trading idea into a systematic, testable strategy, live, with Ishan Shah and Sanya Modi. Register Here: https://bit.ly/4g0hwkP A quant fund manager + A HFT prop desk founder + A quant teacher = a session worth watching
+On 9 April, we hosted Kelvin Foo, Dr Gaurav Raizada, and Vivek Krishnamoorthy for a workshop on Algorithmic Trading & Options Risk Management.
+Watch the recording:
+https://bit.ly/4pWKHst
+.
+. - How do you optimize a factor portfolio? What are the various parameters? In our latest video, Prodipta Ghosh (VP, QuantInsti) explains this briefly and explains various Portfolio optimization techniques that could be really helpful to traders and learners. He also shares about Mean reversion, Kelly, and Risk Parity.
+
+He says:
+If you really want to optimize a factor portfolio, the first thing is that you have to research those factors, figure out those factors, and there are multiple ways of finding factors.
+
+This is not the way we know, for I talked about how to find and how develop factors. But once you have done it then it's a very similar optimization problem.
+
+You'll see that we had an expression very similar before the first term. What you are trying to maximize the first term is in return multiplied by the weights. That is basically the rewards that you are getting and the cost of the return, the cost of lords and in a cost of returns, you will see that we just had a sigma before, but now we have an expanded expression there.
+
+That is because we have a source of covariance matrix from the factors and whatever is not explained by the factors are the residuals. We have a variance matrix from those rescuers as well.
+
+Necessarily, we have a different lambda for the sensitivity to each of these factors that you want to optimize. One is the factor lambda, and one is the asset lambda. We can just optimize this expression and come up with the factor or equation. It's not very significantly different. 
+
+Are there any other optimization methods apart from mean-variance that can be used?
+Mean variance is a very very useful method for developing a portfolio. Even if your underlying assumptions are not correct, they're more often than not closer to the perfect solution. We should never underestimate a mean-variance optimization.
+
+At the same time as I've seen before, that average portfolio is also not something to be underestimated because if you are very skeptical about our models that is what we should do. But there are other situations as well where you can do something different.
+
+For example, Kelly optimizations or risk parity optimizations.
+If you talk about the Kelly, the expression that you are trying to use for the user utility function is slightly different. It's a log expression 'Ln' that stands for logarithm to the natural base.
+
+It looks complicated but it's really not. It tries to optimize or maximize your terminal wealth. For an amount, for each period you are accumulating wealth (1+R1)x(1+R2)x(1+R3) and so on. When you are trying to maximize this, instead of maximizing this complicated expression, you are taking log so that it becomes easier. It kind of becomes a law of utility function and then you're trying to often maximize this expression.
+
+Mathematically it is great. In fact, it comes under the family of things that we call constant related risk aversion.
+
+From both theory and practice, we see that the Kelley portfolio, in the long run, dominates all other strategies in terms of the final wealth because it's focused on maximizing final wealth and also the time achieved to that.
+
+To get the complete answer, view the complete video.
+-----------------------------------------
+This is a clip from our webinar 'Quantitative Portfolio Management Strategies'.
+-----------------------------------------
+Complete webinar video recording: https://youtu.be/73gr7qkQedo
+-Slides: https://bit.ly/4q7lb3R
+-----------------------------------------
+Most useful links:
+Join EPAT – Executive Programme in Algorithmic Trading: https://bit.ly/4yZXoqD
+-----------------------------------------
+Course on Quantitative Portfolio Management: https://bit.ly/4fCgprA
+Visit us at https://bit.ly/4yXRuq1
+-----------------------------------------
+Link to our Blog: https://bit.ly/4xkrcwm
+Like us on Facebook @ https://www.facebook.com/quantinsti/
+Follow us on Twitter @ https://twitter.com/QuantInsti
+Follow us on LinkedIn @ https://www.linkedin.com/school/quantinsti/
+Follow us on Instagram @ https://www.instagram.com/quantinstian/
+E-mail us @ sales@quantinsti.com
+
+## Chapters
+
+- `0s` — Factor portfolio optimization
+- `99s` — Alternative optimization methods
+- `208s` — Kelly criterion pros and cons
+- `288s` — Risk parity strategy
+
+## Files
+
+- `metadata.json` — full yt-dlp dump
+- `transcript.txt` — plain text
+- `transcript.vtt` — original captions
+- `transcript.json` — timestamped chunks
+- `chapters.json` — chapter markers
+- `thumbnail.jpg`

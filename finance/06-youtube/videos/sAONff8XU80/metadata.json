@@ -1,0 +1,64 @@
+{
+ "id": "sAONff8XU80",
+ "title": "Building a Profitable Trading Bot (Kalshi & Polymarket)",
+ "channel": "Victor Sha",
+ "channel_id": "UCdQVFRxgG_JDz49yZTGpVTA",
+ "uploader": "Victor Sha",
+ "upload_date": "20260427",
+ "duration": 1242,
+ "view_count": 8534,
+ "like_count": 340,
+ "webpage_url": "https://www.youtube.com/watch?v=sAONff8XU80",
+ "description": "It's been two months since I restarted the trading bot challenge with $200, and we are currently sitting at an 80% profit. In this update, I\u2019m opening up the black box to show you exactly how the revamped machine learning model actually works.\n\nWe dive deep into the fundamental math and mechanisms of automated trading on prediction markets. I explain how to exploit the mean-reverting, cointegrated process between Kalshi and Polymarket to find a sustainable edge.\n\nWhat we cover in this deep dive:\n\u2022 The Strategy: Implied probability models vs. momentum trading.\n\u2022 Mean Reversion: The mathematical proof of how Kalshi and Polymarket pairs cointegrate and pull back to a stable mean\n\u2022 Order Book Mechanics: Maker vs. Taker fees and how they impact algorithmic execution.\n\u2022 The \"Orange & Garlic\" Analogy: Why selling a \"No\" contract is mathematically identical to buying a \"Yes\" contract (and why this matters for your cash balance).\n\u2022 Risk Control: Why going \"YOLO\" will decimate your bankroll and how to use the Kelly Criterion to optimize long-term returns.\n\n\u23f1\ufe0f Chapters:\n0:00 - Challenge Update: $200 to $350\n0:51 - Revamping the Machine Learning Models\n1:53 - Implied Probability vs. Momentum Trading\n3:00 - The Mean Reversion Strategy (Deep Dive)\n11:08 - The Mathematical Proof of Cointegration\n13:45 - Order Book Mechanics: Maker vs. Taker\n14:53 - The \"Orange & Garlic\" Analogy\n17:47 - Risk Control and the Kelly Criterion\n19:51 - The Engineering Reality & Next Steps\n\n\ud83d\ude80 Want to use this trading architecture?\nAs I mention at the end of the video, the math is only 10% of the battle\u2014the hard engineering took 90% of the effort. I am currently considering packaging my trading bot infrastructure and releasing it as an API/platform for others to use. Please leave in the comments below if you are interested.\n\n\ud83d\udcac Let me know in the comments what your own strategies look like, or if you'd be interested in using the bot!\n\n\ud83d\udc47 Connect with me:\nLevel up your tech career on my mentorship platform: https://expertcircle.live/\n\n(Disclaimer: This video is a technical case study for educational and software engineering purposes only. I am not a financial advisor, and this is not financial advice. Trading involves significant risk.)",
+ "tags": [],
+ "categories": [
+  "People & Blogs"
+ ],
+ "chapters": [
+  {
+   "start_time": 0,
+   "title": "Challenge Update: $200 to $350",
+   "end_time": 51
+  },
+  {
+   "start_time": 51,
+   "title": "Revamping the Machine Learning Models",
+   "end_time": 113
+  },
+  {
+   "start_time": 113,
+   "title": "Implied Probability vs. Momentum Trading",
+   "end_time": 180
+  },
+  {
+   "start_time": 180,
+   "title": "The Mean Reversion Strategy (Deep Dive)",
+   "end_time": 668
+  },
+  {
+   "start_time": 668,
+   "title": "The Mathematical Proof of Cointegration",
+   "end_time": 825
+  },
+  {
+   "start_time": 825,
+   "title": "Order Book Mechanics: Maker vs. Taker",
+   "end_time": 893
+  },
+  {
+   "start_time": 893,
+   "title": "The \"Orange & Garlic\" Analogy",
+   "end_time": 1067
+  },
+  {
+   "start_time": 1067,
+   "title": "Risk Control and the Kelly Criterion",
+   "end_time": 1191
+  },
+  {
+   "start_time": 1191,
+   "title": "The Engineering Reality & Next Steps",
+   "end_time": 1242
+  }
+ ]
+}

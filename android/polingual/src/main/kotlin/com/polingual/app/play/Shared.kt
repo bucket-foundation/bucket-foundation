@@ -50,9 +50,9 @@ fun PlayReveal(graph: Graph, lang: String, form: String, meaning: String, rootLa
 }
 
 object DealSeeds {
-    fun fresh(random: () -> Double = Math::random): String = (1 + (random() * 1e12).toLong()).toString()
+    fun fresh(race: String? = com.polingual.app.RaceSession.deal, random: () -> Double = Math::random): String = race ?: (1 + (random() * 1e12).toLong()).toString()
 
-    fun ensure(saved: String, random: () -> Double = Math::random): String = saved.ifEmpty { fresh(random) }
+    fun ensure(saved: String, race: String? = com.polingual.app.RaceSession.deal, random: () -> Double = Math::random): String = race ?: saved.ifEmpty { fresh(race, random) }
 }
 
 @OptIn(ExperimentalLayoutApi::class)

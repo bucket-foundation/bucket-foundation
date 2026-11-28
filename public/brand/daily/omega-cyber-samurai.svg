@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<defs>
+<radialGradient id="bg" cx="50%" cy="40%" r="72%"><stop offset="0" stop-color="#1A1A1A"/><stop offset="1" stop-color="#000000"/></radialGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset="0.45" stop-color="#D9A43A"/><stop offset="0.55" stop-color="#8A641A"/><stop offset="1" stop-color="#E9C46A"/></linearGradient>
+<filter id="tex"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .2 0"/></filter>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="2"/></pattern>
+<pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 7H14" stroke="#2A261E" stroke-opacity=".12" stroke-width="3"/></pattern>
+<linearGradient id="clay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#000000" stop-opacity=".2"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5"/></filter>
+<filter id="blur"><feGaussianBlur stdDeviation="4"/></filter>
+</defs>
+<rect width="1024" height="1024" fill="url(#bg)"/>
+<g transform="translate(162 140) scale(7)"><g transform-origin="50 50">
+<path d="M17.7 15H28.5C33.5 15 36.5 19 36.5 23.1A31.9 31.9 0 1 0 63.5 23.1C63.5 19 66.5 15 71.5 15H82.3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="11.0" stroke="#000000" transform="translate(0 4)"></path><path d="M17.7 15H28.5C33.5 15 36.5 19 36.5 23.1A31.9 31.9 0 1 0 63.5 23.1C63.5 19 66.5 15 71.5 15H82.3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="11.0" stroke="url(#metal)"></path>
+<g transform-origin="50 76"><path d="M50 44L53 56L65 59L53 62L50 74L47 62L35 59L47 56Z" fill="#00FF00"/><circle cx="50" cy="59" r="3" fill="#00FFFF"/></g>
+</g></g></svg>

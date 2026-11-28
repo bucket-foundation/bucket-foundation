@@ -21,12 +21,12 @@ struct SaveProgressSheet: View {
             VStack(alignment: .leading, spacing: 18) {
                 PoMark()
                 Text("Save your progress")
-                    .font(.system(size: 34, weight: .heavy, design: .rounded))
-                    .foregroundStyle(Palette.ink)
+                    .font(PL.script(34, .heavy))
+                    .foregroundStyle(PL.ink)
                     .fixedSize(horizontal: false, vertical: true)
                 Text("Sign in so your words, streak and scores stay with you.")
-                    .font(.body)
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(17))
+                    .foregroundStyle(PL.inkDim)
                     .fixedSize(horizontal: false, vertical: true)
                 VStack(alignment: .leading, spacing: 14) {
                     PlanLine(icon: "arrow.triangle.2.circlepath", text: "Progress syncs across iPhone, iPad and Mac")
@@ -34,18 +34,18 @@ struct SaveProgressSheet: View {
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Palette.card, in: .rect(cornerRadius: 18))
+                .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
                 AppleSignInButton()
                 Button("Use email instead") { emailing = true }
-                    .buttonStyle(D8Option(align: .center))
+                    .buttonStyle(PLOption(align: .center))
                     .disabled(account.busy)
                 if let error = account.error {
-                    Text(error).font(.footnote).foregroundStyle(D8.vermilion)
+                    Text(error).font(PL.text(13)).foregroundStyle(PL.vermilion)
                 }
                 if account.busy { ProgressView().frame(maxWidth: .infinity) }
                 Button("Not now") { dismiss() }
-                    .font(.system(size: 15, weight: .semibold))
-                    .foregroundStyle(Palette.muted)
+                    .font(PL.text(15, .semibold))
+                    .foregroundStyle(PL.inkDim)
                     .buttonStyle(LinkPad())
                     .frame(maxWidth: .infinity)
             }

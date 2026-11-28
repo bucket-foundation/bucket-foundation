@@ -1,0 +1,10 @@
+[Unit]
+Description=Finance atlas daily brief to Telegram
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/agfarms/bucket-foundation/finance/lab
+ExecStart=%h/agfarms/bucket-foundation/finance/lab/.venv/bin/python %h/agfarms/bucket-foundation/finance/lab/brief.py --send
+TimeoutStartSec=600
