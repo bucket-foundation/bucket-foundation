@@ -461,11 +461,14 @@ public enum GroupInvite {
     }
 }
 
-enum Field: Encodable {
+indirect enum Field: Encodable, Equatable {
     case text(String)
     case number(Int)
     case list([String])
     case flag(Bool)
+    case decimal(Double)
+    case object([String: Field])
+    case items([Field])
 
     func encode(to encoder: Encoder) throws {
         var c = encoder.singleValueContainer()
@@ -474,6 +477,9 @@ enum Field: Encodable {
         case .number(let n): try c.encode(n)
         case .list(let l): try c.encode(l)
         case .flag(let b): try c.encode(b)
+        case .decimal(let d): try c.encode(d)
+        case .object(let o): try c.encode(o)
+        case .items(let i): try c.encode(i)
         }
     }
 }

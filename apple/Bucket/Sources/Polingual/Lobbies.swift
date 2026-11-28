@@ -204,6 +204,10 @@ struct LobbiesScreen: View {
                         Button("Join") { act { try await lobbies.join(code: code, displayName: name) } }
                             .buttonStyle(.pl(.primary, size: .md, full: false))
                             .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
+                        Button("Watch") { act { try await lobbies.watch(code: code, displayName: name) } }
+                            .buttonStyle(.pl(.ghost, size: .md, full: false))
+                            .disabled(name.isEmpty || code.count < 6 || lobbies.busy)
+                            .accessibilityIdentifier("lobbyWatch")
                     }
                 }
                 PlayLabel(text: "New lobby")
@@ -330,7 +334,13 @@ func lobbyProblem(_ e: BucketError) -> String {
     case .server(409, "lobby_full"): String(localized: "That lobby is full.")
     case .server(409, "lobby_started"): String(localized: "That game already started.")
     case .server(409, "hosted_limit"): String(localized: "You host three lobbies already.")
-    case .server(409, "need_ready"): String(localized: "Two players need to be ready.")
+    case .server(409, "need_ready"): String(localized: "Everyone needs to tap Ready first.")
+    case .server(403, "not_host"): String(localized: "Only the host can do that.")
+    case .server(409, "update_app"): String(localized: "This lobby needs a newer app. Join it on polingual.com for now.")
+    case .server(409, "audience_age"): String(localized: "Watching is for 13 and over.")
+    case .server(409, "audience_signin"): String(localized: "Sign in to watch this lobby.")
+    case .server(409, "seat_open"): String(localized: "A seat is open. Join to play.")
+    case .server(404, "end_off"), .server(404, "bots_off"), .server(409, "setup_off"), .server(409, "audience_off"): String(localized: "That is not on for this lobby yet.")
     case .revoked: String(localized: "Pick a name to play live.")
     default: e.localizedDescription
     }
@@ -347,6 +357,8 @@ struct LobbyRoom: View {
     @State private var tapped: [Int: Set<Int>] = [:]
     @State private var blockTarget: LobbyMessage?
     @State private var reportSent: LobbyMessage?
+    @State private var editCard = false
+    @State private var cardSent: String?
 
     var body: some View {
         Group {
@@ -359,7 +371,7 @@ struct LobbyRoom: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .plGround(.lattice, band: true)
+        .plGround(.paper, band: true)
         .navigationTitle(lobbies.current?.name ?? "")
         .inlineTitle()
         .fullHeightSession()
@@ -386,11 +398,17 @@ struct LobbyRoom: View {
             Text("We will review this report within 24 hours and act on it.")
         }
         .onDisappear { LobbyAds.shared.left(.lobby, finishedGame: sawFinish) }
+        .sheet(isPresented: $editCard) {
+            PlayerCardSheet(start: SavedCard.load() ?? FamilyCard(nickname: lobbies.current?.me?.name ?? "")) { card in sendCard(card) }
+        }
+        .task(id: "\(lobbies.current?.id ?? "")|\(lobbies.current?.seated == true)|\(lobbies.current?.nightRound != nil)") { offerCard() }
     }
 
     @ViewBuilder
     func content(_ l: Lobby, _ phase: LobbyPhase) -> some View {
-        if l.game.isRace, phase.playing {
+        if l.watching {
+            AudienceView(lobby: l, phase: phase)
+        } else if l.game.isRace, phase.playing {
             LobbyRaceView(lobby: l, remaining: l.raceRemaining(at: lobbies.now))
         } else {
             rounds(l, phase)
@@ -436,22 +454,15 @@ struct LobbyRoom: View {
                             Circle().fill(p.online ? PL.malachite : PL.paper3).frame(width: 8, height: 8)
                             Text(p.name).foregroundStyle(PL.ink)
                             if p.isHost { Image(systemName: "crown.fill").foregroundStyle(PL.vermilion).font(PL.label.font()) }
+                            if p.isBot { Text("Bot").font(PL.label.font()).foregroundStyle(PL.inkDim) }
                             Spacer()
-                            Text(p.ready ? "Ready" : "Waiting").font(PL.label.font()).foregroundStyle(p.ready ? PL.malachite : PL.inkDim)
+                            Text(p.ready || p.isBot ? "Ready" : "Waiting").font(PL.label.font()).foregroundStyle(p.ready ? PL.malachite : PL.inkDim)
                         }
                     }
                 }
                 Section {
-                    if let me = l.me {
-                        Button(me.ready ? "Not ready" : "I'm ready") { act { try await lobbies.setReady(!me.ready) } }
-                            .accessibilityIdentifier("lobbyReady")
-                    }
-                    if l.isHost {
-                        Button("Start game") { act { try await lobbies.start() } }
-                            .disabled(!l.canStart)
-                            .accessibilityIdentifier("lobbyStart")
-                        if !l.canStart { Text("Two ready players start the game.").font(PL.small.font()).foregroundStyle(PL.inkDim) }
-                    }
+                    if let night = l.nightRound { Text("Family night: \(FamilyNight.steps.map(\.label).joined(separator: ", ")). Round \(night.index + 1) of \(night.total).").font(PL.small.font()).foregroundStyle(PL.inkDim) }
+                    WaitingControls(lobby: l, act: act, editCard: $editCard)
                     if let problem { Text(problem).foregroundStyle(PL.vermilion) }
                 }
                 Section("Chat") { chatLog(l) }
@@ -800,6 +811,18 @@ struct LobbyRoom: View {
 
     func board(_ l: Lobby) -> some View {
         List {
+            if let i = l.interlude(at: lobbies.now) {
+                Section { NightInterludeView(lobby: l, interlude: i) }
+            }
+            Section {
+                ResultsPanel(lobby: l, leave: {
+                    Task { await lobbies.leave() }
+                    dismiss()
+                }, act: act)
+                if let problem { Text(problem).foregroundStyle(PL.vermilion) }
+            }
+            .listRowBackground(Color.clear)
+            .listRowInsets(EdgeInsets())
             Section { LearnUpsell() }
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
@@ -837,6 +860,17 @@ struct LobbyRoom: View {
             langs.recordLobby(l)
             SaveNudge.gameEnded(signedIn: account.stage == .signedIn)
         }
+    }
+
+    func offerCard() {
+        guard let l = lobbies.current, l.seated, l.status == .lobby, cardSent != l.id else { return }
+        if let saved = SavedCard.load() { sendCard(saved) } else if l.nightRound != nil { editCard = true }
+    }
+
+    func sendCard(_ card: FamilyCard) {
+        guard let id = lobbies.current?.id else { return }
+        cardSent = id
+        act { try await lobbies.sendCard(card) }
     }
 
     func act(_ work: @escaping () async throws -> Void) {
