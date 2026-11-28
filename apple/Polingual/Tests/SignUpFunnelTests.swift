@@ -7,8 +7,8 @@ import Testing
 @MainActor
 struct SignUpFunnelTests {
     @Test func onboardingAsksWhereTheLearnerHeardBeforeLanguagesThenBuildsAPlan() {
-        #expect(Onboarding.Step.allCases == [.welcome, .heard, .speak, .languages, .reason, .level, .motivation, .minutes, .time, .deadline, .plan])
-        #expect(Onboarding.Step.allCases.map(\.funnelName) == ["welcome", "heard_about", "speak", "languages", "reason", "level", "motivation", "minutes", "practice_time", "deadline", "plan"])
+        #expect(Onboarding.Step.allCases == [.welcome, .heard, .speak, .languages, .reason, .level, .motivation, .minutes, .time, .deadline, .plan, .say])
+        #expect(Onboarding.Step.allCases.map(\.funnelName) == ["welcome", "heard_about", "speak", "languages", "reason", "level", "motivation", "minutes", "practice_time", "deadline", "plan", "say"])
         #expect(Onboarding.Step.allCases.allSatisfy { $0.funnelName.count <= 40 })
     }
 
@@ -37,6 +37,7 @@ struct SignUpFunnelTests {
         #expect(Onboarding.blocked(.reason, ready: true, targets: 0) == .languages)
         #expect(Onboarding.blocked(.languages, ready: true, targets: 0) == nil)
         #expect(Onboarding.blocked(.plan, ready: true, targets: 1) == nil)
+        #expect(Onboarding.blocked(.say, ready: true, targets: 0) == .languages)
     }
 
     @Test func planPaywallWaitsForAccessAndOtherRootSheets() {

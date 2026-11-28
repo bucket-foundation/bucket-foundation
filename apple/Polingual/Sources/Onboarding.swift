@@ -2,7 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct Onboarding: View {
-    enum Step: Int, CaseIterable { case welcome, heard, speak, languages, reason, level, motivation, minutes, time, deadline, plan }
+    enum Step: Int, CaseIterable { case welcome, heard, speak, languages, reason, level, motivation, minutes, time, deadline, plan, say }
 
     @Environment(LangStore.self) private var store
     @Environment(Reminders.self) private var reminders
@@ -15,6 +15,7 @@ struct Onboarding: View {
     @State private var failed: String?
     @State private var heard: String?
     @State private var quiz = QuizAnswers.load()
+    @State private var spokeWin = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -69,6 +70,7 @@ struct Onboarding: View {
         case .time: question("When do you want to practice?", note: "Reminders use this time when you turn them on.", options: QuizOption.times, picked: quiz.time?.rawValue) { quiz.time = QuizTime(rawValue: $0) }
         case .deadline: question("When do you want to see results?", options: QuizOption.deadlines, picked: quiz.deadline?.rawValue) { quiz.deadline = QuizDeadline(rawValue: $0) }
         case .plan: planPage
+        case .say: sayPage
         }
     }
 
@@ -182,11 +184,53 @@ struct Onboarding: View {
                 .font(PL.text(13))
                 .foregroundStyle(PL.inkDim)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    var sayPage: some View {
+        ViewThatFits(in: .vertical) {
+            sayBody
+            ScrollView { sayBody }
+        }
+    }
+
+    var sayBody: some View {
+        let shown = SpokenWin.shown(targets)
+        let spoken = SpokenWin.spoken(targets) { LangListener.shared.canHear($0) }
+        return VStack(alignment: .leading, spacing: 14) {
+            Text(spoken == nil ? "Your first word" : "Say your first word")
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+                .minimumScaleFactor(0.6)
+                .fixedSize(horizontal: false, vertical: true)
+            Text(accented("**Hello**, in every language you picked. Tap a word to hear it.", PL.lapis))
+                .font(PL.body.font())
+                .foregroundStyle(PL.inkDim)
+                .fixedSize(horizontal: false, vertical: true)
+            FlowLayout(spacing: 12) {
+                ForEach(shown, id: \.lang) { w in
+                    WordTile(word: w.word, lang: w.lang, reading: Reading(ipa: w.ipa), size: shown.count > 3 ? 76 : 96) {
+                        tap()
+                        LangVoice.shared.speak(w.word, w.lang)
+                    }
+                    .accessibilityIdentifier("say-tile-\(w.lang)")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            if let spoken {
+                SayItButton(say: spoken.word, lang: spoken.lang, accepts: spoken.accepts) {
+                    guard !spokeWin else { return }
+                    spokeWin = true
+                    AppFunnel.track("onboarding_view", detail: "say_heard")
+                }
+            }
             if let failed {
                 Text(failed).font(PL.text(13)).foregroundStyle(PL.vermilion)
                 Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
             }
         }
+        .onAppear { LangVoice.shared.warm() }
     }
 
     var welcome: some View {
@@ -350,14 +394,14 @@ struct Onboarding: View {
             }
             .accessibilityHidden(true)
             Button(label) {
-                if step == .plan {
+                if step == .say {
                     Task { await complete() }
                 } else {
                     advance()
                 }
             }
             .buttonStyle(D8Primary())
-            .disabled(((step == .languages || step == .plan) && targets.isEmpty) || (step == .speak && !picks.ready) || creating)
+            .disabled(((step == .languages || step == .plan || step == .say) && targets.isEmpty) || (step == .speak && !picks.ready) || creating)
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
@@ -367,7 +411,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
-        case .plan: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
+        case .say: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
         default: "Continue"
         }
     }
@@ -420,6 +464,7 @@ extension Onboarding.Step {
         case .time: "practice_time"
         case .deadline: "deadline"
         case .plan: "plan"
+        case .say: "say"
         }
     }
 }

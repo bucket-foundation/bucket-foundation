@@ -149,6 +149,7 @@ struct SoundHint: View {
 struct SayItButton: View {
     let say: String
     let lang: String
+    var accepts: [String] = []
     var onHeard: () -> Void = {}
     @State private var listening = false
     @State private var result: Bool?
@@ -186,7 +187,7 @@ struct SayItButton: View {
         let alts = await LangListener.shared.listenOnce(lang)
         listening = false
         tries += 1
-        result = LetterSounds.heard(alts, say: say)
+        result = ([say] + accepts).contains { LetterSounds.heard(alts, say: $0) }
         haptic(result == true)
         if result == true { onHeard() }
     }
