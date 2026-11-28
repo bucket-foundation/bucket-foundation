@@ -4,14 +4,9 @@ import UserNotifications
 
 @main
 struct BucketApp: App {
-    @State private var account: Account
+    @State private var box: BucketGraphBox
     @State private var library = Library(api: BucketAPI())
-    @State private var langs: LangStore
-    @State private var science: ScienceStore
-    @State private var gate: Gate
     @State private var reminders = Reminders()
-    @State private var groups: GroupStore
-    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -20,37 +15,22 @@ struct BucketApp: App {
     init() {
         InterfaceLanguage.restore()
         UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
-        let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
-        launch.defaults()
-        let account = Account(api: BucketAPI(), store: launch.sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
-        launch.attach(account)
-        PushRegistry.shared.token = { await account.freshToken() }
-        PushRegistry.shared.user = { account.session?.userId }
-        let langs = LangStore(api: BucketAPI(), disk: launch.disk("polingual"), token: launch.token(account))
-        LangVoice.shared.store = langs
-        _account = State(initialValue: account)
-        Beta.shared.account = account
-        _langs = State(initialValue: langs)
-        #if DEBUG
-        let shift = (Launch.value("-clockDays").flatMap(Double.init) ?? 0) * DAY_MS
-        #else
-        let shift = 0.0
-        #endif
-        let science = ScienceStore(api: BucketAPI(), disk: launch.disk("academy"), token: launch.token(account), now: { Date().timeIntervalSince1970 * 1000 + shift })
-        _science = State(initialValue: science)
-        NetworkWatch.shared.onReconnect { await langs.resync() }
-        NetworkWatch.shared.onReconnect { await science.resync() }
+        let box = BucketGraphBox()
+        NetworkWatch.shared.onReconnect { await box.graph.langs.resync() }
+        NetworkWatch.shared.onReconnect { await box.graph.science.resync() }
         NetworkWatch.shared.start()
-        _gate = State(initialValue: Gate(account: account))
-        let groups = GroupStore(api: BucketAPI(), token: { await account.freshToken() })
-        groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
-        _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: BucketAPI(), token: { await account.freshToken() }, guest: GuestPass(api: BucketAPI()) { UserDefaults.standard.string(forKey: AccountDefaults.key("groups.displayName")) ?? "" }))
+        _box = State(initialValue: box)
     }
+
+    private var account: Account { box.graph.account }
+    private var langs: LangStore { box.graph.langs }
+    private var science: ScienceStore { box.graph.science }
+    private var groups: GroupStore { box.graph.groups }
 
     var body: some Scene {
         WindowGroup {
             RootView()
+                .id(box.host?.generation ?? 0)
                 #if os(macOS)
                 .frame(minWidth: 960, minHeight: 680)
                 #endif
@@ -58,12 +38,25 @@ struct BucketApp: App {
                 .environment(library)
                 .environment(langs)
                 .environment(science)
-                .environment(gate)
+                .environment(box.graph.gate)
                 .environment(reminders)
                 .environment(groups)
-                .environment(lobbies)
+                .environment(box.graph.lobbies)
+                .environment(\.accountHost, box.host)
                 .interfaceLanguage(langs)
-                .task { Connectivity.shared.watch("lang-store") { online in Task { await langs.connectivityChanged(online: online) } } }
+                .task(id: box.host?.generation ?? 0) {
+                    Connectivity.shared.watch("lang-store") { online in Task { await langs.connectivityChanged(online: online) } }
+                    guard (box.host?.generation ?? 0) > 0 else { return }
+                    await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
+                    await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
+                    WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
+                    #if os(iOS)
+                    WatchBridge.shared.store = langs
+                    WatchBridge.shared.sink = langs
+                    WatchBridge.shared.send()
+                    #endif
+                }
+                .task(id: account.session?.userId) { await box.settleAfterSignIn() }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }

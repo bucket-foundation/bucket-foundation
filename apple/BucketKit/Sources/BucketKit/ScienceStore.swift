@@ -183,6 +183,12 @@ public final class ScienceStore {
 
     @ObservationIgnored private(set) var epoch = 0
 
+    public func detach() {
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        epoch += 1
+    }
+
     public func clearLocal() {
         for t in pushes.values { t.cancel() }
         pushes = [:]

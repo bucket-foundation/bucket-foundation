@@ -64,6 +64,26 @@ import Testing
         #expect(EngineState(js: server.branches.value[LangStoreSyncTests.branch]).cards.has(cardId("es", "adios")))
     }
 
+    @Test func detachedScienceStoreSendsNothingAndKeepsItsGradesOnDisk() async throws {
+        let server = ProgressServer()
+        let disk = MemoryLangDisk()
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let store = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { "t" }, now: { 1_000_000 }, tz: utc)
+        let d = try ScienceStoreTests().deck()
+        let first = try #require(store.route(d).first)
+        let epoch = store.epoch
+        store.grade(d, id: first.id, rating: 3, level: "recall")
+        store.detach()
+        #expect(store.epoch == epoch + 1)
+        try? await Task.sleep(for: .seconds(1.5))
+        #expect(server.posts.value.isEmpty)
+        #expect(store.localBranches() == [d.branch])
+        let reopened = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { "t" }, now: { 1_000_000 }, tz: utc)
+        await reopened.resync()
+        #expect(server.posts.value == [d.branch])
+        #expect(EngineState(js: server.branches.value[d.branch]).cards.has(first.id))
+    }
+
     @Test func scienceSendRefusesTokenForAnotherUserAndRecoversOnResync() async throws {
         let server = ProgressServer()
         let disk = MemoryLangDisk()
