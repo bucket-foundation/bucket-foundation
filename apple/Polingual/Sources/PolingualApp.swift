@@ -4,13 +4,9 @@ import UserNotifications
 
 @main
 struct PolingualApp: App {
-    @State private var account: Account
-    @State private var store: LangStore
-    @State private var gate: Gate
+    @State private var box: PolingualGraphBox
     @State private var subs: Subscriptions
     @State private var reminders = Reminders()
-    @State private var groups: GroupStore
-    @State private var lobbies: LobbyStore
     @Environment(\.scenePhase) private var phase
     #if os(iOS)
     @UIApplicationDelegateAdaptor(PushAppDelegate.self) private var pushDelegate
@@ -24,53 +20,36 @@ struct PolingualApp: App {
         #else
         let api = BucketAPI()
         #endif
-        let launch = AccountLaunch.make(multiAccount: BetaFlags.cached().multiAccount, appGroup: WidgetSnapshot.group)
-        launch.defaults()
-        #if DEBUG
-        let fresh = Launch.flag("-freshGuest")
-        let sessions: SessionStore = fresh ? MemorySessionStore() : launch.sessions
-        let disk = fresh ? FileLangDisk(root: FileManager.default.temporaryDirectory.appending(path: "langs-\(UUID().uuidString)", directoryHint: .isDirectory)) : launch.disk("polingual")
-        #else
-        let sessions: SessionStore = launch.sessions
-        let disk = launch.disk("polingual")
-        #endif
-        let account = Account(api: api, store: sessions, locks: launch.locks(appGroup: WidgetSnapshot.group))
-        launch.attach(account)
-        let store = LangStore(api: api, disk: disk, token: launch.token(account))
-        PushRegistry.shared.api = api
-        PushRegistry.shared.token = { await account.freshToken() }
-        PushRegistry.shared.user = { account.session?.userId }
-        LangVoice.shared.store = store
-        NetworkWatch.shared.onReconnect { await store.resync() }
+        let box = PolingualGraphBox(api: api)
+        NetworkWatch.shared.onReconnect { await box.graph.store.resync() }
         NetworkWatch.shared.start()
-        _account = State(initialValue: account)
-        Beta.shared.account = account
-        _store = State(initialValue: store)
-        _gate = State(initialValue: Gate(account: account))
-        let groups = GroupStore(api: api, token: { await account.freshToken() })
-        groups.donor = IntentShareDonor(appGroup: WidgetSnapshot.group)
-        _groups = State(initialValue: groups)
-        _lobbies = State(initialValue: LobbyStore(api: api, token: { await account.freshToken() }, guest: GuestPass(api: api) { UserDefaults.standard.string(forKey: AccountDefaults.key("groups.displayName")) ?? "" }))
-        let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
+        _box = State(initialValue: box)
+        let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: box.graph.account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride(), web: web))
     }
+
+    private var account: Account { box.graph.account }
+    private var store: LangStore { box.graph.store }
+    private var groups: GroupStore { box.graph.groups }
 
     var body: some Scene {
         WindowGroup {
             PolingualRoot()
+                .id(box.host?.generation ?? 0)
                 #if os(macOS)
                 .frame(minWidth: 960, minHeight: 680)
                 #endif
                 .environment(account)
                 .environment(store)
-                .environment(gate)
+                .environment(box.graph.gate)
                 .environment(subs)
                 .environment(reminders)
                 .environment(groups)
-                .environment(lobbies)
+                .environment(box.graph.lobbies)
+                .environment(\.accountHost, box.host)
                 .interfaceLanguage(store)
                 .preferredColorScheme(.light)
-                .task { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
+                .task(id: box.host?.generation ?? 0) { Connectivity.shared.watch("lang-store") { online in Task { await store.connectivityChanged(online: online) } } }
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
                     if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
@@ -99,6 +78,7 @@ struct PolingualApp: App {
                     }
                 }
                 .task(id: account.session?.userId) {
+                    await box.settleAfterSignIn()
                     await subs.web.refresh(userId: account.session?.userId) { await account.freshToken() }
                 }
                 .onChange(of: subs.access) {

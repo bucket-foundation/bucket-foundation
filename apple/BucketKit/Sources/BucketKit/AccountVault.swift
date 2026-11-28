@@ -253,6 +253,7 @@ public final class UserSessionStore: SessionStore, @unchecked Sendable {
 
     public func clear() {
         guard let u = userId else { return }
+        if items.session(SessionItem.legacy)?.userId == u { items.remove(SessionItem.legacy) }
         items.remove(SessionItem.user(u))
         index.remove(u)
         lock.withLock { bound = nil }
@@ -321,8 +322,9 @@ public enum SessionVault {
             guard (try? items.setSession(legacy, item)) != nil, items.session(item) == legacy else { return }
             index.legacyLaunches = 0
         }
+        let known = index.rows.contains { $0.userId == u }
         guard index.upsert(userId: u, label: label) else { return }
-        if index.activeUserId == nil { index.activate(u) }
+        if !known, index.activeUserId == nil { index.activate(u) }
         index.countLegacyLaunch(launch)
         if index.legacyLaunches >= 2 {
             items.remove(SessionItem.legacy)

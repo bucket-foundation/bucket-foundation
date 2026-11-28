@@ -6,6 +6,7 @@ import UserNotifications
 struct AccountView: View {
     @Environment(Account.self) private var account
     @Environment(GroupStore.self) private var groups
+    @Environment(\.accountHost) private var accountHost
     @State private var openGroup: String?
     @State private var openMember: String?
     @State private var confirmingReset = false
@@ -63,6 +64,9 @@ struct AccountView: View {
                     } header: {
                         Eyebrow(text: "Account")
                     }
+                }
+                if let accountHost, !accountHost.choices.isEmpty {
+                    AccountsSection(host: accountHost)
                 }
                 if let memberLine {
                     Section {
@@ -128,6 +132,8 @@ struct AccountView: View {
             }
             .listRowBackground(Palette.card)
             .paper()
+            .onAppear { accountHost?.refresh() }
+            .onChange(of: account.stage) { accountHost?.refresh() }
             .navigationTitle("Account")
             #if !BUCKET
             .plChrome()

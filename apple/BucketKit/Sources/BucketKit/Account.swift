@@ -45,6 +45,7 @@ public final class Account {
         let code = code.filter(\.isNumber)
         await run {
             let s = try await self.api.verify(email: email, code: code)
+            (self.store as? UserSessionStore)?.pendingLabel = AccountIndex.mask(email)
             if let u = s.userId { self.onStart?(u) }
             try self.store.save(s)
             self.session = s

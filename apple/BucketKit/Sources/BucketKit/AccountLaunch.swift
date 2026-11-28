@@ -8,13 +8,14 @@ public struct AccountLaunch: Sendable {
     public let owner: AccountOwner
     let folders: AccountFolders
     let index: AccountIndex
+    let items: SecretItems
 
-    public static func make(multiAccount: Bool, appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil, folders: AccountFolders = AccountFolders(), defaults: AccountDefaults = .shared) -> AccountLaunch {
+    public static func make(multiAccount: Bool, appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil, folders: AccountFolders = AccountFolders(), defaults: AccountDefaults = .shared, relaunch: Bool = false) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
         let index = index ?? AccountIndex(appGroup: appGroup) ?? AccountIndex(defaults: .standard)
         let sessions = SessionVault.store(multiAccount: multiAccount, items: items, index: index)
         let userId = sessions.load()?.userId
-        if multiAccount {
+        if multiAccount, !(relaunch && folders.migrated) {
             let entering = folders.phase
             do {
                 try folders.migrate(userId: userId)
@@ -41,14 +42,14 @@ public struct AccountLaunch: Sendable {
                 if k == AccountFolders.guest { ownerId = p.userId } else if p.state == .promote, p.key == k { folderKey = AccountFolders.guest }
             }
         }
-        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folderKey, multiAccount: multiAccount, owner: AccountOwner(ownerId), folders: folders, index: index)
+        return AccountLaunch(sessions: sessions, userId: userId, folderKey: folderKey, multiAccount: multiAccount, owner: AccountOwner(ownerId), folders: folders, index: index, items: items)
     }
 
     public static func forExtension(appGroup: String, keychainGroup: String = SessionVault.sharedGroup, items: SecretItems? = nil, index: AccountIndex? = nil) -> AccountLaunch {
         let items = items ?? KeychainItems(accessGroup: keychainGroup)
         let index = index ?? AccountIndex(appGroup: appGroup) ?? AccountIndex(defaults: .standard)
         let sessions = SessionVault.extensionStore(items: items, index: index)
-        return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, owner: AccountOwner(sessions.load()?.userId), folders: AccountFolders(), index: index)
+        return AccountLaunch(sessions: sessions, userId: sessions.load()?.userId, folderKey: nil, multiAccount: false, owner: AccountOwner(sessions.load()?.userId), folders: AccountFolders(), index: index, items: items)
     }
 
     public func defaults(_ shared: AccountDefaults = .shared) {
@@ -74,6 +75,10 @@ public struct AccountLaunch: Sendable {
     public func disk(_ store: String) -> FileLangDisk { folders.disk(store, key: folderKey) }
 
     public var migrationError: String? { folders.lastError }
+
+    public var switcher: AccountSwitch? { multiAccount ? AccountSwitch(index: index, items: items) : nil }
+
+    public var inGuest: Bool { multiAccount && folderKey == AccountFolders.guest }
 
     func lockUser(_ userId: String?) -> String? { Self.lockUser(userId, index) }
 
