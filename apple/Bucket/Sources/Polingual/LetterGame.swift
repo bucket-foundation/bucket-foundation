@@ -154,6 +154,7 @@ struct SayItButton: View {
     @State private var listening = false
     @State private var result: Bool?
     @State private var tries = 0
+    @State private var speechOff = false
 
     var body: some View {
         VStack(spacing: 8) {
@@ -166,8 +167,8 @@ struct SayItButton: View {
             }
             .buttonStyle(PLOption(align: .center, compact: true))
             HStack(spacing: 6) {
-                Image(systemName: result == true ? "sparkles" : "ear")
-                Text(result == true ? Self.cheer(tries) : String(localized: "Close. Tap play, listen once more, then try again."))
+                Image(systemName: result == true ? "sparkles" : speechOff ? "mic.slash" : "ear")
+                Text(result == true ? Self.cheer(tries) : speechOff ? String(localized: "Turn on speech in Settings") : String(localized: "Close. Tap play, listen once more, then try again."))
                     .lineLimit(1).minimumScaleFactor(0.7)
             }
             .font(PL.small.font())
@@ -188,6 +189,7 @@ struct SayItButton: View {
         listening = false
         tries += 1
         result = ([say] + accepts).contains { LetterSounds.heard(alts, say: $0) }
+        speechOff = alts.isEmpty && LangListener.shared.denied
         haptic(result == true)
         if result == true { onHeard() }
     }

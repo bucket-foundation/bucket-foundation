@@ -16,6 +16,7 @@ struct Onboarding: View {
     @State private var heard: String?
     @State private var quiz = QuizAnswers.load()
     @State private var spokeWin = false
+    @State private var sayWord: SpokenWord?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,6 +41,7 @@ struct Onboarding: View {
         .onChange(of: step, initial: true) { _, s in
             if let back = Self.blocked(s, ready: picks.ready, targets: targets.count) { step = back; return }
             AppFunnel.track("onboarding_view", detail: s.funnelName)
+            if s == .say { pickSayWord() }
         }
         .task {
             await store.load()
@@ -196,7 +198,7 @@ struct Onboarding: View {
 
     var sayBody: some View {
         let shown = SpokenWin.shown(targets)
-        let spoken = SpokenWin.spoken(targets) { LangListener.shared.canHear($0) }
+        let spoken = sayWord
         return VStack(alignment: .leading, spacing: 14) {
             Text(spoken == nil ? "Your first word" : "Say your first word")
                 .font(PL.title.font(scale: 0.94))
@@ -214,6 +216,8 @@ struct Onboarding: View {
                         tap()
                         LangVoice.shared.speak(w.word, w.lang)
                     }
+                    .accessibilityLabel(Text(verbatim: "\(w.word), \(langName(w.lang))"))
+                    .accessibilityHint(String(localized: "Plays the word"))
                     .accessibilityIdentifier("say-tile-\(w.lang)")
                 }
             }
@@ -231,6 +235,10 @@ struct Onboarding: View {
             }
         }
         .onAppear { LangVoice.shared.warm() }
+    }
+
+    func pickSayWord() {
+        sayWord = SpokenWin.spoken(targets) { LangListener.shared.canHear($0) }
     }
 
     var welcome: some View {
