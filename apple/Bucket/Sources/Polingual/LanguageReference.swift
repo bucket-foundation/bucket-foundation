@@ -52,14 +52,14 @@ struct LanguageReference: View {
         .searchable(text: $query, prompt: Text("Search words"))
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                let root = store.systems.first { $0.targets.contains(lang) }?.root ?? "en"
+                let root = store.meaningRoot(lang)
                 ShareObjectButton(.language(lang, root: root), .flag(lang, root: root))
             }
         }
         .navigationDestination(for: WordDetail.self) { WordFactsView(detail: $0) }
         .task {
             await store.load()
-            words = LangReference.words(lang, corpus: store.corpus, top: LangStore.topWords(lang) ?? [])
+            words = LangReference.words(lang, corpus: store.corpus, top: LangStore.topWords(lang) ?? [], root: store.meaningRoot(lang))
         }
     }
 
@@ -70,7 +70,14 @@ struct LanguageReference: View {
                 NavigationLink(value: w) {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(w.word).font(PL.text(17, .bold)).foregroundStyle(PL.ink)
-                        if let g = w.gloss { Text(g).font(PL.text(15)).foregroundStyle(PL.inkDim).lineLimit(1) }
+                        if let g = w.gloss {
+                            HStack(alignment: .firstTextBaseline, spacing: 6) {
+                                if w.rootLang != "en" {
+                                    Text(langName(w.rootLang).uppercased()).font(PL.text(11).monospaced()).foregroundStyle(PL.inkDim).accessibilityLabel("\(langName(w.rootLang)) meaning")
+                                }
+                                Text(g).font(PL.text(15)).foregroundStyle(PL.inkDim).lineLimit(1)
+                            }
+                        }
                     }
                 }
             }
@@ -250,7 +257,7 @@ struct WordFactsView: View {
             guard let p = WordTaps.parse(url) else { return .systemAction }
             if !LangListener.shared.active { LangVoice.shared.speak(p.word, p.lang) }
             if detail.leadsTo(p.word, lang: p.lang) {
-                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.playRoot ?? "en")
+                next = WordLookup.detail(p.word, lang: p.lang, corpus: store?.corpus, top: LangStore.topWords(p.lang) ?? [], root: store?.meaningRoot(p.lang) ?? "en")
             }
             return .handled
         })

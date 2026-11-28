@@ -86,6 +86,36 @@ struct LangReferenceTests {
         #expect(words[1].reading?.ipa == "ˈkasa")
     }
 
+    @Test func wordListMeaningMatchesATappedWord() {
+        let c = Self.corpus()
+        let listed = LangReference.words("es", corpus: c, top: [], root: "fr")[0]
+        let tapped = WordLookup.detail("beber", lang: "es", corpus: c, top: [], root: "fr")
+        #expect(listed.gloss == "boire")
+        #expect(listed.rootLang == "fr")
+        #expect(listed.gloss == tapped.gloss)
+        #expect(listed.rootLang == tapped.rootLang)
+        let english = LangReference.words("es", corpus: c, top: [], root: "de")[0]
+        #expect(english.gloss == "to drink")
+        #expect(english.rootLang == "en")
+        let top = [TopWord(rank: 2, word: "casa", meaning: "house", band: "A1")]
+        let topOnly = LangReference.words("es", corpus: c, top: top, root: "fr")[1]
+        #expect(topOnly.gloss == "house")
+        #expect(topOnly.rootLang == "en")
+        let rooted = LangReference.words("es", corpus: c, top: top, root: "fr")
+        #expect(LangReference.filter(rooted, query: "boir").map(\.word) == ["beber"])
+    }
+
+    @Test func meaningRootPrefersTheSystemThatTeachesTheLanguage() {
+        let romance = LangSystem(id: "a", name: "A", root: "en", targets: ["es", "fr"], createdAt: 0)
+        let italian = LangSystem(id: "b", name: "B", root: "fr", targets: ["it", "es"], createdAt: 1)
+        let systems = [romance, italian]
+        #expect(WordLookup.meaningRoot("it", systems: systems, daily: romance) == "fr")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: italian) == "fr")
+        #expect(WordLookup.meaningRoot("es", systems: systems, daily: romance) == "en")
+        #expect(WordLookup.meaningRoot("de", systems: systems, daily: italian) == "fr")
+        #expect(WordLookup.meaningRoot("de", systems: [], daily: nil) == "en")
+    }
+
     @Test func searchMatchesWordAndMeaning() {
         let words = LangReference.words("es", corpus: Self.corpus(), top: [])
         #expect(LangReference.filter(words, query: "BEB").count == 1)

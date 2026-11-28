@@ -33,8 +33,18 @@ public enum WordLookup {
         let ranked = top.first { keys.contains(fold($0.word, lang)) }
         let gloss = (item?.gloss ?? ranked?.meaning).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
         let reading = item?.readings[lang] ?? ranked?.ipa.map { Reading(ipa: $0.trimmingCharacters(in: CharacterSet(charactersIn: "/"))) }
-        let rootForm = root == "en" || root == lang ? nil : item?.form(root).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
+        let rootForm = rootForm(item, word: word, lang: lang, root: root)
         return WordDetail(word: word, lang: lang, gloss: rootForm ?? gloss, reading: reading, itemId: item?.id, pos: ranked?.pos, band: ranked?.band, rootLang: rootForm == nil ? "en" : root)
+    }
+
+    static func rootForm(_ item: LangItem?, word: String, lang: String, root: String) -> String? {
+        guard root != "en", root != lang else { return nil }
+        return item?.form(root).flatMap { fold($0, lang) == fold(word, lang) ? nil : $0 }
+    }
+
+    public static func meaningRoot(_ lang: String, systems: [LangSystem], daily: LangSystem?) -> String {
+        if let daily, daily.targets.contains(lang) { return daily.root }
+        return systems.first { $0.targets.contains(lang) }?.root ?? daily?.root ?? "en"
     }
 
     static func fold(_ s: String, _ lang: String) -> String {
