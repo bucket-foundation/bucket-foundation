@@ -25,12 +25,34 @@ struct PolingualApp: App {
         NetworkWatch.shared.start()
         _box = State(initialValue: box)
         let web = WebMembership(vault: KeychainWebEntitlementVault(), userId: box.graph.account.session?.userId) { token, user in await api.webEntitlement(token: token, userId: user) }
-        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride(), web: web))
+        let subs = Subscriptions(forced: Subscriptions.launchOverride(), web: web)
+        subs.owner = Self.launchOwner(box.graph)
+        _subs = State(initialValue: subs)
     }
 
     private var account: Account { box.graph.account }
     private var store: LangStore { box.graph.store }
     private var groups: GroupStore { box.graph.groups }
+
+    static func launchOwner(_ graph: PolingualGraph) -> PurchaseOwner? {
+        guard graph.launch.multiAccount else { return nil }
+        return PurchaseOwner(token: graph.account.session?.userId.flatMap { AccountTokens().cached(for: $0) }, legacy: graph.launch.ownsLegacyPurchases)
+    }
+
+    private func rescopeWithoutToken() async {
+        guard let owner = subs.owner, owner.token == nil, account.session != nil else { return }
+        await scopePurchases()
+    }
+
+    private func scopePurchases() async {
+        let launch = box.graph.launch
+        guard launch.multiAccount else { return }
+        let account = account
+        var token: UUID?
+        if account.session != nil, case .success(let id) = await AccountTokens().fetch(for: account) { token = id }
+        subs.owner = PurchaseOwner(token: token, legacy: launch.ownsLegacyPurchases)
+        await subs.refresh()
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -63,6 +85,7 @@ struct PolingualApp: App {
                         if p == .active {
                             await store.retryPending()
                             await subs.web.refresh(userId: account.session?.userId) { await account.freshToken() }
+                            await rescopeWithoutToken()
                             await NetworkWatch.shared.resync().value
                             await reminders.sync()
                             await PushRegistry.shared.refresh()
@@ -86,6 +109,7 @@ struct PolingualApp: App {
                 .task(id: account.session?.userId) {
                     await box.settleAfterSignIn()
                     await subs.web.refresh(userId: account.session?.userId) { await account.freshToken() }
+                    await scopePurchases()
                 }
                 .onChange(of: subs.access) {
                     #if os(iOS)

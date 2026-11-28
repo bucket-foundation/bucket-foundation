@@ -40,6 +40,7 @@ public struct AccountFolders: Sendable {
 
     public var migrated: Bool { marker != nil }
     public var phase: Phase? { marker?.phase }
+    public var firstKey: String? { marker?.key }
 
     public func activeKey(userId: String?) -> String? {
         FileManager.default.fileExists(atPath: markerURL.path) ? Self.key(userId: userId) : nil

@@ -107,6 +107,21 @@ import Testing
         #expect(index.rows.isEmpty)
     }
 
+    @Test func onlyTheFirstMigratedAccountOwnsUntaggedPurchases() throws {
+        let (items, index, folders, d) = try fresh()
+        try signIn("A", items, index)
+        let a = launch(items, index, folders, d)
+        #expect(a.ownsLegacyPurchases)
+        try signIn("B", items, index)
+        let b = launch(items, index, folders, d, relaunch: true)
+        #expect(b.userId == "B")
+        #expect(b.ownsLegacyPurchases == false)
+        #expect(try #require(b.switcher).add())
+        #expect(launch(items, index, folders, d, relaunch: true).ownsLegacyPurchases == false)
+        let off = AccountLaunch.make(multiAccount: false, appGroup: "none", items: items, index: index, folders: folders, defaults: d)
+        #expect(off.ownsLegacyPurchases == false)
+    }
+
     @Test func relaunchLeavesTheFolderMoveWhereItWas() throws {
         let (items, index, folders, d) = try fresh()
         try signIn("A", items, index)

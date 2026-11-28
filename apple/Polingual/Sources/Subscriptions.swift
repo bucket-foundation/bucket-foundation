@@ -5,7 +5,7 @@ import StoreKit
 
 extension EntitlementRecord {
     init(_ t: Transaction) {
-        self.init(productID: t.productID, purchased: t.purchaseDate, expires: t.expirationDate, revoked: t.revocationDate, introductory: t.offer?.type == .introductory, upgraded: t.isUpgraded)
+        self.init(productID: t.productID, purchased: t.purchaseDate, expires: t.expirationDate, revoked: t.revocationDate, introductory: t.offer?.type == .introductory, upgraded: t.isUpgraded, accountToken: t.appAccountToken)
     }
 }
 
@@ -23,6 +23,7 @@ final class Subscriptions {
     private(set) var lapsed: Date?
     private(set) var sandbox = false
     private(set) var epoch = 0
+    @ObservationIgnored var owner: PurchaseOwner?
     @ObservationIgnored private var updates: Task<Void, Never>?
     @ObservationIgnored private var resets: Task<Void, Never>?
 
@@ -71,10 +72,12 @@ final class Subscriptions {
         for await result in Transaction.all {
             if case .verified(let t) = result { history.append(EntitlementRecord(t)) }
         }
-        store = Entitlement.access(current, now: .now, beta: await Self.testFlight())
-        self.current = Entitlement.current(current, now: .now)
+        let mine = Entitlement.owned(current, by: owner)
+        let mineHistory = Entitlement.owned(history, by: owner)
+        store = Entitlement.access(mine, now: .now, beta: await Self.testFlight())
+        self.current = Entitlement.current(mine, now: .now)
         trialEligible = Entitlement.trialEligible(history: history)
-        lapsed = Entitlement.lapsed(history: history, now: .now)
+        lapsed = Entitlement.lapsed(history: mineHistory, now: .now)
         sandbox = await Self.sandboxed()
         if let product = try? await Product.products(for: Plan.all).first, let sub = product.subscription {
             trialEligible = await sub.isEligibleForIntroOffer

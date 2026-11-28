@@ -78,6 +78,8 @@ public struct AccountLaunch: Sendable {
 
     public var switcher: AccountSwitch? { multiAccount ? AccountSwitch(index: index, items: items) : nil }
 
+    public var ownsLegacyPurchases: Bool { multiAccount && folderKey != nil && folderKey == folders.firstKey }
+
     public var inGuest: Bool { multiAccount && folderKey == AccountFolders.guest }
 
     func lockUser(_ userId: String?) -> String? { Self.lockUser(userId, index) }

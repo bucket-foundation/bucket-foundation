@@ -37,6 +37,17 @@ struct EntitlementRecord: Equatable, Sendable {
     let revoked: Date?
     let introductory: Bool
     let upgraded: Bool
+    var accountToken: UUID? = nil
+}
+
+struct PurchaseOwner: Equatable, Sendable {
+    let token: UUID?
+    let legacy: Bool
+
+    func owns(_ r: EntitlementRecord) -> Bool {
+        guard let t = r.accountToken else { return legacy }
+        return t == token
+    }
 }
 
 enum Access: Equatable, Sendable {
@@ -104,6 +115,11 @@ enum Entitlement {
     static func lapsed(history: [EntitlementRecord], now: Date) -> Date? {
         guard !history.contains(where: { live($0, now: now) }) else { return nil }
         return history.filter { Plan.paid.contains($0.productID) && $0.revoked == nil }.compactMap(\.expires).filter { $0 <= now }.max()
+    }
+
+    static func owned(_ records: [EntitlementRecord], by owner: PurchaseOwner?) -> [EntitlementRecord] {
+        guard let owner else { return records }
+        return records.filter(owner.owns)
     }
 
     static func trialEligible(history: [EntitlementRecord]) -> Bool {

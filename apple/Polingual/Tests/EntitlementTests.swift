@@ -15,6 +15,21 @@ struct EntitlementTests {
         WebEntitlement(userId: user, productId: "web.polingual.gift.year", expires: now.addingTimeInterval(expiresIn), fetched: now.addingTimeInterval(-fetchedAgo))
     }
 
+    @Test func purchasesCountOnlyForTheAccountWhoseTokenTheyCarry() {
+        let a = UUID(), b = UUID()
+        var mine = record(Plan.yearly)
+        mine.accountToken = a
+        var theirs = record(Plan.monthly)
+        theirs.accountToken = b
+        let untagged = record(Plan.lifetime, expiresIn: nil)
+        let all = [mine, theirs, untagged]
+        #expect(Entitlement.owned(all, by: nil) == all)
+        #expect(Entitlement.owned(all, by: PurchaseOwner(token: a, legacy: false)) == [mine])
+        #expect(Entitlement.owned(all, by: PurchaseOwner(token: b, legacy: true)) == [theirs, untagged])
+        #expect(Entitlement.owned(all, by: PurchaseOwner(token: nil, legacy: false)).isEmpty)
+        #expect(Entitlement.access(Entitlement.owned(all, by: PurchaseOwner(token: UUID(), legacy: false)), now: now) == .locked)
+    }
+
     @Test func lapsedReportsTheLatestEndedPaidPlan() {
         let older = record(Plan.monthly, expiresIn: -5 * 86_400)
         let newer = record(Plan.yearly, expiresIn: -86_400)
