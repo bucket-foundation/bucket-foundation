@@ -20,8 +20,10 @@ final class ReviewRecordingUITests: XCTestCase {
         let app = walk.app
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { return }
         walk.tap(app.buttons["Get started"])
-        walk.tap(app.buttons["Continue"])
-        walk.tap(app.buttons["Continue"])
+        let start = app.buttons["Start learning"]
+        let deadline = Date().addingTimeInterval(60)
+        while !start.waitForExistence(timeout: 1) && Date() < deadline { walk.tap(app.buttons["Continue"]) }
+        walk.tap(start)
     }
 
     func paywall(_ walk: ReviewWalk) {

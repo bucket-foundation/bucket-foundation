@@ -2,9 +2,10 @@ import BucketKit
 import SwiftUI
 
 struct Onboarding: View {
-    enum Step: Int, CaseIterable { case welcome, heard, speak, languages }
+    enum Step: Int, CaseIterable { case welcome, heard, speak, languages, reason, level, motivation, minutes, time, deadline, plan }
 
     @Environment(LangStore.self) private var store
+    @Environment(Reminders.self) private var reminders
     @Environment(\.accessibilityReduceMotion) private var still
     let finish: (String?) -> Void
     @State private var knownSent = false
@@ -13,6 +14,7 @@ struct Onboarding: View {
     @State private var creating = false
     @State private var failed: String?
     @State private var heard: String?
+    @State private var quiz = QuizAnswers.load()
 
     var body: some View {
         VStack(spacing: 0) {
@@ -34,11 +36,20 @@ struct Onboarding: View {
             footer
         }
         .background(Backdrop().ignoresSafeArea())
-        .onChange(of: step, initial: true) { _, s in AppFunnel.track("onboarding_view", detail: s.funnelName) }
+        .onChange(of: step, initial: true) { _, s in
+            if let back = Self.blocked(s, ready: picks.ready, targets: targets.count) { step = back; return }
+            AppFunnel.track("onboarding_view", detail: s.funnelName)
+        }
         .task {
             await store.load()
             if !store.known.isBlank, !picks.touched { picks = KnownPicks(device: InterfaceLanguage.deviceRoot, stored: store.known) }
         }
+    }
+
+    static func blocked(_ s: Step, ready: Bool, targets: Int) -> Step? {
+        if s.rawValue > Step.speak.rawValue, !ready { return .speak }
+        if s.rawValue > Step.languages.rawValue, targets == 0 { return .languages }
+        return nil
     }
 
     var root: String { picks.root }
@@ -51,6 +62,130 @@ struct Onboarding: View {
         case .heard: heardAbout
         case .speak: speak
         case .languages: languages
+        case .reason: question("Why are you learning?", options: QuizOption.reasons, picked: quiz.reason?.rawValue) { quiz.reason = QuizReason(rawValue: $0) }
+        case .level: question("How much do you know already?", options: QuizOption.levels, picked: quiz.level?.rawValue) { quiz.level = QuizLevel(rawValue: $0) }
+        case .motivation: motivation
+        case .minutes: question("How many minutes a day?", note: "Pick an amount you can keep up every day.", options: QuizOption.minutes, picked: quiz.minutes.map { String($0.rawValue) }) { quiz.minutes = Int($0).flatMap(QuizMinutes.init(rawValue:)) }
+        case .time: question("When do you want to practice?", note: "Reminders use this time when you turn them on.", options: QuizOption.times, picked: quiz.time?.rawValue) { quiz.time = QuizTime(rawValue: $0) }
+        case .deadline: question("When do you want to see results?", options: QuizOption.deadlines, picked: quiz.deadline?.rawValue) { quiz.deadline = QuizDeadline(rawValue: $0) }
+        case .plan: planPage
+        }
+    }
+
+    var plan: PersonalPlan { PersonalPlan(quiz, languages: targets.count, now: .now) }
+
+    func question(_ title: LocalizedStringKey, note: LocalizedStringKey? = nil, options: [QuizOption], picked: String?, pick: @escaping (String) -> Void) -> some View {
+        let page = VStack(alignment: .leading, spacing: 14) {
+            Text(title)
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+                .minimumScaleFactor(0.6)
+                .fixedSize(horizontal: false, vertical: true)
+            if let note {
+                Text(note).font(PL.body.font()).foregroundStyle(PL.inkDim).fixedSize(horizontal: false, vertical: true)
+            }
+            FlowLayout(spacing: 8) {
+                ForEach(options) { o in
+                    Chip(title: o.label, on: picked == o.key) { choose(o.key, picked: picked, pick: pick) }
+                        .accessibilityIdentifier("quiz-\(o.key)")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.vertical, 2)
+        }
+        return ViewThatFits(in: .vertical) {
+            page
+            ScrollView { page }
+        }
+    }
+
+    func choose(_ key: String, picked: String?, pick: (String) -> Void) {
+        guard picked != key else { advance(); return }
+        let at = step
+        pick(key)
+        quiz.save()
+        Task {
+            try? await Task.sleep(for: .milliseconds(still ? 0 : 250))
+            if step == at { advance() }
+        }
+    }
+
+    var motivation: some View {
+        ViewThatFits(in: .vertical) {
+            motivationPage
+            ScrollView { motivationPage }
+        }
+    }
+
+    var motivationPage: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("One word, every language")
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+                .minimumScaleFactor(0.6)
+                .fixedSize(horizontal: false, vertical: true)
+            HStack(alignment: .center, spacing: 16) {
+                Text(verbatim: "\(plan.newToday)")
+                    .font(PL.title.font(scale: 1.6))
+                    .foregroundStyle(PL.vermilion)
+                    .monospacedDigit()
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 6) { ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 28) } }
+                    Text("new words in your first session").font(PL.text(15, .bold)).foregroundStyle(PL.ink).fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.hairline2, lineWidth: 2) }
+            .accessibilityElement(children: .combine)
+            Text("Each word you learn comes back in every language you picked, so one session moves all of them forward.")
+                .font(PL.body.font())
+                .foregroundStyle(PL.inkDim)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    var planPage: some View {
+        ViewThatFits(in: .vertical) {
+            planBody
+            ScrollView { planBody }
+        }
+    }
+
+    var planBody: some View {
+        let p = plan
+        return VStack(alignment: .leading, spacing: 14) {
+            Text("Your plan")
+                .font(PL.title.font(scale: 0.94))
+                .foregroundStyle(PL.ink)
+                .accessibilityAddTraits(.isHeader)
+            HStack(spacing: 6) { ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 32) } }
+            VStack(alignment: .leading, spacing: 12) {
+                if let minutes = p.minutes { PlanLine(icon: "clock", text: "\(minutes) minutes a day") }
+                if let time = quiz.time { PlanLine(icon: "bell", text: "Practice time: \(QuizOption.local(QuizOption.label(time)))") }
+                if p.dated {
+                    PlanLine(icon: "calendar", text: "By \(p.until.formatted(.dateTime.month(.wide).day().year())): about \(p.wordsPerLanguage) words in each language")
+                } else {
+                    PlanLine(icon: "calendar", text: "In 3 months: about \(p.wordsPerLanguage) words in each language")
+                }
+                if let reason = quiz.reason { PlanLine(icon: "star", text: "Goal: \(QuizOption.local(QuizOption.label(reason)))") }
+                if let level = quiz.level { PlanLine(icon: "chart.line.uptrend.xyaxis", text: "Starting point: \(QuizOption.local(QuizOption.label(level)))") }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .background(PL.card, in: .rect(cornerRadius: PL.Radius.lg))
+            .overlay { RoundedRectangle(cornerRadius: PL.Radius.lg).strokeBorder(PL.hairline2, lineWidth: 2) }
+            Text("At \(Lang.newPerLangPerDay) new words a day in each language, with reviews when each word is due.")
+                .font(PL.text(13))
+                .foregroundStyle(PL.inkDim)
+                .fixedSize(horizontal: false, vertical: true)
+            if let failed {
+                Text(failed).font(PL.text(13)).foregroundStyle(PL.vermilion)
+                Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
+            }
         }
     }
 
@@ -203,10 +338,6 @@ struct Onboarding: View {
                     Chip(title: p.name, langs: p.targets, on: Set(p.targets) == Set(targets)) { picks.pick(p.targets) }
                 }
             }
-            if let failed {
-                Text(failed).font(PL.text(13)).foregroundStyle(PL.vermilion)
-                Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
-            }
         }
     }
 
@@ -219,14 +350,14 @@ struct Onboarding: View {
             }
             .accessibilityHidden(true)
             Button(label) {
-                if step == .languages {
+                if step == .plan {
                     Task { await complete() }
                 } else {
                     advance()
                 }
             }
             .buttonStyle(D8Primary())
-            .disabled((step == .languages && targets.isEmpty) || (step == .speak && !picks.ready) || creating)
+            .disabled(((step == .languages || step == .plan) && targets.isEmpty) || (step == .speak && !picks.ready) || creating)
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
@@ -236,8 +367,8 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
-        case .heard, .speak: "Continue"
-        case .languages: creating ? "Setting up" : failed == nil ? "Continue" : "Try again"
+        case .plan: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
+        default: "Continue"
         }
     }
 
@@ -258,13 +389,20 @@ struct Onboarding: View {
             Beta.shared.knownLanguagesSet(store.known, source: .onboarding)
         }
         let existing = store.systems.first { $0.root == root && Set($0.targets) == Set(targets) }
-        if let existing { finish(existing.id); return }
+        if let existing { done(existing.id); return }
         do {
             let s = try await store.create(root: root, targets: targets)
-            finish(s.id)
+            done(s.id)
         } catch {
             failed = "That set could not be created. Try again, or skip and build one from the home screen."
         }
+    }
+
+    func done(_ id: String) {
+        quiz.save()
+        if let minute = PlanPaywall.reminderMinute(plan, current: reminders.customMinute) { reminders.customMinute = minute }
+        PlanPaywall.arm()
+        finish(id)
     }
 }
 
@@ -275,6 +413,13 @@ extension Onboarding.Step {
         case .heard: "heard_about"
         case .speak: "speak"
         case .languages: "languages"
+        case .reason: "reason"
+        case .level: "level"
+        case .motivation: "motivation"
+        case .minutes: "minutes"
+        case .time: "practice_time"
+        case .deadline: "deadline"
+        case .plan: "plan"
         }
     }
 }
@@ -414,6 +559,88 @@ struct PlayfulTiles: View {
             let w = Self.night[next]
             if LangVoice.shared.canSpeak(w.1, w.0) { LangVoice.shared.speak(w.1, w.0, kind: .auto) }
         }
+    }
+}
+
+struct QuizOption: Identifiable {
+    let key: String
+    let label: String
+    var id: String { key }
+
+    static let reasons: [QuizOption] = QuizReason.allCases.map { QuizOption(key: $0.rawValue, label: label($0)) }
+    static let levels: [QuizOption] = QuizLevel.allCases.map { QuizOption(key: $0.rawValue, label: label($0)) }
+    static let minutes: [QuizOption] = QuizMinutes.allCases.map { QuizOption(key: String($0.rawValue), label: label($0)) }
+    static let times: [QuizOption] = QuizTime.allCases.map { QuizOption(key: $0.rawValue, label: label($0)) }
+    static let deadlines: [QuizOption] = QuizDeadline.allCases.map { QuizOption(key: $0.rawValue, label: label($0)) }
+
+    static func local(_ label: String) -> String { NSLocalizedString(label, comment: "") }
+
+    static func label(_ r: QuizReason) -> String {
+        switch r {
+        case .travel: "Travel"
+        case .family: "Family and friends"
+        case .work: "Work"
+        case .school: "School"
+        case .culture: "Films, books and music"
+        case .mind: "Keep my mind sharp"
+        }
+    }
+
+    static func label(_ l: QuizLevel) -> String {
+        switch l {
+        case .new: "I'm new to them"
+        case .words: "I know some words"
+        case .getBy: "I can get by"
+        case .talk: "I can hold a conversation"
+        }
+    }
+
+    static func label(_ m: QuizMinutes) -> String {
+        switch m {
+        case .five: "5 min"
+        case .ten: "10 min"
+        case .fifteen: "15 min"
+        case .twenty: "20 min"
+        }
+    }
+
+    static func label(_ t: QuizTime) -> String {
+        switch t {
+        case .morning: "Morning"
+        case .midday: "Midday"
+        case .evening: "Evening"
+        case .night: "Night"
+        }
+    }
+
+    static func label(_ d: QuizDeadline) -> String {
+        switch d {
+        case .month: "In 1 month"
+        case .quarter: "In 3 months"
+        case .half: "In 6 months"
+        case .year: "In a year"
+        case .open: "No deadline"
+        }
+    }
+}
+
+enum PlanPaywall {
+    static let key = "polingual.planPaywall"
+
+    static func arm(_ defaults: UserDefaults = .standard) { defaults.set(true, forKey: key) }
+
+    static func reminderMinute(_ plan: PersonalPlan, current: Int?) -> Int? {
+        current == nil ? plan.reminderMinute : nil
+    }
+
+    static func ready(_ access: Access, sheets: Set<RootSheet>) -> Bool {
+        access != .checking && sheets.isEmpty
+    }
+
+    static func take(open: Bool, _ defaults: UserDefaults = .standard) -> Bool {
+        guard defaults.bool(forKey: key) else { return false }
+        defaults.removeObject(forKey: key)
+        return !open
     }
 }
 

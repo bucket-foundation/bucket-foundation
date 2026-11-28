@@ -35,7 +35,7 @@ final class SignUpFunnelUITests: XCTestCase {
         }
     }
 
-    func testOnboardingLandsFreeUserOnGamesInFourTaps() throws {
+    func testOnboardingQuizEndsOnPlanThenPaywall() throws {
         let app = launch([])
         guard app.buttons["Get started"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
         app.buttons["Get started"].tap()
@@ -48,12 +48,43 @@ final class SignUpFunnelUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Which languages?"].waitForExistence(timeout: 10))
         shot("onboarding-languages")
         app.buttons["Continue"].tap()
-        let games = app.buttons["Play"]
+        for (title, key) in [("Why are you learning?", "travel"), ("How much do you know already?", "words")] {
+            XCTAssertTrue(app.staticTexts[title].waitForExistence(timeout: 10))
+            shot("onboarding-\(key)")
+            app.buttons["quiz-\(key)"].tap()
+        }
+        XCTAssertTrue(app.staticTexts["One word, every language"].waitForExistence(timeout: 10))
+        shot("onboarding-motivation")
+        app.buttons["Continue"].tap()
+        for (title, key) in [("How many minutes a day?", "10"), ("When do you want to practice?", "evening"), ("When do you want to see results?", "quarter")] {
+            XCTAssertTrue(app.staticTexts[title].waitForExistence(timeout: 10))
+            shot("onboarding-\(title.prefix(12))")
+            app.buttons["quiz-\(key)"].tap()
+        }
+        XCTAssertTrue(app.staticTexts["Your plan"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["10 minutes a day"].exists)
+        XCTAssertTrue(app.staticTexts["Practice time: Evening"].exists)
+        shot("onboarding-plan")
+        app.buttons["Start learning"].tap()
+        let plans = app.buttons["Restore"]
         let home = app.buttons["Today"]
         let deadline = Date().addingTimeInterval(60)
-        while !games.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
-        XCTAssertTrue(games.exists || home.exists, "Onboarding did not leave after four taps")
-        shot(games.exists ? "games-free" : "home-already-subscribed")
+        while !plans.exists && !home.exists && Date() < deadline { Thread.sleep(forTimeInterval: 1) }
+        XCTAssertTrue(plans.exists || home.exists, "Onboarding did not reach the paywall or Today")
+        shot(plans.exists ? "plan-paywall" : "home-already-subscribed")
+        guard plans.exists else { return }
+        dismissStoreSignIn(app)
+        app.swipeDown(velocity: .fast)
+        XCTAssertTrue(app.buttons["Play"].waitForExistence(timeout: 20))
+        shot("games-free")
+    }
+
+    func testPlanPageFitsWithoutAnswers() throws {
+        let app = launch(["-onboardingStep", "10", "-polingual.onboarded", "NO"])
+        guard app.staticTexts["Your plan"].waitForExistence(timeout: 30) else { throw XCTSkip("Onboarding already finished on this install") }
+        XCTAssertTrue(app.staticTexts.containing(NSPredicate(format: "label BEGINSWITH 'In 3 months: about'")).firstMatch.exists || app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'By '")).firstMatch.exists)
+        XCTAssertTrue(app.buttons["Start learning"].isHittable)
+        shot("plan-unanswered")
     }
 
     func testLockedTodayOpensPaywall() throws {
